@@ -66,7 +66,7 @@ module ietf-flexi-grid-media-channel {
     This version of this YANG module is part of RFC XXXX; see
     the RFC itself for full legal notices.";
 
-  revision "2021-02-09" {
+  revision "2021-02-12" {
     description
       "Initial Revision";
     reference
@@ -79,52 +79,11 @@ module ietf-flexi-grid-media-channel {
   * Data nodes
   */
 
-  grouping flexi-grid-media-channel-attributes {
-    description "Parameters for flexi-grid media channel.";
-
-    leaf fec-type {
-      type identityref {
-        base l0-types-ext:fec-type;
-      }
-      description
-        "FEC type.";
-    }
-    leaf termination-type {
-      type identityref {
-        base l0-types-ext:term-type;
-      }
-      description
-        "Termination type.";
-    }
-    leaf bit-stuffing {
-      type boolean;
-      description
-        "Bit stuffing enabled/disabled.";
-    }
-  }
-
-  grouping flexi-grid-path-constraints {
-    description
-      "Global named path constraints configuration
-       grouping for flexi-grid media channel";
-
-    leaf wavelength-assignment {
-      type identityref {
-        base l0-types-ext:wavelength-assignment;
-      }
-      description "Wavelength Allocation Method";
-    }
-  }
-
- /*
-  * Data nodes
-  */
-
   augment "/te:te/te:tunnels/te:tunnel" {
     description
       "Augment with additional parameters required for flexi-grid
        media channel.";
-    uses flexi-grid-media-channel-attributes;
+    uses l0-types-ext:l0-tunnel-attributes;
   }
 
   /*
@@ -747,7 +706,7 @@ module ietf-flexi-grid-media-channel {
     description
        "Augment with additional constraints flexi-grid
         media channel.";
-    uses flexi-grid-media-channel-attributes;
-    uses flexi-grid-path-constraints;
+    uses l0-types-ext:l0-tunnel-attributes;
+    uses l0-types-ext:l0-path-constraints;
   }
 }
