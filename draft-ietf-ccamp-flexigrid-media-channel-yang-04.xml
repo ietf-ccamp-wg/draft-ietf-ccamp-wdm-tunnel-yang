@@ -284,7 +284,9 @@
       planning the resources that have to be provided on each situation.
       Note that every element in the flexi-grid topology has a reference,
       and this is the way in which they are called in the media-channel.
-
+     
+      </list></t>
+       
       <list style="symbols">
 
          <t>Depending on the case, it is possible to define either the source
