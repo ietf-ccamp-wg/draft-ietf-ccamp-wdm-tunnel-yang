@@ -256,6 +256,27 @@
       </artwork>
    </figure>
 
+     <t>In order to configure a network media channel to interconnect 
+      transponders A and E, first of all we have to populate the
+      flexi-grid topology YANG model with all elements in the network:
+
+      <list style="symbols">
+
+         <t>We define the transponders within nodes A and E as tunnel termination
+            points (TTPs) and provide their internal local link connectivity 
+            towards the node interfaces.  We also provide nodes A and B identifiers,
+            addresses and interfaces.</t>
+
+         <t>We do the same for the nodes B, C and D, providing their
+            identifiers, addresses and interfaces, as well as the internal
+            connectivity matrix between interfaces.</t>
+
+         <t>Then, we also define the links 1 to 5 that interconnect nodes, 
+            indicating which flexi-grid labels are available.</t>
+
+         <t>Other information, such as the slot frequency and granularity are
+            also provided.</t>
+ 
    <t>After the nodes, links and transponders have been defined using
       <xref target="I-D.ietf-ccamp-flexigrid-yang" /> we can 
       configure the media-channel from the information we have stored in the
