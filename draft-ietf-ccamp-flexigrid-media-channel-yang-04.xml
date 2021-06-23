@@ -276,7 +276,8 @@
 
          <t>Other information, such as the slot frequency and granularity are
             also provided.</t>
- 
+
+         </list></t>
    <t>After the nodes, links and transponders have been defined using
       <xref target="I-D.ietf-ccamp-flexigrid-yang" /> we can 
       configure the media-channel from the information we have stored in the
@@ -285,7 +286,6 @@
       Note that every element in the flexi-grid topology has a reference,
       and this is the way in which they are called in the media-channel.
      
-      </list></t>
        
       <list style="symbols">
 
