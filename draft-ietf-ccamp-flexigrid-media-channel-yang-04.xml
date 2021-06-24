@@ -22,8 +22,10 @@
 <!ENTITY RFC7698 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7698.xml">
 <!ENTITY RFC7699 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7699.xml">
 <!ENTITY RFC7950 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7950.xml">
+<!ENTITY RFC8040 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.8040.xml">
 <!ENTITY RFC8049 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.8049.xml">
 <!ENTITY RFC8340 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.8340.xml">
+<!ENTITY RFC8341 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.8341.xml">
 <!ENTITY RFC8453 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.8453.xml">
 <!ENTITY RFC8454 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.8454.xml">
 <!ENTITY RFC8466 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.8466.xml">
@@ -47,7 +49,7 @@
 </author>
 
 <author initials="D." surname="Perdices Burrero" fullname="Daniel Perdices Burrero">
-  <organization>Universidad Autónoma de Madrid</organization>
+  <organization>Universidad Autonoma de Madrid</organization>
   <address>
     <email>daniel.perdices@uam.es</email>
   </address>
@@ -276,8 +278,8 @@
 
          <t>Other information, such as the slot frequency and granularity are
             also provided.</t>
+    </list></t>
 
-         </list></t>
    <t>After the nodes, links and transponders have been defined using
       <xref target="I-D.ietf-ccamp-flexigrid-yang" /> we can 
       configure the media-channel from the information we have stored in the
@@ -2852,7 +2854,32 @@ module ietf-flexi-grid-media-channel {
 
 <section anchor="SECURITY" title="Security Considerations">
 
-   <t>To Be discussed.</t>
+   <t>The configuration, state, and action data defined in this document
+   are designed to be accessed via a management protocol with a secure
+   transport layer, such as NETCONF <xref target="RFC6241" /> or RESTCONF <xref target="RFC8040" />.  
+   The NETCONF access control model <xref target="RFC8341" /> provides the means to restrict access for
+   particular NETCONF users to a preconfigured subset of all available
+   NETCONF protocol operations and content.</t>
+
+   <t>There are a number of data nodes defined in this YANG module that are
+   writable/creatable/deletable (i.e., config true, which is the
+   default).  These data nodes may be considered sensitive or vulnerable
+   in some network environments.  Write operations (e.g., edit-config)
+   to these data nodes without proper protection can have a negative
+   effect on network operations.  These are the subtrees and data nodes
+   and their sensitivity/vulnerability:
+
+   <list style="symbols">
+        <t> /te:te/te:tunnels/te:tunnel </t>
+        <t> /te:te/.../te:te-bandwidth/te:technology</t>
+        <t> /te:te/.../te:type/te:label/te:label-hop/te:te-label/te:technology</t>
+        <t> /te:te/.../te:label-restrictions/te:label-restriction/te:label-start/te:te-label/te:technology </t>
+        <t> /te:te/.../te:label-restrictions/te:label-restriction/te:label-end/te:te-label/te:technology</t>
+        <t> /te:te/.../te:label-restrictions/te:label-restriction/ </t>
+   </list></t>
+   <t>Editors note:
+   we are using simplified description by folding similar branches to
+   avoid repetition.</t>
 
 </section>
 
@@ -2905,7 +2932,8 @@ module ietf-flexi-grid-media-channel {
   &RFC6241;
   &RFC7699;
   &RFC7950;
-
+  &RFC8341;
+  &RFC8040;
   <?rfc include='reference.I-D.ietf-ccamp-flexigrid-yang'?>
   <?rfc include='reference.I-D.ietf-teas-yang-te'?>
 
