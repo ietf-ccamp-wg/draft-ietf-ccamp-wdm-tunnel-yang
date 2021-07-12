@@ -2179,9 +2179,9 @@ module ietf-flexi-grid-media-channel {
      Editor:   Daniel Perdices
                <daniel.perdices@naudit.es>
      Editor:   Victor Lopez
-               <victor.lopezalvarez@telefonica.com>
+               <victor.lopez@nokia.com>
      Editor:   Young Lee
-               <leeyoung@huawei.com>";
+               <younglee.tx@gmail.com>";
 
   description
     "This module defines a model for Flex-grid Media Channel
