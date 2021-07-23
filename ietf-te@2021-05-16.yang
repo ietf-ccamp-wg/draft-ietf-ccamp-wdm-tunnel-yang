@@ -70,7 +70,7 @@ module ietf-te {
   // RFC Ed.: update the date below with the date of RFC publication
   // and remove this note.
 
-  revision 2021-02-20 {
+  revision 2021-05-16 {
     description
       "Latest update to TE generic YANG module.";
     reference
@@ -87,18 +87,18 @@ module ietf-te {
     base path-computation-error-reason;
     description
       "Path computation has failed because there is no topology
-       with the provided the topology-identifier.";
+       with the provided topology-identifier.";
   }
-
   identity path-computation-error-no-dependent-server {
     base path-computation-error-reason;
     description
       "Path computation has failed because one or more dependent
        path computation servers are unavailable.
        The dependent path computation server could be
-       a BRPC downstream PCE or a child PCE.";
+       a Backward-Recursive Path Computation (BRPC) downstream
+       PCE or a child PCE.";
     reference
-      "RFC5441, RFC 8685";
+      "RFC5441, RFC8685";
   }
 
   identity path-computation-error-pce-unavailable {
@@ -166,8 +166,8 @@ module ietf-te {
   identity path-computation-error-no-gco-migration {
     base path-computation-error-reason;
     description
-      "Path computation has failed because of no GCO migration
-       path found.";
+      "Path computation has failed because of no Global Concurrent
+       Optimization (GCO) migration path found.";
     reference
       "RFC5557";
   }
@@ -192,8 +192,8 @@ module ietf-te {
   identity path-computation-error-pks-expansion {
     base path-computation-error-reason;
     description
-      "Path computation has failed because of PKS expansion
-       failure.";
+      "Path computation has failed because of Path-Key Subobject
+       (PKS)  expansion failure.";
     reference
       "RFC5520";
   }
@@ -259,16 +259,7 @@ module ietf-te {
       "Association Type diversity used to associate LSPs whose paths
        are to be diverse from each other.";
     reference
-      "ID.ietf-pce-association-diversity.";
-  }
-
-  identity path-metric-loss {
-    base te-types:path-metric-type;
-    description
-      "The path loss (as a packet percentage) metric type that
-       encodes a function of the unidirectional loss metrics of all
-       links traversed by a P2P path.";
-    reference "RFC8233";
+      "RFC8800";
   }
 
   identity protocol-origin-type {
@@ -482,7 +473,6 @@ module ietf-te {
   }
 
   /* This grouping will be re-used in path-computation rpc */
-
   grouping path-preference {
     description
       "The path preference.";
@@ -884,6 +874,7 @@ module ietf-te {
       }
     }
   }
+
   grouping tunnel-associations-properties {
     description
       "TE tunnel association grouping.";
@@ -1055,7 +1046,11 @@ module ietf-te {
           description
             "Remote TE node identifier.";
         }
-        uses te-types:te-topology-identifier;
+        uses te-types:te-topology-identifier {
+          description
+            "The topology identifier where the hierarchical link
+             supported by this TE tunnel is instantiated.";
+        }
       }
     }
   }
@@ -1063,18 +1058,16 @@ module ietf-te {
   grouping tunnel-properties {
     description
       "Top level grouping for tunnel properties.";
-    leaf operational-state {
-      type identityref {
-        base te-types:tunnel-state-type;
-      }
-      config false;
-      description
-        "TE tunnel operational state.";
-    }
     leaf name {
       type string;
       description
         "TE tunnel name.";
+    }
+    leaf alias {
+      type string;
+      description
+        "An alternate name of the TE tunnel that can be modified
+         anytime during its lifetime.";
     }
     leaf identifier {
       type uint32;
@@ -1083,11 +1076,32 @@ module ietf-te {
       reference
         "RFC3209";
     }
+    leaf color {
+      type uint32;
+      description "The color associated with the TE tunnel.";
+      reference "RFC9012";
+    }
     leaf description {
       type string;
       default "None";
       description
         "Textual description for this TE tunnel.";
+    }
+    leaf admin-state {
+      type identityref {
+        base te-types:tunnel-admin-state-type;
+      }
+      default "te-types:tunnel-admin-state-up";
+      description
+        "TE tunnel administrative state.";
+    }
+    leaf operational-state {
+      type identityref {
+        base te-types:tunnel-state-type;
+      }
+      config false;
+      description
+        "TE tunnel operational state.";
     }
     leaf encoding {
       type identityref {
@@ -1108,14 +1122,6 @@ module ietf-te {
         "LSP switching type.";
       reference
         "RFC3945";
-    }
-    leaf admin-state {
-      type identityref {
-        base te-types:tunnel-admin-state-type;
-      }
-      default "te-types:tunnel-admin-state-up";
-      description
-        "TE tunnel administrative state.";
     }
     leaf reoptimize-timer {
       type uint16;
@@ -1268,6 +1274,7 @@ module ietf-te {
       }
     }
   }
+
   grouping tunnel-actions {
     description
       "Tunnel actions.";
@@ -1426,7 +1433,6 @@ module ietf-te {
       }
     }
   }
-
   /*** End of TE LSP groupings ***/
   /**
    * TE global generic groupings
@@ -1510,7 +1516,22 @@ module ietf-te {
     description
       "Global named path constraints configuration
        grouping.";
-    uses te-types:common-path-constraints-attributes;
+    uses te-types:common-path-constraints-attributes {
+      description
+        "The constraints applicable to the path. This includes:
+         - The path bandwidth constraint
+         - The path link protection type constraint
+         - The path setup/hold priority constraint
+         - path signaling type constraint
+         - path metric bounds constraint. The unit of path metric
+           bound is interpreted in the context of the metric-type.
+           For example for metric-type 'path-metric-loss', the bound
+           is multiples of the basic unit 0.000003% as described
+           in RFC7471 for OSPF, and RFC8570 for ISIS.
+         - path affinity constraints
+         - path SRLG constraints";
+
+    }
     uses te-types:generic-path-disjointness;
     uses te-types:path-constraints-route-objects;
     container path-in-segment {
@@ -1520,8 +1541,8 @@ module ietf-te {
         "If an end-to-end tunnel crosses multiple domains using
          the same technology, some additional constraints have to be
          taken in consideration in each domain.
-         This tunnel is a segment that needs to be coordinated
-         with previous segment stitched on head-end side.";
+         This TE tunnel segment is stitched to the upstream TE tunnel
+         segment.";
       uses te-types:label-set-info;
     }
     container path-out-segment {
@@ -1532,8 +1553,8 @@ module ietf-te {
         "If an end-to-end tunnel crosses multiple domains using
          the same technology, some additional constraints have to be
          taken in consideration in each domain.
-         This tunnel is a segment that needs to be coordinated
-         with previous segment stitched on head-end side.";
+         This TE tunnel segment is stitched to the downstream TE
+         tunnel segment.";
       uses te-types:label-set-info;
     }
   }

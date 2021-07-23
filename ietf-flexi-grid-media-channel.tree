@@ -612,3 +612,9 @@ module: ietf-flexi-grid-media-channel
              +--ro subcarrier-flexi-n* [flexi-n]
                 +--ro flexi-n    l0-types:flexi-n
                 +--ro flexi-m?   l0-types:flexi-m
+  augment /te:tunnels-path-compute/te:input/te:path-compute-info
+            /tepc:path-request:
+    +-- fec-type?                identityref
+    +-- termination-type?        identityref
+    +-- bit-stuffing?            boolean
+    +-- wavelength-assignment?   identityref

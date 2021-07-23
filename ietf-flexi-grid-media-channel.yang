@@ -6,7 +6,7 @@ module ietf-flexi-grid-media-channel {
 
   import ietf-te {
     prefix "te";
-    revision-date "2021-02-20";
+    revision-date "2021-05-16";
     reference
       "I-D.ietf-teas-yang-te-19: A YANG Data Model for Traffic
       Engineering Tunnels and Interfaces. ";
