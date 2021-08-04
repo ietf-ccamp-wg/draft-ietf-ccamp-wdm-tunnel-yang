@@ -5,6 +5,7 @@ module ietf-te-path-computation {
 
   import ietf-te {
     prefix te;
+    revision-date "2021-02-20";
     reference
       "RFCYYYY: A YANG Data Model for Traffic Engineering Tunnels
        and Interfaces";
@@ -84,7 +85,7 @@ module ietf-te-path-computation {
   // replace the revision date with the module publication date
   // the format is (year-month-day)
 
-  revision 2021-07-12 {
+  revision 2021-08-04 {
     description
       "Initial revision";
     reference
