@@ -22,7 +22,7 @@ module ietf-flexi-grid-media-channel {
 
   import ietf-te-path-computation {
     prefix "tepc";
-    revision-date "2021-08-04";
+    revision-date "2021-09-06";
     reference 
     "I-D.ietf-teas-yang-path-computation-14: Yang model
     for requesting Path Computation.";
@@ -66,7 +66,7 @@ module ietf-flexi-grid-media-channel {
     This version of this YANG module is part of RFC XXXX; see
     the RFC itself for full legal notices.";
 
-  revision "2021-08-04" {
+  revision "2021-09-06" {
     description
       "Initial Revision";
     reference
