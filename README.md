@@ -1,7 +1,7 @@
 # draft-ietf-ccamp-flexigrid-media-channel-yang
 CCAMP WG repository for the ietf-flexi-grid-media-channel YANG model
 
-## (mostly) Weekly Call at 14:00 European Time 
+## (mostly) Weekly Call on Thursdays at 14:00 European Time 
 Join Zoom Meeting https://zoom.us/j/96715237995?pwd=WmcwMVZ3c1kyY0pucUhNcWVNOHNvdz09
 
 ## Contributing
