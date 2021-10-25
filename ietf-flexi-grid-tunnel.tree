@@ -1,0 +1,614 @@
+module: ietf-flexi-grid-tunnel
+
+  augment /te:te/te:tunnels/te:tunnel:
+    +--rw fec-type?           identityref
+    +--rw termination-type?   identityref
+    +--rw bit-stuffing?       boolean
+  augment /te:te/te:globals/te:named-path-constraints
+            /te:named-path-constraint/te:path-in-segment
+            /te:label-restrictions/te:label-restriction:
+    +--rw grid-type?    identityref
+    +--rw priority?     uint8
+    +--rw flexi-grid
+       +--rw slot-width-granularity?   identityref
+       +--rw min-slot-width-factor?    uint16
+       +--rw max-slot-width-factor?    uint16
+  augment /te:te/te:globals/te:named-path-constraints
+            /te:named-path-constraint/te:path-out-segment
+            /te:label-restrictions/te:label-restriction:
+    +--rw grid-type?    identityref
+    +--rw priority?     uint8
+    +--rw flexi-grid
+       +--rw slot-width-granularity?   identityref
+       +--rw min-slot-width-factor?    uint16
+       +--rw max-slot-width-factor?    uint16
+  augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+            /te:primary-path/te:path-in-segment/te:label-restrictions
+            /te:label-restriction:
+    +--rw grid-type?    identityref
+    +--rw priority?     uint8
+    +--rw flexi-grid
+       +--rw slot-width-granularity?   identityref
+       +--rw min-slot-width-factor?    uint16
+       +--rw max-slot-width-factor?    uint16
+  augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+            /te:primary-path/te:path-out-segment
+            /te:label-restrictions/te:label-restriction:
+    +--rw grid-type?    identityref
+    +--rw priority?     uint8
+    +--rw flexi-grid
+       +--rw slot-width-granularity?   identityref
+       +--rw min-slot-width-factor?    uint16
+       +--rw max-slot-width-factor?    uint16
+  augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+            /te:primary-path/te:primary-reverse-path
+            /te:path-in-segment/te:label-restrictions
+            /te:label-restriction:
+    +--rw grid-type?    identityref
+    +--rw priority?     uint8
+    +--rw flexi-grid
+       +--rw slot-width-granularity?   identityref
+       +--rw min-slot-width-factor?    uint16
+       +--rw max-slot-width-factor?    uint16
+  augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+            /te:primary-path/te:primary-reverse-path
+            /te:path-out-segment/te:label-restrictions
+            /te:label-restriction:
+    +--rw grid-type?    identityref
+    +--rw priority?     uint8
+    +--rw flexi-grid
+       +--rw slot-width-granularity?   identityref
+       +--rw min-slot-width-factor?    uint16
+       +--rw max-slot-width-factor?    uint16
+  augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+            /te:secondary-path/te:path-in-segment
+            /te:label-restrictions/te:label-restriction:
+    +--rw grid-type?    identityref
+    +--rw priority?     uint8
+    +--rw flexi-grid
+       +--rw slot-width-granularity?   identityref
+       +--rw min-slot-width-factor?    uint16
+       +--rw max-slot-width-factor?    uint16
+  augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+            /te:secondary-path/te:path-out-segment
+            /te:label-restrictions/te:label-restriction:
+    +--rw grid-type?    identityref
+    +--rw priority?     uint8
+    +--rw flexi-grid
+       +--rw slot-width-granularity?   identityref
+       +--rw min-slot-width-factor?    uint16
+       +--rw max-slot-width-factor?    uint16
+  augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
+            /te:secondary-reverse-path/te:path-in-segment
+            /te:label-restrictions/te:label-restriction:
+    +--rw grid-type?    identityref
+    +--rw priority?     uint8
+    +--rw flexi-grid
+       +--rw slot-width-granularity?   identityref
+       +--rw min-slot-width-factor?    uint16
+       +--rw max-slot-width-factor?    uint16
+  augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
+            /te:secondary-reverse-path/te:path-out-segment
+            /te:label-restrictions/te:label-restriction:
+    +--rw grid-type?    identityref
+    +--rw priority?     uint8
+    +--rw flexi-grid
+       +--rw slot-width-granularity?   identityref
+       +--rw min-slot-width-factor?    uint16
+       +--rw max-slot-width-factor?    uint16
+  augment /te:te/te:globals/te:named-path-constraints
+            /te:named-path-constraint
+            /te:explicit-route-objects-always
+            /te:route-object-exclude-always/te:type/te:label
+            /te:label-hop/te:te-label/te:technology:
+    +--:(flexi-grid)
+       +--rw (single-or-super-channel)?
+          +--:(single)
+          |  +--rw flexi-n?              l0-types:flexi-n
+          |  +--rw flexi-m?              l0-types:flexi-m
+          +--:(super)
+             +--rw subcarrier-flexi-n* [flexi-n]
+                +--rw flexi-n    l0-types:flexi-n
+                +--rw flexi-m?   l0-types:flexi-m
+  augment /te:te/te:globals/te:named-path-constraints
+            /te:named-path-constraint
+            /te:explicit-route-objects-always
+            /te:route-object-include-exclude/te:type/te:label
+            /te:label-hop/te:te-label/te:technology:
+    +--:(flexi-grid)
+       +--rw (single-or-super-channel)?
+          +--:(single)
+          |  +--rw flexi-n?              l0-types:flexi-n
+          |  +--rw flexi-m?              l0-types:flexi-m
+          +--:(super)
+             +--rw subcarrier-flexi-n* [flexi-n]
+                +--rw flexi-n    l0-types:flexi-n
+                +--rw flexi-m?   l0-types:flexi-m
+  augment /te:te/te:globals/te:named-path-constraints
+            /te:named-path-constraint/te:path-in-segment
+            /te:label-restrictions/te:label-restriction
+            /te:label-start/te:te-label/te:technology:
+    +--:(flexi-grid)
+       +--rw flexi-n?   l0-types:flexi-n
+  augment /te:te/te:globals/te:named-path-constraints
+            /te:named-path-constraint/te:path-in-segment
+            /te:label-restrictions/te:label-restriction/te:label-end
+            /te:te-label/te:technology:
+    +--:(flexi-grid)
+       +--rw flexi-n?   l0-types:flexi-n
+  augment /te:te/te:globals/te:named-path-constraints
+            /te:named-path-constraint/te:path-in-segment
+            /te:label-restrictions/te:label-restriction/te:label-step
+            /te:technology:
+    +--:(flexi-grid)
+       +--rw flexi-grid-channel-spacing?   identityref
+       +--rw flexi-n-step?                 uint8
+  augment /te:te/te:globals/te:named-path-constraints
+            /te:named-path-constraint/te:path-out-segment
+            /te:label-restrictions/te:label-restriction
+            /te:label-start/te:te-label/te:technology:
+    +--:(flexi-grid)
+       +--rw flexi-n?   l0-types:flexi-n
+  augment /te:te/te:globals/te:named-path-constraints
+            /te:named-path-constraint/te:path-out-segment
+            /te:label-restrictions/te:label-restriction/te:label-end
+            /te:te-label/te:technology:
+    +--:(flexi-grid)
+       +--rw flexi-n?   l0-types:flexi-n
+  augment /te:te/te:globals/te:named-path-constraints
+            /te:named-path-constraint/te:path-out-segment
+            /te:label-restrictions/te:label-restriction/te:label-step
+            /te:technology:
+    +--:(flexi-grid)
+       +--rw flexi-grid-channel-spacing?   identityref
+       +--rw flexi-n-step?                 uint8
+  augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+            /te:primary-path/te:optimizations/te:algorithm/te:metric
+            /te:optimization-metric/te:explicit-route-exclude-objects
+            /te:route-object-exclude-object/te:type/te:label
+            /te:label-hop/te:te-label/te:technology:
+    +--:(flexi-grid)
+       +--rw (single-or-super-channel)?
+          +--:(single)
+          |  +--rw flexi-n?              l0-types:flexi-n
+          |  +--rw flexi-m?              l0-types:flexi-m
+          +--:(super)
+             +--rw subcarrier-flexi-n* [flexi-n]
+                +--rw flexi-n    l0-types:flexi-n
+                +--rw flexi-m?   l0-types:flexi-m
+  augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+            /te:primary-path/te:optimizations/te:algorithm/te:metric
+            /te:optimization-metric/te:explicit-route-include-objects
+            /te:route-object-include-object/te:type/te:label
+            /te:label-hop/te:te-label/te:technology:
+    +--:(flexi-grid)
+       +--rw (single-or-super-channel)?
+          +--:(single)
+          |  +--rw flexi-n?              l0-types:flexi-n
+          |  +--rw flexi-m?              l0-types:flexi-m
+          +--:(super)
+             +--rw subcarrier-flexi-n* [flexi-n]
+                +--rw flexi-n    l0-types:flexi-n
+                +--rw flexi-m?   l0-types:flexi-m
+  augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+            /te:primary-path/te:explicit-route-objects-always
+            /te:route-object-exclude-always/te:type/te:label
+            /te:label-hop/te:te-label/te:technology:
+    +--:(flexi-grid)
+       +--rw (single-or-super-channel)?
+          +--:(single)
+          |  +--rw flexi-n?              l0-types:flexi-n
+          |  +--rw flexi-m?              l0-types:flexi-m
+          +--:(super)
+             +--rw subcarrier-flexi-n* [flexi-n]
+                +--rw flexi-n    l0-types:flexi-n
+                +--rw flexi-m?   l0-types:flexi-m
+  augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+            /te:primary-path/te:explicit-route-objects-always
+            /te:route-object-include-exclude/te:type/te:label
+            /te:label-hop/te:te-label/te:technology:
+    +--:(flexi-grid)
+       +--rw (single-or-super-channel)?
+          +--:(single)
+          |  +--rw flexi-n?              l0-types:flexi-n
+          |  +--rw flexi-m?              l0-types:flexi-m
+          +--:(super)
+             +--rw subcarrier-flexi-n* [flexi-n]
+                +--rw flexi-n    l0-types:flexi-n
+                +--rw flexi-m?   l0-types:flexi-m
+  augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+            /te:primary-path/te:path-in-segment/te:label-restrictions
+            /te:label-restriction/te:label-start/te:te-label
+            /te:technology:
+    +--:(flexi-grid)
+       +--rw flexi-n?   l0-types:flexi-n
+  augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+            /te:primary-path/te:path-in-segment/te:label-restrictions
+            /te:label-restriction/te:label-end/te:te-label
+            /te:technology:
+    +--:(flexi-grid)
+       +--rw flexi-n?   l0-types:flexi-n
+  augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+            /te:primary-path/te:path-in-segment/te:label-restrictions
+            /te:label-restriction/te:label-step/te:technology:
+    +--:(flexi-grid)
+       +--rw flexi-grid-channel-spacing?   identityref
+       +--rw flexi-n-step?                 uint8
+  augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+            /te:primary-path/te:path-out-segment
+            /te:label-restrictions/te:label-restriction
+            /te:label-start/te:te-label/te:technology:
+    +--:(flexi-grid)
+       +--rw flexi-n?   l0-types:flexi-n
+  augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+            /te:primary-path/te:path-out-segment
+            /te:label-restrictions/te:label-restriction/te:label-end
+            /te:te-label/te:technology:
+    +--:(flexi-grid)
+       +--rw flexi-n?   l0-types:flexi-n
+  augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+            /te:primary-path/te:path-out-segment
+            /te:label-restrictions/te:label-restriction/te:label-step
+            /te:technology:
+    +--:(flexi-grid)
+       +--rw flexi-grid-channel-spacing?   identityref
+       +--rw flexi-n-step?                 uint8
+  augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+            /te:primary-path/te:computed-paths-properties
+            /te:computed-path-properties/te:path-properties
+            /te:path-route-objects/te:path-route-object/te:type
+            /te:label/te:label-hop/te:te-label/te:technology:
+    +--:(flexi-grid)
+       +--ro (single-or-super-channel)?
+          +--:(single)
+          |  +--ro flexi-n?              l0-types:flexi-n
+          |  +--ro flexi-m?              l0-types:flexi-m
+          +--:(super)
+             +--ro subcarrier-flexi-n* [flexi-n]
+                +--ro flexi-n    l0-types:flexi-n
+                +--ro flexi-m?   l0-types:flexi-m
+  augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+            /te:primary-path/te:primary-reverse-path/te:optimizations
+            /te:algorithm/te:metric/te:optimization-metric
+            /te:explicit-route-exclude-objects
+            /te:route-object-exclude-object/te:type/te:label
+            /te:label-hop/te:te-label/te:technology:
+    +--:(flexi-grid)
+       +--rw (single-or-super-channel)?
+          +--:(single)
+          |  +--rw flexi-n?              l0-types:flexi-n
+          |  +--rw flexi-m?              l0-types:flexi-m
+          +--:(super)
+             +--rw subcarrier-flexi-n* [flexi-n]
+                +--rw flexi-n    l0-types:flexi-n
+                +--rw flexi-m?   l0-types:flexi-m
+  augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+            /te:primary-path/te:primary-reverse-path/te:optimizations
+            /te:algorithm/te:metric/te:optimization-metric
+            /te:explicit-route-include-objects
+            /te:route-object-include-object/te:type/te:label
+            /te:label-hop/te:te-label/te:technology:
+    +--:(flexi-grid)
+       +--rw (single-or-super-channel)?
+          +--:(single)
+          |  +--rw flexi-n?              l0-types:flexi-n
+          |  +--rw flexi-m?              l0-types:flexi-m
+          +--:(super)
+             +--rw subcarrier-flexi-n* [flexi-n]
+                +--rw flexi-n    l0-types:flexi-n
+                +--rw flexi-m?   l0-types:flexi-m
+  augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+            /te:primary-path/te:primary-reverse-path
+            /te:explicit-route-objects-always
+            /te:route-object-exclude-always/te:type/te:label
+            /te:label-hop/te:te-label/te:technology:
+    +--:(flexi-grid)
+       +--rw (single-or-super-channel)?
+          +--:(single)
+          |  +--rw flexi-n?              l0-types:flexi-n
+          |  +--rw flexi-m?              l0-types:flexi-m
+          +--:(super)
+             +--rw subcarrier-flexi-n* [flexi-n]
+                +--rw flexi-n    l0-types:flexi-n
+                +--rw flexi-m?   l0-types:flexi-m
+  augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+            /te:primary-path/te:primary-reverse-path
+            /te:explicit-route-objects-always
+            /te:route-object-include-exclude/te:type/te:label
+            /te:label-hop/te:te-label/te:technology:
+    +--:(flexi-grid)
+       +--rw (single-or-super-channel)?
+          +--:(single)
+          |  +--rw flexi-n?              l0-types:flexi-n
+          |  +--rw flexi-m?              l0-types:flexi-m
+          +--:(super)
+             +--rw subcarrier-flexi-n* [flexi-n]
+                +--rw flexi-n    l0-types:flexi-n
+                +--rw flexi-m?   l0-types:flexi-m
+  augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+            /te:primary-path/te:primary-reverse-path
+            /te:path-in-segment/te:label-restrictions
+            /te:label-restriction/te:label-start/te:te-label
+            /te:technology:
+    +--:(flexi-grid)
+       +--rw flexi-n?   l0-types:flexi-n
+  augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+            /te:primary-path/te:primary-reverse-path
+            /te:path-in-segment/te:label-restrictions
+            /te:label-restriction/te:label-end/te:te-label
+            /te:technology:
+    +--:(flexi-grid)
+       +--rw flexi-n?   l0-types:flexi-n
+  augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+            /te:primary-path/te:primary-reverse-path
+            /te:path-in-segment/te:label-restrictions
+            /te:label-restriction/te:label-step/te:technology:
+    +--:(flexi-grid)
+       +--rw flexi-grid-channel-spacing?   identityref
+       +--rw flexi-n-step?                 uint8
+  augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+            /te:primary-path/te:primary-reverse-path
+            /te:path-out-segment/te:label-restrictions
+            /te:label-restriction/te:label-start/te:te-label
+            /te:technology:
+    +--:(flexi-grid)
+       +--rw flexi-n?   l0-types:flexi-n
+  augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+            /te:primary-path/te:primary-reverse-path
+            /te:path-out-segment/te:label-restrictions
+            /te:label-restriction/te:label-end/te:te-label
+            /te:technology:
+    +--:(flexi-grid)
+       +--rw flexi-n?   l0-types:flexi-n
+  augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+            /te:primary-path/te:primary-reverse-path
+            /te:path-out-segment/te:label-restrictions
+            /te:label-restriction/te:label-step/te:technology:
+    +--:(flexi-grid)
+       +--rw flexi-grid-channel-spacing?   identityref
+       +--rw flexi-n-step?                 uint8
+  augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+            /te:primary-path/te:primary-reverse-path
+            /te:computed-paths-properties/te:computed-path-properties
+            /te:path-properties/te:path-route-objects
+            /te:path-route-object/te:type/te:label/te:label-hop
+            /te:te-label/te:technology:
+    +--:(flexi-grid)
+       +--ro (single-or-super-channel)?
+          +--:(single)
+          |  +--ro flexi-n?              l0-types:flexi-n
+          |  +--ro flexi-m?              l0-types:flexi-m
+          +--:(super)
+             +--ro subcarrier-flexi-n* [flexi-n]
+                +--ro flexi-n    l0-types:flexi-n
+                +--ro flexi-m?   l0-types:flexi-m
+  augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+            /te:secondary-path/te:optimizations/te:algorithm
+            /te:metric/te:optimization-metric
+            /te:explicit-route-exclude-objects
+            /te:route-object-exclude-object/te:type/te:label
+            /te:label-hop/te:te-label/te:technology:
+    +--:(flexi-grid)
+       +--rw (single-or-super-channel)?
+          +--:(single)
+          |  +--rw flexi-n?              l0-types:flexi-n
+          |  +--rw flexi-m?              l0-types:flexi-m
+          +--:(super)
+             +--rw subcarrier-flexi-n* [flexi-n]
+                +--rw flexi-n    l0-types:flexi-n
+                +--rw flexi-m?   l0-types:flexi-m
+  augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+            /te:secondary-path/te:optimizations/te:algorithm
+            /te:metric/te:optimization-metric
+            /te:explicit-route-include-objects
+            /te:route-object-include-object/te:type/te:label
+            /te:label-hop/te:te-label/te:technology:
+    +--:(flexi-grid)
+       +--rw (single-or-super-channel)?
+          +--:(single)
+          |  +--rw flexi-n?              l0-types:flexi-n
+          |  +--rw flexi-m?              l0-types:flexi-m
+          +--:(super)
+             +--rw subcarrier-flexi-n* [flexi-n]
+                +--rw flexi-n    l0-types:flexi-n
+                +--rw flexi-m?   l0-types:flexi-m
+  augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+            /te:secondary-path/te:explicit-route-objects-always
+            /te:route-object-exclude-always/te:type/te:label
+            /te:label-hop/te:te-label/te:technology:
+    +--:(flexi-grid)
+       +--rw (single-or-super-channel)?
+          +--:(single)
+          |  +--rw flexi-n?              l0-types:flexi-n
+          |  +--rw flexi-m?              l0-types:flexi-m
+          +--:(super)
+             +--rw subcarrier-flexi-n* [flexi-n]
+                +--rw flexi-n    l0-types:flexi-n
+                +--rw flexi-m?   l0-types:flexi-m
+  augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+            /te:secondary-path/te:explicit-route-objects-always
+            /te:route-object-include-exclude/te:type/te:label
+            /te:label-hop/te:te-label/te:technology:
+    +--:(flexi-grid)
+       +--rw (single-or-super-channel)?
+          +--:(single)
+          |  +--rw flexi-n?              l0-types:flexi-n
+          |  +--rw flexi-m?              l0-types:flexi-m
+          +--:(super)
+             +--rw subcarrier-flexi-n* [flexi-n]
+                +--rw flexi-n    l0-types:flexi-n
+                +--rw flexi-m?   l0-types:flexi-m
+  augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+            /te:secondary-path/te:path-in-segment
+            /te:label-restrictions/te:label-restriction
+            /te:label-start/te:te-label/te:technology:
+    +--:(flexi-grid)
+       +--rw flexi-n?   l0-types:flexi-n
+  augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+            /te:secondary-path/te:path-in-segment
+            /te:label-restrictions/te:label-restriction/te:label-end
+            /te:te-label/te:technology:
+    +--:(flexi-grid)
+       +--rw flexi-n?   l0-types:flexi-n
+  augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+            /te:secondary-path/te:path-in-segment
+            /te:label-restrictions/te:label-restriction/te:label-step
+            /te:technology:
+    +--:(flexi-grid)
+       +--rw flexi-grid-channel-spacing?   identityref
+       +--rw flexi-n-step?                 uint8
+  augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+            /te:secondary-path/te:path-out-segment
+            /te:label-restrictions/te:label-restriction
+            /te:label-start/te:te-label/te:technology:
+    +--:(flexi-grid)
+       +--rw flexi-n?   l0-types:flexi-n
+  augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+            /te:secondary-path/te:path-out-segment
+            /te:label-restrictions/te:label-restriction/te:label-end
+            /te:te-label/te:technology:
+    +--:(flexi-grid)
+       +--rw flexi-n?   l0-types:flexi-n
+  augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+            /te:secondary-path/te:path-out-segment
+            /te:label-restrictions/te:label-restriction/te:label-step
+            /te:technology:
+    +--:(flexi-grid)
+       +--rw flexi-grid-channel-spacing?   identityref
+       +--rw flexi-n-step?                 uint8
+  augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+            /te:secondary-path/te:computed-paths-properties
+            /te:computed-path-properties/te:path-properties
+            /te:path-route-objects/te:path-route-object/te:type
+            /te:label/te:label-hop/te:te-label/te:technology:
+    +--:(flexi-grid)
+       +--ro (single-or-super-channel)?
+          +--:(single)
+          |  +--ro flexi-n?              l0-types:flexi-n
+          |  +--ro flexi-m?              l0-types:flexi-m
+          +--:(super)
+             +--ro subcarrier-flexi-n* [flexi-n]
+                +--ro flexi-n    l0-types:flexi-n
+                +--ro flexi-m?   l0-types:flexi-m
+  augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
+            /te:secondary-reverse-path/te:optimizations/te:algorithm
+            /te:metric/te:optimization-metric
+            /te:explicit-route-exclude-objects
+            /te:route-object-exclude-object/te:type/te:label
+            /te:label-hop/te:te-label/te:technology:
+    +--:(flexi-grid)
+       +--rw (single-or-super-channel)?
+          +--:(single)
+          |  +--rw flexi-n?              l0-types:flexi-n
+          |  +--rw flexi-m?              l0-types:flexi-m
+          +--:(super)
+             +--rw subcarrier-flexi-n* [flexi-n]
+                +--rw flexi-n    l0-types:flexi-n
+                +--rw flexi-m?   l0-types:flexi-m
+  augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
+            /te:secondary-reverse-path/te:optimizations/te:algorithm
+            /te:metric/te:optimization-metric
+            /te:explicit-route-include-objects
+            /te:route-object-include-object/te:type/te:label
+            /te:label-hop/te:te-label/te:technology:
+    +--:(flexi-grid)
+       +--rw (single-or-super-channel)?
+          +--:(single)
+          |  +--rw flexi-n?              l0-types:flexi-n
+          |  +--rw flexi-m?              l0-types:flexi-m
+          +--:(super)
+             +--rw subcarrier-flexi-n* [flexi-n]
+                +--rw flexi-n    l0-types:flexi-n
+                +--rw flexi-m?   l0-types:flexi-m
+  augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
+            /te:secondary-reverse-path
+            /te:explicit-route-objects-always
+            /te:route-object-exclude-always/te:type/te:label
+            /te:label-hop/te:te-label/te:technology:
+    +--:(flexi-grid)
+       +--rw (single-or-super-channel)?
+          +--:(single)
+          |  +--rw flexi-n?              l0-types:flexi-n
+          |  +--rw flexi-m?              l0-types:flexi-m
+          +--:(super)
+             +--rw subcarrier-flexi-n* [flexi-n]
+                +--rw flexi-n    l0-types:flexi-n
+                +--rw flexi-m?   l0-types:flexi-m
+  augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
+            /te:secondary-reverse-path
+            /te:explicit-route-objects-always
+            /te:route-object-include-exclude/te:type/te:label
+            /te:label-hop/te:te-label/te:technology:
+    +--:(flexi-grid)
+       +--rw (single-or-super-channel)?
+          +--:(single)
+          |  +--rw flexi-n?              l0-types:flexi-n
+          |  +--rw flexi-m?              l0-types:flexi-m
+          +--:(super)
+             +--rw subcarrier-flexi-n* [flexi-n]
+                +--rw flexi-n    l0-types:flexi-n
+                +--rw flexi-m?   l0-types:flexi-m
+  augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
+            /te:secondary-reverse-path/te:path-in-segment
+            /te:label-restrictions/te:label-restriction
+            /te:label-start/te:te-label/te:technology:
+    +--:(flexi-grid)
+       +--rw flexi-n?   l0-types:flexi-n
+  augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
+            /te:secondary-reverse-path/te:path-in-segment
+            /te:label-restrictions/te:label-restriction/te:label-end
+            /te:te-label/te:technology:
+    +--:(flexi-grid)
+       +--rw flexi-n?   l0-types:flexi-n
+  augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
+            /te:secondary-reverse-path/te:path-in-segment
+            /te:label-restrictions/te:label-restriction/te:label-step
+            /te:technology:
+    +--:(flexi-grid)
+       +--rw flexi-grid-channel-spacing?   identityref
+       +--rw flexi-n-step?                 uint8
+  augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
+            /te:secondary-reverse-path/te:path-out-segment
+            /te:label-restrictions/te:label-restriction
+            /te:label-start/te:te-label/te:technology:
+    +--:(flexi-grid)
+       +--rw flexi-n?   l0-types:flexi-n
+  augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
+            /te:secondary-reverse-path/te:path-out-segment
+            /te:label-restrictions/te:label-restriction/te:label-end
+            /te:te-label/te:technology:
+    +--:(flexi-grid)
+       +--rw flexi-n?   l0-types:flexi-n
+  augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
+            /te:secondary-reverse-path/te:path-out-segment
+            /te:label-restrictions/te:label-restriction/te:label-step
+            /te:technology:
+    +--:(flexi-grid)
+       +--rw flexi-grid-channel-spacing?   identityref
+       +--rw flexi-n-step?                 uint8
+  augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
+            /te:secondary-reverse-path/te:computed-paths-properties
+            /te:computed-path-properties/te:path-properties
+            /te:path-route-objects/te:path-route-object/te:type
+            /te:label/te:label-hop/te:te-label/te:technology:
+    +--:(flexi-grid)
+       +--ro (single-or-super-channel)?
+          +--:(single)
+          |  +--ro flexi-n?              l0-types:flexi-n
+          |  +--ro flexi-m?              l0-types:flexi-m
+          +--:(super)
+             +--ro subcarrier-flexi-n* [flexi-n]
+                +--ro flexi-n    l0-types:flexi-n
+                +--ro flexi-m?   l0-types:flexi-m
+  augment /te:te/te:lsps/te:lsp/te:lsp-record-route-information
+            /te:lsp-record-route-information/te:type/te:label
+            /te:label-hop/te:te-label/te:technology:
+    +--:(flexi-grid)
+       +--ro (single-or-super-channel)?
+          +--:(single)
+          |  +--ro flexi-n?              l0-types:flexi-n
+          |  +--ro flexi-m?              l0-types:flexi-m
+          +--:(super)
+             +--ro subcarrier-flexi-n* [flexi-n]
+                +--ro flexi-n    l0-types:flexi-n
+                +--ro flexi-m?   l0-types:flexi-m
