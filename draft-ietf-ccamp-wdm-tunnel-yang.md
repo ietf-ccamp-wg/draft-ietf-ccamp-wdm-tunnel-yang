@@ -167,7 +167,7 @@ WDM technology-specific constructs:
 
 Each path can be a segment path (only defined by the source and destination nodes or link termination points)
 or an end-to-end path (additionally needs source and destination transponders). Therefore, all the attributes
-are optional to support both situations. 
+are optional to support both situations.
 
 
 # Example of Use
