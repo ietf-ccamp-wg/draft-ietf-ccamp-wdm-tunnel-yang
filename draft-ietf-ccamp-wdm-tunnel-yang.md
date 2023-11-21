@@ -10,7 +10,7 @@ date:
 consensus: true
 v: 3
 area: "Routing"
-workgroup: "Common Control and Measurement Plane"
+workgroup: "CCAMP Working Group"
 keyword:
  - next generation
  - unicorn
@@ -99,13 +99,11 @@ normative:
 
 informative:
 
-
 --- abstract
 
 This document defines a YANG data model for the provisioning and management of Traffic Engineering (TE) tunnels and Label Switched Paths (LSPs) in Optical Networks (Wavelength Switched Optical Networks (WSON) and Flexi-Grid Dense Wavelength Division Multiplexing (DWDM) Networks).
 
 The YANG data model defined in this document conforms to the Network Management Datastore Architecture (NMDA).
-
 
 --- middle
 
