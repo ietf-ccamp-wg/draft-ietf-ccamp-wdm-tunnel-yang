@@ -16,8 +16,7 @@ module: ietf-wdm-tunnel
        +--rw guard-band-size?               l0-types:frequency-thz
        +--rw matching-fwd-rev-wavelength?   boolean
        +--rw allow-retuning?                boolean
-       +--rw delta-power?
-               l0-types:gain-in-db-or-null
+       +--rw delta-power?                   l0-types:ratio-in-db
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:explicit-route-objects-always
             /te:route-object-exclude-always/te:type
