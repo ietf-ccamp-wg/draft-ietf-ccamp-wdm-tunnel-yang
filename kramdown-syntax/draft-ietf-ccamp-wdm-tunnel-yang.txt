@@ -1,0 +1,3049 @@
+
+
+
+
+CCAMP Working Group                                               A. Guo
+Internet-Draft                                    Futurewei Technologies
+Intended status: Standards Track                              S. Belotti
+Expires: 24 May 2024                                               Nokia
+                                                           G. Galimberti
+                                                              Individual
+                                                   J. E. L. de V. Mendez
+                                                             Naudit HPCN
+                                                           D. P. Burrero
+                                          Universidad Autonoma de Madrid
+                                                        21 November 2023
+
+
+                   A YANG Data Model for WDM Tunnels
+                draft-ietf-ccamp-wdm-tunnel-yang-latest
+
+Abstract
+
+   This document defines a YANG data model for the provisioning and
+   management of Traffic Engineering (TE) tunnels and Label Switched
+   Paths (LSPs) in Optical Networks (Wavelength Switched Optical
+   Networks (WSON) and Flexi-Grid Dense Wavelength Division Multiplexing
+   (DWDM) Networks).
+
+   The YANG data model defined in this document conforms to the Network
+   Management Datastore Architecture (NMDA).
+
+About This Document
+
+   This note is to be removed before publishing as an RFC.
+
+   The latest revision of this draft can be found at https://ietf-ccamp-
+   wg.github.io/draft-ietf-ccamp-wdm-tunnel-yang/draft-ietf-ccamp-wdm-
+   tunnel-yang.html.  Status information for this document may be found
+   at https://datatracker.ietf.org/doc/draft-ietf-ccamp-wdm-tunnel-
+   yang/.
+
+   Discussion of this document takes place on the Common Control and
+   Measurement Plane Working Group mailing list (mailto:ccamp@ietf.org),
+   which is archived at https://mailarchive.ietf.org/arch/browse/ccamp/.
+   Subscribe at https://www.ietf.org/mailman/listinfo/ccamp/.
+
+   Source for this draft and an issue tracker can be found at
+   https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang.
+
+Status of This Memo
+
+   This Internet-Draft is submitted in full conformance with the
+   provisions of BCP 78 and BCP 79.
+
+   Internet-Drafts are working documents of the Internet Engineering
+   Task Force (IETF).  Note that other groups may also distribute
+   working documents as Internet-Drafts.  The list of current Internet-
+   Drafts is at https://datatracker.ietf.org/drafts/current/.
+
+   Internet-Drafts are draft documents valid for a maximum of six months
+   and may be updated, replaced, or obsoleted by other documents at any
+   time.  It is inappropriate to use Internet-Drafts as reference
+   material or to cite them other than as "work in progress."
+
+   This Internet-Draft will expire on 24 May 2024.
+
+Copyright Notice
+
+   Copyright (c) 2023 IETF Trust and the persons identified as the
+   document authors.  All rights reserved.
+
+   This document is subject to BCP 78 and the IETF Trust's Legal
+   Provisions Relating to IETF Documents (https://trustee.ietf.org/
+   license-info) in effect on the date of publication of this document.
+   Please review these documents carefully, as they describe your rights
+   and restrictions with respect to this document.  Code Components
+   extracted from this document must include Revised BSD License text as
+   described in Section 4.e of the Trust Legal Provisions and are
+   provided without warranty as described in the Revised BSD License.
+
+Table of Contents
+
+   1.  Introduction
+   2.  Conventions and Definitions
+   3.  Overview
+   4.  Example of Use
+   5.  YANG Model for WDM Tunnel
+     5.1.  YANG Tree
+     5.2.  YANG Code
+   6.  Security Considerations
+   7.  IANA Considerations
+   8.  References
+     8.1.  Normative References
+     8.2.  Informative References
+   Acknowledgments
+   Contributors
+   Authors' Addresses
+
+1.  Introduction
+
+   Transport networks have evolved from traditional Wavelength Switched
+   Optical Networks (WSON) systems [RFC6163] based on only fixed-grid
+   wavelength switching, towards elastic optical networks, based on
+   flexi-grid Dense Wavelength Division Multiplexing (DWDM) transmission
+   and switching technologies [RFC7698].  Such technology aims at
+   increasing transport network scalability and flexibility, allowing
+   bandwidth usage optimization.
+
+   While [RFC9094] [I-D.ietf-ccamp-flexigrid-yang] focus on flexi-grid
+   objects such as nodes, transponders and links, this document presents
+   a YANG [RFC7950] model for the provisioning and management of Traffic
+   Engineering (TE) tunnels and Label Switched Paths (LSPs) in DWDM
+   Optical Networks, which can be Wavelength Switched Optical Networks
+   (WSON) networks or Flexi-Grid Dense Wavelength Division Multiplexing
+   (DWDM) Networks, or a mix of these two networks.  This YANG module
+   defines the path from a source transponder or node to the destination
+   through several intermediate nodes in such a WDM optical network.
+
+   This document identifies the WDM tunnel components, parameters and
+   their values, and characterizes the features and the performances of
+   the WDM elements.  An application example is provided towards the end
+   of the document to understand their utility better.
+
+2.  Conventions and Definitions
+
+   The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+   "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
+   "OPTIONAL" in this document are to be interpreted as described in
+   BCP 14 [RFC2119] [RFC8174] when, and only when, they appear in all
+   capitals, as shown here.
+
+   The terminology for describing YANG data models is found in
+   [RFC7950].
+
+   Refer to [RFC7446] and [RFC7699] for the key terms used in this
+   document.
+
+   The following terms are defined in [RFC7950] and are not redefined
+   here: - client
+
+   *  server
+
+   *  augment
+
+   *  data model
+
+   *  data node
+
+   The following terms are defined in [RFC6241] and are not redefined
+   here: - configuration data
+
+   *  state data
+
+3.  Overview
+
+   The generic TE tunnel attributes, such as source and destination node
+   addresses, source and destination tunnel termination points (TTPs),
+   are already defined by the base data model in
+   [I-D.ietf-teas-yang-te].  The present model defines a WDM tunnel by
+   augmenting the base model with the following WDM technology-specific
+   constructs:
+
+   *  Global WDM layer constraints that influence the TE path selection,
+      e.g., whether wavelength conversion or regeneration is considered
+
+   *  Global transponder/transceiver configuration constraints, e.g.,
+      operational modes, tuning constraints of the transceiver
+
+   *  Global optical performance constraints, e.g. generalized Signal-
+      to-noise (G-SNR) margin of a feasible optical path
+
+   *  Path-scope WDM layer constraints, e.g. identities of transceivers
+      assigned to the primary or secondary path
+
+   *  List of links that defines the path
+
+   *  Other optical attributes
+
+   Each path can be a segment path (only defined by the source and
+   destination nodes or link termination points) or an end-to-end path
+   (additionally needs source and destination transponders).  Therefore,
+   all the attributes are optional to support both situations.
+
+4.  Example of Use
+
+   In order to explain how this model is used, the following example is
+   provided.  An optical network usually has multiple transponders,
+   switches (nodes) and links.  Figure 1 shows a simple topology, where
+   two physical paths interconnect two optical transponders via a
+   combination of both WSON and Flexi-grid wavelength switched nodes and
+   links.
+
+                                 WDM Tunnel
+           <===================================================>
+                            WDM Primary Path
+           <--------------------------------------------------->
+
+      +----------+                                        +----------+
+      |  Flexi-  |                                        |  Flexi-  |
+      |   grid   |                                        |   grid   |
+      |  node A  |                                        |  node E  |
+      |          |        +------+        +------+        |          |
+      |          | Link 1 |Flexi-| Link 2 | WSON | Link 3 |          |
+      |          |<------>| grid |<------>|      |<------>|          |
+      |......... |        |node B|        |node C|        | .........|
+      | Trans- : |        +------+        +------+        | : Trans- |
+      | ponder : |                                        | : ponder |
+      |    A   : |              +----------+              | :    E   |
+      |........: |     Link 4   |Flexi-grid|   Link 5     | :........|
+      |          |              |    D     |              |          |
+      |          |<------------>|   node   |<------------>|          |
+      |          |              +----------+              |          |
+      +----------+                                        +----------+
+
+           <--------------------------------------------------->
+                             WDM Secondary Path
+
+                         Figure 1: Topology Example
+
+   To configure an end-to-end WDM tunnel to interconnect transponders A
+   and E, first of all we have to populate the flexi-grid topology YANG
+   model with all elements in the network:
+
+   *  We define the transponders within nodes A and E as tunnel
+      termination points (TTPs) and provide their internal local link
+      connectivity towards the node interfaces.  We also provide nodes A
+      and B identifiers, addresses and interfaces.
+
+   *  We do the same for the nodes B, C and D, providing their
+      identifiers, addresses and interfaces, as well as the internal
+      connectivity matrix between interfaces.
+
+   *  Then, we also define the links 1 to 5 that interconnect nodes,
+      indicating which WSON or flexi-grid labels are available.
+
+   *  Other information, such as the slot frequency and granularity are
+      also provided.
+
+   After the nodes, links and transponders have been defined using
+   [I-D.ietf-ccamp-flexigrid-yang] and [RFC9094] we can configure the
+   tunnel from the information we have stored in the flexi-grid
+   topology, by querying which elements are available, and planning the
+   resources that have to be provided on each situation, taking into
+   account the global and path-specific WDM tunnel constraints.  Note
+   that every element in the flexi-grid topology has a reference, and
+   this is the way in which they are called in the tunnel.
+
+   *  Depending on the case, it is possible to define either the source
+      and destination node ports, or the source and destination node and
+      transponder.  In our case, we would define a network tunnel, with
+      source transponder A and source node B, and destination
+      transponder E and destination node C.  Thus, we are going to
+      follow path x.
+
+   *  Then, for each link in the path x, we indicate which channel we
+      are going to use, providing information about the slots, and what
+      nodes are connected.
+
+   *  Finally, the flexi-grid topology has to be updated with each
+      element usage status each time a tunnel is created or torn down.
+
+5.  YANG Model for WDM Tunnel
+
+5.1.  YANG Tree
+
+   module: ietf-wdm-tunnel
+
+     augment /te:te/te:tunnels/te:tunnel:
+       +--rw wdm-constraint
+          +--rw transceiver-constraint
+          |  +--rw operational-modes*     string
+          |  +--rw tx-tune-constraints
+          |     +--rw min-central-frequency?    frequency-thz
+          |     +--rw max-central-frequency?    frequency-thz
+          |     +--rw transceiver-tunability?   frequency-ghz
+          +--rw gsnr-margin?                   snr
+          +--rw use-regen?                     boolean
+          +--rw wavelength-conversion?         boolean
+          +--rw bit-stuffing?                  boolean
+          +--rw wavelength-assignment?         identityref
+          +--rw guard-band-size?               l0-types:frequency-thz
+          +--rw matching-fwd-rev-wavelength?   boolean
+          +--rw allow-retuning?                boolean
+          +--rw delta-power?
+                  l0-types:gain-in-db-or-null
+     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+               /te:primary-path/te:explicit-route-objects-always
+               /te:route-object-exclude-always/te:type
+               /te:numbered-node-hop/te:numbered-node-hop:
+       +--rw path-in-transceiver
+       |  +--rw transponder-id?        uint32
+       |  +--rw transceivers* [lane-id]
+       |  |  +--rw lane-id           uint8
+       |  |  +--rw transceiver-id?   uint32
+       |  +--rw operational-modes*     string
+       |  +--rw tx-tune-constraints
+       |     +--rw min-central-frequency?    frequency-thz
+       |     +--rw max-central-frequency?    frequency-thz
+       |     +--rw transceiver-tunability?   frequency-ghz
+       +--rw path-out-transceiver
+          +--rw transponder-id?        uint32
+          +--rw transceivers* [lane-id]
+          |  +--rw lane-id           uint8
+          |  +--rw transceiver-id?   uint32
+          +--rw operational-modes*     string
+          +--rw tx-tune-constraints
+             +--rw min-central-frequency?    frequency-thz
+             +--rw max-central-frequency?    frequency-thz
+             +--rw transceiver-tunability?   frequency-ghz
+     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+               /te:primary-path/te:primary-reverse-path
+               /te:explicit-route-objects-always
+               /te:route-object-exclude-always/te:type
+               /te:numbered-node-hop/te:numbered-node-hop:
+       +--rw path-in-transceiver
+       |  +--rw transponder-id?        uint32
+       |  +--rw transceivers* [lane-id]
+       |  |  +--rw lane-id           uint8
+       |  |  +--rw transceiver-id?   uint32
+       |  +--rw operational-modes*     string
+       |  +--rw tx-tune-constraints
+       |     +--rw min-central-frequency?    frequency-thz
+       |     +--rw max-central-frequency?    frequency-thz
+       |     +--rw transceiver-tunability?   frequency-ghz
+       +--rw path-out-transceiver
+          +--rw transponder-id?        uint32
+          +--rw transceivers* [lane-id]
+          |  +--rw lane-id           uint8
+          |  +--rw transceiver-id?   uint32
+          +--rw operational-modes*     string
+          +--rw tx-tune-constraints
+             +--rw min-central-frequency?    frequency-thz
+             +--rw max-central-frequency?    frequency-thz
+             +--rw transceiver-tunability?   frequency-ghz
+     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+               /te:primary-path/te:computed-paths-properties
+               /te:computed-path-properties/te:path-properties:
+       +--ro estimated-gsnr?          snr
+       +--ro estimated-eol-gsnr?      snr
+       +--ro estimated-lowest-gsnr?   snr
+     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+               /te:primary-path/te:primary-reverse-path
+               /te:computed-paths-properties/te:computed-path-properties
+               /te:path-properties:
+       +--ro estimated-gsnr?          snr
+       +--ro estimated-eol-gsnr?      snr
+       +--ro estimated-lowest-gsnr?   snr
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+               /te:secondary-path/te:explicit-route-objects-always
+               /te:route-object-exclude-always/te:type
+               /te:numbered-node-hop/te:numbered-node-hop:
+       +--rw path-in-transceiver
+       |  +--rw transponder-id?        uint32
+       |  +--rw transceivers* [lane-id]
+       |  |  +--rw lane-id           uint8
+       |  |  +--rw transceiver-id?   uint32
+       |  +--rw operational-modes*     string
+       |  +--rw tx-tune-constraints
+       |     +--rw min-central-frequency?    frequency-thz
+       |     +--rw max-central-frequency?    frequency-thz
+       |     +--rw transceiver-tunability?   frequency-ghz
+       +--rw path-out-transceiver
+          +--rw transponder-id?        uint32
+          +--rw transceivers* [lane-id]
+          |  +--rw lane-id           uint8
+          |  +--rw transceiver-id?   uint32
+          +--rw operational-modes*     string
+          +--rw tx-tune-constraints
+             +--rw min-central-frequency?    frequency-thz
+             +--rw max-central-frequency?    frequency-thz
+             +--rw transceiver-tunability?   frequency-ghz
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
+               /te:secondary-reverse-path
+               /te:explicit-route-objects-always
+               /te:route-object-exclude-always/te:type
+               /te:numbered-node-hop/te:numbered-node-hop:
+       +--rw path-in-transceiver
+       |  +--rw transponder-id?        uint32
+       |  +--rw transceivers* [lane-id]
+       |  |  +--rw lane-id           uint8
+       |  |  +--rw transceiver-id?   uint32
+       |  +--rw operational-modes*     string
+       |  +--rw tx-tune-constraints
+       |     +--rw min-central-frequency?    frequency-thz
+       |     +--rw max-central-frequency?    frequency-thz
+       |     +--rw transceiver-tunability?   frequency-ghz
+       +--rw path-out-transceiver
+          +--rw transponder-id?        uint32
+          +--rw transceivers* [lane-id]
+          |  +--rw lane-id           uint8
+          |  +--rw transceiver-id?   uint32
+          +--rw operational-modes*     string
+          +--rw tx-tune-constraints
+             +--rw min-central-frequency?    frequency-thz
+             +--rw max-central-frequency?    frequency-thz
+             +--rw transceiver-tunability?   frequency-ghz
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+               /te:secondary-path/te:computed-paths-properties
+               /te:computed-path-properties/te:path-properties:
+       +--ro estimated-gsnr?          snr
+       +--ro estimated-eol-gsnr?      snr
+       +--ro estimated-lowest-gsnr?   snr
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
+               /te:secondary-reverse-path/te:computed-paths-properties
+               /te:computed-path-properties/te:path-properties:
+       +--ro estimated-gsnr?          snr
+       +--ro estimated-eol-gsnr?      snr
+       +--ro estimated-lowest-gsnr?   snr
+     augment /te:te/te:lsps/te:lsp/te:lsp-actual-route-information:
+       +--ro wdm-path-state
+          +--ro gsnr?   l0-types:snr
+     augment /te:te/te:globals/te:named-path-constraints
+               /te:named-path-constraint/te:path-in-segment
+               /te:label-restrictions/te:label-restriction:
+       +--rw grid-type?    identityref
+       +--rw priority?     uint8
+       +--rw flexi-grid
+          +--rw slot-width-granularity?   identityref
+          +--rw min-slot-width-factor?    uint16
+          +--rw max-slot-width-factor?    uint16
+     augment /te:te/te:globals/te:named-path-constraints
+               /te:named-path-constraint/te:path-out-segment
+               /te:label-restrictions/te:label-restriction:
+       +--rw grid-type?    identityref
+       +--rw priority?     uint8
+       +--rw flexi-grid
+          +--rw slot-width-granularity?   identityref
+          +--rw min-slot-width-factor?    uint16
+          +--rw max-slot-width-factor?    uint16
+     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+               /te:primary-path/te:path-in-segment/te:label-restrictions
+               /te:label-restriction:
+       +--rw grid-type?    identityref
+       +--rw priority?     uint8
+       +--rw flexi-grid
+          +--rw slot-width-granularity?   identityref
+          +--rw min-slot-width-factor?    uint16
+          +--rw max-slot-width-factor?    uint16
+     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+               /te:primary-path/te:path-out-segment
+               /te:label-restrictions/te:label-restriction:
+       +--rw grid-type?    identityref
+       +--rw priority?     uint8
+       +--rw flexi-grid
+          +--rw slot-width-granularity?   identityref
+          +--rw min-slot-width-factor?    uint16
+          +--rw max-slot-width-factor?    uint16
+     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+               /te:primary-path/te:primary-reverse-path
+               /te:path-in-segment/te:label-restrictions
+               /te:label-restriction:
+       +--rw grid-type?    identityref
+       +--rw priority?     uint8
+       +--rw flexi-grid
+          +--rw slot-width-granularity?   identityref
+          +--rw min-slot-width-factor?    uint16
+          +--rw max-slot-width-factor?    uint16
+     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+               /te:primary-path/te:primary-reverse-path
+               /te:path-out-segment/te:label-restrictions
+               /te:label-restriction:
+       +--rw grid-type?    identityref
+       +--rw priority?     uint8
+       +--rw flexi-grid
+          +--rw slot-width-granularity?   identityref
+          +--rw min-slot-width-factor?    uint16
+          +--rw max-slot-width-factor?    uint16
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+               /te:secondary-path/te:path-in-segment
+               /te:label-restrictions/te:label-restriction:
+       +--rw grid-type?    identityref
+       +--rw priority?     uint8
+       +--rw flexi-grid
+          +--rw slot-width-granularity?   identityref
+          +--rw min-slot-width-factor?    uint16
+          +--rw max-slot-width-factor?    uint16
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+               /te:secondary-path/te:path-out-segment
+               /te:label-restrictions/te:label-restriction:
+       +--rw grid-type?    identityref
+       +--rw priority?     uint8
+       +--rw flexi-grid
+          +--rw slot-width-granularity?   identityref
+          +--rw min-slot-width-factor?    uint16
+          +--rw max-slot-width-factor?    uint16
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
+               /te:secondary-reverse-path/te:path-in-segment
+               /te:label-restrictions/te:label-restriction:
+       +--rw grid-type?    identityref
+       +--rw priority?     uint8
+       +--rw flexi-grid
+          +--rw slot-width-granularity?   identityref
+          +--rw min-slot-width-factor?    uint16
+          +--rw max-slot-width-factor?    uint16
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
+               /te:secondary-reverse-path/te:path-out-segment
+               /te:label-restrictions/te:label-restriction:
+       +--rw grid-type?    identityref
+       +--rw priority?     uint8
+       +--rw flexi-grid
+          +--rw slot-width-granularity?   identityref
+          +--rw min-slot-width-factor?    uint16
+          +--rw max-slot-width-factor?    uint16
+     augment /te:te/te:globals/te:named-path-constraints
+               /te:named-path-constraint
+               /te:explicit-route-objects-always
+               /te:route-object-exclude-always/te:type/te:label
+               /te:label-hop/te:te-label/te:technology:
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw (fixed-single-or-super-channel)?
+             |     +--:(single)
+             |     |  +--rw dwdm-n?               l0-types:dwdm-n
+             |     +--:(multi)
+             |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?                     l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw (single-or-super-channel)?
+                   +--:(single)
+                   |  +--rw flexi-n?              l0-types:flexi-n
+                   |  +--rw flexi-m?              l0-types:flexi-m
+                   x--:(super)
+                   |  +--rw subcarrier-flexi-n* [flexi-n]
+                   |     +--rw flexi-n    l0-types:flexi-n
+                   |     +--rw flexi-m?   l0-types:flexi-m
+                   +--:(multi)
+                      +--rw frequency-slots
+                         +--rw frequency-slot* [flexi-n]
+                            +--rw flexi-n    l0-types:flexi-n
+                            +--rw flexi-m?   l0-types:flexi-m
+     augment /te:te/te:globals/te:named-path-constraints
+               /te:named-path-constraint
+               /te:explicit-route-objects-always
+               /te:route-object-include-exclude/te:type/te:label
+               /te:label-hop/te:te-label/te:technology:
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw (fixed-single-or-super-channel)?
+             |     +--:(single)
+             |     |  +--rw dwdm-n?               l0-types:dwdm-n
+             |     +--:(multi)
+             |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?                     l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw (single-or-super-channel)?
+                   +--:(single)
+                   |  +--rw flexi-n?              l0-types:flexi-n
+                   |  +--rw flexi-m?              l0-types:flexi-m
+                   x--:(super)
+                   |  +--rw subcarrier-flexi-n* [flexi-n]
+                   |     +--rw flexi-n    l0-types:flexi-n
+                   |     +--rw flexi-m?   l0-types:flexi-m
+                   +--:(multi)
+                      +--rw frequency-slots
+                         +--rw frequency-slot* [flexi-n]
+                            +--rw flexi-n    l0-types:flexi-n
+                            +--rw flexi-m?   l0-types:flexi-m
+     augment /te:te/te:globals/te:named-path-constraints
+               /te:named-path-constraint/te:path-in-segment
+               /te:label-restrictions/te:label-restriction
+               /te:label-start/te:te-label/te:technology:
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw dwdm-n?    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?    l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw flexi-n?   l0-types:flexi-n
+     augment /te:te/te:globals/te:named-path-constraints
+               /te:named-path-constraint/te:path-in-segment
+               /te:label-restrictions/te:label-restriction/te:label-end
+               /te:te-label/te:technology:
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw dwdm-n?    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?    l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw flexi-n?   l0-types:flexi-n
+     augment /te:te/te:globals/te:named-path-constraints
+               /te:named-path-constraint/te:path-in-segment
+               /te:label-restrictions/te:label-restriction/te:label-step
+               /te:technology:
+       +--:(wdm)
+          +--rw (l0-grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw wson-dwdm-channel-spacing?    identityref
+             +--:(cwdm)
+             |  +--rw wson-cwdm-channel-spacing?    identityref
+             +--:(flexi-grid)
+                x--rw flexi-grid-channel-spacing?   identityref
+                +--rw flexi-ncfg?                   identityref
+                +--rw flexi-n-step?                 uint8
+     augment /te:te/te:globals/te:named-path-constraints
+               /te:named-path-constraint/te:path-out-segment
+               /te:label-restrictions/te:label-restriction
+               /te:label-start/te:te-label/te:technology:
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw dwdm-n?    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?    l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw flexi-n?   l0-types:flexi-n
+     augment /te:te/te:globals/te:named-path-constraints
+               /te:named-path-constraint/te:path-out-segment
+               /te:label-restrictions/te:label-restriction/te:label-end
+               /te:te-label/te:technology:
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw dwdm-n?    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?    l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw flexi-n?   l0-types:flexi-n
+     augment /te:te/te:globals/te:named-path-constraints
+               /te:named-path-constraint/te:path-out-segment
+               /te:label-restrictions/te:label-restriction/te:label-step
+               /te:technology:
+       +--:(wdm)
+          +--rw (l0-grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw wson-dwdm-channel-spacing?    identityref
+             +--:(cwdm)
+             |  +--rw wson-cwdm-channel-spacing?    identityref
+             +--:(flexi-grid)
+                x--rw flexi-grid-channel-spacing?   identityref
+                +--rw flexi-ncfg?                   identityref
+                +--rw flexi-n-step?                 uint8
+     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+               /te:primary-path/te:optimizations/te:algorithm/te:metric
+               /te:optimization-metric/te:explicit-route-exclude-objects
+               /te:route-object-exclude-object/te:type/te:label
+               /te:label-hop/te:te-label/te:technology:
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw (fixed-single-or-super-channel)?
+             |     +--:(single)
+             |     |  +--rw dwdm-n?               l0-types:dwdm-n
+             |     +--:(multi)
+             |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?                     l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw (single-or-super-channel)?
+                   +--:(single)
+                   |  +--rw flexi-n?              l0-types:flexi-n
+                   |  +--rw flexi-m?              l0-types:flexi-m
+                   x--:(super)
+                   |  +--rw subcarrier-flexi-n* [flexi-n]
+                   |     +--rw flexi-n    l0-types:flexi-n
+                   |     +--rw flexi-m?   l0-types:flexi-m
+                   +--:(multi)
+                      +--rw frequency-slots
+                         +--rw frequency-slot* [flexi-n]
+                            +--rw flexi-n    l0-types:flexi-n
+                            +--rw flexi-m?   l0-types:flexi-m
+     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+               /te:primary-path/te:optimizations/te:algorithm/te:metric
+               /te:optimization-metric/te:explicit-route-include-objects
+               /te:route-object-include-object/te:type/te:label
+               /te:label-hop/te:te-label/te:technology:
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw (fixed-single-or-super-channel)?
+             |     +--:(single)
+             |     |  +--rw dwdm-n?               l0-types:dwdm-n
+             |     +--:(multi)
+             |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?                     l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw (single-or-super-channel)?
+                   +--:(single)
+                   |  +--rw flexi-n?              l0-types:flexi-n
+                   |  +--rw flexi-m?              l0-types:flexi-m
+                   x--:(super)
+                   |  +--rw subcarrier-flexi-n* [flexi-n]
+                   |     +--rw flexi-n    l0-types:flexi-n
+                   |     +--rw flexi-m?   l0-types:flexi-m
+                   +--:(multi)
+                      +--rw frequency-slots
+                         +--rw frequency-slot* [flexi-n]
+                            +--rw flexi-n    l0-types:flexi-n
+                            +--rw flexi-m?   l0-types:flexi-m
+     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+               /te:primary-path/te:explicit-route-objects-always
+               /te:route-object-exclude-always/te:type/te:label
+               /te:label-hop/te:te-label/te:technology:
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw (fixed-single-or-super-channel)?
+             |     +--:(single)
+             |     |  +--rw dwdm-n?               l0-types:dwdm-n
+             |     +--:(multi)
+             |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?                     l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw (single-or-super-channel)?
+                   +--:(single)
+                   |  +--rw flexi-n?              l0-types:flexi-n
+                   |  +--rw flexi-m?              l0-types:flexi-m
+                   x--:(super)
+                   |  +--rw subcarrier-flexi-n* [flexi-n]
+                   |     +--rw flexi-n    l0-types:flexi-n
+                   |     +--rw flexi-m?   l0-types:flexi-m
+                   +--:(multi)
+                      +--rw frequency-slots
+                         +--rw frequency-slot* [flexi-n]
+                            +--rw flexi-n    l0-types:flexi-n
+                            +--rw flexi-m?   l0-types:flexi-m
+     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+               /te:primary-path/te:explicit-route-objects-always
+               /te:route-object-include-exclude/te:type/te:label
+               /te:label-hop/te:te-label/te:technology:
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw (fixed-single-or-super-channel)?
+             |     +--:(single)
+             |     |  +--rw dwdm-n?               l0-types:dwdm-n
+             |     +--:(multi)
+             |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?                     l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw (single-or-super-channel)?
+                   +--:(single)
+                   |  +--rw flexi-n?              l0-types:flexi-n
+                   |  +--rw flexi-m?              l0-types:flexi-m
+                   x--:(super)
+                   |  +--rw subcarrier-flexi-n* [flexi-n]
+                   |     +--rw flexi-n    l0-types:flexi-n
+                   |     +--rw flexi-m?   l0-types:flexi-m
+                   +--:(multi)
+                      +--rw frequency-slots
+                         +--rw frequency-slot* [flexi-n]
+                            +--rw flexi-n    l0-types:flexi-n
+                            +--rw flexi-m?   l0-types:flexi-m
+     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+               /te:primary-path/te:path-in-segment/te:label-restrictions
+               /te:label-restriction/te:label-start/te:te-label
+               /te:technology:
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw dwdm-n?    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?    l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw flexi-n?   l0-types:flexi-n
+     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+               /te:primary-path/te:path-in-segment/te:label-restrictions
+               /te:label-restriction/te:label-end/te:te-label
+               /te:technology:
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw dwdm-n?    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?    l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw flexi-n?   l0-types:flexi-n
+     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+               /te:primary-path/te:path-in-segment/te:label-restrictions
+               /te:label-restriction/te:label-step/te:technology:
+       +--:(wdm)
+          +--rw (l0-grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw wson-dwdm-channel-spacing?    identityref
+             +--:(cwdm)
+             |  +--rw wson-cwdm-channel-spacing?    identityref
+             +--:(flexi-grid)
+                x--rw flexi-grid-channel-spacing?   identityref
+                +--rw flexi-ncfg?                   identityref
+                +--rw flexi-n-step?                 uint8
+     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+               /te:primary-path/te:path-out-segment
+               /te:label-restrictions/te:label-restriction
+               /te:label-start/te:te-label/te:technology:
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw dwdm-n?    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?    l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw flexi-n?   l0-types:flexi-n
+     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+               /te:primary-path/te:path-out-segment
+               /te:label-restrictions/te:label-restriction/te:label-end
+               /te:te-label/te:technology:
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw dwdm-n?    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?    l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw flexi-n?   l0-types:flexi-n
+     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+               /te:primary-path/te:path-out-segment
+               /te:label-restrictions/te:label-restriction/te:label-step
+               /te:technology:
+       +--:(wdm)
+          +--rw (l0-grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw wson-dwdm-channel-spacing?    identityref
+             +--:(cwdm)
+             |  +--rw wson-cwdm-channel-spacing?    identityref
+             +--:(flexi-grid)
+                x--rw flexi-grid-channel-spacing?   identityref
+                +--rw flexi-ncfg?                   identityref
+                +--rw flexi-n-step?                 uint8
+     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+               /te:primary-path/te:computed-paths-properties
+               /te:computed-path-properties/te:path-properties
+               /te:path-route-objects/te:path-route-object/te:type
+               /te:label/te:label-hop/te:te-label/te:technology:
+       +--:(wdm)
+          +--ro (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--ro (fixed-single-or-super-channel)?
+             |     +--:(single)
+             |     |  +--ro dwdm-n?               l0-types:dwdm-n
+             |     +--:(multi)
+             |        +--ro subcarrier-dwdm-n*    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--ro cwdm-n?                     l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--ro (single-or-super-channel)?
+                   +--:(single)
+                   |  +--ro flexi-n?              l0-types:flexi-n
+                   |  +--ro flexi-m?              l0-types:flexi-m
+                   x--:(super)
+                   |  +--ro subcarrier-flexi-n* [flexi-n]
+                   |     +--ro flexi-n    l0-types:flexi-n
+                   |     +--ro flexi-m?   l0-types:flexi-m
+                   +--:(multi)
+                      +--ro frequency-slots
+                         +--ro frequency-slot* [flexi-n]
+                            +--ro flexi-n    l0-types:flexi-n
+                            +--ro flexi-m?   l0-types:flexi-m
+     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+               /te:primary-path/te:primary-reverse-path/te:optimizations
+               /te:algorithm/te:metric/te:optimization-metric
+               /te:explicit-route-exclude-objects
+               /te:route-object-exclude-object/te:type/te:label
+               /te:label-hop/te:te-label/te:technology:
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw (fixed-single-or-super-channel)?
+             |     +--:(single)
+             |     |  +--rw dwdm-n?               l0-types:dwdm-n
+             |     +--:(multi)
+             |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?                     l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw (single-or-super-channel)?
+                   +--:(single)
+                   |  +--rw flexi-n?              l0-types:flexi-n
+                   |  +--rw flexi-m?              l0-types:flexi-m
+                   x--:(super)
+                   |  +--rw subcarrier-flexi-n* [flexi-n]
+                   |     +--rw flexi-n    l0-types:flexi-n
+                   |     +--rw flexi-m?   l0-types:flexi-m
+                   +--:(multi)
+                      +--rw frequency-slots
+                         +--rw frequency-slot* [flexi-n]
+                            +--rw flexi-n    l0-types:flexi-n
+                            +--rw flexi-m?   l0-types:flexi-m
+     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+               /te:primary-path/te:primary-reverse-path/te:optimizations
+               /te:algorithm/te:metric/te:optimization-metric
+               /te:explicit-route-include-objects
+               /te:route-object-include-object/te:type/te:label
+               /te:label-hop/te:te-label/te:technology:
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw (fixed-single-or-super-channel)?
+             |     +--:(single)
+             |     |  +--rw dwdm-n?               l0-types:dwdm-n
+             |     +--:(multi)
+             |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?                     l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw (single-or-super-channel)?
+                   +--:(single)
+                   |  +--rw flexi-n?              l0-types:flexi-n
+                   |  +--rw flexi-m?              l0-types:flexi-m
+                   x--:(super)
+                   |  +--rw subcarrier-flexi-n* [flexi-n]
+                   |     +--rw flexi-n    l0-types:flexi-n
+                   |     +--rw flexi-m?   l0-types:flexi-m
+                   +--:(multi)
+                      +--rw frequency-slots
+                         +--rw frequency-slot* [flexi-n]
+                            +--rw flexi-n    l0-types:flexi-n
+                            +--rw flexi-m?   l0-types:flexi-m
+     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+               /te:primary-path/te:primary-reverse-path
+               /te:explicit-route-objects-always
+               /te:route-object-exclude-always/te:type/te:label
+               /te:label-hop/te:te-label/te:technology:
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw (fixed-single-or-super-channel)?
+             |     +--:(single)
+             |     |  +--rw dwdm-n?               l0-types:dwdm-n
+             |     +--:(multi)
+             |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?                     l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw (single-or-super-channel)?
+                   +--:(single)
+                   |  +--rw flexi-n?              l0-types:flexi-n
+                   |  +--rw flexi-m?              l0-types:flexi-m
+                   x--:(super)
+                   |  +--rw subcarrier-flexi-n* [flexi-n]
+                   |     +--rw flexi-n    l0-types:flexi-n
+                   |     +--rw flexi-m?   l0-types:flexi-m
+                   +--:(multi)
+                      +--rw frequency-slots
+                         +--rw frequency-slot* [flexi-n]
+                            +--rw flexi-n    l0-types:flexi-n
+                            +--rw flexi-m?   l0-types:flexi-m
+     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+               /te:primary-path/te:primary-reverse-path
+               /te:explicit-route-objects-always
+               /te:route-object-include-exclude/te:type/te:label
+               /te:label-hop/te:te-label/te:technology:
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw (fixed-single-or-super-channel)?
+             |     +--:(single)
+             |     |  +--rw dwdm-n?               l0-types:dwdm-n
+             |     +--:(multi)
+             |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?                     l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw (single-or-super-channel)?
+                   +--:(single)
+                   |  +--rw flexi-n?              l0-types:flexi-n
+                   |  +--rw flexi-m?              l0-types:flexi-m
+                   x--:(super)
+                   |  +--rw subcarrier-flexi-n* [flexi-n]
+                   |     +--rw flexi-n    l0-types:flexi-n
+                   |     +--rw flexi-m?   l0-types:flexi-m
+                   +--:(multi)
+                      +--rw frequency-slots
+                         +--rw frequency-slot* [flexi-n]
+                            +--rw flexi-n    l0-types:flexi-n
+                            +--rw flexi-m?   l0-types:flexi-m
+     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+               /te:primary-path/te:primary-reverse-path
+               /te:path-in-segment/te:label-restrictions
+               /te:label-restriction/te:label-start/te:te-label
+               /te:technology:
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw dwdm-n?    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?    l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw flexi-n?   l0-types:flexi-n
+     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+               /te:primary-path/te:primary-reverse-path
+               /te:path-in-segment/te:label-restrictions
+               /te:label-restriction/te:label-end/te:te-label
+               /te:technology:
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw dwdm-n?    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?    l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw flexi-n?   l0-types:flexi-n
+     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+               /te:primary-path/te:primary-reverse-path
+               /te:path-in-segment/te:label-restrictions
+               /te:label-restriction/te:label-step/te:technology:
+       +--:(wdm)
+          +--rw (l0-grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw wson-dwdm-channel-spacing?    identityref
+             +--:(cwdm)
+             |  +--rw wson-cwdm-channel-spacing?    identityref
+             +--:(flexi-grid)
+                x--rw flexi-grid-channel-spacing?   identityref
+                +--rw flexi-ncfg?                   identityref
+                +--rw flexi-n-step?                 uint8
+     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+               /te:primary-path/te:primary-reverse-path
+               /te:path-out-segment/te:label-restrictions
+               /te:label-restriction/te:label-start/te:te-label
+               /te:technology:
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw dwdm-n?    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?    l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw flexi-n?   l0-types:flexi-n
+     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+               /te:primary-path/te:primary-reverse-path
+               /te:path-out-segment/te:label-restrictions
+               /te:label-restriction/te:label-end/te:te-label
+               /te:technology:
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw dwdm-n?    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?    l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw flexi-n?   l0-types:flexi-n
+     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+               /te:primary-path/te:primary-reverse-path
+               /te:path-out-segment/te:label-restrictions
+               /te:label-restriction/te:label-step/te:technology:
+       +--:(wdm)
+          +--rw (l0-grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw wson-dwdm-channel-spacing?    identityref
+             +--:(cwdm)
+             |  +--rw wson-cwdm-channel-spacing?    identityref
+             +--:(flexi-grid)
+                x--rw flexi-grid-channel-spacing?   identityref
+                +--rw flexi-ncfg?                   identityref
+                +--rw flexi-n-step?                 uint8
+     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+               /te:primary-path/te:primary-reverse-path
+               /te:computed-paths-properties/te:computed-path-properties
+               /te:path-properties/te:path-route-objects
+               /te:path-route-object/te:type/te:label/te:label-hop
+               /te:te-label/te:technology:
+       +--:(wdm)
+          +--ro (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--ro (fixed-single-or-super-channel)?
+             |     +--:(single)
+             |     |  +--ro dwdm-n?               l0-types:dwdm-n
+             |     +--:(multi)
+             |        +--ro subcarrier-dwdm-n*    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--ro cwdm-n?                     l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--ro (single-or-super-channel)?
+                   +--:(single)
+                   |  +--ro flexi-n?              l0-types:flexi-n
+                   |  +--ro flexi-m?              l0-types:flexi-m
+                   x--:(super)
+                   |  +--ro subcarrier-flexi-n* [flexi-n]
+                   |     +--ro flexi-n    l0-types:flexi-n
+                   |     +--ro flexi-m?   l0-types:flexi-m
+                   +--:(multi)
+                      +--ro frequency-slots
+                         +--ro frequency-slot* [flexi-n]
+                            +--ro flexi-n    l0-types:flexi-n
+                            +--ro flexi-m?   l0-types:flexi-m
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+               /te:secondary-path/te:optimizations/te:algorithm
+               /te:metric/te:optimization-metric
+               /te:explicit-route-exclude-objects
+               /te:route-object-exclude-object/te:type/te:label
+               /te:label-hop/te:te-label/te:technology:
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw (fixed-single-or-super-channel)?
+             |     +--:(single)
+             |     |  +--rw dwdm-n?               l0-types:dwdm-n
+             |     +--:(multi)
+             |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?                     l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw (single-or-super-channel)?
+                   +--:(single)
+                   |  +--rw flexi-n?              l0-types:flexi-n
+                   |  +--rw flexi-m?              l0-types:flexi-m
+                   x--:(super)
+                   |  +--rw subcarrier-flexi-n* [flexi-n]
+                   |     +--rw flexi-n    l0-types:flexi-n
+                   |     +--rw flexi-m?   l0-types:flexi-m
+                   +--:(multi)
+                      +--rw frequency-slots
+                         +--rw frequency-slot* [flexi-n]
+                            +--rw flexi-n    l0-types:flexi-n
+                            +--rw flexi-m?   l0-types:flexi-m
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+               /te:secondary-path/te:optimizations/te:algorithm
+               /te:metric/te:optimization-metric
+               /te:explicit-route-include-objects
+               /te:route-object-include-object/te:type/te:label
+               /te:label-hop/te:te-label/te:technology:
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw (fixed-single-or-super-channel)?
+             |     +--:(single)
+             |     |  +--rw dwdm-n?               l0-types:dwdm-n
+             |     +--:(multi)
+             |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?                     l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw (single-or-super-channel)?
+                   +--:(single)
+                   |  +--rw flexi-n?              l0-types:flexi-n
+                   |  +--rw flexi-m?              l0-types:flexi-m
+                   x--:(super)
+                   |  +--rw subcarrier-flexi-n* [flexi-n]
+                   |     +--rw flexi-n    l0-types:flexi-n
+                   |     +--rw flexi-m?   l0-types:flexi-m
+                   +--:(multi)
+                      +--rw frequency-slots
+                         +--rw frequency-slot* [flexi-n]
+                            +--rw flexi-n    l0-types:flexi-n
+                            +--rw flexi-m?   l0-types:flexi-m
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+               /te:secondary-path/te:explicit-route-objects-always
+               /te:route-object-exclude-always/te:type/te:label
+               /te:label-hop/te:te-label/te:technology:
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw (fixed-single-or-super-channel)?
+             |     +--:(single)
+             |     |  +--rw dwdm-n?               l0-types:dwdm-n
+             |     +--:(multi)
+             |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?                     l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw (single-or-super-channel)?
+                   +--:(single)
+                   |  +--rw flexi-n?              l0-types:flexi-n
+                   |  +--rw flexi-m?              l0-types:flexi-m
+                   x--:(super)
+                   |  +--rw subcarrier-flexi-n* [flexi-n]
+                   |     +--rw flexi-n    l0-types:flexi-n
+                   |     +--rw flexi-m?   l0-types:flexi-m
+                   +--:(multi)
+                      +--rw frequency-slots
+                         +--rw frequency-slot* [flexi-n]
+                            +--rw flexi-n    l0-types:flexi-n
+                            +--rw flexi-m?   l0-types:flexi-m
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+               /te:secondary-path/te:explicit-route-objects-always
+               /te:route-object-include-exclude/te:type/te:label
+               /te:label-hop/te:te-label/te:technology:
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw (fixed-single-or-super-channel)?
+             |     +--:(single)
+             |     |  +--rw dwdm-n?               l0-types:dwdm-n
+             |     +--:(multi)
+             |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?                     l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw (single-or-super-channel)?
+                   +--:(single)
+                   |  +--rw flexi-n?              l0-types:flexi-n
+                   |  +--rw flexi-m?              l0-types:flexi-m
+                   x--:(super)
+                   |  +--rw subcarrier-flexi-n* [flexi-n]
+                   |     +--rw flexi-n    l0-types:flexi-n
+                   |     +--rw flexi-m?   l0-types:flexi-m
+                   +--:(multi)
+                      +--rw frequency-slots
+                         +--rw frequency-slot* [flexi-n]
+                            +--rw flexi-n    l0-types:flexi-n
+                            +--rw flexi-m?   l0-types:flexi-m
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+               /te:secondary-path/te:path-in-segment
+               /te:label-restrictions/te:label-restriction
+               /te:label-start/te:te-label/te:technology:
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw dwdm-n?    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?    l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw flexi-n?   l0-types:flexi-n
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+               /te:secondary-path/te:path-in-segment
+               /te:label-restrictions/te:label-restriction/te:label-end
+               /te:te-label/te:technology:
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw dwdm-n?    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?    l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw flexi-n?   l0-types:flexi-n
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+               /te:secondary-path/te:path-in-segment
+               /te:label-restrictions/te:label-restriction/te:label-step
+               /te:technology:
+       +--:(wdm)
+          +--rw (l0-grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw wson-dwdm-channel-spacing?    identityref
+             +--:(cwdm)
+             |  +--rw wson-cwdm-channel-spacing?    identityref
+             +--:(flexi-grid)
+                x--rw flexi-grid-channel-spacing?   identityref
+                +--rw flexi-ncfg?                   identityref
+                +--rw flexi-n-step?                 uint8
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+               /te:secondary-path/te:path-out-segment
+               /te:label-restrictions/te:label-restriction
+               /te:label-start/te:te-label/te:technology:
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw dwdm-n?    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?    l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw flexi-n?   l0-types:flexi-n
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+               /te:secondary-path/te:path-out-segment
+               /te:label-restrictions/te:label-restriction/te:label-end
+               /te:te-label/te:technology:
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw dwdm-n?    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?    l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw flexi-n?   l0-types:flexi-n
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+               /te:secondary-path/te:path-out-segment
+               /te:label-restrictions/te:label-restriction/te:label-step
+               /te:technology:
+       +--:(wdm)
+          +--rw (l0-grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw wson-dwdm-channel-spacing?    identityref
+             +--:(cwdm)
+             |  +--rw wson-cwdm-channel-spacing?    identityref
+             +--:(flexi-grid)
+                x--rw flexi-grid-channel-spacing?   identityref
+                +--rw flexi-ncfg?                   identityref
+                +--rw flexi-n-step?                 uint8
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+               /te:secondary-path/te:computed-paths-properties
+               /te:computed-path-properties/te:path-properties
+               /te:path-route-objects/te:path-route-object/te:type
+               /te:label/te:label-hop/te:te-label/te:technology:
+       +--:(wdm)
+          +--ro (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--ro (fixed-single-or-super-channel)?
+             |     +--:(single)
+             |     |  +--ro dwdm-n?               l0-types:dwdm-n
+             |     +--:(multi)
+             |        +--ro subcarrier-dwdm-n*    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--ro cwdm-n?                     l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--ro (single-or-super-channel)?
+                   +--:(single)
+                   |  +--ro flexi-n?              l0-types:flexi-n
+                   |  +--ro flexi-m?              l0-types:flexi-m
+                   x--:(super)
+                   |  +--ro subcarrier-flexi-n* [flexi-n]
+                   |     +--ro flexi-n    l0-types:flexi-n
+                   |     +--ro flexi-m?   l0-types:flexi-m
+                   +--:(multi)
+                      +--ro frequency-slots
+                         +--ro frequency-slot* [flexi-n]
+                            +--ro flexi-n    l0-types:flexi-n
+                            +--ro flexi-m?   l0-types:flexi-m
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
+               /te:secondary-reverse-path/te:optimizations/te:algorithm
+               /te:metric/te:optimization-metric
+               /te:explicit-route-exclude-objects
+               /te:route-object-exclude-object/te:type/te:label
+               /te:label-hop/te:te-label/te:technology:
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw (fixed-single-or-super-channel)?
+             |     +--:(single)
+             |     |  +--rw dwdm-n?               l0-types:dwdm-n
+             |     +--:(multi)
+             |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?                     l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw (single-or-super-channel)?
+                   +--:(single)
+                   |  +--rw flexi-n?              l0-types:flexi-n
+                   |  +--rw flexi-m?              l0-types:flexi-m
+                   x--:(super)
+                   |  +--rw subcarrier-flexi-n* [flexi-n]
+                   |     +--rw flexi-n    l0-types:flexi-n
+                   |     +--rw flexi-m?   l0-types:flexi-m
+                   +--:(multi)
+                      +--rw frequency-slots
+                         +--rw frequency-slot* [flexi-n]
+                            +--rw flexi-n    l0-types:flexi-n
+                            +--rw flexi-m?   l0-types:flexi-m
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
+               /te:secondary-reverse-path/te:optimizations/te:algorithm
+               /te:metric/te:optimization-metric
+               /te:explicit-route-include-objects
+               /te:route-object-include-object/te:type/te:label
+               /te:label-hop/te:te-label/te:technology:
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw (fixed-single-or-super-channel)?
+             |     +--:(single)
+             |     |  +--rw dwdm-n?               l0-types:dwdm-n
+             |     +--:(multi)
+             |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?                     l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw (single-or-super-channel)?
+                   +--:(single)
+                   |  +--rw flexi-n?              l0-types:flexi-n
+                   |  +--rw flexi-m?              l0-types:flexi-m
+                   x--:(super)
+                   |  +--rw subcarrier-flexi-n* [flexi-n]
+                   |     +--rw flexi-n    l0-types:flexi-n
+                   |     +--rw flexi-m?   l0-types:flexi-m
+                   +--:(multi)
+                      +--rw frequency-slots
+                         +--rw frequency-slot* [flexi-n]
+                            +--rw flexi-n    l0-types:flexi-n
+                            +--rw flexi-m?   l0-types:flexi-m
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
+               /te:secondary-reverse-path
+               /te:explicit-route-objects-always
+               /te:route-object-exclude-always/te:type/te:label
+               /te:label-hop/te:te-label/te:technology:
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw (fixed-single-or-super-channel)?
+             |     +--:(single)
+             |     |  +--rw dwdm-n?               l0-types:dwdm-n
+             |     +--:(multi)
+             |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?                     l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw (single-or-super-channel)?
+                   +--:(single)
+                   |  +--rw flexi-n?              l0-types:flexi-n
+                   |  +--rw flexi-m?              l0-types:flexi-m
+                   x--:(super)
+                   |  +--rw subcarrier-flexi-n* [flexi-n]
+                   |     +--rw flexi-n    l0-types:flexi-n
+                   |     +--rw flexi-m?   l0-types:flexi-m
+                   +--:(multi)
+                      +--rw frequency-slots
+                         +--rw frequency-slot* [flexi-n]
+                            +--rw flexi-n    l0-types:flexi-n
+                            +--rw flexi-m?   l0-types:flexi-m
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
+               /te:secondary-reverse-path
+               /te:explicit-route-objects-always
+               /te:route-object-include-exclude/te:type/te:label
+               /te:label-hop/te:te-label/te:technology:
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw (fixed-single-or-super-channel)?
+             |     +--:(single)
+             |     |  +--rw dwdm-n?               l0-types:dwdm-n
+             |     +--:(multi)
+             |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?                     l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw (single-or-super-channel)?
+                   +--:(single)
+                   |  +--rw flexi-n?              l0-types:flexi-n
+                   |  +--rw flexi-m?              l0-types:flexi-m
+                   x--:(super)
+                   |  +--rw subcarrier-flexi-n* [flexi-n]
+                   |     +--rw flexi-n    l0-types:flexi-n
+                   |     +--rw flexi-m?   l0-types:flexi-m
+                   +--:(multi)
+                      +--rw frequency-slots
+                         +--rw frequency-slot* [flexi-n]
+                            +--rw flexi-n    l0-types:flexi-n
+                            +--rw flexi-m?   l0-types:flexi-m
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
+               /te:secondary-reverse-path/te:path-in-segment
+               /te:label-restrictions/te:label-restriction
+               /te:label-start/te:te-label/te:technology:
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw dwdm-n?    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?    l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw flexi-n?   l0-types:flexi-n
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
+               /te:secondary-reverse-path/te:path-in-segment
+               /te:label-restrictions/te:label-restriction/te:label-end
+               /te:te-label/te:technology:
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw dwdm-n?    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?    l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw flexi-n?   l0-types:flexi-n
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
+               /te:secondary-reverse-path/te:path-in-segment
+               /te:label-restrictions/te:label-restriction/te:label-step
+               /te:technology:
+       +--:(wdm)
+          +--rw (l0-grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw wson-dwdm-channel-spacing?    identityref
+             +--:(cwdm)
+             |  +--rw wson-cwdm-channel-spacing?    identityref
+             +--:(flexi-grid)
+                x--rw flexi-grid-channel-spacing?   identityref
+                +--rw flexi-ncfg?                   identityref
+                +--rw flexi-n-step?                 uint8
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
+               /te:secondary-reverse-path/te:path-out-segment
+               /te:label-restrictions/te:label-restriction
+               /te:label-start/te:te-label/te:technology:
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw dwdm-n?    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?    l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw flexi-n?   l0-types:flexi-n
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
+               /te:secondary-reverse-path/te:path-out-segment
+               /te:label-restrictions/te:label-restriction/te:label-end
+               /te:te-label/te:technology:
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw dwdm-n?    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?    l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw flexi-n?   l0-types:flexi-n
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
+               /te:secondary-reverse-path/te:path-out-segment
+               /te:label-restrictions/te:label-restriction/te:label-step
+               /te:technology:
+       +--:(wdm)
+          +--rw (l0-grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw wson-dwdm-channel-spacing?    identityref
+             +--:(cwdm)
+             |  +--rw wson-cwdm-channel-spacing?    identityref
+             +--:(flexi-grid)
+                x--rw flexi-grid-channel-spacing?   identityref
+                +--rw flexi-ncfg?                   identityref
+                +--rw flexi-n-step?                 uint8
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
+               /te:secondary-reverse-path/te:computed-paths-properties
+               /te:computed-path-properties/te:path-properties
+               /te:path-route-objects/te:path-route-object/te:type
+               /te:label/te:label-hop/te:te-label/te:technology:
+       +--:(wdm)
+          +--ro (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--ro (fixed-single-or-super-channel)?
+             |     +--:(single)
+             |     |  +--ro dwdm-n?               l0-types:dwdm-n
+             |     +--:(multi)
+             |        +--ro subcarrier-dwdm-n*    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--ro cwdm-n?                     l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--ro (single-or-super-channel)?
+                   +--:(single)
+                   |  +--ro flexi-n?              l0-types:flexi-n
+                   |  +--ro flexi-m?              l0-types:flexi-m
+                   x--:(super)
+                   |  +--ro subcarrier-flexi-n* [flexi-n]
+                   |     +--ro flexi-n    l0-types:flexi-n
+                   |     +--ro flexi-m?   l0-types:flexi-m
+                   +--:(multi)
+                      +--ro frequency-slots
+                         +--ro frequency-slot* [flexi-n]
+                            +--ro flexi-n    l0-types:flexi-n
+                            +--ro flexi-m?   l0-types:flexi-m
+     augment /te:te/te:lsps/te:lsp/te:lsp-actual-route-information
+               /te:lsp-actual-route-information/te:type/te:label
+               /te:label-hop/te:te-label/te:technology:
+       +--:(wdm)
+          +--ro (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--ro (fixed-single-or-super-channel)?
+             |     +--:(single)
+             |     |  +--ro dwdm-n?               l0-types:dwdm-n
+             |     +--:(multi)
+             |        +--ro subcarrier-dwdm-n*    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--ro cwdm-n?                     l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--ro (single-or-super-channel)?
+                   +--:(single)
+                   |  +--ro flexi-n?              l0-types:flexi-n
+                   |  +--ro flexi-m?              l0-types:flexi-m
+                   x--:(super)
+                   |  +--ro subcarrier-flexi-n* [flexi-n]
+                   |     +--ro flexi-n    l0-types:flexi-n
+                   |     +--ro flexi-m?   l0-types:flexi-m
+                   +--:(multi)
+                      +--ro frequency-slots
+                         +--ro frequency-slot* [flexi-n]
+                            +--ro flexi-n    l0-types:flexi-n
+                            +--ro flexi-m?   l0-types:flexi-m
+
+                       Figure 2: WDM Tunnel YANG tree
+
+5.2.  YANG Code
+
+   <CODE BEGINS> file "ietf-wdm-tunnel@2023-10-22.yang"
+   module ietf-wdm-tunnel {
+     yang-version 1.1;
+     namespace
+       "urn:ietf:params:xml:ns:yang:ietf-wdm-tunnel";
+     prefix "wdm-tnl";
+
+     import ietf-te {
+       prefix "te";
+       // Remove revision-date after ietf-te has passed WG LC
+       revision-date "2023-06-16";
+       reference
+         "RFC YYYY: A YANG Data Model for Traffic Engineering Tunnels,
+         Label Switched Paths and Interfaces.";
+     }
+     /* RFC Ed.: replace YYYY with the number assigned
+        to the RFC once draft-ietf-teas-yang-te becomes an RFC.*/
+
+     import ietf-layer0-types {
+       prefix "l0-types";
+     }
+
+     organization
+       "IETF CCAMP Working Group";
+     contact
+       "WG Web:   <http://tools.ietf.org/wg/ccamp/>
+        WG List:  <mailto:ccamp@ietf.org>
+
+        Editor:   Jorge E. Lopez de Vergara
+                  <jorge.lopez_vergara@uam.es>
+
+        Editor:   Daniel Perdices
+                  <daniel.perdices@naudit.es>
+
+        Editor:   Victor Lopez
+                  <victor.lopez@nokia.com>
+
+        Editor:   Italo Busi
+                  <italo.busi@nokia.com>
+
+        Editor:   Aihua Guo
+                  <aihuaguo.ietf@gmail.com>";
+
+     description
+       "This module defines a YANG data model for configuring
+        and managing Wavelength-Division Multiplexing (WDM) switched
+        optical tunnels.
+
+       The model fully conforms to the Network Management
+       Datastore Architecture (NMDA).
+
+       Copyright (c) 2021 IETF Trust and the persons
+       identified as authors of the code.  All rights reserved.
+
+       Redistribution and use in source and binary forms, with or
+       without modification, is permitted pursuant to, and subject
+       to the license terms contained in, the Simplified BSD License
+       set forth in Section 4.c of the IETF Trust's Legal Provisions
+       Relating to IETF Documents
+       (https://trustee.ietf.org/license-info).
+
+       This version of this YANG module is part of RFC XXXX; see
+       the RFC itself for full legal notices.";
+
+     revision "2023-10-22" {
+       description
+         "Updated revision with combined WSON and Flexi-grid tunnel
+          YANG model";
+
+       reference
+         "RFC XXXX: YANG data model for WDM tunnels";
+       // RFC Ed.: replace XXXX with actual RFC number, update date
+       // information and remove this note
+     }
+
+     /*
+      * Identities
+      */
+     identity lower-first-wavelength-assignment {
+       base l0-types:wavelength-assignment;
+       description
+         "Assign first available wavelength starting from the
+          lowest frequency towards the highest frequency in
+          the allowable frequency range.";
+     }
+
+     identity upper-first-wavelength-assignment {
+       base l0-types:wavelength-assignment;
+       description
+         "Assign first available wavelength starting from the
+          highest frequency towards the lowest frequency in
+          the allowable frequency range.";
+     }
+
+     /*
+      * Groupings
+      */
+     grouping tx-tune-constraints {
+       description
+         "This grouping defines the transmitter's allowed tuning
+          frequency range.";
+
+       container tx-tune-constraints {
+         description
+           "Transmitter's allowed tuning frequency range.";
+
+         uses l0-types:transmitter-tuning-range;
+       }
+     }
+
+     grouping transceiver-constraints-grp {
+       description
+         "This grouping defines constraints for transceiver
+          configurations";
+
+       leaf-list operational-modes {
+         type string {
+           length "1..255";
+         }
+         description
+           "List of operational mode ids of the transceiver.";
+       }
+
+       uses tx-tune-constraints;
+     }
+
+     grouping path-transceiver-config-grp {
+       description
+         "This grouping defines explicit transceiver configurations
+          on an end-to-end path.";
+
+       leaf transponder-id {
+         type uint32;
+         description "transponder identifier";
+       }
+
+       list transceivers {
+         key "lane-id";
+         description
+           "List of transceivers for all lanes.";
+
+         leaf lane-id {
+           type uint8;
+           must '. >= 1' {
+             error-message
+               "Lane identifier must be greater than or equal to 1.";
+           }
+           description
+             "Lane identifier starting from 1.";
+         }
+         leaf transceiver-id {
+           type uint32;
+           description
+           "transceiver identifier";
+         }
+       }
+
+       uses transceiver-constraints-grp;
+     }
+
+     grouping path-transceiver-grp {
+       description
+         "This grouping defines group of transceivers on a node
+          functioning as starting, terminating transceivers, or
+          regenerators.";
+
+       container path-in-transceiver {
+         description
+           "Constraints for incoming direction transceiver
+            configurations";
+
+         uses path-transceiver-config-grp;
+       }
+
+       container path-out-transceiver {
+         description
+           "Constraints for outgoing direction transceiver
+            configurations";
+
+         uses path-transceiver-config-grp;
+       }
+     }
+
+     grouping global-transceiver-constraint {
+       description
+         "This grouping defines the constraints for transceiver
+          configurations.";
+
+       container transceiver-constraint {
+         description
+           "Constraints for transceiver configurations";
+
+         uses transceiver-constraints-grp;
+       }
+     }
+
+     grouping wdm-constraint {
+       description
+         "Grouping for WDM tunnel constraints";
+
+       container wdm-constraint {
+         description
+           "WDM tunnel constraints.";
+
+         uses global-transceiver-constraint;
+         uses l0-types:l0-path-constraints;
+
+         leaf use-regen {
+           type boolean;
+           default false;
+           description
+             "Indicate whether or not regenerators (e.g. 3R) should be
+              considered. When this parameter is set to true, the
+              tunnel path may include a regen when the path is not
+              feasible for direct optical reach.";
+         }
+
+         leaf wavelength-conversion {
+           when '../use-regen = "true"' {
+             description
+               "Regenerator must be enabled for wavelength conversion
+                to be considered.";
+           }
+           type boolean;
+           default false;
+           description
+             "Indicate whether or not wavelength conversion is allowed
+              along the tunnel path. Applicable only when 3R
+              regeneration is enabled.";
+         }
+
+         uses l0-types:l0-tunnel-attributes;
+
+         leaf guard-band-size {
+           type l0-types:frequency-thz;
+           description
+             "Guard band size in THz.";
+         }
+
+         leaf matching-fwd-rev-wavelength {
+           type boolean;
+           default true;
+           description
+             "Indicate whether or not the assigned channels for
+              forward and reverse wavelength path must be the same.";
+         }
+
+         leaf allow-retuning {
+           type boolean;
+           default false;
+           description
+             "Indicate whether or not re-tuning is allowed when one or
+              more paths of a WDM tunnel is being restored. Typically,
+              wavelength retuning is not preferred for wavelength
+              planning considerations.";
+         }
+         leaf delta-power {
+           type l0-types:gain-in-db-or-null;
+           units "dB";
+           description
+             "Delta power in dB indicating the per-channel power
+              deviation from the nominal power per channel at the
+              output of an OMS.";
+         }
+       }
+     }
+
+     grouping wdm-path-state {
+       description
+         "Grouping for WDM path state.";
+
+       container wdm-path-state {
+         config false;
+         description
+           "WDM path state.";
+
+         leaf gsnr {
+           type l0-types:snr;
+           description
+             "Actual received GSNR for the WDM path.";
+         }
+       }
+     }
+
+     /*
+      * Data nodes
+      */
+
+     /*
+      * Global constraints for WDM tunnel
+      */
+     augment "/te:te/te:tunnels/te:tunnel" {
+       description
+         "Augment with additional parameters required for WDM
+          tunnel configurations.";
+       uses wdm-constraint;
+     }
+
+     /*
+      * Transceiver constraints for primary path
+      * Applicable to starting, terminating and regenerator
+      * transceivers.
+      */
+     augment "/te:te/te:tunnels/te:tunnel/te:primary-paths/"
+           + "te:primary-path/te:explicit-route-objects-always/"
+           + "te:route-object-exclude-always/te:type/"
+           + "te:numbered-node-hop/te:numbered-node-hop" {
+       description
+         "Augment TE primary path with transceiver configurations.";
+
+       uses path-transceiver-grp;
+     }
+
+     /*
+      * Transceiver constraints for primary reverse path
+      * Applicable to starting, terminating and regenerator
+      * transceivers.
+      */
+     augment "/te:te/te:tunnels/te:tunnel/te:primary-paths/"
+           + "te:primary-path/te:primary-reverse-path/"
+           + "te:explicit-route-objects-always/"
+           + "te:route-object-exclude-always/te:type/"
+           + "te:numbered-node-hop/te:numbered-node-hop" {
+       description
+         "Augment TE primary reverse path with transceiver
+          configurations.";
+
+       uses path-transceiver-grp;
+     }
+
+     /*
+      * Computed path properties for primary path.
+      */
+     augment "/te:te/te:tunnels/te:tunnel/te:primary-paths/"
+           + "te:primary-path/te:computed-paths-properties/"
+           + "te:computed-path-properties/te:path-properties" {
+       description
+         "Augment TE computed primary path with WDM properties.";
+
+       uses l0-types:l0-path-properties;
+     }
+
+     /*
+      * Computed path properties for primary reverse path.
+      */
+     augment "/te:te/te:tunnels/te:tunnel/te:primary-paths/"
+           + "te:primary-path/te:primary-reverse-path/"
+           + "te:computed-paths-properties/"
+           + "te:computed-path-properties/te:path-properties" {
+       description
+         "Augment TE computed primary reverse path with WDM
+          properties.";
+
+       uses l0-types:l0-path-properties;
+     }
+
+     /*
+      * Transceiver constraints for secondary path
+      * Applicable to starting, terminating and regenerator
+      * transceivers.
+      */
+     augment "/te:te/te:tunnels/te:tunnel/te:secondary-paths/"
+           + "te:secondary-path/te:explicit-route-objects-always/"
+           + "te:route-object-exclude-always/te:type/"
+           + "te:numbered-node-hop/te:numbered-node-hop" {
+       description
+         "Augment TE secondary path with transceiver configurations.";
+
+       uses path-transceiver-grp;
+     }
+
+     /*
+      * Transceiver constraints for secondary reverse path
+      * Applicable to starting, terminating and regenerator
+      * transceivers.
+      */
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:secondary-reverse-paths/"
+           + "te:secondary-reverse-path/"
+           + "te:explicit-route-objects-always/"
+           + "te:route-object-exclude-always/te:type/"
+           + "te:numbered-node-hop/te:numbered-node-hop" {
+       description
+         "Augment TE secondary reverse path with transceiver
+          configurations.";
+
+       uses path-transceiver-grp;
+     }
+
+     /*
+      * Computed path properties for secondary path.
+      */
+     augment "/te:te/te:tunnels/te:tunnel/te:secondary-paths/"
+           + "te:secondary-path/te:computed-paths-properties/"
+           + "te:computed-path-properties/te:path-properties" {
+       description
+         "Augment TE computed secondary path with WDM properties.";
+
+       uses l0-types:l0-path-properties;
+     }
+
+     /*
+      * Computed path properties for secondary reverse path.
+      */
+     augment "/te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths/"
+           + "te:secondary-reverse-path/te:computed-paths-properties/"
+           + "te:computed-path-properties/te:path-properties" {
+       description
+         "Augment TE computed secondary reverse path with WDM
+          properties.";
+
+       uses l0-types:l0-path-properties;
+     }
+
+     /*
+      * WDM path state
+      */
+     augment "/te:te/te:lsps/te:lsp/"
+           + "te:lsp-actual-route-information" {
+       description
+         "Augment TE LSP to with WDM path state.";
+
+       uses wdm-path-state;
+     }
+
+     /*
+      * Augment TE label range information
+      */
+
+     augment "/te:te/te:globals/te:named-path-constraints/"
+           + "te:named-path-constraint/te:path-in-segment/"
+           + "te:label-restrictions/te:label-restriction" {
+       description
+         "Augment TE label range information for the ingress segment
+         of the named path constraint.";
+       uses l0-types:wdm-label-range-info;
+     }
+
+     augment "/te:te/te:globals/te:named-path-constraints/"
+           + "te:named-path-constraint/te:path-out-segment/"
+           + "te:label-restrictions/"
+           + "te:label-restriction" {
+       description
+         "Augment TE label range information for the egress segment
+         of the named path constraint.";
+       uses l0-types:wdm-label-range-info;
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:primary-paths/te:primary-path/"
+           + "te:path-in-segment/te:label-restrictions/"
+           + "te:label-restriction" {
+       description
+         "Augment TE label range information for the ingress segment
+         of the primay path.";
+       uses l0-types:wdm-label-range-info;
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:primary-paths/te:primary-path/"
+           + "te:path-out-segment/te:label-restrictions/"
+           + "te:label-restriction" {
+       description
+         "Augment TE label range information for the egress segment
+         of the primay path.";
+       uses l0-types:wdm-label-range-info;
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:primary-paths/te:primary-path/"
+           + "te:primary-reverse-path/"
+           + "te:path-in-segment/te:label-restrictions/"
+           + "te:label-restriction" {
+       description
+         "Augment TE label range information for the ingress segment
+         of the primay reverse path.";
+       uses l0-types:wdm-label-range-info;
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:primary-paths/te:primary-path/"
+           + "te:primary-reverse-path/"
+           + "te:path-out-segment/te:label-restrictions/"
+           + "te:label-restriction" {
+       description
+         "Augment TE label range information for the egress segment
+         of the primay reverse path.";
+       uses l0-types:wdm-label-range-info;
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:secondary-paths/te:secondary-path/"
+           + "te:path-in-segment/te:label-restrictions/"
+           + "te:label-restriction" {
+       description
+         "Augment TE label range information for the ingress segment
+         of the secondary path.";
+       uses l0-types:wdm-label-range-info;
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:secondary-paths/te:secondary-path/"
+           + "te:path-out-segment/te:label-restrictions/"
+           + "te:label-restriction" {
+       description
+         "Augment TE label range information for the egress segment
+         of the secondary path.";
+       uses l0-types:wdm-label-range-info;
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:secondary-reverse-paths/te:secondary-reverse-path/"
+           + "te:path-in-segment/te:label-restrictions/"
+           + "te:label-restriction" {
+       description
+         "Augment TE label range information for the ingress segment
+         of the secondary reverse path.";
+       uses l0-types:wdm-label-range-info;
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:secondary-reverse-paths/te:secondary-reverse-path/"
+           + "te:path-out-segment/te:label-restrictions/"
+           + "te:label-restriction" {
+       description
+         "Augment TE label range information for the egress segment
+         of the secondary reverse path.";
+       uses l0-types:wdm-label-range-info;
+     }
+
+     /*
+      * Augment TE label.
+      */
+     augment "/te:te/te:globals/te:named-path-constraints/"
+           + "te:named-path-constraint/"
+           + "te:explicit-route-objects-always/"
+           + "te:route-object-exclude-always/te:type/te:label/"
+           + "te:label-hop/te:te-label/te:technology" {
+       description
+         "Augment TE label hop for the explicit route objects always
+         excluded by the path computation with the named path
+         constraint.";
+       case wdm {
+         uses l0-types:wdm-label-hop;
+       }
+     }
+
+     augment "/te:te/te:globals/te:named-path-constraints/"
+           + "te:named-path-constraint/"
+           + "te:explicit-route-objects-always/"
+           + "te:route-object-include-exclude/te:type/te:label/"
+           + "te:label-hop/te:te-label/te:technology" {
+       description
+         "Augment TE label hop for the explicit route objects included
+         or excluded by the path computation with the named path
+         constraint.";
+       case wdm {
+         uses l0-types:wdm-label-hop;
+       }
+     }
+     augment "/te:te/te:globals/te:named-path-constraints/"
+           + "te:named-path-constraint/te:path-in-segment/"
+           + "te:label-restrictions/"
+           + "te:label-restriction/te:label-start/"
+           + "te:te-label/te:technology" {
+       description
+         "Augment TE label range start for the ingress segment
+         of the named path constraint.";
+       case wdm {
+         uses l0-types:wdm-label-start-end;
+       }
+     }
+
+     augment "/te:te/te:globals/te:named-path-constraints/"
+           + "te:named-path-constraint/te:path-in-segment/"
+           + "te:label-restrictions/"
+           + "te:label-restriction/te:label-end/"
+           + "te:te-label/te:technology" {
+       description
+         "Augment TE label range end for the ingress segment
+         of the named path constraint.";
+       case wdm {
+         uses l0-types:wdm-label-start-end;
+       }
+     }
+
+     augment "/te:te/te:globals/te:named-path-constraints/"
+           + "te:named-path-constraint/te:path-in-segment/"
+           + "te:label-restrictions/te:label-restriction/"
+           + "te:label-step/te:technology" {
+       description
+         "Augment TE label range step for the ingress segment
+         of the named path constraint.";
+       case wdm {
+         uses l0-types:wdm-label-step;
+       }
+     }
+
+     augment "/te:te/te:globals/te:named-path-constraints/"
+           + "te:named-path-constraint/te:path-out-segment/"
+           + "te:label-restrictions/"
+           + "te:label-restriction/te:label-start/"
+           + "te:te-label/te:technology" {
+       description
+         "Augment TE label range start for the egress segment
+         of the named path constraint.";
+       case wdm {
+         uses l0-types:wdm-label-start-end;
+       }
+     }
+
+     augment "/te:te/te:globals/te:named-path-constraints/"
+           + "te:named-path-constraint/te:path-out-segment/"
+           + "te:label-restrictions/"
+           + "te:label-restriction/te:label-end/"
+           + "te:te-label/te:technology" {
+       description
+         "Augment TE label range end for the egress segment
+         of the named path constraint.";
+       case wdm {
+         uses l0-types:wdm-label-start-end;
+       }
+     }
+
+     augment "/te:te/te:globals/te:named-path-constraints/"
+           + "te:named-path-constraint/te:path-out-segment/"
+           + "te:label-restrictions/te:label-restriction/"
+           + "te:label-step/te:technology" {
+       description
+         "Augment TE label range step for the egress segment
+         of the named path constraint.";
+       case wdm {
+         uses l0-types:wdm-label-step;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:primary-paths/te:primary-path/"
+           + "te:optimizations/te:algorithm/te:metric/"
+           + "te:optimization-metric/te:explicit-route-exclude-objects/"
+           + "te:route-object-exclude-object/te:type/te:label/"
+           + "te:label-hop/te:te-label/te:technology" {
+       description
+         "Augment TE label hop for the optimization of the explicit
+         route objects excluded by the path computation of the primary
+         path.";
+       case wdm {
+         uses l0-types:wdm-label-hop;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:primary-paths/te:primary-path/"
+           + "te:optimizations/te:algorithm/te:metric/"
+           + "te:optimization-metric/te:explicit-route-include-objects/"
+           + "te:route-object-include-object/te:type/te:label/"
+           + "te:label-hop/te:te-label/te:technology" {
+       description
+         "Augment TE label hop for the optimization of the explicit
+         route objects included by the path computation of the primary
+         path.";
+       case wdm {
+         uses l0-types:wdm-label-hop;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:primary-paths/te:primary-path/"
+           + "te:explicit-route-objects-always/"
+           + "te:route-object-exclude-always/te:type/te:label/"
+           + "te:label-hop/te:te-label/te:technology" {
+       description
+         "Augment TE label hop for the explicit route objects always
+         excluded by the path computation of the primary path.";
+       case wdm {
+         uses l0-types:wdm-label-hop;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:primary-paths/te:primary-path/"
+           + "te:explicit-route-objects-always/"
+           + "te:route-object-include-exclude/te:type/te:label/"
+           + "te:label-hop/te:te-label/te:technology" {
+       description
+         "Augment TE label hop for the explicit route objects included
+         or excluded by the path computation of the primary path.";
+       case wdm {
+         uses l0-types:wdm-label-hop;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:primary-paths/te:primary-path/"
+           + "te:path-in-segment/te:label-restrictions/"
+           + "te:label-restriction/te:label-start/"
+           + "te:te-label/te:technology" {
+       description
+         "Augment TE label range start for the ingress segment
+         of the primay path.";
+       case wdm {
+         uses l0-types:wdm-label-start-end;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:primary-paths/te:primary-path/"
+           + "te:path-in-segment/te:label-restrictions/"
+           + "te:label-restriction/te:label-end/"
+           + "te:te-label/te:technology" {
+       description
+         "Augment TE label range end for the ingress segment
+         of the primay path.";
+       case wdm {
+         uses l0-types:wdm-label-start-end;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:primary-paths/te:primary-path/"
+           + "te:path-in-segment/te:label-restrictions/"
+           + "te:label-restriction/te:label-step/te:technology" {
+       description
+         "Augment TE label range step for the ingress segment
+         of the primay path.";
+       case wdm {
+         uses l0-types:wdm-label-step;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:primary-paths/te:primary-path/"
+           + "te:path-out-segment/te:label-restrictions/"
+           + "te:label-restriction/te:label-start/"
+           + "te:te-label/te:technology" {
+       description
+         "Augment TE label range start for the egress segment
+         of the primay path.";
+       case wdm {
+         uses l0-types:wdm-label-start-end;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:primary-paths/te:primary-path/"
+           + "te:path-out-segment/te:label-restrictions/"
+           + "te:label-restriction/te:label-end/"
+           + "te:te-label/te:technology" {
+       description
+         "Augment TE label range end for the egress segment
+         of the primay path.";
+       case wdm {
+         uses l0-types:wdm-label-start-end;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:primary-paths/te:primary-path/"
+           + "te:path-out-segment/te:label-restrictions/"
+           + "te:label-restriction/te:label-step/te:technology" {
+       description
+         "Augment TE label range end for the egress segment
+         of the primay path.";
+       case wdm {
+         uses l0-types:wdm-label-step;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:primary-paths/te:primary-path/"
+           + "te:computed-paths-properties/"
+           + "te:computed-path-properties/te:path-properties/"
+           + "te:path-route-objects/te:path-route-object/"
+           + "te:type/te:label/"
+           + "te:label-hop/te:te-label/te:technology" {
+       description
+         "Augment TE label hop for the route object of the computed
+         primary path.";
+       case wdm {
+         uses l0-types:wdm-label-hop;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:primary-paths/te:primary-path/"
+           + "te:primary-reverse-path/"
+           + "te:optimizations/te:algorithm/te:metric/"
+           + "te:optimization-metric/te:explicit-route-exclude-objects/"
+           + "te:route-object-exclude-object/te:type/te:label/"
+           + "te:label-hop/te:te-label/te:technology" {
+       description
+         "Augment TE label hop for the optimization of the explicit
+         route objects excluded by the path computation of the primary
+         reverse path.";
+       case wdm {
+         uses l0-types:wdm-label-hop;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:primary-paths/te:primary-path/"
+           + "te:primary-reverse-path/"
+           + "te:optimizations/te:algorithm/te:metric/"
+           + "te:optimization-metric/te:explicit-route-include-objects/"
+           + "te:route-object-include-object/te:type/te:label/"
+           + "te:label-hop/te:te-label/te:technology" {
+       description
+         "Augment TE label hop for the optimization of the explicit
+         route objects included by the path computation of the primary
+         reverse path.";
+       case wdm {
+         uses l0-types:wdm-label-hop;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:primary-paths/te:primary-path/"
+           + "te:primary-reverse-path/"
+           + "te:explicit-route-objects-always/"
+           + "te:route-object-exclude-always/"
+           + "te:type/te:label/"
+           + "te:label-hop/te:te-label/te:technology" {
+       description
+         "Augment TE label hop for the explicit route objects always
+         excluded by the path computation of the primary reverse
+         path.";
+       case wdm {
+         uses l0-types:wdm-label-hop;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:primary-paths/te:primary-path/"
+           + "te:primary-reverse-path/"
+           + "te:explicit-route-objects-always/"
+           + "te:route-object-include-exclude/"
+           + "te:type/te:label/"
+           + "te:label-hop/te:te-label/te:technology" {
+       description
+         "Augment TE label hop for the explicit route objects included
+         or excluded by the path computation of the primary reverse
+         path.";
+       case wdm {
+         uses l0-types:wdm-label-hop;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:primary-paths/te:primary-path/"
+           + "te:primary-reverse-path/"
+           + "te:path-in-segment/te:label-restrictions/"
+           + "te:label-restriction/te:label-start/"
+           + "te:te-label/te:technology" {
+       description
+         "Augment TE label range start for the ingress segment
+         of the primay reverse path.";
+       case wdm {
+         uses l0-types:wdm-label-start-end;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:primary-paths/te:primary-path/"
+           + "te:primary-reverse-path/"
+           + "te:path-in-segment/te:label-restrictions/"
+           + "te:label-restriction/te:label-end/"
+           + "te:te-label/te:technology" {
+       description
+         "Augment TE label range end for the ingress segment
+         of the primay reverse path.";
+       case wdm {
+         uses l0-types:wdm-label-start-end;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:primary-paths/te:primary-path/"
+           + "te:primary-reverse-path/"
+           + "te:path-in-segment/te:label-restrictions/"
+           + "te:label-restriction/te:label-step/te:technology" {
+       description
+         "Augment TE label range step for the ingress segment
+         of the primay reverse path.";
+       case wdm {
+         uses l0-types:wdm-label-step;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:primary-paths/te:primary-path/"
+           + "te:primary-reverse-path/"
+           + "te:path-out-segment/te:label-restrictions/"
+           + "te:label-restriction/te:label-start/"
+           + "te:te-label/te:technology" {
+       description
+         "Augment TE label range start for the egress segment
+         of the primay reverse path.";
+       case wdm {
+         uses l0-types:wdm-label-start-end;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:primary-paths/te:primary-path/"
+           + "te:primary-reverse-path/"
+           + "te:path-out-segment/te:label-restrictions/"
+           + "te:label-restriction/te:label-end/"
+           + "te:te-label/te:technology" {
+       description
+         "Augment TE label range end for the egress segment
+         of the primay reverse path.";
+       case wdm {
+         uses l0-types:wdm-label-start-end;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:primary-paths/te:primary-path/"
+           + "te:primary-reverse-path/"
+           + "te:path-out-segment/te:label-restrictions/"
+           + "te:label-restriction/te:label-step/te:technology" {
+       description
+         "Augment TE label range step for the egress segment
+         of the primay reverse path.";
+       case wdm {
+         uses l0-types:wdm-label-step;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:primary-paths/te:primary-path/"
+           + "te:primary-reverse-path/"
+           + "te:computed-paths-properties/te:computed-path-properties/"
+           + "te:path-properties/te:path-route-objects/"
+           + "te:path-route-object/te:type/te:label/"
+           + "te:label-hop/te:te-label/te:technology" {
+       description
+         "Augment TE label hop for the route object of the computed
+         primary reverse path.";
+       case wdm {
+         uses l0-types:wdm-label-hop;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:secondary-paths/te:secondary-path/"
+           + "te:optimizations/te:algorithm/te:metric/"
+           + "te:optimization-metric/te:explicit-route-exclude-objects/"
+           + "te:route-object-exclude-object/te:type/te:label/"
+           + "te:label-hop/te:te-label/te:technology" {
+       description
+         "Augment TE label hop for the optimization of the explicit
+         route objects excluded by the path computation of the
+         secondary path.";
+       case wdm {
+         uses l0-types:wdm-label-hop;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:secondary-paths/te:secondary-path/"
+           + "te:optimizations/te:algorithm/te:metric/"
+           + "te:optimization-metric/te:explicit-route-include-objects/"
+           + "te:route-object-include-object/te:type/te:label/"
+           + "te:label-hop/te:te-label/te:technology" {
+       description
+         "Augment TE label hop for the optimization of the explicit
+         route objects included by the path computation of the
+         secondary path.";
+       case wdm {
+         uses l0-types:wdm-label-hop;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:secondary-paths/te:secondary-path/"
+           + "te:explicit-route-objects-always/"
+           + "te:route-object-exclude-always/te:type/te:label/"
+           + "te:label-hop/te:te-label/te:technology" {
+       description
+         "Augment TE label hop for the explicit route objects always
+         excluded by the path computation of the secondary path.";
+       case wdm {
+         uses l0-types:wdm-label-hop;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:secondary-paths/te:secondary-path/"
+           + "te:explicit-route-objects-always/"
+           + "te:route-object-include-exclude/te:type/te:label/"
+           + "te:label-hop/te:te-label/te:technology" {
+       description
+         "Augment TE label hop for the explicit route objects included
+         or excluded by the path computation of the secondary path.";
+       case wdm {
+         uses l0-types:wdm-label-hop;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:secondary-paths/te:secondary-path/"
+           + "te:path-in-segment/te:label-restrictions/"
+           + "te:label-restriction/te:label-start/"
+           + "te:te-label/te:technology" {
+       description
+         "Augment TE label range start for the ingress segment
+         of the secondary path.";
+       case wdm {
+         uses l0-types:wdm-label-start-end;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:secondary-paths/te:secondary-path/"
+           + "te:path-in-segment/te:label-restrictions/"
+           + "te:label-restriction/te:label-end/"
+           + "te:te-label/te:technology" {
+       description
+         "Augment TE label range end for the ingress segment
+         of the secondary path.";
+       case wdm {
+         uses l0-types:wdm-label-start-end;
+       }
+     }
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:secondary-paths/te:secondary-path/"
+           + "te:path-in-segment/te:label-restrictions/"
+           + "te:label-restriction/te:label-step/te:technology" {
+       description
+         "Augment TE label range step for the ingress segment
+         of the secondary path.";
+       case wdm {
+         uses l0-types:wdm-label-step;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:secondary-paths/te:secondary-path/"
+           + "te:path-out-segment/te:label-restrictions/"
+           + "te:label-restriction/te:label-start/"
+           + "te:te-label/te:technology" {
+       description
+         "Augment TE label range start for the egress segment
+         of the secondary path.";
+       case wdm {
+         uses l0-types:wdm-label-start-end;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:secondary-paths/te:secondary-path/"
+           + "te:path-out-segment/te:label-restrictions/"
+           + "te:label-restriction/te:label-end/"
+           + "te:te-label/te:technology" {
+       description
+         "Augment TE label range end for the egress segment
+         of the secondary path.";
+       case wdm {
+         uses l0-types:wdm-label-start-end;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:secondary-paths/te:secondary-path/"
+           + "te:path-out-segment/te:label-restrictions/"
+           + "te:label-restriction/te:label-step/te:technology" {
+       description
+         "Augment TE label range step for the egress segment
+         of the secondary path.";
+       case wdm {
+         uses l0-types:wdm-label-step;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:secondary-paths/te:secondary-path/"
+           + "te:computed-paths-properties/"
+           + "te:computed-path-properties/"
+           + "te:path-properties/te:path-route-objects/"
+           + "te:path-route-object/te:type/te:label/"
+           + "te:label-hop/te:te-label/te:technology" {
+       description
+         "Augment TE label hop for the route object of the computed
+         secondary path.";
+       case wdm {
+         uses l0-types:wdm-label-hop;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:secondary-reverse-paths/te:secondary-reverse-path/"
+           + "te:optimizations/te:algorithm/te:metric/"
+           + "te:optimization-metric/te:explicit-route-exclude-objects/"
+           + "te:route-object-exclude-object/te:type/te:label/"
+           + "te:label-hop/te:te-label/te:technology" {
+       description
+         "Augment TE label hop for the optimization of the explicit
+         route objects excluded by the path computation of the
+         secondary reverse path.";
+       case wdm {
+         uses l0-types:wdm-label-hop;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:secondary-reverse-paths/te:secondary-reverse-path/"
+           + "te:optimizations/te:algorithm/te:metric/"
+           + "te:optimization-metric/te:explicit-route-include-objects/"
+           + "te:route-object-include-object/te:type/te:label/"
+           + "te:label-hop/te:te-label/te:technology" {
+       description
+         "Augment TE label hop for the optimization of the explicit
+         route objects included by the path computation of the
+         secondary reverse path.";
+       case wdm {
+         uses l0-types:wdm-label-hop;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:secondary-reverse-paths/te:secondary-reverse-path/"
+           + "te:explicit-route-objects-always/"
+           + "te:route-object-exclude-always/te:type/te:label/"
+           + "te:label-hop/te:te-label/te:technology" {
+       description
+         "Augment TE label hop for the explicit route objects always
+         excluded by the path computation of the secondary reverse
+         path.";
+       case wdm {
+         uses l0-types:wdm-label-hop;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:secondary-reverse-paths/te:secondary-reverse-path/"
+           + "te:explicit-route-objects-always/"
+           + "te:route-object-include-exclude/te:type/te:label/"
+           + "te:label-hop/te:te-label/te:technology" {
+       description
+         "Augment TE label hop for the explicit route objects included
+         or excluded by the path computation of the secondary reverse
+         path.";
+       case wdm {
+         uses l0-types:wdm-label-hop;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:secondary-reverse-paths/te:secondary-reverse-path/"
+           + "te:path-in-segment/te:label-restrictions/"
+           + "te:label-restriction/te:label-start/"
+           + "te:te-label/te:technology" {
+       description
+         "Augment TE label range start for the ingress segment
+         of the secondary reverse path.";
+       case wdm {
+         uses l0-types:wdm-label-start-end;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:secondary-reverse-paths/te:secondary-reverse-path/"
+           + "te:path-in-segment/te:label-restrictions/"
+           + "te:label-restriction/te:label-end/"
+           + "te:te-label/te:technology" {
+       description
+         "Augment TE label range end for the ingress segment
+         of the secondary reverse path.";
+       case wdm {
+         uses l0-types:wdm-label-start-end;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:secondary-reverse-paths/te:secondary-reverse-path/"
+           + "te:path-in-segment/te:label-restrictions/"
+           + "te:label-restriction/te:label-step/te:technology" {
+       description
+         "Augment TE label range step for the ingress segment
+         of the secondary reverse path.";
+       case wdm {
+         uses l0-types:wdm-label-step;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:secondary-reverse-paths/te:secondary-reverse-path/"
+           + "te:path-out-segment/te:label-restrictions/"
+           + "te:label-restriction/te:label-start/"
+           + "te:te-label/te:technology" {
+       description
+         "Augment TE label range start for the egress segment
+         of the secondary reverse path.";
+       case wdm {
+         uses l0-types:wdm-label-start-end;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:secondary-reverse-paths/te:secondary-reverse-path/"
+           + "te:path-out-segment/te:label-restrictions/"
+           + "te:label-restriction/te:label-end/"
+           + "te:te-label/te:technology" {
+       description
+         "Augment TE label range end for the egress segment
+         of the secondary reverse path.";
+       case wdm {
+         uses l0-types:wdm-label-start-end;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:secondary-reverse-paths/te:secondary-reverse-path/"
+           + "te:path-out-segment/te:label-restrictions/"
+           + "te:label-restriction/te:label-step/te:technology" {
+       description
+         "Augment TE label range step for the egress segment
+         of the secondary reverse path.";
+       case wdm {
+         uses l0-types:wdm-label-step;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:secondary-reverse-paths/te:secondary-reverse-path/"
+           + "te:computed-paths-properties/"
+           + "te:computed-path-properties/"
+           + "te:path-properties/te:path-route-objects/"
+           + "te:path-route-object/te:type/te:label/"
+           + "te:label-hop/te:te-label/te:technology" {
+       description
+         "Augment TE label hop for the route object of the computed
+         secondary reverse path.";
+       case wdm {
+         uses l0-types:wdm-label-hop;
+       }
+     }
+
+     augment "/te:te/te:lsps/"
+           + "te:lsp/te:lsp-actual-route-information/"
+           + "te:lsp-actual-route-information/te:type/te:label/"
+           + "te:label-hop/te:te-label/te:technology" {
+       description
+         "Augment TE label hop for the actual route of the LSP.";
+       case wdm {
+         uses l0-types:wdm-label-hop;
+       }
+     }
+   }
+   <CODE ENDS>
+
+                      Figure 3: WDM Tunnel YANG module
+
+6.  Security Considerations
+
+   The configuration, state, and action data defined in this document
+   are designed to be accessed via a management protocol with a secure
+   transport layer, such as NETCONF [RFC6241] or RESTCONF [RFC8040].
+   The NETCONF access control model [RFC8341] provides the means to
+   restrict access for particular NETCONF users to a preconfigured
+   subset of all available NETCONF protocol operations and content.
+
+   There are a number of data nodes defined in this YANG module that are
+   writable/creatable/deletable (i.e., config true, which is the
+   default).  These data nodes may be considered sensitive or vulnerable
+   in some network environments.  Write operations (e.g., edit-config)
+   to these data nodes without proper protection can have a negative
+   effect on network operations.  These are the subtrees and data nodes
+   and their sensitivity/vulnerability:
+
+   *  /te:te/te:tunnels/te:tunnel
+
+   *  /te:te/.../te:te-bandwidth/te:technology
+
+   *  /te:te/.../te:type/te:label/te:label-hop/te:te-label/te:technology
+
+   *  /te:te/.../te:label-restrictions/te:label-restriction/te:label-
+      start/te:te-label/te:technology
+
+   *  /te:te/.../te:label-restrictions/te:label-restriction/te:label-
+      end/te:te-label/te:technology
+
+   *  /te:te/.../te:label-restrictions/te:label-restriction/
+
+   Editors note: we are using simplified description by folding similar
+   branches to avoid repetition.
+
+7.  IANA Considerations
+
+   This document requests IANA to register the following URIs in the
+   "ns" subregistry within the "IETF XML Registry" [RFC3688].  Following
+   the format in [RFC3688], the following registrations are requested.
+
+      URI: urn:ietf:params:xml:ns:yang:ietf-wdm-tunnel
+      Registrant Contact: The IESG
+      XML: N/A; the requested URI is an XML namespace.
+
+   This document requests IANA to register the following YANG modules in
+   the "IANA Module Names" [RFC6020].  Following the format in
+   [RFC6020], the following registrations are requested:
+
+      name: ietf-wdm-tunnel
+      namespace: urn:ietf:params:xml:ns:yang:ietf-wdm-tunnel
+      prefix: wdm-tnl
+      reference: RFC XXXX
+
+   RFC Editor: Please replace XXXX with the RFC number assigned to this
+   document.
+
+8.  References
+
+8.1.  Normative References
+
+   [I-D.ietf-ccamp-flexigrid-yang]
+              de Madrid, U. A., Burrero, D. P., King, D., Lee, Y., and
+              H. Zheng, "A YANG Data Model for Flexi-Grid Optical
+              Networks", Work in Progress, Internet-Draft, draft-ietf-
+              ccamp-flexigrid-yang-15, 10 July 2023,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-
+              flexigrid-yang-15>.
+
+   [I-D.ietf-teas-yang-te]
+              Saad, T., Gandhi, R., Liu, X., Beeram, V. P., and I.
+              Bryskin, "A YANG Data Model for Traffic Engineering
+              Tunnels, Label Switched Paths and Interfaces", Work in
+              Progress, Internet-Draft, draft-ietf-teas-yang-te-34, 1
+              October 2023, <https://datatracker.ietf.org/doc/html/
+              draft-ietf-teas-yang-te-34>.
+
+   [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
+              Requirement Levels", BCP 14, RFC 2119,
+              DOI 10.17487/RFC2119, March 1997,
+              <https://www.rfc-editor.org/rfc/rfc2119>.
+
+   [RFC3688]  Mealling, M., "The IETF XML Registry", BCP 81, RFC 3688,
+              DOI 10.17487/RFC3688, January 2004,
+              <https://www.rfc-editor.org/rfc/rfc3688>.
+
+   [RFC6020]  Bjorklund, M., Ed., "YANG - A Data Modeling Language for
+              the Network Configuration Protocol (NETCONF)", RFC 6020,
+              DOI 10.17487/RFC6020, October 2010,
+              <https://www.rfc-editor.org/rfc/rfc6020>.
+
+   [RFC6241]  Enns, R., Ed., Bjorklund, M., Ed., Schoenwaelder, J., Ed.,
+              and A. Bierman, Ed., "Network Configuration Protocol
+              (NETCONF)", RFC 6241, DOI 10.17487/RFC6241, June 2011,
+              <https://www.rfc-editor.org/rfc/rfc6241>.
+
+   [RFC7446]  Lee, Y., Ed., Bernstein, G., Ed., Li, D., and W. Imajuku,
+              "Routing and Wavelength Assignment Information Model for
+              Wavelength Switched Optical Networks", RFC 7446,
+              DOI 10.17487/RFC7446, February 2015,
+              <https://www.rfc-editor.org/rfc/rfc7446>.
+
+   [RFC7699]  Farrel, A., King, D., Li, Y., and F. Zhang, "Generalized
+              Labels for the Flexi-Grid in Lambda Switch Capable (LSC)
+              Label Switching Routers", RFC 7699, DOI 10.17487/RFC7699,
+              November 2015, <https://www.rfc-editor.org/rfc/rfc7699>.
+
+   [RFC7950]  Bjorklund, M., Ed., "The YANG 1.1 Data Modeling Language",
+              RFC 7950, DOI 10.17487/RFC7950, August 2016,
+              <https://www.rfc-editor.org/rfc/rfc7950>.
+
+   [RFC8040]  Bierman, A., Bjorklund, M., and K. Watsen, "RESTCONF
+              Protocol", RFC 8040, DOI 10.17487/RFC8040, January 2017,
+              <https://www.rfc-editor.org/rfc/rfc8040>.
+
+   [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
+              2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
+              May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
+
+   [RFC8341]  Bierman, A. and M. Bjorklund, "Network Configuration
+              Access Control Model", STD 91, RFC 8341,
+              DOI 10.17487/RFC8341, March 2018,
+              <https://www.rfc-editor.org/rfc/rfc8341>.
+
+   [RFC9094]  Zheng, H., Lee, Y., Guo, A., Lopez, V., and D. King, "A
+              YANG Data Model for Wavelength Switched Optical Networks
+              (WSONs)", RFC 9094, DOI 10.17487/RFC9094, August 2021,
+              <https://www.rfc-editor.org/rfc/rfc9094>.
+
+8.2.  Informative References
+
+   [RFC6163]  Lee, Y., Ed., Bernstein, G., Ed., and W. Imajuku,
+              "Framework for GMPLS and Path Computation Element (PCE)
+              Control of Wavelength Switched Optical Networks (WSONs)",
+              RFC 6163, DOI 10.17487/RFC6163, April 2011,
+              <https://www.rfc-editor.org/rfc/rfc6163>.
+
+   [RFC7698]  Gonzalez de Dios, O., Ed., Casellas, R., Ed., Zhang, F.,
+              Fu, X., Ceccarelli, D., and I. Hussain, "Framework and
+              Requirements for GMPLS-Based Control of Flexi-Grid Dense
+              Wavelength Division Multiplexing (DWDM) Networks",
+              RFC 7698, DOI 10.17487/RFC7698, November 2015,
+              <https://www.rfc-editor.org/rfc/rfc7698>.
+
+Acknowledgments
+
+   This work is also partially funded by the Spanish State Research
+   Agency under the project AgileMon (AEI PID2019-104451RB-C21) and by
+   the Spanish Ministry of Science, Innovation and Universities under
+   the program for the training of university lecturers (Grant number:
+   FPU19/05678).
+
+Contributors
+
+   Daniel King
+   Old Dog Consulting
+   Email: daniel@olddog.co.uk
+
+
+   Haomian Zheng
+   Huawei Technologies
+   H1, Xiliu Beipo Village, Songshan Lake
+   Dongguan
+   China
+   Email: zhenghaomian@huawei.com
+
+
+   Italo Busi
+   Huawei Technologies
+   Email: italo.busi@huawei.com
+
+
+   Oscar Gonzalez de Dios
+   Telefonica
+   Email: oscar.gonzalezdedios@telefonica.com
+
+
+   Victor Lopez
+   Nokia
+   Email: victor.lopez@nokia.com
+
+
+   Dieter Beller
+   Nokia
+   Email: Dieter.Beller@nokia.com
+
+
+   Ricard Vilalta
+   CTTC
+   Email: ricard.vilalta@cttc.es
+
+
+   Young Lee
+   Samsung
+   Email: younglee.tx@gmail.com
+
+
+   Bin Yeong Yoon
+   ETRI
+   Email: byyun@etri.re.kr
+
+
+   Daniel Michaud Vallinoto
+   Universidad Autonoma de Madrid
+   Email: daniel.michaud@estudiante.uam.es
+
+
+   Zafar Ali
+   Cisco
+   Email: zali@cisco.com
+
+
+Authors' Addresses
+
+   Aihua Guo
+   Futurewei Technologies
+   Email: aihuaguo.ietf@gmail.com
+
+
+   Sergio Belotti
+   Nokia
+   Email: Sergio.belotti@nokia.com
+
+
+   G. Galimberti
+   Individual
+   Email: ggalimbe56@gmail.com
+
+
+   Jorge E. Lopez de Vergara Mendez
+   Naudit HPCN
+   Email: jorge.lopez_vergara@uam.es
+
+
+   Daniel Perdices Burrero
+   Universidad Autonoma de Madrid
+   Email: daniel.perdices@uam.es

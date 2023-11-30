@@ -1,0 +1,1925 @@
+{
+  "magic": "E!vIA5L86J2I",
+  "timestamp": "2023-11-30T00:53:05.478137+00:00",
+  "repo": "ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang",
+  "labels": [
+    {
+      "name": "bug",
+      "description": "Something isn't working",
+      "color": "d73a4a"
+    },
+    {
+      "name": "documentation",
+      "description": "Improvements or additions to documentation",
+      "color": "0075ca"
+    },
+    {
+      "name": "duplicate",
+      "description": "This issue or pull request already exists",
+      "color": "cfd3d7"
+    },
+    {
+      "name": "enhancement",
+      "description": "New feature or request",
+      "color": "a2eeef"
+    },
+    {
+      "name": "good first issue",
+      "description": "Good for newcomers",
+      "color": "7057ff"
+    },
+    {
+      "name": "help wanted",
+      "description": "Extra attention is needed",
+      "color": "008672"
+    },
+    {
+      "name": "invalid",
+      "description": "This doesn't seem right",
+      "color": "e4e669"
+    },
+    {
+      "name": "question",
+      "description": "Further information is requested",
+      "color": "d876e3"
+    },
+    {
+      "name": "wontfix",
+      "description": "This will not be worked on",
+      "color": "ffffff"
+    },
+    {
+      "name": "wait",
+      "description": "",
+      "color": "FBCA04"
+    }
+  ],
+  "issues": [
+    {
+      "number": 1,
+      "id": "MDU6SXNzdWU2NDk5Mzc2NjY=",
+      "title": "Alignment with other CCAMP YANG models needed",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/1",
+      "state": "CLOSED",
+      "author": "dieterbeller",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "The ietf-flexi-grid-media-channel YANG model shall make use of:\r\n\r\n- ietf-layer0-types (https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-layer0-types)\r\n- ietf-layer0-types-ext (https://github.com/ietf-ccamp-wg/ietf-ccamp-layer0-types-ext/blob/master/ietf-layer0-types-ext.yang)\r\n\r\nIt should at least be aligned with:\r\n\r\n- ietf-optical-impairment-topology (https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-optical-impairment-topology-yang/blob/master/ietf-optical-impairment-topology.yang)\r\n",
+      "createdAt": "2020-07-02T13:37:10Z",
+      "updatedAt": "2021-02-18T16:10:55Z",
+      "closedAt": "2021-02-18T16:10:55Z",
+      "comments": [
+        {
+          "author": "danielkinguk",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "for Daniel ",
+          "createdAt": "2021-01-28T13:34:26Z",
+          "updatedAt": "2021-01-28T13:34:26Z"
+        },
+        {
+          "author": "dperdices",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "I mostly fixed all the errors of the module and now it is almost aligned with current version of layer0-types, layer0-types-ext and ietf-te-topology. Here is a summary:\r\n\r\n-  Whenever a grouping of layer0-types was not found, we look for it in the current version. Most of them were just renamed so it was only a matter of finding the right one.\r\n- Some of the old groupings are no longer in the layer0-types. FEC was in layer0-types-ext but term-type, wavelength assignment and flexi-grid-path-bandwidth were eliminated without clear equivalents. \r\n- Some TE-topology paths were also wrong. In most cases, it was easy to update them but, in some cases, I didn't find an equivalent node in the current TE-topo doc. In these cases, I comment out those sections.\r\n- In layer-0-types, there is an error causing validation problems. In line 523, I think `must '. >= min-slot-width-factor'` should be `must '. >= ../min-slot-width-factor'`. If someone checks that I am right, we can report this to the authors.\r\n\r\n Any help or comment is welcome with the last three points! :)",
+          "createdAt": "2021-02-03T12:32:36Z",
+          "updatedAt": "2021-02-03T12:32:36Z"
+        },
+        {
+          "author": "dperdices",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "These are the validation errors of this WIP version;:\r\n```\r\n/tmp/tmpotj8m0oa/ietf-layer0-types-ext.yang:272: error: RFC 8407: 4.14: statement \"container\" must have a \"description\" substatement\r\n/tmp/tmpotj8m0oa/ietf-flexi-grid-media-channel.yang:73: error: identity \"term-type\" not found in module \"ietf-layer0-types\"\r\n/tmp/tmpotj8m0oa/ietf-flexi-grid-media-channel.yang:92: error: identity \"wavelength-assignment\" not found in module \"ietf-layer0-types\"\r\n/tmp/tmpotj8m0oa/ietf-flexi-grid-media-channel.yang:119: error: grouping \"flexi-grid-path-bandwidth\" not found in module \"ietf-layer0-types\"\r\n/tmp/tmpotj8m0oa/ietf-flexi-grid-media-channel.yang:127: error: grouping \"flexi-grid-path-bandwidth\" not found in module \"ietf-layer0-types\"\r\n/tmp/tmpotj8m0oa/ietf-flexi-grid-media-channel.yang:137: error: grouping \"flexi-grid-path-bandwidth\" not found in module \"ietf-layer0-types\"\r\n/tmp/tmpotj8m0oa/ietf-flexi-grid-media-channel.yang:148: error: grouping \"flexi-grid-path-bandwidth\" not found in module \"ietf-layer0-types\"\r\n/tmp/tmpotj8m0oa/ietf-flexi-grid-media-channel.yang:158: error: grouping \"flexi-grid-path-bandwidth\" not found in module \"ietf-layer0-types\"\r\n```",
+          "createdAt": "2021-02-04T13:23:09Z",
+          "updatedAt": "2021-02-04T13:23:09Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "MEMBER",
+          "body": "Addressed in PR #13 \r\n\r\nPending merging of:\r\n\r\n- [l0-types-ext PR#17](https://github.com/ietf-ccamp-wg/ietf-ccamp-layer0-types-ext/pull/17)\r\n- [otn-tunnel PR#77](https://github.com/haomianzheng/IETF-ACTN-YANG-Model/pull/77)\r\n\r\n",
+          "createdAt": "2021-02-09T20:38:32Z",
+          "updatedAt": "2021-02-09T20:39:20Z"
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "id": "MDU6SXNzdWU3OTU5NzM5ODg=",
+      "title": " Check terminology and ITU-T definitions and references",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/2",
+      "state": "CLOSED",
+      "author": "danielkinguk",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [
+        "italobusi"
+      ],
+      "labels": [],
+      "body": "",
+      "createdAt": "2021-01-28T12:46:49Z",
+      "updatedAt": "2021-02-22T16:23:14Z",
+      "closedAt": "2021-02-22T16:23:14Z",
+      "comments": [
+        {
+          "author": "danielkinguk",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "For Italo.",
+          "createdAt": "2021-01-28T13:35:35Z",
+          "updatedAt": "2021-01-28T13:35:35Z"
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "id": "MDU6SXNzdWU3OTU5NzQ1MDg=",
+      "title": "Check media-channel usage and relation to other work (Impairments, Flexi-Grid Topo, et al.)",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/3",
+      "state": "CLOSED",
+      "author": "danielkinguk",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2021-01-28T12:47:30Z",
+      "updatedAt": "2021-02-22T16:23:29Z",
+      "closedAt": "2021-02-22T16:23:29Z",
+      "comments": []
+    },
+    {
+      "number": 4,
+      "id": "MDU6SXNzdWU3OTU5NzQ2Mzg=",
+      "title": "Check super-channel usage ",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/4",
+      "state": "CLOSED",
+      "author": "danielkinguk",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [
+        "sergiobelotti"
+      ],
+      "labels": [],
+      "body": "",
+      "createdAt": "2021-01-28T12:47:42Z",
+      "updatedAt": "2021-02-22T16:23:44Z",
+      "closedAt": "2021-02-22T16:23:44Z",
+      "comments": [
+        {
+          "author": "danielkinguk",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Check definition in Layer-0 I-D. ",
+          "createdAt": "2021-01-28T13:37:14Z",
+          "updatedAt": "2021-01-28T13:37:14Z"
+        },
+        {
+          "author": "danielkinguk",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Sergio to ask Gabriele if he has a definition we can use.",
+          "createdAt": "2021-02-11T13:47:03Z",
+          "updatedAt": "2021-02-11T13:47:03Z"
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "id": "MDU6SXNzdWU3OTU5NzQ4OTE=",
+      "title": "Check operational modes and groupings and if it's aligned with other YANG work",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/5",
+      "state": "CLOSED",
+      "author": "danielkinguk",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [
+        "italobusi"
+      ],
+      "labels": [],
+      "body": "",
+      "createdAt": "2021-01-28T12:48:03Z",
+      "updatedAt": "2021-02-18T16:10:56Z",
+      "closedAt": "2021-02-18T16:10:56Z",
+      "comments": [
+        {
+          "author": "danielkinguk",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "For Italo.",
+          "createdAt": "2021-01-28T13:39:51Z",
+          "updatedAt": "2021-01-28T13:39:51Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "MEMBER",
+          "body": "@danielkinguk : is this issue still applicable if PR #13 is merged?\r\n\r\nIf not, we can close this issue when PR #13 is closed.",
+          "createdAt": "2021-02-09T20:51:28Z",
+          "updatedAt": "2021-02-09T20:51:28Z"
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "id": "MDU6SXNzdWU3OTU5NzUyMDc=",
+      "title": "Needs Security Considerations Section ",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/6",
+      "state": "CLOSED",
+      "author": "danielkinguk",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [
+        "danielkinguk",
+        "dperdices",
+        "jorgelopezdevergara"
+      ],
+      "labels": [],
+      "body": "",
+      "createdAt": "2021-01-28T12:48:31Z",
+      "updatedAt": "2021-07-12T14:40:25Z",
+      "closedAt": "2021-07-12T14:40:25Z",
+      "comments": [
+        {
+          "author": "dperdices",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "First draft of security considerations in 597f8cf983ed81b9390f8547fefd3ea23b51140d. ",
+          "createdAt": "2021-06-24T08:17:14Z",
+          "updatedAt": "2021-06-24T08:17:14Z"
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "id": "MDU6SXNzdWU3OTU5NzU5ODc=",
+      "title": "Is current YANG tree and code suitable for new version of the ID",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/7",
+      "state": "CLOSED",
+      "author": "danielkinguk",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [
+        "italobusi"
+      ],
+      "labels": [],
+      "body": "",
+      "createdAt": "2021-01-28T12:49:41Z",
+      "updatedAt": "2021-02-18T16:10:56Z",
+      "closedAt": "2021-02-18T16:10:56Z",
+      "comments": [
+        {
+          "author": "danielkinguk",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "For Italo.",
+          "createdAt": "2021-01-28T13:40:03Z",
+          "updatedAt": "2021-01-28T13:40:03Z"
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "id": "MDU6SXNzdWU3OTYwMDY2NzQ=",
+      "title": "Upload XML version of the draft-ietf-ccamp-flexigrid-media-channel-yang draft",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/8",
+      "state": "CLOSED",
+      "author": "danielkinguk",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2021-01-28T13:31:51Z",
+      "updatedAt": "2021-03-10T20:26:41Z",
+      "closedAt": "2021-03-10T20:26:41Z",
+      "comments": []
+    },
+    {
+      "number": 9,
+      "id": "MDU6SXNzdWU3OTYwMTQ4NDg=",
+      "title": "Agree and include use case and example in the document.",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/9",
+      "state": "CLOSED",
+      "author": "danielkinguk",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [
+        "oscargdd",
+        "danielkinguk"
+      ],
+      "labels": [],
+      "body": "For Victor and Daniel K.",
+      "createdAt": "2021-01-28T13:41:59Z",
+      "updatedAt": "2021-06-17T11:39:04Z",
+      "closedAt": "2021-06-17T11:39:04Z",
+      "comments": [
+        {
+          "author": "danielkinguk",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "See existing flexi-grid documents that may be useful for the sue case discussion, they may be referenced and reused as needed.   ",
+          "createdAt": "2021-02-04T13:29:33Z",
+          "updatedAt": "2021-02-04T13:29:33Z"
+        },
+        {
+          "author": "danielkinguk",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Oscar to provide use case example.",
+          "createdAt": "2021-04-08T10:50:01Z",
+          "updatedAt": "2021-04-08T10:50:01Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "MEMBER",
+          "body": "These are the slides we have discussed today: [media channel scenarios-00.pptx](https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-flexigrid-media-channel-yang/files/6358426/media.channel.scenarios-00.pptx)\r\n\r\n",
+          "createdAt": "2021-04-22T13:06:27Z",
+          "updatedAt": "2021-04-22T13:06:27Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "MEMBER",
+          "body": "Slides updated during today's discussion: \r\n[media channel scenarios-01.pptx](https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-flexigrid-media-channel-yang/files/6434630/media.channel.scenarios-01.pptx)\r\n",
+          "createdAt": "2021-05-06T13:00:08Z",
+          "updatedAt": "2021-05-06T13:00:08Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "MEMBER",
+          "body": "Slides updated to address comments from Gabriele: \r\n[media channel scenarios-02.pptx](https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-flexigrid-media-channel-yang/files/6471179/media.channel.scenarios-02.pptx)\r\n",
+          "createdAt": "2021-05-13T08:08:25Z",
+          "updatedAt": "2021-05-13T08:08:25Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "MEMBER",
+          "body": "Slides updated during today's discussion:\r\n\r\n[media channel scenarios-03.pptx](https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-flexigrid-media-channel-yang/files/6515948/media.channel.scenarios-03.pptx)\r\n",
+          "createdAt": "2021-05-20T12:44:09Z",
+          "updatedAt": "2021-05-20T13:56:54Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "MEMBER",
+          "body": "Updated slide 8 from @sergiobelotti : \r\n[media channel scenarios-04.pptx](https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-flexigrid-media-channel-yang/files/6516500/media.channel.scenarios-04.pptx)\r\n\r\n",
+          "createdAt": "2021-05-20T13:57:17Z",
+          "updatedAt": "2021-05-20T13:57:17Z"
+        },
+        {
+          "author": "danielkinguk",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "New UC1/2 combination provided in 04 version of the I-D.",
+          "createdAt": "2021-06-17T11:39:04Z",
+          "updatedAt": "2021-06-17T11:39:04Z"
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "id": "MDU6SXNzdWU3OTYwMTcxMzg=",
+      "title": "Request CCAMP presentation slot for IETF 110 for the I-D",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/10",
+      "state": "CLOSED",
+      "author": "danielkinguk",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2021-01-28T13:44:50Z",
+      "updatedAt": "2021-03-10T20:48:14Z",
+      "closedAt": "2021-03-10T20:48:14Z",
+      "comments": []
+    },
+    {
+      "number": 11,
+      "id": "MDU6SXNzdWU4MDEyNzY2NjY=",
+      "title": "Errors found when validating media-channel (from layer-0 YANG)",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/11",
+      "state": "CLOSED",
+      "author": "danielkinguk",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [
+        "italobusi"
+      ],
+      "labels": [],
+      "body": "I mostly fixed all the errors of the module and now it is almost aligned with current version of layer0-types, layer0-types-ext and ietf-te-topology. Here is a summary:\r\n\r\n-  Whenever a grouping of layer0-types was not found, we look for it in the current version. Most of them were just renamed so it was only a matter of finding the right one.\r\n- Some of the old groupings are no longer in the layer0-types. FEC was in layer0-types-ext but term-type, wavelength assignment and flexi-grid-path-bandwidth were eliminated without clear equivalents. \r\n- Some TE-topology paths were also wrong. In most cases, it was easy to update them but, in some cases, I didn't find an equivalent node in the current TE-topo doc. In these cases, I comment out those sections.\r\n- In layer-0-types, there is an error causing validation problems. In line 523, I think `must '. >= min-slot-width-factor'` should be `must '. >= ../min-slot-width-factor'`. If someone checks that I am right, we can report this to the authors.\r\n\r\n Any help or comment is welcome with the last three points! :)\r\n\r\n_Originally posted by @dperdices in https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-flexigrid-media-channel-yang/issues/1#issuecomment-772474262_",
+      "createdAt": "2021-02-04T13:19:56Z",
+      "updatedAt": "2021-02-18T16:10:56Z",
+      "closedAt": "2021-02-18T16:10:56Z",
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "MEMBER",
+          "body": "Most of these issues should be resolved with PR https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-flexigrid-media-channel-yang/pull/13\r\n\r\nThe comment in the latest bullet seems correct: see https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-layer0-types/issues/16\r\n",
+          "createdAt": "2021-02-09T20:08:55Z",
+          "updatedAt": "2021-02-09T20:09:38Z"
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "id": "MDU6SXNzdWU4MDEyNzkxMjc=",
+      "title": "Upload new XML version  of the I-D",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/12",
+      "state": "CLOSED",
+      "author": "danielkinguk",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [
+        "danielkinguk"
+      ],
+      "labels": [],
+      "body": "",
+      "createdAt": "2021-02-04T13:22:56Z",
+      "updatedAt": "2021-02-04T13:23:40Z",
+      "closedAt": "2021-02-04T13:23:40Z",
+      "comments": []
+    },
+    {
+      "number": 14,
+      "id": "MDU6SXNzdWU4MDQ5MDc2MDQ=",
+      "title": "Fix contact information in the YANG module",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/14",
+      "state": "CLOSED",
+      "author": "italobusi",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2021-02-09T20:40:36Z",
+      "updatedAt": "2021-02-22T16:24:19Z",
+      "closedAt": "2021-02-22T16:24:19Z",
+      "comments": []
+    },
+    {
+      "number": 15,
+      "id": "MDU6SXNzdWU4MDQ5MDk4MjU=",
+      "title": "Review l0-tunnel-attributes grouping",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/15",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "MEMBER",
+      "assignees": [
+        "italobusi",
+        "sergiobelotti",
+        "aguoietf"
+      ],
+      "labels": [],
+      "body": "Few questions:\r\n\r\n1. It seems identical to the wson-tunnel-attributes grouping. Should it be moved to layer0-types-ext and imported instead?\r\n2. Is the fec-type attribute needed? See also [l0-types-ext Issue #16](https://github.com/ietf-ccamp-wg/ietf-ccamp-layer0-types-ext/issues/16)\r\n3. Is the termination-type needed? See also [l0-types-ext Issue #14](https://github.com/ietf-ccamp-wg/ietf-ccamp-layer0-types-ext/issues/14)\r\n4. Is the bit-stuffing attribute needed? What is its meaning?",
+      "createdAt": "2021-02-09T20:43:59Z",
+      "updatedAt": "2022-06-30T13:03:10Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "MEMBER",
+          "body": "> 2\\. Is the fec-type attribute needed? See also [l0-types-ext Issue #16](https://github.com/ietf-ccamp-wg/ietf-ccamp-layer0-types-ext/issues/16)\r\n> 3\\. Is the termination-type needed? See also [l0-types-ext Issue #14](https://github.com/ietf-ccamp-wg/ietf-ccamp-layer0-types-ext/issues/14)\r\n> 4\\. Is the bit-stuffing attribute needed? What is its meaning?\r\n\r\nStill need to be addressed",
+          "createdAt": "2021-02-12T11:07:56Z",
+          "updatedAt": "2021-02-12T11:07:56Z"
+        },
+        {
+          "author": "danielkinguk",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Currently a partial list, we need to decide if we provide a full list of configuration parameters, or import parameters. To be discussed on the list, and/or at IETF 111. Open questions, include:\r\n\r\n- Do we need to support legacy services, or focus on new <10G, or include >10G, Coherent >40G, 500G, et al? \r\n- What additional parameters will need to be included, if defined in this I-D? \r\n- If we import parameters, where from/which model?\r\n\r\nWe will need to wait on discussion to conclude on l0-types-extensions parameters before we can finalise tunnel parameters. ",
+          "createdAt": "2021-06-24T12:33:08Z",
+          "updatedAt": "2021-11-25T13:32:46Z"
+        },
+        {
+          "author": "danielkinguk",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Italo and Sergio to discuss open issue and provide update for next call (if possible). ",
+          "createdAt": "2021-11-25T13:33:17Z",
+          "updatedAt": "2021-11-25T13:33:17Z"
+        },
+        {
+          "author": "sergiobelotti",
+          "authorAssociation": "NONE",
+          "body": "> > 2. Is the fec-type attribute needed? See also [l0-types-ext Issue #16](https://github.com/ietf-ccamp-wg/ietf-ccamp-layer0-types-ext/issues/16)\r\n> > 3. Is the termination-type needed? See also [l0-types-ext Issue #14](https://github.com/ietf-ccamp-wg/ietf-ccamp-layer0-types-ext/issues/14)\r\n> > 4. Is the bit-stuffing attribute needed? What is its meaning?\r\n> \r\n> Still need to be addressed\r\n\r\n> > 3. Is the termination-type needed? See also [l0-types-ext Issue #14](https://github.com/ietf-ccamp-wg/ietf-ccamp-layer0-types-ext/issues/14)\r\n\r\nIssue #14  in layer0-types-ext is closed so, accordingly,  we should consider \"termination-type\" not needed",
+          "createdAt": "2021-11-26T16:02:42Z",
+          "updatedAt": "2021-11-26T16:02:42Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "MEMBER",
+          "body": "**2021-11-29 Aihua/Italo/Sergio**\r\n\r\n> > 2. Is the fec-type attribute needed? See also [l0-types-ext Issue #16](https://github.com/ietf-ccamp-wg/ietf-ccamp-layer0-types-ext/issues/16)\r\n\r\nThe fec-type is already covered by the transceiver configuration, so it could be removed from the l0-tunnel-attributes grouping. \r\n\r\nFew additional doubts:\r\n1. Should we enforce all the transceivers within the same OTSiG to use the same fec-type?\r\n2. Where is the transceiver configuration reported within the tunnel model\r\n3. Is there a need to constraint which transceivers can be used by the OTSiG on the primary and/or on the secondary path?\r\n\r\n> > 3. Is the termination-type needed? See also [l0-types-ext Issue #14](https://github.com/ietf-ccamp-wg/ietf-ccamp-layer0-types-ext/issues/14)\r\n\r\nMore discussion is still needed.\r\n\r\nSomething at the tunnel level has to be configured e.g., when setting up an Optical tunnel to support an OTN link, it has to be specified whether the optical tunnel is supporting an OTU4 link or an ODU4 link.\r\n\r\n![image](https://user-images.githubusercontent.com/12461741/143916055-bb952200-a648-4aee-ae82-efb1f0cc16c6.png)\r\n\r\nIn case of asymmetric client-signal configuration, it is not yet clear whether something for the tunnel's source and destination TTP has to be specified.\r\n\r\n![image](https://user-images.githubusercontent.com/12461741/143916079-cc690bda-bc17-44e6-bccf-68c2981e174c.png)\r\n\r\n> > 4. Is the bit-stuffing attribute needed? What is its meaning?\r\n> \r\n\r\nNot discussed\r\n\r\nNote that the wavelength-assignment has to be moved into this grouping:\r\n\r\nhttps://github.com/ietf-ccamp-wg/draft-ietf-ccamp-flexigrid-tunnel-yang/issues/16#issuecomment-981696043",
+          "createdAt": "2021-11-29T17:38:04Z",
+          "updatedAt": "2021-11-29T17:38:04Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "MEMBER",
+          "body": "**2022-04-28 Flexi-grid call**\r\n\r\nThis is the slide developed during the call today: [wdm-tunnel-scenarios-00.pptx](https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-flexigrid-tunnel-yang/files/8582942/wdm-tunnel-scenarios-00.pptx)\r\n ",
+          "createdAt": "2022-04-28T13:05:38Z",
+          "updatedAt": "2022-05-05T18:14:30Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "MEMBER",
+          "body": "2022-05-05 Flexi-grid call\r\n\r\nThese are the slides updated during the call today: [wdm-tunnel-scenarios-01.pptx](https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-flexigrid-tunnel-yang/files/8633653/wdm-tunnel-scenarios-01.pptx)",
+          "createdAt": "2022-05-05T18:14:19Z",
+          "updatedAt": "2022-05-05T18:14:19Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "MEMBER",
+          "body": "2022-05-12 Flexi-grid call\r\n\r\nThese are the slides updated during the call today: [wdm-tunnel-scenarios-02.pptx](https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-flexigrid-tunnel-yang/files/8680819/wdm-tunnel-scenarios-02.pptx)\r\n ",
+          "createdAt": "2022-05-12T16:04:16Z",
+          "updatedAt": "2022-05-12T16:04:23Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "MEMBER",
+          "body": "**2022-05-26 Flexi-grid call**\r\n\r\nThese are the slides updated during the call today: [wdm-tunnel-scenarios-03.pptx](https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-flexigrid-tunnel-yang/files/8780681/wdm-tunnel-scenarios-03.pptx)\r\n ",
+          "createdAt": "2022-05-26T16:55:48Z",
+          "updatedAt": "2022-05-26T16:55:48Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "MEMBER",
+          "body": "**2022-06-16 Flexi-grid call**\r\n\r\nThese are the slides updated during the call today: [wdm-tunnel-scenarios-04.pptx](https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-flexigrid-tunnel-yang/files/8919029/wdm-tunnel-scenarios-04.pptx)\r\n\r\nBased on this analysis it seems there is no need for the termination-type attribute.\r\n\r\nMore discussion is needed to understand how the WDM tunnel can be dimensioned (100G or 400G) in case of a muxponder supporting different rates at the network side: the rate of the client signal is not the same as the rate of the WDM tunnel and the rate supported by the muxponder on the network side is not unique\r\n",
+          "createdAt": "2022-06-16T13:03:22Z",
+          "updatedAt": "2022-06-16T13:03:22Z"
+        },
+        {
+          "author": "aguoietf",
+          "authorAssociation": "NONE",
+          "body": "**2022-06-30 flex-grid call**\r\n\r\nUpdated slides: \r\n[wdm-tunnel-scenarios-05.pptx](https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-flexigrid-tunnel-yang/files/9019962/wdm-tunnel-scenarios-05.pptx)\r\n",
+          "createdAt": "2022-06-30T13:03:10Z",
+          "updatedAt": "2022-06-30T13:03:10Z"
+        }
+      ]
+    },
+    {
+      "number": 16,
+      "id": "MDU6SXNzdWU4MDQ5MTMxMTY=",
+      "title": "Review l0-path-constraints grouping",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/16",
+      "state": "CLOSED",
+      "author": "italobusi",
+      "authorAssociation": "MEMBER",
+      "assignees": [
+        "italobusi",
+        "sergiobelotti"
+      ],
+      "labels": [],
+      "body": "Few questions:\r\n\r\n1. It seems identical to the wson-path-constraints grouping. Should it be moved to layer0-types-ext and imported instead?\r\n2. Should this grouping also needed to provide path constraints for tunnel setup?\r\n",
+      "createdAt": "2021-02-09T20:48:47Z",
+      "updatedAt": "2022-02-03T13:47:16Z",
+      "closedAt": "2022-02-03T13:47:16Z",
+      "comments": [
+        {
+          "author": "danielkinguk",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "\"1. It seems identical to the wson-path-constraints grouping. Should it be moved to layer0-types-ext and imported instead?\" moved to Layer-0.\r\n",
+          "createdAt": "2021-02-11T13:56:15Z",
+          "updatedAt": "2021-02-11T13:56:15Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "MEMBER",
+          "body": "> 2\\. Should this grouping also needed to provide path constraints for tunnel setup?\r\n\r\nStill need to be addressed",
+          "createdAt": "2021-02-12T11:07:18Z",
+          "updatedAt": "2021-02-12T11:07:18Z"
+        },
+        {
+          "author": "sergiobelotti",
+          "authorAssociation": "NONE",
+          "body": "The grouping is used in the request of tunnel input rpc, to provide the way to choose wavelength assignment e.g. randomly or taking into account residual capacity.\r\n",
+          "createdAt": "2021-04-07T15:04:19Z",
+          "updatedAt": "2021-04-07T15:04:19Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "MEMBER",
+          "body": "@sergiobelotti : I agree that this attribute is useful for optical path computation\r\n\r\nIMHO, if this attribute is an input for the path computation, it should be also provided in the TE tunnel model and not only in the path computation RPC, so the grouping should be used in other parts of the model and not only in the path computation RPC augmentation\r\n\r\nTwo doubts/questions:\r\n1. is this attribute defined/applicable per-tunnel or per-path? In other words, it is possible to apply different wavelength assignment mechanisms to the primary and secondary paths of the same tunnel?\r\n2. where are these mechanisms defined? The layer0-types-ext model references RFC 6163 but I am not able to find any definition of first-fit, random selection or residual capacity in RFC 6163 ...\r\n",
+          "createdAt": "2021-08-09T11:06:06Z",
+          "updatedAt": "2021-08-09T11:07:09Z"
+        },
+        {
+          "author": "danielkinguk",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Italo and Sergio to discuss open issue next week, prior to our next call. ",
+          "createdAt": "2021-11-25T13:32:20Z",
+          "updatedAt": "2021-11-25T13:32:20Z"
+        },
+        {
+          "author": "sergiobelotti",
+          "authorAssociation": "NONE",
+          "body": "> @sergiobelotti : I agree that this attribute is useful for optical path computation\r\n> \r\n> IMHO, if this attribute is an input for the path computation, it should be also provided in the TE tunnel model and not only in the path computation RPC, so the grouping should be used in other parts of the model and not only in the path computation RPC augmentation\r\n> \r\n> Two doubts/questions:\r\n> \r\n> 1. is this attribute defined/applicable per-tunnel or per-path? In other words, it is possible to apply different wavelength assignment mechanisms to the primary and secondary paths of the same tunnel?\r\n> 2. where are these mechanisms defined? The layer0-types-ext model references RFC 6163 but I am not able to find any definition of first-fit, random selection or residual capacity in RFC 6163 ...\r\n\r\nThe wavelength-assignment method are just described by the identities defined in layer0-types-ext:\r\n\r\nidentity wavelength-assignment {\r\n    description\r\n      \"Wavelength selection base\";\r\n    reference\r\n      \"RFC6163:Framework for GMPLS and Path Computation Element \r\n      (PCE) Control of Wavelength Switched Optical Networks (WSONs)\";\r\n  }\r\n\r\n  identity unspecified-wavelength-assignment {\r\n    base wavelength-assignment;\r\n    description\r\n      \"No method specified\";\r\n  }\r\n\r\n  identity first-fit-wavelength-assignment {\r\n    base wavelength-assignment;\r\n    description\r\n      \"All the available wavelengths are numbered,\r\n       and this WA (Wavelength Assignment) method chooses\r\n       the available wavelength with the lowest index\";\r\n  }\r\n\r\n  identity random-wavelength-assignment {\r\n    base wavelength-assignment;\r\n    description\r\n      \"This WA method chooses an available\r\n       wavelength randomly\";\r\n  }\r\n\r\n  identity least-loaded-wavelength-assignment {\r\n    base wavelength-assignment;\r\n    description\r\n      \"This WA method selects the wavelength that\r\n       has the largest residual capacity on the most loaded\r\n       link along the route (in multi-fiber networks)\";\r\n  }\r\n\r\n",
+          "createdAt": "2021-11-26T15:11:26Z",
+          "updatedAt": "2021-11-26T15:11:26Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "MEMBER",
+          "body": "**2021-11-29 Aihua/Italo/Sergio**\r\n\r\nThe wavelength-assignment attribute should be defined for both path computation RPC and tunnel models.\r\n\r\nThe attribute is defined per-tunnel and therefore should be moved to the l0-tunnel-attributes grouping.\r\n\r\nThe definitions of the possible wavelength-assignment values is well known in literature but not defined in any standard document:\r\n\r\nhttps://www.cs.sfu.ca/research/groups/NML/archive/pdf00002.pdf\r\n\r\nThis issue may be clarified in the layer0-types-ext text.\r\n\r\nSince the wavelength-assignment attribute is optional, there is no need for the unspecified-wavelength-assignment identity. When the wavelength-assignment is not present no wavelength-assignment method is specified.\r\n",
+          "createdAt": "2021-11-29T14:39:44Z",
+          "updatedAt": "2021-11-29T14:42:37Z"
+        },
+        {
+          "author": "danielkinguk",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Waiting on Sergio and Italo to update the model, then we can close the issue.",
+          "createdAt": "2021-12-16T13:10:18Z",
+          "updatedAt": "2021-12-16T13:10:18Z"
+        }
+      ]
+    },
+    {
+      "number": 17,
+      "id": "MDU6SXNzdWU4MDY0MTIyMDA=",
+      "title": "Move flexi-grid-media-channel-attributes grouping to layer0-types-ext I-D",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/17",
+      "state": "CLOSED",
+      "author": "danielkinguk",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [
+        "italobusi",
+        "sergiobelotti"
+      ],
+      "labels": [],
+      "body": "See #15 ",
+      "createdAt": "2021-02-11T13:55:32Z",
+      "updatedAt": "2021-02-18T16:10:56Z",
+      "closedAt": "2021-02-18T16:10:56Z",
+      "comments": []
+    },
+    {
+      "number": 18,
+      "id": "MDU6SXNzdWU4MDY0MjgwMjE=",
+      "title": "Move flexi-grid-path-constraints grouping to layer0-types-ext",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/18",
+      "state": "CLOSED",
+      "author": "italobusi",
+      "authorAssociation": "MEMBER",
+      "assignees": [
+        "italobusi",
+        "sergiobelotti"
+      ],
+      "labels": [],
+      "body": "\"1. It seems identical to the wson-path-constraints grouping. Should it be moved to layer0-types-ext and imported instead?\" moved to Layer-0.\r\n\r\n_Originally posted by @danielkinguk in https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-flexigrid-media-channel-yang/issues/16#issuecomment-777475874_",
+      "createdAt": "2021-02-11T14:14:12Z",
+      "updatedAt": "2021-02-11T14:14:53Z",
+      "closedAt": "2021-02-11T14:14:53Z",
+      "comments": []
+    },
+    {
+      "number": 19,
+      "id": "MDU6SXNzdWU4MTEwOTA1NTU=",
+      "title": "Develop a slide deck for IETF 110",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/19",
+      "state": "CLOSED",
+      "author": "danielkinguk",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [
+        "danielkinguk"
+      ],
+      "labels": [],
+      "body": "",
+      "createdAt": "2021-02-18T13:17:03Z",
+      "updatedAt": "2021-03-10T20:26:22Z",
+      "closedAt": "2021-03-10T20:26:22Z",
+      "comments": []
+    },
+    {
+      "number": 20,
+      "id": "MDU6SXNzdWU4MTEwOTgzMDQ=",
+      "title": "Check for implementations (research, planned, et al.)",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/20",
+      "state": "CLOSED",
+      "author": "danielkinguk",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [
+        "danielkinguk"
+      ],
+      "labels": [],
+      "body": "See new references for demonstration/implementation, info. ",
+      "createdAt": "2021-02-18T13:26:59Z",
+      "updatedAt": "2021-06-17T11:38:44Z",
+      "closedAt": "2021-06-17T11:38:43Z",
+      "comments": [
+        {
+          "author": "danielkinguk",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Now additional implementations found.",
+          "createdAt": "2021-06-17T11:38:43Z",
+          "updatedAt": "2021-06-17T11:38:43Z"
+        }
+      ]
+    },
+    {
+      "number": 21,
+      "id": "MDU6SXNzdWU4NzA5NTIwOTU=",
+      "title": "Need to agree Prefix name for this I-D.",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/21",
+      "state": "CLOSED",
+      "author": "danielkinguk",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [
+        "danielkinguk",
+        "italobusi"
+      ],
+      "labels": [],
+      "body": "Options, include:\r\n\r\nflexg-mc\r\nflexg-tnl\r\nflexg-tun\r\n\r\nTo be discussed. ",
+      "createdAt": "2021-04-29T12:16:24Z",
+      "updatedAt": "2021-10-25T13:28:22Z",
+      "closedAt": "2021-10-25T13:28:22Z",
+      "comments": [
+        {
+          "author": "danielkinguk",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Issue is actively discussed on the CCAMP/TEAS list, current proposals are:\r\n\r\nflexg-tnl\r\nflexg-tn\r\nflexgtnl\r\n\r\nEveryone needs to vote on the discussion, via the CCAMP/TEAS list. ",
+          "createdAt": "2021-06-24T12:38:49Z",
+          "updatedAt": "2021-06-24T12:38:49Z"
+        },
+        {
+          "author": "danielkinguk",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Group majority decided that \"flexg-tnl\" is the preferred prefix. It was suggested that \"tnl\" is a reasonable definition for media channel. \r\n\r\nAction: Will need to check TE editors (Tarak) as well.  ",
+          "createdAt": "2021-09-30T12:50:00Z",
+          "updatedAt": "2021-09-30T12:50:00Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "MEMBER",
+          "body": "> Action: Will need to check TE editors (Tarak) as well.\r\n\r\nSee https://github.com/tsaad-dev/te/issues/125#issuecomment-944380874",
+          "createdAt": "2021-10-18T07:38:57Z",
+          "updatedAt": "2021-10-18T07:38:57Z"
+        }
+      ]
+    },
+    {
+      "number": 22,
+      "id": "MDU6SXNzdWU4Nzc0MzE0MTc=",
+      "title": "Update ASCII topology example in I-D",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/22",
+      "state": "CLOSED",
+      "author": "danielkinguk",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [
+        "danielkinguk",
+        "italobusi"
+      ],
+      "labels": [],
+      "body": "",
+      "createdAt": "2021-05-06T12:12:55Z",
+      "updatedAt": "2021-06-17T11:38:28Z",
+      "closedAt": "2021-06-17T11:38:27Z",
+      "comments": [
+        {
+          "author": "danielkinguk",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "New example added in 04 version.",
+          "createdAt": "2021-06-17T11:38:27Z",
+          "updatedAt": "2021-06-17T11:38:27Z"
+        }
+      ]
+    },
+    {
+      "number": 23,
+      "id": "MDU6SXNzdWU5MTA0MzA3ODQ=",
+      "title": "Review current YANG model for media-channel I-D",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/23",
+      "state": "CLOSED",
+      "author": "danielkinguk",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [
+        "dperdices",
+        "italobusi",
+        "sergiobelotti",
+        "ggalimba56"
+      ],
+      "labels": [],
+      "body": "Suggest/make changes as needed.",
+      "createdAt": "2021-06-03T12:11:12Z",
+      "updatedAt": "2021-06-17T12:21:38Z",
+      "closedAt": "2021-06-17T12:21:31Z",
+      "comments": [
+        {
+          "author": "danielkinguk",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Now #26 ",
+          "createdAt": "2021-06-17T12:21:38Z",
+          "updatedAt": "2021-06-17T12:21:38Z"
+        }
+      ]
+    },
+    {
+      "number": 24,
+      "id": "MDU6SXNzdWU5MTA0MzIwNTQ=",
+      "title": "Create new version of I-D by June 17 for review by team",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/24",
+      "state": "CLOSED",
+      "author": "danielkinguk",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Still leaves 10 days or so before IETF 111 submission deadline.",
+      "createdAt": "2021-06-03T12:12:55Z",
+      "updatedAt": "2021-06-17T11:38:12Z",
+      "closedAt": "2021-06-17T11:38:12Z",
+      "comments": [
+        {
+          "author": "danielkinguk",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Version 04 now uploaded.",
+          "createdAt": "2021-06-17T11:38:08Z",
+          "updatedAt": "2021-06-17T11:38:08Z"
+        }
+      ]
+    },
+    {
+      "number": 25,
+      "id": "MDU6SXNzdWU5MjM4MzE4OTM=",
+      "title": "Add diagram showing relationship between YANG modules used for Tunnel I-D",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/25",
+      "state": "OPEN",
+      "author": "danielkinguk",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [
+        "danielkinguk"
+      ],
+      "labels": [],
+      "body": "As per flexi-grid YANG, insert diagram showing relationship between YANG modules used.",
+      "createdAt": "2021-06-17T11:49:15Z",
+      "updatedAt": "2021-11-25T13:30:25Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 26,
+      "id": "MDU6SXNzdWU5MjM4NTc2NzA=",
+      "title": "All - Review current YANG code before 24 June ",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/26",
+      "state": "CLOSED",
+      "author": "danielkinguk",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [
+        "dperdices",
+        "italobusi",
+        "sergiobelotti",
+        "ggalimba56",
+        "haomianzheng"
+      ],
+      "labels": [],
+      "body": "Please review the current YANG code and comment before it is merged with the 04 version of the I-D.",
+      "createdAt": "2021-06-17T12:17:21Z",
+      "updatedAt": "2021-09-30T12:56:33Z",
+      "closedAt": "2021-09-30T12:56:33Z",
+      "comments": [
+        {
+          "author": "sergiobelotti",
+          "authorAssociation": "NONE",
+          "body": "the model is using \"l0-tunnel-attributes\" and in the grouping there fec-type and termination-type.\r\nBoth are connected to l0-types-ext issues , issue #16 https://github.com/ietf-ccamp-wg/ietf-ccamp-layer0-types-ext/issues/16  and issue #14 https://github.com/ietf-ccamp-wg/ietf-ccamp-layer0-types-ext/issues/14, that is closed but in fact still waiting for a better description of the term-type. \r\n\r\nIs bit-stuffing needed? Any other attributes is expecting ?\r\n",
+          "createdAt": "2021-06-24T09:24:26Z",
+          "updatedAt": "2021-06-24T09:24:26Z"
+        }
+      ]
+    },
+    {
+      "number": 27,
+      "id": "MDU6SXNzdWU5MjM4NTgzNzk=",
+      "title": "Check with Young Lee to see if he is working on this area and if he plans implementation. ",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/27",
+      "state": "CLOSED",
+      "author": "danielkinguk",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [
+        "danielkinguk"
+      ],
+      "labels": [],
+      "body": "",
+      "createdAt": "2021-06-17T12:18:08Z",
+      "updatedAt": "2021-10-07T11:31:16Z",
+      "closedAt": "2021-10-07T11:31:15Z",
+      "comments": [
+        {
+          "author": "danielkinguk",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Young is no longer active on the Flexi-Grid I-Ds. ",
+          "createdAt": "2021-10-07T11:31:15Z",
+          "updatedAt": "2021-10-07T11:31:15Z"
+        }
+      ]
+    },
+    {
+      "number": 28,
+      "id": "MDU6SXNzdWU5MjM4NzUwNjc=",
+      "title": "Fix XML in version 04 of the document. ",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/28",
+      "state": "CLOSED",
+      "author": "danielkinguk",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [
+        "danielkinguk"
+      ],
+      "labels": [],
+      "body": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-flexigrid-media-channel-yang/blob/0df031f6052b35f87772aac2778f74aa71323c06/draft-ietf-ccamp-flexigrid-media-channel-yang-04.xml#L279 Missing  </list></t>\r\n",
+      "createdAt": "2021-06-17T12:36:25Z",
+      "updatedAt": "2021-06-17T12:38:22Z",
+      "closedAt": "2021-06-17T12:38:22Z",
+      "comments": [
+        {
+          "author": "danielkinguk",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Fixed with \"      </list></t>\"",
+          "createdAt": "2021-06-17T12:38:22Z",
+          "updatedAt": "2021-06-17T12:38:22Z"
+        }
+      ]
+    },
+    {
+      "number": 29,
+      "id": "MDU6SXNzdWU5MjkxOTAzMjE=",
+      "title": "Prepare and submit final 04 version by 1 July.",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/29",
+      "state": "CLOSED",
+      "author": "danielkinguk",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [
+        "danielkinguk"
+      ],
+      "labels": [],
+      "body": "Plan to submit Friday 2nd July. ",
+      "createdAt": "2021-06-24T12:43:18Z",
+      "updatedAt": "2021-09-30T12:40:59Z",
+      "closedAt": "2021-09-30T12:40:59Z",
+      "comments": []
+    },
+    {
+      "number": 30,
+      "id": "MDU6SXNzdWU5MjkxOTQzNTM=",
+      "title": "Prepare slides for IETF 111 presentation ",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/30",
+      "state": "CLOSED",
+      "author": "danielkinguk",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [
+        "danielkinguk"
+      ],
+      "labels": [],
+      "body": "Open issues include\r\n- Configuration parameters, and where to import \r\n- General open issues, including compilation errors\r\n- Further discussion on use cases, which ones we currently have and future use cases ",
+      "createdAt": "2021-06-24T12:48:14Z",
+      "updatedAt": "2021-09-30T12:41:10Z",
+      "closedAt": "2021-09-30T12:41:10Z",
+      "comments": []
+    },
+    {
+      "number": 33,
+      "id": "I_kwDOEHme9c48VAm9",
+      "title": "Need to verify Media Channel and Tunnel terminology",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/33",
+      "state": "CLOSED",
+      "author": "danielkinguk",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [
+        "danielkinguk",
+        "italobusi"
+      ],
+      "labels": [],
+      "body": "This may include defining/clarifying \"Media Channel\" and usage of \"tunnel\". ",
+      "createdAt": "2021-09-30T12:51:13Z",
+      "updatedAt": "2021-11-25T13:29:54Z",
+      "closedAt": "2021-11-25T13:29:54Z",
+      "comments": [
+        {
+          "author": "danielkinguk",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Email the CCAMP list to notify group of intended I-D name change. Then when we are ready to submit a new version the I-D will be renamed \"draft-ietf-ccamp-flexigrid-tunnel-yang-00\", and will replace \"draft-ietf-ccamp-flexigrid-media-channel-yang-03\".\r\n\r\n",
+          "createdAt": "2021-10-07T12:30:46Z",
+          "updatedAt": "2021-10-07T12:30:46Z"
+        }
+      ]
+    },
+    {
+      "number": 34,
+      "id": "I_kwDOEHme9c48VBvq",
+      "title": "Investigate if RPC Path Computation needs be separated from the current model",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/34",
+      "state": "CLOSED",
+      "author": "danielkinguk",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [
+        "agva123",
+        "italobusi"
+      ],
+      "labels": [],
+      "body": "This may require a seperate path computation model for flexi-grid that augments the TE model. \r\n\r\nVictor is happy to provide input. ",
+      "createdAt": "2021-09-30T12:55:39Z",
+      "updatedAt": "2021-10-25T13:27:56Z",
+      "closedAt": "2021-10-25T13:27:55Z",
+      "comments": [
+        {
+          "author": "danielkinguk",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Italo emailed CCAMP list soliciting supporters. If they are unable to submit a 00 version prior ro IETF 112 we can highlight activity.discussion in our Flex-grid presentation and/or l0-types presentation, at IETF 112.",
+          "createdAt": "2021-10-07T12:32:03Z",
+          "updatedAt": "2021-10-07T12:32:03Z"
+        },
+        {
+          "author": "danielkinguk",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Agreed to remove RPC code. Will be a new I-D. ",
+          "createdAt": "2021-10-25T13:27:55Z",
+          "updatedAt": "2021-10-25T13:27:55Z"
+        }
+      ]
+    },
+    {
+      "number": 35,
+      "id": "I_kwDOEHme9c48y6FV",
+      "title": "Need some use case/scope text in the document. ",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/35",
+      "state": "OPEN",
+      "author": "danielkinguk",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [
+        "danielkinguk",
+        "ggalimba56"
+      ],
+      "labels": [],
+      "body": "Some text to describe what use cases we plan to address in the document, and what is out of scope.",
+      "createdAt": "2021-10-07T12:19:07Z",
+      "updatedAt": "2021-11-25T13:29:11Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "ggalimba56",
+          "authorAssociation": "NONE",
+          "body": "Proposed text:\r\n\r\n\"The Flexi-grid networks are needed to support transceivers requiring an optical bandwidth exceeding or not fitting the ITU-T fixed greed (e.g. 50 or 100GHz). Although most of the transceivers can fit in 100 GHz spacing (e.g. 62.5 GHz) the ROADM technology evolved to flexi-grid solution to optimise the bandwidth usage. The transceivers imposing such requirements benefit of the new generation coherent technology, so any legacy transceiver like 10Gb/s, 40Gb/s are not applicable to this draft.\"\r\n\r\nWill integrate into latest version. \r\n",
+          "createdAt": "2021-10-14T12:02:06Z",
+          "updatedAt": "2021-11-25T13:29:06Z"
+        }
+      ]
+    },
+    {
+      "number": 36,
+      "id": "I_kwDOEHme9c48y9QE",
+      "title": "All - Please review the new draft v04 uploaded. ",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/36",
+      "state": "CLOSED",
+      "author": "danielkinguk",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [
+        "danielkinguk"
+      ],
+      "labels": [],
+      "body": "Please provide comments and thoughts by 13 October. ",
+      "createdAt": "2021-10-07T12:33:27Z",
+      "updatedAt": "2021-12-16T13:11:24Z",
+      "closedAt": "2021-12-16T13:11:24Z",
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "MEMBER",
+          "body": "I think the -05 version is ready for submission\r\n\r\nMore work is needed before WG LC, as tracked by existing open issues as well as new open issues I have submitted after the review of the -05 version (to be addressed after the submission of the -05 version):\r\n- #42 \r\n- #43 \r\n\r\nAn English review would also be helpful either before -05 submission or afterwards.\r\nFor example, \u201cthe following example is provided\u201d instead of \u201cwe provide the following example\u201d)\r\n",
+          "createdAt": "2021-10-20T15:41:25Z",
+          "updatedAt": "2021-10-20T15:41:25Z"
+        },
+        {
+          "author": "danielkinguk",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "I-D submitted for IETF 111. ",
+          "createdAt": "2021-11-25T13:24:32Z",
+          "updatedAt": "2021-11-25T13:24:32Z"
+        },
+        {
+          "author": "danielkinguk",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Latest I-D has some readability issues that also needed to be solved. ",
+          "createdAt": "2021-11-25T13:26:06Z",
+          "updatedAt": "2021-11-25T13:26:06Z"
+        }
+      ]
+    },
+    {
+      "number": 37,
+      "id": "I_kwDOEHme9c49LIJ2",
+      "title": "Remove RPC function from code ",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/37",
+      "state": "CLOSED",
+      "author": "danielkinguk",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [
+        "agva123",
+        "italobusi",
+        "sergiobelotti"
+      ],
+      "labels": [],
+      "body": "Assuming new I-D on path computation is ready for submission.",
+      "createdAt": "2021-10-14T12:17:18Z",
+      "updatedAt": "2021-10-25T13:07:30Z",
+      "closedAt": "2021-10-25T13:07:30Z",
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "MEMBER",
+          "body": "See https://github.com/aguoietf/ietf-ccamp-optical-path-computation/pull/5\r\n",
+          "createdAt": "2021-10-15T10:07:58Z",
+          "updatedAt": "2021-10-15T10:07:58Z"
+        }
+      ]
+    },
+    {
+      "number": 38,
+      "id": "I_kwDOEHme9c49LJVb",
+      "title": "Investigate potential YANG Compilation Errors with Latest Version of Code. ",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/38",
+      "state": "CLOSED",
+      "author": "danielkinguk",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [
+        "danielkinguk",
+        "dperdices"
+      ],
+      "labels": [],
+      "body": "Check with Daniel P. ",
+      "createdAt": "2021-10-14T12:22:16Z",
+      "updatedAt": "2022-11-04T21:51:55Z",
+      "closedAt": "2022-11-04T21:51:55Z",
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "MEMBER",
+          "body": "We have found similar issues with the MW topology YANG\r\n\r\nSee: https://github.com/YangCatalog/bottle-yang-extractor-validator/issues/74\r\n",
+          "createdAt": "2021-10-20T16:59:16Z",
+          "updatedAt": "2021-10-20T16:59:16Z"
+        },
+        {
+          "author": "danielkinguk",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Still unsure why it does not compile/validate. Daniel P is on the case.",
+          "createdAt": "2021-11-25T13:24:07Z",
+          "updatedAt": "2021-11-25T13:24:07Z"
+        },
+        {
+          "author": "dperdices",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "First issue solved after a couple of hours of debugging the YANG validator. Solution:\r\n\r\n**Delete L9 of the YANG model (https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-flexigrid-tunnel-yang/blob/master/ietf-flexi-grid-tunnel.yang#L9).** \r\n\r\nIt doesn't like that date (and I don't know exactly why \ud83d\ude15).\r\n\r\nNow, we do have the validation report:\r\n\r\n```\r\nPyang Validation\r\nNo warnings or errors\r\nPyang Output\r\nNo warnings or errors\r\nConfdc Output\r\nietf-te@2021-10-22.yang:298) is converted to 'string' when part of a union\r\nietf-te@2021-10-22.yang:302) is converted to 'string' when part of a union\r\nYanglint Validation\r\nlibyang err : Invalid default - value does not fit the type (Invalid identityref \"flexi-ch-spc-6p25ghz\" value - identity not found in module \"ietf-flexi-grid-tunnel\".). (Schema location /ietf-te:te/tunnels/tunnel/secondary-reverse-paths/secondary-reverse-path/path-out-segment/label-restrictions/label-restriction/label-step/technology/ietf-flexi-grid-tunnel:flexi-grid/flexi-grid-channel-spacing.)\r\nYANGLINT[E]: Processing schema module from /var/yang/tmp/yangvalidator/yangvalidator-v2-workdir-qnXKFzYD/ietf-flexi-grid-tunnel@2021-10-25.yang failed.\r\nYangdump-pro Validation\r\nNo warnings or errors\r\n```\r\n\r\nThe only clear error is:\r\n```\r\nInvalid default - value does not fit the type (Invalid identityref \"flexi-ch-spc-6p25ghz\" value - identity not found in module \"ietf-flexi-grid-tunnel\".\r\n```\r\nwhich has to do with this augment (https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-flexigrid-tunnel-yang/blob/master/ietf-flexi-grid-tunnel.yang#L870) and happens to be the last one using l0-types:flexi-grid-label-step:\r\n```\r\n augment \"/te:te/te:tunnels/te:tunnel/\"\r\n        + \"te:secondary-reverse-paths/te:secondary-reverse-path/\"\r\n        + \"te:path-out-segment/te:label-restrictions/\"\r\n        + \"te:label-restriction/te:label-step/te:technology\" {\r\n    description\r\n      \"Augment TE label range step for the egress segment\r\n      of the secondary reverse path.\";\r\n    case flexi-grid {\r\n      uses l0-types:flexi-grid-label-step;\r\n    }\r\n  }\r\n```\r\nFrom layer-0 types:\r\n```\r\ngrouping flexi-grid-label-step {\r\n description\r\n   \"Label step information for flexi-grid\";\r\n leaf flexi-grid-channel-spacing {\r\n   type identityref {\r\n     base flexi-ch-spc-type;\r\n   }\r\n   default \"flexi-ch-spc-6p25ghz\";\r\n   description\r\n     \"Label-step is the nominal central frequency granularity\r\n      (GHz), e.g., 6.25 GHz.\";\r\n   reference\r\n     \"RFC 7699: Generalized Labels for the Flexi-Grid in Lambda\r\n      Switch Capable (LSC) Label Switching Routers\";\r\n }\r\n```\r\nTo be discussed on Thursday meeting.",
+          "createdAt": "2021-12-07T09:31:00Z",
+          "updatedAt": "2021-12-16T13:11:23Z"
+        },
+        {
+          "author": "danielkinguk",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Thanks for the debugging Daniel. \r\n\r\nLooks to be an issue with the online tool \"flexi-ch-spc-6p25ghz\" is not valid, it has to be an issue with YANG tool. \r\n\r\nhttps://github.com/YangCatalog/yang-validator-extractor\r\n\r\nDaniel P will log an issue with the YANG Tools repository. \r\n\r\n\r\n\r\n",
+          "createdAt": "2021-12-16T13:20:02Z",
+          "updatedAt": "2021-12-16T13:20:02Z"
+        },
+        {
+          "author": "dperdices",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Done in https://github.com/YangCatalog/yang-validator-extractor/issues/84 and https://github.com/YangCatalog/yang-validator-extractor/issues/85.",
+          "createdAt": "2022-01-13T11:26:57Z",
+          "updatedAt": "2022-01-13T11:26:57Z"
+        }
+      ]
+    },
+    {
+      "number": 39,
+      "id": "I_kwDOEHme9c49LLJK",
+      "title": "Integrate code into version 4 of the document and generate clean version for submission - including diff.",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/39",
+      "state": "CLOSED",
+      "author": "danielkinguk",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [
+        "agva123",
+        "danielkinguk",
+        "dperdices",
+        "italobusi",
+        "sergiobelotti"
+      ],
+      "labels": [],
+      "body": "New version of the I-D to be ready by Wednesday 20th Oct - prepared by Dan.\r\n\r\nContributors to review stable/clean version of the I-D by 24th, Oct. - All.\r\n\r\nSubmit on 25th, Oct - Dan ",
+      "createdAt": "2021-10-14T12:29:39Z",
+      "updatedAt": "2021-10-25T13:27:28Z",
+      "closedAt": "2021-10-25T13:27:28Z",
+      "comments": []
+    },
+    {
+      "number": 40,
+      "id": "I_kwDOEHme9c49LNSR",
+      "title": "OTSi Information in the Flexi-grid tunnel model",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/40",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "MEMBER",
+      "assignees": [
+        "danielkinguk"
+      ],
+      "labels": [],
+      "body": "> Moreover the knowledge of the OTSi position in the spectrum is also useful in the intermediate nodes to easy the Optical Channel Monitoring in the ROADM.\"\r\n\r\nI think this piece of text is very important when discussing the information to be provided by the controller (or by the control plane) to a ROADM during path setup. However, I am not sure this has an impact to the information to be provided in the topology model for path computation. My proposal is not to put this sentence in this draft but to open an issue to discuss this sentence in the context of tunnel setup: https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-flexigrid-media-channel-yang\r\n\r\nhttps://github.com/ietf-ccamp-wg/draft-ietf-ccamp-optical-impairment-topology-yang/issues/89#issuecomment-923907647",
+      "createdAt": "2021-10-14T12:39:07Z",
+      "updatedAt": "2021-11-25T13:22:41Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "danielkinguk",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Solved the issue in ccamp-optical-impairment I-D. In this document we will need to provide some overview text on why/how we use OTSi, maybe also include a reference. One requirement may be to co-route bidirectional connection the OTSI. ",
+          "createdAt": "2021-11-25T13:22:40Z",
+          "updatedAt": "2021-11-25T13:22:40Z"
+        }
+      ]
+    },
+    {
+      "number": 42,
+      "id": "I_kwDOEHme9c49fELA",
+      "title": "Improve the model overview",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/42",
+      "state": "CLOSED",
+      "author": "italobusi",
+      "authorAssociation": "MEMBER",
+      "assignees": [
+        "danielkinguk"
+      ],
+      "labels": [],
+      "body": "It may be worthwhile improving the model overview with more details, in a similar way as done in https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-otn-tunnel-model#section-3 and in https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-flexigrid-yang#section-5\r\n",
+      "createdAt": "2021-10-20T15:33:54Z",
+      "updatedAt": "2022-11-04T21:52:13Z",
+      "closedAt": "2022-11-04T21:52:13Z",
+      "comments": []
+    },
+    {
+      "number": 43,
+      "id": "I_kwDOEHme9c49fEkK",
+      "title": "Remove duplication in section 4",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/43",
+      "state": "CLOSED",
+      "author": "italobusi",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "Some text in section 4 of the draft is duplicated with the text in https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-flexigrid-yang#section-4\r\n\r\nIt may be worthwhile replacing the duplicated text with a reference to https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-flexigrid-yang#section-4\r\n",
+      "createdAt": "2021-10-20T15:35:27Z",
+      "updatedAt": "2021-10-25T13:27:10Z",
+      "closedAt": "2021-10-25T13:27:10Z",
+      "comments": []
+    },
+    {
+      "number": 44,
+      "id": "I_kwDOEHme9c4-jtyU",
+      "title": "Align the authors list with RFC7322 requirements",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/44",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-flexigrid-media-channel-yang/blob/7c001e5f6502264c91c2eda77198840850e6e611/draft-ietf-ccamp-flexigrid-tunnel-yang-00.txt#L5-L20\r\n",
+      "createdAt": "2021-11-10T08:47:00Z",
+      "updatedAt": "2021-12-16T13:21:53Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "danielkinguk",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "I did email all the authors a while ago, and suggested we split into Editors, Authors, Contributors. Not an enthusiastic response. We will have to organise front-page/author/contributors, based on recent contributions and effort. ",
+          "createdAt": "2021-11-11T15:41:03Z",
+          "updatedAt": "2021-11-11T15:41:03Z"
+        },
+        {
+          "author": "danielkinguk",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "One vendor/University represented, and move other authors to backpage as contributors. ",
+          "createdAt": "2021-12-16T13:21:53Z",
+          "updatedAt": "2021-12-16T13:21:53Z"
+        }
+      ]
+    },
+    {
+      "number": 45,
+      "id": "I_kwDOEHme9c4_ZMsg",
+      "title": "Request for Dieter to rename \"//ietf-ccamp-wg / draft-ietf-ccamp-flexigrid-media-channel-yang\" to \"ietf-ccamp-wg / draft-ietf-ccamp-flexigrid-tunnel-yang\"",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/45",
+      "state": "CLOSED",
+      "author": "danielkinguk",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [
+        "danielkinguk",
+        "dieterbeller"
+      ],
+      "labels": [],
+      "body": "Request via email. ",
+      "createdAt": "2021-11-25T13:09:43Z",
+      "updatedAt": "2021-12-16T13:06:33Z",
+      "closedAt": "2021-12-16T13:06:33Z",
+      "comments": [
+        {
+          "author": "dieterbeller",
+          "authorAssociation": "MEMBER",
+          "body": "Repo renamed to  ietf-ccamp-wg / draft-ietf-ccamp-flexigrid-tunnel-yang as requested\r\n",
+          "createdAt": "2021-11-25T16:30:25Z",
+          "updatedAt": "2021-11-25T16:30:25Z"
+        }
+      ]
+    },
+    {
+      "number": 46,
+      "id": "I_kwDOEHme9c5AgTnj",
+      "title": "WDM technology-specific constraints",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/46",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "MEMBER",
+      "assignees": [
+        "ggalimba56"
+      ],
+      "labels": [],
+      "body": "These issues still apply to tunnel setup:\r\n\r\n- [x] https://github.com/aguoietf/ietf-ccamp-optical-path-computation/issues/14\r\n- [x] https://github.com/aguoietf/ietf-ccamp-optical-path-computation/issues/15\r\n",
+      "createdAt": "2021-12-16T13:40:36Z",
+      "updatedAt": "2022-03-07T14:35:09Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 47,
+      "id": "I_kwDOEHme9c5Cu7At",
+      "title": "Relationship between OTSiG and tunnel identifiers",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/47",
+      "state": "OPEN",
+      "author": "sergiobelotti",
+      "authorAssociation": "NONE",
+      "assignees": [
+        "agva123",
+        "sergiobelotti"
+      ],
+      "labels": [],
+      "body": "How is the relationship between OTSi group identifier and tunnel identifiers ? The optical tributary signal group (OTSiG) is a management/control abstraction that represents a group of one or more OTSi that carry the characteristic information (CI) of one client. This management control entity is used to group the modulated signal represented by OTSi as co-routed.\r\nOTSiG identifier is an output of path computation and tunnel setup and need to have a reference to related tunnel identifier supporting the connection used to carry the client mapped onto 1 or more OTSi .\r\n\r\nImported from https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-optical-impairment-topology-yang/issues/87\r\n",
+      "createdAt": "2022-01-31T15:42:44Z",
+      "updatedAt": "2022-04-07T12:18:37Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "danielkinguk",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Need to provide a section on OTSiG, which includes:\r\n\r\n- OTSIG usage (maybe references as needed)\r\n- Relationship with Media Channel \r\n- Path Computation requirements, referring to PC model",
+          "createdAt": "2022-02-03T13:39:46Z",
+          "updatedAt": "2022-02-03T13:39:46Z"
+        },
+        {
+          "author": "agva123",
+          "authorAssociation": "NONE",
+          "body": "New text proposal:\r\n\r\n>>\r\nOTSiG is a management construct that represents a group of optical tributary signals (OTSi) each \r\ncharacterized by their central frequency and an application identifier. When present, the frequency slots of the OTSis within an OTSiG are allocated and are usually co-routed to the destination.\r\n\r\nAn OTSiG may be configured by management operations or automatic operations through control plane or SDN controller. When configurating a flex-grid tunnel from an SDN controller, the controller shall be responsible for driving the creation of the corresponding OTSiGs in the management system. \r\n\r\nWhen computing path for a flex-grid tunnel, a path computation server may assign an appropriate network-unique OTSiG identifier along with local OTSi identifiers (unique within the scope of the OTSiG) and return this information as part of the computed path properties.\r\n<<\r\n",
+          "createdAt": "2022-03-04T15:00:04Z",
+          "updatedAt": "2022-04-07T12:18:24Z"
+        },
+        {
+          "author": "danielkinguk",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Dan to review text and include in main document.",
+          "createdAt": "2022-04-07T12:18:37Z",
+          "updatedAt": "2022-04-07T12:18:37Z"
+        }
+      ]
+    },
+    {
+      "number": 49,
+      "id": "I_kwDOEHme9c5FNZbu",
+      "title": "Align with RFC9093-bis",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/49",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "MEMBER",
+      "assignees": [
+        "italobusi"
+      ],
+      "labels": [],
+      "body": "",
+      "createdAt": "2022-03-07T09:40:36Z",
+      "updatedAt": "2022-04-28T12:11:33Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "MEMBER",
+          "body": "Submit a PR with the proposed changes to the YANG module\r\n",
+          "createdAt": "2022-04-28T12:11:33Z",
+          "updatedAt": "2022-04-28T12:11:33Z"
+        }
+      ]
+    },
+    {
+      "number": 50,
+      "id": "I_kwDOEHme9c5HOAFo",
+      "title": "Mapping between OTSi and the related component link in case of bundle link",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/50",
+      "state": "OPEN",
+      "author": "sergiobelotti",
+      "authorAssociation": "NONE",
+      "assignees": [
+        "italobusi",
+        "sergiobelotti"
+      ],
+      "labels": [],
+      "body": "Issue #106 of Optical Impairments Topology model https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-optical-impairment-topology-yang/issues/106\r\ndescribes the case of external shelf of transponders connected to WDM-node. The parallel links between external shelf and WDM_node can be grouped as bundle . In this case it is needed to understand how to report which component link is used by which OTSi, which is the piece of information to add to characterize this mapping.",
+      "createdAt": "2022-04-06T16:36:13Z",
+      "updatedAt": "2022-04-07T12:15:49Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 51,
+      "id": "I_kwDOEHme9c5HSP1h",
+      "title": "Create a MD version of the main document. ",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/51",
+      "state": "CLOSED",
+      "author": "danielkinguk",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [
+        "danielkinguk"
+      ],
+      "labels": [],
+      "body": "",
+      "createdAt": "2022-04-07T12:19:11Z",
+      "updatedAt": "2022-11-04T21:52:28Z",
+      "closedAt": "2022-11-04T21:52:28Z",
+      "comments": []
+    },
+    {
+      "number": 53,
+      "id": "I_kwDOEHme9c5NU_Q-",
+      "title": "Transceivers configuration",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/53",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "Few additional doubts:\r\n\r\nShould we enforce all the transceivers within the same OTSiG to use the same fec-type?\r\nWhere is the transceiver configuration reported within the tunnel model\r\nIs there a need to constraint which transceivers can be used by the OTSiG on the primary and/or on the secondary path?\r\n\r\nSee:  https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-flexigrid-tunnel-yang/issues/15#issuecomment-981861111\r\n\r\n",
+      "createdAt": "2022-07-07T12:27:39Z",
+      "updatedAt": "2022-07-07T12:27:39Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 54,
+      "id": "I_kwDOEHme9c5R7gsz",
+      "title": "Support optical impairment constraints in flexgrid tunnel",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/54",
+      "state": "OPEN",
+      "author": "aguoietf",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "Along with combining the WSON and flexgrid tunnel models, this model can also consider supporting the specification of optical impairment constraints (as optional). This results in a single tunnel model for optical layer, that can support -\r\n - WSON tunnel setup\r\n - Flexgrid tunnel setup\r\n - and optionally, with optical impairment constraints\r\n\r\nBoth the flexgrid tunnel and optical path computation model should be sync'ed to support the above.",
+      "createdAt": "2022-09-15T13:43:57Z",
+      "updatedAt": "2022-09-15T13:43:57Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 55,
+      "id": "I_kwDOEHme9c5R7kWb",
+      "title": "Support wavelength tuning constraints",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/55",
+      "state": "OPEN",
+      "author": "aguoietf",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "The model can consider to support the following wavelength tuning constraints:\r\n- Use the same wavelength between working, protection and restoration path\r\n- Allow/disallow the use of regenerators (in working or protection or both)\r\n- Allow/disallow wavelength changes along the path (in working or protection or both)\r\n- path optimization objectives, e.g.\r\n    * optimize on TE cost and only validate if path is optically feasible\r\n    * optimize on optical performance, e.g. best OSNR\r\n - specify wavelength tunning range allowed on a transceiver, e.g.\r\n    * allow tuning in 100Ghz grid even if the transceiver supports 50Ghz\r\n    * allow c-band only or full super-c band tuning\r\n    * (these may be done by using the label restriction from the base model but is a bit cumbersome)",
+      "createdAt": "2022-09-15T13:54:18Z",
+      "updatedAt": "2022-09-15T13:54:18Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 56,
+      "id": "I_kwDOEHme9c5qx72G",
+      "title": "Look to merge WSON Tunnel and Flexi-Grid Tunnel I-D(s)",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/56",
+      "state": "OPEN",
+      "author": "danielkinguk",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [
+        "danielkinguk",
+        "italobusi",
+        "aguoietf"
+      ],
+      "labels": [],
+      "body": "The plan is to merge both I-Ds, we need to investigate the effort required and what can be kept/removed. We will submit the new I-D shortly after IETF 117. ",
+      "createdAt": "2023-07-06T12:35:28Z",
+      "updatedAt": "2023-10-19T17:59:57Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "aguoietf",
+          "authorAssociation": "NONE",
+          "body": "The proposal for the merge discussed on today's call - please review and comment.\r\n\r\n[wdm-tunnel.txt](https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-flexigrid-tunnel-yang/files/12749851/wdm-tunnel.txt)\r\n",
+          "createdAt": "2023-09-28T13:23:50Z",
+          "updatedAt": "2023-09-28T13:23:50Z"
+        },
+        {
+          "author": "aguoietf",
+          "authorAssociation": "NONE",
+          "body": "Call Minutes 2023-10-05:\r\n\r\nAgenda: discuss Aihua's YANG model proposal [here](https://github.com/aguoietf/draft-ietf-ccamp-wdm-tunnel-yang) to merge WSON and Flexi-grid tunnel.\r\n\r\nIssues/Action Items:\r\n\r\n> For transceiver constraints, operational-mode should be defined as a list instead of a single value\r\n- Change has been introduced to the model\r\n~~~~\r\n    |  +--rw operational-modes*     string\r\n~~~~\r\n\r\n> It is suggested to add a new parameter, delta-power to the tunnel to indicate the per-channel power deviation at OMS section\r\n- Added \"delta-power\" to the tunnel constraint\r\n~~~~\r\n  augment /te:te/te:tunnels/te:tunnel:\r\n    +--rw wdm-constraint\r\n....\r\n       +--rw delta-power?                   l0-types:decimal-2-digits --> type should be in dB\r\n~~~~\r\n\r\n> It may be useful to know the maximum # of channels on a link to ensure the optical performance. Agreed that it is a system design / planning issue and does not associate to a particular tunnel, therefore no need to define it in the model\r\n- No change to the YANG model is needed\r\n\r\n> It was suggested to reuse the transmitter tuning range definitions in l0-types as opposed to re-defining the tx-tuning-range in the tunnel model\r\n- Current l0-types-ext does not have a separate grouping definition for the tuning range. Also the existing tuning range definitions has all the parameters in read-only mode. Need to update l0-types grouping with the following changes:\r\n  - define a new grouping, \"transmitter-tuning-range\" and remove the read-only statement.\r\n  - add config=false to the container organizational-mode to make sure these parameters remain as read only in other YANG models such as ccamp-optical-impairment that use the same grouping\r\n  - use this grouping as read-write mode in the wdm-tunnel model\r\n~~~~\r\n    +--rw wdm-constraint\r\n       +--rw transceiver-constraint\r\n       |  +--rw operational-modes*     string\r\n       |  +--rw tx-tune-constraints\r\n       |     +--rw min-central-frequency?    frequency-thz\r\n       |     +--rw max-central-frequency?    frequency-thz\r\n       |     +--rw transceiver-tunability?   frequency-ghz\r\n~~~~\r\n\r\n> Esther suggested to add two additional parameters, estimated GSNR at end of life, and estimated lowest (worst-case) GSNR for the computed path, in addition to the estimated current GSNR\r\n- Added the two attributes to the YANG model\r\n~~~~\r\n  augment /te:te/te:tunnels/te:tunnel/te:primary-paths\r\n            /te:primary-path/te:computed-paths-properties\r\n            /te:computed-path-properties/te:path-properties:\r\n    +--ro estimated-gsnr?          snr\r\n    +--ro estimated-eol-gsnr?      snr\r\n    +--ro estimated-lowest-gsnr?   snr\r\n~~~~\r\n",
+          "createdAt": "2023-10-05T20:45:11Z",
+          "updatedAt": "2023-10-19T12:16:03Z"
+        },
+        {
+          "author": "aguoietf",
+          "authorAssociation": "NONE",
+          "body": "Changed the type for delta-power to dB according to the call today (2023-10-19).\r\nThe change is [here](https://github.com/aguoietf/draft-ietf-ccamp-wdm-tunnel-yang/commit/afa68aedc8f8524f395a189e0d3abd6eb1c4d466#diff-ab333489b13f4a5d32ff19259bea1ee5c668f428b17d057c1d0b8e70858ff7af) \r\n\r\nOLD:\r\n~~~~\r\n       +--rw delta-power?                   l0-types:decimal-2-digits\r\n~~~~\r\n\r\nNEW:\r\n~~~~\r\n       +--rw delta-power?                  l0-types:gain-in-db-or-null\r\n~~~~",
+          "createdAt": "2023-10-19T17:59:57Z",
+          "updatedAt": "2023-10-19T17:59:57Z"
+        }
+      ]
+    },
+    {
+      "number": 57,
+      "id": "I_kwDOEHme9c5x7h_Q",
+      "title": "Name for the channel spacing ",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/57",
+      "state": "OPEN",
+      "author": "sergiobelotti",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "Need to change the definition of channel spacing in the context of flexible grid , in particular we need to deprecate\r\nflexi-ch-spc-type and substitute with \"flexi-ncf-granularity-type.\r\nFor more details see https://github.com/ietf-ccamp-wg/ietf-ccamp-layer0-types-ext-RFC9093-bis/issues/56\r\n",
+      "createdAt": "2023-09-25T12:43:55Z",
+      "updatedAt": "2023-09-25T12:43:55Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 58,
+      "id": "I_kwDOEHme9c53BZLb",
+      "title": "Contact non-CCAMP I-Ds that Reference WSON/Flexi-Grid Tunnel Models ",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/58",
+      "state": "OPEN",
+      "author": "danielkinguk",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [
+        "danielkinguk"
+      ],
+      "labels": [],
+      "body": "ACTN POI and Path Computation I-Ds will be be updated to reference the WDM Tunnel I-D, but we will need to contact non-TEAS/CCAMP I-D authors to advise them on the update (general) Tunnel model and new I-D name. ",
+      "createdAt": "2023-11-16T13:25:40Z",
+      "updatedAt": "2023-11-16T13:25:40Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 61,
+      "id": "I_kwDOEHme9c53dsmK",
+      "title": "Remove ietf-te revision date",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/61",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "MEMBER",
+      "assignees": [
+        "italobusi"
+      ],
+      "labels": [
+        "wait"
+      ],
+      "body": "Remove revision date for imported ietf-te YANG model and check that all the augmentation statements are correct",
+      "createdAt": "2023-11-21T13:20:28Z",
+      "updatedAt": "2023-11-21T13:21:24Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "MEMBER",
+          "body": "Wait until [draft-ietf-teas-yang-te](https://datatracker.ietf.org/doc/html/draft-ietf-teas-yang-te) has passed TEAS WG LC",
+          "createdAt": "2023-11-21T13:21:20Z",
+          "updatedAt": "2023-11-21T13:21:20Z"
+        }
+      ]
+    }
+  ],
+  "pulls": [
+    {
+      "number": 13,
+      "id": "MDExOlB1bGxSZXF1ZXN0NTcwNTcxODU1",
+      "title": "Alignment with other CCAMP YANG models",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/pull/13",
+      "state": "MERGED",
+      "author": "italobusi",
+      "authorAssociation": "MEMBER",
+      "assignees": [
+        "danielkinguk"
+      ],
+      "labels": [],
+      "body": "Imported ietf-te and ietf-te-types by revision: see [otn-tunnel PR#71](https://github.com/haomianzheng/IETF-ACTN-YANG-Model/pull/71)\r\n\r\nImported path-computation by revision: aligned with ietf-te and ietf-te-types revisions\r\n\r\nImported l0-types-ext by revision, pending merging of [l0-types-ext PR#17](https://github.com/ietf-ccamp-wg/ietf-ccamp-layer0-types-ext/pull/17)\r\n\r\nRemoved src-client-signal and dst-client-signal: see [otn-tunnel PR#77](https://github.com/haomianzheng/IETF-ACTN-YANG-Model/pull/77)\r\n\r\nRemoved TE bandwidth augmentations: see [l0-types Issue#8](https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-layer0-types/issues/8)\r\n\r\nAligned TE label augmentations with the template used in the latest version of the OTN tunnel: see [otn-tunnel PR#71](https://github.com/haomianzheng/IETF-ACTN-YANG-Model/pull/71)\r\n\r\nEditorial clean-up",
+      "createdAt": "2021-02-09T19:59:52Z",
+      "updatedAt": "2021-02-18T16:11:01Z",
+      "baseRepository": "ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang",
+      "baseRefName": "master",
+      "baseRefOid": "8a0aa5b2249c96f068eed27da8c54db31e07f94b",
+      "headRepository": null,
+      "headRefName": "model-alignment",
+      "headRefOid": "6ffbe1ecf7f4140f5841051a2dc05ca303c9e4f7",
+      "closedAt": "2021-02-18T16:10:56Z",
+      "mergedAt": "2021-02-18T16:10:55Z",
+      "mergedBy": "italobusi",
+      "mergeCommit": {
+        "oid": "975330dcb1c9b420f4c6e02bd981b208e554beb3"
+      },
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "MEMBER",
+          "body": "@dperdices: I cannot add you as a reviewer for this pull request in GH (you need to be invited to join as contributor to the GH repository)\r\n\r\nHowever, I would appreciate if you can review this PR and provide comments",
+          "createdAt": "2021-02-09T20:00:34Z",
+          "updatedAt": "2021-02-09T20:03:41Z"
+        },
+        {
+          "author": "dperdices",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "I think this can be merged. I couldn't validate the media channel yang on this [page](https://yangcatalog.org/yangvalidator/validator) but it seems that others have already done so. \r\n\r\nThere are still some minor things about the format that can be addressed later (descriptions, the prefix of the document, etc.) but, as an update, it is ready in my opinion. Thanks, Italo! ",
+          "createdAt": "2021-02-18T13:01:13Z",
+          "updatedAt": "2021-02-18T13:01:13Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NTg3NzI4NDky",
+          "commit": {
+            "abbreviatedOid": "dab57f6"
+          },
+          "author": "agva123",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2021-02-10T15:23:40Z",
+          "updatedAt": "2021-02-10T15:23:40Z",
+          "comments": [
+            {
+              "originalPosition": 813,
+              "body": "This comment needs to be removed or yanglint will throw error:\r\nerr : Trailing garbage \"// end of modul...\" after module, expected end-of-input. (Line number 813.)\r\nerr : Loading \"ietf-layer0-types-ext\" module failed.\r\n",
+              "createdAt": "2021-02-10T15:23:40Z",
+              "updatedAt": "2021-02-18T16:09:05Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NTg3NzM0MTIx",
+          "commit": {
+            "abbreviatedOid": "dab57f6"
+          },
+          "author": "agva123",
+          "authorAssociation": "NONE",
+          "state": "APPROVED",
+          "body": "Model alignment changes of flex-grid-yang with ietf-te looks good with me. The comment at the last line of ietf-layer0-types-ext.yang needs to be removed as per my previous comment, otherwise compilation with pyang and yanglint passed with no warnings. ",
+          "createdAt": "2021-02-10T15:28:17Z",
+          "updatedAt": "2021-02-10T15:29:38Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 31,
+      "id": "MDExOlB1bGxSZXF1ZXN0NjgyNTg0Mjc5",
+      "title": "Updating author contact information",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/pull/31",
+      "state": "MERGED",
+      "author": "vlopezalvarez",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Updating author contact information",
+      "createdAt": "2021-07-02T12:18:53Z",
+      "updatedAt": "2021-07-12T14:40:02Z",
+      "baseRepository": "ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang",
+      "baseRefName": "master",
+      "baseRefOid": "597f8cf983ed81b9390f8547fefd3ea23b51140d",
+      "headRepository": null,
+      "headRefName": "Author-Update",
+      "headRefOid": "1d421998fc8d92138af0d20c72cc146c7d2ade7d",
+      "closedAt": "2021-07-12T14:40:01Z",
+      "mergedAt": "2021-07-12T14:40:01Z",
+      "mergedBy": "danielkinguk",
+      "mergeCommit": {
+        "oid": "f7594bd82ecafd1990730b0dcbb3c451b29e767f"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 32,
+      "id": "MDExOlB1bGxSZXF1ZXN0Njk1ODQxNDQz",
+      "title": "Fix compilation errors",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/pull/32",
+      "state": "MERGED",
+      "author": "italobusi",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "Align the augmentation statements with the latest version of the OTN tunnel fixing compilation errors with IETF YANG validation\r\n",
+      "createdAt": "2021-07-23T10:34:57Z",
+      "updatedAt": "2021-10-14T12:55:34Z",
+      "baseRepository": "ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang",
+      "baseRefName": "master",
+      "baseRefOid": "bdc7f98ff713a360ded16509da71d43bfc3d711c",
+      "headRepository": null,
+      "headRefName": "fix",
+      "headRefOid": "5f218c81e62ff0a1f25a7f52932e93cce10e9102",
+      "closedAt": "2021-10-14T12:19:08Z",
+      "mergedAt": "2021-10-14T12:19:08Z",
+      "mergedBy": "danielkinguk",
+      "mergeCommit": {
+        "oid": "be2ba0360b3fbfe82bb94dc20265cddd09a6e9d1"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzIyNTc1NDQ0",
+          "commit": {
+            "abbreviatedOid": "c517fbc"
+          },
+          "author": "agva123",
+          "authorAssociation": "NONE",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2021-08-04T17:54:48Z",
+          "updatedAt": "2021-08-04T17:54:48Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOEHme9c4ucFVb",
+          "commit": {
+            "abbreviatedOid": "5f218c8"
+          },
+          "author": "dperdices",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "For some reason, when trying to submit the YANG code to https://yangcatalog.org/yangvalidator, it returns a 500 error... (current version also returns same error)... Anyway, changes look fine to me.",
+          "createdAt": "2021-10-13T21:38:38Z",
+          "updatedAt": "2021-10-13T21:38:38Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 41,
+      "id": "PR_kwDOEHme9c4tcBUF",
+      "title": "YANG model updates for IETF 112",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/pull/41",
+      "state": "MERGED",
+      "author": "italobusi",
+      "authorAssociation": "MEMBER",
+      "assignees": [
+        "danielkinguk"
+      ],
+      "labels": [],
+      "body": "Proposed updates to the YANG model to be submitted to IETF 112\r\n\r\nModule name changed to ietf-flexi-grid-tunnel (issue #33 )\r\n\r\nPrefix changed to flexg-tnl (issue #21 )\r\n\r\nRemoved path computation RPC augmentations (fix #37 )\r\n",
+      "createdAt": "2021-10-20T12:50:12Z",
+      "updatedAt": "2021-10-25T13:13:12Z",
+      "baseRepository": "ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang",
+      "baseRefName": "master",
+      "baseRefOid": "5aee932bca1c9acfe35383629647795bf4b4b34a",
+      "headRepository": null,
+      "headRefName": "ietf-112",
+      "headRefOid": "f87f5f917dac5c08996892ebeebd461e05ac46a5",
+      "closedAt": "2021-10-25T13:07:30Z",
+      "mergedAt": "2021-10-25T13:07:30Z",
+      "mergedBy": "danielkinguk",
+      "mergeCommit": {
+        "oid": "33a53d8cfb20cdc92a05fb1401d677cc6ae4d3ff"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 48,
+      "id": "PR_kwDOEHme9c4x-9lt",
+      "title": "Proposed updates to README.md",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/pull/48",
+      "state": "MERGED",
+      "author": "italobusi",
+      "authorAssociation": "MEMBER",
+      "assignees": [
+        "danielkinguk"
+      ],
+      "labels": [],
+      "body": "Aligned with other repositories",
+      "createdAt": "2022-02-02T18:26:51Z",
+      "updatedAt": "2022-03-07T07:28:18Z",
+      "baseRepository": "ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang",
+      "baseRefName": "master",
+      "baseRefOid": "7c001e5f6502264c91c2eda77198840850e6e611",
+      "headRepository": "ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang",
+      "headRefName": "readme",
+      "headRefOid": "0514d908c7af36ad289c397e813761b79ca0b4e6",
+      "closedAt": "2022-03-07T07:28:18Z",
+      "mergedAt": "2022-03-07T07:28:18Z",
+      "mergedBy": "danielkinguk",
+      "mergeCommit": {
+        "oid": "97068cc96ee66d54a0948bd1c4b16398f4526cd7"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 59,
+      "id": "PR_kwDOEHme9c5fpuof",
+      "title": "Merge",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/pull/59",
+      "state": "MERGED",
+      "author": "italobusi",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2023-11-16T16:34:22Z",
+      "updatedAt": "2023-11-16T16:34:31Z",
+      "baseRepository": "ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang",
+      "baseRefName": "master",
+      "baseRefOid": "2b6142419e41ae13a0c669a9d0a6056e4ea3437d",
+      "headRepository": null,
+      "headRefName": "merge",
+      "headRefOid": "164728d61c823841b1167071671f367b3a16e6ef",
+      "closedAt": "2023-11-16T16:34:31Z",
+      "mergedAt": "2023-11-16T16:34:30Z",
+      "mergedBy": "italobusi",
+      "mergeCommit": {
+        "oid": "ca4f472247d0eb7f8da46b473894d28c1335b361"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 60,
+      "id": "PR_kwDOEHme9c5gBMTI",
+      "title": "Proposed updates to align with other kramdown drafts",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/pull/60",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2023-11-21T13:01:14Z",
+      "updatedAt": "2023-11-28T10:54:05Z",
+      "baseRepository": "ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang",
+      "baseRefName": "main",
+      "baseRefOid": "588e5da298a394993a3a68c93f4a8e116b54257c",
+      "headRepository": "ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang",
+      "headRefName": "kramdown-syntax",
+      "headRefOid": "16a0d765d7962d1b00488e534ef81e96d53754ff",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "sergiobelotti",
+          "authorAssociation": "NONE",
+          "body": "It seems most of the changes are related to indentations, right? I do not see any issues on that, if it is confirmed that this is the intent of the update in the PR.",
+          "createdAt": "2023-11-28T08:34:26Z",
+          "updatedAt": "2023-11-28T08:34:26Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "MEMBER",
+          "body": "> It seems most of the changes are related to indentations, right? I do not see any issues on that, if it is confirmed that this is the intent of the update in the PR.\r\n\r\nI have also changed the kramdown syntax for some ASCII art (Figure 1 and YANG tree) and for the YANG code inclusion\r\n\r\nI have also rephrased a bit the IANA section (copying the introduction text from other drafts)",
+          "createdAt": "2023-11-28T10:50:56Z",
+          "updatedAt": "2023-11-28T10:50:56Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "MEMBER",
+          "body": "> I see no issue with the changes but I'd like to confirm with Italo whether these changes would affect any of the automated kramdown tools. If not, we can merge the pull request.\r\n\r\nyes, no impact to the automated tools",
+          "createdAt": "2023-11-28T10:54:05Z",
+          "updatedAt": "2023-11-28T10:54:05Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOEHme9c5oZ1Zq",
+          "commit": {
+            "abbreviatedOid": "16a0d76"
+          },
+          "author": "aguoietf",
+          "authorAssociation": "NONE",
+          "state": "APPROVED",
+          "body": "I see no issue with the changes but I'd like to confirm with Italo whether these changes would affect any of the automated kramdown tools. \r\nIf not, we can merge the pull request.",
+          "createdAt": "2023-11-27T23:23:54Z",
+          "updatedAt": "2023-11-27T23:23:54Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOEHme9c5ocj6D",
+          "commit": {
+            "abbreviatedOid": "16a0d76"
+          },
+          "author": "sergiobelotti",
+          "authorAssociation": "NONE",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2023-11-28T08:32:15Z",
+          "updatedAt": "2023-11-28T08:32:15Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 62,
+      "id": "PR_kwDOEHme9c5gmUq2",
+      "title": "Update YANG models",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/pull/62",
+      "state": "OPEN",
+      "author": "aguoietf",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "Summary of the updates:\r\n- Added Esther, Julien, Gert, Roberto as contributors\r\n- Updated the type for delta-power to ratio-in-db\r\n- Updated YANG trees, txt and xml \r\n- Moved dependent YANG files to the yang-dep folder\r\n",
+      "createdAt": "2023-11-28T20:39:13Z",
+      "updatedAt": "2023-11-28T20:40:12Z",
+      "baseRepository": "ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang",
+      "baseRefName": "main",
+      "baseRefOid": "588e5da298a394993a3a68c93f4a8e116b54257c",
+      "headRepository": "aguoietf/draft-ietf-ccamp-wdm-tunnel-yang",
+      "headRefName": "master",
+      "headRefOid": "1a2893580fc788e9feedb1ff4d91bf115a920a85",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    }
+  ]
+}
