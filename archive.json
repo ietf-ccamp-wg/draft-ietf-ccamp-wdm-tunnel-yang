@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-11-30T00:53:05.478137+00:00",
+  "timestamp": "2023-12-03T00:55:58.084723+00:00",
   "repo": "ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang",
   "labels": [
     {
@@ -1469,7 +1469,7 @@
       "id": "I_kwDOEHme9c5qx72G",
       "title": "Look to merge WSON Tunnel and Flexi-Grid Tunnel I-D(s)",
       "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/56",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "danielkinguk",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [
@@ -1480,8 +1480,8 @@
       "labels": [],
       "body": "The plan is to merge both I-Ds, we need to investigate the effort required and what can be kept/removed. We will submit the new I-D shortly after IETF 117. ",
       "createdAt": "2023-07-06T12:35:28Z",
-      "updatedAt": "2023-10-19T17:59:57Z",
-      "closedAt": null,
+      "updatedAt": "2023-11-30T13:24:06Z",
+      "closedAt": "2023-11-30T13:24:06Z",
       "comments": [
         {
           "author": "aguoietf",
@@ -1503,6 +1503,13 @@
           "body": "Changed the type for delta-power to dB according to the call today (2023-10-19).\r\nThe change is [here](https://github.com/aguoietf/draft-ietf-ccamp-wdm-tunnel-yang/commit/afa68aedc8f8524f395a189e0d3abd6eb1c4d466#diff-ab333489b13f4a5d32ff19259bea1ee5c668f428b17d057c1d0b8e70858ff7af) \r\n\r\nOLD:\r\n~~~~\r\n       +--rw delta-power?                   l0-types:decimal-2-digits\r\n~~~~\r\n\r\nNEW:\r\n~~~~\r\n       +--rw delta-power?                  l0-types:gain-in-db-or-null\r\n~~~~",
           "createdAt": "2023-10-19T17:59:57Z",
           "updatedAt": "2023-10-19T17:59:57Z"
+        },
+        {
+          "author": "aguoietf",
+          "authorAssociation": "NONE",
+          "body": "Done.",
+          "createdAt": "2023-11-30T13:24:06Z",
+          "updatedAt": "2023-11-30T13:24:06Z"
         }
       ]
     },
@@ -1511,16 +1518,24 @@
       "id": "I_kwDOEHme9c5x7h_Q",
       "title": "Name for the channel spacing ",
       "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/57",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "sergiobelotti",
       "authorAssociation": "NONE",
       "assignees": [],
       "labels": [],
       "body": "Need to change the definition of channel spacing in the context of flexible grid , in particular we need to deprecate\r\nflexi-ch-spc-type and substitute with \"flexi-ncf-granularity-type.\r\nFor more details see https://github.com/ietf-ccamp-wg/ietf-ccamp-layer0-types-ext-RFC9093-bis/issues/56\r\n",
       "createdAt": "2023-09-25T12:43:55Z",
-      "updatedAt": "2023-09-25T12:43:55Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2023-11-30T13:22:03Z",
+      "closedAt": "2023-11-30T13:22:02Z",
+      "comments": [
+        {
+          "author": "aguoietf",
+          "authorAssociation": "NONE",
+          "body": "closed. Issue was resolved in rfc9093-bis.",
+          "createdAt": "2023-11-30T13:22:02Z",
+          "updatedAt": "2023-11-30T13:22:02Z"
+        }
+      ]
     },
     {
       "number": 58,
@@ -1536,9 +1551,17 @@
       "labels": [],
       "body": "ACTN POI and Path Computation I-Ds will be be updated to reference the WDM Tunnel I-D, but we will need to contact non-TEAS/CCAMP I-D authors to advise them on the update (general) Tunnel model and new I-D name. ",
       "createdAt": "2023-11-16T13:25:40Z",
-      "updatedAt": "2023-11-16T13:25:40Z",
+      "updatedAt": "2023-11-30T13:23:43Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "aguoietf",
+          "authorAssociation": "NONE",
+          "body": "the NMRG performance digital twin also references this draft. Changes needs to be made there. ",
+          "createdAt": "2023-11-30T13:23:42Z",
+          "updatedAt": "2023-11-30T13:23:42Z"
+        }
+      ]
     },
     {
       "number": 61,
@@ -1907,7 +1930,7 @@
       "labels": [],
       "body": "Summary of the updates:\r\n- Added Esther, Julien, Gert, Roberto as contributors\r\n- Updated the type for delta-power to ratio-in-db\r\n- Updated YANG trees, txt and xml \r\n- Moved dependent YANG files to the yang-dep folder\r\n",
       "createdAt": "2023-11-28T20:39:13Z",
-      "updatedAt": "2023-11-28T20:40:12Z",
+      "updatedAt": "2023-11-30T14:11:05Z",
       "baseRepository": "ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang",
       "baseRefName": "main",
       "baseRefOid": "588e5da298a394993a3a68c93f4a8e116b54257c",
@@ -1919,7 +1942,21 @@
       "mergedBy": null,
       "mergeCommit": null,
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOEHme9c5owjW5",
+          "commit": {
+            "abbreviatedOid": "1a28935"
+          },
+          "author": "sergiobelotti",
+          "authorAssociation": "NONE",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2023-11-30T14:11:05Z",
+          "updatedAt": "2023-11-30T14:11:05Z",
+          "comments": []
+        }
+      ]
     }
   ]
 }
