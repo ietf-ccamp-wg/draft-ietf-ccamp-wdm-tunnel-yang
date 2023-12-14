@@ -22,18 +22,18 @@
 <!-- Generator version information:
   xml2rfc 3.18.2
     Python 3.11.6
-    ConfigArgParse 1.5.3
+    ConfigArgParse 1.7
     google-i18n-address 3.1.0
     intervaltree 3.1.0
     Jinja2 3.1.2
     lxml 4.9.3
-    platformdirs 4.0.0
+    platformdirs 4.1.0
     pycountry 22.3.5
-    PyYAML 6.0
+    PyYAML 6.0.1
     requests 2.31.0
-    setuptools 67.7.2
+    setuptools 68.2.2
     six 1.16.0
-    wcwidth 0.2.10
+    wcwidth 0.2.12
 -->
 <link href="draft-ietf-ccamp-wdm-tunnel-yang.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
@@ -1032,11 +1032,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">WDM Tunnel YANG Model</td>
-<td class="right">November 2023</td>
+<td class="right">December 2023</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Guo, et al.</td>
-<td class="center">Expires 24 May 2024</td>
+<td class="center">Expires 16 June 2024</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1049,12 +1049,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-ccamp-wdm-tunnel-yang-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2023-11-21" class="published">21 November 2023</time>
+<time datetime="2023-12-14" class="published">14 December 2023</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2024-05-24">24 May 2024</time></dd>
+<dd class="expires"><time datetime="2024-06-16">16 June 2024</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1121,7 +1121,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 24 May 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 16 June 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1228,10 +1228,10 @@ provided towards the end of the document to understand their utility better.<a h
 described in BCP 14 <span>[<a href="#RFC2119" class="cite xref">RFC2119</a>]</span> <span>[<a href="#RFC8174" class="cite xref">RFC8174</a>]</span> when, and only when, they
 appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶</a></p>
 <p id="section-2-2">The terminology for describing YANG data models is found in
-   <span>[<a href="#RFC7950" class="cite xref">RFC7950</a>]</span>.<a href="#section-2-2" class="pilcrow">¶</a></p>
+<span>[<a href="#RFC7950" class="cite xref">RFC7950</a>]</span>.<a href="#section-2-2" class="pilcrow">¶</a></p>
 <p id="section-2-3">Refer to <span>[<a href="#RFC7446" class="cite xref">RFC7446</a>]</span> and <span>[<a href="#RFC7699" class="cite xref">RFC7699</a>]</span> for the key terms used in this document.<a href="#section-2-3" class="pilcrow">¶</a></p>
 <p id="section-2-4">The following terms are defined in <span>[<a href="#RFC7950" class="cite xref">RFC7950</a>]</span> and are not redefined here:
-   -  client<a href="#section-2-4" class="pilcrow">¶</a></p>
+-  client<a href="#section-2-4" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-2-5.1">
           <p id="section-2-5.1.1">server<a href="#section-2-5.1.1" class="pilcrow">¶</a></p>
@@ -1247,7 +1247,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 </li>
       </ul>
 <p id="section-2-6">The following terms are defined in <span>[<a href="#RFC6241" class="cite xref">RFC6241</a>]</span> and are not redefined here:
-   -  configuration data<a href="#section-2-6" class="pilcrow">¶</a></p>
+-  configuration data<a href="#section-2-6" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-2-7.1">
           <p id="section-2-7.1.1">state data<a href="#section-2-7.1.1" class="pilcrow">¶</a></p>
@@ -1293,14 +1293,14 @@ are optional to support both situations.<a href="#section-3-3" class="pilcrow">�
 <a href="#section-4" class="section-number selfRef">4. </a><a href="#name-example-of-use" class="section-name selfRef">Example of Use</a>
       </h2>
 <p id="section-4-1">In order to explain how this model is used, the following
-   example is provided.  An optical network usually has multiple transponders,
-   switches (nodes) and links. <a href="#fig-topology-example" class="auto internal xref">Figure 1</a> shows a simple
-   topology, where two physical paths interconnect two optical
-   transponders via a combination of both WSON and Flexi-grid wavelength
-   switched nodes and links.<a href="#section-4-1" class="pilcrow">¶</a></p>
+example is provided.  An optical network usually has multiple transponders,
+switches (nodes) and links. <a href="#fig-topology-example" class="auto internal xref">Figure 1</a> shows a simple
+topology, where two physical paths interconnect two optical
+transponders via a combination of both WSON and Flexi-grid wavelength
+switched nodes and links.<a href="#section-4-1" class="pilcrow">¶</a></p>
 <span id="name-topology-example"></span><div id="fig-topology-example">
 <figure id="figure-1">
-        <div class="alignLeft art-text artwork" id="section-4-2.1">
+        <div class="alignLeft art-ascii-art art-text artwork" id="section-4-2.1">
 <pre>
                               WDM Tunnel
         &lt;===================================================&gt;
@@ -1333,8 +1333,8 @@ are optional to support both situations.<a href="#section-3-3" class="pilcrow">�
         </figcaption></figure>
 </div>
 <p id="section-4-3">To configure an end-to-end WDM tunnel to interconnect
-   transponders A and E, first of all we have to populate the
-   flexi-grid topology YANG model with all elements in the network:<a href="#section-4-3" class="pilcrow">¶</a></p>
+transponders A and E, first of all we have to populate the
+flexi-grid topology YANG model with all elements in the network:<a href="#section-4-3" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-4-4.1">
           <p id="section-4-4.1.1">We define the transponders within nodes A and E as tunnel termination
@@ -1357,13 +1357,13 @@ also provided.<a href="#section-4-4.4.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
 <p id="section-4-5">After the nodes, links and transponders have been defined using
-   <span>[<a href="#I-D.ietf-ccamp-flexigrid-yang" class="cite xref">I-D.ietf-ccamp-flexigrid-yang</a>]</span> and <span>[<a href="#RFC9094" class="cite xref">RFC9094</a>]</span> we can
-   configure the tunnel from the information we have stored in the
-   flexi-grid topology, by querying which elements are available, and
-   planning the resources that have to be provided on each situation, taking into
-   account the global and path-specific WDM tunnel constraints.
-   Note that every element in the flexi-grid topology has a reference,
-   and this is the way in which they are called in the tunnel.<a href="#section-4-5" class="pilcrow">¶</a></p>
+<span>[<a href="#I-D.ietf-ccamp-flexigrid-yang" class="cite xref">I-D.ietf-ccamp-flexigrid-yang</a>]</span> and <span>[<a href="#RFC9094" class="cite xref">RFC9094</a>]</span> we can
+configure the tunnel from the information we have stored in the
+flexi-grid topology, by querying which elements are available, and
+planning the resources that have to be provided on each situation, taking into
+account the global and path-specific WDM tunnel constraints.
+Note that every element in the flexi-grid topology has a reference,
+and this is the way in which they are called in the tunnel.<a href="#section-4-5" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-4-6.1">
           <p id="section-4-6.1.1">Depending on the case, it is possible to define either the source
@@ -1395,7 +1395,9 @@ element usage status each time a tunnel is created or torn down.<a href="#sectio
         <h3 id="name-yang-tree">
 <a href="#section-5.1" class="section-number selfRef">5.1. </a><a href="#name-yang-tree" class="section-name selfRef">YANG Tree</a>
         </h3>
-<div class="alignLeft art-text artwork" id="section-5.1-1">
+<span id="name-wdm-tunnel-yang-tree"></span><div id="fig-wdm-tunnel-tree">
+<figure id="figure-2">
+          <div class="alignLeft art-ascii-art art-text artwork" id="section-5.1-1.1">
 <pre>
 module: ietf-wdm-tunnel
 
@@ -2686,7 +2688,11 @@ module: ietf-wdm-tunnel
                       +--ro frequency-slot* [flexi-n]
                          +--ro flexi-n    l0-types:flexi-n
                          +--ro flexi-m?   l0-types:flexi-m
-</pre><a href="#section-5.1-1" class="pilcrow">¶</a>
+</pre>
+</div>
+<figcaption><a href="#figure-2" class="selfRef">Figure 2</a>:
+<a href="#name-wdm-tunnel-yang-tree" class="selfRef">WDM Tunnel YANG tree</a>
+          </figcaption></figure>
 </div>
 </section>
 </div>
@@ -2695,7 +2701,9 @@ module: ietf-wdm-tunnel
         <h3 id="name-yang-code">
 <a href="#section-5.2" class="section-number selfRef">5.2. </a><a href="#name-yang-code" class="section-name selfRef">YANG Code</a>
         </h3>
-<div class="breakable sourcecode" id="section-5.2-1">
+<span id="name-wdm-tunnel-yang-module"></span><div id="fig-wdm-tunnel-yang">
+<figure id="figure-3">
+          <div class="breakable lang-yang sourcecode" id="section-5.2-1.1">
 <pre>&lt;CODE BEGINS&gt; file "ietf-wdm-tunnel@2023-10-22.yang"
 
 module ietf-wdm-tunnel {
@@ -2706,11 +2714,14 @@ module ietf-wdm-tunnel {
 
   import ietf-te {
     prefix "te";
+    // Remove revision-date after ietf-te has passed WG LC
     revision-date "2023-06-16";
     reference
-      "I-D.ietf-teas-yang-te-34: A YANG Data Model for Traffic
-      Engineering Tunnels, Label Switched Paths and Interfaces.";
+      "RFC YYYY: A YANG Data Model for Traffic Engineering Tunnels,
+      Label Switched Paths and Interfaces.";
   }
+  /* RFC Ed.: replace YYYY with the number assigned
+     to the RFC once draft-ietf-teas-yang-te becomes an RFC.*/
 
   import ietf-layer0-types {
     prefix "l0-types";
@@ -3945,7 +3956,11 @@ module ietf-wdm-tunnel {
   }
 }
 
-&lt;CODE ENDS&gt;</pre><a href="#section-5.2-1" class="pilcrow">¶</a>
+&lt;CODE ENDS&gt;</pre>
+</div>
+<figcaption><a href="#figure-3" class="selfRef">Figure 3</a>:
+<a href="#name-wdm-tunnel-yang-module" class="selfRef">WDM Tunnel YANG module</a>
+          </figcaption></figure>
 </div>
 </section>
 </div>
@@ -3957,18 +3972,18 @@ module ietf-wdm-tunnel {
 <a href="#section-6" class="section-number selfRef">6. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
       </h2>
 <p id="section-6-1">The configuration, state, and action data defined in this document
-   are designed to be accessed via a management protocol with a secure
-   transport layer, such as NETCONF <span>[<a href="#RFC6241" class="cite xref">RFC6241</a>]</span> or RESTCONF <span>[<a href="#RFC8040" class="cite xref">RFC8040</a>]</span>.
-   The NETCONF access control model <span>[<a href="#RFC8341" class="cite xref">RFC8341</a>]</span> provides the means to
-   restrict access for particular NETCONF users to a preconfigured
-   subset of all available NETCONF protocol operations and content.<a href="#section-6-1" class="pilcrow">¶</a></p>
+are designed to be accessed via a management protocol with a secure
+transport layer, such as NETCONF <span>[<a href="#RFC6241" class="cite xref">RFC6241</a>]</span> or RESTCONF <span>[<a href="#RFC8040" class="cite xref">RFC8040</a>]</span>.
+The NETCONF access control model <span>[<a href="#RFC8341" class="cite xref">RFC8341</a>]</span> provides the means to
+restrict access for particular NETCONF users to a preconfigured
+subset of all available NETCONF protocol operations and content.<a href="#section-6-1" class="pilcrow">¶</a></p>
 <p id="section-6-2">There are a number of data nodes defined in this YANG module that are
-   writable/creatable/deletable (i.e., config true, which is the
-   default).  These data nodes may be considered sensitive or vulnerable
-   in some network environments.  Write operations (e.g., edit-config)
-   to these data nodes without proper protection can have a negative
-   effect on network operations.  These are the subtrees and data nodes
-   and their sensitivity/vulnerability:<a href="#section-6-2" class="pilcrow">¶</a></p>
+writable/creatable/deletable (i.e., config true, which is the
+default).  These data nodes may be considered sensitive or vulnerable
+in some network environments.  Write operations (e.g., edit-config)
+to these data nodes without proper protection can have a negative
+effect on network operations.  These are the subtrees and data nodes
+and their sensitivity/vulnerability:<a href="#section-6-2" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-6-3.1">
           <p id="section-6-3.1.1">/te:te/te:tunnels/te:tunnel<a href="#section-6-3.1.1" class="pilcrow">¶</a></p>
@@ -3992,7 +4007,7 @@ end/te:te-label/te:technology<a href="#section-6-3.5.1" class="pilcrow">¶</a></
 </li>
       </ul>
 <p id="section-6-4">Editors note: we are using simplified description by folding similar
-   branches to avoid repetition.<a href="#section-6-4" class="pilcrow">¶</a></p>
+branches to avoid repetition.<a href="#section-6-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="iana-considerations">
@@ -4000,8 +4015,7 @@ end/te:te-label/te:technology<a href="#section-6-3.5.1" class="pilcrow">¶</a></
       <h2 id="name-iana-considerations">
 <a href="#section-7" class="section-number selfRef">7. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
       </h2>
-<p id="section-7-1">It is proposed to IANA to assign new URIs from the "IETF XML
-   Registry" <span>[<a href="#RFC3688" class="cite xref">RFC3688</a>]</span> as follows:<a href="#section-7-1" class="pilcrow">¶</a></p>
+<p id="section-7-1">This document requests IANA to register the following URIs in the "ns" subregistry within the "IETF XML Registry" <span>[<a href="#RFC3688" class="cite xref">RFC3688</a>]</span>. Following the format in <span>[<a href="#RFC3688" class="cite xref">RFC3688</a>]</span>, the following registrations are requested.<a href="#section-7-1" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-7-2">
 <pre>
    URI: urn:ietf:params:xml:ns:yang:ietf-wdm-tunnel
@@ -4009,8 +4023,7 @@ end/te:te-label/te:technology<a href="#section-6-3.5.1" class="pilcrow">¶</a></
    XML: N/A; the requested URI is an XML namespace.
 </pre><a href="#section-7-2" class="pilcrow">¶</a>
 </div>
-<p id="section-7-3">This document registers the following YANG module in the YANG Module Names
-   registry <span>[<a href="#RFC6020" class="cite xref">RFC6020</a>]</span>.<a href="#section-7-3" class="pilcrow">¶</a></p>
+<p id="section-7-3">This document requests IANA to register the following YANG modules in the "IANA Module Names" <span>[<a href="#RFC6020" class="cite xref">RFC6020</a>]</span>. Following the format in <span>[<a href="#RFC6020" class="cite xref">RFC6020</a>]</span>, the following registrations are requested:<a href="#section-7-3" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-7-4">
 <pre>
    name: ietf-wdm-tunnel
@@ -4019,6 +4032,7 @@ end/te:te-label/te:technology<a href="#section-6-3.5.1" class="pilcrow">¶</a></
    reference: RFC XXXX
 </pre><a href="#section-7-4" class="pilcrow">¶</a>
 </div>
+<p id="section-7-5">RFC Editor: Please replace XXXX with the RFC number assigned to this document.<a href="#section-7-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 <section id="section-8">
@@ -4110,10 +4124,10 @@ end/te:te-label/te:technology<a href="#section-6-3.5.1" class="pilcrow">¶</a></
 <a href="#name-acknowledgments" class="section-name selfRef">Acknowledgments</a>
       </h2>
 <p id="appendix-A-1">This work is also partially funded by the Spanish State Research
-   Agency under the project AgileMon (AEI PID2019-104451RB-C21) and by
-   the Spanish Ministry of Science, Innovation and Universities under
-   the program for the training of university lecturers (Grant number:
-   FPU19/05678).<a href="#appendix-A-1" class="pilcrow">¶</a></p>
+Agency under the project AgileMon (AEI PID2019-104451RB-C21) and by
+the Spanish Ministry of Science, Innovation and Universities under
+the program for the training of university lecturers (Grant number:
+FPU19/05678).<a href="#appendix-A-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="contributors">

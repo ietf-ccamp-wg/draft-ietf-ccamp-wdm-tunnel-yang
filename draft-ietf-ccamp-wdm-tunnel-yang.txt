@@ -5,14 +5,14 @@
 CCAMP Working Group                                               A. Guo
 Internet-Draft                                    Futurewei Technologies
 Intended status: Standards Track                              S. Belotti
-Expires: 24 May 2024                                               Nokia
+Expires: 16 June 2024                                              Nokia
                                                            G. Galimberti
                                                               Individual
                                                    J. E. L. de V. Mendez
                                                              Naudit HPCN
                                                            D. P. Burrero
                                           Universidad Autonoma de Madrid
-                                                        21 November 2023
+                                                        14 December 2023
 
 
                    A YANG Data Model for WDM Tunnels
@@ -62,7 +62,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 24 May 2024.
+   This Internet-Draft will expire on 16 June 2024.
 
 Copyright Notice
 
@@ -1553,6 +1553,8 @@ Table of Contents
                             +--ro flexi-n    l0-types:flexi-n
                             +--ro flexi-m?   l0-types:flexi-m
 
+                       Figure 2: WDM Tunnel YANG tree
+
 5.2.  YANG Code
 
    <CODE BEGINS> file "ietf-wdm-tunnel@2023-10-22.yang"
@@ -1564,11 +1566,14 @@ Table of Contents
 
      import ietf-te {
        prefix "te";
+       // Remove revision-date after ietf-te has passed WG LC
        revision-date "2023-06-16";
        reference
-         "I-D.ietf-teas-yang-te-34: A YANG Data Model for Traffic
-         Engineering Tunnels, Label Switched Paths and Interfaces.";
+         "RFC YYYY: A YANG Data Model for Traffic Engineering Tunnels,
+         Label Switched Paths and Interfaces.";
      }
+     /* RFC Ed.: replace YYYY with the number assigned
+        to the RFC once draft-ietf-teas-yang-te becomes an RFC.*/
 
      import ietf-layer0-types {
        prefix "l0-types";
@@ -2804,6 +2809,8 @@ Table of Contents
    }
    <CODE ENDS>
 
+                      Figure 3: WDM Tunnel YANG module
+
 6.  Security Considerations
 
    The configuration, state, and action data defined in this document
@@ -2840,20 +2847,25 @@ Table of Contents
 
 7.  IANA Considerations
 
-   It is proposed to IANA to assign new URIs from the "IETF XML
-   Registry" [RFC3688] as follows:
+   This document requests IANA to register the following URIs in the
+   "ns" subregistry within the "IETF XML Registry" [RFC3688].  Following
+   the format in [RFC3688], the following registrations are requested.
 
       URI: urn:ietf:params:xml:ns:yang:ietf-wdm-tunnel
       Registrant Contact: The IESG
       XML: N/A; the requested URI is an XML namespace.
 
-   This document registers the following YANG module in the YANG Module
-   Names registry [RFC6020].
+   This document requests IANA to register the following YANG modules in
+   the "IANA Module Names" [RFC6020].  Following the format in
+   [RFC6020], the following registrations are requested:
 
       name: ietf-wdm-tunnel
       namespace: urn:ietf:params:xml:ns:yang:ietf-wdm-tunnel
       prefix: wdm-tnl
       reference: RFC XXXX
+
+   RFC Editor: Please replace XXXX with the RFC number assigned to this
+   document.
 
 8.  References
 
