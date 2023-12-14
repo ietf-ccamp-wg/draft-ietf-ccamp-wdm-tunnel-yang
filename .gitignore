@@ -21,3 +21,4 @@ draft-ietf-ccamp-wdm-tunnel-yang.xml
 package-lock.json
 report.xml
 !requirements.txt
+/yang-dep/
