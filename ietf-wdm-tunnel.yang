@@ -6,12 +6,15 @@ module ietf-wdm-tunnel {
 
   import ietf-te {
     prefix "te";
+    // Remove revision-date after ietf-te has passed WG LC
     revision-date "2023-06-16";
     reference
-      "I-D.ietf-teas-yang-te-34: A YANG Data Model for Traffic
-      Engineering Tunnels, Label Switched Paths and Interfaces.";
+      "RFC YYYY: A YANG Data Model for Traffic Engineering Tunnels,
+      Label Switched Paths and Interfaces.";
   }
-
+  /* RFC Ed.: replace YYYY with the number assigned
+     to the RFC once draft-ietf-teas-yang-te becomes an RFC.*/
+  
   import ietf-layer0-types {
     prefix "l0-types";
   }
