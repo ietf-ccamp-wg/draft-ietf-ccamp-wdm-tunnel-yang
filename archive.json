@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-12-14T00:52:34.066131+00:00",
+  "timestamp": "2023-12-17T00:56:56.990044+00:00",
   "repo": "ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang",
   "labels": [
     {
@@ -431,104 +431,6 @@
       "comments": []
     },
     {
-      "number": 15,
-      "id": "MDU6SXNzdWU4MDQ5MDk4MjU=",
-      "title": "Review l0-tunnel-attributes grouping",
-      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/15",
-      "state": "OPEN",
-      "author": "italobusi",
-      "authorAssociation": "MEMBER",
-      "assignees": [
-        "italobusi",
-        "sergiobelotti",
-        "aguoietf"
-      ],
-      "labels": [],
-      "body": "Few questions:\r\n\r\n1. It seems identical to the wson-tunnel-attributes grouping. Should it be moved to layer0-types-ext and imported instead?\r\n2. Is the fec-type attribute needed? See also [l0-types-ext Issue #16](https://github.com/ietf-ccamp-wg/ietf-ccamp-layer0-types-ext/issues/16)\r\n3. Is the termination-type needed? See also [l0-types-ext Issue #14](https://github.com/ietf-ccamp-wg/ietf-ccamp-layer0-types-ext/issues/14)\r\n4. Is the bit-stuffing attribute needed? What is its meaning?",
-      "createdAt": "2021-02-09T20:43:59Z",
-      "updatedAt": "2022-06-30T13:03:10Z",
-      "closedAt": null,
-      "comments": [
-        {
-          "author": "italobusi",
-          "authorAssociation": "MEMBER",
-          "body": "> 2\\. Is the fec-type attribute needed? See also [l0-types-ext Issue #16](https://github.com/ietf-ccamp-wg/ietf-ccamp-layer0-types-ext/issues/16)\r\n> 3\\. Is the termination-type needed? See also [l0-types-ext Issue #14](https://github.com/ietf-ccamp-wg/ietf-ccamp-layer0-types-ext/issues/14)\r\n> 4\\. Is the bit-stuffing attribute needed? What is its meaning?\r\n\r\nStill need to be addressed",
-          "createdAt": "2021-02-12T11:07:56Z",
-          "updatedAt": "2021-02-12T11:07:56Z"
-        },
-        {
-          "author": "danielkinguk",
-          "authorAssociation": "CONTRIBUTOR",
-          "body": "Currently a partial list, we need to decide if we provide a full list of configuration parameters, or import parameters. To be discussed on the list, and/or at IETF 111. Open questions, include:\r\n\r\n- Do we need to support legacy services, or focus on new <10G, or include >10G, Coherent >40G, 500G, et al? \r\n- What additional parameters will need to be included, if defined in this I-D? \r\n- If we import parameters, where from/which model?\r\n\r\nWe will need to wait on discussion to conclude on l0-types-extensions parameters before we can finalise tunnel parameters. ",
-          "createdAt": "2021-06-24T12:33:08Z",
-          "updatedAt": "2021-11-25T13:32:46Z"
-        },
-        {
-          "author": "danielkinguk",
-          "authorAssociation": "CONTRIBUTOR",
-          "body": "Italo and Sergio to discuss open issue and provide update for next call (if possible). ",
-          "createdAt": "2021-11-25T13:33:17Z",
-          "updatedAt": "2021-11-25T13:33:17Z"
-        },
-        {
-          "author": "sergiobelotti",
-          "authorAssociation": "NONE",
-          "body": "> > 2. Is the fec-type attribute needed? See also [l0-types-ext Issue #16](https://github.com/ietf-ccamp-wg/ietf-ccamp-layer0-types-ext/issues/16)\r\n> > 3. Is the termination-type needed? See also [l0-types-ext Issue #14](https://github.com/ietf-ccamp-wg/ietf-ccamp-layer0-types-ext/issues/14)\r\n> > 4. Is the bit-stuffing attribute needed? What is its meaning?\r\n> \r\n> Still need to be addressed\r\n\r\n> > 3. Is the termination-type needed? See also [l0-types-ext Issue #14](https://github.com/ietf-ccamp-wg/ietf-ccamp-layer0-types-ext/issues/14)\r\n\r\nIssue #14  in layer0-types-ext is closed so, accordingly,  we should consider \"termination-type\" not needed",
-          "createdAt": "2021-11-26T16:02:42Z",
-          "updatedAt": "2021-11-26T16:02:42Z"
-        },
-        {
-          "author": "italobusi",
-          "authorAssociation": "MEMBER",
-          "body": "**2021-11-29 Aihua/Italo/Sergio**\r\n\r\n> > 2. Is the fec-type attribute needed? See also [l0-types-ext Issue #16](https://github.com/ietf-ccamp-wg/ietf-ccamp-layer0-types-ext/issues/16)\r\n\r\nThe fec-type is already covered by the transceiver configuration, so it could be removed from the l0-tunnel-attributes grouping. \r\n\r\nFew additional doubts:\r\n1. Should we enforce all the transceivers within the same OTSiG to use the same fec-type?\r\n2. Where is the transceiver configuration reported within the tunnel model\r\n3. Is there a need to constraint which transceivers can be used by the OTSiG on the primary and/or on the secondary path?\r\n\r\n> > 3. Is the termination-type needed? See also [l0-types-ext Issue #14](https://github.com/ietf-ccamp-wg/ietf-ccamp-layer0-types-ext/issues/14)\r\n\r\nMore discussion is still needed.\r\n\r\nSomething at the tunnel level has to be configured e.g., when setting up an Optical tunnel to support an OTN link, it has to be specified whether the optical tunnel is supporting an OTU4 link or an ODU4 link.\r\n\r\n![image](https://user-images.githubusercontent.com/12461741/143916055-bb952200-a648-4aee-ae82-efb1f0cc16c6.png)\r\n\r\nIn case of asymmetric client-signal configuration, it is not yet clear whether something for the tunnel's source and destination TTP has to be specified.\r\n\r\n![image](https://user-images.githubusercontent.com/12461741/143916079-cc690bda-bc17-44e6-bccf-68c2981e174c.png)\r\n\r\n> > 4. Is the bit-stuffing attribute needed? What is its meaning?\r\n> \r\n\r\nNot discussed\r\n\r\nNote that the wavelength-assignment has to be moved into this grouping:\r\n\r\nhttps://github.com/ietf-ccamp-wg/draft-ietf-ccamp-flexigrid-tunnel-yang/issues/16#issuecomment-981696043",
-          "createdAt": "2021-11-29T17:38:04Z",
-          "updatedAt": "2021-11-29T17:38:04Z"
-        },
-        {
-          "author": "italobusi",
-          "authorAssociation": "MEMBER",
-          "body": "**2022-04-28 Flexi-grid call**\r\n\r\nThis is the slide developed during the call today: [wdm-tunnel-scenarios-00.pptx](https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-flexigrid-tunnel-yang/files/8582942/wdm-tunnel-scenarios-00.pptx)\r\n ",
-          "createdAt": "2022-04-28T13:05:38Z",
-          "updatedAt": "2022-05-05T18:14:30Z"
-        },
-        {
-          "author": "italobusi",
-          "authorAssociation": "MEMBER",
-          "body": "2022-05-05 Flexi-grid call\r\n\r\nThese are the slides updated during the call today: [wdm-tunnel-scenarios-01.pptx](https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-flexigrid-tunnel-yang/files/8633653/wdm-tunnel-scenarios-01.pptx)",
-          "createdAt": "2022-05-05T18:14:19Z",
-          "updatedAt": "2022-05-05T18:14:19Z"
-        },
-        {
-          "author": "italobusi",
-          "authorAssociation": "MEMBER",
-          "body": "2022-05-12 Flexi-grid call\r\n\r\nThese are the slides updated during the call today: [wdm-tunnel-scenarios-02.pptx](https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-flexigrid-tunnel-yang/files/8680819/wdm-tunnel-scenarios-02.pptx)\r\n ",
-          "createdAt": "2022-05-12T16:04:16Z",
-          "updatedAt": "2022-05-12T16:04:23Z"
-        },
-        {
-          "author": "italobusi",
-          "authorAssociation": "MEMBER",
-          "body": "**2022-05-26 Flexi-grid call**\r\n\r\nThese are the slides updated during the call today: [wdm-tunnel-scenarios-03.pptx](https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-flexigrid-tunnel-yang/files/8780681/wdm-tunnel-scenarios-03.pptx)\r\n ",
-          "createdAt": "2022-05-26T16:55:48Z",
-          "updatedAt": "2022-05-26T16:55:48Z"
-        },
-        {
-          "author": "italobusi",
-          "authorAssociation": "MEMBER",
-          "body": "**2022-06-16 Flexi-grid call**\r\n\r\nThese are the slides updated during the call today: [wdm-tunnel-scenarios-04.pptx](https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-flexigrid-tunnel-yang/files/8919029/wdm-tunnel-scenarios-04.pptx)\r\n\r\nBased on this analysis it seems there is no need for the termination-type attribute.\r\n\r\nMore discussion is needed to understand how the WDM tunnel can be dimensioned (100G or 400G) in case of a muxponder supporting different rates at the network side: the rate of the client signal is not the same as the rate of the WDM tunnel and the rate supported by the muxponder on the network side is not unique\r\n",
-          "createdAt": "2022-06-16T13:03:22Z",
-          "updatedAt": "2022-06-16T13:03:22Z"
-        },
-        {
-          "author": "aguoietf",
-          "authorAssociation": "NONE",
-          "body": "**2022-06-30 flex-grid call**\r\n\r\nUpdated slides: \r\n[wdm-tunnel-scenarios-05.pptx](https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-flexigrid-tunnel-yang/files/9019962/wdm-tunnel-scenarios-05.pptx)\r\n",
-          "createdAt": "2022-06-30T13:03:10Z",
-          "updatedAt": "2022-06-30T13:03:10Z"
-        }
-      ]
-    },
-    {
       "number": 16,
       "id": "MDU6SXNzdWU4MDQ5MTMxMTY=",
       "title": "Review l0-path-constraints grouping",
@@ -617,7 +519,7 @@
         "sergiobelotti"
       ],
       "labels": [],
-      "body": "See #15 ",
+      "body": "See ietf-ccamp-wg/ietf-ccamp-layer0-types-ext-RFC9093-bis#84 ",
       "createdAt": "2021-02-11T13:55:32Z",
       "updatedAt": "2021-02-18T16:10:56Z",
       "closedAt": "2021-02-18T16:10:56Z",
@@ -1190,7 +1092,7 @@
       "labels": [],
       "body": "> Moreover the knowledge of the OTSi position in the spectrum is also useful in the intermediate nodes to easy the Optical Channel Monitoring in the ROADM.\"\r\n\r\nI think this piece of text is very important when discussing the information to be provided by the controller (or by the control plane) to a ROADM during path setup. However, I am not sure this has an impact to the information to be provided in the topology model for path computation. My proposal is not to put this sentence in this draft but to open an issue to discuss this sentence in the context of tunnel setup: https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-flexigrid-media-channel-yang\r\n\r\nhttps://github.com/ietf-ccamp-wg/draft-ietf-ccamp-optical-impairment-topology-yang/issues/89#issuecomment-923907647",
       "createdAt": "2021-10-14T12:39:07Z",
-      "updatedAt": "2021-11-25T13:22:41Z",
+      "updatedAt": "2023-12-14T13:42:26Z",
       "closedAt": null,
       "comments": [
         {
@@ -1199,6 +1101,13 @@
           "body": "Solved the issue in ccamp-optical-impairment I-D. In this document we will need to provide some overview text on why/how we use OTSi, maybe also include a reference. One requirement may be to co-route bidirectional connection the OTSI. ",
           "createdAt": "2021-11-25T13:22:40Z",
           "updatedAt": "2021-11-25T13:22:40Z"
+        },
+        {
+          "author": "aguoietf",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "2023-12-14:\r\nCheck the latest text and model to make sure the above information is covered.",
+          "createdAt": "2023-12-14T13:42:25Z",
+          "updatedAt": "2023-12-14T13:42:25Z"
         }
       ]
     },
@@ -1241,15 +1150,15 @@
       "id": "I_kwDOEHme9c4-jtyU",
       "title": "Align the authors list with RFC7322 requirements",
       "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/44",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "italobusi",
       "authorAssociation": "MEMBER",
       "assignees": [],
       "labels": [],
       "body": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-flexigrid-media-channel-yang/blob/7c001e5f6502264c91c2eda77198840850e6e611/draft-ietf-ccamp-flexigrid-tunnel-yang-00.txt#L5-L20\r\n",
       "createdAt": "2021-11-10T08:47:00Z",
-      "updatedAt": "2021-12-16T13:21:53Z",
-      "closedAt": null,
+      "updatedAt": "2023-12-14T13:43:12Z",
+      "closedAt": "2023-12-14T13:43:11Z",
       "comments": [
         {
           "author": "danielkinguk",
@@ -1264,6 +1173,13 @@
           "body": "One vendor/University represented, and move other authors to backpage as contributors. ",
           "createdAt": "2021-12-16T13:21:53Z",
           "updatedAt": "2021-12-16T13:21:53Z"
+        },
+        {
+          "author": "aguoietf",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Updated author list already presented in the latest WDM tunnel document",
+          "createdAt": "2023-12-14T13:43:11Z",
+          "updatedAt": "2023-12-14T13:43:11Z"
         }
       ]
     },
@@ -1327,7 +1243,7 @@
       "labels": [],
       "body": "How is the relationship between OTSi group identifier and tunnel identifiers ? The optical tributary signal group (OTSiG) is a management/control abstraction that represents a group of one or more OTSi that carry the characteristic information (CI) of one client. This management control entity is used to group the modulated signal represented by OTSi as co-routed.\r\nOTSiG identifier is an output of path computation and tunnel setup and need to have a reference to related tunnel identifier supporting the connection used to carry the client mapped onto 1 or more OTSi .\r\n\r\nImported from https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-optical-impairment-topology-yang/issues/87\r\n",
       "createdAt": "2022-01-31T15:42:44Z",
-      "updatedAt": "2022-04-07T12:18:37Z",
+      "updatedAt": "2023-12-14T14:10:48Z",
       "closedAt": null,
       "comments": [
         {
@@ -1350,6 +1266,13 @@
           "body": "Dan to review text and include in main document.",
           "createdAt": "2022-04-07T12:18:37Z",
           "updatedAt": "2022-04-07T12:18:37Z"
+        },
+        {
+          "author": "aguoietf",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "2023-12-14:\r\nThere is one OTSiG per direction between the transmitter and receiver. \r\nFor an e2e tunnel without regenerators, there will be two OTSiGs (one per direction)\r\nFor a tunnel with N regenerators, there will be a total of 2*(N+1) OTSiGs\r\n\r\nBoth OTSi and OTSiG identifiers are needed to navigate between tunnel and OI topology. We need to report both OTSi and OTSiG identifiers in the tunnel model.\r\n",
+          "createdAt": "2023-12-14T14:10:47Z",
+          "updatedAt": "2023-12-14T14:10:47Z"
         }
       ]
     },
@@ -1439,7 +1362,7 @@
       "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/54",
       "state": "OPEN",
       "author": "aguoietf",
-      "authorAssociation": "NONE",
+      "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "Along with combining the WSON and flexgrid tunnel models, this model can also consider supporting the specification of optical impairment constraints (as optional). This results in a single tunnel model for optical layer, that can support -\r\n - WSON tunnel setup\r\n - Flexgrid tunnel setup\r\n - and optionally, with optical impairment constraints\r\n\r\nBoth the flexgrid tunnel and optical path computation model should be sync'ed to support the above.",
@@ -1455,7 +1378,7 @@
       "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/55",
       "state": "OPEN",
       "author": "aguoietf",
-      "authorAssociation": "NONE",
+      "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "The model can consider to support the following wavelength tuning constraints:\r\n- Use the same wavelength between working, protection and restoration path\r\n- Allow/disallow the use of regenerators (in working or protection or both)\r\n- Allow/disallow wavelength changes along the path (in working or protection or both)\r\n- path optimization objectives, e.g.\r\n    * optimize on TE cost and only validate if path is optically feasible\r\n    * optimize on optical performance, e.g. best OSNR\r\n - specify wavelength tunning range allowed on a transceiver, e.g.\r\n    * allow tuning in 100Ghz grid even if the transceiver supports 50Ghz\r\n    * allow c-band only or full super-c band tuning\r\n    * (these may be done by using the label restriction from the base model but is a bit cumbersome)",
@@ -1485,28 +1408,28 @@
       "comments": [
         {
           "author": "aguoietf",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "body": "The proposal for the merge discussed on today's call - please review and comment.\r\n\r\n[wdm-tunnel.txt](https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-flexigrid-tunnel-yang/files/12749851/wdm-tunnel.txt)\r\n",
           "createdAt": "2023-09-28T13:23:50Z",
           "updatedAt": "2023-09-28T13:23:50Z"
         },
         {
           "author": "aguoietf",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "body": "Call Minutes 2023-10-05:\r\n\r\nAgenda: discuss Aihua's YANG model proposal [here](https://github.com/aguoietf/draft-ietf-ccamp-wdm-tunnel-yang) to merge WSON and Flexi-grid tunnel.\r\n\r\nIssues/Action Items:\r\n\r\n> For transceiver constraints, operational-mode should be defined as a list instead of a single value\r\n- Change has been introduced to the model\r\n~~~~\r\n    |  +--rw operational-modes*     string\r\n~~~~\r\n\r\n> It is suggested to add a new parameter, delta-power to the tunnel to indicate the per-channel power deviation at OMS section\r\n- Added \"delta-power\" to the tunnel constraint\r\n~~~~\r\n  augment /te:te/te:tunnels/te:tunnel:\r\n    +--rw wdm-constraint\r\n....\r\n       +--rw delta-power?                   l0-types:decimal-2-digits --> type should be in dB\r\n~~~~\r\n\r\n> It may be useful to know the maximum # of channels on a link to ensure the optical performance. Agreed that it is a system design / planning issue and does not associate to a particular tunnel, therefore no need to define it in the model\r\n- No change to the YANG model is needed\r\n\r\n> It was suggested to reuse the transmitter tuning range definitions in l0-types as opposed to re-defining the tx-tuning-range in the tunnel model\r\n- Current l0-types-ext does not have a separate grouping definition for the tuning range. Also the existing tuning range definitions has all the parameters in read-only mode. Need to update l0-types grouping with the following changes:\r\n  - define a new grouping, \"transmitter-tuning-range\" and remove the read-only statement.\r\n  - add config=false to the container organizational-mode to make sure these parameters remain as read only in other YANG models such as ccamp-optical-impairment that use the same grouping\r\n  - use this grouping as read-write mode in the wdm-tunnel model\r\n~~~~\r\n    +--rw wdm-constraint\r\n       +--rw transceiver-constraint\r\n       |  +--rw operational-modes*     string\r\n       |  +--rw tx-tune-constraints\r\n       |     +--rw min-central-frequency?    frequency-thz\r\n       |     +--rw max-central-frequency?    frequency-thz\r\n       |     +--rw transceiver-tunability?   frequency-ghz\r\n~~~~\r\n\r\n> Esther suggested to add two additional parameters, estimated GSNR at end of life, and estimated lowest (worst-case) GSNR for the computed path, in addition to the estimated current GSNR\r\n- Added the two attributes to the YANG model\r\n~~~~\r\n  augment /te:te/te:tunnels/te:tunnel/te:primary-paths\r\n            /te:primary-path/te:computed-paths-properties\r\n            /te:computed-path-properties/te:path-properties:\r\n    +--ro estimated-gsnr?          snr\r\n    +--ro estimated-eol-gsnr?      snr\r\n    +--ro estimated-lowest-gsnr?   snr\r\n~~~~\r\n",
           "createdAt": "2023-10-05T20:45:11Z",
           "updatedAt": "2023-10-19T12:16:03Z"
         },
         {
           "author": "aguoietf",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "body": "Changed the type for delta-power to dB according to the call today (2023-10-19).\r\nThe change is [here](https://github.com/aguoietf/draft-ietf-ccamp-wdm-tunnel-yang/commit/afa68aedc8f8524f395a189e0d3abd6eb1c4d466#diff-ab333489b13f4a5d32ff19259bea1ee5c668f428b17d057c1d0b8e70858ff7af) \r\n\r\nOLD:\r\n~~~~\r\n       +--rw delta-power?                   l0-types:decimal-2-digits\r\n~~~~\r\n\r\nNEW:\r\n~~~~\r\n       +--rw delta-power?                  l0-types:gain-in-db-or-null\r\n~~~~",
           "createdAt": "2023-10-19T17:59:57Z",
           "updatedAt": "2023-10-19T17:59:57Z"
         },
         {
           "author": "aguoietf",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "body": "Done.",
           "createdAt": "2023-11-30T13:24:06Z",
           "updatedAt": "2023-11-30T13:24:06Z"
@@ -1530,7 +1453,7 @@
       "comments": [
         {
           "author": "aguoietf",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "body": "closed. Issue was resolved in rfc9093-bis.",
           "createdAt": "2023-11-30T13:22:02Z",
           "updatedAt": "2023-11-30T13:22:02Z"
@@ -1556,7 +1479,7 @@
       "comments": [
         {
           "author": "aguoietf",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "body": "the NMRG performance digital twin also references this draft. Changes needs to be made there. ",
           "createdAt": "2023-11-30T13:23:42Z",
           "updatedAt": "2023-11-30T13:23:42Z"
@@ -1848,24 +1771,26 @@
       "id": "PR_kwDOEHme9c5gBMTI",
       "title": "Proposed updates to align with other kramdown drafts",
       "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/pull/60",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "italobusi",
       "authorAssociation": "MEMBER",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2023-11-21T13:01:14Z",
-      "updatedAt": "2023-11-28T10:54:05Z",
+      "updatedAt": "2023-12-14T13:25:25Z",
       "baseRepository": "ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang",
       "baseRefName": "main",
       "baseRefOid": "588e5da298a394993a3a68c93f4a8e116b54257c",
       "headRepository": "ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang",
       "headRefName": "kramdown-syntax",
       "headRefOid": "16a0d765d7962d1b00488e534ef81e96d53754ff",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2023-12-14T13:25:25Z",
+      "mergedAt": "2023-12-14T13:25:25Z",
+      "mergedBy": "aguoietf",
+      "mergeCommit": {
+        "oid": "805b2189468abe5bd36daa49cb80a67634321ea9"
+      },
       "comments": [
         {
           "author": "sergiobelotti",
@@ -1896,7 +1821,7 @@
             "abbreviatedOid": "16a0d76"
           },
           "author": "aguoietf",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "APPROVED",
           "body": "I see no issue with the changes but I'd like to confirm with Italo whether these changes would affect any of the automated kramdown tools. \r\nIf not, we can merge the pull request.",
           "createdAt": "2023-11-27T23:23:54Z",
@@ -1925,18 +1850,18 @@
       "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/pull/62",
       "state": "OPEN",
       "author": "aguoietf",
-      "authorAssociation": "NONE",
+      "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "Summary of the updates:\r\n- Added Esther, Julien, Gert, Roberto as contributors\r\n- Updated the type for delta-power to ratio-in-db\r\n- Updated YANG trees, txt and xml \r\n- Moved dependent YANG files to the yang-dep folder\r\n",
       "createdAt": "2023-11-28T20:39:13Z",
-      "updatedAt": "2023-11-30T14:11:05Z",
+      "updatedAt": "2023-12-14T13:31:47Z",
       "baseRepository": "ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang",
       "baseRefName": "main",
       "baseRefOid": "588e5da298a394993a3a68c93f4a8e116b54257c",
       "headRepository": "aguoietf/draft-ietf-ccamp-wdm-tunnel-yang",
       "headRefName": "master",
-      "headRefOid": "1a2893580fc788e9feedb1ff4d91bf115a920a85",
+      "headRefOid": "a60b6d4f64340155da81815e2d91875076d0709b",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -1954,6 +1879,19 @@
           "body": "",
           "createdAt": "2023-11-30T14:11:05Z",
           "updatedAt": "2023-11-30T14:11:05Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOEHme9c5qNG6L",
+          "commit": {
+            "abbreviatedOid": "a60b6d4"
+          },
+          "author": "italobusi",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2023-12-14T13:31:47Z",
+          "updatedAt": "2023-12-14T13:31:47Z",
           "comments": []
         }
       ]
