@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-12-19T00:53:08.989556+00:00",
+  "timestamp": "2023-12-21T00:52:17.589234+00:00",
   "repo": "ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang",
   "labels": [
     {
@@ -915,13 +915,14 @@
       "author": "danielkinguk",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [
-        "danielkinguk",
-        "ggalimba56"
+        "italobusi",
+        "ggalimba56",
+        "aguoietf"
       ],
       "labels": [],
       "body": "Some text to describe what use cases we plan to address in the document, and what is out of scope.",
       "createdAt": "2021-10-07T12:19:07Z",
-      "updatedAt": "2021-11-25T13:29:11Z",
+      "updatedAt": "2023-12-20T13:31:51Z",
       "closedAt": null,
       "comments": [
         {
