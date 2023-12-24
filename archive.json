@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-12-21T00:52:17.589234+00:00",
+  "timestamp": "2023-12-24T00:55:42.098724+00:00",
   "repo": "ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang",
   "labels": [
     {
@@ -1854,9 +1854,9 @@
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
-      "body": "Summary of the updates:\r\n- Added Esther, Julien, Gert, Roberto as contributors\r\n- Updated the type for delta-power to ratio-in-db\r\n- Updated YANG trees, txt and xml \r\n- Moved dependent YANG files to the yang-dep folder\r\n",
+      "body": "Summary of the updates:\r\n- Added Esther, Julien, Gert, Roberto as contributors\r\n- Updated the type for delta-power to ratio-in-db\r\n- Updated YANG trees, txt and xml \r\n- Moved dependent YANG files to the yang-dep folder\r\n\r\n---\r\n\r\nPending merge of https://github.com/ietf-ccamp-wg/ietf-ccamp-layer0-types-ext-RFC9093-bis/pull/82",
       "createdAt": "2023-11-28T20:39:13Z",
-      "updatedAt": "2023-12-14T13:31:47Z",
+      "updatedAt": "2023-12-21T13:31:19Z",
       "baseRepository": "ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang",
       "baseRefName": "main",
       "baseRefOid": "588e5da298a394993a3a68c93f4a8e116b54257c",
@@ -1867,7 +1867,15 @@
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "MEMBER",
+          "body": "2023-12-21 Call\r\n\r\nThe PR is ready to be merged as soon as https://github.com/ietf-ccamp-wg/ietf-ccamp-layer0-types-ext-RFC9093-bis/pull/82 is merged",
+          "createdAt": "2023-12-21T13:31:18Z",
+          "updatedAt": "2023-12-21T13:31:18Z"
+        }
+      ],
       "reviews": [
         {
           "id": "PRR_kwDOEHme9c5owjW5",
