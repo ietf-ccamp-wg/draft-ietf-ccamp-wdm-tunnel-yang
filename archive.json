@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-01-11T00:54:11.633869+00:00",
+  "timestamp": "2024-01-14T00:58:07.604141+00:00",
   "repo": "ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang",
   "labels": [
     {
@@ -1466,7 +1466,7 @@
       "id": "I_kwDOEHme9c53BZLb",
       "title": "Contact non-CCAMP I-Ds that Reference WSON/Flexi-Grid Tunnel Models ",
       "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/58",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "danielkinguk",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [
@@ -1475,8 +1475,8 @@
       "labels": [],
       "body": "ACTN POI and Path Computation I-Ds will be be updated to reference the WDM Tunnel I-D, but we will need to contact non-TEAS/CCAMP I-D authors to advise them on the update (general) Tunnel model and new I-D name. ",
       "createdAt": "2023-11-16T13:25:40Z",
-      "updatedAt": "2023-11-30T13:23:43Z",
-      "closedAt": null,
+      "updatedAt": "2024-01-11T13:21:06Z",
+      "closedAt": "2024-01-11T13:21:06Z",
       "comments": [
         {
           "author": "aguoietf",
