@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-01-18T00:53:33.077357+00:00",
+  "timestamp": "2024-01-21T00:58:19.788965+00:00",
   "repo": "ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang",
   "labels": [
     {
@@ -1514,6 +1514,48 @@
           "updatedAt": "2023-11-21T13:21:20Z"
         }
       ]
+    },
+    {
+      "number": 63,
+      "id": "I_kwDOEHme9c58fJOT",
+      "title": "Comments on the text I-d",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/63",
+      "state": "OPEN",
+      "author": "sergiobelotti",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-01-18T15:34:14Z",
+      "updatedAt": "2024-01-18T15:40:43Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "sergiobelotti",
+          "authorAssociation": "NONE",
+          "body": "@agva123 , co-authors/contributors:\r\nI have some comments about the text of the draft-ietf-ccamp-wdm-tunnel-yang-00. \r\nThese are my comment:\r\n\r\n- Section 3: very good to summarize the aspects in which this model is augmenting the base te-tunnel, but it would good to add a reference to  YANG entity in the module.\r\n\r\nFor example Global WDM layer constraints in the model are described in the \u201cwdm-constraints\u201d container , and internally there are 2 groupings that should be briefly described. All that would simplify the reading of the model making more easy to understand also what could be missed in the model. Other example is the \u201clist of links (and I would say nodes)  that defines the path, not clear where is in the model at a first glance, a pointer to model entity would be great.\r\n\r\n- Section 4: \u201cNote that every element in the flexi-grid topology has a reference, and this is the way in which they are called in the tunnel.\u201d . This sentence is not clear to me, do you mean an identifier, leafref ?\r\nAn example would be good here.\r\n\r\n\u201cThen, for each link in the path x, we indicate which channel we are going to use, providing information about the slots, and what nodes are connected.\u201d \r\nAlso here we should add the pointer to the model to clarify where in the model that will happen.\r\n\r\nIn general, since the long list of augmentation to te-model is not easy to follow, having a short description of the major constructs of the model would make any review of the model faster and more sure. \r\n\r\n",
+          "createdAt": "2024-01-18T15:40:42Z",
+          "updatedAt": "2024-01-18T15:40:42Z"
+        }
+      ]
+    },
+    {
+      "number": 64,
+      "id": "I_kwDOEHme9c58hS7Y",
+      "title": "Move wavelength-assignment identities to L0-Types",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/64",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "MEMBER",
+      "assignees": [
+        "aguoietf"
+      ],
+      "labels": [],
+      "body": "Move wavelength-assignment identities to L0-Types\r\n\r\nFind the references where these methods for wavelength assignment are defined",
+      "createdAt": "2024-01-18T21:50:10Z",
+      "updatedAt": "2024-01-18T21:50:15Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
