@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-02-01T00:52:34.557373+00:00",
+  "timestamp": "2024-02-04T00:53:58.988510+00:00",
   "repo": "ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang",
   "labels": [
     {
@@ -1216,7 +1216,7 @@
       "id": "I_kwDOEHme9c5AgTnj",
       "title": "WDM technology-specific constraints",
       "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/46",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "italobusi",
       "authorAssociation": "MEMBER",
       "assignees": [
@@ -1225,8 +1225,8 @@
       "labels": [],
       "body": "These issues still apply to tunnel setup:\r\n\r\n- [x] https://github.com/aguoietf/ietf-ccamp-optical-path-computation/issues/14\r\n- [x] https://github.com/aguoietf/ietf-ccamp-optical-path-computation/issues/15\r\n",
       "createdAt": "2021-12-16T13:40:36Z",
-      "updatedAt": "2022-03-07T14:35:09Z",
-      "closedAt": null,
+      "updatedAt": "2024-02-01T13:18:21Z",
+      "closedAt": "2024-02-01T13:18:21Z",
       "comments": []
     },
     {
@@ -1898,7 +1898,7 @@
       "labels": [],
       "body": "Summary of the updates:\r\n- Added Esther, Julien, Gert, Roberto as contributors\r\n- Updated the type for delta-power to ratio-in-db\r\n- Updated YANG trees, txt and xml \r\n- Moved dependent YANG files to the yang-dep folder\r\n\r\n---\r\n\r\nPending merge of https://github.com/ietf-ccamp-wg/ietf-ccamp-layer0-types-ext-RFC9093-bis/pull/82",
       "createdAt": "2023-11-28T20:39:13Z",
-      "updatedAt": "2023-12-21T13:31:19Z",
+      "updatedAt": "2024-02-01T14:14:46Z",
       "baseRepository": "ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang",
       "baseRefName": "main",
       "baseRefOid": "588e5da298a394993a3a68c93f4a8e116b54257c",
@@ -1944,6 +1944,38 @@
           "createdAt": "2023-12-14T13:31:47Z",
           "updatedAt": "2023-12-14T13:31:47Z",
           "comments": []
+        },
+        {
+          "id": "PRR_kwDOEHme9c5uqClp",
+          "commit": {
+            "abbreviatedOid": "a60b6d4"
+          },
+          "author": "ggalimba56",
+          "authorAssociation": "NONE",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-02-01T13:38:16Z",
+          "updatedAt": "2024-02-01T14:14:46Z",
+          "comments": [
+            {
+              "originalPosition": 263,
+              "body": "We also provide nodes A and B identifiers, addresses and interfaces.\r\n\r\nProvably here it is meant:\r\n\r\nWe also provide nodes A and E identifiers, addresses and interfaces.",
+              "createdAt": "2024-02-01T13:38:16Z",
+              "updatedAt": "2024-02-01T14:14:46Z"
+            },
+            {
+              "originalPosition": 181,
+              "body": "NO constraints on the path itself ? like Path diversity, SRLG include/exclude etc.  Are these info covered by another draft ?",
+              "createdAt": "2024-02-01T13:41:34Z",
+              "updatedAt": "2024-02-01T14:14:46Z"
+            },
+            {
+              "originalPosition": 601,
+              "body": "I have a doubt here, I agree to define the grid-type in this way but we should also specify the ITU-T grid.  e.g. in fixed-dmdm we have the 100 GHz and 50GHz grids.  w/o this further parameter the didm-n value does not have sense.",
+              "createdAt": "2024-02-01T13:57:31Z",
+              "updatedAt": "2024-02-01T14:14:47Z"
+            }
+          ]
         }
       ]
     }
