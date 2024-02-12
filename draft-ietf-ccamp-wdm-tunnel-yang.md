@@ -2,6 +2,7 @@
 title: "A YANG Data Model for WDM Tunnels"
 abbrev: "WDM Tunnel YANG Model"
 category: std
+ipr: trust200902
 
 docname: draft-ietf-ccamp-wdm-tunnel-yang-latest
 submissiontype: IETF  # also: "independent", "editorial", "IAB", or "IRTF"
@@ -94,6 +95,22 @@ contributor:
     name: Zafar Ali
     org: Cisco
     email: zali@cisco.com
+  -
+    name: Esther Le Rouzic
+    org: Orange
+    email: esther.lerouzic@orange.com
+  -
+    name: Julien Meuric
+    org: Orange
+    email: julien.meuric@orange.com
+  -
+    name: Gert Grammel
+    org: Juniper
+    email: ggrammel@juniper.net
+  -
+    name: Roberto Manzotti
+    org: Cisco
+    email: manzoro@gmail.com
 
 normative:
 

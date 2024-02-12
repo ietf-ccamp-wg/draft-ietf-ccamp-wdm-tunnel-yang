@@ -3404,7 +3404,7 @@ module: ietf-te
      |        +--rw wdm-tnl:matching-fwd-rev-wavelength?   boolean
      |        +--rw wdm-tnl:allow-retuning?                boolean
      |        +--rw wdm-tnl:delta-power?
-     |                l0-types:gain-in-db-or-null
+     |                l0-types:ratio-in-db
      +--ro lsps
         +--ro lsp* [tunnel-name lsp-id node]
            +--ro tunnel-name                         string

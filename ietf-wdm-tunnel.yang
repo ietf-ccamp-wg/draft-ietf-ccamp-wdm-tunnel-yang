@@ -254,7 +254,7 @@ module ietf-wdm-tunnel {
            planning considerations.";
       }
       leaf delta-power {
-        type l0-types:gain-in-db-or-null;
+        type l0-types:ratio-in-db;
         units "dB";
         description
           "Delta power in dB indicating the per-channel power
