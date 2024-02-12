@@ -5,14 +5,14 @@
 CCAMP Working Group                                               A. Guo
 Internet-Draft                                    Futurewei Technologies
 Intended status: Standards Track                              S. Belotti
-Expires: 16 June 2024                                              Nokia
+Expires: 15 August 2024                                            Nokia
                                                            G. Galimberti
                                                               Individual
                                                    J. E. L. de V. Mendez
                                                              Naudit HPCN
                                                            D. P. Burrero
                                           Universidad Autonoma de Madrid
-                                                        14 December 2023
+                                                        12 February 2024
 
 
                    A YANG Data Model for WDM Tunnels
@@ -62,11 +62,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 16 June 2024.
+   This Internet-Draft will expire on 15 August 2024.
 
 Copyright Notice
 
-   Copyright (c) 2023 IETF Trust and the persons identified as the
+   Copyright (c) 2024 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -281,8 +281,7 @@ Table of Contents
           +--rw guard-band-size?               l0-types:frequency-thz
           +--rw matching-fwd-rev-wavelength?   boolean
           +--rw allow-retuning?                boolean
-          +--rw delta-power?
-                  l0-types:gain-in-db-or-null
+          +--rw delta-power?                   l0-types:ratio-in-db
      augment /te:te/te:tunnels/te:tunnel/te:primary-paths
                /te:primary-path/te:explicit-route-objects-always
                /te:route-object-exclude-always/te:type
@@ -1814,7 +1813,7 @@ Table of Contents
               planning considerations.";
          }
          leaf delta-power {
-           type l0-types:gain-in-db-or-null;
+           type l0-types:ratio-in-db;
            units "dB";
            description
              "Delta power in dB indicating the per-channel power
@@ -2875,17 +2874,17 @@ Table of Contents
               de Madrid, U. A., Burrero, D. P., King, D., Lee, Y., and
               H. Zheng, "A YANG Data Model for Flexi-Grid Optical
               Networks", Work in Progress, Internet-Draft, draft-ietf-
-              ccamp-flexigrid-yang-15, 10 July 2023,
+              ccamp-flexigrid-yang-16, 29 January 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-
-              flexigrid-yang-15>.
+              flexigrid-yang-16>.
 
    [I-D.ietf-teas-yang-te]
               Saad, T., Gandhi, R., Liu, X., Beeram, V. P., and I.
               Bryskin, "A YANG Data Model for Traffic Engineering
               Tunnels, Label Switched Paths and Interfaces", Work in
-              Progress, Internet-Draft, draft-ietf-teas-yang-te-34, 1
-              October 2023, <https://datatracker.ietf.org/doc/html/
-              draft-ietf-teas-yang-te-34>.
+              Progress, Internet-Draft, draft-ietf-teas-yang-te-36, 2
+              February 2024, <https://datatracker.ietf.org/doc/html/
+              draft-ietf-teas-yang-te-36>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -3020,6 +3019,26 @@ Contributors
    Zafar Ali
    Cisco
    Email: zali@cisco.com
+
+
+   Esther Le Rouzic
+   Orange
+   Email: esther.lerouzic@orange.com
+
+
+   Julien Meuric
+   Orange
+   Email: julien.meuric@orange.com
+
+
+   Gert Grammel
+   Juniper
+   Email: ggrammel@juniper.net
+
+
+   Roberto Manzotti
+   Cisco
+   Email: manzoro@gmail.com
 
 
 Authors' Addresses
