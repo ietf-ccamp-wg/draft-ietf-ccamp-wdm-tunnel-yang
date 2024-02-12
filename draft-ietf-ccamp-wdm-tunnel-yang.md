@@ -141,44 +141,43 @@ provided towards the end of the document to understand their utility better.
 
 {::boilerplate bcp14-tagged}
 
-   The terminology for describing YANG data models is found in
-   {{!RFC7950}}.
+The terminology for describing YANG data models is found in
+{{!RFC7950}}.
 
-   Refer to {{!RFC7446}} and {{!RFC7699}} for the key terms used in this document.
+Refer to {{!RFC7446}} and {{!RFC7699}} for the key terms used in this document.
 
-   The following terms are defined in {{!RFC7950}} and are not redefined here:
-   -  client
+The following terms are defined in {{!RFC7950}} and are not redefined here:
+-  client
 
-   -  server
+-  server
 
-   -  augment
+-  augment
 
-   -  data model
+-  data model
 
-   -  data node
+-  data node
 
-   The following terms are defined in {{!RFC6241}} and are not redefined here:
-   -  configuration data
+The following terms are defined in {{!RFC6241}} and are not redefined here:
+-  configuration data
 
-   -  state data
+-  state data
 
 # Overview
 
 The generic TE tunnel attributes, such as source and destination node addresses, source and destination tunnel termination points (TTPs), are already defined by the base data model in {{!I-D.ietf-teas-yang-te}}. The present model defines a WDM tunnel by augmenting the base model with the following
 WDM technology-specific constructs:
 
-   -  Global WDM layer constraints that influence the TE path selection, e.g., whether wavelength conversion or regeneration is considered
+-  Global WDM layer constraints that influence the TE path selection, e.g., whether wavelength conversion or regeneration is considered
 
-   -  Global transponder/transceiver configuration constraints, e.g., operational modes, tuning constraints of the transceiver
+-  Global transponder/transceiver configuration constraints, e.g., operational modes, tuning constraints of the transceiver
 
-   -  Global optical performance constraints, e.g. generalized Signal-to-noise (G-SNR) margin of a feasible optical path
+-  Global optical performance constraints, e.g. generalized Signal-to-noise (G-SNR) margin of a feasible optical path
 
-   -  Path-scope WDM layer constraints, e.g. identities of transceivers assigned to the primary or secondary path
+-  Path-scope WDM layer constraints, e.g. identities of transceivers assigned to the primary or secondary path
 
-   -  List of links that defines the path
+-  List of links that defines the path
 
-   -  Other optical attributes
-
+-  Other optical attributes
 
 Each path can be a segment path (only defined by the source and destination nodes or link termination points)
 or an end-to-end path (additionally needs source and destination transponders). Therefore, all the attributes
@@ -187,15 +186,15 @@ are optional to support both situations.
 
 # Example of Use
 
-   In order to explain how this model is used, the following
-   example is provided.  An optical network usually has multiple transponders,
-   switches (nodes) and links. {{fig-topology-example}} shows a simple
-   topology, where two physical paths interconnect two optical
-   transponders via a combination of both WSON and Flexi-grid wavelength
-   switched nodes and links.
+In order to explain how this model is used, the following
+example is provided.  An optical network usually has multiple transponders,
+switches (nodes) and links. {{fig-topology-example}} shows a simple
+topology, where two physical paths interconnect two optical
+transponders via a combination of both WSON and Flexi-grid wavelength
+switched nodes and links.
 
 
-~~~~
+~~~~ ascii-art
                               WDM Tunnel
         <===================================================>
                          WDM Primary Path
@@ -223,102 +222,101 @@ are optional to support both situations.
 ~~~~
 {: #fig-topology-example title="Topology Example"}
 
-   To configure an end-to-end WDM tunnel to interconnect
-   transponders A and E, first of all we have to populate the
-   flexi-grid topology YANG model with all elements in the network:
+To configure an end-to-end WDM tunnel to interconnect
+transponders A and E, first of all we have to populate the
+flexi-grid topology YANG model with all elements in the network:
 
-   -  We define the transponders within nodes A and E as tunnel termination
-      points (TTPs) and provide their internal local link connectivity
-      towards the node interfaces.  We also provide nodes A and B identifiers,
-      addresses and interfaces.
+-  We define the transponders within nodes A and E as tunnel termination
+   points (TTPs) and provide their internal local link connectivity
+   towards the node interfaces.  We also provide nodes A and B identifiers,
+   addresses and interfaces.
 
-   -  We do the same for the nodes B, C and D, providing their
-      identifiers, addresses and interfaces, as well as the internal
-      connectivity matrix between interfaces.
+-  We do the same for the nodes B, C and D, providing their
+   identifiers, addresses and interfaces, as well as the internal
+   connectivity matrix between interfaces.
 
-   -  Then, we also define the links 1 to 5 that interconnect nodes,
-      indicating which WSON or flexi-grid labels are available.
+-  Then, we also define the links 1 to 5 that interconnect nodes,
+   indicating which WSON or flexi-grid labels are available.
 
-   -  Other information, such as the slot frequency and granularity are
-      also provided.
+-  Other information, such as the slot frequency and granularity are
+   also provided.
 
-   After the nodes, links and transponders have been defined using
-   {{!I-D.ietf-ccamp-flexigrid-yang}} and {{!RFC9094}} we can
-   configure the tunnel from the information we have stored in the
-   flexi-grid topology, by querying which elements are available, and
-   planning the resources that have to be provided on each situation, taking into
-   account the global and path-specific WDM tunnel constraints.
-   Note that every element in the flexi-grid topology has a reference,
-   and this is the way in which they are called in the tunnel.
+After the nodes, links and transponders have been defined using
+{{!I-D.ietf-ccamp-flexigrid-yang}} and {{!RFC9094}} we can
+configure the tunnel from the information we have stored in the
+flexi-grid topology, by querying which elements are available, and
+planning the resources that have to be provided on each situation, taking into
+account the global and path-specific WDM tunnel constraints.
+Note that every element in the flexi-grid topology has a reference,
+and this is the way in which they are called in the tunnel.
 
-   -  Depending on the case, it is possible to define either the source
-      and destination node ports, or the source and destination node and
-      transponder.  In our case, we would define a network tunnel, with
-      source transponder A and source node B, and destination
-      transponder E and destination node C.  Thus, we are going to
-      follow path x.
+-  Depending on the case, it is possible to define either the source
+   and destination node ports, or the source and destination node and
+   transponder.  In our case, we would define a network tunnel, with
+   source transponder A and source node B, and destination
+   transponder E and destination node C.  Thus, we are going to
+   follow path x.
 
-   -  Then, for each link in the path x, we indicate which channel we
-      are going to use, providing information about the slots, and what
-      nodes are connected.
+-  Then, for each link in the path x, we indicate which channel we
+   are going to use, providing information about the slots, and what
+   nodes are connected.
 
-   -  Finally, the flexi-grid topology has to be updated with each
-      element usage status each time a tunnel is created or torn down.
+-  Finally, the flexi-grid topology has to be updated with each
+   element usage status each time a tunnel is created or torn down.
 
 # YANG Model for WDM Tunnel
 
 ## YANG Tree
 
-~~~~
+~~~~ ascii-art
 {::include ./ietf-wdm-tunnel.tree}
 ~~~~
+{: #fig-wdm-tunnel-tree title="WDM Tunnel YANG tree" artwork-name="ietf-wdm-tunnel.tree"}
 
 ## YANG Code
 
-~~~~
-   <CODE BEGINS> file "ietf-wdm-tunnel@2023-10-22.yang"
+~~~~ yang
 {::include ./ietf-wdm-tunnel.yang}
-   <CODE ENDS>
 ~~~~
+{: #fig-wdm-tunnel-yang title="WDM Tunnel YANG module" sourcecode-markers="true" sourcecode-name="ietf-wdm-tunnel@2023-10-22.yang"}
 
 # Security Considerations
 
-   The configuration, state, and action data defined in this document
-   are designed to be accessed via a management protocol with a secure
-   transport layer, such as NETCONF {{!RFC6241}} or RESTCONF {{!RFC8040}}.
-   The NETCONF access control model {{!RFC8341}} provides the means to
-   restrict access for particular NETCONF users to a preconfigured
-   subset of all available NETCONF protocol operations and content.
+The configuration, state, and action data defined in this document
+are designed to be accessed via a management protocol with a secure
+transport layer, such as NETCONF {{!RFC6241}} or RESTCONF {{!RFC8040}}.
+The NETCONF access control model {{!RFC8341}} provides the means to
+restrict access for particular NETCONF users to a preconfigured
+subset of all available NETCONF protocol operations and content.
 
-   There are a number of data nodes defined in this YANG module that are
-   writable/creatable/deletable (i.e., config true, which is the
-   default).  These data nodes may be considered sensitive or vulnerable
-   in some network environments.  Write operations (e.g., edit-config)
-   to these data nodes without proper protection can have a negative
-   effect on network operations.  These are the subtrees and data nodes
-   and their sensitivity/vulnerability:
+There are a number of data nodes defined in this YANG module that are
+writable/creatable/deletable (i.e., config true, which is the
+default).  These data nodes may be considered sensitive or vulnerable
+in some network environments.  Write operations (e.g., edit-config)
+to these data nodes without proper protection can have a negative
+effect on network operations.  These are the subtrees and data nodes
+and their sensitivity/vulnerability:
 
-   -  /te:te/te:tunnels/te:tunnel
+-  /te:te/te:tunnels/te:tunnel
 
-   -  /te:te/.../te:te-bandwidth/te:technology
+-  /te:te/.../te:te-bandwidth/te:technology
 
-   -  /te:te/.../te:type/te:label/te:label-hop/te:te-label/te:technology
+-  /te:te/.../te:type/te:label/te:label-hop/te:te-label/te:technology
 
-   -  /te:te/.../te:label-restrictions/te:label-restriction/te:label-
-      start/te:te-label/te:technology
+-  /te:te/.../te:label-restrictions/te:label-restriction/te:label-
+   start/te:te-label/te:technology
 
-   -  /te:te/.../te:label-restrictions/te:label-restriction/te:label-
-      end/te:te-label/te:technology
+-  /te:te/.../te:label-restrictions/te:label-restriction/te:label-
+   end/te:te-label/te:technology
 
-   -  /te:te/.../te:label-restrictions/te:label-restriction/
+-  /te:te/.../te:label-restrictions/te:label-restriction/
 
-   Editors note: we are using simplified description by folding similar
-   branches to avoid repetition.
+Editors note: we are using simplified description by folding similar
+branches to avoid repetition.
 
 # IANA Considerations
 
-   It is proposed to IANA to assign new URIs from the "IETF XML
-   Registry" {{!RFC3688}} as follows:
+This document requests IANA to register the following URIs in the "ns" subregistry within the "IETF XML Registry" {{!RFC3688}}. Following the format in {{!RFC3688}}, the following registrations are requested.
 
 ~~~~
    URI: urn:ietf:params:xml:ns:yang:ietf-wdm-tunnel
@@ -326,8 +324,7 @@ are optional to support both situations.
    XML: N/A; the requested URI is an XML namespace.
 ~~~~
 
-   This document registers the following YANG module in the YANG Module Names
-   registry {{!RFC6020}}.
+This document requests IANA to register the following YANG modules in the "IANA Module Names" {{!RFC6020}}. Following the format in {{!RFC6020}}, the following registrations are requested:
 
 ~~~~
    name: ietf-wdm-tunnel
@@ -336,13 +333,15 @@ are optional to support both situations.
    reference: RFC XXXX
 ~~~~
 
+RFC Editor: Please replace XXXX with the RFC number assigned to this document.
+
 --- back
 
 # Acknowledgments
 {:numbered="false"}
 
-   This work is also partially funded by the Spanish State Research
-   Agency under the project AgileMon (AEI PID2019-104451RB-C21) and by
-   the Spanish Ministry of Science, Innovation and Universities under
-   the program for the training of university lecturers (Grant number:
-   FPU19/05678).
+This work is also partially funded by the Spanish State Research
+Agency under the project AgileMon (AEI PID2019-104451RB-C21) and by
+the Spanish Ministry of Science, Innovation and Universities under
+the program for the training of university lecturers (Grant number:
+FPU19/05678).
