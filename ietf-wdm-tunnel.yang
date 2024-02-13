@@ -121,12 +121,19 @@ module ietf-wdm-tunnel {
     }
 
     uses tx-tune-constraints;
+    uses l0-types:common-transceiver-configured-param;
+	
+    leaf preferred-rx-channel-power {
+      type l0-types:power-dbm;
+      description
+        "The preferred channel received power.";
+    }
   }
 
-  grouping path-transceiver-config-grp {
+  grouping transceiver-config-grp {
     description
-      "This grouping defines explicit transceiver configurations
-       on an end-to-end path.";
+      "This grouping defines explicit transceiver
+       configurations.";
 
     leaf transponder-id {
       type uint32;
@@ -152,23 +159,33 @@ module ietf-wdm-tunnel {
         description
         "transceiver identifier";
       }
+
+      uses transceiver-constraints-grp;
     }
-      
-    uses transceiver-constraints-grp;
   }
-  
-  grouping path-transceiver-grp {
+
+  grouping path-transceiver-config-grp {
     description
-      "This grouping defines group of transceivers on a node
-       functioning as starting, terminating transceivers, or
-       regenerators.";
+      "This grouping defines a set of transceivers on a node,
+       serving as either starting transceivers, terminating
+       transceivers, or regenerators. The position of each
+       transceiver is determined by the direction of the path.
+       For instance, consider the following uni-directional
+       path with nodes labeled A, B, and C, where a, b1, b2,
+       and c correspond to transceivers on the nodes:
+          A(a) --> (b1)B(b2) --> (c)C
+
+       - Use path-out-transceiver for the starting transceiver
+         a and the regenerator transceiver b2.
+       - Use path-in-transceiver for the terminating transceiver
+         c and the regenerator transceiver b1.";
 
     container path-in-transceiver {
       description
         "Constraints for incoming direction transceiver
          configurations";
 
-      uses path-transceiver-config-grp;
+      uses transceiver-config-grp;
     }
 
     container path-out-transceiver {
@@ -176,7 +193,62 @@ module ietf-wdm-tunnel {
         "Constraints for outgoing direction transceiver
          configurations";
 
-      uses path-transceiver-config-grp;
+      uses transceiver-config-grp;
+    }
+  }
+
+  grouping transceiver-state-grp {
+    description
+      "This grouping includes common transceiver state
+       information.";
+
+    leaf transponder-id {
+      type uint32;
+      description "transponder identifier";
+    }
+
+    list transceivers {
+      key "lane-id";
+      description
+        "List of transceivers for all lanes.";
+
+      leaf lane-id {
+        type uint8;
+        must '. >= 1' {
+          error-message
+            "Lane identifier must be greater than or equal to 1.";
+        }
+        description
+          "Lane identifier starting from 1.";
+      }
+      leaf transceiver-id {
+        type uint32;
+        description
+        "transceiver identifier";
+      }
+
+      uses l0-types:common-transceiver-readonly-param;
+    }
+  }
+
+  grouping path-transceiver-state-grp {
+    description
+      "This grouping defines the state of transceivers on a
+       node functioning as starting, terminating transceivers,
+       or regenerators.";
+
+    container path-in-transceiver {
+      description
+        "Transceiver state on the incoming direction.";
+
+      uses transceiver-state-grp;
+    }
+
+    container path-out-transceiver {
+      description
+        "Transceiver state on the outgoing direction.";
+
+      uses transceiver-state-grp;
     }
   }
   
@@ -254,8 +326,7 @@ module ietf-wdm-tunnel {
            planning considerations.";
       }
       leaf delta-power {
-        type l0-types:ratio-in-db;
-        units "dB";
+        type l0-types:power-ratio;
         description
           "Delta power in dB indicating the per-channel power
            deviation from the nominal power per channel at the
@@ -307,7 +378,7 @@ module ietf-wdm-tunnel {
     description
       "Augment TE primary path with transceiver configurations.";
       
-    uses path-transceiver-grp;
+    uses path-transceiver-config-grp;
   }
 
   /*
@@ -324,7 +395,40 @@ module ietf-wdm-tunnel {
       "Augment TE primary reverse path with transceiver
        configurations.";
       
-    uses path-transceiver-grp;
+    uses path-transceiver-config-grp;
+  }
+
+  /*
+   * Transceiver constraints for secondary path
+   * Applicable to starting, terminating and regenerator
+   * transceivers.
+   */
+  augment "/te:te/te:tunnels/te:tunnel/te:secondary-paths/"
+        + "te:secondary-path/te:explicit-route-objects-always/"
+        + "te:route-object-exclude-always/te:type/"
+        + "te:numbered-node-hop/te:numbered-node-hop" {
+    description
+      "Augment TE secondary path with transceiver configurations.";
+      
+    uses path-transceiver-config-grp;
+  }
+
+  /*
+   * Transceiver constraints for secondary reverse path
+   * Applicable to starting, terminating and regenerator
+   * transceivers.
+   */
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:secondary-reverse-paths/"
+        + "te:secondary-reverse-path/"
+        + "te:explicit-route-objects-always/"
+        + "te:route-object-exclude-always/te:type/"
+        + "te:numbered-node-hop/te:numbered-node-hop" {
+    description
+      "Augment TE secondary reverse path with transceiver
+       configurations.";
+      
+    uses path-transceiver-config-grp;
   }
 
   /*
@@ -354,39 +458,6 @@ module ietf-wdm-tunnel {
   }
 
   /*
-   * Transceiver constraints for secondary path
-   * Applicable to starting, terminating and regenerator
-   * transceivers.
-   */
-  augment "/te:te/te:tunnels/te:tunnel/te:secondary-paths/"
-        + "te:secondary-path/te:explicit-route-objects-always/"
-        + "te:route-object-exclude-always/te:type/"
-        + "te:numbered-node-hop/te:numbered-node-hop" {
-    description
-      "Augment TE secondary path with transceiver configurations.";
-      
-    uses path-transceiver-grp;
-  }
-
-  /*
-   * Transceiver constraints for secondary reverse path
-   * Applicable to starting, terminating and regenerator
-   * transceivers.
-   */
-  augment "/te:te/te:tunnels/te:tunnel/"
-        + "te:secondary-reverse-paths/"
-        + "te:secondary-reverse-path/"
-        + "te:explicit-route-objects-always/"
-        + "te:route-object-exclude-always/te:type/"
-        + "te:numbered-node-hop/te:numbered-node-hop" {
-    description
-      "Augment TE secondary reverse path with transceiver
-       configurations.";
-      
-    uses path-transceiver-grp;
-  }
-
-  /*
    * Computed path properties for secondary path.
    */
   augment "/te:te/te:tunnels/te:tunnel/te:secondary-paths/"
@@ -412,6 +483,67 @@ module ietf-wdm-tunnel {
   }
 
   /*
+   * Computed transceiver properties for primary path.
+   */
+  augment "/te:te/te:tunnels/te:tunnel/te:primary-paths/"
+        + "te:primary-path/te:computed-paths-properties/"
+        + "te:computed-path-properties/te:path-properties/"
+        + "te:path-route-objects/te:path-route-object/"
+        + "te:type/te:numbered-node-hop/te:numbered-node-hop" {
+    description
+      "Augment TE computed primary path with transceiver
+       properties.";
+      
+    uses path-transceiver-state-grp;
+  }
+
+  /*
+   * Computed transceiver properties for primary reverse path.
+   */
+  augment "/te:te/te:tunnels/te:tunnel/te:primary-paths/"
+        + "te:primary-path/te:primary-reverse-path/"
+        + "te:computed-paths-properties/"
+        + "te:computed-path-properties/te:path-properties/"
+        + "te:path-route-objects/te:path-route-object/"
+        + "te:type/te:numbered-node-hop/te:numbered-node-hop" {
+    description
+      "Augment TE computed primary path with transceiver
+       properties.";
+      
+    uses path-transceiver-state-grp;
+  }
+
+  /*
+   * Computed transceiver properties for secondary path.
+   */
+  augment "/te:te/te:tunnels/te:tunnel/te:secondary-paths/"
+        + "te:secondary-path/te:computed-paths-properties/"
+        + "te:computed-path-properties/te:path-properties/"
+        + "te:path-route-objects/te:path-route-object/"
+        + "te:type/te:numbered-node-hop/te:numbered-node-hop" {
+    description
+      "Augment TE computed primary path with transceiver
+       properties.";
+      
+    uses path-transceiver-state-grp;
+  }
+
+  /*
+   * Computed transceiver properties for secondary reverse path.
+   */
+  augment "/te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths/"
+        + "te:secondary-reverse-path/te:computed-paths-properties/"
+        + "te:computed-path-properties/te:path-properties/"
+        + "te:path-route-objects/te:path-route-object/"
+        + "te:type/te:numbered-node-hop/te:numbered-node-hop" {
+    description
+      "Augment TE computed primary path with transceiver
+       properties.";
+      
+    uses path-transceiver-state-grp;
+  }
+
+  /*
    * WDM path state
    */
   augment "/te:te/te:lsps/te:lsp/"
@@ -420,6 +552,19 @@ module ietf-wdm-tunnel {
       "Augment TE LSP to with WDM path state.";
       
     uses wdm-path-state;
+  }
+
+  /*
+   * Actual transceiver state.
+   */
+  augment "/te:te/te:lsps/te:lsp/"
+        + "te:lsp-actual-route-information/"
+        + "te:lsp-actual-route-information/te:type/"
+        + "te:numbered-node-hop/te:numbered-node-hop" {
+    description
+      "Augment TE LSP to with WDM path state.";
+      
+    uses path-transceiver-state-grp;
   }
 
   /*

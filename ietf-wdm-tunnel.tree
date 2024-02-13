@@ -3,69 +3,144 @@ module: ietf-wdm-tunnel
   augment /te:te/te:tunnels/te:tunnel:
     +--rw wdm-constraint
        +--rw transceiver-constraint
-       |  +--rw operational-modes*     string
+       |  +--rw operational-modes*            string
        |  +--rw tx-tune-constraints
-       |     +--rw min-central-frequency?    frequency-thz
-       |     +--rw max-central-frequency?    frequency-thz
-       |     +--rw transceiver-tunability?   frequency-ghz
-       +--rw gsnr-margin?                   snr
+       |  |  +--rw min-central-frequency?    frequency-thz
+       |  |  +--rw max-central-frequency?    frequency-thz
+       |  |  +--rw transceiver-tunability?   frequency-ghz
+       |  +--rw line-coding-bitrate?          identityref
+       |  +--rw tx-channel-power?             power-dbm-or-null
+       |  +--rw preferred-rx-channel-power?   l0-types:power-dbm
+       +--rw gsnr-extra-margin?             snr
        +--rw use-regen?                     boolean
        +--rw wavelength-conversion?         boolean
-       +--rw bit-stuffing?                  boolean
        +--rw wavelength-assignment?         identityref
        +--rw guard-band-size?               l0-types:frequency-thz
        +--rw matching-fwd-rev-wavelength?   boolean
        +--rw allow-retuning?                boolean
-       +--rw delta-power?                   l0-types:ratio-in-db
+       +--rw delta-power?                   l0-types:power-ratio
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:explicit-route-objects-always
             /te:route-object-exclude-always/te:type
             /te:numbered-node-hop/te:numbered-node-hop:
     +--rw path-in-transceiver
-    |  +--rw transponder-id?        uint32
+    |  +--rw transponder-id?   uint32
     |  +--rw transceivers* [lane-id]
-    |  |  +--rw lane-id           uint8
-    |  |  +--rw transceiver-id?   uint32
-    |  +--rw operational-modes*     string
-    |  +--rw tx-tune-constraints
-    |     +--rw min-central-frequency?    frequency-thz
-    |     +--rw max-central-frequency?    frequency-thz
-    |     +--rw transceiver-tunability?   frequency-ghz
+    |     +--rw lane-id                       uint8
+    |     +--rw transceiver-id?               uint32
+    |     +--rw operational-modes*            string
+    |     +--rw tx-tune-constraints
+    |     |  +--rw min-central-frequency?    frequency-thz
+    |     |  +--rw max-central-frequency?    frequency-thz
+    |     |  +--rw transceiver-tunability?   frequency-ghz
+    |     +--rw line-coding-bitrate?          identityref
+    |     +--rw tx-channel-power?             power-dbm-or-null
+    |     +--rw preferred-rx-channel-power?   l0-types:power-dbm
     +--rw path-out-transceiver
-       +--rw transponder-id?        uint32
+       +--rw transponder-id?   uint32
        +--rw transceivers* [lane-id]
-       |  +--rw lane-id           uint8
-       |  +--rw transceiver-id?   uint32
-       +--rw operational-modes*     string
-       +--rw tx-tune-constraints
-          +--rw min-central-frequency?    frequency-thz
-          +--rw max-central-frequency?    frequency-thz
-          +--rw transceiver-tunability?   frequency-ghz
+          +--rw lane-id                       uint8
+          +--rw transceiver-id?               uint32
+          +--rw operational-modes*            string
+          +--rw tx-tune-constraints
+          |  +--rw min-central-frequency?    frequency-thz
+          |  +--rw max-central-frequency?    frequency-thz
+          |  +--rw transceiver-tunability?   frequency-ghz
+          +--rw line-coding-bitrate?          identityref
+          +--rw tx-channel-power?             power-dbm-or-null
+          +--rw preferred-rx-channel-power?   l0-types:power-dbm
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:primary-reverse-path
             /te:explicit-route-objects-always
             /te:route-object-exclude-always/te:type
             /te:numbered-node-hop/te:numbered-node-hop:
     +--rw path-in-transceiver
-    |  +--rw transponder-id?        uint32
+    |  +--rw transponder-id?   uint32
     |  +--rw transceivers* [lane-id]
-    |  |  +--rw lane-id           uint8
-    |  |  +--rw transceiver-id?   uint32
-    |  +--rw operational-modes*     string
-    |  +--rw tx-tune-constraints
-    |     +--rw min-central-frequency?    frequency-thz
-    |     +--rw max-central-frequency?    frequency-thz
-    |     +--rw transceiver-tunability?   frequency-ghz
+    |     +--rw lane-id                       uint8
+    |     +--rw transceiver-id?               uint32
+    |     +--rw operational-modes*            string
+    |     +--rw tx-tune-constraints
+    |     |  +--rw min-central-frequency?    frequency-thz
+    |     |  +--rw max-central-frequency?    frequency-thz
+    |     |  +--rw transceiver-tunability?   frequency-ghz
+    |     +--rw line-coding-bitrate?          identityref
+    |     +--rw tx-channel-power?             power-dbm-or-null
+    |     +--rw preferred-rx-channel-power?   l0-types:power-dbm
     +--rw path-out-transceiver
-       +--rw transponder-id?        uint32
+       +--rw transponder-id?   uint32
        +--rw transceivers* [lane-id]
-       |  +--rw lane-id           uint8
-       |  +--rw transceiver-id?   uint32
-       +--rw operational-modes*     string
-       +--rw tx-tune-constraints
-          +--rw min-central-frequency?    frequency-thz
-          +--rw max-central-frequency?    frequency-thz
-          +--rw transceiver-tunability?   frequency-ghz
+          +--rw lane-id                       uint8
+          +--rw transceiver-id?               uint32
+          +--rw operational-modes*            string
+          +--rw tx-tune-constraints
+          |  +--rw min-central-frequency?    frequency-thz
+          |  +--rw max-central-frequency?    frequency-thz
+          |  +--rw transceiver-tunability?   frequency-ghz
+          +--rw line-coding-bitrate?          identityref
+          +--rw tx-channel-power?             power-dbm-or-null
+          +--rw preferred-rx-channel-power?   l0-types:power-dbm
+  augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+            /te:secondary-path/te:explicit-route-objects-always
+            /te:route-object-exclude-always/te:type
+            /te:numbered-node-hop/te:numbered-node-hop:
+    +--rw path-in-transceiver
+    |  +--rw transponder-id?   uint32
+    |  +--rw transceivers* [lane-id]
+    |     +--rw lane-id                       uint8
+    |     +--rw transceiver-id?               uint32
+    |     +--rw operational-modes*            string
+    |     +--rw tx-tune-constraints
+    |     |  +--rw min-central-frequency?    frequency-thz
+    |     |  +--rw max-central-frequency?    frequency-thz
+    |     |  +--rw transceiver-tunability?   frequency-ghz
+    |     +--rw line-coding-bitrate?          identityref
+    |     +--rw tx-channel-power?             power-dbm-or-null
+    |     +--rw preferred-rx-channel-power?   l0-types:power-dbm
+    +--rw path-out-transceiver
+       +--rw transponder-id?   uint32
+       +--rw transceivers* [lane-id]
+          +--rw lane-id                       uint8
+          +--rw transceiver-id?               uint32
+          +--rw operational-modes*            string
+          +--rw tx-tune-constraints
+          |  +--rw min-central-frequency?    frequency-thz
+          |  +--rw max-central-frequency?    frequency-thz
+          |  +--rw transceiver-tunability?   frequency-ghz
+          +--rw line-coding-bitrate?          identityref
+          +--rw tx-channel-power?             power-dbm-or-null
+          +--rw preferred-rx-channel-power?   l0-types:power-dbm
+  augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
+            /te:secondary-reverse-path
+            /te:explicit-route-objects-always
+            /te:route-object-exclude-always/te:type
+            /te:numbered-node-hop/te:numbered-node-hop:
+    +--rw path-in-transceiver
+    |  +--rw transponder-id?   uint32
+    |  +--rw transceivers* [lane-id]
+    |     +--rw lane-id                       uint8
+    |     +--rw transceiver-id?               uint32
+    |     +--rw operational-modes*            string
+    |     +--rw tx-tune-constraints
+    |     |  +--rw min-central-frequency?    frequency-thz
+    |     |  +--rw max-central-frequency?    frequency-thz
+    |     |  +--rw transceiver-tunability?   frequency-ghz
+    |     +--rw line-coding-bitrate?          identityref
+    |     +--rw tx-channel-power?             power-dbm-or-null
+    |     +--rw preferred-rx-channel-power?   l0-types:power-dbm
+    +--rw path-out-transceiver
+       +--rw transponder-id?   uint32
+       +--rw transceivers* [lane-id]
+          +--rw lane-id                       uint8
+          +--rw transceiver-id?               uint32
+          +--rw operational-modes*            string
+          +--rw tx-tune-constraints
+          |  +--rw min-central-frequency?    frequency-thz
+          |  +--rw max-central-frequency?    frequency-thz
+          |  +--rw transceiver-tunability?   frequency-ghz
+          +--rw line-coding-bitrate?          identityref
+          +--rw tx-channel-power?             power-dbm-or-null
+          +--rw preferred-rx-channel-power?   l0-types:power-dbm
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:computed-paths-properties
             /te:computed-path-properties/te:path-properties:
@@ -80,55 +155,6 @@ module: ietf-wdm-tunnel
     +--ro estimated-eol-gsnr?      snr
     +--ro estimated-lowest-gsnr?   snr
   augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
-            /te:secondary-path/te:explicit-route-objects-always
-            /te:route-object-exclude-always/te:type
-            /te:numbered-node-hop/te:numbered-node-hop:
-    +--rw path-in-transceiver
-    |  +--rw transponder-id?        uint32
-    |  +--rw transceivers* [lane-id]
-    |  |  +--rw lane-id           uint8
-    |  |  +--rw transceiver-id?   uint32
-    |  +--rw operational-modes*     string
-    |  +--rw tx-tune-constraints
-    |     +--rw min-central-frequency?    frequency-thz
-    |     +--rw max-central-frequency?    frequency-thz
-    |     +--rw transceiver-tunability?   frequency-ghz
-    +--rw path-out-transceiver
-       +--rw transponder-id?        uint32
-       +--rw transceivers* [lane-id]
-       |  +--rw lane-id           uint8
-       |  +--rw transceiver-id?   uint32
-       +--rw operational-modes*     string
-       +--rw tx-tune-constraints
-          +--rw min-central-frequency?    frequency-thz
-          +--rw max-central-frequency?    frequency-thz
-          +--rw transceiver-tunability?   frequency-ghz
-  augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
-            /te:secondary-reverse-path
-            /te:explicit-route-objects-always
-            /te:route-object-exclude-always/te:type
-            /te:numbered-node-hop/te:numbered-node-hop:
-    +--rw path-in-transceiver
-    |  +--rw transponder-id?        uint32
-    |  +--rw transceivers* [lane-id]
-    |  |  +--rw lane-id           uint8
-    |  |  +--rw transceiver-id?   uint32
-    |  +--rw operational-modes*     string
-    |  +--rw tx-tune-constraints
-    |     +--rw min-central-frequency?    frequency-thz
-    |     +--rw max-central-frequency?    frequency-thz
-    |     +--rw transceiver-tunability?   frequency-ghz
-    +--rw path-out-transceiver
-       +--rw transponder-id?        uint32
-       +--rw transceivers* [lane-id]
-       |  +--rw lane-id           uint8
-       |  +--rw transceiver-id?   uint32
-       +--rw operational-modes*     string
-       +--rw tx-tune-constraints
-          +--rw min-central-frequency?    frequency-thz
-          +--rw max-central-frequency?    frequency-thz
-          +--rw transceiver-tunability?   frequency-ghz
-  augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
             /te:secondary-path/te:computed-paths-properties
             /te:computed-path-properties/te:path-properties:
     +--ro estimated-gsnr?          snr
@@ -140,9 +166,103 @@ module: ietf-wdm-tunnel
     +--ro estimated-gsnr?          snr
     +--ro estimated-eol-gsnr?      snr
     +--ro estimated-lowest-gsnr?   snr
+  augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+            /te:primary-path/te:computed-paths-properties
+            /te:computed-path-properties/te:path-properties
+            /te:path-route-objects/te:path-route-object/te:type
+            /te:numbered-node-hop/te:numbered-node-hop:
+    +--ro path-in-transceiver
+    |  +--ro transponder-id?   uint32
+    |  +--ro transceivers* [lane-id]
+    |     +--ro lane-id             uint8
+    |     +--ro transceiver-id?     uint32
+    |     +--ro rx-channel-power?   power-dbm-or-null
+    |     +--ro rx-total-power?     power-dbm-or-null
+    +--ro path-out-transceiver
+       +--ro transponder-id?   uint32
+       +--ro transceivers* [lane-id]
+          +--ro lane-id             uint8
+          +--ro transceiver-id?     uint32
+          +--ro rx-channel-power?   power-dbm-or-null
+          +--ro rx-total-power?     power-dbm-or-null
+  augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+            /te:primary-path/te:primary-reverse-path
+            /te:computed-paths-properties/te:computed-path-properties
+            /te:path-properties/te:path-route-objects
+            /te:path-route-object/te:type/te:numbered-node-hop
+            /te:numbered-node-hop:
+    +--ro path-in-transceiver
+    |  +--ro transponder-id?   uint32
+    |  +--ro transceivers* [lane-id]
+    |     +--ro lane-id             uint8
+    |     +--ro transceiver-id?     uint32
+    |     +--ro rx-channel-power?   power-dbm-or-null
+    |     +--ro rx-total-power?     power-dbm-or-null
+    +--ro path-out-transceiver
+       +--ro transponder-id?   uint32
+       +--ro transceivers* [lane-id]
+          +--ro lane-id             uint8
+          +--ro transceiver-id?     uint32
+          +--ro rx-channel-power?   power-dbm-or-null
+          +--ro rx-total-power?     power-dbm-or-null
+  augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+            /te:secondary-path/te:computed-paths-properties
+            /te:computed-path-properties/te:path-properties
+            /te:path-route-objects/te:path-route-object/te:type
+            /te:numbered-node-hop/te:numbered-node-hop:
+    +--ro path-in-transceiver
+    |  +--ro transponder-id?   uint32
+    |  +--ro transceivers* [lane-id]
+    |     +--ro lane-id             uint8
+    |     +--ro transceiver-id?     uint32
+    |     +--ro rx-channel-power?   power-dbm-or-null
+    |     +--ro rx-total-power?     power-dbm-or-null
+    +--ro path-out-transceiver
+       +--ro transponder-id?   uint32
+       +--ro transceivers* [lane-id]
+          +--ro lane-id             uint8
+          +--ro transceiver-id?     uint32
+          +--ro rx-channel-power?   power-dbm-or-null
+          +--ro rx-total-power?     power-dbm-or-null
+  augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
+            /te:secondary-reverse-path/te:computed-paths-properties
+            /te:computed-path-properties/te:path-properties
+            /te:path-route-objects/te:path-route-object/te:type
+            /te:numbered-node-hop/te:numbered-node-hop:
+    +--ro path-in-transceiver
+    |  +--ro transponder-id?   uint32
+    |  +--ro transceivers* [lane-id]
+    |     +--ro lane-id             uint8
+    |     +--ro transceiver-id?     uint32
+    |     +--ro rx-channel-power?   power-dbm-or-null
+    |     +--ro rx-total-power?     power-dbm-or-null
+    +--ro path-out-transceiver
+       +--ro transponder-id?   uint32
+       +--ro transceivers* [lane-id]
+          +--ro lane-id             uint8
+          +--ro transceiver-id?     uint32
+          +--ro rx-channel-power?   power-dbm-or-null
+          +--ro rx-total-power?     power-dbm-or-null
   augment /te:te/te:lsps/te:lsp/te:lsp-actual-route-information:
     +--ro wdm-path-state
        +--ro gsnr?   l0-types:snr
+  augment /te:te/te:lsps/te:lsp/te:lsp-actual-route-information
+            /te:lsp-actual-route-information/te:type
+            /te:numbered-node-hop/te:numbered-node-hop:
+    +--ro path-in-transceiver
+    |  +--ro transponder-id?   uint32
+    |  +--ro transceivers* [lane-id]
+    |     +--ro lane-id             uint8
+    |     +--ro transceiver-id?     uint32
+    |     +--ro rx-channel-power?   power-dbm-or-null
+    |     +--ro rx-total-power?     power-dbm-or-null
+    +--ro path-out-transceiver
+       +--ro transponder-id?   uint32
+       +--ro transceivers* [lane-id]
+          +--ro lane-id             uint8
+          +--ro transceiver-id?     uint32
+          +--ro rx-channel-power?   power-dbm-or-null
+          +--ro rx-total-power?     power-dbm-or-null
   augment /te:te/te:globals/te:named-path-constraints
             /te:named-path-constraint/te:path-in-segment
             /te:label-restrictions/te:label-restriction:
