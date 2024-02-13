@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-02-11T00:53:52.435399+00:00",
+  "timestamp": "2024-02-13T00:50:34.304975+00:00",
   "repo": "ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang",
   "labels": [
     {
@@ -1256,7 +1256,7 @@
         },
         {
           "author": "agva123",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "body": "New text proposal:\r\n\r\n>>\r\nOTSiG is a management construct that represents a group of optical tributary signals (OTSi) each \r\ncharacterized by their central frequency and an application identifier. When present, the frequency slots of the OTSis within an OTSiG are allocated and are usually co-routed to the destination.\r\n\r\nAn OTSiG may be configured by management operations or automatic operations through control plane or SDN controller. When configurating a flex-grid tunnel from an SDN controller, the controller shall be responsible for driving the creation of the corresponding OTSiGs in the management system. \r\n\r\nWhen computing path for a flex-grid tunnel, a path computation server may assign an appropriate network-unique OTSiG identifier along with local OTSi identifiers (unique within the scope of the OTSiG) and return this information as part of the computed path properties.\r\n<<\r\n",
           "createdAt": "2022-03-04T15:00:04Z",
           "updatedAt": "2022-04-07T12:18:24Z"
@@ -1609,7 +1609,7 @@
             "abbreviatedOid": "dab57f6"
           },
           "author": "agva123",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2021-02-10T15:23:40Z",
@@ -1629,7 +1629,7 @@
             "abbreviatedOid": "dab57f6"
           },
           "author": "agva123",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "APPROVED",
           "body": "Model alignment changes of flex-grid-yang with ietf-te looks good with me. The comment at the last line of ietf-layer0-types-ext.yang needs to be removed as per my previous comment, otherwise compilation with pyang and yanglint passed with no warnings. ",
           "createdAt": "2021-02-10T15:28:17Z",
@@ -1699,7 +1699,7 @@
             "abbreviatedOid": "c517fbc"
           },
           "author": "agva123",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "APPROVED",
           "body": "",
           "createdAt": "2021-08-04T17:54:48Z",
@@ -1891,24 +1891,26 @@
       "id": "PR_kwDOEHme9c5gmUq2",
       "title": "Update YANG models",
       "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/pull/62",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "aguoietf",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "Summary of the updates:\r\n- Added Esther, Julien, Gert, Roberto as contributors\r\n- Updated the type for delta-power to ratio-in-db\r\n- Updated YANG trees, txt and xml \r\n- Moved dependent YANG files to the yang-dep folder\r\n\r\n---\r\n\r\nPending merge of https://github.com/ietf-ccamp-wg/ietf-ccamp-layer0-types-ext-RFC9093-bis/pull/82",
       "createdAt": "2023-11-28T20:39:13Z",
-      "updatedAt": "2024-02-01T14:14:46Z",
+      "updatedAt": "2024-02-12T22:26:35Z",
       "baseRepository": "ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang",
       "baseRefName": "main",
-      "baseRefOid": "588e5da298a394993a3a68c93f4a8e116b54257c",
+      "baseRefOid": "805b2189468abe5bd36daa49cb80a67634321ea9",
       "headRepository": "aguoietf/draft-ietf-ccamp-wdm-tunnel-yang",
       "headRefName": "master",
-      "headRefOid": "a60b6d4f64340155da81815e2d91875076d0709b",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "92b00438b42f54e1a0ea1bb74e5efc39827901ee",
+      "closedAt": "2024-02-12T22:26:35Z",
+      "mergedAt": "2024-02-12T22:26:35Z",
+      "mergedBy": "aguoietf",
+      "mergeCommit": {
+        "oid": "36dead767f792427761844922cadf14007801b23"
+      },
       "comments": [
         {
           "author": "italobusi",
@@ -1935,27 +1937,27 @@
         {
           "id": "PRR_kwDOEHme9c5qNG6L",
           "commit": {
-            "abbreviatedOid": "a60b6d4"
+            "abbreviatedOid": "92b0043"
           },
           "author": "italobusi",
           "authorAssociation": "MEMBER",
           "state": "APPROVED",
           "body": "",
           "createdAt": "2023-12-14T13:31:47Z",
-          "updatedAt": "2023-12-14T13:31:47Z",
+          "updatedAt": "2024-02-12T21:52:36Z",
           "comments": []
         },
         {
           "id": "PRR_kwDOEHme9c5uqClp",
           "commit": {
-            "abbreviatedOid": "a60b6d4"
+            "abbreviatedOid": "92b0043"
           },
           "author": "ggalimba56",
           "authorAssociation": "NONE",
           "state": "APPROVED",
           "body": "",
           "createdAt": "2024-02-01T13:38:16Z",
-          "updatedAt": "2024-02-01T14:14:46Z",
+          "updatedAt": "2024-02-12T21:52:36Z",
           "comments": [
             {
               "originalPosition": 263,
@@ -1974,6 +1976,66 @@
               "body": "I have a doubt here, I agree to define the grid-type in this way but we should also specify the ITU-T grid.  e.g. in fixed-dmdm we have the 100 GHz and 50GHz grids.  w/o this further parameter the didm-n value does not have sense.",
               "createdAt": "2024-02-01T13:57:31Z",
               "updatedAt": "2024-02-01T14:14:47Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOEHme9c5v2JeO",
+          "commit": {
+            "abbreviatedOid": "9352479"
+          },
+          "author": "aguoietf",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-12T22:19:22Z",
+          "updatedAt": "2024-02-12T22:19:23Z",
+          "comments": [
+            {
+              "originalPosition": 181,
+              "body": "Yes they are covered by the TE tunnel model from which wdm tunnel model augments",
+              "createdAt": "2024-02-12T22:19:23Z",
+              "updatedAt": "2024-02-12T22:19:23Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOEHme9c5v2Jhj",
+          "commit": {
+            "abbreviatedOid": "9352479"
+          },
+          "author": "aguoietf",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-12T22:19:31Z",
+          "updatedAt": "2024-02-12T22:19:31Z",
+          "comments": [
+            {
+              "originalPosition": 263,
+              "body": "ok updated",
+              "createdAt": "2024-02-12T22:19:31Z",
+              "updatedAt": "2024-02-12T22:19:31Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOEHme9c5v2Ld6",
+          "commit": {
+            "abbreviatedOid": "9352479"
+          },
+          "author": "aguoietf",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-12T22:25:58Z",
+          "updatedAt": "2024-02-12T22:25:58Z",
+          "comments": [
+            {
+              "originalPosition": 601,
+              "body": "I think this information about channel spacing is already defined in the label-step augments for fixed DWDM:\r\nwson-dwdm-channel-spacing is an identityref which contains ITU-T G.694.1 defined DWDM grids.\r\n\u00a0\r\n~~~\r\n  augment /te:te/te:tunnels/te:tunnel/te:primary-paths\r\n            /te:primary-path/te:path-in-segment/te:label-restrictions\r\n            /te:label-restriction/te:label-step/te:technology:\r\n    +--:(wdm)\r\n       +--rw (l0-grid-type)?\r\n          +--:(fixed-dwdm)\r\n          |  +--rw wson-dwdm-channel-spacing?    identityref\r\n          +--:(cwdm)\r\n          |  +--rw wson-cwdm-channel-spacing?    identityref\r\n          +--:(flexi-grid)\r\n             x--rw flexi-grid-channel-spacing?   identityref\r\n             +--rw flexi-ncfg?                   identityref\r\n             +--rw flexi-n-step?                 uint8\r\n~~~",
+              "createdAt": "2024-02-12T22:25:58Z",
+              "updatedAt": "2024-02-12T22:25:58Z"
             }
           ]
         }
