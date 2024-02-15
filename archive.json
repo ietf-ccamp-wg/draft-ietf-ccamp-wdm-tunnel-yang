@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-02-13T00:50:34.304975+00:00",
+  "timestamp": "2024-02-15T00:50:37.367536+00:00",
   "repo": "ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang",
   "labels": [
     {
@@ -2040,6 +2040,32 @@
           ]
         }
       ]
+    },
+    {
+      "number": 65,
+      "id": "PR_kwDOEHme9c5myv_s",
+      "title": "YANG and text model updates for WDM tunnel model",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/pull/65",
+      "state": "OPEN",
+      "author": "aguoietf",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "YANG and text update for the following issue: \r\n\r\n- fix typo in text\r\n- added preferred-rx-channel-power as a transceiver constraint; \r\n- sync'ed with l0-types for rw/ro split of transceiver parameters; \r\n- added augments for reporting estimated transceiver properties on computed paths; \r\n- added augments for reporting actual transceiver properties on LSPs\"\r\n",
+      "createdAt": "2024-02-13T20:37:59Z",
+      "updatedAt": "2024-02-13T20:38:00Z",
+      "baseRepository": "ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang",
+      "baseRefName": "main",
+      "baseRefOid": "36dead767f792427761844922cadf14007801b23",
+      "headRepository": "aguoietf/draft-ietf-ccamp-wdm-tunnel-yang",
+      "headRefName": "master",
+      "headRefOid": "3fbd3448e9bdcd353a061444d932a7e6129a5d6b",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
     }
   ]
 }
