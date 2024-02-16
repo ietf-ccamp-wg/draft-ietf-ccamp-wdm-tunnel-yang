@@ -20,7 +20,7 @@ module: ietf-wdm-tunnel
        +--rw allow-retuning?                boolean
        +--rw delta-power?                   l0-types:power-ratio
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
-            /te:primary-path/te:explicit-route-objects-always
+            /te:primary-path/te:explicit-route-objects
             /te:route-object-exclude-always/te:type
             /te:numbered-node-hop/te:numbered-node-hop:
     +--rw path-in-transceiver
@@ -51,9 +51,8 @@ module: ietf-wdm-tunnel
           +--rw preferred-rx-channel-power?   l0-types:power-dbm
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:primary-reverse-path
-            /te:explicit-route-objects-always
-            /te:route-object-exclude-always/te:type
-            /te:numbered-node-hop/te:numbered-node-hop:
+            /te:explicit-route-objects/te:route-object-exclude-always
+            /te:type/te:numbered-node-hop/te:numbered-node-hop:
     +--rw path-in-transceiver
     |  +--rw transponder-id?   uint32
     |  +--rw transceivers* [lane-id]
@@ -81,7 +80,7 @@ module: ietf-wdm-tunnel
           +--rw tx-channel-power?             power-dbm-or-null
           +--rw preferred-rx-channel-power?   l0-types:power-dbm
   augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
-            /te:secondary-path/te:explicit-route-objects-always
+            /te:secondary-path/te:explicit-route-objects
             /te:route-object-exclude-always/te:type
             /te:numbered-node-hop/te:numbered-node-hop:
     +--rw path-in-transceiver
@@ -111,8 +110,7 @@ module: ietf-wdm-tunnel
           +--rw tx-channel-power?             power-dbm-or-null
           +--rw preferred-rx-channel-power?   l0-types:power-dbm
   augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
-            /te:secondary-reverse-path
-            /te:explicit-route-objects-always
+            /te:secondary-reverse-path/te:explicit-route-objects
             /te:route-object-exclude-always/te:type
             /te:numbered-node-hop/te:numbered-node-hop:
     +--rw path-in-transceiver
@@ -356,8 +354,7 @@ module: ietf-wdm-tunnel
        +--rw min-slot-width-factor?    uint16
        +--rw max-slot-width-factor?    uint16
   augment /te:te/te:globals/te:named-path-constraints
-            /te:named-path-constraint
-            /te:explicit-route-objects-always
+            /te:named-path-constraint/te:explicit-route-objects
             /te:route-object-exclude-always/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
     +--:(wdm)
@@ -385,8 +382,7 @@ module: ietf-wdm-tunnel
                          +--rw flexi-n    l0-types:flexi-n
                          +--rw flexi-m?   l0-types:flexi-m
   augment /te:te/te:globals/te:named-path-constraints
-            /te:named-path-constraint
-            /te:explicit-route-objects-always
+            /te:named-path-constraint/te:explicit-route-objects
             /te:route-object-include-exclude/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
     +--:(wdm)
@@ -548,7 +544,7 @@ module: ietf-wdm-tunnel
                          +--rw flexi-n    l0-types:flexi-n
                          +--rw flexi-m?   l0-types:flexi-m
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
-            /te:primary-path/te:explicit-route-objects-always
+            /te:primary-path/te:explicit-route-objects
             /te:route-object-exclude-always/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
     +--:(wdm)
@@ -576,7 +572,7 @@ module: ietf-wdm-tunnel
                          +--rw flexi-n    l0-types:flexi-n
                          +--rw flexi-m?   l0-types:flexi-m
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
-            /te:primary-path/te:explicit-route-objects-always
+            /te:primary-path/te:explicit-route-objects
             /te:route-object-include-exclude/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
     +--:(wdm)
@@ -769,9 +765,8 @@ module: ietf-wdm-tunnel
                          +--rw flexi-m?   l0-types:flexi-m
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:primary-reverse-path
-            /te:explicit-route-objects-always
-            /te:route-object-exclude-always/te:type/te:label
-            /te:label-hop/te:te-label/te:technology:
+            /te:explicit-route-objects/te:route-object-exclude-always
+            /te:type/te:label/te:label-hop/te:te-label/te:technology:
     +--:(wdm)
        +--rw (grid-type)?
           +--:(fixed-dwdm)
@@ -798,7 +793,7 @@ module: ietf-wdm-tunnel
                          +--rw flexi-m?   l0-types:flexi-m
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:primary-reverse-path
-            /te:explicit-route-objects-always
+            /te:explicit-route-objects
             /te:route-object-include-exclude/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
     +--:(wdm)
@@ -996,7 +991,7 @@ module: ietf-wdm-tunnel
                          +--rw flexi-n    l0-types:flexi-n
                          +--rw flexi-m?   l0-types:flexi-m
   augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
-            /te:secondary-path/te:explicit-route-objects-always
+            /te:secondary-path/te:explicit-route-objects
             /te:route-object-exclude-always/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
     +--:(wdm)
@@ -1024,7 +1019,7 @@ module: ietf-wdm-tunnel
                          +--rw flexi-n    l0-types:flexi-n
                          +--rw flexi-m?   l0-types:flexi-m
   augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
-            /te:secondary-path/te:explicit-route-objects-always
+            /te:secondary-path/te:explicit-route-objects
             /te:route-object-include-exclude/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
     +--:(wdm)
@@ -1217,8 +1212,7 @@ module: ietf-wdm-tunnel
                          +--rw flexi-n    l0-types:flexi-n
                          +--rw flexi-m?   l0-types:flexi-m
   augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
-            /te:secondary-reverse-path
-            /te:explicit-route-objects-always
+            /te:secondary-reverse-path/te:explicit-route-objects
             /te:route-object-exclude-always/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
     +--:(wdm)
@@ -1246,8 +1240,7 @@ module: ietf-wdm-tunnel
                          +--rw flexi-n    l0-types:flexi-n
                          +--rw flexi-m?   l0-types:flexi-m
   augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
-            /te:secondary-reverse-path
-            /te:explicit-route-objects-always
+            /te:secondary-reverse-path/te:explicit-route-objects
             /te:route-object-include-exclude/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
     +--:(wdm)

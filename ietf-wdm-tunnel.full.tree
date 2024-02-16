@@ -15,15 +15,15 @@ module: ietf-te
      |  +--rw named-path-constraints
      |     +--rw named-path-constraint* [name]
      |             {te-types:named-path-constraints}?
-     |        +--rw name                             string
+     |        +--rw name                      string
      |        +--rw te-bandwidth
      |        |  +--rw (technology)?
      |        |     +--:(generic)
      |        |        +--rw generic?   te-bandwidth
-     |        +--rw link-protection?                 identityref
-     |        +--rw setup-priority?                  uint8
-     |        +--rw hold-priority?                   uint8
-     |        +--rw signaling-type?                  identityref
+     |        +--rw link-protection?          identityref
+     |        +--rw setup-priority?           uint8
+     |        +--rw hold-priority?            uint8
+     |        +--rw signaling-type?           identityref
      |        +--rw path-metric-bounds
      |        |  +--rw path-metric-bound* [metric-type]
      |        |     +--rw metric-type    identityref
@@ -45,9 +45,8 @@ module: ietf-te
      |        |  +--rw path-srlgs-name* [usage]
      |        |     +--rw usage    identityref
      |        |     +--rw names*   string
-     |        +--rw disjointness?
-     |        |       te-path-disjointness
-     |        +--rw explicit-route-objects-always
+     |        +--rw disjointness?             te-path-disjointness
+     |        +--rw explicit-route-objects
      |        |  +--rw route-object-exclude-always* [index]
      |        |  |  +--rw index                        uint32
      |        |  |  +--rw (type)?
@@ -408,8 +407,7 @@ module: ietf-te
      |     +--rw hierarchy
      |     |  +--rw dependency-tunnels
      |     |  |  +--rw dependency-tunnel* [name]
-     |     |  |     +--rw name
-     |     |  |     |       -> /te/tunnels/tunnel/name
+     |     |  |     +--rw name              tunnel-ref
      |     |  |     +--rw encoding?         identityref
      |     |  |     +--rw switching-type?   identityref
      |     |  +--rw hierarchical-link
@@ -418,8 +416,11 @@ module: ietf-te
      |     |     +--rw local-te-node-id?         te-types:te-node-id
      |     |     +--rw local-link-tp-id?         nt:tp-id
      |     |     +--rw local-te-link-tp-id?      te-types:te-tp-id
+     |     |     +--rw remote-node-id?           nw:node-id
      |     |     +--rw remote-link-tp-id?        nt:tp-id
+     |     |     +--rw remote-te-link-tp-id?     te-types:te-tp-id
      |     |     +--rw remote-te-node-id?        te-types:te-node-id
+     |     |     +--ro link-id?                  nt:link-id
      |     |     +--rw network-id?               nw:network-id
      |     |     +--rw te-topology-identifier
      |     |        +--rw provider-id?   te-global-id
@@ -427,19 +428,19 @@ module: ietf-te
      |     |        +--rw topology-id?   te-topology-id
      |     +--rw primary-paths
      |     |  +--rw primary-path* [name]
-     |     |     +--ro active?                          boolean
-     |     |     +--rw name                             string
-     |     |     +--rw path-computation-method?         identityref
+     |     |     +--ro active?                         boolean
+     |     |     +--rw name                            string
+     |     |     +--rw path-computation-method?        identityref
      |     |     +--rw path-computation-server
      |     |     |  +--rw id?     te-gen-node-id
      |     |     |  +--rw type?   enumeration
-     |     |     +--rw compute-only?                    empty
-     |     |     +--rw use-path-computation?            boolean
-     |     |     +--rw lockdown?                        empty
-     |     |     +--ro path-scope?                      identityref
-     |     |     +--rw preference?                      uint8
-     |     |     +--rw co-routed?                       boolean
-     |     |     +--rw k-requested-paths?               uint8
+     |     |     +--rw compute-only?                   empty
+     |     |     +--rw use-path-computation?           boolean
+     |     |     +--rw lockdown?                       empty
+     |     |     +--ro path-scope?                     identityref
+     |     |     +--rw preference?                     uint8
+     |     |     +--rw co-routed?                      boolean
+     |     |     +--rw k-requested-paths?              uint8
      |     |     +--rw association-objects
      |     |     |  +--rw association-object* [association-key]
      |     |     |  |  +--rw association-key    string
@@ -649,16 +650,16 @@ module: ietf-te
      |     |     |        +--rw objective-function
      |     |     |           +--rw objective-function-type?
      |     |     |                   identityref
-     |     |     +--rw named-path-constraint?           leafref
+     |     |     +--rw named-path-constraint?          leafref
      |     |     |       {te-types:named-path-constraints}?
      |     |     +--rw te-bandwidth
      |     |     |  +--rw (technology)?
      |     |     |     +--:(generic)
      |     |     |        +--rw generic?   te-bandwidth
-     |     |     +--rw link-protection?                 identityref
-     |     |     +--rw setup-priority?                  uint8
-     |     |     +--rw hold-priority?                   uint8
-     |     |     +--rw signaling-type?                  identityref
+     |     |     +--rw link-protection?                identityref
+     |     |     +--rw setup-priority?                 uint8
+     |     |     +--rw hold-priority?                  uint8
+     |     |     +--rw signaling-type?                 identityref
      |     |     +--rw path-metric-bounds
      |     |     |  +--rw path-metric-bound* [metric-type]
      |     |     |     +--rw metric-type    identityref
@@ -682,7 +683,7 @@ module: ietf-te
      |     |     |     +--rw names*   string
      |     |     +--rw disjointness?
      |     |     |       te-path-disjointness
-     |     |     +--rw explicit-route-objects-always
+     |     |     +--rw explicit-route-objects
      |     |     |  +--rw route-object-exclude-always* [index]
      |     |     |  |  +--rw index                        uint32
      |     |     |  |  +--rw (type)?
@@ -1444,7 +1445,7 @@ module: ietf-te
      |     |     |  |     +--rw names*   string
      |     |     |  +--rw disjointness?
      |     |     |  |       te-path-disjointness
-     |     |     |  +--rw explicit-route-objects-always
+     |     |     |  +--rw explicit-route-objects
      |     |     |  |  +--rw route-object-exclude-always* [index]
      |     |     |  |  |  +--rw index                        uint32
      |     |     |  |  |  +--rw (type)?
@@ -1975,17 +1976,17 @@ module: ietf-te
      |     |           +--ro active?           boolean
      |     +--rw secondary-paths
      |     |  +--rw secondary-path* [name]
-     |     |     +--rw name                             string
-     |     |     +--rw path-computation-method?         identityref
+     |     |     +--rw name                            string
+     |     |     +--rw path-computation-method?        identityref
      |     |     +--rw path-computation-server
      |     |     |  +--rw id?     te-gen-node-id
      |     |     |  +--rw type?   enumeration
-     |     |     +--rw compute-only?                    empty
-     |     |     +--rw use-path-computation?            boolean
-     |     |     +--rw lockdown?                        empty
-     |     |     +--ro path-scope?                      identityref
-     |     |     +--rw preference?                      uint8
-     |     |     +--rw secondary-reverse-path?          leafref
+     |     |     +--rw compute-only?                   empty
+     |     |     +--rw use-path-computation?           boolean
+     |     |     +--rw lockdown?                       empty
+     |     |     +--ro path-scope?                     identityref
+     |     |     +--rw preference?                     uint8
+     |     |     +--rw secondary-reverse-path?         leafref
      |     |     +--rw association-objects
      |     |     |  +--rw association-object* [association-key]
      |     |     |  |  +--rw association-key    string
@@ -2195,16 +2196,16 @@ module: ietf-te
      |     |     |        +--rw objective-function
      |     |     |           +--rw objective-function-type?
      |     |     |                   identityref
-     |     |     +--rw named-path-constraint?           leafref
+     |     |     +--rw named-path-constraint?          leafref
      |     |     |       {te-types:named-path-constraints}?
      |     |     +--rw te-bandwidth
      |     |     |  +--rw (technology)?
      |     |     |     +--:(generic)
      |     |     |        +--rw generic?   te-bandwidth
-     |     |     +--rw link-protection?                 identityref
-     |     |     +--rw setup-priority?                  uint8
-     |     |     +--rw hold-priority?                   uint8
-     |     |     +--rw signaling-type?                  identityref
+     |     |     +--rw link-protection?                identityref
+     |     |     +--rw setup-priority?                 uint8
+     |     |     +--rw hold-priority?                  uint8
+     |     |     +--rw signaling-type?                 identityref
      |     |     +--rw path-metric-bounds
      |     |     |  +--rw path-metric-bound* [metric-type]
      |     |     |     +--rw metric-type    identityref
@@ -2228,7 +2229,7 @@ module: ietf-te
      |     |     |     +--rw names*   string
      |     |     +--rw disjointness?
      |     |     |       te-path-disjointness
-     |     |     +--rw explicit-route-objects-always
+     |     |     +--rw explicit-route-objects
      |     |     |  +--rw route-object-exclude-always* [index]
      |     |     |  |  +--rw index                        uint32
      |     |     |  |  +--rw (type)?
@@ -2749,16 +2750,16 @@ module: ietf-te
      |     |           +--ro lsp-id         leafref
      |     +--rw secondary-reverse-paths
      |     |  +--rw secondary-reverse-path* [name]
-     |     |     +--rw name                             string
-     |     |     +--rw path-computation-method?         identityref
+     |     |     +--rw name                            string
+     |     |     +--rw path-computation-method?        identityref
      |     |     +--rw path-computation-server
      |     |     |  +--rw id?     te-gen-node-id
      |     |     |  +--rw type?   enumeration
-     |     |     +--rw compute-only?                    empty
-     |     |     +--rw use-path-computation?            boolean
-     |     |     +--rw lockdown?                        empty
-     |     |     +--ro path-scope?                      identityref
-     |     |     +--rw preference?                      uint8
+     |     |     +--rw compute-only?                   empty
+     |     |     +--rw use-path-computation?           boolean
+     |     |     +--rw lockdown?                       empty
+     |     |     +--ro path-scope?                     identityref
+     |     |     +--rw preference?                     uint8
      |     |     +--rw association-objects
      |     |     |  +--rw association-object* [association-key]
      |     |     |  |  +--rw association-key    string
@@ -2968,16 +2969,16 @@ module: ietf-te
      |     |     |        +--rw objective-function
      |     |     |           +--rw objective-function-type?
      |     |     |                   identityref
-     |     |     +--rw named-path-constraint?           leafref
+     |     |     +--rw named-path-constraint?          leafref
      |     |     |       {te-types:named-path-constraints}?
      |     |     +--rw te-bandwidth
      |     |     |  +--rw (technology)?
      |     |     |     +--:(generic)
      |     |     |        +--rw generic?   te-bandwidth
-     |     |     +--rw link-protection?                 identityref
-     |     |     +--rw setup-priority?                  uint8
-     |     |     +--rw hold-priority?                   uint8
-     |     |     +--rw signaling-type?                  identityref
+     |     |     +--rw link-protection?                identityref
+     |     |     +--rw setup-priority?                 uint8
+     |     |     +--rw hold-priority?                  uint8
+     |     |     +--rw signaling-type?                 identityref
      |     |     +--rw path-metric-bounds
      |     |     |  +--rw path-metric-bound* [metric-type]
      |     |     |     +--rw metric-type    identityref
@@ -3001,7 +3002,7 @@ module: ietf-te
      |     |     |     +--rw names*   string
      |     |     +--rw disjointness?
      |     |     |       te-path-disjointness
-     |     |     +--rw explicit-route-objects-always
+     |     |     +--rw explicit-route-objects
      |     |     |  +--rw route-object-exclude-always* [index]
      |     |     |  |  +--rw index                        uint32
      |     |     |  |  +--rw (type)?

@@ -6,8 +6,6 @@ module ietf-wdm-tunnel {
 
   import ietf-te {
     prefix "te";
-    // Remove revision-date after ietf-te has passed WG LC
-    revision-date "2023-06-16";
     reference
       "RFC YYYY: A YANG Data Model for Traffic Engineering Tunnels,
       Label Switched Paths and Interfaces.";
@@ -78,17 +76,17 @@ module ietf-wdm-tunnel {
   identity lower-first-wavelength-assignment {
     base l0-types:wavelength-assignment;
     description
-      "Assign first available wavelength starting from the
-       lowest frequency towards the highest frequency in
-       the allowable frequency range.";
+      "Allocate wavelengths in ascending order, beginning from the
+       lowest frequency and progressing toward the highest frequency
+       within the permissible frequency range.";
   }
 
   identity upper-first-wavelength-assignment {
     base l0-types:wavelength-assignment;
     description
-      "Assign first available wavelength starting from the
-       highest frequency towards the lowest frequency in
-       the allowable frequency range.";
+      "Allocate wavelengths in decending order, beginning from the
+       highest frequency and progressing toward the lowest frequency
+       within the permissible frequency range.";
   }
 
   /*
@@ -372,7 +370,7 @@ module ietf-wdm-tunnel {
    * transceivers.
    */
   augment "/te:te/te:tunnels/te:tunnel/te:primary-paths/"
-        + "te:primary-path/te:explicit-route-objects-always/"
+        + "te:primary-path/te:explicit-route-objects/"
         + "te:route-object-exclude-always/te:type/"
         + "te:numbered-node-hop/te:numbered-node-hop" {
     description
@@ -388,7 +386,7 @@ module ietf-wdm-tunnel {
    */
   augment "/te:te/te:tunnels/te:tunnel/te:primary-paths/"
         + "te:primary-path/te:primary-reverse-path/"
-        + "te:explicit-route-objects-always/"
+        + "te:explicit-route-objects/"
         + "te:route-object-exclude-always/te:type/"
         + "te:numbered-node-hop/te:numbered-node-hop" {
     description
@@ -404,7 +402,7 @@ module ietf-wdm-tunnel {
    * transceivers.
    */
   augment "/te:te/te:tunnels/te:tunnel/te:secondary-paths/"
-        + "te:secondary-path/te:explicit-route-objects-always/"
+        + "te:secondary-path/te:explicit-route-objects/"
         + "te:route-object-exclude-always/te:type/"
         + "te:numbered-node-hop/te:numbered-node-hop" {
     description
@@ -421,7 +419,7 @@ module ietf-wdm-tunnel {
   augment "/te:te/te:tunnels/te:tunnel/"
         + "te:secondary-reverse-paths/"
         + "te:secondary-reverse-path/"
-        + "te:explicit-route-objects-always/"
+        + "te:explicit-route-objects/"
         + "te:route-object-exclude-always/te:type/"
         + "te:numbered-node-hop/te:numbered-node-hop" {
     description
@@ -677,7 +675,7 @@ module ietf-wdm-tunnel {
    */
   augment "/te:te/te:globals/te:named-path-constraints/"
         + "te:named-path-constraint/"
-        + "te:explicit-route-objects-always/"
+        + "te:explicit-route-objects/"
         + "te:route-object-exclude-always/te:type/te:label/"
         + "te:label-hop/te:te-label/te:technology" {
     description
@@ -691,7 +689,7 @@ module ietf-wdm-tunnel {
 
   augment "/te:te/te:globals/te:named-path-constraints/"
         + "te:named-path-constraint/"
-        + "te:explicit-route-objects-always/"
+        + "te:explicit-route-objects/"
         + "te:route-object-include-exclude/te:type/te:label/"
         + "te:label-hop/te:te-label/te:technology" {
     description
@@ -810,7 +808,7 @@ module ietf-wdm-tunnel {
 
   augment "/te:te/te:tunnels/te:tunnel/"
         + "te:primary-paths/te:primary-path/"
-        + "te:explicit-route-objects-always/"
+        + "te:explicit-route-objects/"
         + "te:route-object-exclude-always/te:type/te:label/"
         + "te:label-hop/te:te-label/te:technology" {
     description
@@ -823,7 +821,7 @@ module ietf-wdm-tunnel {
 
   augment "/te:te/te:tunnels/te:tunnel/"
         + "te:primary-paths/te:primary-path/"
-        + "te:explicit-route-objects-always/"
+        + "te:explicit-route-objects/"
         + "te:route-object-include-exclude/te:type/te:label/"
         + "te:label-hop/te:te-label/te:technology" {
     description
@@ -960,7 +958,7 @@ module ietf-wdm-tunnel {
   augment "/te:te/te:tunnels/te:tunnel/"
         + "te:primary-paths/te:primary-path/"
         + "te:primary-reverse-path/"
-        + "te:explicit-route-objects-always/"
+        + "te:explicit-route-objects/"
         + "te:route-object-exclude-always/"
         + "te:type/te:label/"
         + "te:label-hop/te:te-label/te:technology" {
@@ -976,7 +974,7 @@ module ietf-wdm-tunnel {
   augment "/te:te/te:tunnels/te:tunnel/"
         + "te:primary-paths/te:primary-path/"
         + "te:primary-reverse-path/"
-        + "te:explicit-route-objects-always/"
+        + "te:explicit-route-objects/"
         + "te:route-object-include-exclude/"
         + "te:type/te:label/"
         + "te:label-hop/te:te-label/te:technology" {
@@ -1118,7 +1116,7 @@ module ietf-wdm-tunnel {
 
   augment "/te:te/te:tunnels/te:tunnel/"
         + "te:secondary-paths/te:secondary-path/"
-        + "te:explicit-route-objects-always/"
+        + "te:explicit-route-objects/"
         + "te:route-object-exclude-always/te:type/te:label/"
         + "te:label-hop/te:te-label/te:technology" {
     description
@@ -1131,7 +1129,7 @@ module ietf-wdm-tunnel {
 
   augment "/te:te/te:tunnels/te:tunnel/"
         + "te:secondary-paths/te:secondary-path/"
-        + "te:explicit-route-objects-always/"
+        + "te:explicit-route-objects/"
         + "te:route-object-include-exclude/te:type/te:label/"
         + "te:label-hop/te:te-label/te:technology" {
     description
@@ -1264,7 +1262,7 @@ module ietf-wdm-tunnel {
 
   augment "/te:te/te:tunnels/te:tunnel/"
         + "te:secondary-reverse-paths/te:secondary-reverse-path/"
-        + "te:explicit-route-objects-always/"
+        + "te:explicit-route-objects/"
         + "te:route-object-exclude-always/te:type/te:label/"
         + "te:label-hop/te:te-label/te:technology" {
     description
@@ -1278,7 +1276,7 @@ module ietf-wdm-tunnel {
 
   augment "/te:te/te:tunnels/te:tunnel/"
         + "te:secondary-reverse-paths/te:secondary-reverse-path/"
-        + "te:explicit-route-objects-always/"
+        + "te:explicit-route-objects/"
         + "te:route-object-include-exclude/te:type/te:label/"
         + "te:label-hop/te:te-label/te:technology" {
     description
