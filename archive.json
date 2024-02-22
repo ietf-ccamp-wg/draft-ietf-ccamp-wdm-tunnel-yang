@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-02-20T00:49:08.753855+00:00",
+  "timestamp": "2024-02-22T00:49:34.841343+00:00",
   "repo": "ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang",
   "labels": [
     {
@@ -2053,7 +2053,7 @@
       "labels": [],
       "body": "YANG and text update for the following issue: \r\n\r\n- fix typo in text\r\n- added preferred-rx-channel-power as a transceiver constraint; \r\n- sync'ed with l0-types for rw/ro split of transceiver parameters; \r\n- added augments for reporting estimated transceiver properties on computed paths; \r\n- added augments for reporting actual transceiver properties on LSPs\"\r\n",
       "createdAt": "2024-02-13T20:37:59Z",
-      "updatedAt": "2024-02-16T22:54:04Z",
+      "updatedAt": "2024-02-22T00:12:38Z",
       "baseRepository": "ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang",
       "baseRefName": "main",
       "baseRefOid": "36dead767f792427761844922cadf14007801b23",
@@ -2065,7 +2065,52 @@
       "mergedBy": null,
       "mergeCommit": null,
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOEHme9c5w7auz",
+          "commit": {
+            "abbreviatedOid": "3871a83"
+          },
+          "author": "italobusi",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-21T23:54:08Z",
+          "updatedAt": "2024-02-22T00:12:38Z",
+          "comments": [
+            {
+              "originalPosition": 14,
+              "body": "To be more flexible, can it be a list, like the operational-mode?\r\n\r\nAn empty list means any line-coding-bitrate supported by the selected operational mode.",
+              "createdAt": "2024-02-21T23:54:08Z",
+              "updatedAt": "2024-02-22T00:12:38Z"
+            },
+            {
+              "originalPosition": 34,
+              "body": "1. I am wondering whether we need a new hop type for the 3R function where to put this information\r\n2. should the container be named 'path-in-transponder' and 'path-out-transponder'?\r\n3. how to provide constraints on the transponders at the ingress/egress of the tunnel?",
+              "createdAt": "2024-02-22T00:02:40Z",
+              "updatedAt": "2024-02-22T00:12:38Z"
+            },
+            {
+              "originalPosition": 18,
+              "body": "1. Should this identity be move to L0 types?\r\n\r\n   See: https://github.com/ietf-ccamp-wg/ietf-ccamp-layer0-types-ext-RFC9093-bis/issues/92\r\n\r\n2. Is there a reference where this wavelength assignment is defined?",
+              "createdAt": "2024-02-22T00:06:08Z",
+              "updatedAt": "2024-02-22T00:12:38Z"
+            },
+            {
+              "originalPosition": 29,
+              "body": "1. Should this identity be move to L0 types?\r\n\r\n   See: https://github.com/ietf-ccamp-wg/ietf-ccamp-layer0-types-ext-RFC9093-bis/issues/92\r\n\r\n2. Is there a reference where this wavelength assignment is defined?",
+              "createdAt": "2024-02-22T00:07:01Z",
+              "updatedAt": "2024-02-22T00:12:38Z"
+            },
+            {
+              "originalPosition": 47,
+              "body": "General: we do not need the '-grp' suffix for groupings",
+              "createdAt": "2024-02-22T00:08:41Z",
+              "updatedAt": "2024-02-22T00:12:38Z"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
