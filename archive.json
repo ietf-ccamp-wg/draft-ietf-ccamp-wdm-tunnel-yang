@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-02-22T00:49:34.841343+00:00",
+  "timestamp": "2024-02-25T00:53:29.144743+00:00",
   "repo": "ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang",
   "labels": [
     {
@@ -2053,7 +2053,7 @@
       "labels": [],
       "body": "YANG and text update for the following issue: \r\n\r\n- fix typo in text\r\n- added preferred-rx-channel-power as a transceiver constraint; \r\n- sync'ed with l0-types for rw/ro split of transceiver parameters; \r\n- added augments for reporting estimated transceiver properties on computed paths; \r\n- added augments for reporting actual transceiver properties on LSPs\"\r\n",
       "createdAt": "2024-02-13T20:37:59Z",
-      "updatedAt": "2024-02-22T00:12:38Z",
+      "updatedAt": "2024-02-22T13:47:26Z",
       "baseRepository": "ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang",
       "baseRefName": "main",
       "baseRefOid": "36dead767f792427761844922cadf14007801b23",
@@ -2107,6 +2107,106 @@
               "body": "General: we do not need the '-grp' suffix for groupings",
               "createdAt": "2024-02-22T00:08:41Z",
               "updatedAt": "2024-02-22T00:12:38Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOEHme9c5xAJsK",
+          "commit": {
+            "abbreviatedOid": "3871a83"
+          },
+          "author": "aguoietf",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-22T13:32:32Z",
+          "updatedAt": "2024-02-22T13:32:33Z",
+          "comments": [
+            {
+              "originalPosition": 14,
+              "body": "change line-coding-bitrate as a list (optional parameters)",
+              "createdAt": "2024-02-22T13:32:32Z",
+              "updatedAt": "2024-02-22T13:32:33Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOEHme9c5xAKFS",
+          "commit": {
+            "abbreviatedOid": "3871a83"
+          },
+          "author": "aguoietf",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-22T13:33:18Z",
+          "updatedAt": "2024-02-22T13:33:19Z",
+          "comments": [
+            {
+              "originalPosition": 14,
+              "body": "add to text description the use of the WDM constraints (for limiting the possible choices when present)",
+              "createdAt": "2024-02-22T13:33:18Z",
+              "updatedAt": "2024-02-22T13:33:19Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOEHme9c5xAO1z",
+          "commit": {
+            "abbreviatedOid": "3871a83"
+          },
+          "author": "aguoietf",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-22T13:42:08Z",
+          "updatedAt": "2024-02-22T13:42:08Z",
+          "comments": [
+            {
+              "originalPosition": 34,
+              "body": "Looking into an example to check if this (path-in/path-out) transponder constructs stands to describe the ERO and RROs for WDM tunnel",
+              "createdAt": "2024-02-22T13:42:08Z",
+              "updatedAt": "2024-02-22T13:42:08Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOEHme9c5xARZa",
+          "commit": {
+            "abbreviatedOid": "3871a83"
+          },
+          "author": "aguoietf",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-22T13:46:50Z",
+          "updatedAt": "2024-02-22T13:46:50Z",
+          "comments": [
+            {
+              "originalPosition": 18,
+              "body": "issue resolved by https://github.com/ietf-ccamp-wg/ietf-ccamp-layer0-types-ext-RFC9093-bis/pull/96",
+              "createdAt": "2024-02-22T13:46:50Z",
+              "updatedAt": "2024-02-22T13:46:50Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOEHme9c5xARue",
+          "commit": {
+            "abbreviatedOid": "3871a83"
+          },
+          "author": "aguoietf",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-22T13:47:25Z",
+          "updatedAt": "2024-02-22T13:47:26Z",
+          "comments": [
+            {
+              "originalPosition": 29,
+              "body": "issue resolved by https://github.com/ietf-ccamp-wg/ietf-ccamp-layer0-types-ext-RFC9093-bis/pull/96.\r\nNeed to remove the identityref here",
+              "createdAt": "2024-02-22T13:47:25Z",
+              "updatedAt": "2024-02-22T13:47:26Z"
             }
           ]
         }
