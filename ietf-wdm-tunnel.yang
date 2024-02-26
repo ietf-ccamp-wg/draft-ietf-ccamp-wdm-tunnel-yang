@@ -86,7 +86,7 @@ module ietf-wdm-tunnel {
     }
   }
 
-  grouping transceiver-constraints-grp {
+  grouping transceiver-constraints {
     description
       "This grouping defines constraints for transceiver
        configurations";
@@ -109,7 +109,7 @@ module ietf-wdm-tunnel {
     }
   }
 
-  grouping transceiver-config-grp {
+  grouping transceiver-config {
     description
       "This grouping defines explicit transceiver
        configurations.";
@@ -139,11 +139,11 @@ module ietf-wdm-tunnel {
         "transceiver identifier";
       }
 
-      uses transceiver-constraints-grp;
+      uses transceiver-constraints;
     }
   }
 
-  grouping path-transceiver-config-grp {
+  grouping path-transceiver-config {
     description
       "This grouping defines a set of transceivers on a node,
        serving as either starting transceivers, terminating
@@ -164,7 +164,7 @@ module ietf-wdm-tunnel {
         "Constraints for incoming direction transceiver
          configurations";
 
-      uses transceiver-config-grp;
+      uses transceiver-config;
     }
 
     container path-out-transceiver {
@@ -172,11 +172,11 @@ module ietf-wdm-tunnel {
         "Constraints for outgoing direction transceiver
          configurations";
 
-      uses transceiver-config-grp;
+      uses transceiver-config;
     }
   }
 
-  grouping transceiver-state-grp {
+  grouping transceiver-state {
     description
       "This grouping includes common transceiver state
        information.";
@@ -210,7 +210,7 @@ module ietf-wdm-tunnel {
     }
   }
 
-  grouping path-transceiver-state-grp {
+  grouping path-transceiver-state {
     description
       "This grouping defines the state of transceivers on a
        node functioning as starting, terminating transceivers,
@@ -220,14 +220,14 @@ module ietf-wdm-tunnel {
       description
         "Transceiver state on the incoming direction.";
 
-      uses transceiver-state-grp;
+      uses transceiver-state;
     }
 
     container path-out-transceiver {
       description
         "Transceiver state on the outgoing direction.";
 
-      uses transceiver-state-grp;
+      uses transceiver-state;
     }
   }
   
@@ -240,7 +240,7 @@ module ietf-wdm-tunnel {
       description
         "Constraints for transceiver configurations";
 
-      uses transceiver-constraints-grp;
+      uses transceiver-constraints;
     }
   }
 
@@ -357,7 +357,7 @@ module ietf-wdm-tunnel {
     description
       "Augment TE primary path with transceiver configurations.";
       
-    uses path-transceiver-config-grp;
+    uses path-transceiver-config;
   }
 
   /*
@@ -374,7 +374,7 @@ module ietf-wdm-tunnel {
       "Augment TE primary reverse path with transceiver
        configurations.";
       
-    uses path-transceiver-config-grp;
+    uses path-transceiver-config;
   }
 
   /*
@@ -389,7 +389,7 @@ module ietf-wdm-tunnel {
     description
       "Augment TE secondary path with transceiver configurations.";
       
-    uses path-transceiver-config-grp;
+    uses path-transceiver-config;
   }
 
   /*
@@ -407,7 +407,7 @@ module ietf-wdm-tunnel {
       "Augment TE secondary reverse path with transceiver
        configurations.";
       
-    uses path-transceiver-config-grp;
+    uses path-transceiver-config;
   }
 
   /*
@@ -473,7 +473,7 @@ module ietf-wdm-tunnel {
       "Augment TE computed primary path with transceiver
        properties.";
       
-    uses path-transceiver-state-grp;
+    uses path-transceiver-state;
   }
 
   /*
@@ -489,7 +489,7 @@ module ietf-wdm-tunnel {
       "Augment TE computed primary path with transceiver
        properties.";
       
-    uses path-transceiver-state-grp;
+    uses path-transceiver-state;
   }
 
   /*
@@ -504,7 +504,7 @@ module ietf-wdm-tunnel {
       "Augment TE computed primary path with transceiver
        properties.";
       
-    uses path-transceiver-state-grp;
+    uses path-transceiver-state;
   }
 
   /*
@@ -519,7 +519,7 @@ module ietf-wdm-tunnel {
       "Augment TE computed primary path with transceiver
        properties.";
       
-    uses path-transceiver-state-grp;
+    uses path-transceiver-state;
   }
 
   /*
@@ -543,7 +543,7 @@ module ietf-wdm-tunnel {
     description
       "Augment TE LSP to with WDM path state.";
       
-    uses path-transceiver-state-grp;
+    uses path-transceiver-state;
   }
 
   /*
