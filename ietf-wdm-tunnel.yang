@@ -71,25 +71,6 @@ module ietf-wdm-tunnel {
   }
 
   /*
-   * Identities
-   */
-  identity lower-first-wavelength-assignment {
-    base l0-types:wavelength-assignment;
-    description
-      "Allocate wavelengths in ascending order, beginning from the
-       lowest frequency and progressing toward the highest frequency
-       within the permissible frequency range.";
-  }
-
-  identity upper-first-wavelength-assignment {
-    base l0-types:wavelength-assignment;
-    description
-      "Allocate wavelengths in decending order, beginning from the
-       highest frequency and progressing toward the lowest frequency
-       within the permissible frequency range.";
-  }
-
-  /*
    * Groupings
    */
   grouping tx-tune-constraints {
