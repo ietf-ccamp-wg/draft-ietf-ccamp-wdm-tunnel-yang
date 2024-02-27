@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-02-25T00:53:29.144743+00:00",
+  "timestamp": "2024-02-27T00:49:06.324406+00:00",
   "repo": "ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang",
   "labels": [
     {
@@ -2053,13 +2053,13 @@
       "labels": [],
       "body": "YANG and text update for the following issue: \r\n\r\n- fix typo in text\r\n- added preferred-rx-channel-power as a transceiver constraint; \r\n- sync'ed with l0-types for rw/ro split of transceiver parameters; \r\n- added augments for reporting estimated transceiver properties on computed paths; \r\n- added augments for reporting actual transceiver properties on LSPs\"\r\n",
       "createdAt": "2024-02-13T20:37:59Z",
-      "updatedAt": "2024-02-22T13:47:26Z",
+      "updatedAt": "2024-02-26T20:32:14Z",
       "baseRepository": "ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang",
       "baseRefName": "main",
       "baseRefOid": "36dead767f792427761844922cadf14007801b23",
       "headRepository": "aguoietf/draft-ietf-ccamp-wdm-tunnel-yang",
       "headRefName": "master",
-      "headRefOid": "3871a83cc9dc0791072d3b33138df3d4cd915ea6",
+      "headRefOid": "c6ca3f8518fc9ff4241b091bffbb5bc80a2b73c4",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -2207,6 +2207,26 @@
               "body": "issue resolved by https://github.com/ietf-ccamp-wg/ietf-ccamp-layer0-types-ext-RFC9093-bis/pull/96.\r\nNeed to remove the identityref here",
               "createdAt": "2024-02-22T13:47:25Z",
               "updatedAt": "2024-02-22T13:47:26Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOEHme9c5xXUcl",
+          "commit": {
+            "abbreviatedOid": "3871a83"
+          },
+          "author": "aguoietf",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-26T20:32:14Z",
+          "updatedAt": "2024-02-26T20:32:14Z",
+          "comments": [
+            {
+              "originalPosition": 14,
+              "body": "line-coding-bitrate is defined in l0-types in the grouping \"common-transceiver-configured-param\".\r\nQ1: is line-coding-bitrate(s) per operational mode? If so it needs to be moved to under a container together with the operational mode (and under a list).\r\nQ2 : \"common-transceiver-configured-param\" also includes tx-channel-power. If the tx-channel-power is not per operational mode then this grouping is not usable and we have to define separate line-coding-bitrate list instead.",
+              "createdAt": "2024-02-26T20:32:14Z",
+              "updatedAt": "2024-02-26T20:32:14Z"
             }
           ]
         }
