@@ -16,7 +16,7 @@ Expires: 2 September 2024                                          Nokia
 
 
                    A YANG Data Model for WDM Tunnels
-                  draft-ietf-ccamp-wdm-tunnel-yang-02
+                  draft-ietf-ccamp-wdm-tunnel-yang-01
 
 Abstract
 
