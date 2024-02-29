@@ -73,16 +73,53 @@ module ietf-wdm-tunnel {
   /*
    * Groupings
    */
-  grouping tx-tune-constraints {
+  grouping additional-transceiver-configuration-constraints {
     description
-      "This grouping defines the transmitter's allowed tuning
-       frequency range.";
+      "This grouping defines additional optional constraints for
+       transceiver configurations related to tunnel selection.
+       These constraints further limit the resources available
+       to the tunnel. All constraints operate inclusively, using
+       an AND logic. For example, if a specific frequency range
+       is selected, the tunnel must also be constrained to match
+       only that range.
+
+       When these constraints are combined with the operational
+       mode, the list of operational modes should exclude any
+       modes that cannot satisfy the additional constraints.
+       For instance, if the frequency is restricted to the C-band,
+       the list of operational modes should not include any modes
+       applicable only to the L-band.";
 
     container tx-tune-constraints {
       description
-        "Transmitter's allowed tuning frequency range.";
+        "The permissible tuning frequency range for the
+         transmitter.";
 
       uses l0-types:transmitter-tuning-range;
+    }
+
+    leaf-list line-coding-bitrate {
+      type identityref {
+        base l0-types:line-coding;
+      }
+      description
+        "The list of the bit rate/line coding of the optical 
+        tributary signal that constrains the configuration of
+        the transceiver.";
+      reference 
+        "ITU-T G.698.2 section 7.1.2";
+    }
+
+    leaf tx-channel-power {
+      type l0-types:power-dbm;
+      description
+        "The preferred channel transmit power.";
+    }
+	
+    leaf preferred-rx-channel-power {
+      type l0-types:power-dbm;
+      description
+        "The preferred channel received power.";
     }
   }
 
@@ -98,15 +135,8 @@ module ietf-wdm-tunnel {
       description
         "List of operational mode ids of the transceiver.";
     }
-
-    uses tx-tune-constraints;
-    uses l0-types:common-transceiver-configured-param;
-	
-    leaf preferred-rx-channel-power {
-      type l0-types:power-dbm;
-      description
-        "The preferred channel received power.";
-    }
+    
+	uses additional-transceiver-configuration-constraints;
   }
 
   grouping transceiver-config {

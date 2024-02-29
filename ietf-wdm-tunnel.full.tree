@@ -101,7 +101,7 @@ module: ietf-te
      |        |  |              |              |  +--rw wdm-tnl:flexi-m?
      |        |  |              |              |          l0-types:flexi-m
      |        |  |              |              x--:(wdm-tnl:super)
-     |        |  |              |              |  +--rw wdm-tnl:subcarrier-flexi-n*
+     |        |  |              |              |  x--rw wdm-tnl:subcarrier-flexi-n*
      |        |  |              |              |          [flexi-n]
      |        |  |              |              |     +--rw wdm-tnl:flexi-n
      |        |  |              |              |     |       l0-types:flexi-n
@@ -172,7 +172,7 @@ module: ietf-te
      |        |        |        |              |  +--rw wdm-tnl:flexi-m?
      |        |        |        |              |          l0-types:flexi-m
      |        |        |        |              x--:(wdm-tnl:super)
-     |        |        |        |              |  +--rw wdm-tnl:subcarrier-flexi-n*
+     |        |        |        |              |  x--rw wdm-tnl:subcarrier-flexi-n*
      |        |        |        |              |          [flexi-n]
      |        |        |        |              |     +--rw wdm-tnl:flexi-n
      |        |        |        |              |     |       l0-types:flexi-n
@@ -537,7 +537,7 @@ module: ietf-te
      |     |     |     |  |  |        |        |              |  +--rw wdm-tnl:flexi-m?
      |     |     |     |  |  |        |        |              |          l0-types:flexi-m
      |     |     |     |  |  |        |        |              x--:(wdm-tnl:super)
-     |     |     |     |  |  |        |        |              |  +--rw wdm-tnl:subcarrier-flexi-n*
+     |     |     |     |  |  |        |        |              |  x--rw wdm-tnl:subcarrier-flexi-n*
      |     |     |     |  |  |        |        |              |          [flexi-n]
      |     |     |     |  |  |        |        |              |     +--rw wdm-tnl:flexi-n
      |     |     |     |  |  |        |        |              |     |       l0-types:flexi-n
@@ -626,7 +626,7 @@ module: ietf-te
      |     |     |     |  |                    |              |  +--rw wdm-tnl:flexi-m?
      |     |     |     |  |                    |              |          l0-types:flexi-m
      |     |     |     |  |                    |              x--:(wdm-tnl:super)
-     |     |     |     |  |                    |              |  +--rw wdm-tnl:subcarrier-flexi-n*
+     |     |     |     |  |                    |              |  x--rw wdm-tnl:subcarrier-flexi-n*
      |     |     |     |  |                    |              |          [flexi-n]
      |     |     |     |  |                    |              |     +--rw wdm-tnl:flexi-n
      |     |     |     |  |                    |              |     |       l0-types:flexi-n
@@ -713,10 +713,10 @@ module: ietf-te
      |     |     |  |     |     |     |  |       frequency-thz
      |     |     |  |     |     |     |  +--rw wdm-tnl:transceiver-tunability?
      |     |     |  |     |     |     |          frequency-ghz
-     |     |     |  |     |     |     +--rw wdm-tnl:line-coding-bitrate?
+     |     |     |  |     |     |     +--rw wdm-tnl:line-coding-bitrate*
      |     |     |  |     |     |     |       identityref
      |     |     |  |     |     |     +--rw wdm-tnl:tx-channel-power?
-     |     |     |  |     |     |     |       power-dbm-or-null
+     |     |     |  |     |     |     |       l0-types:power-dbm
      |     |     |  |     |     |     +--rw wdm-tnl:preferred-rx-channel-power?
      |     |     |  |     |     |             l0-types:power-dbm
      |     |     |  |     |     +--rw wdm-tnl:path-out-transceiver
@@ -737,10 +737,10 @@ module: ietf-te
      |     |     |  |     |           |  |       frequency-thz
      |     |     |  |     |           |  +--rw wdm-tnl:transceiver-tunability?
      |     |     |  |     |           |          frequency-ghz
-     |     |     |  |     |           +--rw wdm-tnl:line-coding-bitrate?
+     |     |     |  |     |           +--rw wdm-tnl:line-coding-bitrate*
      |     |     |  |     |           |       identityref
      |     |     |  |     |           +--rw wdm-tnl:tx-channel-power?
-     |     |     |  |     |           |       power-dbm-or-null
+     |     |     |  |     |           |       l0-types:power-dbm
      |     |     |  |     |           +--rw wdm-tnl:preferred-rx-channel-power?
      |     |     |  |     |                   l0-types:power-dbm
      |     |     |  |     +--:(numbered-link-hop)
@@ -789,7 +789,7 @@ module: ietf-te
      |     |     |  |              |              |  +--rw wdm-tnl:flexi-m?
      |     |     |  |              |              |          l0-types:flexi-m
      |     |     |  |              |              x--:(wdm-tnl:super)
-     |     |     |  |              |              |  +--rw wdm-tnl:subcarrier-flexi-n*
+     |     |     |  |              |              |  x--rw wdm-tnl:subcarrier-flexi-n*
      |     |     |  |              |              |          [flexi-n]
      |     |     |  |              |              |     +--rw wdm-tnl:flexi-n
      |     |     |  |              |              |     |       l0-types:flexi-n
@@ -860,7 +860,7 @@ module: ietf-te
      |     |     |        |        |              |  +--rw wdm-tnl:flexi-m?
      |     |     |        |        |              |          l0-types:flexi-m
      |     |     |        |        |              x--:(wdm-tnl:super)
-     |     |     |        |        |              |  +--rw wdm-tnl:subcarrier-flexi-n*
+     |     |     |        |        |              |  x--rw wdm-tnl:subcarrier-flexi-n*
      |     |     |        |        |              |          [flexi-n]
      |     |     |        |        |              |     +--rw wdm-tnl:flexi-n
      |     |     |        |        |              |     |       l0-types:flexi-n
@@ -1143,7 +1143,7 @@ module: ietf-te
      |     |     |        |                 |              |  +--ro wdm-tnl:flexi-m?
      |     |     |        |                 |              |          l0-types:flexi-m
      |     |     |        |                 |              x--:(wdm-tnl:super)
-     |     |     |        |                 |              |  +--ro wdm-tnl:subcarrier-flexi-n*
+     |     |     |        |                 |              |  x--ro wdm-tnl:subcarrier-flexi-n*
      |     |     |        |                 |              |          [flexi-n]
      |     |     |        |                 |              |     +--ro wdm-tnl:flexi-n
      |     |     |        |                 |              |     |       l0-types:flexi-n
@@ -1296,7 +1296,7 @@ module: ietf-te
      |     |     |  |     |  |  |        |        |              |  +--rw wdm-tnl:flexi-m?
      |     |     |  |     |  |  |        |        |              |          l0-types:flexi-m
      |     |     |  |     |  |  |        |        |              x--:(wdm-tnl:super)
-     |     |     |  |     |  |  |        |        |              |  +--rw wdm-tnl:subcarrier-flexi-n*
+     |     |     |  |     |  |  |        |        |              |  x--rw wdm-tnl:subcarrier-flexi-n*
      |     |     |  |     |  |  |        |        |              |          [flexi-n]
      |     |     |  |     |  |  |        |        |              |     +--rw wdm-tnl:flexi-n
      |     |     |  |     |  |  |        |        |              |     |       l0-types:flexi-n
@@ -1385,7 +1385,7 @@ module: ietf-te
      |     |     |  |     |  |                    |              |  +--rw wdm-tnl:flexi-m?
      |     |     |  |     |  |                    |              |          l0-types:flexi-m
      |     |     |  |     |  |                    |              x--:(wdm-tnl:super)
-     |     |     |  |     |  |                    |              |  +--rw wdm-tnl:subcarrier-flexi-n*
+     |     |     |  |     |  |                    |              |  x--rw wdm-tnl:subcarrier-flexi-n*
      |     |     |  |     |  |                    |              |          [flexi-n]
      |     |     |  |     |  |                    |              |     +--rw wdm-tnl:flexi-n
      |     |     |  |     |  |                    |              |     |       l0-types:flexi-n
@@ -1475,10 +1475,10 @@ module: ietf-te
      |     |     |  |  |     |     |     |  |       frequency-thz
      |     |     |  |  |     |     |     |  +--rw wdm-tnl:transceiver-tunability?
      |     |     |  |  |     |     |     |          frequency-ghz
-     |     |     |  |  |     |     |     +--rw wdm-tnl:line-coding-bitrate?
+     |     |     |  |  |     |     |     +--rw wdm-tnl:line-coding-bitrate*
      |     |     |  |  |     |     |     |       identityref
      |     |     |  |  |     |     |     +--rw wdm-tnl:tx-channel-power?
-     |     |     |  |  |     |     |     |       power-dbm-or-null
+     |     |     |  |  |     |     |     |       l0-types:power-dbm
      |     |     |  |  |     |     |     +--rw wdm-tnl:preferred-rx-channel-power?
      |     |     |  |  |     |     |             l0-types:power-dbm
      |     |     |  |  |     |     +--rw wdm-tnl:path-out-transceiver
@@ -1499,10 +1499,10 @@ module: ietf-te
      |     |     |  |  |     |           |  |       frequency-thz
      |     |     |  |  |     |           |  +--rw wdm-tnl:transceiver-tunability?
      |     |     |  |  |     |           |          frequency-ghz
-     |     |     |  |  |     |           +--rw wdm-tnl:line-coding-bitrate?
+     |     |     |  |  |     |           +--rw wdm-tnl:line-coding-bitrate*
      |     |     |  |  |     |           |       identityref
      |     |     |  |  |     |           +--rw wdm-tnl:tx-channel-power?
-     |     |     |  |  |     |           |       power-dbm-or-null
+     |     |     |  |  |     |           |       l0-types:power-dbm
      |     |     |  |  |     |           +--rw wdm-tnl:preferred-rx-channel-power?
      |     |     |  |  |     |                   l0-types:power-dbm
      |     |     |  |  |     +--:(numbered-link-hop)
@@ -1553,7 +1553,7 @@ module: ietf-te
      |     |     |  |  |              |              |  +--rw wdm-tnl:flexi-m?
      |     |     |  |  |              |              |          l0-types:flexi-m
      |     |     |  |  |              |              x--:(wdm-tnl:super)
-     |     |     |  |  |              |              |  +--rw wdm-tnl:subcarrier-flexi-n*
+     |     |     |  |  |              |              |  x--rw wdm-tnl:subcarrier-flexi-n*
      |     |     |  |  |              |              |          [flexi-n]
      |     |     |  |  |              |              |     +--rw wdm-tnl:flexi-n
      |     |     |  |  |              |              |     |       l0-types:flexi-n
@@ -1627,7 +1627,7 @@ module: ietf-te
      |     |     |  |        |        |              |  +--rw wdm-tnl:flexi-m?
      |     |     |  |        |        |              |          l0-types:flexi-m
      |     |     |  |        |        |              x--:(wdm-tnl:super)
-     |     |     |  |        |        |              |  +--rw wdm-tnl:subcarrier-flexi-n*
+     |     |     |  |        |        |              |  x--rw wdm-tnl:subcarrier-flexi-n*
      |     |     |  |        |        |              |          [flexi-n]
      |     |     |  |        |        |              |     +--rw wdm-tnl:flexi-n
      |     |     |  |        |        |              |     |       l0-types:flexi-n
@@ -1914,7 +1914,7 @@ module: ietf-te
      |     |     |  |        |                 |              |  +--ro wdm-tnl:flexi-m?
      |     |     |  |        |                 |              |          l0-types:flexi-m
      |     |     |  |        |                 |              x--:(wdm-tnl:super)
-     |     |     |  |        |                 |              |  +--ro wdm-tnl:subcarrier-flexi-n*
+     |     |     |  |        |                 |              |  x--ro wdm-tnl:subcarrier-flexi-n*
      |     |     |  |        |                 |              |          [flexi-n]
      |     |     |  |        |                 |              |     +--ro wdm-tnl:flexi-n
      |     |     |  |        |                 |              |     |       l0-types:flexi-n
@@ -2083,7 +2083,7 @@ module: ietf-te
      |     |     |     |  |  |        |        |              |  +--rw wdm-tnl:flexi-m?
      |     |     |     |  |  |        |        |              |          l0-types:flexi-m
      |     |     |     |  |  |        |        |              x--:(wdm-tnl:super)
-     |     |     |     |  |  |        |        |              |  +--rw wdm-tnl:subcarrier-flexi-n*
+     |     |     |     |  |  |        |        |              |  x--rw wdm-tnl:subcarrier-flexi-n*
      |     |     |     |  |  |        |        |              |          [flexi-n]
      |     |     |     |  |  |        |        |              |     +--rw wdm-tnl:flexi-n
      |     |     |     |  |  |        |        |              |     |       l0-types:flexi-n
@@ -2172,7 +2172,7 @@ module: ietf-te
      |     |     |     |  |                    |              |  +--rw wdm-tnl:flexi-m?
      |     |     |     |  |                    |              |          l0-types:flexi-m
      |     |     |     |  |                    |              x--:(wdm-tnl:super)
-     |     |     |     |  |                    |              |  +--rw wdm-tnl:subcarrier-flexi-n*
+     |     |     |     |  |                    |              |  x--rw wdm-tnl:subcarrier-flexi-n*
      |     |     |     |  |                    |              |          [flexi-n]
      |     |     |     |  |                    |              |     +--rw wdm-tnl:flexi-n
      |     |     |     |  |                    |              |     |       l0-types:flexi-n
@@ -2259,10 +2259,10 @@ module: ietf-te
      |     |     |  |     |     |     |  |       frequency-thz
      |     |     |  |     |     |     |  +--rw wdm-tnl:transceiver-tunability?
      |     |     |  |     |     |     |          frequency-ghz
-     |     |     |  |     |     |     +--rw wdm-tnl:line-coding-bitrate?
+     |     |     |  |     |     |     +--rw wdm-tnl:line-coding-bitrate*
      |     |     |  |     |     |     |       identityref
      |     |     |  |     |     |     +--rw wdm-tnl:tx-channel-power?
-     |     |     |  |     |     |     |       power-dbm-or-null
+     |     |     |  |     |     |     |       l0-types:power-dbm
      |     |     |  |     |     |     +--rw wdm-tnl:preferred-rx-channel-power?
      |     |     |  |     |     |             l0-types:power-dbm
      |     |     |  |     |     +--rw wdm-tnl:path-out-transceiver
@@ -2283,10 +2283,10 @@ module: ietf-te
      |     |     |  |     |           |  |       frequency-thz
      |     |     |  |     |           |  +--rw wdm-tnl:transceiver-tunability?
      |     |     |  |     |           |          frequency-ghz
-     |     |     |  |     |           +--rw wdm-tnl:line-coding-bitrate?
+     |     |     |  |     |           +--rw wdm-tnl:line-coding-bitrate*
      |     |     |  |     |           |       identityref
      |     |     |  |     |           +--rw wdm-tnl:tx-channel-power?
-     |     |     |  |     |           |       power-dbm-or-null
+     |     |     |  |     |           |       l0-types:power-dbm
      |     |     |  |     |           +--rw wdm-tnl:preferred-rx-channel-power?
      |     |     |  |     |                   l0-types:power-dbm
      |     |     |  |     +--:(numbered-link-hop)
@@ -2335,7 +2335,7 @@ module: ietf-te
      |     |     |  |              |              |  +--rw wdm-tnl:flexi-m?
      |     |     |  |              |              |          l0-types:flexi-m
      |     |     |  |              |              x--:(wdm-tnl:super)
-     |     |     |  |              |              |  +--rw wdm-tnl:subcarrier-flexi-n*
+     |     |     |  |              |              |  x--rw wdm-tnl:subcarrier-flexi-n*
      |     |     |  |              |              |          [flexi-n]
      |     |     |  |              |              |     +--rw wdm-tnl:flexi-n
      |     |     |  |              |              |     |       l0-types:flexi-n
@@ -2406,7 +2406,7 @@ module: ietf-te
      |     |     |        |        |              |  +--rw wdm-tnl:flexi-m?
      |     |     |        |        |              |          l0-types:flexi-m
      |     |     |        |        |              x--:(wdm-tnl:super)
-     |     |     |        |        |              |  +--rw wdm-tnl:subcarrier-flexi-n*
+     |     |     |        |        |              |  x--rw wdm-tnl:subcarrier-flexi-n*
      |     |     |        |        |              |          [flexi-n]
      |     |     |        |        |              |     +--rw wdm-tnl:flexi-n
      |     |     |        |        |              |     |       l0-types:flexi-n
@@ -2704,7 +2704,7 @@ module: ietf-te
      |     |     |        |                 |              |  +--ro wdm-tnl:flexi-m?
      |     |     |        |                 |              |          l0-types:flexi-m
      |     |     |        |                 |              x--:(wdm-tnl:super)
-     |     |     |        |                 |              |  +--ro wdm-tnl:subcarrier-flexi-n*
+     |     |     |        |                 |              |  x--ro wdm-tnl:subcarrier-flexi-n*
      |     |     |        |                 |              |          [flexi-n]
      |     |     |        |                 |              |     +--ro wdm-tnl:flexi-n
      |     |     |        |                 |              |     |       l0-types:flexi-n
@@ -2856,7 +2856,7 @@ module: ietf-te
      |     |     |     |  |  |        |        |              |  +--rw wdm-tnl:flexi-m?
      |     |     |     |  |  |        |        |              |          l0-types:flexi-m
      |     |     |     |  |  |        |        |              x--:(wdm-tnl:super)
-     |     |     |     |  |  |        |        |              |  +--rw wdm-tnl:subcarrier-flexi-n*
+     |     |     |     |  |  |        |        |              |  x--rw wdm-tnl:subcarrier-flexi-n*
      |     |     |     |  |  |        |        |              |          [flexi-n]
      |     |     |     |  |  |        |        |              |     +--rw wdm-tnl:flexi-n
      |     |     |     |  |  |        |        |              |     |       l0-types:flexi-n
@@ -2945,7 +2945,7 @@ module: ietf-te
      |     |     |     |  |                    |              |  +--rw wdm-tnl:flexi-m?
      |     |     |     |  |                    |              |          l0-types:flexi-m
      |     |     |     |  |                    |              x--:(wdm-tnl:super)
-     |     |     |     |  |                    |              |  +--rw wdm-tnl:subcarrier-flexi-n*
+     |     |     |     |  |                    |              |  x--rw wdm-tnl:subcarrier-flexi-n*
      |     |     |     |  |                    |              |          [flexi-n]
      |     |     |     |  |                    |              |     +--rw wdm-tnl:flexi-n
      |     |     |     |  |                    |              |     |       l0-types:flexi-n
@@ -3032,10 +3032,10 @@ module: ietf-te
      |     |     |  |     |     |     |  |       frequency-thz
      |     |     |  |     |     |     |  +--rw wdm-tnl:transceiver-tunability?
      |     |     |  |     |     |     |          frequency-ghz
-     |     |     |  |     |     |     +--rw wdm-tnl:line-coding-bitrate?
+     |     |     |  |     |     |     +--rw wdm-tnl:line-coding-bitrate*
      |     |     |  |     |     |     |       identityref
      |     |     |  |     |     |     +--rw wdm-tnl:tx-channel-power?
-     |     |     |  |     |     |     |       power-dbm-or-null
+     |     |     |  |     |     |     |       l0-types:power-dbm
      |     |     |  |     |     |     +--rw wdm-tnl:preferred-rx-channel-power?
      |     |     |  |     |     |             l0-types:power-dbm
      |     |     |  |     |     +--rw wdm-tnl:path-out-transceiver
@@ -3056,10 +3056,10 @@ module: ietf-te
      |     |     |  |     |           |  |       frequency-thz
      |     |     |  |     |           |  +--rw wdm-tnl:transceiver-tunability?
      |     |     |  |     |           |          frequency-ghz
-     |     |     |  |     |           +--rw wdm-tnl:line-coding-bitrate?
+     |     |     |  |     |           +--rw wdm-tnl:line-coding-bitrate*
      |     |     |  |     |           |       identityref
      |     |     |  |     |           +--rw wdm-tnl:tx-channel-power?
-     |     |     |  |     |           |       power-dbm-or-null
+     |     |     |  |     |           |       l0-types:power-dbm
      |     |     |  |     |           +--rw wdm-tnl:preferred-rx-channel-power?
      |     |     |  |     |                   l0-types:power-dbm
      |     |     |  |     +--:(numbered-link-hop)
@@ -3108,7 +3108,7 @@ module: ietf-te
      |     |     |  |              |              |  +--rw wdm-tnl:flexi-m?
      |     |     |  |              |              |          l0-types:flexi-m
      |     |     |  |              |              x--:(wdm-tnl:super)
-     |     |     |  |              |              |  +--rw wdm-tnl:subcarrier-flexi-n*
+     |     |     |  |              |              |  x--rw wdm-tnl:subcarrier-flexi-n*
      |     |     |  |              |              |          [flexi-n]
      |     |     |  |              |              |     +--rw wdm-tnl:flexi-n
      |     |     |  |              |              |     |       l0-types:flexi-n
@@ -3179,7 +3179,7 @@ module: ietf-te
      |     |     |        |        |              |  +--rw wdm-tnl:flexi-m?
      |     |     |        |        |              |          l0-types:flexi-m
      |     |     |        |        |              x--:(wdm-tnl:super)
-     |     |     |        |        |              |  +--rw wdm-tnl:subcarrier-flexi-n*
+     |     |     |        |        |              |  x--rw wdm-tnl:subcarrier-flexi-n*
      |     |     |        |        |              |          [flexi-n]
      |     |     |        |        |              |     +--rw wdm-tnl:flexi-n
      |     |     |        |        |              |     |       l0-types:flexi-n
@@ -3477,7 +3477,7 @@ module: ietf-te
      |     |     |        |                 |              |  +--ro wdm-tnl:flexi-m?
      |     |     |        |                 |              |          l0-types:flexi-m
      |     |     |        |                 |              x--:(wdm-tnl:super)
-     |     |     |        |                 |              |  +--ro wdm-tnl:subcarrier-flexi-n*
+     |     |     |        |                 |              |  x--ro wdm-tnl:subcarrier-flexi-n*
      |     |     |        |                 |              |          [flexi-n]
      |     |     |        |                 |              |     +--ro wdm-tnl:flexi-n
      |     |     |        |                 |              |     |       l0-types:flexi-n
@@ -3546,10 +3546,10 @@ module: ietf-te
      |        |  |  |       frequency-thz
      |        |  |  +--rw wdm-tnl:transceiver-tunability?
      |        |  |          frequency-ghz
-     |        |  +--rw wdm-tnl:line-coding-bitrate?
+     |        |  +--rw wdm-tnl:line-coding-bitrate*
      |        |  |       identityref
      |        |  +--rw wdm-tnl:tx-channel-power?
-     |        |  |       power-dbm-or-null
+     |        |  |       l0-types:power-dbm
      |        |  +--rw wdm-tnl:preferred-rx-channel-power?
      |        |          l0-types:power-dbm
      |        +--rw wdm-tnl:gsnr-extra-margin?             snr
@@ -3661,7 +3661,7 @@ module: ietf-te
               |           |  |              |  +--ro wdm-tnl:flexi-m?
               |           |  |              |          l0-types:flexi-m
               |           |  |              x--:(wdm-tnl:super)
-              |           |  |              |  +--ro wdm-tnl:subcarrier-flexi-n*
+              |           |  |              |  x--ro wdm-tnl:subcarrier-flexi-n*
               |           |  |              |          [flexi-n]
               |           |  |              |     +--ro wdm-tnl:flexi-n
               |           |  |              |     |       l0-types:flexi-n
