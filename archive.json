@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-02-27T00:49:06.324406+00:00",
+  "timestamp": "2024-02-29T00:49:26.010066+00:00",
   "repo": "ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang",
   "labels": [
     {
@@ -2053,7 +2053,7 @@
       "labels": [],
       "body": "YANG and text update for the following issue: \r\n\r\n- fix typo in text\r\n- added preferred-rx-channel-power as a transceiver constraint; \r\n- sync'ed with l0-types for rw/ro split of transceiver parameters; \r\n- added augments for reporting estimated transceiver properties on computed paths; \r\n- added augments for reporting actual transceiver properties on LSPs\"\r\n",
       "createdAt": "2024-02-13T20:37:59Z",
-      "updatedAt": "2024-02-26T20:32:14Z",
+      "updatedAt": "2024-02-27T10:13:23Z",
       "baseRepository": "ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang",
       "baseRefName": "main",
       "baseRefOid": "36dead767f792427761844922cadf14007801b23",
@@ -2227,6 +2227,26 @@
               "body": "line-coding-bitrate is defined in l0-types in the grouping \"common-transceiver-configured-param\".\r\nQ1: is line-coding-bitrate(s) per operational mode? If so it needs to be moved to under a container together with the operational mode (and under a list).\r\nQ2 : \"common-transceiver-configured-param\" also includes tx-channel-power. If the tx-channel-power is not per operational mode then this grouping is not usable and we have to define separate line-coding-bitrate list instead.",
               "createdAt": "2024-02-26T20:32:14Z",
               "updatedAt": "2024-02-26T20:32:14Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOEHme9c5xbtKZ",
+          "commit": {
+            "abbreviatedOid": "3871a83"
+          },
+          "author": "sergiobelotti",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-27T10:13:22Z",
+          "updatedAt": "2024-02-27T10:13:23Z",
+          "comments": [
+            {
+              "originalPosition": 14,
+              "body": "Q1: operational and organizational modes have already their own line-coding-bitrate \r\n`grouping common-standard-organizational-mode {\r\n    description\r\n      \"Common attributes used by standard and organizational \r\n      transceiver's modes.\";\r\n    \r\n    leaf-list line-coding-bitrate {\r\n      type identityref {\r\n        base line-coding;\r\n      }\r\n      config false;\r\n      description\r\n        \"The list of the bit rate/line coding of the optical \r\n        tributary signal supported by the transceiver.\r\n\r\n        Reporting this list is optional when the standard or \r\n        organization mode supports only one bit rate/line coding.\";\r\n      reference \r\n        \"ITU-T G.698.2 section 7.1.2\";\r\n    }\r\n  } // grouping common-standard-organizational-mode`\r\n\r\nQ2: tx-channel-power is also per operational- mode so is correctly in common for any modes",
+              "createdAt": "2024-02-27T10:13:22Z",
+              "updatedAt": "2024-02-27T10:13:23Z"
             }
           ]
         }
