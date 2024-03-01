@@ -5,14 +5,14 @@
 CCAMP Working Group                                               A. Guo
 Internet-Draft                                    Futurewei Technologies
 Intended status: Standards Track                              S. Belotti
-Expires: 15 August 2024                                            Nokia
+Expires: 2 September 2024                                          Nokia
                                                            G. Galimberti
                                                               Individual
                                                    J. E. L. de V. Mendez
                                                              Naudit HPCN
                                                            D. P. Burrero
                                           Universidad Autonoma de Madrid
-                                                        12 February 2024
+                                                            1 March 2024
 
 
                    A YANG Data Model for WDM Tunnels
@@ -62,7 +62,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 15 August 2024.
+   This Internet-Draft will expire on 2 September 2024.
 
 Copyright Notice
 
@@ -224,7 +224,7 @@ Table of Contents
    *  We define the transponders within nodes A and E as tunnel
       termination points (TTPs) and provide their internal local link
       connectivity towards the node interfaces.  We also provide nodes A
-      and B identifiers, addresses and interfaces.
+      and E identifiers, addresses and interfaces.
 
    *  We do the same for the nodes B, C and D, providing their
       identifiers, addresses and interfaces, as well as the internal
@@ -268,69 +268,142 @@ Table of Contents
      augment /te:te/te:tunnels/te:tunnel:
        +--rw wdm-constraint
           +--rw transceiver-constraint
-          |  +--rw operational-modes*     string
+          |  +--rw operational-modes*            string
           |  +--rw tx-tune-constraints
-          |     +--rw min-central-frequency?    frequency-thz
-          |     +--rw max-central-frequency?    frequency-thz
-          |     +--rw transceiver-tunability?   frequency-ghz
-          +--rw gsnr-margin?                   snr
+          |  |  +--rw min-central-frequency?    frequency-thz
+          |  |  +--rw max-central-frequency?    frequency-thz
+          |  |  +--rw transceiver-tunability?   frequency-ghz
+          |  +--rw line-coding-bitrate*          identityref
+          |  +--rw tx-channel-power?             l0-types:power-dbm
+          |  +--rw preferred-rx-channel-power?   l0-types:power-dbm
+          +--rw gsnr-extra-margin?             snr
           +--rw use-regen?                     boolean
           +--rw wavelength-conversion?         boolean
-          +--rw bit-stuffing?                  boolean
           +--rw wavelength-assignment?         identityref
           +--rw guard-band-size?               l0-types:frequency-thz
           +--rw matching-fwd-rev-wavelength?   boolean
           +--rw allow-retuning?                boolean
-          +--rw delta-power?                   l0-types:ratio-in-db
+          +--rw delta-power?                   l0-types:power-ratio
      augment /te:te/te:tunnels/te:tunnel/te:primary-paths
-               /te:primary-path/te:explicit-route-objects-always
+               /te:primary-path/te:explicit-route-objects
                /te:route-object-exclude-always/te:type
                /te:numbered-node-hop/te:numbered-node-hop:
        +--rw path-in-transceiver
-       |  +--rw transponder-id?        uint32
+       |  +--rw transponder-id?   uint32
        |  +--rw transceivers* [lane-id]
-       |  |  +--rw lane-id           uint8
-       |  |  +--rw transceiver-id?   uint32
-       |  +--rw operational-modes*     string
-       |  +--rw tx-tune-constraints
-       |     +--rw min-central-frequency?    frequency-thz
-       |     +--rw max-central-frequency?    frequency-thz
-       |     +--rw transceiver-tunability?   frequency-ghz
+       |     +--rw lane-id                       uint8
+       |     +--rw transceiver-id?               uint32
+       |     +--rw operational-modes*            string
+       |     +--rw tx-tune-constraints
+       |     |  +--rw min-central-frequency?    frequency-thz
+       |     |  +--rw max-central-frequency?    frequency-thz
+       |     |  +--rw transceiver-tunability?   frequency-ghz
+       |     +--rw line-coding-bitrate*          identityref
+       |     +--rw tx-channel-power?             l0-types:power-dbm
+       |     +--rw preferred-rx-channel-power?   l0-types:power-dbm
        +--rw path-out-transceiver
-          +--rw transponder-id?        uint32
+          +--rw transponder-id?   uint32
           +--rw transceivers* [lane-id]
-          |  +--rw lane-id           uint8
-          |  +--rw transceiver-id?   uint32
-          +--rw operational-modes*     string
-          +--rw tx-tune-constraints
-             +--rw min-central-frequency?    frequency-thz
-             +--rw max-central-frequency?    frequency-thz
-             +--rw transceiver-tunability?   frequency-ghz
+             +--rw lane-id                       uint8
+             +--rw transceiver-id?               uint32
+             +--rw operational-modes*            string
+             +--rw tx-tune-constraints
+             |  +--rw min-central-frequency?    frequency-thz
+             |  +--rw max-central-frequency?    frequency-thz
+             |  +--rw transceiver-tunability?   frequency-ghz
+             +--rw line-coding-bitrate*          identityref
+             +--rw tx-channel-power?             l0-types:power-dbm
+             +--rw preferred-rx-channel-power?   l0-types:power-dbm
      augment /te:te/te:tunnels/te:tunnel/te:primary-paths
                /te:primary-path/te:primary-reverse-path
-               /te:explicit-route-objects-always
+               /te:explicit-route-objects/te:route-object-exclude-always
+               /te:type/te:numbered-node-hop/te:numbered-node-hop:
+       +--rw path-in-transceiver
+       |  +--rw transponder-id?   uint32
+       |  +--rw transceivers* [lane-id]
+       |     +--rw lane-id                       uint8
+       |     +--rw transceiver-id?               uint32
+       |     +--rw operational-modes*            string
+       |     +--rw tx-tune-constraints
+       |     |  +--rw min-central-frequency?    frequency-thz
+       |     |  +--rw max-central-frequency?    frequency-thz
+       |     |  +--rw transceiver-tunability?   frequency-ghz
+       |     +--rw line-coding-bitrate*          identityref
+       |     +--rw tx-channel-power?             l0-types:power-dbm
+       |     +--rw preferred-rx-channel-power?   l0-types:power-dbm
+       +--rw path-out-transceiver
+          +--rw transponder-id?   uint32
+          +--rw transceivers* [lane-id]
+             +--rw lane-id                       uint8
+             +--rw transceiver-id?               uint32
+             +--rw operational-modes*            string
+             +--rw tx-tune-constraints
+             |  +--rw min-central-frequency?    frequency-thz
+             |  +--rw max-central-frequency?    frequency-thz
+             |  +--rw transceiver-tunability?   frequency-ghz
+             +--rw line-coding-bitrate*          identityref
+             +--rw tx-channel-power?             l0-types:power-dbm
+             +--rw preferred-rx-channel-power?   l0-types:power-dbm
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+               /te:secondary-path/te:explicit-route-objects
                /te:route-object-exclude-always/te:type
                /te:numbered-node-hop/te:numbered-node-hop:
        +--rw path-in-transceiver
-       |  +--rw transponder-id?        uint32
+       |  +--rw transponder-id?   uint32
        |  +--rw transceivers* [lane-id]
-       |  |  +--rw lane-id           uint8
-       |  |  +--rw transceiver-id?   uint32
-       |  +--rw operational-modes*     string
-       |  +--rw tx-tune-constraints
-       |     +--rw min-central-frequency?    frequency-thz
-       |     +--rw max-central-frequency?    frequency-thz
-       |     +--rw transceiver-tunability?   frequency-ghz
+       |     +--rw lane-id                       uint8
+       |     +--rw transceiver-id?               uint32
+       |     +--rw operational-modes*            string
+       |     +--rw tx-tune-constraints
+       |     |  +--rw min-central-frequency?    frequency-thz
+       |     |  +--rw max-central-frequency?    frequency-thz
+       |     |  +--rw transceiver-tunability?   frequency-ghz
+       |     +--rw line-coding-bitrate*          identityref
+       |     +--rw tx-channel-power?             l0-types:power-dbm
+       |     +--rw preferred-rx-channel-power?   l0-types:power-dbm
        +--rw path-out-transceiver
-          +--rw transponder-id?        uint32
+          +--rw transponder-id?   uint32
           +--rw transceivers* [lane-id]
-          |  +--rw lane-id           uint8
-          |  +--rw transceiver-id?   uint32
-          +--rw operational-modes*     string
-          +--rw tx-tune-constraints
-             +--rw min-central-frequency?    frequency-thz
-             +--rw max-central-frequency?    frequency-thz
-             +--rw transceiver-tunability?   frequency-ghz
+             +--rw lane-id                       uint8
+             +--rw transceiver-id?               uint32
+             +--rw operational-modes*            string
+             +--rw tx-tune-constraints
+             |  +--rw min-central-frequency?    frequency-thz
+             |  +--rw max-central-frequency?    frequency-thz
+             |  +--rw transceiver-tunability?   frequency-ghz
+             +--rw line-coding-bitrate*          identityref
+             +--rw tx-channel-power?             l0-types:power-dbm
+             +--rw preferred-rx-channel-power?   l0-types:power-dbm
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
+               /te:secondary-reverse-path/te:explicit-route-objects
+               /te:route-object-exclude-always/te:type
+               /te:numbered-node-hop/te:numbered-node-hop:
+       +--rw path-in-transceiver
+       |  +--rw transponder-id?   uint32
+       |  +--rw transceivers* [lane-id]
+       |     +--rw lane-id                       uint8
+       |     +--rw transceiver-id?               uint32
+       |     +--rw operational-modes*            string
+       |     +--rw tx-tune-constraints
+       |     |  +--rw min-central-frequency?    frequency-thz
+       |     |  +--rw max-central-frequency?    frequency-thz
+       |     |  +--rw transceiver-tunability?   frequency-ghz
+       |     +--rw line-coding-bitrate*          identityref
+       |     +--rw tx-channel-power?             l0-types:power-dbm
+       |     +--rw preferred-rx-channel-power?   l0-types:power-dbm
+       +--rw path-out-transceiver
+          +--rw transponder-id?   uint32
+          +--rw transceivers* [lane-id]
+             +--rw lane-id                       uint8
+             +--rw transceiver-id?               uint32
+             +--rw operational-modes*            string
+             +--rw tx-tune-constraints
+             |  +--rw min-central-frequency?    frequency-thz
+             |  +--rw max-central-frequency?    frequency-thz
+             |  +--rw transceiver-tunability?   frequency-ghz
+             +--rw line-coding-bitrate*          identityref
+             +--rw tx-channel-power?             l0-types:power-dbm
+             +--rw preferred-rx-channel-power?   l0-types:power-dbm
      augment /te:te/te:tunnels/te:tunnel/te:primary-paths
                /te:primary-path/te:computed-paths-properties
                /te:computed-path-properties/te:path-properties:
@@ -345,55 +418,6 @@ Table of Contents
        +--ro estimated-eol-gsnr?      snr
        +--ro estimated-lowest-gsnr?   snr
      augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
-               /te:secondary-path/te:explicit-route-objects-always
-               /te:route-object-exclude-always/te:type
-               /te:numbered-node-hop/te:numbered-node-hop:
-       +--rw path-in-transceiver
-       |  +--rw transponder-id?        uint32
-       |  +--rw transceivers* [lane-id]
-       |  |  +--rw lane-id           uint8
-       |  |  +--rw transceiver-id?   uint32
-       |  +--rw operational-modes*     string
-       |  +--rw tx-tune-constraints
-       |     +--rw min-central-frequency?    frequency-thz
-       |     +--rw max-central-frequency?    frequency-thz
-       |     +--rw transceiver-tunability?   frequency-ghz
-       +--rw path-out-transceiver
-          +--rw transponder-id?        uint32
-          +--rw transceivers* [lane-id]
-          |  +--rw lane-id           uint8
-          |  +--rw transceiver-id?   uint32
-          +--rw operational-modes*     string
-          +--rw tx-tune-constraints
-             +--rw min-central-frequency?    frequency-thz
-             +--rw max-central-frequency?    frequency-thz
-             +--rw transceiver-tunability?   frequency-ghz
-     augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
-               /te:secondary-reverse-path
-               /te:explicit-route-objects-always
-               /te:route-object-exclude-always/te:type
-               /te:numbered-node-hop/te:numbered-node-hop:
-       +--rw path-in-transceiver
-       |  +--rw transponder-id?        uint32
-       |  +--rw transceivers* [lane-id]
-       |  |  +--rw lane-id           uint8
-       |  |  +--rw transceiver-id?   uint32
-       |  +--rw operational-modes*     string
-       |  +--rw tx-tune-constraints
-       |     +--rw min-central-frequency?    frequency-thz
-       |     +--rw max-central-frequency?    frequency-thz
-       |     +--rw transceiver-tunability?   frequency-ghz
-       +--rw path-out-transceiver
-          +--rw transponder-id?        uint32
-          +--rw transceivers* [lane-id]
-          |  +--rw lane-id           uint8
-          |  +--rw transceiver-id?   uint32
-          +--rw operational-modes*     string
-          +--rw tx-tune-constraints
-             +--rw min-central-frequency?    frequency-thz
-             +--rw max-central-frequency?    frequency-thz
-             +--rw transceiver-tunability?   frequency-ghz
-     augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
                /te:secondary-path/te:computed-paths-properties
                /te:computed-path-properties/te:path-properties:
        +--ro estimated-gsnr?          snr
@@ -405,9 +429,103 @@ Table of Contents
        +--ro estimated-gsnr?          snr
        +--ro estimated-eol-gsnr?      snr
        +--ro estimated-lowest-gsnr?   snr
+     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+               /te:primary-path/te:computed-paths-properties
+               /te:computed-path-properties/te:path-properties
+               /te:path-route-objects/te:path-route-object/te:type
+               /te:numbered-node-hop/te:numbered-node-hop:
+       +--ro path-in-transceiver
+       |  +--ro transponder-id?   uint32
+       |  +--ro transceivers* [lane-id]
+       |     +--ro lane-id             uint8
+       |     +--ro transceiver-id?     uint32
+       |     +--ro rx-channel-power?   power-dbm-or-null
+       |     +--ro rx-total-power?     power-dbm-or-null
+       +--ro path-out-transceiver
+          +--ro transponder-id?   uint32
+          +--ro transceivers* [lane-id]
+             +--ro lane-id             uint8
+             +--ro transceiver-id?     uint32
+             +--ro rx-channel-power?   power-dbm-or-null
+             +--ro rx-total-power?     power-dbm-or-null
+     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+               /te:primary-path/te:primary-reverse-path
+               /te:computed-paths-properties/te:computed-path-properties
+               /te:path-properties/te:path-route-objects
+               /te:path-route-object/te:type/te:numbered-node-hop
+               /te:numbered-node-hop:
+       +--ro path-in-transceiver
+       |  +--ro transponder-id?   uint32
+       |  +--ro transceivers* [lane-id]
+       |     +--ro lane-id             uint8
+       |     +--ro transceiver-id?     uint32
+       |     +--ro rx-channel-power?   power-dbm-or-null
+       |     +--ro rx-total-power?     power-dbm-or-null
+       +--ro path-out-transceiver
+          +--ro transponder-id?   uint32
+          +--ro transceivers* [lane-id]
+             +--ro lane-id             uint8
+             +--ro transceiver-id?     uint32
+             +--ro rx-channel-power?   power-dbm-or-null
+             +--ro rx-total-power?     power-dbm-or-null
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+               /te:secondary-path/te:computed-paths-properties
+               /te:computed-path-properties/te:path-properties
+               /te:path-route-objects/te:path-route-object/te:type
+               /te:numbered-node-hop/te:numbered-node-hop:
+       +--ro path-in-transceiver
+       |  +--ro transponder-id?   uint32
+       |  +--ro transceivers* [lane-id]
+       |     +--ro lane-id             uint8
+       |     +--ro transceiver-id?     uint32
+       |     +--ro rx-channel-power?   power-dbm-or-null
+       |     +--ro rx-total-power?     power-dbm-or-null
+       +--ro path-out-transceiver
+          +--ro transponder-id?   uint32
+          +--ro transceivers* [lane-id]
+             +--ro lane-id             uint8
+             +--ro transceiver-id?     uint32
+             +--ro rx-channel-power?   power-dbm-or-null
+             +--ro rx-total-power?     power-dbm-or-null
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
+               /te:secondary-reverse-path/te:computed-paths-properties
+               /te:computed-path-properties/te:path-properties
+               /te:path-route-objects/te:path-route-object/te:type
+               /te:numbered-node-hop/te:numbered-node-hop:
+       +--ro path-in-transceiver
+       |  +--ro transponder-id?   uint32
+       |  +--ro transceivers* [lane-id]
+       |     +--ro lane-id             uint8
+       |     +--ro transceiver-id?     uint32
+       |     +--ro rx-channel-power?   power-dbm-or-null
+       |     +--ro rx-total-power?     power-dbm-or-null
+       +--ro path-out-transceiver
+          +--ro transponder-id?   uint32
+          +--ro transceivers* [lane-id]
+             +--ro lane-id             uint8
+             +--ro transceiver-id?     uint32
+             +--ro rx-channel-power?   power-dbm-or-null
+             +--ro rx-total-power?     power-dbm-or-null
      augment /te:te/te:lsps/te:lsp/te:lsp-actual-route-information:
        +--ro wdm-path-state
           +--ro gsnr?   l0-types:snr
+     augment /te:te/te:lsps/te:lsp/te:lsp-actual-route-information
+               /te:lsp-actual-route-information/te:type
+               /te:numbered-node-hop/te:numbered-node-hop:
+       +--ro path-in-transceiver
+       |  +--ro transponder-id?   uint32
+       |  +--ro transceivers* [lane-id]
+       |     +--ro lane-id             uint8
+       |     +--ro transceiver-id?     uint32
+       |     +--ro rx-channel-power?   power-dbm-or-null
+       |     +--ro rx-total-power?     power-dbm-or-null
+       +--ro path-out-transceiver
+          +--ro transponder-id?   uint32
+          +--ro transceivers* [lane-id]
+             +--ro lane-id             uint8
+             +--ro transceiver-id?     uint32
+             +--ro rx-channel-power?   power-dbm-or-null
+             +--ro rx-total-power?     power-dbm-or-null
      augment /te:te/te:globals/te:named-path-constraints
                /te:named-path-constraint/te:path-in-segment
                /te:label-restrictions/te:label-restriction:
@@ -501,8 +619,7 @@ Table of Contents
           +--rw min-slot-width-factor?    uint16
           +--rw max-slot-width-factor?    uint16
      augment /te:te/te:globals/te:named-path-constraints
-               /te:named-path-constraint
-               /te:explicit-route-objects-always
+               /te:named-path-constraint/te:explicit-route-objects
                /te:route-object-exclude-always/te:type/te:label
                /te:label-hop/te:te-label/te:technology:
        +--:(wdm)
@@ -521,7 +638,7 @@ Table of Contents
                    |  +--rw flexi-n?              l0-types:flexi-n
                    |  +--rw flexi-m?              l0-types:flexi-m
                    x--:(super)
-                   |  +--rw subcarrier-flexi-n* [flexi-n]
+                   |  x--rw subcarrier-flexi-n* [flexi-n]
                    |     +--rw flexi-n    l0-types:flexi-n
                    |     +--rw flexi-m?   l0-types:flexi-m
                    +--:(multi)
@@ -530,8 +647,7 @@ Table of Contents
                             +--rw flexi-n    l0-types:flexi-n
                             +--rw flexi-m?   l0-types:flexi-m
      augment /te:te/te:globals/te:named-path-constraints
-               /te:named-path-constraint
-               /te:explicit-route-objects-always
+               /te:named-path-constraint/te:explicit-route-objects
                /te:route-object-include-exclude/te:type/te:label
                /te:label-hop/te:te-label/te:technology:
        +--:(wdm)
@@ -550,7 +666,7 @@ Table of Contents
                    |  +--rw flexi-n?              l0-types:flexi-n
                    |  +--rw flexi-m?              l0-types:flexi-m
                    x--:(super)
-                   |  +--rw subcarrier-flexi-n* [flexi-n]
+                   |  x--rw subcarrier-flexi-n* [flexi-n]
                    |     +--rw flexi-n    l0-types:flexi-n
                    |     +--rw flexi-m?   l0-types:flexi-m
                    +--:(multi)
@@ -655,7 +771,7 @@ Table of Contents
                    |  +--rw flexi-n?              l0-types:flexi-n
                    |  +--rw flexi-m?              l0-types:flexi-m
                    x--:(super)
-                   |  +--rw subcarrier-flexi-n* [flexi-n]
+                   |  x--rw subcarrier-flexi-n* [flexi-n]
                    |     +--rw flexi-n    l0-types:flexi-n
                    |     +--rw flexi-m?   l0-types:flexi-m
                    +--:(multi)
@@ -684,7 +800,7 @@ Table of Contents
                    |  +--rw flexi-n?              l0-types:flexi-n
                    |  +--rw flexi-m?              l0-types:flexi-m
                    x--:(super)
-                   |  +--rw subcarrier-flexi-n* [flexi-n]
+                   |  x--rw subcarrier-flexi-n* [flexi-n]
                    |     +--rw flexi-n    l0-types:flexi-n
                    |     +--rw flexi-m?   l0-types:flexi-m
                    +--:(multi)
@@ -693,7 +809,7 @@ Table of Contents
                             +--rw flexi-n    l0-types:flexi-n
                             +--rw flexi-m?   l0-types:flexi-m
      augment /te:te/te:tunnels/te:tunnel/te:primary-paths
-               /te:primary-path/te:explicit-route-objects-always
+               /te:primary-path/te:explicit-route-objects
                /te:route-object-exclude-always/te:type/te:label
                /te:label-hop/te:te-label/te:technology:
        +--:(wdm)
@@ -712,7 +828,7 @@ Table of Contents
                    |  +--rw flexi-n?              l0-types:flexi-n
                    |  +--rw flexi-m?              l0-types:flexi-m
                    x--:(super)
-                   |  +--rw subcarrier-flexi-n* [flexi-n]
+                   |  x--rw subcarrier-flexi-n* [flexi-n]
                    |     +--rw flexi-n    l0-types:flexi-n
                    |     +--rw flexi-m?   l0-types:flexi-m
                    +--:(multi)
@@ -721,7 +837,7 @@ Table of Contents
                             +--rw flexi-n    l0-types:flexi-n
                             +--rw flexi-m?   l0-types:flexi-m
      augment /te:te/te:tunnels/te:tunnel/te:primary-paths
-               /te:primary-path/te:explicit-route-objects-always
+               /te:primary-path/te:explicit-route-objects
                /te:route-object-include-exclude/te:type/te:label
                /te:label-hop/te:te-label/te:technology:
        +--:(wdm)
@@ -740,7 +856,7 @@ Table of Contents
                    |  +--rw flexi-n?              l0-types:flexi-n
                    |  +--rw flexi-m?              l0-types:flexi-m
                    x--:(super)
-                   |  +--rw subcarrier-flexi-n* [flexi-n]
+                   |  x--rw subcarrier-flexi-n* [flexi-n]
                    |     +--rw flexi-n    l0-types:flexi-n
                    |     +--rw flexi-m?   l0-types:flexi-m
                    +--:(multi)
@@ -844,7 +960,7 @@ Table of Contents
                    |  +--ro flexi-n?              l0-types:flexi-n
                    |  +--ro flexi-m?              l0-types:flexi-m
                    x--:(super)
-                   |  +--ro subcarrier-flexi-n* [flexi-n]
+                   |  x--ro subcarrier-flexi-n* [flexi-n]
                    |     +--ro flexi-n    l0-types:flexi-n
                    |     +--ro flexi-m?   l0-types:flexi-m
                    +--:(multi)
@@ -874,7 +990,7 @@ Table of Contents
                    |  +--rw flexi-n?              l0-types:flexi-n
                    |  +--rw flexi-m?              l0-types:flexi-m
                    x--:(super)
-                   |  +--rw subcarrier-flexi-n* [flexi-n]
+                   |  x--rw subcarrier-flexi-n* [flexi-n]
                    |     +--rw flexi-n    l0-types:flexi-n
                    |     +--rw flexi-m?   l0-types:flexi-m
                    +--:(multi)
@@ -904,7 +1020,7 @@ Table of Contents
                    |  +--rw flexi-n?              l0-types:flexi-n
                    |  +--rw flexi-m?              l0-types:flexi-m
                    x--:(super)
-                   |  +--rw subcarrier-flexi-n* [flexi-n]
+                   |  x--rw subcarrier-flexi-n* [flexi-n]
                    |     +--rw flexi-n    l0-types:flexi-n
                    |     +--rw flexi-m?   l0-types:flexi-m
                    +--:(multi)
@@ -914,9 +1030,8 @@ Table of Contents
                             +--rw flexi-m?   l0-types:flexi-m
      augment /te:te/te:tunnels/te:tunnel/te:primary-paths
                /te:primary-path/te:primary-reverse-path
-               /te:explicit-route-objects-always
-               /te:route-object-exclude-always/te:type/te:label
-               /te:label-hop/te:te-label/te:technology:
+               /te:explicit-route-objects/te:route-object-exclude-always
+               /te:type/te:label/te:label-hop/te:te-label/te:technology:
        +--:(wdm)
           +--rw (grid-type)?
              +--:(fixed-dwdm)
@@ -933,7 +1048,7 @@ Table of Contents
                    |  +--rw flexi-n?              l0-types:flexi-n
                    |  +--rw flexi-m?              l0-types:flexi-m
                    x--:(super)
-                   |  +--rw subcarrier-flexi-n* [flexi-n]
+                   |  x--rw subcarrier-flexi-n* [flexi-n]
                    |     +--rw flexi-n    l0-types:flexi-n
                    |     +--rw flexi-m?   l0-types:flexi-m
                    +--:(multi)
@@ -943,7 +1058,7 @@ Table of Contents
                             +--rw flexi-m?   l0-types:flexi-m
      augment /te:te/te:tunnels/te:tunnel/te:primary-paths
                /te:primary-path/te:primary-reverse-path
-               /te:explicit-route-objects-always
+               /te:explicit-route-objects
                /te:route-object-include-exclude/te:type/te:label
                /te:label-hop/te:te-label/te:technology:
        +--:(wdm)
@@ -962,7 +1077,7 @@ Table of Contents
                    |  +--rw flexi-n?              l0-types:flexi-n
                    |  +--rw flexi-m?              l0-types:flexi-m
                    x--:(super)
-                   |  +--rw subcarrier-flexi-n* [flexi-n]
+                   |  x--rw subcarrier-flexi-n* [flexi-n]
                    |     +--rw flexi-n    l0-types:flexi-n
                    |     +--rw flexi-m?   l0-types:flexi-m
                    +--:(multi)
@@ -1072,7 +1187,7 @@ Table of Contents
                    |  +--ro flexi-n?              l0-types:flexi-n
                    |  +--ro flexi-m?              l0-types:flexi-m
                    x--:(super)
-                   |  +--ro subcarrier-flexi-n* [flexi-n]
+                   |  x--ro subcarrier-flexi-n* [flexi-n]
                    |     +--ro flexi-n    l0-types:flexi-n
                    |     +--ro flexi-m?   l0-types:flexi-m
                    +--:(multi)
@@ -1102,7 +1217,7 @@ Table of Contents
                    |  +--rw flexi-n?              l0-types:flexi-n
                    |  +--rw flexi-m?              l0-types:flexi-m
                    x--:(super)
-                   |  +--rw subcarrier-flexi-n* [flexi-n]
+                   |  x--rw subcarrier-flexi-n* [flexi-n]
                    |     +--rw flexi-n    l0-types:flexi-n
                    |     +--rw flexi-m?   l0-types:flexi-m
                    +--:(multi)
@@ -1132,7 +1247,7 @@ Table of Contents
                    |  +--rw flexi-n?              l0-types:flexi-n
                    |  +--rw flexi-m?              l0-types:flexi-m
                    x--:(super)
-                   |  +--rw subcarrier-flexi-n* [flexi-n]
+                   |  x--rw subcarrier-flexi-n* [flexi-n]
                    |     +--rw flexi-n    l0-types:flexi-n
                    |     +--rw flexi-m?   l0-types:flexi-m
                    +--:(multi)
@@ -1141,7 +1256,7 @@ Table of Contents
                             +--rw flexi-n    l0-types:flexi-n
                             +--rw flexi-m?   l0-types:flexi-m
      augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
-               /te:secondary-path/te:explicit-route-objects-always
+               /te:secondary-path/te:explicit-route-objects
                /te:route-object-exclude-always/te:type/te:label
                /te:label-hop/te:te-label/te:technology:
        +--:(wdm)
@@ -1160,7 +1275,7 @@ Table of Contents
                    |  +--rw flexi-n?              l0-types:flexi-n
                    |  +--rw flexi-m?              l0-types:flexi-m
                    x--:(super)
-                   |  +--rw subcarrier-flexi-n* [flexi-n]
+                   |  x--rw subcarrier-flexi-n* [flexi-n]
                    |     +--rw flexi-n    l0-types:flexi-n
                    |     +--rw flexi-m?   l0-types:flexi-m
                    +--:(multi)
@@ -1169,7 +1284,7 @@ Table of Contents
                             +--rw flexi-n    l0-types:flexi-n
                             +--rw flexi-m?   l0-types:flexi-m
      augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
-               /te:secondary-path/te:explicit-route-objects-always
+               /te:secondary-path/te:explicit-route-objects
                /te:route-object-include-exclude/te:type/te:label
                /te:label-hop/te:te-label/te:technology:
        +--:(wdm)
@@ -1188,7 +1303,7 @@ Table of Contents
                    |  +--rw flexi-n?              l0-types:flexi-n
                    |  +--rw flexi-m?              l0-types:flexi-m
                    x--:(super)
-                   |  +--rw subcarrier-flexi-n* [flexi-n]
+                   |  x--rw subcarrier-flexi-n* [flexi-n]
                    |     +--rw flexi-n    l0-types:flexi-n
                    |     +--rw flexi-m?   l0-types:flexi-m
                    +--:(multi)
@@ -1293,7 +1408,7 @@ Table of Contents
                    |  +--ro flexi-n?              l0-types:flexi-n
                    |  +--ro flexi-m?              l0-types:flexi-m
                    x--:(super)
-                   |  +--ro subcarrier-flexi-n* [flexi-n]
+                   |  x--ro subcarrier-flexi-n* [flexi-n]
                    |     +--ro flexi-n    l0-types:flexi-n
                    |     +--ro flexi-m?   l0-types:flexi-m
                    +--:(multi)
@@ -1323,7 +1438,7 @@ Table of Contents
                    |  +--rw flexi-n?              l0-types:flexi-n
                    |  +--rw flexi-m?              l0-types:flexi-m
                    x--:(super)
-                   |  +--rw subcarrier-flexi-n* [flexi-n]
+                   |  x--rw subcarrier-flexi-n* [flexi-n]
                    |     +--rw flexi-n    l0-types:flexi-n
                    |     +--rw flexi-m?   l0-types:flexi-m
                    +--:(multi)
@@ -1353,7 +1468,7 @@ Table of Contents
                    |  +--rw flexi-n?              l0-types:flexi-n
                    |  +--rw flexi-m?              l0-types:flexi-m
                    x--:(super)
-                   |  +--rw subcarrier-flexi-n* [flexi-n]
+                   |  x--rw subcarrier-flexi-n* [flexi-n]
                    |     +--rw flexi-n    l0-types:flexi-n
                    |     +--rw flexi-m?   l0-types:flexi-m
                    +--:(multi)
@@ -1362,8 +1477,7 @@ Table of Contents
                             +--rw flexi-n    l0-types:flexi-n
                             +--rw flexi-m?   l0-types:flexi-m
      augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
-               /te:secondary-reverse-path
-               /te:explicit-route-objects-always
+               /te:secondary-reverse-path/te:explicit-route-objects
                /te:route-object-exclude-always/te:type/te:label
                /te:label-hop/te:te-label/te:technology:
        +--:(wdm)
@@ -1382,7 +1496,7 @@ Table of Contents
                    |  +--rw flexi-n?              l0-types:flexi-n
                    |  +--rw flexi-m?              l0-types:flexi-m
                    x--:(super)
-                   |  +--rw subcarrier-flexi-n* [flexi-n]
+                   |  x--rw subcarrier-flexi-n* [flexi-n]
                    |     +--rw flexi-n    l0-types:flexi-n
                    |     +--rw flexi-m?   l0-types:flexi-m
                    +--:(multi)
@@ -1391,8 +1505,7 @@ Table of Contents
                             +--rw flexi-n    l0-types:flexi-n
                             +--rw flexi-m?   l0-types:flexi-m
      augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
-               /te:secondary-reverse-path
-               /te:explicit-route-objects-always
+               /te:secondary-reverse-path/te:explicit-route-objects
                /te:route-object-include-exclude/te:type/te:label
                /te:label-hop/te:te-label/te:technology:
        +--:(wdm)
@@ -1411,7 +1524,7 @@ Table of Contents
                    |  +--rw flexi-n?              l0-types:flexi-n
                    |  +--rw flexi-m?              l0-types:flexi-m
                    x--:(super)
-                   |  +--rw subcarrier-flexi-n* [flexi-n]
+                   |  x--rw subcarrier-flexi-n* [flexi-n]
                    |     +--rw flexi-n    l0-types:flexi-n
                    |     +--rw flexi-m?   l0-types:flexi-m
                    +--:(multi)
@@ -1516,7 +1629,7 @@ Table of Contents
                    |  +--ro flexi-n?              l0-types:flexi-n
                    |  +--ro flexi-m?              l0-types:flexi-m
                    x--:(super)
-                   |  +--ro subcarrier-flexi-n* [flexi-n]
+                   |  x--ro subcarrier-flexi-n* [flexi-n]
                    |     +--ro flexi-n    l0-types:flexi-n
                    |     +--ro flexi-m?   l0-types:flexi-m
                    +--:(multi)
@@ -1543,7 +1656,7 @@ Table of Contents
                    |  +--ro flexi-n?              l0-types:flexi-n
                    |  +--ro flexi-m?              l0-types:flexi-m
                    x--:(super)
-                   |  +--ro subcarrier-flexi-n* [flexi-n]
+                   |  x--ro subcarrier-flexi-n* [flexi-n]
                    |     +--ro flexi-n    l0-types:flexi-n
                    |     +--ro flexi-m?   l0-types:flexi-m
                    +--:(multi)
@@ -1565,8 +1678,6 @@ Table of Contents
 
      import ietf-te {
        prefix "te";
-       // Remove revision-date after ietf-te has passed WG LC
-       revision-date "2023-06-16";
        reference
          "RFC YYYY: A YANG Data Model for Traffic Engineering Tunnels,
          Label Switched Paths and Interfaces.";
@@ -1632,41 +1743,59 @@ Table of Contents
      }
 
      /*
-      * Identities
-      */
-     identity lower-first-wavelength-assignment {
-       base l0-types:wavelength-assignment;
-       description
-         "Assign first available wavelength starting from the
-          lowest frequency towards the highest frequency in
-          the allowable frequency range.";
-     }
-
-     identity upper-first-wavelength-assignment {
-       base l0-types:wavelength-assignment;
-       description
-         "Assign first available wavelength starting from the
-          highest frequency towards the lowest frequency in
-          the allowable frequency range.";
-     }
-
-     /*
       * Groupings
       */
-     grouping tx-tune-constraints {
+     grouping additional-transceiver-configuration-constraints {
        description
-         "This grouping defines the transmitter's allowed tuning
-          frequency range.";
+         "This grouping defines additional optional constraints for
+          transceiver configurations related to tunnel selection.
+          These constraints further limit the resources available
+          to the tunnel. All constraints operate inclusively, using
+          an AND logic. For example, if a specific frequency range
+          is selected, the tunnel must also be constrained to match
+          only that range.
+
+          When these constraints are combined with the operational
+          mode, the list of operational modes should exclude any
+          modes that cannot satisfy the additional constraints.
+          For instance, if the frequency is restricted to the C-band,
+          the list of operational modes should not include any modes
+          applicable only to the L-band.";
 
        container tx-tune-constraints {
          description
-           "Transmitter's allowed tuning frequency range.";
+           "The permissible tuning frequency range for the
+            transmitter.";
 
          uses l0-types:transmitter-tuning-range;
        }
+
+       leaf-list line-coding-bitrate {
+         type identityref {
+           base l0-types:line-coding;
+         }
+         description
+           "The list of the bit rate/line coding of the optical
+           tributary signal that constrains the configuration of
+           the transceiver.";
+         reference
+           "ITU-T G.698.2 section 7.1.2";
+       }
+
+       leaf tx-channel-power {
+         type l0-types:power-dbm;
+         description
+           "The preferred channel transmit power.";
+       }
+
+       leaf preferred-rx-channel-power {
+         type l0-types:power-dbm;
+         description
+           "The preferred channel received power.";
+       }
      }
 
-     grouping transceiver-constraints-grp {
+     grouping transceiver-constraints {
        description
          "This grouping defines constraints for transceiver
           configurations";
@@ -1679,13 +1808,13 @@ Table of Contents
            "List of operational mode ids of the transceiver.";
        }
 
-       uses tx-tune-constraints;
+           uses additional-transceiver-configuration-constraints;
      }
 
-     grouping path-transceiver-config-grp {
+     grouping transceiver-config {
        description
-         "This grouping defines explicit transceiver configurations
-          on an end-to-end path.";
+         "This grouping defines explicit transceiver
+          configurations.";
 
        leaf transponder-id {
          type uint32;
@@ -1711,23 +1840,33 @@ Table of Contents
            description
            "transceiver identifier";
          }
-       }
 
-       uses transceiver-constraints-grp;
+         uses transceiver-constraints;
+       }
      }
 
-     grouping path-transceiver-grp {
+     grouping path-transceiver-config {
        description
-         "This grouping defines group of transceivers on a node
-          functioning as starting, terminating transceivers, or
-          regenerators.";
+         "This grouping defines a set of transceivers on a node,
+          serving as either starting transceivers, terminating
+          transceivers, or regenerators. The position of each
+          transceiver is determined by the direction of the path.
+          For instance, consider the following uni-directional
+          path with nodes labeled A, B, and C, where a, b1, b2,
+          and c correspond to transceivers on the nodes:
+             A(a) --> (b1)B(b2) --> (c)C
+
+          - Use path-out-transceiver for the starting transceiver
+            a and the regenerator transceiver b2.
+          - Use path-in-transceiver for the terminating transceiver
+            c and the regenerator transceiver b1.";
 
        container path-in-transceiver {
          description
            "Constraints for incoming direction transceiver
             configurations";
 
-         uses path-transceiver-config-grp;
+         uses transceiver-config;
        }
 
        container path-out-transceiver {
@@ -1735,7 +1874,62 @@ Table of Contents
            "Constraints for outgoing direction transceiver
             configurations";
 
-         uses path-transceiver-config-grp;
+         uses transceiver-config;
+       }
+     }
+
+     grouping transceiver-state {
+       description
+         "This grouping includes common transceiver state
+          information.";
+
+       leaf transponder-id {
+         type uint32;
+         description "transponder identifier";
+       }
+
+       list transceivers {
+         key "lane-id";
+         description
+           "List of transceivers for all lanes.";
+
+         leaf lane-id {
+           type uint8;
+           must '. >= 1' {
+             error-message
+               "Lane identifier must be greater than or equal to 1.";
+           }
+           description
+             "Lane identifier starting from 1.";
+         }
+         leaf transceiver-id {
+           type uint32;
+           description
+           "transceiver identifier";
+         }
+
+         uses l0-types:common-transceiver-readonly-param;
+       }
+     }
+
+     grouping path-transceiver-state {
+       description
+         "This grouping defines the state of transceivers on a
+          node functioning as starting, terminating transceivers,
+          or regenerators.";
+
+       container path-in-transceiver {
+         description
+           "Transceiver state on the incoming direction.";
+
+         uses transceiver-state;
+       }
+
+       container path-out-transceiver {
+         description
+           "Transceiver state on the outgoing direction.";
+
+         uses transceiver-state;
        }
      }
 
@@ -1748,7 +1942,7 @@ Table of Contents
          description
            "Constraints for transceiver configurations";
 
-         uses transceiver-constraints-grp;
+         uses transceiver-constraints;
        }
      }
 
@@ -1813,8 +2007,7 @@ Table of Contents
               planning considerations.";
          }
          leaf delta-power {
-           type l0-types:ratio-in-db;
-           units "dB";
+           type l0-types:power-ratio;
            description
              "Delta power in dB indicating the per-channel power
               deviation from the nominal power per channel at the
@@ -1860,13 +2053,13 @@ Table of Contents
       * transceivers.
       */
      augment "/te:te/te:tunnels/te:tunnel/te:primary-paths/"
-           + "te:primary-path/te:explicit-route-objects-always/"
+           + "te:primary-path/te:explicit-route-objects/"
            + "te:route-object-exclude-always/te:type/"
            + "te:numbered-node-hop/te:numbered-node-hop" {
        description
          "Augment TE primary path with transceiver configurations.";
 
-       uses path-transceiver-grp;
+       uses path-transceiver-config;
      }
 
      /*
@@ -1876,14 +2069,47 @@ Table of Contents
       */
      augment "/te:te/te:tunnels/te:tunnel/te:primary-paths/"
            + "te:primary-path/te:primary-reverse-path/"
-           + "te:explicit-route-objects-always/"
+           + "te:explicit-route-objects/"
            + "te:route-object-exclude-always/te:type/"
            + "te:numbered-node-hop/te:numbered-node-hop" {
        description
          "Augment TE primary reverse path with transceiver
           configurations.";
 
-       uses path-transceiver-grp;
+       uses path-transceiver-config;
+     }
+
+     /*
+      * Transceiver constraints for secondary path
+      * Applicable to starting, terminating and regenerator
+      * transceivers.
+      */
+     augment "/te:te/te:tunnels/te:tunnel/te:secondary-paths/"
+           + "te:secondary-path/te:explicit-route-objects/"
+           + "te:route-object-exclude-always/te:type/"
+           + "te:numbered-node-hop/te:numbered-node-hop" {
+       description
+         "Augment TE secondary path with transceiver configurations.";
+
+       uses path-transceiver-config;
+     }
+
+     /*
+      * Transceiver constraints for secondary reverse path
+      * Applicable to starting, terminating and regenerator
+      * transceivers.
+      */
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:secondary-reverse-paths/"
+           + "te:secondary-reverse-path/"
+           + "te:explicit-route-objects/"
+           + "te:route-object-exclude-always/te:type/"
+           + "te:numbered-node-hop/te:numbered-node-hop" {
+       description
+         "Augment TE secondary reverse path with transceiver
+          configurations.";
+
+       uses path-transceiver-config;
      }
 
      /*
@@ -1913,39 +2139,6 @@ Table of Contents
      }
 
      /*
-      * Transceiver constraints for secondary path
-      * Applicable to starting, terminating and regenerator
-      * transceivers.
-      */
-     augment "/te:te/te:tunnels/te:tunnel/te:secondary-paths/"
-           + "te:secondary-path/te:explicit-route-objects-always/"
-           + "te:route-object-exclude-always/te:type/"
-           + "te:numbered-node-hop/te:numbered-node-hop" {
-       description
-         "Augment TE secondary path with transceiver configurations.";
-
-       uses path-transceiver-grp;
-     }
-
-     /*
-      * Transceiver constraints for secondary reverse path
-      * Applicable to starting, terminating and regenerator
-      * transceivers.
-      */
-     augment "/te:te/te:tunnels/te:tunnel/"
-           + "te:secondary-reverse-paths/"
-           + "te:secondary-reverse-path/"
-           + "te:explicit-route-objects-always/"
-           + "te:route-object-exclude-always/te:type/"
-           + "te:numbered-node-hop/te:numbered-node-hop" {
-       description
-         "Augment TE secondary reverse path with transceiver
-          configurations.";
-
-       uses path-transceiver-grp;
-     }
-
-     /*
       * Computed path properties for secondary path.
       */
      augment "/te:te/te:tunnels/te:tunnel/te:secondary-paths/"
@@ -1971,6 +2164,67 @@ Table of Contents
      }
 
      /*
+      * Computed transceiver properties for primary path.
+      */
+     augment "/te:te/te:tunnels/te:tunnel/te:primary-paths/"
+           + "te:primary-path/te:computed-paths-properties/"
+           + "te:computed-path-properties/te:path-properties/"
+           + "te:path-route-objects/te:path-route-object/"
+           + "te:type/te:numbered-node-hop/te:numbered-node-hop" {
+       description
+         "Augment TE computed primary path with transceiver
+          properties.";
+
+       uses path-transceiver-state;
+     }
+
+     /*
+      * Computed transceiver properties for primary reverse path.
+      */
+     augment "/te:te/te:tunnels/te:tunnel/te:primary-paths/"
+           + "te:primary-path/te:primary-reverse-path/"
+           + "te:computed-paths-properties/"
+           + "te:computed-path-properties/te:path-properties/"
+           + "te:path-route-objects/te:path-route-object/"
+           + "te:type/te:numbered-node-hop/te:numbered-node-hop" {
+       description
+         "Augment TE computed primary path with transceiver
+          properties.";
+
+       uses path-transceiver-state;
+     }
+
+     /*
+      * Computed transceiver properties for secondary path.
+      */
+     augment "/te:te/te:tunnels/te:tunnel/te:secondary-paths/"
+           + "te:secondary-path/te:computed-paths-properties/"
+           + "te:computed-path-properties/te:path-properties/"
+           + "te:path-route-objects/te:path-route-object/"
+           + "te:type/te:numbered-node-hop/te:numbered-node-hop" {
+       description
+         "Augment TE computed primary path with transceiver
+          properties.";
+
+       uses path-transceiver-state;
+     }
+
+     /*
+      * Computed transceiver properties for secondary reverse path.
+      */
+     augment "/te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths/"
+           + "te:secondary-reverse-path/te:computed-paths-properties/"
+           + "te:computed-path-properties/te:path-properties/"
+           + "te:path-route-objects/te:path-route-object/"
+           + "te:type/te:numbered-node-hop/te:numbered-node-hop" {
+       description
+         "Augment TE computed primary path with transceiver
+          properties.";
+
+       uses path-transceiver-state;
+     }
+
+     /*
       * WDM path state
       */
      augment "/te:te/te:lsps/te:lsp/"
@@ -1979,6 +2233,19 @@ Table of Contents
          "Augment TE LSP to with WDM path state.";
 
        uses wdm-path-state;
+     }
+
+     /*
+      * Actual transceiver state.
+      */
+     augment "/te:te/te:lsps/te:lsp/"
+           + "te:lsp-actual-route-information/"
+           + "te:lsp-actual-route-information/te:type/"
+           + "te:numbered-node-hop/te:numbered-node-hop" {
+       description
+         "Augment TE LSP to with WDM path state.";
+
+       uses path-transceiver-state;
      }
 
      /*
@@ -2091,7 +2358,7 @@ Table of Contents
       */
      augment "/te:te/te:globals/te:named-path-constraints/"
            + "te:named-path-constraint/"
-           + "te:explicit-route-objects-always/"
+           + "te:explicit-route-objects/"
            + "te:route-object-exclude-always/te:type/te:label/"
            + "te:label-hop/te:te-label/te:technology" {
        description
@@ -2105,7 +2372,7 @@ Table of Contents
 
      augment "/te:te/te:globals/te:named-path-constraints/"
            + "te:named-path-constraint/"
-           + "te:explicit-route-objects-always/"
+           + "te:explicit-route-objects/"
            + "te:route-object-include-exclude/te:type/te:label/"
            + "te:label-hop/te:te-label/te:technology" {
        description
@@ -2224,7 +2491,7 @@ Table of Contents
 
      augment "/te:te/te:tunnels/te:tunnel/"
            + "te:primary-paths/te:primary-path/"
-           + "te:explicit-route-objects-always/"
+           + "te:explicit-route-objects/"
            + "te:route-object-exclude-always/te:type/te:label/"
            + "te:label-hop/te:te-label/te:technology" {
        description
@@ -2237,7 +2504,7 @@ Table of Contents
 
      augment "/te:te/te:tunnels/te:tunnel/"
            + "te:primary-paths/te:primary-path/"
-           + "te:explicit-route-objects-always/"
+           + "te:explicit-route-objects/"
            + "te:route-object-include-exclude/te:type/te:label/"
            + "te:label-hop/te:te-label/te:technology" {
        description
@@ -2374,7 +2641,7 @@ Table of Contents
      augment "/te:te/te:tunnels/te:tunnel/"
            + "te:primary-paths/te:primary-path/"
            + "te:primary-reverse-path/"
-           + "te:explicit-route-objects-always/"
+           + "te:explicit-route-objects/"
            + "te:route-object-exclude-always/"
            + "te:type/te:label/"
            + "te:label-hop/te:te-label/te:technology" {
@@ -2390,7 +2657,7 @@ Table of Contents
      augment "/te:te/te:tunnels/te:tunnel/"
            + "te:primary-paths/te:primary-path/"
            + "te:primary-reverse-path/"
-           + "te:explicit-route-objects-always/"
+           + "te:explicit-route-objects/"
            + "te:route-object-include-exclude/"
            + "te:type/te:label/"
            + "te:label-hop/te:te-label/te:technology" {
@@ -2532,7 +2799,7 @@ Table of Contents
 
      augment "/te:te/te:tunnels/te:tunnel/"
            + "te:secondary-paths/te:secondary-path/"
-           + "te:explicit-route-objects-always/"
+           + "te:explicit-route-objects/"
            + "te:route-object-exclude-always/te:type/te:label/"
            + "te:label-hop/te:te-label/te:technology" {
        description
@@ -2545,7 +2812,7 @@ Table of Contents
 
      augment "/te:te/te:tunnels/te:tunnel/"
            + "te:secondary-paths/te:secondary-path/"
-           + "te:explicit-route-objects-always/"
+           + "te:explicit-route-objects/"
            + "te:route-object-include-exclude/te:type/te:label/"
            + "te:label-hop/te:te-label/te:technology" {
        description
@@ -2678,7 +2945,7 @@ Table of Contents
 
      augment "/te:te/te:tunnels/te:tunnel/"
            + "te:secondary-reverse-paths/te:secondary-reverse-path/"
-           + "te:explicit-route-objects-always/"
+           + "te:explicit-route-objects/"
            + "te:route-object-exclude-always/te:type/te:label/"
            + "te:label-hop/te:te-label/te:technology" {
        description
@@ -2692,7 +2959,7 @@ Table of Contents
 
      augment "/te:te/te:tunnels/te:tunnel/"
            + "te:secondary-reverse-paths/te:secondary-reverse-path/"
-           + "te:explicit-route-objects-always/"
+           + "te:explicit-route-objects/"
            + "te:route-object-include-exclude/te:type/te:label/"
            + "te:label-hop/te:te-label/te:technology" {
        description
