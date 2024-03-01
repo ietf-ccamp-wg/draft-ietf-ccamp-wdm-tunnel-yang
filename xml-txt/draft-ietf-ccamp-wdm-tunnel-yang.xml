@@ -57,7 +57,7 @@
       </address>
     </author>
 
-    <date year="2023" month="November" day="29"/>
+    <date year="2024" month="March" day="01"/>
 
     <area>Routing</area>
     <workgroup>CCAMP Working Group</workgroup>
@@ -103,12 +103,12 @@ described in BCP 14 <xref target="RFC2119"/> <xref target="RFC8174"/> when, and
 appear in all capitals, as shown here.</t>
 
 <t>The terminology for describing YANG data models is found in
-   <xref target="RFC7950"/>.</t>
+<xref target="RFC7950"/>.</t>
 
 <t>Refer to <xref target="RFC7446"/> and <xref target="RFC7699"/> for the key terms used in this document.</t>
 
 <t>The following terms are defined in <xref target="RFC7950"/> and are not redefined here:
-   -  client</t>
+-  client</t>
 
 <t><list style="symbols">
   <t>server</t>
@@ -118,7 +118,7 @@ appear in all capitals, as shown here.</t>
 </list></t>
 
 <t>The following terms are defined in <xref target="RFC6241"/> and are not redefined here:
-   -  configuration data</t>
+-  configuration data</t>
 
 <t><list style="symbols">
   <t>state data</t>
@@ -147,13 +147,13 @@ are optional to support both situations.</t>
 <section anchor="example-of-use"><name>Example of Use</name>
 
 <t>In order to explain how this model is used, the following
-   example is provided.  An optical network usually has multiple transponders,
-   switches (nodes) and links. <xref target="fig-topology-example"/> shows a simple
-   topology, where two physical paths interconnect two optical
-   transponders via a combination of both WSON and Flexi-grid wavelength
-   switched nodes and links.</t>
+example is provided.  An optical network usually has multiple transponders,
+switches (nodes) and links. <xref target="fig-topology-example"/> shows a simple
+topology, where two physical paths interconnect two optical
+transponders via a combination of both WSON and Flexi-grid wavelength
+switched nodes and links.</t>
 
-<figure title="Topology Example" anchor="fig-topology-example"><artwork><![CDATA[
+<figure title="Topology Example" anchor="fig-topology-example"><artwork type="ascii-art"><![CDATA[
                               WDM Tunnel
         <===================================================>
                          WDM Primary Path
@@ -181,13 +181,13 @@ are optional to support both situations.</t>
 ]]></artwork></figure>
 
 <t>To configure an end-to-end WDM tunnel to interconnect
-   transponders A and E, first of all we have to populate the
-   flexi-grid topology YANG model with all elements in the network:</t>
+transponders A and E, first of all we have to populate the
+flexi-grid topology YANG model with all elements in the network:</t>
 
 <t><list style="symbols">
   <t>We define the transponders within nodes A and E as tunnel termination
 points (TTPs) and provide their internal local link connectivity
-towards the node interfaces.  We also provide nodes A and B identifiers,
+towards the node interfaces.  We also provide nodes A and E identifiers,
 addresses and interfaces.</t>
   <t>We do the same for the nodes B, C and D, providing their
 identifiers, addresses and interfaces, as well as the internal
@@ -199,13 +199,13 @@ also provided.</t>
 </list></t>
 
 <t>After the nodes, links and transponders have been defined using
-   <xref target="I-D.ietf-ccamp-flexigrid-yang"/> and <xref target="RFC9094"/> we can
-   configure the tunnel from the information we have stored in the
-   flexi-grid topology, by querying which elements are available, and
-   planning the resources that have to be provided on each situation, taking into
-   account the global and path-specific WDM tunnel constraints.
-   Note that every element in the flexi-grid topology has a reference,
-   and this is the way in which they are called in the tunnel.</t>
+<xref target="I-D.ietf-ccamp-flexigrid-yang"/> and <xref target="RFC9094"/> we can
+configure the tunnel from the information we have stored in the
+flexi-grid topology, by querying which elements are available, and
+planning the resources that have to be provided on each situation, taking into
+account the global and path-specific WDM tunnel constraints.
+Note that every element in the flexi-grid topology has a reference,
+and this is the way in which they are called in the tunnel.</t>
 
 <t><list style="symbols">
   <t>Depending on the case, it is possible to define either the source
@@ -226,76 +226,148 @@ element usage status each time a tunnel is created or torn down.</t>
 
 <section anchor="yang-tree"><name>YANG Tree</name>
 
-<figure><artwork><![CDATA[
+<figure title="WDM Tunnel YANG tree" anchor="fig-wdm-tunnel-tree"><artwork type="ascii-art" name="ietf-wdm-tunnel.tree"><![CDATA[
 module: ietf-wdm-tunnel
 
   augment /te:te/te:tunnels/te:tunnel:
     +--rw wdm-constraint
        +--rw transceiver-constraint
-       |  +--rw operational-modes*     string
+       |  +--rw operational-modes*            string
        |  +--rw tx-tune-constraints
-       |     +--rw min-central-frequency?    frequency-thz
-       |     +--rw max-central-frequency?    frequency-thz
-       |     +--rw transceiver-tunability?   frequency-ghz
-       +--rw gsnr-margin?                   snr
+       |  |  +--rw min-central-frequency?    frequency-thz
+       |  |  +--rw max-central-frequency?    frequency-thz
+       |  |  +--rw transceiver-tunability?   frequency-ghz
+       |  +--rw line-coding-bitrate*          identityref
+       |  +--rw tx-channel-power?             l0-types:power-dbm
+       |  +--rw preferred-rx-channel-power?   l0-types:power-dbm
+       +--rw gsnr-extra-margin?             snr
        +--rw use-regen?                     boolean
        +--rw wavelength-conversion?         boolean
-       +--rw bit-stuffing?                  boolean
        +--rw wavelength-assignment?         identityref
        +--rw guard-band-size?               l0-types:frequency-thz
        +--rw matching-fwd-rev-wavelength?   boolean
        +--rw allow-retuning?                boolean
-       +--rw delta-power?
-               l0-types:gain-in-db-or-null
+       +--rw delta-power?                   l0-types:power-ratio
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
-            /te:primary-path/te:explicit-route-objects-always
+            /te:primary-path/te:explicit-route-objects
             /te:route-object-exclude-always/te:type
             /te:numbered-node-hop/te:numbered-node-hop:
     +--rw path-in-transceiver
-    |  +--rw transponder-id?        uint32
+    |  +--rw transponder-id?   uint32
     |  +--rw transceivers* [lane-id]
-    |  |  +--rw lane-id           uint8
-    |  |  +--rw transceiver-id?   uint32
-    |  +--rw operational-modes*     string
-    |  +--rw tx-tune-constraints
-    |     +--rw min-central-frequency?    frequency-thz
-    |     +--rw max-central-frequency?    frequency-thz
-    |     +--rw transceiver-tunability?   frequency-ghz
+    |     +--rw lane-id                       uint8
+    |     +--rw transceiver-id?               uint32
+    |     +--rw operational-modes*            string
+    |     +--rw tx-tune-constraints
+    |     |  +--rw min-central-frequency?    frequency-thz
+    |     |  +--rw max-central-frequency?    frequency-thz
+    |     |  +--rw transceiver-tunability?   frequency-ghz
+    |     +--rw line-coding-bitrate*          identityref
+    |     +--rw tx-channel-power?             l0-types:power-dbm
+    |     +--rw preferred-rx-channel-power?   l0-types:power-dbm
     +--rw path-out-transceiver
-       +--rw transponder-id?        uint32
+       +--rw transponder-id?   uint32
        +--rw transceivers* [lane-id]
-       |  +--rw lane-id           uint8
-       |  +--rw transceiver-id?   uint32
-       +--rw operational-modes*     string
-       +--rw tx-tune-constraints
-          +--rw min-central-frequency?    frequency-thz
-          +--rw max-central-frequency?    frequency-thz
-          +--rw transceiver-tunability?   frequency-ghz
+          +--rw lane-id                       uint8
+          +--rw transceiver-id?               uint32
+          +--rw operational-modes*            string
+          +--rw tx-tune-constraints
+          |  +--rw min-central-frequency?    frequency-thz
+          |  +--rw max-central-frequency?    frequency-thz
+          |  +--rw transceiver-tunability?   frequency-ghz
+          +--rw line-coding-bitrate*          identityref
+          +--rw tx-channel-power?             l0-types:power-dbm
+          +--rw preferred-rx-channel-power?   l0-types:power-dbm
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:primary-reverse-path
-            /te:explicit-route-objects-always
+            /te:explicit-route-objects/te:route-object-exclude-always
+            /te:type/te:numbered-node-hop/te:numbered-node-hop:
+    +--rw path-in-transceiver
+    |  +--rw transponder-id?   uint32
+    |  +--rw transceivers* [lane-id]
+    |     +--rw lane-id                       uint8
+    |     +--rw transceiver-id?               uint32
+    |     +--rw operational-modes*            string
+    |     +--rw tx-tune-constraints
+    |     |  +--rw min-central-frequency?    frequency-thz
+    |     |  +--rw max-central-frequency?    frequency-thz
+    |     |  +--rw transceiver-tunability?   frequency-ghz
+    |     +--rw line-coding-bitrate*          identityref
+    |     +--rw tx-channel-power?             l0-types:power-dbm
+    |     +--rw preferred-rx-channel-power?   l0-types:power-dbm
+    +--rw path-out-transceiver
+       +--rw transponder-id?   uint32
+       +--rw transceivers* [lane-id]
+          +--rw lane-id                       uint8
+          +--rw transceiver-id?               uint32
+          +--rw operational-modes*            string
+          +--rw tx-tune-constraints
+          |  +--rw min-central-frequency?    frequency-thz
+          |  +--rw max-central-frequency?    frequency-thz
+          |  +--rw transceiver-tunability?   frequency-ghz
+          +--rw line-coding-bitrate*          identityref
+          +--rw tx-channel-power?             l0-types:power-dbm
+          +--rw preferred-rx-channel-power?   l0-types:power-dbm
+  augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+            /te:secondary-path/te:explicit-route-objects
             /te:route-object-exclude-always/te:type
             /te:numbered-node-hop/te:numbered-node-hop:
     +--rw path-in-transceiver
-    |  +--rw transponder-id?        uint32
+    |  +--rw transponder-id?   uint32
     |  +--rw transceivers* [lane-id]
-    |  |  +--rw lane-id           uint8
-    |  |  +--rw transceiver-id?   uint32
-    |  +--rw operational-modes*     string
-    |  +--rw tx-tune-constraints
-    |     +--rw min-central-frequency?    frequency-thz
-    |     +--rw max-central-frequency?    frequency-thz
-    |     +--rw transceiver-tunability?   frequency-ghz
+    |     +--rw lane-id                       uint8
+    |     +--rw transceiver-id?               uint32
+    |     +--rw operational-modes*            string
+    |     +--rw tx-tune-constraints
+    |     |  +--rw min-central-frequency?    frequency-thz
+    |     |  +--rw max-central-frequency?    frequency-thz
+    |     |  +--rw transceiver-tunability?   frequency-ghz
+    |     +--rw line-coding-bitrate*          identityref
+    |     +--rw tx-channel-power?             l0-types:power-dbm
+    |     +--rw preferred-rx-channel-power?   l0-types:power-dbm
     +--rw path-out-transceiver
-       +--rw transponder-id?        uint32
+       +--rw transponder-id?   uint32
        +--rw transceivers* [lane-id]
-       |  +--rw lane-id           uint8
-       |  +--rw transceiver-id?   uint32
-       +--rw operational-modes*     string
-       +--rw tx-tune-constraints
-          +--rw min-central-frequency?    frequency-thz
-          +--rw max-central-frequency?    frequency-thz
-          +--rw transceiver-tunability?   frequency-ghz
+          +--rw lane-id                       uint8
+          +--rw transceiver-id?               uint32
+          +--rw operational-modes*            string
+          +--rw tx-tune-constraints
+          |  +--rw min-central-frequency?    frequency-thz
+          |  +--rw max-central-frequency?    frequency-thz
+          |  +--rw transceiver-tunability?   frequency-ghz
+          +--rw line-coding-bitrate*          identityref
+          +--rw tx-channel-power?             l0-types:power-dbm
+          +--rw preferred-rx-channel-power?   l0-types:power-dbm
+  augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
+            /te:secondary-reverse-path/te:explicit-route-objects
+            /te:route-object-exclude-always/te:type
+            /te:numbered-node-hop/te:numbered-node-hop:
+    +--rw path-in-transceiver
+    |  +--rw transponder-id?   uint32
+    |  +--rw transceivers* [lane-id]
+    |     +--rw lane-id                       uint8
+    |     +--rw transceiver-id?               uint32
+    |     +--rw operational-modes*            string
+    |     +--rw tx-tune-constraints
+    |     |  +--rw min-central-frequency?    frequency-thz
+    |     |  +--rw max-central-frequency?    frequency-thz
+    |     |  +--rw transceiver-tunability?   frequency-ghz
+    |     +--rw line-coding-bitrate*          identityref
+    |     +--rw tx-channel-power?             l0-types:power-dbm
+    |     +--rw preferred-rx-channel-power?   l0-types:power-dbm
+    +--rw path-out-transceiver
+       +--rw transponder-id?   uint32
+       +--rw transceivers* [lane-id]
+          +--rw lane-id                       uint8
+          +--rw transceiver-id?               uint32
+          +--rw operational-modes*            string
+          +--rw tx-tune-constraints
+          |  +--rw min-central-frequency?    frequency-thz
+          |  +--rw max-central-frequency?    frequency-thz
+          |  +--rw transceiver-tunability?   frequency-ghz
+          +--rw line-coding-bitrate*          identityref
+          +--rw tx-channel-power?             l0-types:power-dbm
+          +--rw preferred-rx-channel-power?   l0-types:power-dbm
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:computed-paths-properties
             /te:computed-path-properties/te:path-properties:
@@ -310,55 +382,6 @@ module: ietf-wdm-tunnel
     +--ro estimated-eol-gsnr?      snr
     +--ro estimated-lowest-gsnr?   snr
   augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
-            /te:secondary-path/te:explicit-route-objects-always
-            /te:route-object-exclude-always/te:type
-            /te:numbered-node-hop/te:numbered-node-hop:
-    +--rw path-in-transceiver
-    |  +--rw transponder-id?        uint32
-    |  +--rw transceivers* [lane-id]
-    |  |  +--rw lane-id           uint8
-    |  |  +--rw transceiver-id?   uint32
-    |  +--rw operational-modes*     string
-    |  +--rw tx-tune-constraints
-    |     +--rw min-central-frequency?    frequency-thz
-    |     +--rw max-central-frequency?    frequency-thz
-    |     +--rw transceiver-tunability?   frequency-ghz
-    +--rw path-out-transceiver
-       +--rw transponder-id?        uint32
-       +--rw transceivers* [lane-id]
-       |  +--rw lane-id           uint8
-       |  +--rw transceiver-id?   uint32
-       +--rw operational-modes*     string
-       +--rw tx-tune-constraints
-          +--rw min-central-frequency?    frequency-thz
-          +--rw max-central-frequency?    frequency-thz
-          +--rw transceiver-tunability?   frequency-ghz
-  augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
-            /te:secondary-reverse-path
-            /te:explicit-route-objects-always
-            /te:route-object-exclude-always/te:type
-            /te:numbered-node-hop/te:numbered-node-hop:
-    +--rw path-in-transceiver
-    |  +--rw transponder-id?        uint32
-    |  +--rw transceivers* [lane-id]
-    |  |  +--rw lane-id           uint8
-    |  |  +--rw transceiver-id?   uint32
-    |  +--rw operational-modes*     string
-    |  +--rw tx-tune-constraints
-    |     +--rw min-central-frequency?    frequency-thz
-    |     +--rw max-central-frequency?    frequency-thz
-    |     +--rw transceiver-tunability?   frequency-ghz
-    +--rw path-out-transceiver
-       +--rw transponder-id?        uint32
-       +--rw transceivers* [lane-id]
-       |  +--rw lane-id           uint8
-       |  +--rw transceiver-id?   uint32
-       +--rw operational-modes*     string
-       +--rw tx-tune-constraints
-          +--rw min-central-frequency?    frequency-thz
-          +--rw max-central-frequency?    frequency-thz
-          +--rw transceiver-tunability?   frequency-ghz
-  augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
             /te:secondary-path/te:computed-paths-properties
             /te:computed-path-properties/te:path-properties:
     +--ro estimated-gsnr?          snr
@@ -370,9 +393,103 @@ module: ietf-wdm-tunnel
     +--ro estimated-gsnr?          snr
     +--ro estimated-eol-gsnr?      snr
     +--ro estimated-lowest-gsnr?   snr
+  augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+            /te:primary-path/te:computed-paths-properties
+            /te:computed-path-properties/te:path-properties
+            /te:path-route-objects/te:path-route-object/te:type
+            /te:numbered-node-hop/te:numbered-node-hop:
+    +--ro path-in-transceiver
+    |  +--ro transponder-id?   uint32
+    |  +--ro transceivers* [lane-id]
+    |     +--ro lane-id             uint8
+    |     +--ro transceiver-id?     uint32
+    |     +--ro rx-channel-power?   power-dbm-or-null
+    |     +--ro rx-total-power?     power-dbm-or-null
+    +--ro path-out-transceiver
+       +--ro transponder-id?   uint32
+       +--ro transceivers* [lane-id]
+          +--ro lane-id             uint8
+          +--ro transceiver-id?     uint32
+          +--ro rx-channel-power?   power-dbm-or-null
+          +--ro rx-total-power?     power-dbm-or-null
+  augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+            /te:primary-path/te:primary-reverse-path
+            /te:computed-paths-properties/te:computed-path-properties
+            /te:path-properties/te:path-route-objects
+            /te:path-route-object/te:type/te:numbered-node-hop
+            /te:numbered-node-hop:
+    +--ro path-in-transceiver
+    |  +--ro transponder-id?   uint32
+    |  +--ro transceivers* [lane-id]
+    |     +--ro lane-id             uint8
+    |     +--ro transceiver-id?     uint32
+    |     +--ro rx-channel-power?   power-dbm-or-null
+    |     +--ro rx-total-power?     power-dbm-or-null
+    +--ro path-out-transceiver
+       +--ro transponder-id?   uint32
+       +--ro transceivers* [lane-id]
+          +--ro lane-id             uint8
+          +--ro transceiver-id?     uint32
+          +--ro rx-channel-power?   power-dbm-or-null
+          +--ro rx-total-power?     power-dbm-or-null
+  augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+            /te:secondary-path/te:computed-paths-properties
+            /te:computed-path-properties/te:path-properties
+            /te:path-route-objects/te:path-route-object/te:type
+            /te:numbered-node-hop/te:numbered-node-hop:
+    +--ro path-in-transceiver
+    |  +--ro transponder-id?   uint32
+    |  +--ro transceivers* [lane-id]
+    |     +--ro lane-id             uint8
+    |     +--ro transceiver-id?     uint32
+    |     +--ro rx-channel-power?   power-dbm-or-null
+    |     +--ro rx-total-power?     power-dbm-or-null
+    +--ro path-out-transceiver
+       +--ro transponder-id?   uint32
+       +--ro transceivers* [lane-id]
+          +--ro lane-id             uint8
+          +--ro transceiver-id?     uint32
+          +--ro rx-channel-power?   power-dbm-or-null
+          +--ro rx-total-power?     power-dbm-or-null
+  augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
+            /te:secondary-reverse-path/te:computed-paths-properties
+            /te:computed-path-properties/te:path-properties
+            /te:path-route-objects/te:path-route-object/te:type
+            /te:numbered-node-hop/te:numbered-node-hop:
+    +--ro path-in-transceiver
+    |  +--ro transponder-id?   uint32
+    |  +--ro transceivers* [lane-id]
+    |     +--ro lane-id             uint8
+    |     +--ro transceiver-id?     uint32
+    |     +--ro rx-channel-power?   power-dbm-or-null
+    |     +--ro rx-total-power?     power-dbm-or-null
+    +--ro path-out-transceiver
+       +--ro transponder-id?   uint32
+       +--ro transceivers* [lane-id]
+          +--ro lane-id             uint8
+          +--ro transceiver-id?     uint32
+          +--ro rx-channel-power?   power-dbm-or-null
+          +--ro rx-total-power?     power-dbm-or-null
   augment /te:te/te:lsps/te:lsp/te:lsp-actual-route-information:
     +--ro wdm-path-state
        +--ro gsnr?   l0-types:snr
+  augment /te:te/te:lsps/te:lsp/te:lsp-actual-route-information
+            /te:lsp-actual-route-information/te:type
+            /te:numbered-node-hop/te:numbered-node-hop:
+    +--ro path-in-transceiver
+    |  +--ro transponder-id?   uint32
+    |  +--ro transceivers* [lane-id]
+    |     +--ro lane-id             uint8
+    |     +--ro transceiver-id?     uint32
+    |     +--ro rx-channel-power?   power-dbm-or-null
+    |     +--ro rx-total-power?     power-dbm-or-null
+    +--ro path-out-transceiver
+       +--ro transponder-id?   uint32
+       +--ro transceivers* [lane-id]
+          +--ro lane-id             uint8
+          +--ro transceiver-id?     uint32
+          +--ro rx-channel-power?   power-dbm-or-null
+          +--ro rx-total-power?     power-dbm-or-null
   augment /te:te/te:globals/te:named-path-constraints
             /te:named-path-constraint/te:path-in-segment
             /te:label-restrictions/te:label-restriction:
@@ -466,8 +583,7 @@ module: ietf-wdm-tunnel
        +--rw min-slot-width-factor?    uint16
        +--rw max-slot-width-factor?    uint16
   augment /te:te/te:globals/te:named-path-constraints
-            /te:named-path-constraint
-            /te:explicit-route-objects-always
+            /te:named-path-constraint/te:explicit-route-objects
             /te:route-object-exclude-always/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
     +--:(wdm)
@@ -486,7 +602,7 @@ module: ietf-wdm-tunnel
                 |  +--rw flexi-n?              l0-types:flexi-n
                 |  +--rw flexi-m?              l0-types:flexi-m
                 x--:(super)
-                |  +--rw subcarrier-flexi-n* [flexi-n]
+                |  x--rw subcarrier-flexi-n* [flexi-n]
                 |     +--rw flexi-n    l0-types:flexi-n
                 |     +--rw flexi-m?   l0-types:flexi-m
                 +--:(multi)
@@ -495,8 +611,7 @@ module: ietf-wdm-tunnel
                          +--rw flexi-n    l0-types:flexi-n
                          +--rw flexi-m?   l0-types:flexi-m
   augment /te:te/te:globals/te:named-path-constraints
-            /te:named-path-constraint
-            /te:explicit-route-objects-always
+            /te:named-path-constraint/te:explicit-route-objects
             /te:route-object-include-exclude/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
     +--:(wdm)
@@ -515,7 +630,7 @@ module: ietf-wdm-tunnel
                 |  +--rw flexi-n?              l0-types:flexi-n
                 |  +--rw flexi-m?              l0-types:flexi-m
                 x--:(super)
-                |  +--rw subcarrier-flexi-n* [flexi-n]
+                |  x--rw subcarrier-flexi-n* [flexi-n]
                 |     +--rw flexi-n    l0-types:flexi-n
                 |     +--rw flexi-m?   l0-types:flexi-m
                 +--:(multi)
@@ -620,7 +735,7 @@ module: ietf-wdm-tunnel
                 |  +--rw flexi-n?              l0-types:flexi-n
                 |  +--rw flexi-m?              l0-types:flexi-m
                 x--:(super)
-                |  +--rw subcarrier-flexi-n* [flexi-n]
+                |  x--rw subcarrier-flexi-n* [flexi-n]
                 |     +--rw flexi-n    l0-types:flexi-n
                 |     +--rw flexi-m?   l0-types:flexi-m
                 +--:(multi)
@@ -649,7 +764,7 @@ module: ietf-wdm-tunnel
                 |  +--rw flexi-n?              l0-types:flexi-n
                 |  +--rw flexi-m?              l0-types:flexi-m
                 x--:(super)
-                |  +--rw subcarrier-flexi-n* [flexi-n]
+                |  x--rw subcarrier-flexi-n* [flexi-n]
                 |     +--rw flexi-n    l0-types:flexi-n
                 |     +--rw flexi-m?   l0-types:flexi-m
                 +--:(multi)
@@ -658,7 +773,7 @@ module: ietf-wdm-tunnel
                          +--rw flexi-n    l0-types:flexi-n
                          +--rw flexi-m?   l0-types:flexi-m
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
-            /te:primary-path/te:explicit-route-objects-always
+            /te:primary-path/te:explicit-route-objects
             /te:route-object-exclude-always/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
     +--:(wdm)
@@ -677,7 +792,7 @@ module: ietf-wdm-tunnel
                 |  +--rw flexi-n?              l0-types:flexi-n
                 |  +--rw flexi-m?              l0-types:flexi-m
                 x--:(super)
-                |  +--rw subcarrier-flexi-n* [flexi-n]
+                |  x--rw subcarrier-flexi-n* [flexi-n]
                 |     +--rw flexi-n    l0-types:flexi-n
                 |     +--rw flexi-m?   l0-types:flexi-m
                 +--:(multi)
@@ -686,7 +801,7 @@ module: ietf-wdm-tunnel
                          +--rw flexi-n    l0-types:flexi-n
                          +--rw flexi-m?   l0-types:flexi-m
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
-            /te:primary-path/te:explicit-route-objects-always
+            /te:primary-path/te:explicit-route-objects
             /te:route-object-include-exclude/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
     +--:(wdm)
@@ -705,7 +820,7 @@ module: ietf-wdm-tunnel
                 |  +--rw flexi-n?              l0-types:flexi-n
                 |  +--rw flexi-m?              l0-types:flexi-m
                 x--:(super)
-                |  +--rw subcarrier-flexi-n* [flexi-n]
+                |  x--rw subcarrier-flexi-n* [flexi-n]
                 |     +--rw flexi-n    l0-types:flexi-n
                 |     +--rw flexi-m?   l0-types:flexi-m
                 +--:(multi)
@@ -809,7 +924,7 @@ module: ietf-wdm-tunnel
                 |  +--ro flexi-n?              l0-types:flexi-n
                 |  +--ro flexi-m?              l0-types:flexi-m
                 x--:(super)
-                |  +--ro subcarrier-flexi-n* [flexi-n]
+                |  x--ro subcarrier-flexi-n* [flexi-n]
                 |     +--ro flexi-n    l0-types:flexi-n
                 |     +--ro flexi-m?   l0-types:flexi-m
                 +--:(multi)
@@ -839,7 +954,7 @@ module: ietf-wdm-tunnel
                 |  +--rw flexi-n?              l0-types:flexi-n
                 |  +--rw flexi-m?              l0-types:flexi-m
                 x--:(super)
-                |  +--rw subcarrier-flexi-n* [flexi-n]
+                |  x--rw subcarrier-flexi-n* [flexi-n]
                 |     +--rw flexi-n    l0-types:flexi-n
                 |     +--rw flexi-m?   l0-types:flexi-m
                 +--:(multi)
@@ -869,7 +984,7 @@ module: ietf-wdm-tunnel
                 |  +--rw flexi-n?              l0-types:flexi-n
                 |  +--rw flexi-m?              l0-types:flexi-m
                 x--:(super)
-                |  +--rw subcarrier-flexi-n* [flexi-n]
+                |  x--rw subcarrier-flexi-n* [flexi-n]
                 |     +--rw flexi-n    l0-types:flexi-n
                 |     +--rw flexi-m?   l0-types:flexi-m
                 +--:(multi)
@@ -879,9 +994,8 @@ module: ietf-wdm-tunnel
                          +--rw flexi-m?   l0-types:flexi-m
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:primary-reverse-path
-            /te:explicit-route-objects-always
-            /te:route-object-exclude-always/te:type/te:label
-            /te:label-hop/te:te-label/te:technology:
+            /te:explicit-route-objects/te:route-object-exclude-always
+            /te:type/te:label/te:label-hop/te:te-label/te:technology:
     +--:(wdm)
        +--rw (grid-type)?
           +--:(fixed-dwdm)
@@ -898,7 +1012,7 @@ module: ietf-wdm-tunnel
                 |  +--rw flexi-n?              l0-types:flexi-n
                 |  +--rw flexi-m?              l0-types:flexi-m
                 x--:(super)
-                |  +--rw subcarrier-flexi-n* [flexi-n]
+                |  x--rw subcarrier-flexi-n* [flexi-n]
                 |     +--rw flexi-n    l0-types:flexi-n
                 |     +--rw flexi-m?   l0-types:flexi-m
                 +--:(multi)
@@ -908,7 +1022,7 @@ module: ietf-wdm-tunnel
                          +--rw flexi-m?   l0-types:flexi-m
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:primary-reverse-path
-            /te:explicit-route-objects-always
+            /te:explicit-route-objects
             /te:route-object-include-exclude/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
     +--:(wdm)
@@ -927,7 +1041,7 @@ module: ietf-wdm-tunnel
                 |  +--rw flexi-n?              l0-types:flexi-n
                 |  +--rw flexi-m?              l0-types:flexi-m
                 x--:(super)
-                |  +--rw subcarrier-flexi-n* [flexi-n]
+                |  x--rw subcarrier-flexi-n* [flexi-n]
                 |     +--rw flexi-n    l0-types:flexi-n
                 |     +--rw flexi-m?   l0-types:flexi-m
                 +--:(multi)
@@ -1037,7 +1151,7 @@ module: ietf-wdm-tunnel
                 |  +--ro flexi-n?              l0-types:flexi-n
                 |  +--ro flexi-m?              l0-types:flexi-m
                 x--:(super)
-                |  +--ro subcarrier-flexi-n* [flexi-n]
+                |  x--ro subcarrier-flexi-n* [flexi-n]
                 |     +--ro flexi-n    l0-types:flexi-n
                 |     +--ro flexi-m?   l0-types:flexi-m
                 +--:(multi)
@@ -1067,7 +1181,7 @@ module: ietf-wdm-tunnel
                 |  +--rw flexi-n?              l0-types:flexi-n
                 |  +--rw flexi-m?              l0-types:flexi-m
                 x--:(super)
-                |  +--rw subcarrier-flexi-n* [flexi-n]
+                |  x--rw subcarrier-flexi-n* [flexi-n]
                 |     +--rw flexi-n    l0-types:flexi-n
                 |     +--rw flexi-m?   l0-types:flexi-m
                 +--:(multi)
@@ -1097,7 +1211,7 @@ module: ietf-wdm-tunnel
                 |  +--rw flexi-n?              l0-types:flexi-n
                 |  +--rw flexi-m?              l0-types:flexi-m
                 x--:(super)
-                |  +--rw subcarrier-flexi-n* [flexi-n]
+                |  x--rw subcarrier-flexi-n* [flexi-n]
                 |     +--rw flexi-n    l0-types:flexi-n
                 |     +--rw flexi-m?   l0-types:flexi-m
                 +--:(multi)
@@ -1106,7 +1220,7 @@ module: ietf-wdm-tunnel
                          +--rw flexi-n    l0-types:flexi-n
                          +--rw flexi-m?   l0-types:flexi-m
   augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
-            /te:secondary-path/te:explicit-route-objects-always
+            /te:secondary-path/te:explicit-route-objects
             /te:route-object-exclude-always/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
     +--:(wdm)
@@ -1125,7 +1239,7 @@ module: ietf-wdm-tunnel
                 |  +--rw flexi-n?              l0-types:flexi-n
                 |  +--rw flexi-m?              l0-types:flexi-m
                 x--:(super)
-                |  +--rw subcarrier-flexi-n* [flexi-n]
+                |  x--rw subcarrier-flexi-n* [flexi-n]
                 |     +--rw flexi-n    l0-types:flexi-n
                 |     +--rw flexi-m?   l0-types:flexi-m
                 +--:(multi)
@@ -1134,7 +1248,7 @@ module: ietf-wdm-tunnel
                          +--rw flexi-n    l0-types:flexi-n
                          +--rw flexi-m?   l0-types:flexi-m
   augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
-            /te:secondary-path/te:explicit-route-objects-always
+            /te:secondary-path/te:explicit-route-objects
             /te:route-object-include-exclude/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
     +--:(wdm)
@@ -1153,7 +1267,7 @@ module: ietf-wdm-tunnel
                 |  +--rw flexi-n?              l0-types:flexi-n
                 |  +--rw flexi-m?              l0-types:flexi-m
                 x--:(super)
-                |  +--rw subcarrier-flexi-n* [flexi-n]
+                |  x--rw subcarrier-flexi-n* [flexi-n]
                 |     +--rw flexi-n    l0-types:flexi-n
                 |     +--rw flexi-m?   l0-types:flexi-m
                 +--:(multi)
@@ -1258,7 +1372,7 @@ module: ietf-wdm-tunnel
                 |  +--ro flexi-n?              l0-types:flexi-n
                 |  +--ro flexi-m?              l0-types:flexi-m
                 x--:(super)
-                |  +--ro subcarrier-flexi-n* [flexi-n]
+                |  x--ro subcarrier-flexi-n* [flexi-n]
                 |     +--ro flexi-n    l0-types:flexi-n
                 |     +--ro flexi-m?   l0-types:flexi-m
                 +--:(multi)
@@ -1288,7 +1402,7 @@ module: ietf-wdm-tunnel
                 |  +--rw flexi-n?              l0-types:flexi-n
                 |  +--rw flexi-m?              l0-types:flexi-m
                 x--:(super)
-                |  +--rw subcarrier-flexi-n* [flexi-n]
+                |  x--rw subcarrier-flexi-n* [flexi-n]
                 |     +--rw flexi-n    l0-types:flexi-n
                 |     +--rw flexi-m?   l0-types:flexi-m
                 +--:(multi)
@@ -1318,7 +1432,7 @@ module: ietf-wdm-tunnel
                 |  +--rw flexi-n?              l0-types:flexi-n
                 |  +--rw flexi-m?              l0-types:flexi-m
                 x--:(super)
-                |  +--rw subcarrier-flexi-n* [flexi-n]
+                |  x--rw subcarrier-flexi-n* [flexi-n]
                 |     +--rw flexi-n    l0-types:flexi-n
                 |     +--rw flexi-m?   l0-types:flexi-m
                 +--:(multi)
@@ -1327,8 +1441,7 @@ module: ietf-wdm-tunnel
                          +--rw flexi-n    l0-types:flexi-n
                          +--rw flexi-m?   l0-types:flexi-m
   augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
-            /te:secondary-reverse-path
-            /te:explicit-route-objects-always
+            /te:secondary-reverse-path/te:explicit-route-objects
             /te:route-object-exclude-always/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
     +--:(wdm)
@@ -1347,7 +1460,7 @@ module: ietf-wdm-tunnel
                 |  +--rw flexi-n?              l0-types:flexi-n
                 |  +--rw flexi-m?              l0-types:flexi-m
                 x--:(super)
-                |  +--rw subcarrier-flexi-n* [flexi-n]
+                |  x--rw subcarrier-flexi-n* [flexi-n]
                 |     +--rw flexi-n    l0-types:flexi-n
                 |     +--rw flexi-m?   l0-types:flexi-m
                 +--:(multi)
@@ -1356,8 +1469,7 @@ module: ietf-wdm-tunnel
                          +--rw flexi-n    l0-types:flexi-n
                          +--rw flexi-m?   l0-types:flexi-m
   augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
-            /te:secondary-reverse-path
-            /te:explicit-route-objects-always
+            /te:secondary-reverse-path/te:explicit-route-objects
             /te:route-object-include-exclude/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
     +--:(wdm)
@@ -1376,7 +1488,7 @@ module: ietf-wdm-tunnel
                 |  +--rw flexi-n?              l0-types:flexi-n
                 |  +--rw flexi-m?              l0-types:flexi-m
                 x--:(super)
-                |  +--rw subcarrier-flexi-n* [flexi-n]
+                |  x--rw subcarrier-flexi-n* [flexi-n]
                 |     +--rw flexi-n    l0-types:flexi-n
                 |     +--rw flexi-m?   l0-types:flexi-m
                 +--:(multi)
@@ -1481,7 +1593,7 @@ module: ietf-wdm-tunnel
                 |  +--ro flexi-n?              l0-types:flexi-n
                 |  +--ro flexi-m?              l0-types:flexi-m
                 x--:(super)
-                |  +--ro subcarrier-flexi-n* [flexi-n]
+                |  x--ro subcarrier-flexi-n* [flexi-n]
                 |     +--ro flexi-n    l0-types:flexi-n
                 |     +--ro flexi-m?   l0-types:flexi-m
                 +--:(multi)
@@ -1508,7 +1620,7 @@ module: ietf-wdm-tunnel
                 |  +--ro flexi-n?              l0-types:flexi-n
                 |  +--ro flexi-m?              l0-types:flexi-m
                 x--:(super)
-                |  +--ro subcarrier-flexi-n* [flexi-n]
+                |  x--ro subcarrier-flexi-n* [flexi-n]
                 |     +--ro flexi-n    l0-types:flexi-n
                 |     +--ro flexi-m?   l0-types:flexi-m
                 +--:(multi)
@@ -1521,8 +1633,7 @@ module: ietf-wdm-tunnel
 </section>
 <section anchor="yang-code"><name>YANG Code</name>
 
-<figure><artwork><![CDATA[
-   <CODE BEGINS> file "ietf-wdm-tunnel@2023-10-22.yang"
+<figure title="WDM Tunnel YANG module" anchor="fig-wdm-tunnel-yang"><sourcecode type="yang" markers="true" name="ietf-wdm-tunnel@2023-10-22.yang"><![CDATA[
 module ietf-wdm-tunnel {
   yang-version 1.1;
   namespace
@@ -1531,12 +1642,13 @@ module ietf-wdm-tunnel {
 
   import ietf-te {
     prefix "te";
-    revision-date "2023-06-16";
     reference
-      "I-D.ietf-teas-yang-te-34: A YANG Data Model for Traffic
-      Engineering Tunnels, Label Switched Paths and Interfaces.";
+      "RFC YYYY: A YANG Data Model for Traffic Engineering Tunnels,
+      Label Switched Paths and Interfaces.";
   }
-
+  /* RFC Ed.: replace YYYY with the number assigned
+     to the RFC once draft-ietf-teas-yang-te becomes an RFC.*/
+  
   import ietf-layer0-types {
     prefix "l0-types";
   }
@@ -1595,41 +1707,59 @@ module ietf-wdm-tunnel {
   }
 
   /*
-   * Identities
-   */
-  identity lower-first-wavelength-assignment {
-    base l0-types:wavelength-assignment;
-    description
-      "Assign first available wavelength starting from the
-       lowest frequency towards the highest frequency in
-       the allowable frequency range.";
-  }
-
-  identity upper-first-wavelength-assignment {
-    base l0-types:wavelength-assignment;
-    description
-      "Assign first available wavelength starting from the
-       highest frequency towards the lowest frequency in
-       the allowable frequency range.";
-  }
-
-  /*
    * Groupings
    */
-  grouping tx-tune-constraints {
+  grouping additional-transceiver-configuration-constraints {
     description
-      "This grouping defines the transmitter's allowed tuning
-       frequency range.";
+      "This grouping defines additional optional constraints for
+       transceiver configurations related to tunnel selection.
+       These constraints further limit the resources available
+       to the tunnel. All constraints operate inclusively, using
+       an AND logic. For example, if a specific frequency range
+       is selected, the tunnel must also be constrained to match
+       only that range.
+
+       When these constraints are combined with the operational
+       mode, the list of operational modes should exclude any
+       modes that cannot satisfy the additional constraints.
+       For instance, if the frequency is restricted to the C-band,
+       the list of operational modes should not include any modes
+       applicable only to the L-band.";
 
     container tx-tune-constraints {
       description
-        "Transmitter's allowed tuning frequency range.";
+        "The permissible tuning frequency range for the
+         transmitter.";
 
       uses l0-types:transmitter-tuning-range;
     }
+
+    leaf-list line-coding-bitrate {
+      type identityref {
+        base l0-types:line-coding;
+      }
+      description
+        "The list of the bit rate/line coding of the optical 
+        tributary signal that constrains the configuration of
+        the transceiver.";
+      reference 
+        "ITU-T G.698.2 section 7.1.2";
+    }
+
+    leaf tx-channel-power {
+      type l0-types:power-dbm;
+      description
+        "The preferred channel transmit power.";
+    }
+        
+    leaf preferred-rx-channel-power {
+      type l0-types:power-dbm;
+      description
+        "The preferred channel received power.";
+    }
   }
 
-  grouping transceiver-constraints-grp {
+  grouping transceiver-constraints {
     description
       "This grouping defines constraints for transceiver
        configurations";
@@ -1641,14 +1771,14 @@ module ietf-wdm-tunnel {
       description
         "List of operational mode ids of the transceiver.";
     }
-
-    uses tx-tune-constraints;
+    
+        uses additional-transceiver-configuration-constraints;
   }
 
-  grouping path-transceiver-config-grp {
+  grouping transceiver-config {
     description
-      "This grouping defines explicit transceiver configurations
-       on an end-to-end path.";
+      "This grouping defines explicit transceiver
+       configurations.";
 
     leaf transponder-id {
       type uint32;
@@ -1674,23 +1804,33 @@ module ietf-wdm-tunnel {
         description
         "transceiver identifier";
       }
+
+      uses transceiver-constraints;
     }
-      
-    uses transceiver-constraints-grp;
   }
-  
-  grouping path-transceiver-grp {
+
+  grouping path-transceiver-config {
     description
-      "This grouping defines group of transceivers on a node
-       functioning as starting, terminating transceivers, or
-       regenerators.";
+      "This grouping defines a set of transceivers on a node,
+       serving as either starting transceivers, terminating
+       transceivers, or regenerators. The position of each
+       transceiver is determined by the direction of the path.
+       For instance, consider the following uni-directional
+       path with nodes labeled A, B, and C, where a, b1, b2,
+       and c correspond to transceivers on the nodes:
+          A(a) --> (b1)B(b2) --> (c)C
+
+       - Use path-out-transceiver for the starting transceiver
+         a and the regenerator transceiver b2.
+       - Use path-in-transceiver for the terminating transceiver
+         c and the regenerator transceiver b1.";
 
     container path-in-transceiver {
       description
         "Constraints for incoming direction transceiver
          configurations";
 
-      uses path-transceiver-config-grp;
+      uses transceiver-config;
     }
 
     container path-out-transceiver {
@@ -1698,7 +1838,62 @@ module ietf-wdm-tunnel {
         "Constraints for outgoing direction transceiver
          configurations";
 
-      uses path-transceiver-config-grp;
+      uses transceiver-config;
+    }
+  }
+
+  grouping transceiver-state {
+    description
+      "This grouping includes common transceiver state
+       information.";
+
+    leaf transponder-id {
+      type uint32;
+      description "transponder identifier";
+    }
+
+    list transceivers {
+      key "lane-id";
+      description
+        "List of transceivers for all lanes.";
+
+      leaf lane-id {
+        type uint8;
+        must '. >= 1' {
+          error-message
+            "Lane identifier must be greater than or equal to 1.";
+        }
+        description
+          "Lane identifier starting from 1.";
+      }
+      leaf transceiver-id {
+        type uint32;
+        description
+        "transceiver identifier";
+      }
+
+      uses l0-types:common-transceiver-readonly-param;
+    }
+  }
+
+  grouping path-transceiver-state {
+    description
+      "This grouping defines the state of transceivers on a
+       node functioning as starting, terminating transceivers,
+       or regenerators.";
+
+    container path-in-transceiver {
+      description
+        "Transceiver state on the incoming direction.";
+
+      uses transceiver-state;
+    }
+
+    container path-out-transceiver {
+      description
+        "Transceiver state on the outgoing direction.";
+
+      uses transceiver-state;
     }
   }
   
@@ -1711,7 +1906,7 @@ module ietf-wdm-tunnel {
       description
         "Constraints for transceiver configurations";
 
-      uses transceiver-constraints-grp;
+      uses transceiver-constraints;
     }
   }
 
@@ -1776,8 +1971,7 @@ module ietf-wdm-tunnel {
            planning considerations.";
       }
       leaf delta-power {
-        type l0-types:gain-in-db-or-null;
-        units "dB";
+        type l0-types:power-ratio;
         description
           "Delta power in dB indicating the per-channel power
            deviation from the nominal power per channel at the
@@ -1823,13 +2017,13 @@ module ietf-wdm-tunnel {
    * transceivers.
    */
   augment "/te:te/te:tunnels/te:tunnel/te:primary-paths/"
-        + "te:primary-path/te:explicit-route-objects-always/"
+        + "te:primary-path/te:explicit-route-objects/"
         + "te:route-object-exclude-always/te:type/"
         + "te:numbered-node-hop/te:numbered-node-hop" {
     description
       "Augment TE primary path with transceiver configurations.";
       
-    uses path-transceiver-grp;
+    uses path-transceiver-config;
   }
 
   /*
@@ -1839,14 +2033,47 @@ module ietf-wdm-tunnel {
    */
   augment "/te:te/te:tunnels/te:tunnel/te:primary-paths/"
         + "te:primary-path/te:primary-reverse-path/"
-        + "te:explicit-route-objects-always/"
+        + "te:explicit-route-objects/"
         + "te:route-object-exclude-always/te:type/"
         + "te:numbered-node-hop/te:numbered-node-hop" {
     description
       "Augment TE primary reverse path with transceiver
        configurations.";
       
-    uses path-transceiver-grp;
+    uses path-transceiver-config;
+  }
+
+  /*
+   * Transceiver constraints for secondary path
+   * Applicable to starting, terminating and regenerator
+   * transceivers.
+   */
+  augment "/te:te/te:tunnels/te:tunnel/te:secondary-paths/"
+        + "te:secondary-path/te:explicit-route-objects/"
+        + "te:route-object-exclude-always/te:type/"
+        + "te:numbered-node-hop/te:numbered-node-hop" {
+    description
+      "Augment TE secondary path with transceiver configurations.";
+      
+    uses path-transceiver-config;
+  }
+
+  /*
+   * Transceiver constraints for secondary reverse path
+   * Applicable to starting, terminating and regenerator
+   * transceivers.
+   */
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:secondary-reverse-paths/"
+        + "te:secondary-reverse-path/"
+        + "te:explicit-route-objects/"
+        + "te:route-object-exclude-always/te:type/"
+        + "te:numbered-node-hop/te:numbered-node-hop" {
+    description
+      "Augment TE secondary reverse path with transceiver
+       configurations.";
+      
+    uses path-transceiver-config;
   }
 
   /*
@@ -1876,39 +2103,6 @@ module ietf-wdm-tunnel {
   }
 
   /*
-   * Transceiver constraints for secondary path
-   * Applicable to starting, terminating and regenerator
-   * transceivers.
-   */
-  augment "/te:te/te:tunnels/te:tunnel/te:secondary-paths/"
-        + "te:secondary-path/te:explicit-route-objects-always/"
-        + "te:route-object-exclude-always/te:type/"
-        + "te:numbered-node-hop/te:numbered-node-hop" {
-    description
-      "Augment TE secondary path with transceiver configurations.";
-      
-    uses path-transceiver-grp;
-  }
-
-  /*
-   * Transceiver constraints for secondary reverse path
-   * Applicable to starting, terminating and regenerator
-   * transceivers.
-   */
-  augment "/te:te/te:tunnels/te:tunnel/"
-        + "te:secondary-reverse-paths/"
-        + "te:secondary-reverse-path/"
-        + "te:explicit-route-objects-always/"
-        + "te:route-object-exclude-always/te:type/"
-        + "te:numbered-node-hop/te:numbered-node-hop" {
-    description
-      "Augment TE secondary reverse path with transceiver
-       configurations.";
-      
-    uses path-transceiver-grp;
-  }
-
-  /*
    * Computed path properties for secondary path.
    */
   augment "/te:te/te:tunnels/te:tunnel/te:secondary-paths/"
@@ -1934,6 +2128,67 @@ module ietf-wdm-tunnel {
   }
 
   /*
+   * Computed transceiver properties for primary path.
+   */
+  augment "/te:te/te:tunnels/te:tunnel/te:primary-paths/"
+        + "te:primary-path/te:computed-paths-properties/"
+        + "te:computed-path-properties/te:path-properties/"
+        + "te:path-route-objects/te:path-route-object/"
+        + "te:type/te:numbered-node-hop/te:numbered-node-hop" {
+    description
+      "Augment TE computed primary path with transceiver
+       properties.";
+      
+    uses path-transceiver-state;
+  }
+
+  /*
+   * Computed transceiver properties for primary reverse path.
+   */
+  augment "/te:te/te:tunnels/te:tunnel/te:primary-paths/"
+        + "te:primary-path/te:primary-reverse-path/"
+        + "te:computed-paths-properties/"
+        + "te:computed-path-properties/te:path-properties/"
+        + "te:path-route-objects/te:path-route-object/"
+        + "te:type/te:numbered-node-hop/te:numbered-node-hop" {
+    description
+      "Augment TE computed primary path with transceiver
+       properties.";
+      
+    uses path-transceiver-state;
+  }
+
+  /*
+   * Computed transceiver properties for secondary path.
+   */
+  augment "/te:te/te:tunnels/te:tunnel/te:secondary-paths/"
+        + "te:secondary-path/te:computed-paths-properties/"
+        + "te:computed-path-properties/te:path-properties/"
+        + "te:path-route-objects/te:path-route-object/"
+        + "te:type/te:numbered-node-hop/te:numbered-node-hop" {
+    description
+      "Augment TE computed primary path with transceiver
+       properties.";
+      
+    uses path-transceiver-state;
+  }
+
+  /*
+   * Computed transceiver properties for secondary reverse path.
+   */
+  augment "/te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths/"
+        + "te:secondary-reverse-path/te:computed-paths-properties/"
+        + "te:computed-path-properties/te:path-properties/"
+        + "te:path-route-objects/te:path-route-object/"
+        + "te:type/te:numbered-node-hop/te:numbered-node-hop" {
+    description
+      "Augment TE computed primary path with transceiver
+       properties.";
+      
+    uses path-transceiver-state;
+  }
+
+  /*
    * WDM path state
    */
   augment "/te:te/te:lsps/te:lsp/"
@@ -1942,6 +2197,19 @@ module ietf-wdm-tunnel {
       "Augment TE LSP to with WDM path state.";
       
     uses wdm-path-state;
+  }
+
+  /*
+   * Actual transceiver state.
+   */
+  augment "/te:te/te:lsps/te:lsp/"
+        + "te:lsp-actual-route-information/"
+        + "te:lsp-actual-route-information/te:type/"
+        + "te:numbered-node-hop/te:numbered-node-hop" {
+    description
+      "Augment TE LSP to with WDM path state.";
+      
+    uses path-transceiver-state;
   }
 
   /*
@@ -2054,7 +2322,7 @@ module ietf-wdm-tunnel {
    */
   augment "/te:te/te:globals/te:named-path-constraints/"
         + "te:named-path-constraint/"
-        + "te:explicit-route-objects-always/"
+        + "te:explicit-route-objects/"
         + "te:route-object-exclude-always/te:type/te:label/"
         + "te:label-hop/te:te-label/te:technology" {
     description
@@ -2068,7 +2336,7 @@ module ietf-wdm-tunnel {
 
   augment "/te:te/te:globals/te:named-path-constraints/"
         + "te:named-path-constraint/"
-        + "te:explicit-route-objects-always/"
+        + "te:explicit-route-objects/"
         + "te:route-object-include-exclude/te:type/te:label/"
         + "te:label-hop/te:te-label/te:technology" {
     description
@@ -2187,7 +2455,7 @@ module ietf-wdm-tunnel {
 
   augment "/te:te/te:tunnels/te:tunnel/"
         + "te:primary-paths/te:primary-path/"
-        + "te:explicit-route-objects-always/"
+        + "te:explicit-route-objects/"
         + "te:route-object-exclude-always/te:type/te:label/"
         + "te:label-hop/te:te-label/te:technology" {
     description
@@ -2200,7 +2468,7 @@ module ietf-wdm-tunnel {
 
   augment "/te:te/te:tunnels/te:tunnel/"
         + "te:primary-paths/te:primary-path/"
-        + "te:explicit-route-objects-always/"
+        + "te:explicit-route-objects/"
         + "te:route-object-include-exclude/te:type/te:label/"
         + "te:label-hop/te:te-label/te:technology" {
     description
@@ -2337,7 +2605,7 @@ module ietf-wdm-tunnel {
   augment "/te:te/te:tunnels/te:tunnel/"
         + "te:primary-paths/te:primary-path/"
         + "te:primary-reverse-path/"
-        + "te:explicit-route-objects-always/"
+        + "te:explicit-route-objects/"
         + "te:route-object-exclude-always/"
         + "te:type/te:label/"
         + "te:label-hop/te:te-label/te:technology" {
@@ -2353,7 +2621,7 @@ module ietf-wdm-tunnel {
   augment "/te:te/te:tunnels/te:tunnel/"
         + "te:primary-paths/te:primary-path/"
         + "te:primary-reverse-path/"
-        + "te:explicit-route-objects-always/"
+        + "te:explicit-route-objects/"
         + "te:route-object-include-exclude/"
         + "te:type/te:label/"
         + "te:label-hop/te:te-label/te:technology" {
@@ -2495,7 +2763,7 @@ module ietf-wdm-tunnel {
 
   augment "/te:te/te:tunnels/te:tunnel/"
         + "te:secondary-paths/te:secondary-path/"
-        + "te:explicit-route-objects-always/"
+        + "te:explicit-route-objects/"
         + "te:route-object-exclude-always/te:type/te:label/"
         + "te:label-hop/te:te-label/te:technology" {
     description
@@ -2508,7 +2776,7 @@ module ietf-wdm-tunnel {
 
   augment "/te:te/te:tunnels/te:tunnel/"
         + "te:secondary-paths/te:secondary-path/"
-        + "te:explicit-route-objects-always/"
+        + "te:explicit-route-objects/"
         + "te:route-object-include-exclude/te:type/te:label/"
         + "te:label-hop/te:te-label/te:technology" {
     description
@@ -2641,7 +2909,7 @@ module ietf-wdm-tunnel {
 
   augment "/te:te/te:tunnels/te:tunnel/"
         + "te:secondary-reverse-paths/te:secondary-reverse-path/"
-        + "te:explicit-route-objects-always/"
+        + "te:explicit-route-objects/"
         + "te:route-object-exclude-always/te:type/te:label/"
         + "te:label-hop/te:te-label/te:technology" {
     description
@@ -2655,7 +2923,7 @@ module ietf-wdm-tunnel {
 
   augment "/te:te/te:tunnels/te:tunnel/"
         + "te:secondary-reverse-paths/te:secondary-reverse-path/"
-        + "te:explicit-route-objects-always/"
+        + "te:explicit-route-objects/"
         + "te:route-object-include-exclude/te:type/te:label/"
         + "te:label-hop/te:te-label/te:technology" {
     description
@@ -2769,27 +3037,26 @@ module ietf-wdm-tunnel {
     }
   }
 }
-   <CODE ENDS>
-]]></artwork></figure>
+]]></sourcecode></figure>
 
 </section>
 </section>
 <section anchor="security-considerations"><name>Security Considerations</name>
 
 <t>The configuration, state, and action data defined in this document
-   are designed to be accessed via a management protocol with a secure
-   transport layer, such as NETCONF <xref target="RFC6241"/> or RESTCONF <xref target="RFC8040"/>.
-   The NETCONF access control model <xref target="RFC8341"/> provides the means to
-   restrict access for particular NETCONF users to a preconfigured
-   subset of all available NETCONF protocol operations and content.</t>
+are designed to be accessed via a management protocol with a secure
+transport layer, such as NETCONF <xref target="RFC6241"/> or RESTCONF <xref target="RFC8040"/>.
+The NETCONF access control model <xref target="RFC8341"/> provides the means to
+restrict access for particular NETCONF users to a preconfigured
+subset of all available NETCONF protocol operations and content.</t>
 
 <t>There are a number of data nodes defined in this YANG module that are
-   writable/creatable/deletable (i.e., config true, which is the
-   default).  These data nodes may be considered sensitive or vulnerable
-   in some network environments.  Write operations (e.g., edit-config)
-   to these data nodes without proper protection can have a negative
-   effect on network operations.  These are the subtrees and data nodes
-   and their sensitivity/vulnerability:</t>
+writable/creatable/deletable (i.e., config true, which is the
+default).  These data nodes may be considered sensitive or vulnerable
+in some network environments.  Write operations (e.g., edit-config)
+to these data nodes without proper protection can have a negative
+effect on network operations.  These are the subtrees and data nodes
+and their sensitivity/vulnerability:</t>
 
 <t><list style="symbols">
   <t>/te:te/te:tunnels/te:tunnel</t>
@@ -2803,13 +3070,12 @@ end/te:te-label/te:technology</t>
 </list></t>
 
 <t>Editors note: we are using simplified description by folding similar
-   branches to avoid repetition.</t>
+branches to avoid repetition.</t>
 
 </section>
 <section anchor="iana-considerations"><name>IANA Considerations</name>
 
-<t>It is proposed to IANA to assign new URIs from the "IETF XML
-   Registry" <xref target="RFC3688"/> as follows:</t>
+<t>This document requests IANA to register the following URIs in the "ns" subregistry within the "IETF XML Registry" <xref target="RFC3688"/>. Following the format in <xref target="RFC3688"/>, the following registrations are requested.</t>
 
 <figure><artwork><![CDATA[
    URI: urn:ietf:params:xml:ns:yang:ietf-wdm-tunnel
@@ -2817,8 +3083,7 @@ end/te:te-label/te:technology</t>
    XML: N/A; the requested URI is an XML namespace.
 ]]></artwork></figure>
 
-<t>This document registers the following YANG module in the YANG Module Names
-   registry <xref target="RFC6020"/>.</t>
+<t>This document requests IANA to register the following YANG modules in the "IANA Module Names" <xref target="RFC6020"/>. Following the format in <xref target="RFC6020"/>, the following registrations are requested:</t>
 
 <figure><artwork><![CDATA[
    name: ietf-wdm-tunnel
@@ -2826,6 +3091,8 @@ end/te:te-label/te:technology</t>
    prefix: wdm-tnl
    reference: RFC XXXX
 ]]></artwork></figure>
+
+<t>RFC Editor: Please replace XXXX with the RFC number assigned to this document.</t>
 
 </section>
 
@@ -2865,10 +3132,10 @@ end/te:te-label/te:technology</t>
 <section numbered="false" anchor="acknowledgments"><name>Acknowledgments</name>
 
 <t>This work is also partially funded by the Spanish State Research
-   Agency under the project AgileMon (AEI PID2019-104451RB-C21) and by
-   the Spanish Ministry of Science, Innovation and Universities under
-   the program for the training of university lecturers (Grant number:
-   FPU19/05678).</t>
+Agency under the project AgileMon (AEI PID2019-104451RB-C21) and by
+the Spanish Ministry of Science, Innovation and Universities under
+the program for the training of university lecturers (Grant number:
+FPU19/05678).</t>
 
 </section>
 
@@ -2974,239 +3241,261 @@ end/te:te-label/te:technology</t>
   </back>
 
 <!-- ##markdown-source:
-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
-3676vf8PE0yKVHGrAQA=
+H4sIAOyz4GUAA+1963bbOLLufz0FtvrH2BmTjp10pqO+xbGdtGfbTk7sdKb3
+rFl7QSQkoUORGl6sON2ZZznPcp7sVBVAErxIlnyVHWitxBIJFAp1+apQgCjH
+cTqpTAPRY90d9tvO8Wu2x1POjiJfBGwQxezD3hE7zcJQBEm3w/v9WJxB2/Kq
+6kTtux2Pp2IYxec9lqR+R07iHkvjLEm3Hz9+/ni70/EjL+RjGMyP+SB1pEgH
+jufx8cSZ+mMnJYLOOQ+HzuOtTpL1xzJJZBSm5xPoc7B/+oqxbxgPkghYkKEv
+JgL+C9PuBusKX6ZRLHmAHw52XsIf4L578O70VbcTZuO+iHsdH/jrdbwoTESY
+ZAlxJzowoScdHgsOVN9FWSrDYbczjeKPwzjKJnBxd3fn6C37AFfgFnuNV7ud
+j+Ic2vi9DnNYKD6lbChCEfMU+MVLWSi9KKa3yYTHHwPs6sskjWU/S4XPAuEP
+Rdw5E2EGPDFWDBaNx1HIdmHacRQwHvrsSPAki8UYpsreBjwUXWivhNKtccXY
+mMsArpNYX6CE3Sge4g0eeyO4MUrTSdLb3MR2eEmeCTdvtokXNvtxNE3EJlHY
+xJ5DmY6yPsrcUNhw8yIlYtcAJJ6kxrAVEq6i7MroQmIXNnBH6RhMsMOzdBTF
+KFEH/jGmDG5HjjLOXmcRXYOp9tirLAWhToVkp8IbhVEQDaVI6L5QQuTYaZhF
+JJ8XQ7zoetG4RvpExEMZsZciiNJUlvSPo4+Sm+RUQ7evGr4I8X4Lvdcue80D
+iRZrkjsIfXkm/YwHJs3hUDX99tlM/v4O3QXbd9lhNBGfmS/Yr8AIj8HL0X0+
+GxzzDLyI/fJ299gc43ck4AbY+3/PVNcXGR+7JCxzpD0eSkCEtyL2pScS9jKL
+YxEbIn8fgrXFifS5z3ayNAqjMUeGjrgfS98c0ydS7kSTysdD31Ue1FSxHv2/
+wRvKEd8EPtuLhuhOSRak+b3KKC+iwPejIYjOzT7WiP7Co7HkIfufkTDJ/pLx
+VsMB9xYCzP2XrQ32DxnIDMxCTiL2qwwCPhQb7CQKh8kICB7yj4K6eDIFvNyD
+68OMh+pSlMEs4eruSIYVE/qMbIwUTy9GxESLxg9SHoBBZom8mGNNWGIXtw9d
+ZpN9k3g8Zq+j8DMPlCHtyUhRkSGA6Ru3/SaNfyoCMYgAFCvziZCkO9S9fADx
+KHmRFk1bmPhVeqB7ZctzfO2Mmimjnelpe+DXIkbPDQCJZxNT7VzVbia1d8Bw
+7KOqeZDyktzu6emuSS2mdu6ZavfCS1Ov6Uq/gQkM2aEQJZ0TPk6yqv2eY6tA
+CDf9NNP9X8qQ/SbAvIBmFJbk9k/fHZi0+ufnWfhCgHe5sXA/xu3edSS9EaAE
++5UHENGi9CrOPVa0XkCAANzhYSrcVlj5Hz4Au9sJDGvelYkXVRwDYPCFh1db
+RLCfpCPQ86FgEN4/S8+AhxgihzAJCWrrgqKp6YuIWrTBahZIEQKGZvF8ir9T
+Q3dMDWfTew1wD1Gcj8ciKMn9HfKIiTbOAvJVoxe/q3tuKNK6KUYYPCIQffi5
+GpQaghtjkzgyzKcTRvEY8pgzSEs6MhwYnxzHYbwPIMe9tNM5HcmEQUqXUWLi
+i4EMAfS5ygh9TCPHRRoJQmWTODqTmM9hvoJ5DYwNoEi9owE7hQA/kB7bD4dA
+SMTYau10f52pIJ9Ql0MO4ZOdTGXqjSCJesvTUcLWDk/eJusAQuzNJAXvCtix
+SDGBg1sf+BnASThMR2WvllYnb47XaYBXgfgknddgsWwPkkTBDAJ7UvHPjjCU
+TLAl8rgH2fB6QWzdRcmIhhSUfHzkMq0IDkIayjhhoDAUkyaEysulgzl5Angm
+2A5mbKnwMHVha8dHezs4HuplLH0/EJ3ON5ApQOboZx6loh0Qa5hMIjCuMJ/u
+CKbExFkUnAE/gzgaQx7MIfJDe5DKMhJLzpNUAOt//PHzu1e7z7aePfnyhfV5
+Al1ATFEYnLOB/CR8Z4gCnZaUE6IM4tuAaU8BDxMmApgj6D/SY+XsbnQKggNS
+znB55aQoBL2aIDUX47PUiIh6Hn979vy7L19cdpJ5o/L+OeSD46TDU1ChB6uF
+hHrXpcsgogW8D7E/PaeRiGf1eQPWLkE0xX59uDWVPvCdJaBlmvRYfqblAyj0
+w0gGArj5L+Dm+ePnT0Gq8OHA2XONBJgoozAo/4UmAzCppCanqP87WEvCEpwL
+T1gIxphs5HxD/hfDlIBNQPOPeL1impNYwEopLZxaMfS3598+htFu3blRlQ1L
+3GDTEcQR5kFO1RdLGW/hDzCFK7s9LTfB1+UnnC5IBGjAnWIQlxFckhhBchmo
+N0dMEh/MVbkiZ0mUxZ4wVYS0UXE5RIAKIZUlY4HPEKmG4FECoi/MUkIcjceQ
+ScHKS2kbZafUT6v5mn+5dSCXuKSWA6k5wy5KSYBUY+AHDWIDGIYohGmRUh20
+lDE740GG1gVXOhDbMUyAqj9rSgPBEbaKDgyCF0WXEBcLSmo0HAgeOQGZ7YC3
+TiYB8EtzFZ/A7kFyMumQvUHCWMAHdob1TE6nmA6ILCMzT0s+YY1P/tkXKSZ2
+CJqwQDjDecM6gfjbQ+UQJCYKz2G9z3DBn7Du0fuTUywz4F92/Ibev9v/P+8P
+3u3v4fuTX3YOD4s3Hd3i5Jc37w/3yndlz903R0f7x3uqM1xllUud7tHOb10S
+Kuu+eXt68OZ457DbjCM8JvsAJyATAN/FMgNPOmACHqyZVOx5ufv2//3frafa
+lbe3tp4rbIEP3239DYFmCmsMNRrht/oIcjvvgCoEZGJABXAMPG6CqwZUN8DL
+KJqGDDInAdJ89E+UzL967Ie+N9l6+pO+gBOuXMxlVrlIMmteaXRWQmy51DJM
+Ic3K9Zqkq/zu/Fb5nMvduKjMAp1N6viAWKiFjQhRywDADxNoAsYIEuyYUAoi
+eycG4OagPn396dNnoApUgr7w7PlzQniFtmiMOHIC4aMlp9ApyCDKw41qixZi
+pCEVNMeh8D7k9CwWeStUaK/jwJIUc1jI+eBtImJAGnrLs+E4v1xOtPyI8LME
+K8+2n24twArkS3KYqVIbjaPYShHw1Mdv2Btg8UyKqRqdSnMQfU73cyjjqS7E
+gfnmoVHjLg5vAiwBL/d9QK6Emrc304SVPahLk0hi8Fw7PYUItkFz4gFkDv55
+Mff+OekTMxwzWVQiKeJ9CtmGqoumAhOTUwq4FJsr2WWiIV7zAsS1hkjw+Tiq
+B0THkYLlXDUd6lqkO04yEZ7EoI0F0zSGhDLpkahfB1EfE0VoHvBzsFvVgNNs
+0xFlSAOIBCFGMRgBxE7xLQFgp6x0gwl36GLoFrQyMxJDD3E4pnALth6LsqqK
+7oMDAeqDVZiMGJFyk957ApeiNUsxmMzHjyaaNhAZ68QoowzGnJGOKAZlc/A8
+nBrBrDmULg4HEAt9diKHMKCTRk4YSdDH2mvn5PjdOmRMMSRHOBzHWJnIfiBK
+8iBAGhazIgcWcRPRrgA9oIriqdSRteQdbATS4GFIoVOnbhKGPkd5JwIo+fih
+GO9QJpTBUYKotFtPXKjdG9Jkzm7pX53OPgf/IgPQSRqkOGKoEky8ukZxpuYR
+c5yREjZkp8XZ1juYhoWYCaCAMSFQY4AD6wUOjAUZqD/T383UeJ18LRagWUHZ
+O/FmTA59GudMJgTyTLIJrQb6Edq7TDOimQAgAyjt6/QFpPk+AWA8QBv3Fe6L
+T5MA9Mcgjios10CgEH6j5qllIsTyRMhlmC3VkjvonNGMR4BvY52+Vma40VFL
+IZDqGglXLYNJ2y6AEDgQCHKiEEEPCxiN8R7RJpF4oZO3IJeOVeY7GZ0nhekm
+KikB6woBAui+ZrVjcsPOJAeqkGj2c3WAsEiYmLMbK/TagjKfha8tpJwDSP4/
+8AKr96R0eJxS9WP2q9zaKhr+8OPyr59mD4MjvNU+h95cjuMs/4I8BHr+tbzw
+1/nTK19mH6TxJ9OipbeLvcw+mgYjzSxHo+ijaVDI3VmOBvXZN/gwyNPrrzX5
+1D+bfRo0DhFuttifarb68zbcILPUn5/MpaG1+9OfarbG5/r9Gg03f5Xk/qTZ
+vqx93i0/s6KT5oPKQA7rLSOPXt5L09CL0d4yeunlvUp5gGKbNGZbMNKA135D
+HjkNkv1TvFNCw5/59W9zGjV5GORro8Frb+Yd/XaGbg0NkkJa78yisbg8qjSu
+7PtXxJ/ZoyDQnRQZBUEdQnHnjx77pi2uMDqK8GP3VF/PA2b3C6TxUZHOiVqA
+NzJeCKRmnKnGlh2KCvsbbCBjldNgQJ8KVQ+FrpNokuGGNQbbjlFDy/ksqjd5
++oz982KFWoSJPPKqTPlDvsopM8icGyQg84RGs4arkOY6AiVcWUpQYx33dUWD
+Zo05SBBhyKXsSAtBnsn0HGmYlRIyT+o04J6ASI+s4smKgm6VsaIohBkD0CrW
+Q3TfIFRMW+WWCR+LYtWqSL7cYLuqxLKhB9OrE0nbHOZIM4ehmsNUgPi5mk8+
+f6RgzhuSasjVPmGlZypE2OD0lKobUz13Q1cq3d1Cs/g2X9MYCYwqoxK/oU/l
+KZiDqkRSRIAZGwYUYGFTLXr5GZ67gMzeNbLmYpcFl0b5cpTEF8AaeBCLf+Ni
+StWTh2BEYKUx1Zdj2mky9eYD3Z0BbmsWEt/Qk6H6l2mCZPd9FEuefGdY1O4s
+UGouKxO6PA0ihOy+U/ooGbyyZbXFQFoq5ln4He1r6BJGq9dt4JIABBCflzIu
+nK4iUlV4hDw6DPMFL1gPZfl65ZJ7el8U8sJ6ucAVSpGtQ7LN6UwNaDzqcI+2
+44naUC35uF5VlCvkSpG0WIq5neOI0ARGxursec53jhVtGIOZOge+B5BHw1py
+o6PKlpLKR9hpys+xvxIE1uVICOD1QSFGzYsysT06JoXzidRNjycgKpnS6iFK
+1DozLaxfSLLJchFGJtZWFMGVjip8X7BiI70gApXWB4iDy58s1uyAOUyjLPBz
+LnixhFFz2SDARCIt5XGFUvqGSo026ozUxkewbeN010VQyBIFCiDYYUS2RJum
+agGmVpSfTABBhCMjIuDVSlDNiJAGCZFvVow42cpUydYYBVd7JiyaHsP7UZYW
+sKDK7ECQ04pGL3tikcMfIQEw+ErSmndjrsEpl8gmeEDOV7ENp4OEc5NV+1RY
+ZcsSNddUjlFP2u6xOhML6o8GEcWAKtE0pOJ6eUawdqYQbuq7p7EQjZWa2ijp
+MUKi8rwXZiy6sMU2U9FLBf2vdpLKt72OTnXiKcPOpWfmOYu6ZxRHWtr8mTcz
+ikUOFYsembkOHuzThzPMTukn5FkYdBOjTdEMQr3jwXRioF3A/c/YqvjkpKPP
+rV35p8t2NScOXOpdy58rXYeVrqofGDnOCA3U6UugkgpDFrrydA4Q1iYObfvO
+JJqK+OdKvhg8dvBUY9Kje47fHzcITAgYIWA4cQup2QRU72ESxpBsAseOKrZV
+x4e71fbgjA6VIKvt8lc/igKhz2yVllbUJJyylvnzwn1UcQ5Nu+zTIlE9nwwS
+Ogf3kp1EfhZ1LgtxtFpCbj5qH9wZTEGm4swpefl5Fru0iw2NVa20IZvWPuD7
+KW9Teo1VpTlytMW8HN/pCqZDlabKgqR+Fz9jqU16MnViwFPh6B3yRjfzLhiN
+F2S+cHgA4VeNDuw2+qiDxmCdCMfOKJq0XjSBifII8H6zuox3q06qYpYjfZRd
+BijyZLullS7wPmL/xEPC0PpfeaNiOH2jRQNMU/6u0ceECcVBvU/JDVsaLSsj
+zUBL1eZSaFnvugRa1roug5YVkS+FljVxLI+WJoFLoaVhl+ABDcNkCxlmm/E0
+DNNst6hhzqA93zDNTsuEcXaRYarXZcM4u3wYZ5cP4+xyhlkTx6XCOLuCYd5I
+KMg/x7g8g2A/Mcvxeaf2eHFBiGhQwRnZEGFDhA0RNkTYEHGXIaI45DAjSFTv
+2xWDDQc2HNhwYMPBgw8H5ipgXlgw29nwYMODDQ82PNjw8EDDw3IFJfyKFD7e
+QzV3JjFaR5p/2d7sWWlpNCSq1UslvEf4/WQYEfvhZpYhp3zzqt5MRIHZdFaz
+ACSTpEVL1ezuam4z5ThPdM2h75ccl1+YfpXmdvWE7asU2woAWbuDNsrqjavX
+lh5HF6XH0ULpcbRgehy1ZiFtSXHUmnu0psIRawtxRWRzotgJsyBo65VGKa9E
+2PZehqTmJGwXiKptYnMStotENYNim6jMpouLqtZrIVE9sPjY7pEXO+3c7a2L
+fda6p3XPu3TPFUm7bHCsmpT1voVFNYPiPfO+lcrmrTdWTcx648KimkFx1bwx
+SCaJ/qv/ONxLMyCl7Nn46oFplXiSXn35BR+4UZVfvi4t6m2zFqhLjN1wpHmN
+rfdZ71tcVDU/ulXvU18lIyfAZzbqkNS+HaBNuK1ZEYPAUvVDNZoOg98+hKiJ
+WxH0+JWk9aq5iUhf9UNHoinVK/d5yV1Gsd4XMBWg7pbfNDKVPKWvLjn05DvH
++Cbjzy2jFF1wE8ToNuD4aNef80G3ntVa808Xtb55baA3WHVcWh3XUUWpOkW7
+4C/WjdXC1bVgneHO1bBISdF6zP1SleFWVlfXpKvlS4E2+VopTdhYc5OquGyF
+zjrJSmvGOs2qLB6v7yRxoaUZGtUlMCBDn9X7/NGvhTZ7a1N/vF6V0Vqh3/Wf
+qwWR3pp62L9vdmLGwUJ9Hx8yFAgsjyTZBB+6oQovFXJ/lkRV8/XGzYIsjuc0
+ntFQFCHV7Xba9EzMJunS4rK+x+NYYkWHyDyaT5qIerPm77UyWmPXa6VZusR6
+RaO5ZBeRqUGuKdMaq2q8Oq/lEyXU7Yv6j+f3Hzf6fyLmcAatvH2qK0Xz8Yj9
+U7/7V1s3VpvVolNhLbO5cArtdmXeRoLFQVp6lk9bwxlt50213nGJ2bZ2nTXh
+lcNAGSoM1FhoQTB/WRC0IKi7MQuC9wcEr2nFNKNfkvI4vX3kMyDqGsDjalhh
+uHaLWdwH3ZYXReg3iFjNPgTNJqloHqBdVJ0w+8trdJpEoYr2+bZ4MuFe/ri3
+md/lmqNgouhdguJMfX+qFQvaCLfTrRuLN2g+xm7hzqSlZve8qHEvdpttoFhV
+OLkG5dpI8RWo1oaKhxgqrmFH2fxpUSLEgyHW3kdj/DDGX3z2GkTMTo5q01Kb
+yUvPS9Wpm98ZsiUaW6KxJRpbollktq1dFy/RrDae5mXspWreFk+rL4unFk91
+N2bxdPXx1J55MPowi32GZC32Weyz2GfPOljwY5W7Fvws+LV2vFfgd01fOJqz
+W9XobPc35u1vrKJORehbjT4ojeIWiN2bMl5f8d6UPb7wUBHDHluwKrXHFS6g
+aEPCfX3wcAE9VyuuRJfHpOhmiivRzRVXomstrkQ3VlyJrru4El2xuBLdYHEl
+unRxJbpkcSW67uJKtERxpd524eLKcrNt7Xq7xZWW54g0Ti80qLQcZZhxeqHR
+1R4NsxVtW9FmtqJ9cduHW9G+Y9C158cs6NYla0HXgu5XB7oXAaWx5p9zrqxZ
+nzIB0mJijbbFxOrLYuKcfhYTVxQTF0sa7eGzmqotQlqE1N2YRcgHgpD2hNoD
+3Mq+E8XbY2xfpdrtWTd7sOFOnuxvQ869xJ5r1byNOV+n3m3QsUFnKRNc2R8T
+b9bZW0DMHrmzR+5aWLVH7uyRu6uWlJb/EaLZDwdqdLbH68pbtmZva/at/W3N
+/kHX7FcXYO1ROguwdclagLUA++AB1j6OzejDLP4ZkrX4Z/HP4p89FWfctABY
+8mkB0AJgs+O9A0D703P3YSf6zvRaOV/QIGK1et+1ah/M89UcJbiktdnntTVJ
+PAgYsc9ss2q14cGGh0ubm312W2ki9iCZPUhmD5LZg2Q1KDUP4s6D1LmPELrB
+cw/2YJkte9cla8vetux9b8veqw649qCZBdy6ZC3gWsD96gDXHjwz+jCLh4Zk
+LR5aPLR4aA+iWUC0gFjStoD4dQGiPZh2vzap71jP9ijC16VlezLhKzyZcCXr
+swfZmiQeJMzYg21WzTac2HByY+ZnD76VJmMPvtmDb/bg29d38C1IJon+q/84
+3EszHhQHHQZRPObtWfOcxjddxLZwNpe0hTMLZw8dzv4Dr84fPfbNQA4dNFaV
+GzppLASDLDQQP3Y/7B2xU7rMfts5fs3wXpfBMn8axR+dkI+hjRTpwOjvUpsv
+nc4336g+u5EvOjQaO+fhsDOO/CwQrNaN/QFzwfsOJpmAgGzL3foeruEgmF+r
+zK6bxWEPu0IGGPNx0vs0Dnph0sOevRrJLnafQC4tP7EuXQ7xGlyU40kUp4qF
+VNDQZctUUEfG4LOIQWF5Ttl992qX/QavHttRU9vjKWdHML+AAXKz05gPBtJj
+++FQhkLE4JxaesmGpnGIKM1OpjL1RsJnbzFzZjz02UGYingA00xcGv4L/Nt8
+xHDIfd/tATOTAO7S+Ay6j1g6EizMxn0RM54kchgKvURPI7qHXSPgnvnAVuro
+yfLEISnDtPuQ2YNsYXhs6z7ahO414QT8XMTacGpiyu1Jcwv/RfGQh/ocoFLW
+wf7pK7a7u3P0ln0Ag0F5vIZQN6E+sKxIIfyplh9esw+i34O3P4zSdNLb3Eyj
+KEhc5MIFwpvT4abn8fFk8yc1SehwKJMUevww5jJIox7dfpF3+Kmj2u37Mo1i
+JPx3uCrYvssOYa3xmfmC/SqA45jXneiH37GlG2Cz/z1TbV5kfOyKpEl1D6YM
+Gn0rYl96ooEAP/h0353o+y9CnkHfVlK/wmocrIjYa9A5o5uKqRdh9FFyF7TX
+JHKQ8iBiL7NENkhIvOX24dY8AjtylHH2Oosa/TneGWYRKeXFEMVOJJRP+SLx
+YjkplX86kgnTzu6DzYRoaspvfPSbceE3YAmAQRn6ixoUHWLMQz5Ei/nAz0Qg
+wiEs+PbkmSRsOEJcniCQQYM1QKl1lmifUhTwTKrHA6aXvq6a5im4hR42C4Jz
+GhgyriR3mWNBwMaOcGxBqR71Qz9PQD6C7cTeSEKGlWbwYe34aG9n3aUm9N9u
+NDmP5XCUsjVvnW0/3t5i5AKncZakNCscBWwhyZ9ur1b8AwlYwEE8WTqK4oRF
+A2roAasuaCQIGFFNAAUSEZ8JX8/nnfAlVnH6GYqdBsgSgNaQJVEWg+vjlb4M
+YfXOaKIbCjqimLrje0g8USTAgkeOu8FAa8DhWKawYGeTLE4yDnJIow2iBkEb
+l9sdA2gCMOwQhgUAA1GSW4OyfWBjg+6fAKIEao4vT/bAbak5UUhEiowBS8Dz
+iaBqFHvqerkESun9JWGHYggafRtHyggSLYIA+AYrAGao9V7kZag5dXsN0SRB
+OEEiQpSAormmpHu9sA+YfB5/iAX4TBabBy2QDUQ/vIfw+g94fQ+TUJPJQVem
+iQgGZNloZiwgvsMolRrdOxhbtCV3wUqeOFuPne3trkbYuieBL72fgMuA/Ipu
+pEZwvj5J+sPJm2PSzqsivdSWnztxPgmhI+CM6IYT6rX6KGYC2pl0eNzcbEYn
+7K94UwsbaqGC1AbLaBKM/sspGEsemkAsxtGZUIIHiYk8tmw+wh6PVPgAdZN2
+KWIN9RXGfcAwoMMxheFh4gl5hhm0Bhd1PB0+gcOAfabJbGmTGRR0C+wq6BO6
+0BuT3EB7FVpCOT6rjI8eHJAm0XdU4gPGogzfzbsDTCWiSjsDHwFigQS/JEMD
+JCAXB77OAIh5PyhKX9otdTpG8GHSwkobqoCOTSXAY3AOukkK8EX4ZTvHewyW
+kNJz2SvQvvgEsTUQAA4DwPBkIjwEjDKlZTDhYcEASE9NSvgbBitsTCgYJBGk
+HiVLShhgA17xIw1RCOCcjniq6GrvhNeHkQiRYk08PBalMxTJkZooKSrvj/a8
+oUErITc2GtFdYB0wMfCZPk0Gwjg3eyeKLw+WZVHKEuiaDM6JomEfBm+FUlGM
+Ei5zcDmSI/YpBSgJ3Kkir60Dbu86fXCKjUKxi/CNbOkTcci7ullodoLH69BY
+tIzVOIc0jptDQw7hMUs/YS4tWtymzXHIdYSKHpCR4ijQG32oZiiEKDBwmWKQ
+x1DMiQs2GAazpFy4GG0cRdchagqOvqhOgeCQtqKQAkmM+9iuL1Oy+Zx3JGhW
+24sbjPU5GFcxpkHke93ky0Xzz1WEkoWBGY68iYSYIpTfy3OUoreK5BisMZ3H
+7IVMLZd9opMCA0+AVNkbHa0EHrebM1wgfTlS9+D0vXPKXrvPnn/nboO3qsj7
+N3fL3e425IlmkG91TKIp2EVFjoWw6J7j98ffX2gixFMMlq7pFgbAiIhbMJF3
+K5kp+jrxzbMVC5Km32SL5FMEiVrEuWyMqcUTk2zOaTWe5L5Smr0BDI4ChopU
+EGJgwD9KW1C5Netuue72t992FzLzwxkoBD5VZK8ttvilTJXxRe69bNj+/iLZ
+Q7dlxZ6fOr5Y3q4pcNV8EoU+jAwpV0XQuB33ZLvF5FjX6FYuAOKa36GEDXZK
+NX4U57D65oBL0u/ONelcSxUyaFYcs1KgkBhYSxPSZA04LOby3ffFNYrjf3HZ
+Tz+yrb8YbRkD54liZyyShA+rW3HdQyBtzFYRgTxgGAvARwwHkHZgqvFvzBsh
+MG2VCGYCQdtMW8jTYRQVeqKxSeuLOV/TdNqnXapwhpDNXK+hzEKd2thnwMQs
+VKFdzqubN6d1Vt0QMOOGbAESonwyuLakTBo8QlK+WUjR7LlBKz1YVaZGzlht
+AHqMxVCEiA6woHVp5T2JEqmDFhO8zPYqEkyAa0UeQLevMitfxjpAaWhBucxI
+rFCq0id7wjQjCKIp8g/pglOQKfNBJKQSxpCgkjZRYOCdDfZSrXd3YckMkoBc
+aoP1t+DfdiEuvO3BgBAwyJspm6pJmIp0SLpnGOvOGl9njvMTW+tvrb9c62/r
+T976bpHpOux9oiZKJzxMGenkqVU55Si8qDcYmqjIur/ttowmw9bBDJW3j+dd
+PN5WS4bZNubcDHO3FiIh143GZO2FlbTz1xo32/0SGlbAuMZuXSFL8Qudh9HN
+8TsvOILBFDnwheCh1xCYk4zHVSYZESpWe+US3kZHZqPj5aNjuXdKJleJfCAH
+H5esDu37LBwwlzL5PF5qcIWObTEznxzCOhtkIfmwDpu5XDdm4WWxEdQIkdcA
+jad1F80jUBMj64vshsyuDf9mMtUEwoWZUv9MxQ+DqN9cQWjgvYz+l16JtVVP
+5nGzYLiYXUqcHxIuSi3pXOQCEsoLrrUisCmf5sRbic+YcDvNuinM1e/3Zsuy
+dPNYHTdsCKNYgRLIQSeHHLGOb/0oggahCXADngUpG/AgEfNxDyssoY9bKgLT
+R8qlQX5YmzOdnq0Jd+iyJ+/W8+pdvxIX8mRW+G5e+lQ7EHyMSbIqtKYq78xU
+YdPsrsVKSe6Yn5dlQcUEchYW+TRTFXez/0BwVcVD3SsvLYpWMWbwbhPISabT
+cssOppBvqJTypYH/4rqbpfB/xFiRiW41YrbLFjcrjBwzj5UixMKmT9yWHLCS
+gwoJlJouQ2sRtwbUmzSFViZRDxyXLaJy4p4HEUaSsphOayC2UyvokmSfvDN7
+FganiWsxteiu4T/6RAhPVWVSJNV8aJjx2KfSsZPIz6LuQOWJk+LkSzr6fKG0
+XiNV1qfNRqQqQ3b6y+dZpkb7BljiHUx9PKHsGEJd1KHR8C6tRCr96/MXedmw
+shmEL/g4xVmpLS46Rm1qX3moNmPKPsDBZ82YjAOmqkvrt4VauuRumKcytggy
+y+pkx7hRTmfCMX/iZtSAzn2BVHCvIyJcOz2fIKAE5xsmDUM4xUwVQBlF2qqj
+m90nkKpTn9y9yxidi9SQqC+ClNdKyO1FZKJzoRD3kJ6qGKP1+i/hfxKr1C5s
+nOxTzUzefXEmlbNScq4qCJhL6rbYu6hP87QO+pBWTTJa2MCK4c3RSX3O7akA
+RcoLkuVGKkBmS51akp9WqnnSVLXGmXlBywA59CThbF3BvQt1tKP2p4v6/uuT
+43dFsSMfe6bs8u1oOgAW5jtsjzYrW9WUsjQSydIbdJfyWHF3zlc25hwO2NHd
+1b57uQtZ5Am4tfjvTOYuAxzkkigTr1omizcpHFRTue/rAjitpqeVmU5iOcbN
+LJSkam1EK4i+7YslBZFFdFcdzRWUu5Tc6MsiihH1PZXNbmEGf8XDfpW7sx9B
+0ui2yCOZ6n3USQjhO2gy+dntxsUFVH26X5Gu3vOeuVQo7bhU7Iza8qU0nIe0
+e6bp/HPli031TvfMHExVNMxi9sr1Jqyj+ObY3dtF7anuDU0s+ot4K6f2qozv
+CgdKLlYDCWart/JdxwXb3VdIaNfKLYDCrv66pxqv/G5nIyu4aYCf+Q3VRs8l
+vqG6mPC9QgaNOE3ZZUGuTdCNGlbZ/HLCNg1gJaLqKmmm6R1GhnxLiqri+G0E
+uFXQQFv0ukXvaAfIqwj/UuFl5ZRx2w5hJiwPLVo0R13weQb1fvm3ga8zQ5gT
+pFoShPmab996vZLSv46oZS1keQt5IOHSqv4qqn+QQduaRNUkqtsA87RsPoqj
+Lox5j9pYbOqHJ2+xflGmqJWtifrkqpsfjUnpzYfGkbq5VnzZ+S3X+DYKE8vJ
+ckFDMejTKV79TaPaA1jUFk2LdNUBExIwPnHAb5wdaUqkrVnhm+VDPpvyX+yp
+bIvJcsZci60sGQ6BJp4TMR8Rp89R0xSU+MspVLZ/inweLVqziGORzRQ6uAV5
+Go+5W0SgFza5HumKuxHuxRXPavJbz3dbY4xhsXcq07kWS9M4r2zOrqAoTWNd
+WftcfVEusiS7d6ZbyVrvudzvk53fhdzry8zmyvL+mnNtCb7aEr0XhnrXEq2u
+g2cvfR+Czd4tGlxJ0vfMlq8o6VnLu7lL5etafNzgxn+ulhnKmvtcz2XUB4RK
+heVfcycGmWafKc40Bc1u8d1bvX7Buo/SfvnsuWJ9o7s2VzkePksD1Fuc1Jyl
+eOCy9kWVFdfqRb85tgJq1Szm3yKgp/isgG5XsPpyYZMSZ9VvXDRqrVfWp0JZ
+on4NpZuFdUMD4o873J733biKYDY3piCgbdWz6K9KtPfDHy+4up+Iye3qQdxi
+fLqpkufdoNilS6T3wUtuTkW3hWJWPauBYrehh0VA7LqLifh94bF+KDS15sEw
+iiHPHOOHsUA5z+3k6DbNRD1fWS21DKv+Wsyd5Ovm7HIV51PTBKqZ/IV5u1np
+jPPHVZoL7utdiN0jG8nXaUst6u6jjeSrvYdqI7b0UlfhA1few6yw3FsVXlOR
+fwUrKS374DeR2668QlaibmKVcRdVkqtJ/S6WFde1E7Z6NZH77AHXqpBVqIBY
+ZVwjHt2O0O8Cje7HNwFuPW02s+XyN42UAPIF6P1LhBc5HWerXndV9Wo7bmIN
+ypbILl0ie6AGdQ31tJWJMzdRXNPCy8OUVX69Hrfq2r96ce5Bm8CDr+ddCbfv
+cu12J9pbpeKf1dzKVwqvqKI7qRje5reaVras+PB966HWIK3m7hYWb15FK4uK
+s8ub9ZsXli9bKp7z1yDN8uZdrjWWqGiuQt1g+W9L2sLlrRUudd/2b31+1ZZi
+K5IPylLs0b3CGr4mFT7oA3z3VZEPt+x3RY1c6wppBfSyEgW9m9DJ/VXJ7Vbq
+riz761mO3t0DW1avBvcAIOrBVdesTu6wbnZvMeoaDvx9peWxVUucL/soJlso
+u7tC2WqVVlfQgmwB7auwIFtYa6nHrM6prbtR8FdSdntIav4ainKrc3xhBfW1
+YsU6q6sVrOKtxOGS1XmE7SpX9x6c/zzgqp/V1QpWAx8I1tkq4dWrhDe/Uqff
+1WpMP5noe9f8u1p3IXDFVC53JfDDk7dXFeeXzn/g1fmjx74ZyKGD7ZQrOefg
++CyVaSB+7OIPfJ3SZfbbzvFrNo78LBBdlkRZ7IGaYak65vFHUPKP3TTOqnfw
+yYc/dqVIBwb5F9uPt584W4+d7W0XR+qCZr9hJ8LLYpmes13AOOkL/Tvmnc4p
+mZfx2+Yb6rfGNuhn5zkhHvN5ykGuAxnCIlSGICKZMD/yMoIpHgsUuhzi3TRi
+fZSpB0AGH88kZ5yNeciHglQA3plGXhSop2lztOUsFh36BbNJBMlEwM9FDExk
+HtxO2PH+6e6b41fsjz/+692r3WfbT7e+fME18bv9E/PGd4+fPv7yxaXp5F0U
+Ezi7NIYBQbQgZd38CdEBZs5AGAnpfCyABeC/k2N9ToB+dBVCmfSygMcFebCD
+GNvDJCaxyGUITppk/USQ7/IgYPyMSzCQoOSrEAHilNIDCRsZBRG5pBSQKcqV
+M/UrckiNtIC/JZc0dGHYDlzgKfbtTEHhOPCmFwuu3oEEBL1ja9IV7oZWPUPT
+2mDTkQShSxJHB4bgWZCuu4wBO+ADxvB4nLtPdkO2RD+PDG9TeSZQN2dZEMLM
+YJgOMJhEY8FCkU6j+COkIGcyjkI0hQQofwAWhSmHNeEOgS3hy9RRvK13QMRp
+nQO0HnBY/SuKJFKhbNXjIRvxMxKdGHLkqSMGA0LTsOCjHLKYH4qbAm3WT2Mh
+lE7KITv4Ee7LuJgs+NNmPlcZwKdep+MwNieMmvdd19Vg1gfSU+mr380sAa2t
+cQUkF8PFFjItac/8TAdxTa0kbnwYTIBvYpBOZx+MKgKXDcFWemyqNJ4lsMJk
+iRxPAjmQYMlG+MB62yAKfN0C3Dju9AGovJFQjn8WSR9i8EQAmkN7F5H2YOd4
+pwVlDcCEHv/OgLNEtQVCsRhKSMxUPIIRg2iKY75/d5AoFxesGyZdNE3VFEI/
+ekB+72D/9BX7x9Ehe6fvdjXOPXn23XcAi+xVQVONgHEXKZutNmqj65FygAJZ
+ab6FDxOl4AbqAh57LIvDHoYhSKViPk56n8ZBL0x6GH56tfCEfTSXHEQBgkoh
+yPTQB9nB/slrvA8z6bHjzZ3vVUKUj4pjITqBg+NcMfolE+4JVzFzSSEb0FkK
+m/ocKTw9xnFygT57vP34YoGqVksItFcKFKfVYy1SK+a7tLwhPA3kpx797moa
+0iW4ArgdIjHgl/0DXlqK+FF5So+9DQRmP2DhAYxLrcpfwcCGOjjxpIz+ldwA
+DMVxHNbn3kf0jR3vYxhNA+FTOpZAcpT/RuqP3QEPEoHJCqmRQBp1HSSRCr4Q
+S8Ebs9Cog59MeCiTETvBhAWsKhE89kadnSFM7Jxh01h/ASmibHpnKANxBH69
+trN/wN4e7G0/3noOqdLTp99uvXvp7G5vrRPo9887JvkjGSqXgxh84kmU2gY7
+CMPoTFXfscv7EH98FaMCWBGN3NEjD0FDRa5JD6dGWwBSWd7lnAXAHaQOgE1r
+r8ktlFh6nVdv328933z87bO/fbfudv4/LqVgB5vXAQA=
 
 -->
 

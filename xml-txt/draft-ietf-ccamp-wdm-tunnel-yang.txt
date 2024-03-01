@@ -5,14 +5,14 @@
 CCAMP Working Group                                               A. Guo
 Internet-Draft                                    Futurewei Technologies
 Intended status: Standards Track                              S. Belotti
-Expires: 1 June 2024                                               Nokia
+Expires: 2 September 2024                                          Nokia
                                                            G. Galimberti
                                                               Individual
                                                        J.E.L.d.V. Mendez
                                                              Naudit HPCN
                                                             D.P. Burrero
                                           Universidad Autonoma de Madrid
-                                                        29 November 2023
+                                                            1 March 2024
 
 
                    A YANG Data Model for WDM Tunnels
@@ -44,18 +44,18 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 1 June 2024.
+   This Internet-Draft will expire on 2 September 2024.
 
 Copyright Notice
 
-   Copyright (c) 2023 IETF Trust and the persons identified as the
+   Copyright (c) 2024 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
 
 
-Guo, et al.                Expires 1 June 2024                  [Page 1]
+Guo, et al.             Expires 2 September 2024                [Page 1]
 
-Internet-Draft            WDM Tunnel YANG Model            November 2023
+Internet-Draft            WDM Tunnel YANG Model               March 2024
 
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -75,15 +75,15 @@ Table of Contents
    4.  Example of Use  . . . . . . . . . . . . . . . . . . . . . . .   4
    5.  YANG Model for WDM Tunnel . . . . . . . . . . . . . . . . . .   6
      5.1.  YANG Tree . . . . . . . . . . . . . . . . . . . . . . . .   6
-     5.2.  YANG Code . . . . . . . . . . . . . . . . . . . . . . . .  33
-   6.  Security Considerations . . . . . . . . . . . . . . . . . . .  59
-   7.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  60
-   8.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  60
-     8.1.  Normative References  . . . . . . . . . . . . . . . . . .  60
-     8.2.  Informative References  . . . . . . . . . . . . . . . . .  62
-   Acknowledgments . . . . . . . . . . . . . . . . . . . . . . . . .  62
-   Contributors  . . . . . . . . . . . . . . . . . . . . . . . . . .  62
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  64
+     5.2.  YANG Code . . . . . . . . . . . . . . . . . . . . . . . .  35
+   6.  Security Considerations . . . . . . . . . . . . . . . . . . .  65
+   7.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  65
+   8.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  66
+     8.1.  Normative References  . . . . . . . . . . . . . . . . . .  66
+     8.2.  Informative References  . . . . . . . . . . . . . . . . .  67
+   Acknowledgments . . . . . . . . . . . . . . . . . . . . . . . . .  68
+   Contributors  . . . . . . . . . . . . . . . . . . . . . . . . . .  68
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  70
 
 1.  Introduction
 
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Guo, et al.                Expires 1 June 2024                  [Page 2]
+Guo, et al.             Expires 2 September 2024                [Page 2]
 
-Internet-Draft            WDM Tunnel YANG Model            November 2023
+Internet-Draft            WDM Tunnel YANG Model               March 2024
 
 
    This document identifies the WDM tunnel components, parameters and
@@ -165,9 +165,9 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
 
 
 
-Guo, et al.                Expires 1 June 2024                  [Page 3]
+Guo, et al.             Expires 2 September 2024                [Page 3]
 
-Internet-Draft            WDM Tunnel YANG Model            November 2023
+Internet-Draft            WDM Tunnel YANG Model               March 2024
 
 
    *  Global transponder/transceiver configuration constraints, e.g.,
@@ -221,9 +221,9 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
 
 
 
-Guo, et al.                Expires 1 June 2024                  [Page 4]
+Guo, et al.             Expires 2 September 2024                [Page 4]
 
-Internet-Draft            WDM Tunnel YANG Model            November 2023
+Internet-Draft            WDM Tunnel YANG Model               March 2024
 
 
                                  WDM Tunnel
@@ -260,7 +260,7 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
    *  We define the transponders within nodes A and E as tunnel
       termination points (TTPs) and provide their internal local link
       connectivity towards the node interfaces.  We also provide nodes A
-      and B identifiers, addresses and interfaces.
+      and E identifiers, addresses and interfaces.
 
    *  We do the same for the nodes B, C and D, providing their
       identifiers, addresses and interfaces, as well as the internal
@@ -277,9 +277,9 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
 
 
 
-Guo, et al.                Expires 1 June 2024                  [Page 5]
+Guo, et al.             Expires 2 September 2024                [Page 5]
 
-Internet-Draft            WDM Tunnel YANG Model            November 2023
+Internet-Draft            WDM Tunnel YANG Model               March 2024
 
 
    After the nodes, links and transponders have been defined using
@@ -314,86 +314,166 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
      augment /te:te/te:tunnels/te:tunnel:
        +--rw wdm-constraint
           +--rw transceiver-constraint
-          |  +--rw operational-modes*     string
+          |  +--rw operational-modes*            string
           |  +--rw tx-tune-constraints
-          |     +--rw min-central-frequency?    frequency-thz
-          |     +--rw max-central-frequency?    frequency-thz
-          |     +--rw transceiver-tunability?   frequency-ghz
-          +--rw gsnr-margin?                   snr
+          |  |  +--rw min-central-frequency?    frequency-thz
+          |  |  +--rw max-central-frequency?    frequency-thz
+          |  |  +--rw transceiver-tunability?   frequency-ghz
+          |  +--rw line-coding-bitrate*          identityref
+          |  +--rw tx-channel-power?             l0-types:power-dbm
+          |  +--rw preferred-rx-channel-power?   l0-types:power-dbm
+          +--rw gsnr-extra-margin?             snr
           +--rw use-regen?                     boolean
           +--rw wavelength-conversion?         boolean
-          +--rw bit-stuffing?                  boolean
           +--rw wavelength-assignment?         identityref
           +--rw guard-band-size?               l0-types:frequency-thz
           +--rw matching-fwd-rev-wavelength?   boolean
           +--rw allow-retuning?                boolean
-          +--rw delta-power?
-                  l0-types:gain-in-db-or-null
-     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+          +--rw delta-power?                   l0-types:power-ratio
 
 
 
-Guo, et al.                Expires 1 June 2024                  [Page 6]
+Guo, et al.             Expires 2 September 2024                [Page 6]
 
-Internet-Draft            WDM Tunnel YANG Model            November 2023
+Internet-Draft            WDM Tunnel YANG Model               March 2024
 
 
-               /te:primary-path/te:explicit-route-objects-always
+     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+               /te:primary-path/te:explicit-route-objects
                /te:route-object-exclude-always/te:type
                /te:numbered-node-hop/te:numbered-node-hop:
        +--rw path-in-transceiver
-       |  +--rw transponder-id?        uint32
+       |  +--rw transponder-id?   uint32
        |  +--rw transceivers* [lane-id]
-       |  |  +--rw lane-id           uint8
-       |  |  +--rw transceiver-id?   uint32
-       |  +--rw operational-modes*     string
-       |  +--rw tx-tune-constraints
-       |     +--rw min-central-frequency?    frequency-thz
-       |     +--rw max-central-frequency?    frequency-thz
-       |     +--rw transceiver-tunability?   frequency-ghz
+       |     +--rw lane-id                       uint8
+       |     +--rw transceiver-id?               uint32
+       |     +--rw operational-modes*            string
+       |     +--rw tx-tune-constraints
+       |     |  +--rw min-central-frequency?    frequency-thz
+       |     |  +--rw max-central-frequency?    frequency-thz
+       |     |  +--rw transceiver-tunability?   frequency-ghz
+       |     +--rw line-coding-bitrate*          identityref
+       |     +--rw tx-channel-power?             l0-types:power-dbm
+       |     +--rw preferred-rx-channel-power?   l0-types:power-dbm
        +--rw path-out-transceiver
-          +--rw transponder-id?        uint32
+          +--rw transponder-id?   uint32
           +--rw transceivers* [lane-id]
-          |  +--rw lane-id           uint8
-          |  +--rw transceiver-id?   uint32
-          +--rw operational-modes*     string
-          +--rw tx-tune-constraints
-             +--rw min-central-frequency?    frequency-thz
-             +--rw max-central-frequency?    frequency-thz
-             +--rw transceiver-tunability?   frequency-ghz
+             +--rw lane-id                       uint8
+             +--rw transceiver-id?               uint32
+             +--rw operational-modes*            string
+             +--rw tx-tune-constraints
+             |  +--rw min-central-frequency?    frequency-thz
+             |  +--rw max-central-frequency?    frequency-thz
+             |  +--rw transceiver-tunability?   frequency-ghz
+             +--rw line-coding-bitrate*          identityref
+             +--rw tx-channel-power?             l0-types:power-dbm
+             +--rw preferred-rx-channel-power?   l0-types:power-dbm
      augment /te:te/te:tunnels/te:tunnel/te:primary-paths
                /te:primary-path/te:primary-reverse-path
-               /te:explicit-route-objects-always
+               /te:explicit-route-objects/te:route-object-exclude-always
+               /te:type/te:numbered-node-hop/te:numbered-node-hop:
+       +--rw path-in-transceiver
+       |  +--rw transponder-id?   uint32
+       |  +--rw transceivers* [lane-id]
+       |     +--rw lane-id                       uint8
+       |     +--rw transceiver-id?               uint32
+       |     +--rw operational-modes*            string
+       |     +--rw tx-tune-constraints
+       |     |  +--rw min-central-frequency?    frequency-thz
+       |     |  +--rw max-central-frequency?    frequency-thz
+       |     |  +--rw transceiver-tunability?   frequency-ghz
+       |     +--rw line-coding-bitrate*          identityref
+       |     +--rw tx-channel-power?             l0-types:power-dbm
+       |     +--rw preferred-rx-channel-power?   l0-types:power-dbm
+       +--rw path-out-transceiver
+
+
+
+Guo, et al.             Expires 2 September 2024                [Page 7]
+
+Internet-Draft            WDM Tunnel YANG Model               March 2024
+
+
+          +--rw transponder-id?   uint32
+          +--rw transceivers* [lane-id]
+             +--rw lane-id                       uint8
+             +--rw transceiver-id?               uint32
+             +--rw operational-modes*            string
+             +--rw tx-tune-constraints
+             |  +--rw min-central-frequency?    frequency-thz
+             |  +--rw max-central-frequency?    frequency-thz
+             |  +--rw transceiver-tunability?   frequency-ghz
+             +--rw line-coding-bitrate*          identityref
+             +--rw tx-channel-power?             l0-types:power-dbm
+             +--rw preferred-rx-channel-power?   l0-types:power-dbm
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+               /te:secondary-path/te:explicit-route-objects
                /te:route-object-exclude-always/te:type
                /te:numbered-node-hop/te:numbered-node-hop:
        +--rw path-in-transceiver
-       |  +--rw transponder-id?        uint32
+       |  +--rw transponder-id?   uint32
        |  +--rw transceivers* [lane-id]
-       |  |  +--rw lane-id           uint8
-       |  |  +--rw transceiver-id?   uint32
-       |  +--rw operational-modes*     string
-       |  +--rw tx-tune-constraints
-       |     +--rw min-central-frequency?    frequency-thz
-       |     +--rw max-central-frequency?    frequency-thz
-       |     +--rw transceiver-tunability?   frequency-ghz
+       |     +--rw lane-id                       uint8
+       |     +--rw transceiver-id?               uint32
+       |     +--rw operational-modes*            string
+       |     +--rw tx-tune-constraints
+       |     |  +--rw min-central-frequency?    frequency-thz
+       |     |  +--rw max-central-frequency?    frequency-thz
+       |     |  +--rw transceiver-tunability?   frequency-ghz
+       |     +--rw line-coding-bitrate*          identityref
+       |     +--rw tx-channel-power?             l0-types:power-dbm
+       |     +--rw preferred-rx-channel-power?   l0-types:power-dbm
        +--rw path-out-transceiver
-          +--rw transponder-id?        uint32
+          +--rw transponder-id?   uint32
           +--rw transceivers* [lane-id]
-          |  +--rw lane-id           uint8
-          |  +--rw transceiver-id?   uint32
-          +--rw operational-modes*     string
-          +--rw tx-tune-constraints
-             +--rw min-central-frequency?    frequency-thz
-             +--rw max-central-frequency?    frequency-thz
-             +--rw transceiver-tunability?   frequency-ghz
+             +--rw lane-id                       uint8
+             +--rw transceiver-id?               uint32
+             +--rw operational-modes*            string
+             +--rw tx-tune-constraints
+             |  +--rw min-central-frequency?    frequency-thz
+             |  +--rw max-central-frequency?    frequency-thz
+             |  +--rw transceiver-tunability?   frequency-ghz
+             +--rw line-coding-bitrate*          identityref
+             +--rw tx-channel-power?             l0-types:power-dbm
+             +--rw preferred-rx-channel-power?   l0-types:power-dbm
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
+               /te:secondary-reverse-path/te:explicit-route-objects
+               /te:route-object-exclude-always/te:type
+               /te:numbered-node-hop/te:numbered-node-hop:
+       +--rw path-in-transceiver
+       |  +--rw transponder-id?   uint32
 
 
 
-Guo, et al.                Expires 1 June 2024                  [Page 7]
+Guo, et al.             Expires 2 September 2024                [Page 8]
 
-Internet-Draft            WDM Tunnel YANG Model            November 2023
+Internet-Draft            WDM Tunnel YANG Model               March 2024
 
 
+       |  +--rw transceivers* [lane-id]
+       |     +--rw lane-id                       uint8
+       |     +--rw transceiver-id?               uint32
+       |     +--rw operational-modes*            string
+       |     +--rw tx-tune-constraints
+       |     |  +--rw min-central-frequency?    frequency-thz
+       |     |  +--rw max-central-frequency?    frequency-thz
+       |     |  +--rw transceiver-tunability?   frequency-ghz
+       |     +--rw line-coding-bitrate*          identityref
+       |     +--rw tx-channel-power?             l0-types:power-dbm
+       |     +--rw preferred-rx-channel-power?   l0-types:power-dbm
+       +--rw path-out-transceiver
+          +--rw transponder-id?   uint32
+          +--rw transceivers* [lane-id]
+             +--rw lane-id                       uint8
+             +--rw transceiver-id?               uint32
+             +--rw operational-modes*            string
+             +--rw tx-tune-constraints
+             |  +--rw min-central-frequency?    frequency-thz
+             |  +--rw max-central-frequency?    frequency-thz
+             |  +--rw transceiver-tunability?   frequency-ghz
+             +--rw line-coding-bitrate*          identityref
+             +--rw tx-channel-power?             l0-types:power-dbm
+             +--rw preferred-rx-channel-power?   l0-types:power-dbm
      augment /te:te/te:tunnels/te:tunnel/te:primary-paths
                /te:primary-path/te:computed-paths-properties
                /te:computed-path-properties/te:path-properties:
@@ -408,63 +488,6 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
        +--ro estimated-eol-gsnr?      snr
        +--ro estimated-lowest-gsnr?   snr
      augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
-               /te:secondary-path/te:explicit-route-objects-always
-               /te:route-object-exclude-always/te:type
-               /te:numbered-node-hop/te:numbered-node-hop:
-       +--rw path-in-transceiver
-       |  +--rw transponder-id?        uint32
-       |  +--rw transceivers* [lane-id]
-       |  |  +--rw lane-id           uint8
-       |  |  +--rw transceiver-id?   uint32
-       |  +--rw operational-modes*     string
-       |  +--rw tx-tune-constraints
-       |     +--rw min-central-frequency?    frequency-thz
-       |     +--rw max-central-frequency?    frequency-thz
-       |     +--rw transceiver-tunability?   frequency-ghz
-       +--rw path-out-transceiver
-          +--rw transponder-id?        uint32
-          +--rw transceivers* [lane-id]
-          |  +--rw lane-id           uint8
-          |  +--rw transceiver-id?   uint32
-          +--rw operational-modes*     string
-          +--rw tx-tune-constraints
-             +--rw min-central-frequency?    frequency-thz
-             +--rw max-central-frequency?    frequency-thz
-             +--rw transceiver-tunability?   frequency-ghz
-     augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
-               /te:secondary-reverse-path
-               /te:explicit-route-objects-always
-               /te:route-object-exclude-always/te:type
-               /te:numbered-node-hop/te:numbered-node-hop:
-       +--rw path-in-transceiver
-       |  +--rw transponder-id?        uint32
-       |  +--rw transceivers* [lane-id]
-       |  |  +--rw lane-id           uint8
-       |  |  +--rw transceiver-id?   uint32
-       |  +--rw operational-modes*     string
-
-
-
-Guo, et al.                Expires 1 June 2024                  [Page 8]
-
-Internet-Draft            WDM Tunnel YANG Model            November 2023
-
-
-       |  +--rw tx-tune-constraints
-       |     +--rw min-central-frequency?    frequency-thz
-       |     +--rw max-central-frequency?    frequency-thz
-       |     +--rw transceiver-tunability?   frequency-ghz
-       +--rw path-out-transceiver
-          +--rw transponder-id?        uint32
-          +--rw transceivers* [lane-id]
-          |  +--rw lane-id           uint8
-          |  +--rw transceiver-id?   uint32
-          +--rw operational-modes*     string
-          +--rw tx-tune-constraints
-             +--rw min-central-frequency?    frequency-thz
-             +--rw max-central-frequency?    frequency-thz
-             +--rw transceiver-tunability?   frequency-ghz
-     augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
                /te:secondary-path/te:computed-paths-properties
                /te:computed-path-properties/te:path-properties:
        +--ro estimated-gsnr?          snr
@@ -475,10 +498,128 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
                /te:computed-path-properties/te:path-properties:
        +--ro estimated-gsnr?          snr
        +--ro estimated-eol-gsnr?      snr
+
+
+
+Guo, et al.             Expires 2 September 2024                [Page 9]
+
+Internet-Draft            WDM Tunnel YANG Model               March 2024
+
+
        +--ro estimated-lowest-gsnr?   snr
+     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+               /te:primary-path/te:computed-paths-properties
+               /te:computed-path-properties/te:path-properties
+               /te:path-route-objects/te:path-route-object/te:type
+               /te:numbered-node-hop/te:numbered-node-hop:
+       +--ro path-in-transceiver
+       |  +--ro transponder-id?   uint32
+       |  +--ro transceivers* [lane-id]
+       |     +--ro lane-id             uint8
+       |     +--ro transceiver-id?     uint32
+       |     +--ro rx-channel-power?   power-dbm-or-null
+       |     +--ro rx-total-power?     power-dbm-or-null
+       +--ro path-out-transceiver
+          +--ro transponder-id?   uint32
+          +--ro transceivers* [lane-id]
+             +--ro lane-id             uint8
+             +--ro transceiver-id?     uint32
+             +--ro rx-channel-power?   power-dbm-or-null
+             +--ro rx-total-power?     power-dbm-or-null
+     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+               /te:primary-path/te:primary-reverse-path
+               /te:computed-paths-properties/te:computed-path-properties
+               /te:path-properties/te:path-route-objects
+               /te:path-route-object/te:type/te:numbered-node-hop
+               /te:numbered-node-hop:
+       +--ro path-in-transceiver
+       |  +--ro transponder-id?   uint32
+       |  +--ro transceivers* [lane-id]
+       |     +--ro lane-id             uint8
+       |     +--ro transceiver-id?     uint32
+       |     +--ro rx-channel-power?   power-dbm-or-null
+       |     +--ro rx-total-power?     power-dbm-or-null
+       +--ro path-out-transceiver
+          +--ro transponder-id?   uint32
+          +--ro transceivers* [lane-id]
+             +--ro lane-id             uint8
+             +--ro transceiver-id?     uint32
+             +--ro rx-channel-power?   power-dbm-or-null
+             +--ro rx-total-power?     power-dbm-or-null
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+               /te:secondary-path/te:computed-paths-properties
+               /te:computed-path-properties/te:path-properties
+               /te:path-route-objects/te:path-route-object/te:type
+               /te:numbered-node-hop/te:numbered-node-hop:
+       +--ro path-in-transceiver
+       |  +--ro transponder-id?   uint32
+       |  +--ro transceivers* [lane-id]
+
+
+
+Guo, et al.             Expires 2 September 2024               [Page 10]
+
+Internet-Draft            WDM Tunnel YANG Model               March 2024
+
+
+       |     +--ro lane-id             uint8
+       |     +--ro transceiver-id?     uint32
+       |     +--ro rx-channel-power?   power-dbm-or-null
+       |     +--ro rx-total-power?     power-dbm-or-null
+       +--ro path-out-transceiver
+          +--ro transponder-id?   uint32
+          +--ro transceivers* [lane-id]
+             +--ro lane-id             uint8
+             +--ro transceiver-id?     uint32
+             +--ro rx-channel-power?   power-dbm-or-null
+             +--ro rx-total-power?     power-dbm-or-null
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
+               /te:secondary-reverse-path/te:computed-paths-properties
+               /te:computed-path-properties/te:path-properties
+               /te:path-route-objects/te:path-route-object/te:type
+               /te:numbered-node-hop/te:numbered-node-hop:
+       +--ro path-in-transceiver
+       |  +--ro transponder-id?   uint32
+       |  +--ro transceivers* [lane-id]
+       |     +--ro lane-id             uint8
+       |     +--ro transceiver-id?     uint32
+       |     +--ro rx-channel-power?   power-dbm-or-null
+       |     +--ro rx-total-power?     power-dbm-or-null
+       +--ro path-out-transceiver
+          +--ro transponder-id?   uint32
+          +--ro transceivers* [lane-id]
+             +--ro lane-id             uint8
+             +--ro transceiver-id?     uint32
+             +--ro rx-channel-power?   power-dbm-or-null
+             +--ro rx-total-power?     power-dbm-or-null
      augment /te:te/te:lsps/te:lsp/te:lsp-actual-route-information:
        +--ro wdm-path-state
           +--ro gsnr?   l0-types:snr
+     augment /te:te/te:lsps/te:lsp/te:lsp-actual-route-information
+               /te:lsp-actual-route-information/te:type
+               /te:numbered-node-hop/te:numbered-node-hop:
+       +--ro path-in-transceiver
+       |  +--ro transponder-id?   uint32
+       |  +--ro transceivers* [lane-id]
+       |     +--ro lane-id             uint8
+       |     +--ro transceiver-id?     uint32
+       |     +--ro rx-channel-power?   power-dbm-or-null
+       |     +--ro rx-total-power?     power-dbm-or-null
+       +--ro path-out-transceiver
+          +--ro transponder-id?   uint32
+          +--ro transceivers* [lane-id]
+             +--ro lane-id             uint8
+             +--ro transceiver-id?     uint32
+
+
+
+Guo, et al.             Expires 2 September 2024               [Page 11]
+
+Internet-Draft            WDM Tunnel YANG Model               March 2024
+
+
+             +--ro rx-channel-power?   power-dbm-or-null
+             +--ro rx-total-power?     power-dbm-or-null
      augment /te:te/te:globals/te:named-path-constraints
                /te:named-path-constraint/te:path-in-segment
                /te:label-restrictions/te:label-restriction:
@@ -498,14 +639,6 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
           +--rw min-slot-width-factor?    uint16
           +--rw max-slot-width-factor?    uint16
      augment /te:te/te:tunnels/te:tunnel/te:primary-paths
-
-
-
-Guo, et al.                Expires 1 June 2024                  [Page 9]
-
-Internet-Draft            WDM Tunnel YANG Model            November 2023
-
-
                /te:primary-path/te:path-in-segment/te:label-restrictions
                /te:label-restriction:
        +--rw grid-type?    identityref
@@ -533,6 +666,14 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
           +--rw slot-width-granularity?   identityref
           +--rw min-slot-width-factor?    uint16
           +--rw max-slot-width-factor?    uint16
+
+
+
+Guo, et al.             Expires 2 September 2024               [Page 12]
+
+Internet-Draft            WDM Tunnel YANG Model               March 2024
+
+
      augment /te:te/te:tunnels/te:tunnel/te:primary-paths
                /te:primary-path/te:primary-reverse-path
                /te:path-out-segment/te:label-restrictions
@@ -554,14 +695,6 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
           +--rw max-slot-width-factor?    uint16
      augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
                /te:secondary-path/te:path-out-segment
-
-
-
-Guo, et al.                Expires 1 June 2024                 [Page 10]
-
-Internet-Draft            WDM Tunnel YANG Model            November 2023
-
-
                /te:label-restrictions/te:label-restriction:
        +--rw grid-type?    identityref
        +--rw priority?     uint8
@@ -588,8 +721,15 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
           +--rw min-slot-width-factor?    uint16
           +--rw max-slot-width-factor?    uint16
      augment /te:te/te:globals/te:named-path-constraints
-               /te:named-path-constraint
-               /te:explicit-route-objects-always
+               /te:named-path-constraint/te:explicit-route-objects
+
+
+
+Guo, et al.             Expires 2 September 2024               [Page 13]
+
+Internet-Draft            WDM Tunnel YANG Model               March 2024
+
+
                /te:route-object-exclude-always/te:type/te:label
                /te:label-hop/te:te-label/te:technology:
        +--:(wdm)
@@ -608,16 +748,8 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
                    |  +--rw flexi-n?              l0-types:flexi-n
                    |  +--rw flexi-m?              l0-types:flexi-m
                    x--:(super)
-                   |  +--rw subcarrier-flexi-n* [flexi-n]
+                   |  x--rw subcarrier-flexi-n* [flexi-n]
                    |     +--rw flexi-n    l0-types:flexi-n
-
-
-
-Guo, et al.                Expires 1 June 2024                 [Page 11]
-
-Internet-Draft            WDM Tunnel YANG Model            November 2023
-
-
                    |     +--rw flexi-m?   l0-types:flexi-m
                    +--:(multi)
                       +--rw frequency-slots
@@ -625,8 +757,7 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
                             +--rw flexi-n    l0-types:flexi-n
                             +--rw flexi-m?   l0-types:flexi-m
      augment /te:te/te:globals/te:named-path-constraints
-               /te:named-path-constraint
-               /te:explicit-route-objects-always
+               /te:named-path-constraint/te:explicit-route-objects
                /te:route-object-include-exclude/te:type/te:label
                /te:label-hop/te:te-label/te:technology:
        +--:(wdm)
@@ -645,8 +776,16 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
                    |  +--rw flexi-n?              l0-types:flexi-n
                    |  +--rw flexi-m?              l0-types:flexi-m
                    x--:(super)
-                   |  +--rw subcarrier-flexi-n* [flexi-n]
+                   |  x--rw subcarrier-flexi-n* [flexi-n]
                    |     +--rw flexi-n    l0-types:flexi-n
+
+
+
+Guo, et al.             Expires 2 September 2024               [Page 14]
+
+Internet-Draft            WDM Tunnel YANG Model               March 2024
+
+
                    |     +--rw flexi-m?   l0-types:flexi-m
                    +--:(multi)
                       +--rw frequency-slots
@@ -666,14 +805,6 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
              +--:(flexi-grid)
                 +--rw flexi-n?   l0-types:flexi-n
      augment /te:te/te:globals/te:named-path-constraints
-
-
-
-Guo, et al.                Expires 1 June 2024                 [Page 12]
-
-Internet-Draft            WDM Tunnel YANG Model            November 2023
-
-
                /te:named-path-constraint/te:path-in-segment
                /te:label-restrictions/te:label-restriction/te:label-end
                /te:te-label/te:technology:
@@ -703,6 +834,14 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
                /te:named-path-constraint/te:path-out-segment
                /te:label-restrictions/te:label-restriction
                /te:label-start/te:te-label/te:technology:
+
+
+
+Guo, et al.             Expires 2 September 2024               [Page 15]
+
+Internet-Draft            WDM Tunnel YANG Model               March 2024
+
+
        +--:(wdm)
           +--rw (grid-type)?
              +--:(fixed-dwdm)
@@ -722,14 +861,6 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
              +--:(cwdm)
              |  +--rw cwdm-n?    l0-types:cwdm-n
              +--:(flexi-grid)
-
-
-
-Guo, et al.                Expires 1 June 2024                 [Page 13]
-
-Internet-Draft            WDM Tunnel YANG Model            November 2023
-
-
                 +--rw flexi-n?   l0-types:flexi-n
      augment /te:te/te:globals/te:named-path-constraints
                /te:named-path-constraint/te:path-out-segment
@@ -759,6 +890,14 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
              |     +--:(multi)
              |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
              +--:(cwdm)
+
+
+
+Guo, et al.             Expires 2 September 2024               [Page 16]
+
+Internet-Draft            WDM Tunnel YANG Model               March 2024
+
+
              |  +--rw cwdm-n?                     l0-types:cwdm-n
              +--:(flexi-grid)
                 +--rw (single-or-super-channel)?
@@ -766,7 +905,7 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
                    |  +--rw flexi-n?              l0-types:flexi-n
                    |  +--rw flexi-m?              l0-types:flexi-m
                    x--:(super)
-                   |  +--rw subcarrier-flexi-n* [flexi-n]
+                   |  x--rw subcarrier-flexi-n* [flexi-n]
                    |     +--rw flexi-n    l0-types:flexi-n
                    |     +--rw flexi-m?   l0-types:flexi-m
                    +--:(multi)
@@ -778,14 +917,6 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
                /te:primary-path/te:optimizations/te:algorithm/te:metric
                /te:optimization-metric/te:explicit-route-include-objects
                /te:route-object-include-object/te:type/te:label
-
-
-
-Guo, et al.                Expires 1 June 2024                 [Page 14]
-
-Internet-Draft            WDM Tunnel YANG Model            November 2023
-
-
                /te:label-hop/te:te-label/te:technology:
        +--:(wdm)
           +--rw (grid-type)?
@@ -803,7 +934,7 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
                    |  +--rw flexi-n?              l0-types:flexi-n
                    |  +--rw flexi-m?              l0-types:flexi-m
                    x--:(super)
-                   |  +--rw subcarrier-flexi-n* [flexi-n]
+                   |  x--rw subcarrier-flexi-n* [flexi-n]
                    |     +--rw flexi-n    l0-types:flexi-n
                    |     +--rw flexi-m?   l0-types:flexi-m
                    +--:(multi)
@@ -812,9 +943,17 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
                             +--rw flexi-n    l0-types:flexi-n
                             +--rw flexi-m?   l0-types:flexi-m
      augment /te:te/te:tunnels/te:tunnel/te:primary-paths
-               /te:primary-path/te:explicit-route-objects-always
+               /te:primary-path/te:explicit-route-objects
                /te:route-object-exclude-always/te:type/te:label
                /te:label-hop/te:te-label/te:technology:
+
+
+
+Guo, et al.             Expires 2 September 2024               [Page 17]
+
+Internet-Draft            WDM Tunnel YANG Model               March 2024
+
+
        +--:(wdm)
           +--rw (grid-type)?
              +--:(fixed-dwdm)
@@ -831,24 +970,16 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
                    |  +--rw flexi-n?              l0-types:flexi-n
                    |  +--rw flexi-m?              l0-types:flexi-m
                    x--:(super)
-                   |  +--rw subcarrier-flexi-n* [flexi-n]
+                   |  x--rw subcarrier-flexi-n* [flexi-n]
                    |     +--rw flexi-n    l0-types:flexi-n
                    |     +--rw flexi-m?   l0-types:flexi-m
-
-
-
-Guo, et al.                Expires 1 June 2024                 [Page 15]
-
-Internet-Draft            WDM Tunnel YANG Model            November 2023
-
-
                    +--:(multi)
                       +--rw frequency-slots
                          +--rw frequency-slot* [flexi-n]
                             +--rw flexi-n    l0-types:flexi-n
                             +--rw flexi-m?   l0-types:flexi-m
      augment /te:te/te:tunnels/te:tunnel/te:primary-paths
-               /te:primary-path/te:explicit-route-objects-always
+               /te:primary-path/te:explicit-route-objects
                /te:route-object-include-exclude/te:type/te:label
                /te:label-hop/te:te-label/te:technology:
        +--:(wdm)
@@ -867,10 +998,18 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
                    |  +--rw flexi-n?              l0-types:flexi-n
                    |  +--rw flexi-m?              l0-types:flexi-m
                    x--:(super)
-                   |  +--rw subcarrier-flexi-n* [flexi-n]
+                   |  x--rw subcarrier-flexi-n* [flexi-n]
                    |     +--rw flexi-n    l0-types:flexi-n
                    |     +--rw flexi-m?   l0-types:flexi-m
                    +--:(multi)
+
+
+
+Guo, et al.             Expires 2 September 2024               [Page 18]
+
+Internet-Draft            WDM Tunnel YANG Model               March 2024
+
+
                       +--rw frequency-slots
                          +--rw frequency-slot* [flexi-n]
                             +--rw flexi-n    l0-types:flexi-n
@@ -890,14 +1029,6 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
      augment /te:te/te:tunnels/te:tunnel/te:primary-paths
                /te:primary-path/te:path-in-segment/te:label-restrictions
                /te:label-restriction/te:label-end/te:te-label
-
-
-
-Guo, et al.                Expires 1 June 2024                 [Page 16]
-
-Internet-Draft            WDM Tunnel YANG Model            November 2023
-
-
                /te:technology:
        +--:(wdm)
           +--rw (grid-type)?
@@ -927,6 +1058,14 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
        +--:(wdm)
           +--rw (grid-type)?
              +--:(fixed-dwdm)
+
+
+
+Guo, et al.             Expires 2 September 2024               [Page 19]
+
+Internet-Draft            WDM Tunnel YANG Model               March 2024
+
+
              |  +--rw dwdm-n?    l0-types:dwdm-n
              +--:(cwdm)
              |  +--rw cwdm-n?    l0-types:cwdm-n
@@ -946,14 +1085,6 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
                 +--rw flexi-n?   l0-types:flexi-n
      augment /te:te/te:tunnels/te:tunnel/te:primary-paths
                /te:primary-path/te:path-out-segment
-
-
-
-Guo, et al.                Expires 1 June 2024                 [Page 17]
-
-Internet-Draft            WDM Tunnel YANG Model            November 2023
-
-
                /te:label-restrictions/te:label-restriction/te:label-step
                /te:technology:
        +--:(wdm)
@@ -983,11 +1114,19 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
              |  +--ro cwdm-n?                     l0-types:cwdm-n
              +--:(flexi-grid)
                 +--ro (single-or-super-channel)?
+
+
+
+Guo, et al.             Expires 2 September 2024               [Page 20]
+
+Internet-Draft            WDM Tunnel YANG Model               March 2024
+
+
                    +--:(single)
                    |  +--ro flexi-n?              l0-types:flexi-n
                    |  +--ro flexi-m?              l0-types:flexi-m
                    x--:(super)
-                   |  +--ro subcarrier-flexi-n* [flexi-n]
+                   |  x--ro subcarrier-flexi-n* [flexi-n]
                    |     +--ro flexi-n    l0-types:flexi-n
                    |     +--ro flexi-m?   l0-types:flexi-m
                    +--:(multi)
@@ -1002,14 +1141,6 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
                /te:route-object-exclude-object/te:type/te:label
                /te:label-hop/te:te-label/te:technology:
        +--:(wdm)
-
-
-
-Guo, et al.                Expires 1 June 2024                 [Page 18]
-
-Internet-Draft            WDM Tunnel YANG Model            November 2023
-
-
           +--rw (grid-type)?
              +--:(fixed-dwdm)
              |  +--rw (fixed-single-or-super-channel)?
@@ -1025,7 +1156,7 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
                    |  +--rw flexi-n?              l0-types:flexi-n
                    |  +--rw flexi-m?              l0-types:flexi-m
                    x--:(super)
-                   |  +--rw subcarrier-flexi-n* [flexi-n]
+                   |  x--rw subcarrier-flexi-n* [flexi-n]
                    |     +--rw flexi-n    l0-types:flexi-n
                    |     +--rw flexi-m?   l0-types:flexi-m
                    +--:(multi)
@@ -1039,43 +1170,14 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
                /te:explicit-route-include-objects
                /te:route-object-include-object/te:type/te:label
                /te:label-hop/te:te-label/te:technology:
-       +--:(wdm)
-          +--rw (grid-type)?
-             +--:(fixed-dwdm)
-             |  +--rw (fixed-single-or-super-channel)?
-             |     +--:(single)
-             |     |  +--rw dwdm-n?               l0-types:dwdm-n
-             |     +--:(multi)
-             |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
-             +--:(cwdm)
-             |  +--rw cwdm-n?                     l0-types:cwdm-n
-             +--:(flexi-grid)
-                +--rw (single-or-super-channel)?
-                   +--:(single)
-                   |  +--rw flexi-n?              l0-types:flexi-n
-                   |  +--rw flexi-m?              l0-types:flexi-m
-                   x--:(super)
-                   |  +--rw subcarrier-flexi-n* [flexi-n]
-                   |     +--rw flexi-n    l0-types:flexi-n
-                   |     +--rw flexi-m?   l0-types:flexi-m
 
 
 
-Guo, et al.                Expires 1 June 2024                 [Page 19]
+Guo, et al.             Expires 2 September 2024               [Page 21]
 
-Internet-Draft            WDM Tunnel YANG Model            November 2023
+Internet-Draft            WDM Tunnel YANG Model               March 2024
 
 
-                   +--:(multi)
-                      +--rw frequency-slots
-                         +--rw frequency-slot* [flexi-n]
-                            +--rw flexi-n    l0-types:flexi-n
-                            +--rw flexi-m?   l0-types:flexi-m
-     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
-               /te:primary-path/te:primary-reverse-path
-               /te:explicit-route-objects-always
-               /te:route-object-exclude-always/te:type/te:label
-               /te:label-hop/te:te-label/te:technology:
        +--:(wdm)
           +--rw (grid-type)?
              +--:(fixed-dwdm)
@@ -1092,7 +1194,7 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
                    |  +--rw flexi-n?              l0-types:flexi-n
                    |  +--rw flexi-m?              l0-types:flexi-m
                    x--:(super)
-                   |  +--rw subcarrier-flexi-n* [flexi-n]
+                   |  x--rw subcarrier-flexi-n* [flexi-n]
                    |     +--rw flexi-n    l0-types:flexi-n
                    |     +--rw flexi-m?   l0-types:flexi-m
                    +--:(multi)
@@ -1102,7 +1204,43 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
                             +--rw flexi-m?   l0-types:flexi-m
      augment /te:te/te:tunnels/te:tunnel/te:primary-paths
                /te:primary-path/te:primary-reverse-path
-               /te:explicit-route-objects-always
+               /te:explicit-route-objects/te:route-object-exclude-always
+               /te:type/te:label/te:label-hop/te:te-label/te:technology:
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw (fixed-single-or-super-channel)?
+             |     +--:(single)
+             |     |  +--rw dwdm-n?               l0-types:dwdm-n
+             |     +--:(multi)
+             |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?                     l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw (single-or-super-channel)?
+                   +--:(single)
+                   |  +--rw flexi-n?              l0-types:flexi-n
+                   |  +--rw flexi-m?              l0-types:flexi-m
+                   x--:(super)
+                   |  x--rw subcarrier-flexi-n* [flexi-n]
+                   |     +--rw flexi-n    l0-types:flexi-n
+                   |     +--rw flexi-m?   l0-types:flexi-m
+                   +--:(multi)
+
+
+
+Guo, et al.             Expires 2 September 2024               [Page 22]
+
+Internet-Draft            WDM Tunnel YANG Model               March 2024
+
+
+                      +--rw frequency-slots
+                         +--rw frequency-slot* [flexi-n]
+                            +--rw flexi-n    l0-types:flexi-n
+                            +--rw flexi-m?   l0-types:flexi-m
+     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+               /te:primary-path/te:primary-reverse-path
+               /te:explicit-route-objects
                /te:route-object-include-exclude/te:type/te:label
                /te:label-hop/te:te-label/te:technology:
        +--:(wdm)
@@ -1114,14 +1252,6 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
              |     +--:(multi)
              |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
              +--:(cwdm)
-
-
-
-Guo, et al.                Expires 1 June 2024                 [Page 20]
-
-Internet-Draft            WDM Tunnel YANG Model            November 2023
-
-
              |  +--rw cwdm-n?                     l0-types:cwdm-n
              +--:(flexi-grid)
                 +--rw (single-or-super-channel)?
@@ -1129,7 +1259,7 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
                    |  +--rw flexi-n?              l0-types:flexi-n
                    |  +--rw flexi-m?              l0-types:flexi-m
                    x--:(super)
-                   |  +--rw subcarrier-flexi-n* [flexi-n]
+                   |  x--rw subcarrier-flexi-n* [flexi-n]
                    |     +--rw flexi-n    l0-types:flexi-n
                    |     +--rw flexi-m?   l0-types:flexi-m
                    +--:(multi)
@@ -1152,6 +1282,14 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
                 +--rw flexi-n?   l0-types:flexi-n
      augment /te:te/te:tunnels/te:tunnel/te:primary-paths
                /te:primary-path/te:primary-reverse-path
+
+
+
+Guo, et al.             Expires 2 September 2024               [Page 23]
+
+Internet-Draft            WDM Tunnel YANG Model               March 2024
+
+
                /te:path-in-segment/te:label-restrictions
                /te:label-restriction/te:label-end/te:te-label
                /te:technology:
@@ -1170,14 +1308,6 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
        +--:(wdm)
           +--rw (l0-grid-type)?
              +--:(fixed-dwdm)
-
-
-
-Guo, et al.                Expires 1 June 2024                 [Page 21]
-
-Internet-Draft            WDM Tunnel YANG Model            November 2023
-
-
              |  +--rw wson-dwdm-channel-spacing?    identityref
              +--:(cwdm)
              |  +--rw wson-cwdm-channel-spacing?    identityref
@@ -1208,6 +1338,14 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
              +--:(fixed-dwdm)
              |  +--rw dwdm-n?    l0-types:dwdm-n
              +--:(cwdm)
+
+
+
+Guo, et al.             Expires 2 September 2024               [Page 24]
+
+Internet-Draft            WDM Tunnel YANG Model               March 2024
+
+
              |  +--rw cwdm-n?    l0-types:cwdm-n
              +--:(flexi-grid)
                 +--rw flexi-n?   l0-types:flexi-n
@@ -1226,14 +1364,6 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
                 +--rw flexi-ncfg?                   identityref
                 +--rw flexi-n-step?                 uint8
      augment /te:te/te:tunnels/te:tunnel/te:primary-paths
-
-
-
-Guo, et al.                Expires 1 June 2024                 [Page 22]
-
-Internet-Draft            WDM Tunnel YANG Model            November 2023
-
-
                /te:primary-path/te:primary-reverse-path
                /te:computed-paths-properties/te:computed-path-properties
                /te:path-properties/te:path-route-objects
@@ -1255,7 +1385,7 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
                    |  +--ro flexi-n?              l0-types:flexi-n
                    |  +--ro flexi-m?              l0-types:flexi-m
                    x--:(super)
-                   |  +--ro subcarrier-flexi-n* [flexi-n]
+                   |  x--ro subcarrier-flexi-n* [flexi-n]
                    |     +--ro flexi-n    l0-types:flexi-n
                    |     +--ro flexi-m?   l0-types:flexi-m
                    +--:(multi)
@@ -1264,6 +1394,14 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
                             +--ro flexi-n    l0-types:flexi-n
                             +--ro flexi-m?   l0-types:flexi-m
      augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+
+
+
+Guo, et al.             Expires 2 September 2024               [Page 25]
+
+Internet-Draft            WDM Tunnel YANG Model               March 2024
+
+
                /te:secondary-path/te:optimizations/te:algorithm
                /te:metric/te:optimization-metric
                /te:explicit-route-exclude-objects
@@ -1282,18 +1420,10 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
              +--:(flexi-grid)
                 +--rw (single-or-super-channel)?
                    +--:(single)
-
-
-
-Guo, et al.                Expires 1 June 2024                 [Page 23]
-
-Internet-Draft            WDM Tunnel YANG Model            November 2023
-
-
                    |  +--rw flexi-n?              l0-types:flexi-n
                    |  +--rw flexi-m?              l0-types:flexi-m
                    x--:(super)
-                   |  +--rw subcarrier-flexi-n* [flexi-n]
+                   |  x--rw subcarrier-flexi-n* [flexi-n]
                    |     +--rw flexi-n    l0-types:flexi-n
                    |     +--rw flexi-m?   l0-types:flexi-m
                    +--:(multi)
@@ -1320,10 +1450,18 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
              +--:(flexi-grid)
                 +--rw (single-or-super-channel)?
                    +--:(single)
+
+
+
+Guo, et al.             Expires 2 September 2024               [Page 26]
+
+Internet-Draft            WDM Tunnel YANG Model               March 2024
+
+
                    |  +--rw flexi-n?              l0-types:flexi-n
                    |  +--rw flexi-m?              l0-types:flexi-m
                    x--:(super)
-                   |  +--rw subcarrier-flexi-n* [flexi-n]
+                   |  x--rw subcarrier-flexi-n* [flexi-n]
                    |     +--rw flexi-n    l0-types:flexi-n
                    |     +--rw flexi-m?   l0-types:flexi-m
                    +--:(multi)
@@ -1332,20 +1470,12 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
                             +--rw flexi-n    l0-types:flexi-n
                             +--rw flexi-m?   l0-types:flexi-m
      augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
-               /te:secondary-path/te:explicit-route-objects-always
+               /te:secondary-path/te:explicit-route-objects
                /te:route-object-exclude-always/te:type/te:label
                /te:label-hop/te:te-label/te:technology:
        +--:(wdm)
           +--rw (grid-type)?
              +--:(fixed-dwdm)
-
-
-
-Guo, et al.                Expires 1 June 2024                 [Page 24]
-
-Internet-Draft            WDM Tunnel YANG Model            November 2023
-
-
              |  +--rw (fixed-single-or-super-channel)?
              |     +--:(single)
              |     |  +--rw dwdm-n?               l0-types:dwdm-n
@@ -1359,7 +1489,7 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
                    |  +--rw flexi-n?              l0-types:flexi-n
                    |  +--rw flexi-m?              l0-types:flexi-m
                    x--:(super)
-                   |  +--rw subcarrier-flexi-n* [flexi-n]
+                   |  x--rw subcarrier-flexi-n* [flexi-n]
                    |     +--rw flexi-n    l0-types:flexi-n
                    |     +--rw flexi-m?   l0-types:flexi-m
                    +--:(multi)
@@ -1368,7 +1498,7 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
                             +--rw flexi-n    l0-types:flexi-n
                             +--rw flexi-m?   l0-types:flexi-m
      augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
-               /te:secondary-path/te:explicit-route-objects-always
+               /te:secondary-path/te:explicit-route-objects
                /te:route-object-include-exclude/te:type/te:label
                /te:label-hop/te:te-label/te:technology:
        +--:(wdm)
@@ -1376,6 +1506,14 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
              +--:(fixed-dwdm)
              |  +--rw (fixed-single-or-super-channel)?
              |     +--:(single)
+
+
+
+Guo, et al.             Expires 2 September 2024               [Page 27]
+
+Internet-Draft            WDM Tunnel YANG Model               March 2024
+
+
              |     |  +--rw dwdm-n?               l0-types:dwdm-n
              |     +--:(multi)
              |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
@@ -1387,21 +1525,13 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
                    |  +--rw flexi-n?              l0-types:flexi-n
                    |  +--rw flexi-m?              l0-types:flexi-m
                    x--:(super)
-                   |  +--rw subcarrier-flexi-n* [flexi-n]
+                   |  x--rw subcarrier-flexi-n* [flexi-n]
                    |     +--rw flexi-n    l0-types:flexi-n
                    |     +--rw flexi-m?   l0-types:flexi-m
                    +--:(multi)
                       +--rw frequency-slots
                          +--rw frequency-slot* [flexi-n]
                             +--rw flexi-n    l0-types:flexi-n
-
-
-
-Guo, et al.                Expires 1 June 2024                 [Page 25]
-
-Internet-Draft            WDM Tunnel YANG Model            November 2023
-
-
                             +--rw flexi-m?   l0-types:flexi-m
      augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
                /te:secondary-path/te:path-in-segment
@@ -1432,6 +1562,14 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
                /te:label-restrictions/te:label-restriction/te:label-step
                /te:technology:
        +--:(wdm)
+
+
+
+Guo, et al.             Expires 2 September 2024               [Page 28]
+
+Internet-Draft            WDM Tunnel YANG Model               March 2024
+
+
           +--rw (l0-grid-type)?
              +--:(fixed-dwdm)
              |  +--rw wson-dwdm-channel-spacing?    identityref
@@ -1450,14 +1588,6 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
              +--:(fixed-dwdm)
              |  +--rw dwdm-n?    l0-types:dwdm-n
              +--:(cwdm)
-
-
-
-Guo, et al.                Expires 1 June 2024                 [Page 26]
-
-Internet-Draft            WDM Tunnel YANG Model            November 2023
-
-
              |  +--rw cwdm-n?    l0-types:cwdm-n
              +--:(flexi-grid)
                 +--rw flexi-n?   l0-types:flexi-n
@@ -1488,6 +1618,14 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
                 +--rw flexi-ncfg?                   identityref
                 +--rw flexi-n-step?                 uint8
      augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+
+
+
+Guo, et al.             Expires 2 September 2024               [Page 29]
+
+Internet-Draft            WDM Tunnel YANG Model               March 2024
+
+
                /te:secondary-path/te:computed-paths-properties
                /te:computed-path-properties/te:path-properties
                /te:path-route-objects/te:path-route-object/te:type
@@ -1506,17 +1644,9 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
                 +--ro (single-or-super-channel)?
                    +--:(single)
                    |  +--ro flexi-n?              l0-types:flexi-n
-
-
-
-Guo, et al.                Expires 1 June 2024                 [Page 27]
-
-Internet-Draft            WDM Tunnel YANG Model            November 2023
-
-
                    |  +--ro flexi-m?              l0-types:flexi-m
                    x--:(super)
-                   |  +--ro subcarrier-flexi-n* [flexi-n]
+                   |  x--ro subcarrier-flexi-n* [flexi-n]
                    |     +--ro flexi-n    l0-types:flexi-n
                    |     +--ro flexi-m?   l0-types:flexi-m
                    +--:(multi)
@@ -1544,9 +1674,17 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
                 +--rw (single-or-super-channel)?
                    +--:(single)
                    |  +--rw flexi-n?              l0-types:flexi-n
+
+
+
+Guo, et al.             Expires 2 September 2024               [Page 30]
+
+Internet-Draft            WDM Tunnel YANG Model               March 2024
+
+
                    |  +--rw flexi-m?              l0-types:flexi-m
                    x--:(super)
-                   |  +--rw subcarrier-flexi-n* [flexi-n]
+                   |  x--rw subcarrier-flexi-n* [flexi-n]
                    |     +--rw flexi-n    l0-types:flexi-n
                    |     +--rw flexi-m?   l0-types:flexi-m
                    +--:(multi)
@@ -1562,14 +1700,6 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
                /te:label-hop/te:te-label/te:technology:
        +--:(wdm)
           +--rw (grid-type)?
-
-
-
-Guo, et al.                Expires 1 June 2024                 [Page 28]
-
-Internet-Draft            WDM Tunnel YANG Model            November 2023
-
-
              +--:(fixed-dwdm)
              |  +--rw (fixed-single-or-super-channel)?
              |     +--:(single)
@@ -1584,7 +1714,7 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
                    |  +--rw flexi-n?              l0-types:flexi-n
                    |  +--rw flexi-m?              l0-types:flexi-m
                    x--:(super)
-                   |  +--rw subcarrier-flexi-n* [flexi-n]
+                   |  x--rw subcarrier-flexi-n* [flexi-n]
                    |     +--rw flexi-n    l0-types:flexi-n
                    |     +--rw flexi-m?   l0-types:flexi-m
                    +--:(multi)
@@ -1593,14 +1723,21 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
                             +--rw flexi-n    l0-types:flexi-n
                             +--rw flexi-m?   l0-types:flexi-m
      augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
-               /te:secondary-reverse-path
-               /te:explicit-route-objects-always
+               /te:secondary-reverse-path/te:explicit-route-objects
                /te:route-object-exclude-always/te:type/te:label
                /te:label-hop/te:te-label/te:technology:
        +--:(wdm)
           +--rw (grid-type)?
              +--:(fixed-dwdm)
              |  +--rw (fixed-single-or-super-channel)?
+
+
+
+Guo, et al.             Expires 2 September 2024               [Page 31]
+
+Internet-Draft            WDM Tunnel YANG Model               March 2024
+
+
              |     +--:(single)
              |     |  +--rw dwdm-n?               l0-types:dwdm-n
              |     +--:(multi)
@@ -1613,25 +1750,16 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
                    |  +--rw flexi-n?              l0-types:flexi-n
                    |  +--rw flexi-m?              l0-types:flexi-m
                    x--:(super)
-                   |  +--rw subcarrier-flexi-n* [flexi-n]
+                   |  x--rw subcarrier-flexi-n* [flexi-n]
                    |     +--rw flexi-n    l0-types:flexi-n
                    |     +--rw flexi-m?   l0-types:flexi-m
                    +--:(multi)
                       +--rw frequency-slots
-
-
-
-Guo, et al.                Expires 1 June 2024                 [Page 29]
-
-Internet-Draft            WDM Tunnel YANG Model            November 2023
-
-
                          +--rw frequency-slot* [flexi-n]
                             +--rw flexi-n    l0-types:flexi-n
                             +--rw flexi-m?   l0-types:flexi-m
      augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
-               /te:secondary-reverse-path
-               /te:explicit-route-objects-always
+               /te:secondary-reverse-path/te:explicit-route-objects
                /te:route-object-include-exclude/te:type/te:label
                /te:label-hop/te:te-label/te:technology:
        +--:(wdm)
@@ -1650,7 +1778,7 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
                    |  +--rw flexi-n?              l0-types:flexi-n
                    |  +--rw flexi-m?              l0-types:flexi-m
                    x--:(super)
-                   |  +--rw subcarrier-flexi-n* [flexi-n]
+                   |  x--rw subcarrier-flexi-n* [flexi-n]
                    |     +--rw flexi-n    l0-types:flexi-n
                    |     +--rw flexi-m?   l0-types:flexi-m
                    +--:(multi)
@@ -1658,6 +1786,14 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
                          +--rw frequency-slot* [flexi-n]
                             +--rw flexi-n    l0-types:flexi-n
                             +--rw flexi-m?   l0-types:flexi-m
+
+
+
+Guo, et al.             Expires 2 September 2024               [Page 32]
+
+Internet-Draft            WDM Tunnel YANG Model               March 2024
+
+
      augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
                /te:secondary-reverse-path/te:path-in-segment
                /te:label-restrictions/te:label-restriction
@@ -1674,14 +1810,6 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
                /te:secondary-reverse-path/te:path-in-segment
                /te:label-restrictions/te:label-restriction/te:label-end
                /te:te-label/te:technology:
-
-
-
-Guo, et al.                Expires 1 June 2024                 [Page 30]
-
-Internet-Draft            WDM Tunnel YANG Model            November 2023
-
-
        +--:(wdm)
           +--rw (grid-type)?
              +--:(fixed-dwdm)
@@ -1714,6 +1842,14 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
              |  +--rw dwdm-n?    l0-types:dwdm-n
              +--:(cwdm)
              |  +--rw cwdm-n?    l0-types:cwdm-n
+
+
+
+Guo, et al.             Expires 2 September 2024               [Page 33]
+
+Internet-Draft            WDM Tunnel YANG Model               March 2024
+
+
              +--:(flexi-grid)
                 +--rw flexi-n?   l0-types:flexi-n
      augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
@@ -1730,14 +1866,6 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
                 +--rw flexi-n?   l0-types:flexi-n
      augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
                /te:secondary-reverse-path/te:path-out-segment
-
-
-
-Guo, et al.                Expires 1 June 2024                 [Page 31]
-
-Internet-Draft            WDM Tunnel YANG Model            November 2023
-
-
                /te:label-restrictions/te:label-restriction/te:label-step
                /te:technology:
        +--:(wdm)
@@ -1770,8 +1898,16 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
                    +--:(single)
                    |  +--ro flexi-n?              l0-types:flexi-n
                    |  +--ro flexi-m?              l0-types:flexi-m
+
+
+
+Guo, et al.             Expires 2 September 2024               [Page 34]
+
+Internet-Draft            WDM Tunnel YANG Model               March 2024
+
+
                    x--:(super)
-                   |  +--ro subcarrier-flexi-n* [flexi-n]
+                   |  x--ro subcarrier-flexi-n* [flexi-n]
                    |     +--ro flexi-n    l0-types:flexi-n
                    |     +--ro flexi-m?   l0-types:flexi-m
                    +--:(multi)
@@ -1786,14 +1922,6 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
           +--ro (grid-type)?
              +--:(fixed-dwdm)
              |  +--ro (fixed-single-or-super-channel)?
-
-
-
-Guo, et al.                Expires 1 June 2024                 [Page 32]
-
-Internet-Draft            WDM Tunnel YANG Model            November 2023
-
-
              |     +--:(single)
              |     |  +--ro dwdm-n?               l0-types:dwdm-n
              |     +--:(multi)
@@ -1806,7 +1934,7 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
                    |  +--ro flexi-n?              l0-types:flexi-n
                    |  +--ro flexi-m?              l0-types:flexi-m
                    x--:(super)
-                   |  +--ro subcarrier-flexi-n* [flexi-n]
+                   |  x--ro subcarrier-flexi-n* [flexi-n]
                    |     +--ro flexi-n    l0-types:flexi-n
                    |     +--ro flexi-m?   l0-types:flexi-m
                    +--:(multi)
@@ -1814,6 +1942,8 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
                          +--ro frequency-slot* [flexi-n]
                             +--ro flexi-n    l0-types:flexi-n
                             +--ro flexi-m?   l0-types:flexi-m
+
+                       Figure 2: WDM Tunnel YANG tree
 
 5.2.  YANG Code
 
@@ -1824,13 +1954,22 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
        "urn:ietf:params:xml:ns:yang:ietf-wdm-tunnel";
      prefix "wdm-tnl";
 
+
+
+
+Guo, et al.             Expires 2 September 2024               [Page 35]
+
+Internet-Draft            WDM Tunnel YANG Model               March 2024
+
+
      import ietf-te {
        prefix "te";
-       revision-date "2023-06-16";
        reference
-         "I-D.ietf-teas-yang-te-34: A YANG Data Model for Traffic
-         Engineering Tunnels, Label Switched Paths and Interfaces.";
+         "RFC YYYY: A YANG Data Model for Traffic Engineering Tunnels,
+         Label Switched Paths and Interfaces.";
      }
+     /* RFC Ed.: replace YYYY with the number assigned
+        to the RFC once draft-ietf-teas-yang-te becomes an RFC.*/
 
      import ietf-layer0-types {
        prefix "l0-types";
@@ -1841,14 +1980,6 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
      contact
        "WG Web:   <http://tools.ietf.org/wg/ccamp/>
         WG List:  <mailto:ccamp@ietf.org>
-
-
-
-
-Guo, et al.                Expires 1 June 2024                 [Page 33]
-
-Internet-Draft            WDM Tunnel YANG Model            November 2023
-
 
         Editor:   Jorge E. Lopez de Vergara
                   <jorge.lopez_vergara@uam.es>
@@ -1879,6 +2010,14 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
        Redistribution and use in source and binary forms, with or
        without modification, is permitted pursuant to, and subject
        to the license terms contained in, the Simplified BSD License
+
+
+
+Guo, et al.             Expires 2 September 2024               [Page 36]
+
+Internet-Draft            WDM Tunnel YANG Model               March 2024
+
+
        set forth in Section 4.c of the IETF Trust's Legal Provisions
        Relating to IETF Documents
        (https://trustee.ietf.org/license-info).
@@ -1898,49 +2037,67 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
      }
 
      /*
-
-
-
-Guo, et al.                Expires 1 June 2024                 [Page 34]
-
-Internet-Draft            WDM Tunnel YANG Model            November 2023
-
-
-      * Identities
-      */
-     identity lower-first-wavelength-assignment {
-       base l0-types:wavelength-assignment;
-       description
-         "Assign first available wavelength starting from the
-          lowest frequency towards the highest frequency in
-          the allowable frequency range.";
-     }
-
-     identity upper-first-wavelength-assignment {
-       base l0-types:wavelength-assignment;
-       description
-         "Assign first available wavelength starting from the
-          highest frequency towards the lowest frequency in
-          the allowable frequency range.";
-     }
-
-     /*
       * Groupings
       */
-     grouping tx-tune-constraints {
+     grouping additional-transceiver-configuration-constraints {
        description
-         "This grouping defines the transmitter's allowed tuning
-          frequency range.";
+         "This grouping defines additional optional constraints for
+          transceiver configurations related to tunnel selection.
+          These constraints further limit the resources available
+          to the tunnel. All constraints operate inclusively, using
+          an AND logic. For example, if a specific frequency range
+          is selected, the tunnel must also be constrained to match
+          only that range.
+
+          When these constraints are combined with the operational
+          mode, the list of operational modes should exclude any
+          modes that cannot satisfy the additional constraints.
+          For instance, if the frequency is restricted to the C-band,
+          the list of operational modes should not include any modes
+          applicable only to the L-band.";
 
        container tx-tune-constraints {
          description
-           "Transmitter's allowed tuning frequency range.";
+           "The permissible tuning frequency range for the
+            transmitter.";
 
          uses l0-types:transmitter-tuning-range;
        }
+
+       leaf-list line-coding-bitrate {
+         type identityref {
+
+
+
+Guo, et al.             Expires 2 September 2024               [Page 37]
+
+Internet-Draft            WDM Tunnel YANG Model               March 2024
+
+
+           base l0-types:line-coding;
+         }
+         description
+           "The list of the bit rate/line coding of the optical
+           tributary signal that constrains the configuration of
+           the transceiver.";
+         reference
+           "ITU-T G.698.2 section 7.1.2";
+       }
+
+       leaf tx-channel-power {
+         type l0-types:power-dbm;
+         description
+           "The preferred channel transmit power.";
+       }
+
+       leaf preferred-rx-channel-power {
+         type l0-types:power-dbm;
+         description
+           "The preferred channel received power.";
+       }
      }
 
-     grouping transceiver-constraints-grp {
+     grouping transceiver-constraints {
        description
          "This grouping defines constraints for transceiver
           configurations";
@@ -1953,21 +2110,95 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
            "List of operational mode ids of the transceiver.";
        }
 
-       uses tx-tune-constraints;
-
-
-
-Guo, et al.                Expires 1 June 2024                 [Page 35]
-
-Internet-Draft            WDM Tunnel YANG Model            November 2023
-
-
+           uses additional-transceiver-configuration-constraints;
      }
 
-     grouping path-transceiver-config-grp {
+     grouping transceiver-config {
        description
-         "This grouping defines explicit transceiver configurations
-          on an end-to-end path.";
+         "This grouping defines explicit transceiver
+          configurations.";
+
+       leaf transponder-id {
+         type uint32;
+         description "transponder identifier";
+       }
+
+
+
+Guo, et al.             Expires 2 September 2024               [Page 38]
+
+Internet-Draft            WDM Tunnel YANG Model               March 2024
+
+
+       list transceivers {
+         key "lane-id";
+         description
+           "List of transceivers for all lanes.";
+
+         leaf lane-id {
+           type uint8;
+           must '. >= 1' {
+             error-message
+               "Lane identifier must be greater than or equal to 1.";
+           }
+           description
+             "Lane identifier starting from 1.";
+         }
+         leaf transceiver-id {
+           type uint32;
+           description
+           "transceiver identifier";
+         }
+
+         uses transceiver-constraints;
+       }
+     }
+
+     grouping path-transceiver-config {
+       description
+         "This grouping defines a set of transceivers on a node,
+          serving as either starting transceivers, terminating
+          transceivers, or regenerators. The position of each
+          transceiver is determined by the direction of the path.
+          For instance, consider the following uni-directional
+          path with nodes labeled A, B, and C, where a, b1, b2,
+          and c correspond to transceivers on the nodes:
+             A(a) --> (b1)B(b2) --> (c)C
+
+          - Use path-out-transceiver for the starting transceiver
+            a and the regenerator transceiver b2.
+          - Use path-in-transceiver for the terminating transceiver
+            c and the regenerator transceiver b1.";
+
+       container path-in-transceiver {
+         description
+           "Constraints for incoming direction transceiver
+            configurations";
+
+         uses transceiver-config;
+       }
+
+
+
+
+Guo, et al.             Expires 2 September 2024               [Page 39]
+
+Internet-Draft            WDM Tunnel YANG Model               March 2024
+
+
+       container path-out-transceiver {
+         description
+           "Constraints for outgoing direction transceiver
+            configurations";
+
+         uses transceiver-config;
+       }
+     }
+
+     grouping transceiver-state {
+       description
+         "This grouping includes common transceiver state
+          information.";
 
        leaf transponder-id {
          type uint32;
@@ -1993,39 +2224,36 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
            description
            "transceiver identifier";
          }
-       }
 
-       uses transceiver-constraints-grp;
+         uses l0-types:common-transceiver-readonly-param;
+       }
      }
 
-     grouping path-transceiver-grp {
+     grouping path-transceiver-state {
        description
-         "This grouping defines group of transceivers on a node
-          functioning as starting, terminating transceivers, or
-          regenerators.";
+         "This grouping defines the state of transceivers on a
+          node functioning as starting, terminating transceivers,
+          or regenerators.";
+
+
+
+Guo, et al.             Expires 2 September 2024               [Page 40]
+
+Internet-Draft            WDM Tunnel YANG Model               March 2024
+
 
        container path-in-transceiver {
          description
-           "Constraints for incoming direction transceiver
-            configurations";
+           "Transceiver state on the incoming direction.";
 
-         uses path-transceiver-config-grp;
-
-
-
-Guo, et al.                Expires 1 June 2024                 [Page 36]
-
-Internet-Draft            WDM Tunnel YANG Model            November 2023
-
-
+         uses transceiver-state;
        }
 
        container path-out-transceiver {
          description
-           "Constraints for outgoing direction transceiver
-            configurations";
+           "Transceiver state on the outgoing direction.";
 
-         uses path-transceiver-config-grp;
+         uses transceiver-state;
        }
      }
 
@@ -2038,7 +2266,7 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
          description
            "Constraints for transceiver configurations";
 
-         uses transceiver-constraints-grp;
+         uses transceiver-constraints;
        }
      }
 
@@ -2063,17 +2291,16 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
               feasible for direct optical reach.";
          }
 
+
+
+Guo, et al.             Expires 2 September 2024               [Page 41]
+
+Internet-Draft            WDM Tunnel YANG Model               March 2024
+
+
          leaf wavelength-conversion {
            when '../use-regen = "true"' {
              description
-
-
-
-Guo, et al.                Expires 1 June 2024                 [Page 37]
-
-Internet-Draft            WDM Tunnel YANG Model            November 2023
-
-
                "Regenerator must be enabled for wavelength conversion
                 to be considered.";
            }
@@ -2111,8 +2338,7 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
               planning considerations.";
          }
          leaf delta-power {
-           type l0-types:gain-in-db-or-null;
-           units "dB";
+           type l0-types:power-ratio;
            description
              "Delta power in dB indicating the per-channel power
               deviation from the nominal power per channel at the
@@ -2121,15 +2347,14 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
        }
      }
 
-     grouping wdm-path-state {
 
 
-
-Guo, et al.                Expires 1 June 2024                 [Page 38]
+Guo, et al.             Expires 2 September 2024               [Page 42]
 
-Internet-Draft            WDM Tunnel YANG Model            November 2023
+Internet-Draft            WDM Tunnel YANG Model               March 2024
 
 
+     grouping wdm-path-state {
        description
          "Grouping for WDM path state.";
 
@@ -2166,39 +2391,80 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
       * transceivers.
       */
      augment "/te:te/te:tunnels/te:tunnel/te:primary-paths/"
-           + "te:primary-path/te:explicit-route-objects-always/"
+           + "te:primary-path/te:explicit-route-objects/"
            + "te:route-object-exclude-always/te:type/"
            + "te:numbered-node-hop/te:numbered-node-hop" {
        description
          "Augment TE primary path with transceiver configurations.";
 
-       uses path-transceiver-grp;
+       uses path-transceiver-config;
      }
 
      /*
       * Transceiver constraints for primary reverse path
-      * Applicable to starting, terminating and regenerator
 
 
 
-Guo, et al.                Expires 1 June 2024                 [Page 39]
+Guo, et al.             Expires 2 September 2024               [Page 43]
 
-Internet-Draft            WDM Tunnel YANG Model            November 2023
+Internet-Draft            WDM Tunnel YANG Model               March 2024
 
 
+      * Applicable to starting, terminating and regenerator
       * transceivers.
       */
      augment "/te:te/te:tunnels/te:tunnel/te:primary-paths/"
            + "te:primary-path/te:primary-reverse-path/"
-           + "te:explicit-route-objects-always/"
+           + "te:explicit-route-objects/"
            + "te:route-object-exclude-always/te:type/"
            + "te:numbered-node-hop/te:numbered-node-hop" {
        description
          "Augment TE primary reverse path with transceiver
           configurations.";
 
-       uses path-transceiver-grp;
+       uses path-transceiver-config;
      }
+
+     /*
+      * Transceiver constraints for secondary path
+      * Applicable to starting, terminating and regenerator
+      * transceivers.
+      */
+     augment "/te:te/te:tunnels/te:tunnel/te:secondary-paths/"
+           + "te:secondary-path/te:explicit-route-objects/"
+           + "te:route-object-exclude-always/te:type/"
+           + "te:numbered-node-hop/te:numbered-node-hop" {
+       description
+         "Augment TE secondary path with transceiver configurations.";
+
+       uses path-transceiver-config;
+     }
+
+     /*
+      * Transceiver constraints for secondary reverse path
+      * Applicable to starting, terminating and regenerator
+      * transceivers.
+      */
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:secondary-reverse-paths/"
+           + "te:secondary-reverse-path/"
+           + "te:explicit-route-objects/"
+           + "te:route-object-exclude-always/te:type/"
+           + "te:numbered-node-hop/te:numbered-node-hop" {
+       description
+         "Augment TE secondary reverse path with transceiver
+          configurations.";
+
+       uses path-transceiver-config;
+     }
+
+
+
+
+Guo, et al.             Expires 2 September 2024               [Page 44]
+
+Internet-Draft            WDM Tunnel YANG Model               March 2024
+
 
      /*
       * Computed path properties for primary path.
@@ -2227,47 +2493,6 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
      }
 
      /*
-      * Transceiver constraints for secondary path
-      * Applicable to starting, terminating and regenerator
-      * transceivers.
-      */
-     augment "/te:te/te:tunnels/te:tunnel/te:secondary-paths/"
-           + "te:secondary-path/te:explicit-route-objects-always/"
-           + "te:route-object-exclude-always/te:type/"
-
-
-
-Guo, et al.                Expires 1 June 2024                 [Page 40]
-
-Internet-Draft            WDM Tunnel YANG Model            November 2023
-
-
-           + "te:numbered-node-hop/te:numbered-node-hop" {
-       description
-         "Augment TE secondary path with transceiver configurations.";
-
-       uses path-transceiver-grp;
-     }
-
-     /*
-      * Transceiver constraints for secondary reverse path
-      * Applicable to starting, terminating and regenerator
-      * transceivers.
-      */
-     augment "/te:te/te:tunnels/te:tunnel/"
-           + "te:secondary-reverse-paths/"
-           + "te:secondary-reverse-path/"
-           + "te:explicit-route-objects-always/"
-           + "te:route-object-exclude-always/te:type/"
-           + "te:numbered-node-hop/te:numbered-node-hop" {
-       description
-         "Augment TE secondary reverse path with transceiver
-          configurations.";
-
-       uses path-transceiver-grp;
-     }
-
-     /*
       * Computed path properties for secondary path.
       */
      augment "/te:te/te:tunnels/te:tunnel/te:secondary-paths/"
@@ -2289,15 +2514,83 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
          "Augment TE computed secondary reverse path with WDM
           properties.";
 
-       uses l0-types:l0-path-properties;
 
 
 
-Guo, et al.                Expires 1 June 2024                 [Page 41]
+Guo, et al.             Expires 2 September 2024               [Page 45]
 
-Internet-Draft            WDM Tunnel YANG Model            November 2023
+Internet-Draft            WDM Tunnel YANG Model               March 2024
 
 
+       uses l0-types:l0-path-properties;
+     }
+
+     /*
+      * Computed transceiver properties for primary path.
+      */
+     augment "/te:te/te:tunnels/te:tunnel/te:primary-paths/"
+           + "te:primary-path/te:computed-paths-properties/"
+           + "te:computed-path-properties/te:path-properties/"
+           + "te:path-route-objects/te:path-route-object/"
+           + "te:type/te:numbered-node-hop/te:numbered-node-hop" {
+       description
+         "Augment TE computed primary path with transceiver
+          properties.";
+
+       uses path-transceiver-state;
+     }
+
+     /*
+      * Computed transceiver properties for primary reverse path.
+      */
+     augment "/te:te/te:tunnels/te:tunnel/te:primary-paths/"
+           + "te:primary-path/te:primary-reverse-path/"
+           + "te:computed-paths-properties/"
+           + "te:computed-path-properties/te:path-properties/"
+           + "te:path-route-objects/te:path-route-object/"
+           + "te:type/te:numbered-node-hop/te:numbered-node-hop" {
+       description
+         "Augment TE computed primary path with transceiver
+          properties.";
+
+       uses path-transceiver-state;
+     }
+
+     /*
+      * Computed transceiver properties for secondary path.
+      */
+     augment "/te:te/te:tunnels/te:tunnel/te:secondary-paths/"
+           + "te:secondary-path/te:computed-paths-properties/"
+           + "te:computed-path-properties/te:path-properties/"
+           + "te:path-route-objects/te:path-route-object/"
+           + "te:type/te:numbered-node-hop/te:numbered-node-hop" {
+       description
+         "Augment TE computed primary path with transceiver
+          properties.";
+
+       uses path-transceiver-state;
+     }
+
+
+
+Guo, et al.             Expires 2 September 2024               [Page 46]
+
+Internet-Draft            WDM Tunnel YANG Model               March 2024
+
+
+     /*
+      * Computed transceiver properties for secondary reverse path.
+      */
+     augment "/te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths/"
+           + "te:secondary-reverse-path/te:computed-paths-properties/"
+           + "te:computed-path-properties/te:path-properties/"
+           + "te:path-route-objects/te:path-route-object/"
+           + "te:type/te:numbered-node-hop/te:numbered-node-hop" {
+       description
+         "Augment TE computed primary path with transceiver
+          properties.";
+
+       uses path-transceiver-state;
      }
 
      /*
@@ -2312,6 +2605,19 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
      }
 
      /*
+      * Actual transceiver state.
+      */
+     augment "/te:te/te:lsps/te:lsp/"
+           + "te:lsp-actual-route-information/"
+           + "te:lsp-actual-route-information/te:type/"
+           + "te:numbered-node-hop/te:numbered-node-hop" {
+       description
+         "Augment TE LSP to with WDM path state.";
+
+       uses path-transceiver-state;
+     }
+
+     /*
       * Augment TE label range information
       */
 
@@ -2320,6 +2626,14 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
            + "te:label-restrictions/te:label-restriction" {
        description
          "Augment TE label range information for the ingress segment
+
+
+
+Guo, et al.             Expires 2 September 2024               [Page 47]
+
+Internet-Draft            WDM Tunnel YANG Model               March 2024
+
+
          of the named path constraint.";
        uses l0-types:wdm-label-range-info;
      }
@@ -2346,14 +2660,6 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
 
      augment "/te:te/te:tunnels/te:tunnel/"
            + "te:primary-paths/te:primary-path/"
-
-
-
-Guo, et al.                Expires 1 June 2024                 [Page 42]
-
-Internet-Draft            WDM Tunnel YANG Model            November 2023
-
-
            + "te:path-out-segment/te:label-restrictions/"
            + "te:label-restriction" {
        description
@@ -2376,6 +2682,14 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
      augment "/te:te/te:tunnels/te:tunnel/"
            + "te:primary-paths/te:primary-path/"
            + "te:primary-reverse-path/"
+
+
+
+Guo, et al.             Expires 2 September 2024               [Page 48]
+
+Internet-Draft            WDM Tunnel YANG Model               March 2024
+
+
            + "te:path-out-segment/te:label-restrictions/"
            + "te:label-restriction" {
        description
@@ -2402,14 +2716,6 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
          "Augment TE label range information for the egress segment
          of the secondary path.";
        uses l0-types:wdm-label-range-info;
-
-
-
-Guo, et al.                Expires 1 June 2024                 [Page 43]
-
-Internet-Draft            WDM Tunnel YANG Model            November 2023
-
-
      }
 
      augment "/te:te/te:tunnels/te:tunnel/"
@@ -2432,12 +2738,20 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
        uses l0-types:wdm-label-range-info;
      }
 
+
+
+
+Guo, et al.             Expires 2 September 2024               [Page 49]
+
+Internet-Draft            WDM Tunnel YANG Model               March 2024
+
+
      /*
       * Augment TE label.
       */
      augment "/te:te/te:globals/te:named-path-constraints/"
            + "te:named-path-constraint/"
-           + "te:explicit-route-objects-always/"
+           + "te:explicit-route-objects/"
            + "te:route-object-exclude-always/te:type/te:label/"
            + "te:label-hop/te:te-label/te:technology" {
        description
@@ -2451,21 +2765,13 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
 
      augment "/te:te/te:globals/te:named-path-constraints/"
            + "te:named-path-constraint/"
-           + "te:explicit-route-objects-always/"
+           + "te:explicit-route-objects/"
            + "te:route-object-include-exclude/te:type/te:label/"
            + "te:label-hop/te:te-label/te:technology" {
        description
          "Augment TE label hop for the explicit route objects included
          or excluded by the path computation with the named path
          constraint.";
-
-
-
-Guo, et al.                Expires 1 June 2024                 [Page 44]
-
-Internet-Draft            WDM Tunnel YANG Model            November 2023
-
-
        case wdm {
          uses l0-types:wdm-label-hop;
        }
@@ -2488,6 +2794,14 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
            + "te:label-restrictions/"
            + "te:label-restriction/te:label-end/"
            + "te:te-label/te:technology" {
+
+
+
+Guo, et al.             Expires 2 September 2024               [Page 50]
+
+Internet-Draft            WDM Tunnel YANG Model               March 2024
+
+
        description
          "Augment TE label range end for the ingress segment
          of the named path constraint.";
@@ -2514,14 +2828,6 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
            + "te:label-restriction/te:label-start/"
            + "te:te-label/te:technology" {
        description
-
-
-
-Guo, et al.                Expires 1 June 2024                 [Page 45]
-
-Internet-Draft            WDM Tunnel YANG Model            November 2023
-
-
          "Augment TE label range start for the egress segment
          of the named path constraint.";
        case wdm {
@@ -2544,6 +2850,14 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
 
      augment "/te:te/te:globals/te:named-path-constraints/"
            + "te:named-path-constraint/te:path-out-segment/"
+
+
+
+Guo, et al.             Expires 2 September 2024               [Page 51]
+
+Internet-Draft            WDM Tunnel YANG Model               March 2024
+
+
            + "te:label-restrictions/te:label-restriction/"
            + "te:label-step/te:technology" {
        description
@@ -2570,14 +2884,6 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
      }
 
      augment "/te:te/te:tunnels/te:tunnel/"
-
-
-
-Guo, et al.                Expires 1 June 2024                 [Page 46]
-
-Internet-Draft            WDM Tunnel YANG Model            November 2023
-
-
            + "te:primary-paths/te:primary-path/"
            + "te:optimizations/te:algorithm/te:metric/"
            + "te:optimization-metric/te:explicit-route-include-objects/"
@@ -2594,12 +2900,20 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
 
      augment "/te:te/te:tunnels/te:tunnel/"
            + "te:primary-paths/te:primary-path/"
-           + "te:explicit-route-objects-always/"
+           + "te:explicit-route-objects/"
            + "te:route-object-exclude-always/te:type/te:label/"
            + "te:label-hop/te:te-label/te:technology" {
        description
          "Augment TE label hop for the explicit route objects always
          excluded by the path computation of the primary path.";
+
+
+
+Guo, et al.             Expires 2 September 2024               [Page 52]
+
+Internet-Draft            WDM Tunnel YANG Model               March 2024
+
+
        case wdm {
          uses l0-types:wdm-label-hop;
        }
@@ -2607,7 +2921,7 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
 
      augment "/te:te/te:tunnels/te:tunnel/"
            + "te:primary-paths/te:primary-path/"
-           + "te:explicit-route-objects-always/"
+           + "te:explicit-route-objects/"
            + "te:route-object-include-exclude/te:type/te:label/"
            + "te:label-hop/te:te-label/te:technology" {
        description
@@ -2626,14 +2940,6 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
        description
          "Augment TE label range start for the ingress segment
          of the primay path.";
-
-
-
-Guo, et al.                Expires 1 June 2024                 [Page 47]
-
-Internet-Draft            WDM Tunnel YANG Model            November 2023
-
-
        case wdm {
          uses l0-types:wdm-label-start-end;
        }
@@ -2656,6 +2962,14 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
            + "te:primary-paths/te:primary-path/"
            + "te:path-in-segment/te:label-restrictions/"
            + "te:label-restriction/te:label-step/te:technology" {
+
+
+
+Guo, et al.             Expires 2 September 2024               [Page 53]
+
+Internet-Draft            WDM Tunnel YANG Model               March 2024
+
+
        description
          "Augment TE label range step for the ingress segment
          of the primay path.";
@@ -2682,14 +2996,6 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
            + "te:path-out-segment/te:label-restrictions/"
            + "te:label-restriction/te:label-end/"
            + "te:te-label/te:technology" {
-
-
-
-Guo, et al.                Expires 1 June 2024                 [Page 48]
-
-Internet-Draft            WDM Tunnel YANG Model            November 2023
-
-
        description
          "Augment TE label range end for the egress segment
          of the primay path.";
@@ -2712,6 +3018,14 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
 
      augment "/te:te/te:tunnels/te:tunnel/"
            + "te:primary-paths/te:primary-path/"
+
+
+
+Guo, et al.             Expires 2 September 2024               [Page 54]
+
+Internet-Draft            WDM Tunnel YANG Model               March 2024
+
+
            + "te:computed-paths-properties/"
            + "te:computed-path-properties/te:path-properties/"
            + "te:path-route-objects/te:path-route-object/"
@@ -2738,14 +3052,6 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
          reverse path.";
        case wdm {
          uses l0-types:wdm-label-hop;
-
-
-
-Guo, et al.                Expires 1 June 2024                 [Page 49]
-
-Internet-Draft            WDM Tunnel YANG Model            November 2023
-
-
        }
      }
 
@@ -2768,7 +3074,15 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
      augment "/te:te/te:tunnels/te:tunnel/"
            + "te:primary-paths/te:primary-path/"
            + "te:primary-reverse-path/"
-           + "te:explicit-route-objects-always/"
+
+
+
+Guo, et al.             Expires 2 September 2024               [Page 55]
+
+Internet-Draft            WDM Tunnel YANG Model               March 2024
+
+
+           + "te:explicit-route-objects/"
            + "te:route-object-exclude-always/"
            + "te:type/te:label/"
            + "te:label-hop/te:te-label/te:technology" {
@@ -2784,7 +3098,7 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
      augment "/te:te/te:tunnels/te:tunnel/"
            + "te:primary-paths/te:primary-path/"
            + "te:primary-reverse-path/"
-           + "te:explicit-route-objects-always/"
+           + "te:explicit-route-objects/"
            + "te:route-object-include-exclude/"
            + "te:type/te:label/"
            + "te:label-hop/te:te-label/te:technology" {
@@ -2794,14 +3108,6 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
          path.";
        case wdm {
          uses l0-types:wdm-label-hop;
-
-
-
-Guo, et al.                Expires 1 June 2024                 [Page 50]
-
-Internet-Draft            WDM Tunnel YANG Model            November 2023
-
-
        }
      }
 
@@ -2824,6 +3130,14 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
            + "te:primary-reverse-path/"
            + "te:path-in-segment/te:label-restrictions/"
            + "te:label-restriction/te:label-end/"
+
+
+
+Guo, et al.             Expires 2 September 2024               [Page 56]
+
+Internet-Draft            WDM Tunnel YANG Model               March 2024
+
+
            + "te:te-label/te:technology" {
        description
          "Augment TE label range end for the ingress segment
@@ -2850,14 +3164,6 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
            + "te:primary-paths/te:primary-path/"
            + "te:primary-reverse-path/"
            + "te:path-out-segment/te:label-restrictions/"
-
-
-
-Guo, et al.                Expires 1 June 2024                 [Page 51]
-
-Internet-Draft            WDM Tunnel YANG Model            November 2023
-
-
            + "te:label-restriction/te:label-start/"
            + "te:te-label/te:technology" {
        description
@@ -2880,6 +3186,14 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
        case wdm {
          uses l0-types:wdm-label-start-end;
        }
+
+
+
+Guo, et al.             Expires 2 September 2024               [Page 57]
+
+Internet-Draft            WDM Tunnel YANG Model               March 2024
+
+
      }
 
      augment "/te:te/te:tunnels/te:tunnel/"
@@ -2906,14 +3220,6 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
          "Augment TE label hop for the route object of the computed
          primary reverse path.";
        case wdm {
-
-
-
-Guo, et al.                Expires 1 June 2024                 [Page 52]
-
-Internet-Draft            WDM Tunnel YANG Model            November 2023
-
-
          uses l0-types:wdm-label-hop;
        }
      }
@@ -2936,6 +3242,14 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
      augment "/te:te/te:tunnels/te:tunnel/"
            + "te:secondary-paths/te:secondary-path/"
            + "te:optimizations/te:algorithm/te:metric/"
+
+
+
+Guo, et al.             Expires 2 September 2024               [Page 58]
+
+Internet-Draft            WDM Tunnel YANG Model               March 2024
+
+
            + "te:optimization-metric/te:explicit-route-include-objects/"
            + "te:route-object-include-object/te:type/te:label/"
            + "te:label-hop/te:te-label/te:technology" {
@@ -2950,7 +3264,7 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
 
      augment "/te:te/te:tunnels/te:tunnel/"
            + "te:secondary-paths/te:secondary-path/"
-           + "te:explicit-route-objects-always/"
+           + "te:explicit-route-objects/"
            + "te:route-object-exclude-always/te:type/te:label/"
            + "te:label-hop/te:te-label/te:technology" {
        description
@@ -2962,16 +3276,8 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
      }
 
      augment "/te:te/te:tunnels/te:tunnel/"
-
-
-
-Guo, et al.                Expires 1 June 2024                 [Page 53]
-
-Internet-Draft            WDM Tunnel YANG Model            November 2023
-
-
            + "te:secondary-paths/te:secondary-path/"
-           + "te:explicit-route-objects-always/"
+           + "te:explicit-route-objects/"
            + "te:route-object-include-exclude/te:type/te:label/"
            + "te:label-hop/te:te-label/te:technology" {
        description
@@ -2992,6 +3298,14 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
          of the secondary path.";
        case wdm {
          uses l0-types:wdm-label-start-end;
+
+
+
+Guo, et al.             Expires 2 September 2024               [Page 59]
+
+Internet-Draft            WDM Tunnel YANG Model               March 2024
+
+
        }
      }
 
@@ -3019,13 +3333,6 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
        }
      }
 
-
-
-Guo, et al.                Expires 1 June 2024                 [Page 54]
-
-Internet-Draft            WDM Tunnel YANG Model            November 2023
-
-
      augment "/te:te/te:tunnels/te:tunnel/"
            + "te:secondary-paths/te:secondary-path/"
            + "te:path-out-segment/te:label-restrictions/"
@@ -3047,6 +3354,14 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
        description
          "Augment TE label range end for the egress segment
          of the secondary path.";
+
+
+
+Guo, et al.             Expires 2 September 2024               [Page 60]
+
+Internet-Draft            WDM Tunnel YANG Model               March 2024
+
+
        case wdm {
          uses l0-types:wdm-label-start-end;
        }
@@ -3074,14 +3389,6 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
        description
          "Augment TE label hop for the route object of the computed
          secondary path.";
-
-
-
-Guo, et al.                Expires 1 June 2024                 [Page 55]
-
-Internet-Draft            WDM Tunnel YANG Model            November 2023
-
-
        case wdm {
          uses l0-types:wdm-label-hop;
        }
@@ -3103,6 +3410,14 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
      }
 
      augment "/te:te/te:tunnels/te:tunnel/"
+
+
+
+Guo, et al.             Expires 2 September 2024               [Page 61]
+
+Internet-Draft            WDM Tunnel YANG Model               March 2024
+
+
            + "te:secondary-reverse-paths/te:secondary-reverse-path/"
            + "te:optimizations/te:algorithm/te:metric/"
            + "te:optimization-metric/te:explicit-route-include-objects/"
@@ -3119,7 +3434,7 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
 
      augment "/te:te/te:tunnels/te:tunnel/"
            + "te:secondary-reverse-paths/te:secondary-reverse-path/"
-           + "te:explicit-route-objects-always/"
+           + "te:explicit-route-objects/"
            + "te:route-object-exclude-always/te:type/te:label/"
            + "te:label-hop/te:te-label/te:technology" {
        description
@@ -3131,16 +3446,9 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
        }
      }
 
-
-
-Guo, et al.                Expires 1 June 2024                 [Page 56]
-
-Internet-Draft            WDM Tunnel YANG Model            November 2023
-
-
      augment "/te:te/te:tunnels/te:tunnel/"
            + "te:secondary-reverse-paths/te:secondary-reverse-path/"
-           + "te:explicit-route-objects-always/"
+           + "te:explicit-route-objects/"
            + "te:route-object-include-exclude/te:type/te:label/"
            + "te:label-hop/te:te-label/te:technology" {
        description
@@ -3158,6 +3466,14 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
            + "te:label-restriction/te:label-start/"
            + "te:te-label/te:technology" {
        description
+
+
+
+Guo, et al.             Expires 2 September 2024               [Page 62]
+
+Internet-Draft            WDM Tunnel YANG Model               March 2024
+
+
          "Augment TE label range start for the ingress segment
          of the secondary reverse path.";
        case wdm {
@@ -3186,14 +3502,6 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
          "Augment TE label range step for the ingress segment
          of the secondary reverse path.";
        case wdm {
-
-
-
-Guo, et al.                Expires 1 June 2024                 [Page 57]
-
-Internet-Draft            WDM Tunnel YANG Model            November 2023
-
-
          uses l0-types:wdm-label-step;
        }
      }
@@ -3214,6 +3522,14 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
      augment "/te:te/te:tunnels/te:tunnel/"
            + "te:secondary-reverse-paths/te:secondary-reverse-path/"
            + "te:path-out-segment/te:label-restrictions/"
+
+
+
+Guo, et al.             Expires 2 September 2024               [Page 63]
+
+Internet-Draft            WDM Tunnel YANG Model               March 2024
+
+
            + "te:label-restriction/te:label-end/"
            + "te:te-label/te:technology" {
        description
@@ -3242,14 +3558,6 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
            + "te:computed-path-properties/"
            + "te:path-properties/te:path-route-objects/"
            + "te:path-route-object/te:type/te:label/"
-
-
-
-Guo, et al.                Expires 1 June 2024                 [Page 58]
-
-Internet-Draft            WDM Tunnel YANG Model            November 2023
-
-
            + "te:label-hop/te:te-label/te:technology" {
        description
          "Augment TE label hop for the route object of the computed
@@ -3270,7 +3578,17 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
        }
      }
    }
+
+
+
+Guo, et al.             Expires 2 September 2024               [Page 64]
+
+Internet-Draft            WDM Tunnel YANG Model               March 2024
+
+
    <CODE ENDS>
+
+                      Figure 3: WDM Tunnel YANG module
 
 6.  Security Considerations
 
@@ -3298,14 +3616,6 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
    *  /te:te/.../te:label-restrictions/te:label-restriction/te:label-
       start/te:te-label/te:technology
 
-
-
-
-Guo, et al.                Expires 1 June 2024                 [Page 59]
-
-Internet-Draft            WDM Tunnel YANG Model            November 2023
-
-
    *  /te:te/.../te:label-restrictions/te:label-restriction/te:label-
       end/te:te-label/te:technology
 
@@ -3316,20 +3626,33 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
 
 7.  IANA Considerations
 
-   It is proposed to IANA to assign new URIs from the "IETF XML
-   Registry" [RFC3688] as follows:
+   This document requests IANA to register the following URIs in the
+   "ns" subregistry within the "IETF XML Registry" [RFC3688].  Following
+   the format in [RFC3688], the following registrations are requested.
 
       URI: urn:ietf:params:xml:ns:yang:ietf-wdm-tunnel
       Registrant Contact: The IESG
       XML: N/A; the requested URI is an XML namespace.
 
-   This document registers the following YANG module in the YANG Module
-   Names registry [RFC6020].
+
+
+
+Guo, et al.             Expires 2 September 2024               [Page 65]
+
+Internet-Draft            WDM Tunnel YANG Model               March 2024
+
+
+   This document requests IANA to register the following YANG modules in
+   the "IANA Module Names" [RFC6020].  Following the format in
+   [RFC6020], the following registrations are requested:
 
       name: ietf-wdm-tunnel
       namespace: urn:ietf:params:xml:ns:yang:ietf-wdm-tunnel
       prefix: wdm-tnl
       reference: RFC XXXX
+
+   RFC Editor: Please replace XXXX with the RFC number assigned to this
+   document.
 
 8.  References
 
@@ -3344,23 +3667,13 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
               de Madrid, U. A., Burrero, D. P., King, D., Lee, Y., and
               H. Zheng, "A YANG Data Model for Flexi-Grid Optical
               Networks", Work in Progress, Internet-Draft, draft-ietf-
-              ccamp-flexigrid-yang-15, 10 July 2023,
+              ccamp-flexigrid-yang-16, 29 January 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-
-              flexigrid-yang-15>.
+              flexigrid-yang-16>.
 
    [RFC7950]  Bjorklund, M., Ed., "The YANG 1.1 Data Modeling Language",
               RFC 7950, DOI 10.17487/RFC7950, August 2016,
               <https://www.rfc-editor.org/info/rfc7950>.
-
-
-
-
-
-
-Guo, et al.                Expires 1 June 2024                 [Page 60]
-
-Internet-Draft            WDM Tunnel YANG Model            November 2023
-
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -3377,6 +3690,14 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
               DOI 10.17487/RFC7446, February 2015,
               <https://www.rfc-editor.org/info/rfc7446>.
 
+
+
+
+Guo, et al.             Expires 2 September 2024               [Page 66]
+
+Internet-Draft            WDM Tunnel YANG Model               March 2024
+
+
    [RFC7699]  Farrel, A., King, D., Li, Y., and F. Zhang, "Generalized
               Labels for the Flexi-Grid in Lambda Switch Capable (LSC)
               Label Switching Routers", RFC 7699, DOI 10.17487/RFC7699,
@@ -3391,9 +3712,9 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
               Saad, T., Gandhi, R., Liu, X., Beeram, V. P., and I.
               Bryskin, "A YANG Data Model for Traffic Engineering
               Tunnels, Label Switched Paths and Interfaces", Work in
-              Progress, Internet-Draft, draft-ietf-teas-yang-te-34, 1
-              October 2023, <https://datatracker.ietf.org/doc/html/
-              draft-ietf-teas-yang-te-34>.
+              Progress, Internet-Draft, draft-ietf-teas-yang-te-36, 2
+              February 2024, <https://datatracker.ietf.org/doc/html/
+              draft-ietf-teas-yang-te-36>.
 
    [RFC8040]  Bierman, A., Bjorklund, M., and K. Watsen, "RESTCONF
               Protocol", RFC 8040, DOI 10.17487/RFC8040, January 2017,
@@ -3408,16 +3729,6 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
               DOI 10.17487/RFC3688, January 2004,
               <https://www.rfc-editor.org/info/rfc3688>.
 
-
-
-
-
-
-Guo, et al.                Expires 1 June 2024                 [Page 61]
-
-Internet-Draft            WDM Tunnel YANG Model            November 2023
-
-
    [RFC6020]  Bjorklund, M., Ed., "YANG - A Data Modeling Language for
               the Network Configuration Protocol (NETCONF)", RFC 6020,
               DOI 10.17487/RFC6020, October 2010,
@@ -3430,6 +3741,18 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
               Control of Wavelength Switched Optical Networks (WSONs)",
               RFC 6163, DOI 10.17487/RFC6163, April 2011,
               <https://www.rfc-editor.org/info/rfc6163>.
+
+
+
+
+
+
+
+
+Guo, et al.             Expires 2 September 2024               [Page 67]
+
+Internet-Draft            WDM Tunnel YANG Model               March 2024
+
 
    [RFC7698]  Gonzalez de Dios, O., Ed., Casellas, R., Ed., Zhang, F.,
               Fu, X., Ceccarelli, D., and I. Hussain, "Framework and
@@ -3466,14 +3789,6 @@ Contributors
    Italo Busi
    Huawei Technologies
 
-
-
-
-Guo, et al.                Expires 1 June 2024                 [Page 62]
-
-Internet-Draft            WDM Tunnel YANG Model            November 2023
-
-
    Email: italo.busi@huawei.com
 
 
@@ -3487,6 +3802,12 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
    Nokia
 
    Email: victor.lopez@nokia.com
+
+
+
+Guo, et al.             Expires 2 September 2024               [Page 68]
+
+Internet-Draft            WDM Tunnel YANG Model               March 2024
 
 
    Dieter Beller
@@ -3522,14 +3843,6 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
    Zafar Ali
    Cisco
 
-
-
-
-Guo, et al.                Expires 1 June 2024                 [Page 63]
-
-Internet-Draft            WDM Tunnel YANG Model            November 2023
-
-
    Email: zali@cisco.com
 
 
@@ -3543,6 +3856,14 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
    Orange
 
    Email: julien.meuric@orange.com
+
+
+
+
+
+Guo, et al.             Expires 2 September 2024               [Page 69]
+
+Internet-Draft            WDM Tunnel YANG Model               March 2024
 
 
    Gert Grammel
@@ -3577,15 +3898,6 @@ Authors' Addresses
    Email: ggalimbe56@gmail.com
 
 
-
-
-
-
-Guo, et al.                Expires 1 June 2024                 [Page 64]
-
-Internet-Draft            WDM Tunnel YANG Model            November 2023
-
-
    Jorge E. Lopez de Vergara Mendez
    Naudit HPCN
 
@@ -3605,36 +3917,4 @@ Internet-Draft            WDM Tunnel YANG Model            November 2023
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Guo, et al.                Expires 1 June 2024                 [Page 65]
+Guo, et al.             Expires 2 September 2024               [Page 70]

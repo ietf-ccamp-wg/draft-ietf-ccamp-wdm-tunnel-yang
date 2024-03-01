@@ -228,7 +228,7 @@ flexi-grid topology YANG model with all elements in the network:
 
 -  We define the transponders within nodes A and E as tunnel termination
    points (TTPs) and provide their internal local link connectivity
-   towards the node interfaces.  We also provide nodes A and B identifiers,
+   towards the node interfaces.  We also provide nodes A and E identifiers,
    addresses and interfaces.
 
 -  We do the same for the nodes B, C and D, providing their

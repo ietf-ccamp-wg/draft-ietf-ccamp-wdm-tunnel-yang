@@ -15,15 +15,15 @@ module: ietf-te
      |  +--rw named-path-constraints
      |     +--rw named-path-constraint* [name]
      |             {te-types:named-path-constraints}?
-     |        +--rw name                             string
+     |        +--rw name                      string
      |        +--rw te-bandwidth
      |        |  +--rw (technology)?
      |        |     +--:(generic)
      |        |        +--rw generic?   te-bandwidth
-     |        +--rw link-protection?                 identityref
-     |        +--rw setup-priority?                  uint8
-     |        +--rw hold-priority?                   uint8
-     |        +--rw signaling-type?                  identityref
+     |        +--rw link-protection?          identityref
+     |        +--rw setup-priority?           uint8
+     |        +--rw hold-priority?            uint8
+     |        +--rw signaling-type?           identityref
      |        +--rw path-metric-bounds
      |        |  +--rw path-metric-bound* [metric-type]
      |        |     +--rw metric-type    identityref
@@ -45,9 +45,8 @@ module: ietf-te
      |        |  +--rw path-srlgs-name* [usage]
      |        |     +--rw usage    identityref
      |        |     +--rw names*   string
-     |        +--rw disjointness?
-     |        |       te-path-disjointness
-     |        +--rw explicit-route-objects-always
+     |        +--rw disjointness?             te-path-disjointness
+     |        +--rw explicit-route-objects
      |        |  +--rw route-object-exclude-always* [index]
      |        |  |  +--rw index                        uint32
      |        |  |  +--rw (type)?
@@ -102,7 +101,7 @@ module: ietf-te
      |        |  |              |              |  +--rw wdm-tnl:flexi-m?
      |        |  |              |              |          l0-types:flexi-m
      |        |  |              |              x--:(wdm-tnl:super)
-     |        |  |              |              |  +--rw wdm-tnl:subcarrier-flexi-n*
+     |        |  |              |              |  x--rw wdm-tnl:subcarrier-flexi-n*
      |        |  |              |              |          [flexi-n]
      |        |  |              |              |     +--rw wdm-tnl:flexi-n
      |        |  |              |              |     |       l0-types:flexi-n
@@ -173,7 +172,7 @@ module: ietf-te
      |        |        |        |              |  +--rw wdm-tnl:flexi-m?
      |        |        |        |              |          l0-types:flexi-m
      |        |        |        |              x--:(wdm-tnl:super)
-     |        |        |        |              |  +--rw wdm-tnl:subcarrier-flexi-n*
+     |        |        |        |              |  x--rw wdm-tnl:subcarrier-flexi-n*
      |        |        |        |              |          [flexi-n]
      |        |        |        |              |     +--rw wdm-tnl:flexi-n
      |        |        |        |              |     |       l0-types:flexi-n
@@ -408,8 +407,7 @@ module: ietf-te
      |     +--rw hierarchy
      |     |  +--rw dependency-tunnels
      |     |  |  +--rw dependency-tunnel* [name]
-     |     |  |     +--rw name
-     |     |  |     |       -> /te/tunnels/tunnel/name
+     |     |  |     +--rw name              tunnel-ref
      |     |  |     +--rw encoding?         identityref
      |     |  |     +--rw switching-type?   identityref
      |     |  +--rw hierarchical-link
@@ -418,8 +416,11 @@ module: ietf-te
      |     |     +--rw local-te-node-id?         te-types:te-node-id
      |     |     +--rw local-link-tp-id?         nt:tp-id
      |     |     +--rw local-te-link-tp-id?      te-types:te-tp-id
+     |     |     +--rw remote-node-id?           nw:node-id
      |     |     +--rw remote-link-tp-id?        nt:tp-id
+     |     |     +--rw remote-te-link-tp-id?     te-types:te-tp-id
      |     |     +--rw remote-te-node-id?        te-types:te-node-id
+     |     |     +--ro link-id?                  nt:link-id
      |     |     +--rw network-id?               nw:network-id
      |     |     +--rw te-topology-identifier
      |     |        +--rw provider-id?   te-global-id
@@ -427,19 +428,19 @@ module: ietf-te
      |     |        +--rw topology-id?   te-topology-id
      |     +--rw primary-paths
      |     |  +--rw primary-path* [name]
-     |     |     +--ro active?                          boolean
-     |     |     +--rw name                             string
-     |     |     +--rw path-computation-method?         identityref
+     |     |     +--ro active?                         boolean
+     |     |     +--rw name                            string
+     |     |     +--rw path-computation-method?        identityref
      |     |     +--rw path-computation-server
      |     |     |  +--rw id?     te-gen-node-id
      |     |     |  +--rw type?   enumeration
-     |     |     +--rw compute-only?                    empty
-     |     |     +--rw use-path-computation?            boolean
-     |     |     +--rw lockdown?                        empty
-     |     |     +--ro path-scope?                      identityref
-     |     |     +--rw preference?                      uint8
-     |     |     +--rw co-routed?                       boolean
-     |     |     +--rw k-requested-paths?               uint8
+     |     |     +--rw compute-only?                   empty
+     |     |     +--rw use-path-computation?           boolean
+     |     |     +--rw lockdown?                       empty
+     |     |     +--ro path-scope?                     identityref
+     |     |     +--rw preference?                     uint8
+     |     |     +--rw co-routed?                      boolean
+     |     |     +--rw k-requested-paths?              uint8
      |     |     +--rw association-objects
      |     |     |  +--rw association-object* [association-key]
      |     |     |  |  +--rw association-key    string
@@ -536,7 +537,7 @@ module: ietf-te
      |     |     |     |  |  |        |        |              |  +--rw wdm-tnl:flexi-m?
      |     |     |     |  |  |        |        |              |          l0-types:flexi-m
      |     |     |     |  |  |        |        |              x--:(wdm-tnl:super)
-     |     |     |     |  |  |        |        |              |  +--rw wdm-tnl:subcarrier-flexi-n*
+     |     |     |     |  |  |        |        |              |  x--rw wdm-tnl:subcarrier-flexi-n*
      |     |     |     |  |  |        |        |              |          [flexi-n]
      |     |     |     |  |  |        |        |              |     +--rw wdm-tnl:flexi-n
      |     |     |     |  |  |        |        |              |     |       l0-types:flexi-n
@@ -625,7 +626,7 @@ module: ietf-te
      |     |     |     |  |                    |              |  +--rw wdm-tnl:flexi-m?
      |     |     |     |  |                    |              |          l0-types:flexi-m
      |     |     |     |  |                    |              x--:(wdm-tnl:super)
-     |     |     |     |  |                    |              |  +--rw wdm-tnl:subcarrier-flexi-n*
+     |     |     |     |  |                    |              |  x--rw wdm-tnl:subcarrier-flexi-n*
      |     |     |     |  |                    |              |          [flexi-n]
      |     |     |     |  |                    |              |     +--rw wdm-tnl:flexi-n
      |     |     |     |  |                    |              |     |       l0-types:flexi-n
@@ -649,16 +650,16 @@ module: ietf-te
      |     |     |        +--rw objective-function
      |     |     |           +--rw objective-function-type?
      |     |     |                   identityref
-     |     |     +--rw named-path-constraint?           leafref
+     |     |     +--rw named-path-constraint?          leafref
      |     |     |       {te-types:named-path-constraints}?
      |     |     +--rw te-bandwidth
      |     |     |  +--rw (technology)?
      |     |     |     +--:(generic)
      |     |     |        +--rw generic?   te-bandwidth
-     |     |     +--rw link-protection?                 identityref
-     |     |     +--rw setup-priority?                  uint8
-     |     |     +--rw hold-priority?                   uint8
-     |     |     +--rw signaling-type?                  identityref
+     |     |     +--rw link-protection?                identityref
+     |     |     +--rw setup-priority?                 uint8
+     |     |     +--rw hold-priority?                  uint8
+     |     |     +--rw signaling-type?                 identityref
      |     |     +--rw path-metric-bounds
      |     |     |  +--rw path-metric-bound* [metric-type]
      |     |     |     +--rw metric-type    identityref
@@ -682,7 +683,7 @@ module: ietf-te
      |     |     |     +--rw names*   string
      |     |     +--rw disjointness?
      |     |     |       te-path-disjointness
-     |     |     +--rw explicit-route-objects-always
+     |     |     +--rw explicit-route-objects
      |     |     |  +--rw route-object-exclude-always* [index]
      |     |     |  |  +--rw index                        uint32
      |     |     |  |  +--rw (type)?
@@ -698,38 +699,50 @@ module: ietf-te
      |     |     |  |     |     |  +--rw wdm-tnl:transponder-id?
      |     |     |  |     |     |  |       uint32
      |     |     |  |     |     |  +--rw wdm-tnl:transceivers*
-     |     |     |  |     |     |  |       [lane-id]
-     |     |     |  |     |     |  |  +--rw wdm-tnl:lane-id
-     |     |     |  |     |     |  |  |       uint8
-     |     |     |  |     |     |  |  +--rw wdm-tnl:transceiver-id?
-     |     |     |  |     |     |  |          uint32
-     |     |     |  |     |     |  +--rw wdm-tnl:operational-modes*
-     |     |     |  |     |     |  |       string
-     |     |     |  |     |     |  +--rw wdm-tnl:tx-tune-constraints
-     |     |     |  |     |     |     +--rw wdm-tnl:min-central-frequency?
-     |     |     |  |     |     |     |       frequency-thz
-     |     |     |  |     |     |     +--rw wdm-tnl:max-central-frequency?
-     |     |     |  |     |     |     |       frequency-thz
-     |     |     |  |     |     |     +--rw wdm-tnl:transceiver-tunability?
-     |     |     |  |     |     |             frequency-ghz
+     |     |     |  |     |     |          [lane-id]
+     |     |     |  |     |     |     +--rw wdm-tnl:lane-id
+     |     |     |  |     |     |     |       uint8
+     |     |     |  |     |     |     +--rw wdm-tnl:transceiver-id?
+     |     |     |  |     |     |     |       uint32
+     |     |     |  |     |     |     +--rw wdm-tnl:operational-modes*
+     |     |     |  |     |     |     |       string
+     |     |     |  |     |     |     +--rw wdm-tnl:tx-tune-constraints
+     |     |     |  |     |     |     |  +--rw wdm-tnl:min-central-frequency?
+     |     |     |  |     |     |     |  |       frequency-thz
+     |     |     |  |     |     |     |  +--rw wdm-tnl:max-central-frequency?
+     |     |     |  |     |     |     |  |       frequency-thz
+     |     |     |  |     |     |     |  +--rw wdm-tnl:transceiver-tunability?
+     |     |     |  |     |     |     |          frequency-ghz
+     |     |     |  |     |     |     +--rw wdm-tnl:line-coding-bitrate*
+     |     |     |  |     |     |     |       identityref
+     |     |     |  |     |     |     +--rw wdm-tnl:tx-channel-power?
+     |     |     |  |     |     |     |       l0-types:power-dbm
+     |     |     |  |     |     |     +--rw wdm-tnl:preferred-rx-channel-power?
+     |     |     |  |     |     |             l0-types:power-dbm
      |     |     |  |     |     +--rw wdm-tnl:path-out-transceiver
      |     |     |  |     |        +--rw wdm-tnl:transponder-id?
      |     |     |  |     |        |       uint32
      |     |     |  |     |        +--rw wdm-tnl:transceivers*
-     |     |     |  |     |        |       [lane-id]
-     |     |     |  |     |        |  +--rw wdm-tnl:lane-id
-     |     |     |  |     |        |  |       uint8
-     |     |     |  |     |        |  +--rw wdm-tnl:transceiver-id?
-     |     |     |  |     |        |          uint32
-     |     |     |  |     |        +--rw wdm-tnl:operational-modes*
-     |     |     |  |     |        |       string
-     |     |     |  |     |        +--rw wdm-tnl:tx-tune-constraints
-     |     |     |  |     |           +--rw wdm-tnl:min-central-frequency?
-     |     |     |  |     |           |       frequency-thz
-     |     |     |  |     |           +--rw wdm-tnl:max-central-frequency?
-     |     |     |  |     |           |       frequency-thz
-     |     |     |  |     |           +--rw wdm-tnl:transceiver-tunability?
-     |     |     |  |     |                   frequency-ghz
+     |     |     |  |     |                [lane-id]
+     |     |     |  |     |           +--rw wdm-tnl:lane-id
+     |     |     |  |     |           |       uint8
+     |     |     |  |     |           +--rw wdm-tnl:transceiver-id?
+     |     |     |  |     |           |       uint32
+     |     |     |  |     |           +--rw wdm-tnl:operational-modes*
+     |     |     |  |     |           |       string
+     |     |     |  |     |           +--rw wdm-tnl:tx-tune-constraints
+     |     |     |  |     |           |  +--rw wdm-tnl:min-central-frequency?
+     |     |     |  |     |           |  |       frequency-thz
+     |     |     |  |     |           |  +--rw wdm-tnl:max-central-frequency?
+     |     |     |  |     |           |  |       frequency-thz
+     |     |     |  |     |           |  +--rw wdm-tnl:transceiver-tunability?
+     |     |     |  |     |           |          frequency-ghz
+     |     |     |  |     |           +--rw wdm-tnl:line-coding-bitrate*
+     |     |     |  |     |           |       identityref
+     |     |     |  |     |           +--rw wdm-tnl:tx-channel-power?
+     |     |     |  |     |           |       l0-types:power-dbm
+     |     |     |  |     |           +--rw wdm-tnl:preferred-rx-channel-power?
+     |     |     |  |     |                   l0-types:power-dbm
      |     |     |  |     +--:(numbered-link-hop)
      |     |     |  |     |  +--rw numbered-link-hop
      |     |     |  |     |     +--rw link-tp-id    te-tp-id
@@ -776,7 +789,7 @@ module: ietf-te
      |     |     |  |              |              |  +--rw wdm-tnl:flexi-m?
      |     |     |  |              |              |          l0-types:flexi-m
      |     |     |  |              |              x--:(wdm-tnl:super)
-     |     |     |  |              |              |  +--rw wdm-tnl:subcarrier-flexi-n*
+     |     |     |  |              |              |  x--rw wdm-tnl:subcarrier-flexi-n*
      |     |     |  |              |              |          [flexi-n]
      |     |     |  |              |              |     +--rw wdm-tnl:flexi-n
      |     |     |  |              |              |     |       l0-types:flexi-n
@@ -847,7 +860,7 @@ module: ietf-te
      |     |     |        |        |              |  +--rw wdm-tnl:flexi-m?
      |     |     |        |        |              |          l0-types:flexi-m
      |     |     |        |        |              x--:(wdm-tnl:super)
-     |     |     |        |        |              |  +--rw wdm-tnl:subcarrier-flexi-n*
+     |     |     |        |        |              |  x--rw wdm-tnl:subcarrier-flexi-n*
      |     |     |        |        |              |          [flexi-n]
      |     |     |        |        |              |     +--rw wdm-tnl:flexi-n
      |     |     |        |        |              |     |       l0-types:flexi-n
@@ -1048,7 +1061,33 @@ module: ietf-te
      |     |     |        |        |     +--ro node-id?
      |     |     |        |        |     |       te-node-id
      |     |     |        |        |     +--ro hop-type?
-     |     |     |        |        |             te-hop-type
+     |     |     |        |        |     |       te-hop-type
+     |     |     |        |        |     +--ro wdm-tnl:path-in-transceiver
+     |     |     |        |        |     |  +--ro wdm-tnl:transponder-id?
+     |     |     |        |        |     |  |       uint32
+     |     |     |        |        |     |  +--ro wdm-tnl:transceivers*
+     |     |     |        |        |     |          [lane-id]
+     |     |     |        |        |     |     +--ro wdm-tnl:lane-id
+     |     |     |        |        |     |     |       uint8
+     |     |     |        |        |     |     +--ro wdm-tnl:transceiver-id?
+     |     |     |        |        |     |     |       uint32
+     |     |     |        |        |     |     +--ro wdm-tnl:rx-channel-power?
+     |     |     |        |        |     |     |       power-dbm-or-null
+     |     |     |        |        |     |     +--ro wdm-tnl:rx-total-power?
+     |     |     |        |        |     |             power-dbm-or-null
+     |     |     |        |        |     +--ro wdm-tnl:path-out-transceiver
+     |     |     |        |        |        +--ro wdm-tnl:transponder-id?
+     |     |     |        |        |        |       uint32
+     |     |     |        |        |        +--ro wdm-tnl:transceivers*
+     |     |     |        |        |                [lane-id]
+     |     |     |        |        |           +--ro wdm-tnl:lane-id
+     |     |     |        |        |           |       uint8
+     |     |     |        |        |           +--ro wdm-tnl:transceiver-id?
+     |     |     |        |        |           |       uint32
+     |     |     |        |        |           +--ro wdm-tnl:rx-channel-power?
+     |     |     |        |        |           |       power-dbm-or-null
+     |     |     |        |        |           +--ro wdm-tnl:rx-total-power?
+     |     |     |        |        |                   power-dbm-or-null
      |     |     |        |        +--:(numbered-link-hop)
      |     |     |        |        |  +--ro numbered-link-hop
      |     |     |        |        |     +--ro link-tp-id    te-tp-id
@@ -1104,7 +1143,7 @@ module: ietf-te
      |     |     |        |                 |              |  +--ro wdm-tnl:flexi-m?
      |     |     |        |                 |              |          l0-types:flexi-m
      |     |     |        |                 |              x--:(wdm-tnl:super)
-     |     |     |        |                 |              |  +--ro wdm-tnl:subcarrier-flexi-n*
+     |     |     |        |                 |              |  x--ro wdm-tnl:subcarrier-flexi-n*
      |     |     |        |                 |              |          [flexi-n]
      |     |     |        |                 |              |     +--ro wdm-tnl:flexi-n
      |     |     |        |                 |              |     |       l0-types:flexi-n
@@ -1257,7 +1296,7 @@ module: ietf-te
      |     |     |  |     |  |  |        |        |              |  +--rw wdm-tnl:flexi-m?
      |     |     |  |     |  |  |        |        |              |          l0-types:flexi-m
      |     |     |  |     |  |  |        |        |              x--:(wdm-tnl:super)
-     |     |     |  |     |  |  |        |        |              |  +--rw wdm-tnl:subcarrier-flexi-n*
+     |     |     |  |     |  |  |        |        |              |  x--rw wdm-tnl:subcarrier-flexi-n*
      |     |     |  |     |  |  |        |        |              |          [flexi-n]
      |     |     |  |     |  |  |        |        |              |     +--rw wdm-tnl:flexi-n
      |     |     |  |     |  |  |        |        |              |     |       l0-types:flexi-n
@@ -1346,7 +1385,7 @@ module: ietf-te
      |     |     |  |     |  |                    |              |  +--rw wdm-tnl:flexi-m?
      |     |     |  |     |  |                    |              |          l0-types:flexi-m
      |     |     |  |     |  |                    |              x--:(wdm-tnl:super)
-     |     |     |  |     |  |                    |              |  +--rw wdm-tnl:subcarrier-flexi-n*
+     |     |     |  |     |  |                    |              |  x--rw wdm-tnl:subcarrier-flexi-n*
      |     |     |  |     |  |                    |              |          [flexi-n]
      |     |     |  |     |  |                    |              |     +--rw wdm-tnl:flexi-n
      |     |     |  |     |  |                    |              |     |       l0-types:flexi-n
@@ -1406,7 +1445,7 @@ module: ietf-te
      |     |     |  |     +--rw names*   string
      |     |     |  +--rw disjointness?
      |     |     |  |       te-path-disjointness
-     |     |     |  +--rw explicit-route-objects-always
+     |     |     |  +--rw explicit-route-objects
      |     |     |  |  +--rw route-object-exclude-always* [index]
      |     |     |  |  |  +--rw index                        uint32
      |     |     |  |  |  +--rw (type)?
@@ -1422,38 +1461,50 @@ module: ietf-te
      |     |     |  |  |     |     |  +--rw wdm-tnl:transponder-id?
      |     |     |  |  |     |     |  |       uint32
      |     |     |  |  |     |     |  +--rw wdm-tnl:transceivers*
-     |     |     |  |  |     |     |  |       [lane-id]
-     |     |     |  |  |     |     |  |  +--rw wdm-tnl:lane-id
-     |     |     |  |  |     |     |  |  |       uint8
-     |     |     |  |  |     |     |  |  +--rw wdm-tnl:transceiver-id?
-     |     |     |  |  |     |     |  |          uint32
-     |     |     |  |  |     |     |  +--rw wdm-tnl:operational-modes*
-     |     |     |  |  |     |     |  |       string
-     |     |     |  |  |     |     |  +--rw wdm-tnl:tx-tune-constraints
-     |     |     |  |  |     |     |     +--rw wdm-tnl:min-central-frequency?
-     |     |     |  |  |     |     |     |       frequency-thz
-     |     |     |  |  |     |     |     +--rw wdm-tnl:max-central-frequency?
-     |     |     |  |  |     |     |     |       frequency-thz
-     |     |     |  |  |     |     |     +--rw wdm-tnl:transceiver-tunability?
-     |     |     |  |  |     |     |             frequency-ghz
+     |     |     |  |  |     |     |          [lane-id]
+     |     |     |  |  |     |     |     +--rw wdm-tnl:lane-id
+     |     |     |  |  |     |     |     |       uint8
+     |     |     |  |  |     |     |     +--rw wdm-tnl:transceiver-id?
+     |     |     |  |  |     |     |     |       uint32
+     |     |     |  |  |     |     |     +--rw wdm-tnl:operational-modes*
+     |     |     |  |  |     |     |     |       string
+     |     |     |  |  |     |     |     +--rw wdm-tnl:tx-tune-constraints
+     |     |     |  |  |     |     |     |  +--rw wdm-tnl:min-central-frequency?
+     |     |     |  |  |     |     |     |  |       frequency-thz
+     |     |     |  |  |     |     |     |  +--rw wdm-tnl:max-central-frequency?
+     |     |     |  |  |     |     |     |  |       frequency-thz
+     |     |     |  |  |     |     |     |  +--rw wdm-tnl:transceiver-tunability?
+     |     |     |  |  |     |     |     |          frequency-ghz
+     |     |     |  |  |     |     |     +--rw wdm-tnl:line-coding-bitrate*
+     |     |     |  |  |     |     |     |       identityref
+     |     |     |  |  |     |     |     +--rw wdm-tnl:tx-channel-power?
+     |     |     |  |  |     |     |     |       l0-types:power-dbm
+     |     |     |  |  |     |     |     +--rw wdm-tnl:preferred-rx-channel-power?
+     |     |     |  |  |     |     |             l0-types:power-dbm
      |     |     |  |  |     |     +--rw wdm-tnl:path-out-transceiver
      |     |     |  |  |     |        +--rw wdm-tnl:transponder-id?
      |     |     |  |  |     |        |       uint32
      |     |     |  |  |     |        +--rw wdm-tnl:transceivers*
-     |     |     |  |  |     |        |       [lane-id]
-     |     |     |  |  |     |        |  +--rw wdm-tnl:lane-id
-     |     |     |  |  |     |        |  |       uint8
-     |     |     |  |  |     |        |  +--rw wdm-tnl:transceiver-id?
-     |     |     |  |  |     |        |          uint32
-     |     |     |  |  |     |        +--rw wdm-tnl:operational-modes*
-     |     |     |  |  |     |        |       string
-     |     |     |  |  |     |        +--rw wdm-tnl:tx-tune-constraints
-     |     |     |  |  |     |           +--rw wdm-tnl:min-central-frequency?
-     |     |     |  |  |     |           |       frequency-thz
-     |     |     |  |  |     |           +--rw wdm-tnl:max-central-frequency?
-     |     |     |  |  |     |           |       frequency-thz
-     |     |     |  |  |     |           +--rw wdm-tnl:transceiver-tunability?
-     |     |     |  |  |     |                   frequency-ghz
+     |     |     |  |  |     |                [lane-id]
+     |     |     |  |  |     |           +--rw wdm-tnl:lane-id
+     |     |     |  |  |     |           |       uint8
+     |     |     |  |  |     |           +--rw wdm-tnl:transceiver-id?
+     |     |     |  |  |     |           |       uint32
+     |     |     |  |  |     |           +--rw wdm-tnl:operational-modes*
+     |     |     |  |  |     |           |       string
+     |     |     |  |  |     |           +--rw wdm-tnl:tx-tune-constraints
+     |     |     |  |  |     |           |  +--rw wdm-tnl:min-central-frequency?
+     |     |     |  |  |     |           |  |       frequency-thz
+     |     |     |  |  |     |           |  +--rw wdm-tnl:max-central-frequency?
+     |     |     |  |  |     |           |  |       frequency-thz
+     |     |     |  |  |     |           |  +--rw wdm-tnl:transceiver-tunability?
+     |     |     |  |  |     |           |          frequency-ghz
+     |     |     |  |  |     |           +--rw wdm-tnl:line-coding-bitrate*
+     |     |     |  |  |     |           |       identityref
+     |     |     |  |  |     |           +--rw wdm-tnl:tx-channel-power?
+     |     |     |  |  |     |           |       l0-types:power-dbm
+     |     |     |  |  |     |           +--rw wdm-tnl:preferred-rx-channel-power?
+     |     |     |  |  |     |                   l0-types:power-dbm
      |     |     |  |  |     +--:(numbered-link-hop)
      |     |     |  |  |     |  +--rw numbered-link-hop
      |     |     |  |  |     |     +--rw link-tp-id    te-tp-id
@@ -1502,7 +1553,7 @@ module: ietf-te
      |     |     |  |  |              |              |  +--rw wdm-tnl:flexi-m?
      |     |     |  |  |              |              |          l0-types:flexi-m
      |     |     |  |  |              |              x--:(wdm-tnl:super)
-     |     |     |  |  |              |              |  +--rw wdm-tnl:subcarrier-flexi-n*
+     |     |     |  |  |              |              |  x--rw wdm-tnl:subcarrier-flexi-n*
      |     |     |  |  |              |              |          [flexi-n]
      |     |     |  |  |              |              |     +--rw wdm-tnl:flexi-n
      |     |     |  |  |              |              |     |       l0-types:flexi-n
@@ -1576,7 +1627,7 @@ module: ietf-te
      |     |     |  |        |        |              |  +--rw wdm-tnl:flexi-m?
      |     |     |  |        |        |              |          l0-types:flexi-m
      |     |     |  |        |        |              x--:(wdm-tnl:super)
-     |     |     |  |        |        |              |  +--rw wdm-tnl:subcarrier-flexi-n*
+     |     |     |  |        |        |              |  x--rw wdm-tnl:subcarrier-flexi-n*
      |     |     |  |        |        |              |          [flexi-n]
      |     |     |  |        |        |              |     +--rw wdm-tnl:flexi-n
      |     |     |  |        |        |              |     |       l0-types:flexi-n
@@ -1780,7 +1831,33 @@ module: ietf-te
      |     |     |  |        |        |     +--ro node-id?
      |     |     |  |        |        |     |       te-node-id
      |     |     |  |        |        |     +--ro hop-type?
-     |     |     |  |        |        |             te-hop-type
+     |     |     |  |        |        |     |       te-hop-type
+     |     |     |  |        |        |     +--ro wdm-tnl:path-in-transceiver
+     |     |     |  |        |        |     |  +--ro wdm-tnl:transponder-id?
+     |     |     |  |        |        |     |  |       uint32
+     |     |     |  |        |        |     |  +--ro wdm-tnl:transceivers*
+     |     |     |  |        |        |     |          [lane-id]
+     |     |     |  |        |        |     |     +--ro wdm-tnl:lane-id
+     |     |     |  |        |        |     |     |       uint8
+     |     |     |  |        |        |     |     +--ro wdm-tnl:transceiver-id?
+     |     |     |  |        |        |     |     |       uint32
+     |     |     |  |        |        |     |     +--ro wdm-tnl:rx-channel-power?
+     |     |     |  |        |        |     |     |       power-dbm-or-null
+     |     |     |  |        |        |     |     +--ro wdm-tnl:rx-total-power?
+     |     |     |  |        |        |     |             power-dbm-or-null
+     |     |     |  |        |        |     +--ro wdm-tnl:path-out-transceiver
+     |     |     |  |        |        |        +--ro wdm-tnl:transponder-id?
+     |     |     |  |        |        |        |       uint32
+     |     |     |  |        |        |        +--ro wdm-tnl:transceivers*
+     |     |     |  |        |        |                [lane-id]
+     |     |     |  |        |        |           +--ro wdm-tnl:lane-id
+     |     |     |  |        |        |           |       uint8
+     |     |     |  |        |        |           +--ro wdm-tnl:transceiver-id?
+     |     |     |  |        |        |           |       uint32
+     |     |     |  |        |        |           +--ro wdm-tnl:rx-channel-power?
+     |     |     |  |        |        |           |       power-dbm-or-null
+     |     |     |  |        |        |           +--ro wdm-tnl:rx-total-power?
+     |     |     |  |        |        |                   power-dbm-or-null
      |     |     |  |        |        +--:(numbered-link-hop)
      |     |     |  |        |        |  +--ro numbered-link-hop
      |     |     |  |        |        |     +--ro link-tp-id
@@ -1837,7 +1914,7 @@ module: ietf-te
      |     |     |  |        |                 |              |  +--ro wdm-tnl:flexi-m?
      |     |     |  |        |                 |              |          l0-types:flexi-m
      |     |     |  |        |                 |              x--:(wdm-tnl:super)
-     |     |     |  |        |                 |              |  +--ro wdm-tnl:subcarrier-flexi-n*
+     |     |     |  |        |                 |              |  x--ro wdm-tnl:subcarrier-flexi-n*
      |     |     |  |        |                 |              |          [flexi-n]
      |     |     |  |        |                 |              |     +--ro wdm-tnl:flexi-n
      |     |     |  |        |                 |              |     |       l0-types:flexi-n
@@ -1899,17 +1976,17 @@ module: ietf-te
      |     |           +--ro active?           boolean
      |     +--rw secondary-paths
      |     |  +--rw secondary-path* [name]
-     |     |     +--rw name                             string
-     |     |     +--rw path-computation-method?         identityref
+     |     |     +--rw name                            string
+     |     |     +--rw path-computation-method?        identityref
      |     |     +--rw path-computation-server
      |     |     |  +--rw id?     te-gen-node-id
      |     |     |  +--rw type?   enumeration
-     |     |     +--rw compute-only?                    empty
-     |     |     +--rw use-path-computation?            boolean
-     |     |     +--rw lockdown?                        empty
-     |     |     +--ro path-scope?                      identityref
-     |     |     +--rw preference?                      uint8
-     |     |     +--rw secondary-reverse-path?          leafref
+     |     |     +--rw compute-only?                   empty
+     |     |     +--rw use-path-computation?           boolean
+     |     |     +--rw lockdown?                       empty
+     |     |     +--ro path-scope?                     identityref
+     |     |     +--rw preference?                     uint8
+     |     |     +--rw secondary-reverse-path?         leafref
      |     |     +--rw association-objects
      |     |     |  +--rw association-object* [association-key]
      |     |     |  |  +--rw association-key    string
@@ -2006,7 +2083,7 @@ module: ietf-te
      |     |     |     |  |  |        |        |              |  +--rw wdm-tnl:flexi-m?
      |     |     |     |  |  |        |        |              |          l0-types:flexi-m
      |     |     |     |  |  |        |        |              x--:(wdm-tnl:super)
-     |     |     |     |  |  |        |        |              |  +--rw wdm-tnl:subcarrier-flexi-n*
+     |     |     |     |  |  |        |        |              |  x--rw wdm-tnl:subcarrier-flexi-n*
      |     |     |     |  |  |        |        |              |          [flexi-n]
      |     |     |     |  |  |        |        |              |     +--rw wdm-tnl:flexi-n
      |     |     |     |  |  |        |        |              |     |       l0-types:flexi-n
@@ -2095,7 +2172,7 @@ module: ietf-te
      |     |     |     |  |                    |              |  +--rw wdm-tnl:flexi-m?
      |     |     |     |  |                    |              |          l0-types:flexi-m
      |     |     |     |  |                    |              x--:(wdm-tnl:super)
-     |     |     |     |  |                    |              |  +--rw wdm-tnl:subcarrier-flexi-n*
+     |     |     |     |  |                    |              |  x--rw wdm-tnl:subcarrier-flexi-n*
      |     |     |     |  |                    |              |          [flexi-n]
      |     |     |     |  |                    |              |     +--rw wdm-tnl:flexi-n
      |     |     |     |  |                    |              |     |       l0-types:flexi-n
@@ -2119,16 +2196,16 @@ module: ietf-te
      |     |     |        +--rw objective-function
      |     |     |           +--rw objective-function-type?
      |     |     |                   identityref
-     |     |     +--rw named-path-constraint?           leafref
+     |     |     +--rw named-path-constraint?          leafref
      |     |     |       {te-types:named-path-constraints}?
      |     |     +--rw te-bandwidth
      |     |     |  +--rw (technology)?
      |     |     |     +--:(generic)
      |     |     |        +--rw generic?   te-bandwidth
-     |     |     +--rw link-protection?                 identityref
-     |     |     +--rw setup-priority?                  uint8
-     |     |     +--rw hold-priority?                   uint8
-     |     |     +--rw signaling-type?                  identityref
+     |     |     +--rw link-protection?                identityref
+     |     |     +--rw setup-priority?                 uint8
+     |     |     +--rw hold-priority?                  uint8
+     |     |     +--rw signaling-type?                 identityref
      |     |     +--rw path-metric-bounds
      |     |     |  +--rw path-metric-bound* [metric-type]
      |     |     |     +--rw metric-type    identityref
@@ -2152,7 +2229,7 @@ module: ietf-te
      |     |     |     +--rw names*   string
      |     |     +--rw disjointness?
      |     |     |       te-path-disjointness
-     |     |     +--rw explicit-route-objects-always
+     |     |     +--rw explicit-route-objects
      |     |     |  +--rw route-object-exclude-always* [index]
      |     |     |  |  +--rw index                        uint32
      |     |     |  |  +--rw (type)?
@@ -2168,38 +2245,50 @@ module: ietf-te
      |     |     |  |     |     |  +--rw wdm-tnl:transponder-id?
      |     |     |  |     |     |  |       uint32
      |     |     |  |     |     |  +--rw wdm-tnl:transceivers*
-     |     |     |  |     |     |  |       [lane-id]
-     |     |     |  |     |     |  |  +--rw wdm-tnl:lane-id
-     |     |     |  |     |     |  |  |       uint8
-     |     |     |  |     |     |  |  +--rw wdm-tnl:transceiver-id?
-     |     |     |  |     |     |  |          uint32
-     |     |     |  |     |     |  +--rw wdm-tnl:operational-modes*
-     |     |     |  |     |     |  |       string
-     |     |     |  |     |     |  +--rw wdm-tnl:tx-tune-constraints
-     |     |     |  |     |     |     +--rw wdm-tnl:min-central-frequency?
-     |     |     |  |     |     |     |       frequency-thz
-     |     |     |  |     |     |     +--rw wdm-tnl:max-central-frequency?
-     |     |     |  |     |     |     |       frequency-thz
-     |     |     |  |     |     |     +--rw wdm-tnl:transceiver-tunability?
-     |     |     |  |     |     |             frequency-ghz
+     |     |     |  |     |     |          [lane-id]
+     |     |     |  |     |     |     +--rw wdm-tnl:lane-id
+     |     |     |  |     |     |     |       uint8
+     |     |     |  |     |     |     +--rw wdm-tnl:transceiver-id?
+     |     |     |  |     |     |     |       uint32
+     |     |     |  |     |     |     +--rw wdm-tnl:operational-modes*
+     |     |     |  |     |     |     |       string
+     |     |     |  |     |     |     +--rw wdm-tnl:tx-tune-constraints
+     |     |     |  |     |     |     |  +--rw wdm-tnl:min-central-frequency?
+     |     |     |  |     |     |     |  |       frequency-thz
+     |     |     |  |     |     |     |  +--rw wdm-tnl:max-central-frequency?
+     |     |     |  |     |     |     |  |       frequency-thz
+     |     |     |  |     |     |     |  +--rw wdm-tnl:transceiver-tunability?
+     |     |     |  |     |     |     |          frequency-ghz
+     |     |     |  |     |     |     +--rw wdm-tnl:line-coding-bitrate*
+     |     |     |  |     |     |     |       identityref
+     |     |     |  |     |     |     +--rw wdm-tnl:tx-channel-power?
+     |     |     |  |     |     |     |       l0-types:power-dbm
+     |     |     |  |     |     |     +--rw wdm-tnl:preferred-rx-channel-power?
+     |     |     |  |     |     |             l0-types:power-dbm
      |     |     |  |     |     +--rw wdm-tnl:path-out-transceiver
      |     |     |  |     |        +--rw wdm-tnl:transponder-id?
      |     |     |  |     |        |       uint32
      |     |     |  |     |        +--rw wdm-tnl:transceivers*
-     |     |     |  |     |        |       [lane-id]
-     |     |     |  |     |        |  +--rw wdm-tnl:lane-id
-     |     |     |  |     |        |  |       uint8
-     |     |     |  |     |        |  +--rw wdm-tnl:transceiver-id?
-     |     |     |  |     |        |          uint32
-     |     |     |  |     |        +--rw wdm-tnl:operational-modes*
-     |     |     |  |     |        |       string
-     |     |     |  |     |        +--rw wdm-tnl:tx-tune-constraints
-     |     |     |  |     |           +--rw wdm-tnl:min-central-frequency?
-     |     |     |  |     |           |       frequency-thz
-     |     |     |  |     |           +--rw wdm-tnl:max-central-frequency?
-     |     |     |  |     |           |       frequency-thz
-     |     |     |  |     |           +--rw wdm-tnl:transceiver-tunability?
-     |     |     |  |     |                   frequency-ghz
+     |     |     |  |     |                [lane-id]
+     |     |     |  |     |           +--rw wdm-tnl:lane-id
+     |     |     |  |     |           |       uint8
+     |     |     |  |     |           +--rw wdm-tnl:transceiver-id?
+     |     |     |  |     |           |       uint32
+     |     |     |  |     |           +--rw wdm-tnl:operational-modes*
+     |     |     |  |     |           |       string
+     |     |     |  |     |           +--rw wdm-tnl:tx-tune-constraints
+     |     |     |  |     |           |  +--rw wdm-tnl:min-central-frequency?
+     |     |     |  |     |           |  |       frequency-thz
+     |     |     |  |     |           |  +--rw wdm-tnl:max-central-frequency?
+     |     |     |  |     |           |  |       frequency-thz
+     |     |     |  |     |           |  +--rw wdm-tnl:transceiver-tunability?
+     |     |     |  |     |           |          frequency-ghz
+     |     |     |  |     |           +--rw wdm-tnl:line-coding-bitrate*
+     |     |     |  |     |           |       identityref
+     |     |     |  |     |           +--rw wdm-tnl:tx-channel-power?
+     |     |     |  |     |           |       l0-types:power-dbm
+     |     |     |  |     |           +--rw wdm-tnl:preferred-rx-channel-power?
+     |     |     |  |     |                   l0-types:power-dbm
      |     |     |  |     +--:(numbered-link-hop)
      |     |     |  |     |  +--rw numbered-link-hop
      |     |     |  |     |     +--rw link-tp-id    te-tp-id
@@ -2246,7 +2335,7 @@ module: ietf-te
      |     |     |  |              |              |  +--rw wdm-tnl:flexi-m?
      |     |     |  |              |              |          l0-types:flexi-m
      |     |     |  |              |              x--:(wdm-tnl:super)
-     |     |     |  |              |              |  +--rw wdm-tnl:subcarrier-flexi-n*
+     |     |     |  |              |              |  x--rw wdm-tnl:subcarrier-flexi-n*
      |     |     |  |              |              |          [flexi-n]
      |     |     |  |              |              |     +--rw wdm-tnl:flexi-n
      |     |     |  |              |              |     |       l0-types:flexi-n
@@ -2317,7 +2406,7 @@ module: ietf-te
      |     |     |        |        |              |  +--rw wdm-tnl:flexi-m?
      |     |     |        |        |              |          l0-types:flexi-m
      |     |     |        |        |              x--:(wdm-tnl:super)
-     |     |     |        |        |              |  +--rw wdm-tnl:subcarrier-flexi-n*
+     |     |     |        |        |              |  x--rw wdm-tnl:subcarrier-flexi-n*
      |     |     |        |        |              |          [flexi-n]
      |     |     |        |        |              |     +--rw wdm-tnl:flexi-n
      |     |     |        |        |              |     |       l0-types:flexi-n
@@ -2533,7 +2622,33 @@ module: ietf-te
      |     |     |        |        |     +--ro node-id?
      |     |     |        |        |     |       te-node-id
      |     |     |        |        |     +--ro hop-type?
-     |     |     |        |        |             te-hop-type
+     |     |     |        |        |     |       te-hop-type
+     |     |     |        |        |     +--ro wdm-tnl:path-in-transceiver
+     |     |     |        |        |     |  +--ro wdm-tnl:transponder-id?
+     |     |     |        |        |     |  |       uint32
+     |     |     |        |        |     |  +--ro wdm-tnl:transceivers*
+     |     |     |        |        |     |          [lane-id]
+     |     |     |        |        |     |     +--ro wdm-tnl:lane-id
+     |     |     |        |        |     |     |       uint8
+     |     |     |        |        |     |     +--ro wdm-tnl:transceiver-id?
+     |     |     |        |        |     |     |       uint32
+     |     |     |        |        |     |     +--ro wdm-tnl:rx-channel-power?
+     |     |     |        |        |     |     |       power-dbm-or-null
+     |     |     |        |        |     |     +--ro wdm-tnl:rx-total-power?
+     |     |     |        |        |     |             power-dbm-or-null
+     |     |     |        |        |     +--ro wdm-tnl:path-out-transceiver
+     |     |     |        |        |        +--ro wdm-tnl:transponder-id?
+     |     |     |        |        |        |       uint32
+     |     |     |        |        |        +--ro wdm-tnl:transceivers*
+     |     |     |        |        |                [lane-id]
+     |     |     |        |        |           +--ro wdm-tnl:lane-id
+     |     |     |        |        |           |       uint8
+     |     |     |        |        |           +--ro wdm-tnl:transceiver-id?
+     |     |     |        |        |           |       uint32
+     |     |     |        |        |           +--ro wdm-tnl:rx-channel-power?
+     |     |     |        |        |           |       power-dbm-or-null
+     |     |     |        |        |           +--ro wdm-tnl:rx-total-power?
+     |     |     |        |        |                   power-dbm-or-null
      |     |     |        |        +--:(numbered-link-hop)
      |     |     |        |        |  +--ro numbered-link-hop
      |     |     |        |        |     +--ro link-tp-id    te-tp-id
@@ -2589,7 +2704,7 @@ module: ietf-te
      |     |     |        |                 |              |  +--ro wdm-tnl:flexi-m?
      |     |     |        |                 |              |          l0-types:flexi-m
      |     |     |        |                 |              x--:(wdm-tnl:super)
-     |     |     |        |                 |              |  +--ro wdm-tnl:subcarrier-flexi-n*
+     |     |     |        |                 |              |  x--ro wdm-tnl:subcarrier-flexi-n*
      |     |     |        |                 |              |          [flexi-n]
      |     |     |        |                 |              |     +--ro wdm-tnl:flexi-n
      |     |     |        |                 |              |     |       l0-types:flexi-n
@@ -2635,16 +2750,16 @@ module: ietf-te
      |     |           +--ro lsp-id         leafref
      |     +--rw secondary-reverse-paths
      |     |  +--rw secondary-reverse-path* [name]
-     |     |     +--rw name                             string
-     |     |     +--rw path-computation-method?         identityref
+     |     |     +--rw name                            string
+     |     |     +--rw path-computation-method?        identityref
      |     |     +--rw path-computation-server
      |     |     |  +--rw id?     te-gen-node-id
      |     |     |  +--rw type?   enumeration
-     |     |     +--rw compute-only?                    empty
-     |     |     +--rw use-path-computation?            boolean
-     |     |     +--rw lockdown?                        empty
-     |     |     +--ro path-scope?                      identityref
-     |     |     +--rw preference?                      uint8
+     |     |     +--rw compute-only?                   empty
+     |     |     +--rw use-path-computation?           boolean
+     |     |     +--rw lockdown?                       empty
+     |     |     +--ro path-scope?                     identityref
+     |     |     +--rw preference?                     uint8
      |     |     +--rw association-objects
      |     |     |  +--rw association-object* [association-key]
      |     |     |  |  +--rw association-key    string
@@ -2741,7 +2856,7 @@ module: ietf-te
      |     |     |     |  |  |        |        |              |  +--rw wdm-tnl:flexi-m?
      |     |     |     |  |  |        |        |              |          l0-types:flexi-m
      |     |     |     |  |  |        |        |              x--:(wdm-tnl:super)
-     |     |     |     |  |  |        |        |              |  +--rw wdm-tnl:subcarrier-flexi-n*
+     |     |     |     |  |  |        |        |              |  x--rw wdm-tnl:subcarrier-flexi-n*
      |     |     |     |  |  |        |        |              |          [flexi-n]
      |     |     |     |  |  |        |        |              |     +--rw wdm-tnl:flexi-n
      |     |     |     |  |  |        |        |              |     |       l0-types:flexi-n
@@ -2830,7 +2945,7 @@ module: ietf-te
      |     |     |     |  |                    |              |  +--rw wdm-tnl:flexi-m?
      |     |     |     |  |                    |              |          l0-types:flexi-m
      |     |     |     |  |                    |              x--:(wdm-tnl:super)
-     |     |     |     |  |                    |              |  +--rw wdm-tnl:subcarrier-flexi-n*
+     |     |     |     |  |                    |              |  x--rw wdm-tnl:subcarrier-flexi-n*
      |     |     |     |  |                    |              |          [flexi-n]
      |     |     |     |  |                    |              |     +--rw wdm-tnl:flexi-n
      |     |     |     |  |                    |              |     |       l0-types:flexi-n
@@ -2854,16 +2969,16 @@ module: ietf-te
      |     |     |        +--rw objective-function
      |     |     |           +--rw objective-function-type?
      |     |     |                   identityref
-     |     |     +--rw named-path-constraint?           leafref
+     |     |     +--rw named-path-constraint?          leafref
      |     |     |       {te-types:named-path-constraints}?
      |     |     +--rw te-bandwidth
      |     |     |  +--rw (technology)?
      |     |     |     +--:(generic)
      |     |     |        +--rw generic?   te-bandwidth
-     |     |     +--rw link-protection?                 identityref
-     |     |     +--rw setup-priority?                  uint8
-     |     |     +--rw hold-priority?                   uint8
-     |     |     +--rw signaling-type?                  identityref
+     |     |     +--rw link-protection?                identityref
+     |     |     +--rw setup-priority?                 uint8
+     |     |     +--rw hold-priority?                  uint8
+     |     |     +--rw signaling-type?                 identityref
      |     |     +--rw path-metric-bounds
      |     |     |  +--rw path-metric-bound* [metric-type]
      |     |     |     +--rw metric-type    identityref
@@ -2887,7 +3002,7 @@ module: ietf-te
      |     |     |     +--rw names*   string
      |     |     +--rw disjointness?
      |     |     |       te-path-disjointness
-     |     |     +--rw explicit-route-objects-always
+     |     |     +--rw explicit-route-objects
      |     |     |  +--rw route-object-exclude-always* [index]
      |     |     |  |  +--rw index                        uint32
      |     |     |  |  +--rw (type)?
@@ -2903,38 +3018,50 @@ module: ietf-te
      |     |     |  |     |     |  +--rw wdm-tnl:transponder-id?
      |     |     |  |     |     |  |       uint32
      |     |     |  |     |     |  +--rw wdm-tnl:transceivers*
-     |     |     |  |     |     |  |       [lane-id]
-     |     |     |  |     |     |  |  +--rw wdm-tnl:lane-id
-     |     |     |  |     |     |  |  |       uint8
-     |     |     |  |     |     |  |  +--rw wdm-tnl:transceiver-id?
-     |     |     |  |     |     |  |          uint32
-     |     |     |  |     |     |  +--rw wdm-tnl:operational-modes*
-     |     |     |  |     |     |  |       string
-     |     |     |  |     |     |  +--rw wdm-tnl:tx-tune-constraints
-     |     |     |  |     |     |     +--rw wdm-tnl:min-central-frequency?
-     |     |     |  |     |     |     |       frequency-thz
-     |     |     |  |     |     |     +--rw wdm-tnl:max-central-frequency?
-     |     |     |  |     |     |     |       frequency-thz
-     |     |     |  |     |     |     +--rw wdm-tnl:transceiver-tunability?
-     |     |     |  |     |     |             frequency-ghz
+     |     |     |  |     |     |          [lane-id]
+     |     |     |  |     |     |     +--rw wdm-tnl:lane-id
+     |     |     |  |     |     |     |       uint8
+     |     |     |  |     |     |     +--rw wdm-tnl:transceiver-id?
+     |     |     |  |     |     |     |       uint32
+     |     |     |  |     |     |     +--rw wdm-tnl:operational-modes*
+     |     |     |  |     |     |     |       string
+     |     |     |  |     |     |     +--rw wdm-tnl:tx-tune-constraints
+     |     |     |  |     |     |     |  +--rw wdm-tnl:min-central-frequency?
+     |     |     |  |     |     |     |  |       frequency-thz
+     |     |     |  |     |     |     |  +--rw wdm-tnl:max-central-frequency?
+     |     |     |  |     |     |     |  |       frequency-thz
+     |     |     |  |     |     |     |  +--rw wdm-tnl:transceiver-tunability?
+     |     |     |  |     |     |     |          frequency-ghz
+     |     |     |  |     |     |     +--rw wdm-tnl:line-coding-bitrate*
+     |     |     |  |     |     |     |       identityref
+     |     |     |  |     |     |     +--rw wdm-tnl:tx-channel-power?
+     |     |     |  |     |     |     |       l0-types:power-dbm
+     |     |     |  |     |     |     +--rw wdm-tnl:preferred-rx-channel-power?
+     |     |     |  |     |     |             l0-types:power-dbm
      |     |     |  |     |     +--rw wdm-tnl:path-out-transceiver
      |     |     |  |     |        +--rw wdm-tnl:transponder-id?
      |     |     |  |     |        |       uint32
      |     |     |  |     |        +--rw wdm-tnl:transceivers*
-     |     |     |  |     |        |       [lane-id]
-     |     |     |  |     |        |  +--rw wdm-tnl:lane-id
-     |     |     |  |     |        |  |       uint8
-     |     |     |  |     |        |  +--rw wdm-tnl:transceiver-id?
-     |     |     |  |     |        |          uint32
-     |     |     |  |     |        +--rw wdm-tnl:operational-modes*
-     |     |     |  |     |        |       string
-     |     |     |  |     |        +--rw wdm-tnl:tx-tune-constraints
-     |     |     |  |     |           +--rw wdm-tnl:min-central-frequency?
-     |     |     |  |     |           |       frequency-thz
-     |     |     |  |     |           +--rw wdm-tnl:max-central-frequency?
-     |     |     |  |     |           |       frequency-thz
-     |     |     |  |     |           +--rw wdm-tnl:transceiver-tunability?
-     |     |     |  |     |                   frequency-ghz
+     |     |     |  |     |                [lane-id]
+     |     |     |  |     |           +--rw wdm-tnl:lane-id
+     |     |     |  |     |           |       uint8
+     |     |     |  |     |           +--rw wdm-tnl:transceiver-id?
+     |     |     |  |     |           |       uint32
+     |     |     |  |     |           +--rw wdm-tnl:operational-modes*
+     |     |     |  |     |           |       string
+     |     |     |  |     |           +--rw wdm-tnl:tx-tune-constraints
+     |     |     |  |     |           |  +--rw wdm-tnl:min-central-frequency?
+     |     |     |  |     |           |  |       frequency-thz
+     |     |     |  |     |           |  +--rw wdm-tnl:max-central-frequency?
+     |     |     |  |     |           |  |       frequency-thz
+     |     |     |  |     |           |  +--rw wdm-tnl:transceiver-tunability?
+     |     |     |  |     |           |          frequency-ghz
+     |     |     |  |     |           +--rw wdm-tnl:line-coding-bitrate*
+     |     |     |  |     |           |       identityref
+     |     |     |  |     |           +--rw wdm-tnl:tx-channel-power?
+     |     |     |  |     |           |       l0-types:power-dbm
+     |     |     |  |     |           +--rw wdm-tnl:preferred-rx-channel-power?
+     |     |     |  |     |                   l0-types:power-dbm
      |     |     |  |     +--:(numbered-link-hop)
      |     |     |  |     |  +--rw numbered-link-hop
      |     |     |  |     |     +--rw link-tp-id    te-tp-id
@@ -2981,7 +3108,7 @@ module: ietf-te
      |     |     |  |              |              |  +--rw wdm-tnl:flexi-m?
      |     |     |  |              |              |          l0-types:flexi-m
      |     |     |  |              |              x--:(wdm-tnl:super)
-     |     |     |  |              |              |  +--rw wdm-tnl:subcarrier-flexi-n*
+     |     |     |  |              |              |  x--rw wdm-tnl:subcarrier-flexi-n*
      |     |     |  |              |              |          [flexi-n]
      |     |     |  |              |              |     +--rw wdm-tnl:flexi-n
      |     |     |  |              |              |     |       l0-types:flexi-n
@@ -3052,7 +3179,7 @@ module: ietf-te
      |     |     |        |        |              |  +--rw wdm-tnl:flexi-m?
      |     |     |        |        |              |          l0-types:flexi-m
      |     |     |        |        |              x--:(wdm-tnl:super)
-     |     |     |        |        |              |  +--rw wdm-tnl:subcarrier-flexi-n*
+     |     |     |        |        |              |  x--rw wdm-tnl:subcarrier-flexi-n*
      |     |     |        |        |              |          [flexi-n]
      |     |     |        |        |              |     +--rw wdm-tnl:flexi-n
      |     |     |        |        |              |     |       l0-types:flexi-n
@@ -3268,7 +3395,33 @@ module: ietf-te
      |     |     |        |        |     +--ro node-id?
      |     |     |        |        |     |       te-node-id
      |     |     |        |        |     +--ro hop-type?
-     |     |     |        |        |             te-hop-type
+     |     |     |        |        |     |       te-hop-type
+     |     |     |        |        |     +--ro wdm-tnl:path-in-transceiver
+     |     |     |        |        |     |  +--ro wdm-tnl:transponder-id?
+     |     |     |        |        |     |  |       uint32
+     |     |     |        |        |     |  +--ro wdm-tnl:transceivers*
+     |     |     |        |        |     |          [lane-id]
+     |     |     |        |        |     |     +--ro wdm-tnl:lane-id
+     |     |     |        |        |     |     |       uint8
+     |     |     |        |        |     |     +--ro wdm-tnl:transceiver-id?
+     |     |     |        |        |     |     |       uint32
+     |     |     |        |        |     |     +--ro wdm-tnl:rx-channel-power?
+     |     |     |        |        |     |     |       power-dbm-or-null
+     |     |     |        |        |     |     +--ro wdm-tnl:rx-total-power?
+     |     |     |        |        |     |             power-dbm-or-null
+     |     |     |        |        |     +--ro wdm-tnl:path-out-transceiver
+     |     |     |        |        |        +--ro wdm-tnl:transponder-id?
+     |     |     |        |        |        |       uint32
+     |     |     |        |        |        +--ro wdm-tnl:transceivers*
+     |     |     |        |        |                [lane-id]
+     |     |     |        |        |           +--ro wdm-tnl:lane-id
+     |     |     |        |        |           |       uint8
+     |     |     |        |        |           +--ro wdm-tnl:transceiver-id?
+     |     |     |        |        |           |       uint32
+     |     |     |        |        |           +--ro wdm-tnl:rx-channel-power?
+     |     |     |        |        |           |       power-dbm-or-null
+     |     |     |        |        |           +--ro wdm-tnl:rx-total-power?
+     |     |     |        |        |                   power-dbm-or-null
      |     |     |        |        +--:(numbered-link-hop)
      |     |     |        |        |  +--ro numbered-link-hop
      |     |     |        |        |     +--ro link-tp-id    te-tp-id
@@ -3324,7 +3477,7 @@ module: ietf-te
      |     |     |        |                 |              |  +--ro wdm-tnl:flexi-m?
      |     |     |        |                 |              |          l0-types:flexi-m
      |     |     |        |                 |              x--:(wdm-tnl:super)
-     |     |     |        |                 |              |  +--ro wdm-tnl:subcarrier-flexi-n*
+     |     |     |        |                 |              |  x--ro wdm-tnl:subcarrier-flexi-n*
      |     |     |        |                 |              |          [flexi-n]
      |     |     |        |                 |              |     +--ro wdm-tnl:flexi-n
      |     |     |        |                 |              |     |       l0-types:flexi-n
@@ -3385,18 +3538,23 @@ module: ietf-te
      |     |     +---w extra-traffic-tunnel-ref?        tunnel-ref
      |     +--rw wdm-tnl:wdm-constraint
      |        +--rw wdm-tnl:transceiver-constraint
-     |        |  +--rw wdm-tnl:operational-modes*     string
+     |        |  +--rw wdm-tnl:operational-modes*            string
      |        |  +--rw wdm-tnl:tx-tune-constraints
-     |        |     +--rw wdm-tnl:min-central-frequency?
-     |        |     |       frequency-thz
-     |        |     +--rw wdm-tnl:max-central-frequency?
-     |        |     |       frequency-thz
-     |        |     +--rw wdm-tnl:transceiver-tunability?
-     |        |             frequency-ghz
-     |        +--rw wdm-tnl:gsnr-margin?                   snr
+     |        |  |  +--rw wdm-tnl:min-central-frequency?
+     |        |  |  |       frequency-thz
+     |        |  |  +--rw wdm-tnl:max-central-frequency?
+     |        |  |  |       frequency-thz
+     |        |  |  +--rw wdm-tnl:transceiver-tunability?
+     |        |  |          frequency-ghz
+     |        |  +--rw wdm-tnl:line-coding-bitrate*
+     |        |  |       identityref
+     |        |  +--rw wdm-tnl:tx-channel-power?
+     |        |  |       l0-types:power-dbm
+     |        |  +--rw wdm-tnl:preferred-rx-channel-power?
+     |        |          l0-types:power-dbm
+     |        +--rw wdm-tnl:gsnr-extra-margin?             snr
      |        +--rw wdm-tnl:use-regen?                     boolean
      |        +--rw wdm-tnl:wavelength-conversion?         boolean
-     |        +--rw wdm-tnl:bit-stuffing?                  boolean
      |        +--rw wdm-tnl:wavelength-assignment?
      |        |       identityref
      |        +--rw wdm-tnl:guard-band-size?
@@ -3404,7 +3562,7 @@ module: ietf-te
      |        +--rw wdm-tnl:matching-fwd-rev-wavelength?   boolean
      |        +--rw wdm-tnl:allow-retuning?                boolean
      |        +--rw wdm-tnl:delta-power?
-     |                l0-types:ratio-in-db
+     |                l0-types:power-ratio
      +--ro lsps
         +--ro lsp* [tunnel-name lsp-id node]
            +--ro tunnel-name                         string
@@ -3435,9 +3593,34 @@ module: ietf-te
               |  +--ro (type)?
               |     +--:(numbered-node-hop)
               |     |  +--ro numbered-node-hop
-              |     |     +--ro node-id-uri?   nw:node-id
-              |     |     +--ro node-id?       te-node-id
-              |     |     +--ro flags*         path-attribute-flags
+              |     |     +--ro node-id-uri?
+              |     |     |       nw:node-id
+              |     |     +--ro node-id?
+              |     |     |       te-node-id
+              |     |     +--ro flags*
+              |     |     |       path-attribute-flags
+              |     |     +--ro wdm-tnl:path-in-transceiver
+              |     |     |  +--ro wdm-tnl:transponder-id?   uint32
+              |     |     |  +--ro wdm-tnl:transceivers* [lane-id]
+              |     |     |     +--ro wdm-tnl:lane-id
+              |     |     |     |       uint8
+              |     |     |     +--ro wdm-tnl:transceiver-id?
+              |     |     |     |       uint32
+              |     |     |     +--ro wdm-tnl:rx-channel-power?
+              |     |     |     |       power-dbm-or-null
+              |     |     |     +--ro wdm-tnl:rx-total-power?
+              |     |     |             power-dbm-or-null
+              |     |     +--ro wdm-tnl:path-out-transceiver
+              |     |        +--ro wdm-tnl:transponder-id?   uint32
+              |     |        +--ro wdm-tnl:transceivers* [lane-id]
+              |     |           +--ro wdm-tnl:lane-id
+              |     |           |       uint8
+              |     |           +--ro wdm-tnl:transceiver-id?
+              |     |           |       uint32
+              |     |           +--ro wdm-tnl:rx-channel-power?
+              |     |           |       power-dbm-or-null
+              |     |           +--ro wdm-tnl:rx-total-power?
+              |     |                   power-dbm-or-null
               |     +--:(numbered-link-hop)
               |     |  +--ro numbered-link-hop
               |     |     +--ro link-tp-id    te-tp-id
@@ -3478,7 +3661,7 @@ module: ietf-te
               |           |  |              |  +--ro wdm-tnl:flexi-m?
               |           |  |              |          l0-types:flexi-m
               |           |  |              x--:(wdm-tnl:super)
-              |           |  |              |  +--ro wdm-tnl:subcarrier-flexi-n*
+              |           |  |              |  x--ro wdm-tnl:subcarrier-flexi-n*
               |           |  |              |          [flexi-n]
               |           |  |              |     +--ro wdm-tnl:flexi-n
               |           |  |              |     |       l0-types:flexi-n
