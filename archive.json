@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-02-29T00:49:26.010066+00:00",
+  "timestamp": "2024-03-03T00:52:37.939165+00:00",
   "repo": "ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang",
   "labels": [
     {
@@ -1556,6 +1556,22 @@
       "updatedAt": "2024-01-18T21:50:15Z",
       "closedAt": null,
       "comments": []
+    },
+    {
+      "number": 66,
+      "id": "I_kwDOEHme9c6A-DeG",
+      "title": "Proper structure for defining transponders and 3R regenerators",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/66",
+      "state": "OPEN",
+      "author": "aguoietf",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Currently the following structure is used for defining starting, terminating and 3R regenerator transponders:\r\n~~~\r\n    +--rw path-in-transceiver\r\n    |  +--rw transponder-id?   uint32\r\n    |  +--rw transceivers* [lane-id]\r\n    |     +--rw lane-id                       uint8\r\n    |     +--rw transceiver-id?               uint32\r\n    |     +--rw operational-modes*            string\r\n    |     +--rw tx-tune-constraints\r\n    |     |  +--rw min-central-frequency?    frequency-thz\r\n    |     |  +--rw max-central-frequency?    frequency-thz\r\n    |     |  +--rw transceiver-tunability?   frequency-ghz\r\n    |     +--rw line-coding-bitrate*          identityref\r\n    |     +--rw tx-channel-power?             l0-types:power-dbm\r\n    |     +--rw preferred-rx-channel-power?   l0-types:power-dbm\r\n    +--rw path-out-transceiver\r\n       +--rw transponder-id?   uint32\r\n       +--rw transceivers* [lane-id]\r\n          +--rw lane-id                       uint8\r\n          +--rw transceiver-id?               uint32\r\n          +--rw operational-modes*            string\r\n          +--rw tx-tune-constraints\r\n          |  +--rw min-central-frequency?    frequency-thz\r\n          |  +--rw max-central-frequency?    frequency-thz\r\n          |  +--rw transceiver-tunability?   frequency-ghz\r\n          +--rw line-coding-bitrate*          identityref\r\n          +--rw tx-channel-power?             l0-types:power-dbm\r\n          +--rw preferred-rx-channel-power?   l0-types:power-dbm\r\n~~~\r\n\r\nItalo's concern:\r\n- whether we need a new hop type for the 3R function where to put this information\r\n- should the container be named 'path-in-transponder' and 'path-out-transponder'?\r\n- how to provide constraints on the transponders at the ingress/egress of the tunnel?\r\n\r\nWe need to look into use cases to check if the above constructs still stand for describing the ERO and RROs for WDM tunnel.\r\n\r\n",
+      "createdAt": "2024-03-01T16:30:31Z",
+      "updatedAt": "2024-03-01T16:30:32Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
@@ -2046,24 +2062,26 @@
       "id": "PR_kwDOEHme9c5myv_s",
       "title": "YANG and text model updates for WDM tunnel model",
       "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/pull/65",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "aguoietf",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "YANG and text update for the following issue: \r\n\r\n- fix typo in text\r\n- added preferred-rx-channel-power as a transceiver constraint; \r\n- sync'ed with l0-types for rw/ro split of transceiver parameters; \r\n- added augments for reporting estimated transceiver properties on computed paths; \r\n- added augments for reporting actual transceiver properties on LSPs\"\r\n",
       "createdAt": "2024-02-13T20:37:59Z",
-      "updatedAt": "2024-02-27T10:13:23Z",
+      "updatedAt": "2024-03-01T16:32:07Z",
       "baseRepository": "ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang",
       "baseRefName": "main",
       "baseRefOid": "36dead767f792427761844922cadf14007801b23",
       "headRepository": "aguoietf/draft-ietf-ccamp-wdm-tunnel-yang",
       "headRefName": "master",
-      "headRefOid": "c6ca3f8518fc9ff4241b091bffbb5bc80a2b73c4",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "ce9dcdcfd2a9875bac1dd30b3ec96de1407de3a1",
+      "closedAt": "2024-03-01T16:32:07Z",
+      "mergedAt": "2024-03-01T16:32:07Z",
+      "mergedBy": "aguoietf",
+      "mergeCommit": {
+        "oid": "ca46ff267f6e3068ec04c00366ef6d7224d9589d"
+      },
       "comments": [],
       "reviews": [
         {
@@ -2247,6 +2265,66 @@
               "body": "Q1: operational and organizational modes have already their own line-coding-bitrate \r\n`grouping common-standard-organizational-mode {\r\n    description\r\n      \"Common attributes used by standard and organizational \r\n      transceiver's modes.\";\r\n    \r\n    leaf-list line-coding-bitrate {\r\n      type identityref {\r\n        base line-coding;\r\n      }\r\n      config false;\r\n      description\r\n        \"The list of the bit rate/line coding of the optical \r\n        tributary signal supported by the transceiver.\r\n\r\n        Reporting this list is optional when the standard or \r\n        organization mode supports only one bit rate/line coding.\";\r\n      reference \r\n        \"ITU-T G.698.2 section 7.1.2\";\r\n    }\r\n  } // grouping common-standard-organizational-mode`\r\n\r\nQ2: tx-channel-power is also per operational- mode so is correctly in common for any modes",
               "createdAt": "2024-02-27T10:13:22Z",
               "updatedAt": "2024-02-27T10:13:23Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOEHme9c5xx66l",
+          "commit": {
+            "abbreviatedOid": "c6ca3f8"
+          },
+          "author": "ggrammel",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-29T13:39:01Z",
+          "updatedAt": "2024-02-29T13:39:01Z",
+          "comments": [
+            {
+              "originalPosition": 14,
+              "body": "Suggested text:If the tunnel need to fulfill additional constraints,  the list of operational modes shall not include modes that are unable to match the additional constraints.  I.e. If the frequency is constrained to the C-band, the list of operational modes shall not include modes that are only applicable to L-band.",
+              "createdAt": "2024-02-29T13:39:01Z",
+              "updatedAt": "2024-02-29T13:39:01Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOEHme9c5xyG91",
+          "commit": {
+            "abbreviatedOid": "c6ca3f8"
+          },
+          "author": "ggrammel",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-29T13:57:59Z",
+          "updatedAt": "2024-02-29T13:57:59Z",
+          "comments": [
+            {
+              "originalPosition": 14,
+              "body": "Additional comment:\r\nExcept for operational modes, Transceiver constraints are related to the tunnel selection and are meant to further constrain the resources available to the tunnel. All constraints are inclusive i.e. with an AND logic. E.g. a specific frequency range would need to select any of the operational modes AND constrain the tunnel to match only that range. ",
+              "createdAt": "2024-02-29T13:57:59Z",
+              "updatedAt": "2024-02-29T13:57:59Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOEHme9c5xwvZI",
+          "commit": {
+            "abbreviatedOid": "c6ca3f8"
+          },
+          "author": "sergiobelotti",
+          "authorAssociation": "NONE",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-02-29T11:13:54Z",
+          "updatedAt": "2024-02-29T16:16:47Z",
+          "comments": [
+            {
+              "originalPosition": 15,
+              "body": "As below , we need to sue typedef defined in 9093-bis --> l0-typea : power-dbm ",
+              "createdAt": "2024-02-29T11:13:54Z",
+              "updatedAt": "2024-02-29T16:16:47Z"
             }
           ]
         }
