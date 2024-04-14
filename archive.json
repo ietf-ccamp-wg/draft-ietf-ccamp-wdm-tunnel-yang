@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-04-11T00:51:37.255617+00:00",
+  "timestamp": "2024-04-14T01:09:45.776091+00:00",
   "repo": "ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang",
   "labels": [
     {
@@ -922,7 +922,7 @@
       "labels": [],
       "body": "Some text to describe what use cases we plan to address in the document, and what is out of scope.",
       "createdAt": "2021-10-07T12:19:07Z",
-      "updatedAt": "2023-12-20T13:31:51Z",
+      "updatedAt": "2024-04-11T13:02:38Z",
       "closedAt": null,
       "comments": [
         {
@@ -931,6 +931,13 @@
           "body": "Proposed text:\r\n\r\n\"The Flexi-grid networks are needed to support transceivers requiring an optical bandwidth exceeding or not fitting the ITU-T fixed greed (e.g. 50 or 100GHz). Although most of the transceivers can fit in 100 GHz spacing (e.g. 62.5 GHz) the ROADM technology evolved to flexi-grid solution to optimise the bandwidth usage. The transceivers imposing such requirements benefit of the new generation coherent technology, so any legacy transceiver like 10Gb/s, 40Gb/s are not applicable to this draft.\"\r\n\r\nWill integrate into latest version. \r\n",
           "createdAt": "2021-10-14T12:02:06Z",
           "updatedAt": "2021-11-25T13:29:06Z"
+        },
+        {
+          "author": "aguoietf",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Supporting no-coherent technology requires the knowledge and deployment of Dispersion Compensation Units (DCUs) as part of the amplifier capabilities.\r\nThe DCU availability does not need to be exposed by RFC9093bis and optical impairment, but instead can be exposed through private extensions.\r\nFor WDM tunnel the client only requests for tunnel provisioning and the controller will manage the DCUs and come up with proper path. Therefore the controller is able to support both services with coherent (100G & above) and DD (10G,40G) transponders.\r\nThere are also cases when the controller needs to manage networks built separately with coherent and non-coherent transponders.\r\n\r\nThe conclusions is that for optical impairment and RFC9093-bis the DCU availability will not be supported and exposed, therefore it will not support external path computation by the hierarchical controller (MDSC) for legacy 10G/40G WDM networks. Proprietary extensions are needed for external path computation.\r\n\r\nFor the WDM tunnel model it should support both the legacy 10G/40G and coherent services because the path computation and optical feasibility check are fully delegated to the optical PNC.",
+          "createdAt": "2024-04-11T13:02:37Z",
+          "updatedAt": "2024-04-11T13:02:37Z"
         }
       ]
     },
