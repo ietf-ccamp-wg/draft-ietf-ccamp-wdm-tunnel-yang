@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-04-18T00:50:48.976524+00:00",
+  "timestamp": "2024-04-21T00:55:30.261624+00:00",
   "repo": "ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang",
   "labels": [
     {
@@ -1091,7 +1091,7 @@
       "id": "I_kwDOEHme9c49LNSR",
       "title": "OTSi Information in the Flexi-grid tunnel model",
       "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/40",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "italobusi",
       "authorAssociation": "MEMBER",
       "assignees": [
@@ -1100,8 +1100,8 @@
       "labels": [],
       "body": "> Moreover the knowledge of the OTSi position in the spectrum is also useful in the intermediate nodes to easy the Optical Channel Monitoring in the ROADM.\"\r\n\r\nI think this piece of text is very important when discussing the information to be provided by the controller (or by the control plane) to a ROADM during path setup. However, I am not sure this has an impact to the information to be provided in the topology model for path computation. My proposal is not to put this sentence in this draft but to open an issue to discuss this sentence in the context of tunnel setup: https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-flexigrid-media-channel-yang\r\n\r\nhttps://github.com/ietf-ccamp-wg/draft-ietf-ccamp-optical-impairment-topology-yang/issues/89#issuecomment-923907647",
       "createdAt": "2021-10-14T12:39:07Z",
-      "updatedAt": "2023-12-14T13:42:26Z",
-      "closedAt": null,
+      "updatedAt": "2024-04-18T12:40:35Z",
+      "closedAt": "2024-04-18T12:40:34Z",
       "comments": [
         {
           "author": "danielkinguk",
@@ -1116,6 +1116,13 @@
           "body": "2023-12-14:\r\nCheck the latest text and model to make sure the above information is covered.",
           "createdAt": "2023-12-14T13:42:25Z",
           "updatedAt": "2023-12-14T13:42:25Z"
+        },
+        {
+          "author": "aguoietf",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "WDM tunnel is by default co-routed for forward /reverse directions\r\nThe base TE tunnel has this support for co-routed fwd/rev tunnel.\r\n\r\n\"bidirectional boolean + \"An empty 'route-object-include-exclude' list for a reverse path means it always follows the forward path (i.e., the TE Tunnel is co-routed). When the 'route-object-include-exclude' list is not empty, the reverse path is routed independently of the forward path.\"\r\n\r\nThis issue is closed.",
+          "createdAt": "2024-04-18T12:32:21Z",
+          "updatedAt": "2024-04-18T12:40:32Z"
         }
       ]
     },
@@ -1289,7 +1296,7 @@
       "id": "I_kwDOEHme9c5FNZbu",
       "title": "Align with RFC9093-bis",
       "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/49",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "italobusi",
       "authorAssociation": "MEMBER",
       "assignees": [
@@ -1298,8 +1305,8 @@
       "labels": [],
       "body": "",
       "createdAt": "2022-03-07T09:40:36Z",
-      "updatedAt": "2022-04-28T12:11:33Z",
-      "closedAt": null,
+      "updatedAt": "2024-04-18T12:39:43Z",
+      "closedAt": "2024-04-18T12:39:43Z",
       "comments": [
         {
           "author": "italobusi",
@@ -1307,6 +1314,13 @@
           "body": "Submit a PR with the proposed changes to the YANG module\r\n",
           "createdAt": "2022-04-28T12:11:33Z",
           "updatedAt": "2022-04-28T12:11:33Z"
+        },
+        {
+          "author": "aguoietf",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "completed with rev-01.",
+          "createdAt": "2024-04-18T12:37:17Z",
+          "updatedAt": "2024-04-18T12:37:17Z"
         }
       ]
     },
@@ -1315,7 +1329,7 @@
       "id": "I_kwDOEHme9c5HOAFo",
       "title": "Mapping between OTSi and the related component link in case of bundle link",
       "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/50",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "sergiobelotti",
       "authorAssociation": "NONE",
       "assignees": [
@@ -1325,9 +1339,17 @@
       "labels": [],
       "body": "Issue #106 of Optical Impairments Topology model https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-optical-impairment-topology-yang/issues/106\r\ndescribes the case of external shelf of transponders connected to WDM-node. The parallel links between external shelf and WDM_node can be grouped as bundle . In this case it is needed to understand how to report which component link is used by which OTSi, which is the piece of information to add to characterize this mapping.",
       "createdAt": "2022-04-06T16:36:13Z",
-      "updatedAt": "2022-04-07T12:15:49Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2024-04-18T12:45:43Z",
+      "closedAt": "2024-04-18T12:45:43Z",
+      "comments": [
+        {
+          "author": "aguoietf",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Already addressed by https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-optical-impairment-topology-yang/issues/106",
+          "createdAt": "2024-04-18T12:45:43Z",
+          "updatedAt": "2024-04-18T12:45:43Z"
+        }
+      ]
     },
     {
       "number": 51,
@@ -1352,32 +1374,48 @@
       "id": "I_kwDOEHme9c5NU_Q-",
       "title": "Transceivers configuration",
       "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/53",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "italobusi",
       "authorAssociation": "MEMBER",
       "assignees": [],
       "labels": [],
       "body": "Few additional doubts:\r\n\r\nShould we enforce all the transceivers within the same OTSiG to use the same fec-type?\r\nWhere is the transceiver configuration reported within the tunnel model\r\nIs there a need to constraint which transceivers can be used by the OTSiG on the primary and/or on the secondary path?\r\n\r\nSee:  https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-flexigrid-tunnel-yang/issues/15#issuecomment-981861111\r\n\r\n",
       "createdAt": "2022-07-07T12:27:39Z",
-      "updatedAt": "2022-07-07T12:27:39Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2024-04-18T12:46:45Z",
+      "closedAt": "2024-04-18T12:46:45Z",
+      "comments": [
+        {
+          "author": "aguoietf",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "addressed by the latest rev-01",
+          "createdAt": "2024-04-18T12:46:45Z",
+          "updatedAt": "2024-04-18T12:46:45Z"
+        }
+      ]
     },
     {
       "number": 54,
       "id": "I_kwDOEHme9c5R7gsz",
       "title": "Support optical impairment constraints in flexgrid tunnel",
       "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/54",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "aguoietf",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "Along with combining the WSON and flexgrid tunnel models, this model can also consider supporting the specification of optical impairment constraints (as optional). This results in a single tunnel model for optical layer, that can support -\r\n - WSON tunnel setup\r\n - Flexgrid tunnel setup\r\n - and optionally, with optical impairment constraints\r\n\r\nBoth the flexgrid tunnel and optical path computation model should be sync'ed to support the above.",
       "createdAt": "2022-09-15T13:43:57Z",
-      "updatedAt": "2022-09-15T13:43:57Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2024-04-18T12:47:16Z",
+      "closedAt": "2024-04-18T12:47:16Z",
+      "comments": [
+        {
+          "author": "aguoietf",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "addressed by rev-01",
+          "createdAt": "2024-04-18T12:47:16Z",
+          "updatedAt": "2024-04-18T12:47:16Z"
+        }
+      ]
     },
     {
       "number": 55,
@@ -1391,9 +1429,17 @@
       "labels": [],
       "body": "The model can consider to support the following wavelength tuning constraints:\r\n- Use the same wavelength between working, protection and restoration path\r\n- Allow/disallow the use of regenerators (in working or protection or both)\r\n- Allow/disallow wavelength changes along the path (in working or protection or both)\r\n- path optimization objectives, e.g.\r\n    * optimize on TE cost and only validate if path is optically feasible\r\n    * optimize on optical performance, e.g. best OSNR\r\n - specify wavelength tunning range allowed on a transceiver, e.g.\r\n    * allow tuning in 100Ghz grid even if the transceiver supports 50Ghz\r\n    * allow c-band only or full super-c band tuning\r\n    * (these may be done by using the label restriction from the base model but is a bit cumbersome)",
       "createdAt": "2022-09-15T13:54:18Z",
-      "updatedAt": "2022-09-15T13:54:18Z",
+      "updatedAt": "2024-04-18T12:54:19Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "aguoietf",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "We need to add a TE metric (optical feasibility) to the list of TE tunnel criteria to be considered.",
+          "createdAt": "2024-04-18T12:54:18Z",
+          "updatedAt": "2024-04-18T12:54:18Z"
+        }
+      ]
     },
     {
       "number": 56,
@@ -1499,7 +1545,7 @@
       "id": "I_kwDOEHme9c53dsmK",
       "title": "Remove ietf-te revision date",
       "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/61",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "italobusi",
       "authorAssociation": "MEMBER",
       "assignees": [
@@ -1510,8 +1556,8 @@
       ],
       "body": "Remove revision date for imported ietf-te YANG model and check that all the augmentation statements are correct",
       "createdAt": "2023-11-21T13:20:28Z",
-      "updatedAt": "2023-11-21T13:21:24Z",
-      "closedAt": null,
+      "updatedAt": "2024-04-18T12:54:48Z",
+      "closedAt": "2024-04-18T12:54:48Z",
       "comments": [
         {
           "author": "italobusi",
@@ -1551,7 +1597,7 @@
       "id": "I_kwDOEHme9c58hS7Y",
       "title": "Move wavelength-assignment identities to L0-Types",
       "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/64",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "italobusi",
       "authorAssociation": "MEMBER",
       "assignees": [
@@ -1560,8 +1606,8 @@
       "labels": [],
       "body": "Move wavelength-assignment identities to L0-Types\r\n\r\nFind the references where these methods for wavelength assignment are defined",
       "createdAt": "2024-01-18T21:50:10Z",
-      "updatedAt": "2024-01-18T21:50:15Z",
-      "closedAt": null,
+      "updatedAt": "2024-04-18T12:55:14Z",
+      "closedAt": "2024-04-18T12:55:14Z",
       "comments": []
     },
     {
