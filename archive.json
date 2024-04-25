@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-04-23T00:52:03.230589+00:00",
+  "timestamp": "2024-04-25T00:54:18.241793+00:00",
   "repo": "ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang",
   "labels": [
     {
@@ -1258,7 +1258,7 @@
       "labels": [],
       "body": "How is the relationship between OTSi group identifier and tunnel identifiers ? The optical tributary signal group (OTSiG) is a management/control abstraction that represents a group of one or more OTSi that carry the characteristic information (CI) of one client. This management control entity is used to group the modulated signal represented by OTSi as co-routed.\r\nOTSiG identifier is an output of path computation and tunnel setup and need to have a reference to related tunnel identifier supporting the connection used to carry the client mapped onto 1 or more OTSi .\r\n\r\nImported from https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-optical-impairment-topology-yang/issues/87\r\n",
       "createdAt": "2022-01-31T15:42:44Z",
-      "updatedAt": "2023-12-14T14:10:48Z",
+      "updatedAt": "2024-04-25T00:46:22Z",
       "closedAt": null,
       "comments": [
         {
@@ -1288,6 +1288,13 @@
           "body": "2023-12-14:\r\nThere is one OTSiG per direction between the transmitter and receiver. \r\nFor an e2e tunnel without regenerators, there will be two OTSiGs (one per direction)\r\nFor a tunnel with N regenerators, there will be a total of 2*(N+1) OTSiGs\r\n\r\nBoth OTSi and OTSiG identifiers are needed to navigate between tunnel and OI topology. We need to report both OTSi and OTSiG identifiers in the tunnel model.\r\n",
           "createdAt": "2023-12-14T14:10:47Z",
           "updatedAt": "2023-12-14T14:10:47Z"
+        },
+        {
+          "author": "aguoietf",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Modeling the relationship between an LSP and OTSi/OTSiG/MC/MCG:\r\n\r\n//Q: Are MCs / MCGs preconfigured or created along with TE LSP?\r\n//Q: Do we use the same MCs / MCGs configuration on each hop end to end?\r\n//What about label-hop?\r\n~~~\r\n  augment /te:te/te:lsps/te:lsp/te:lsp-actual-route-information:\r\n    +--ro wdm-path-state\r\n    |  +--ro gsnr?   l0-types:snr\r\n    ***\r\n\t//LSP --1:N-- E2E-MC-Path\r\n\t+--ro e2e-mc-path-id*    uint16\r\n    ***\r\n\r\n  augment /te:te/te:lsps/te:lsp/te:lsp-actual-route-information\r\n            /te:lsp-actual-route-information/te:type\r\n            /te:numbered-node-hop/te:numbered-node-hop:\r\n    +--ro path-in-transceiver\r\n    |  +--ro transponder-id?   uint32\r\n    |  +--ro transceivers* [lane-id]\r\n    |     +--ro lane-id             uint8\r\n    |     +--ro transceiver-id?     uint32\r\n    |     +--ro rx-channel-power?   power-dbm-or-null\r\n    |     +--ro rx-total-power?     power-dbm-or-null\r\n\t*** \r\n    |     +--ro otsi-group-id?    string\r\n    |     +--ro otsi-carrier-id?  uint16\r\n\t*** \t\r\n    +--ro path-out-transceiver\r\n    |  +--ro transponder-id?   uint32\r\n    |  +--ro transceivers* [lane-id]\r\n    |     +--ro lane-id             uint8\r\n    |     +--ro transceiver-id?     uint32\r\n    |     +--ro rx-channel-power?   power-dbm-or-null\r\n    |     +--ro rx-total-power?     power-dbm-or-null\r\n\t*** \r\n    |     +--ro otsi-group-id?    string\r\n    |     +--ro otsi-carrier-id?  uint16\r\n\t*** \t\r\n\r\n  ***\r\n  augment /te:te/te:lsps/te:lsp/te:lsp-actual-route-information\r\n            /te:lsp-actual-route-information/te:type\r\n            /te:numbered-link-hop/te:numbered-link-hop:\r\n    +--ro media-channel-group\r\n       +--ro media-channels* []\r\n          +--ro flexi-n?          l0-types:flexi-n\r\n          +--ro flexi-m?          l0-types:flexi-m\r\n          +--ro otsi* []\r\n             +--ro otsi-group-id?     string\r\n             +--ro otsi-carrier-id?   uint16\r\n\r\n  augment /te:te/te:lsps/te:lsp/te:lsp-actual-route-information\r\n            /te:lsp-actual-route-information/te:type\r\n            /te:unnumbered-link-hop/te:unnumbered-link-hop:\r\n    +--ro media-channel-group\r\n       +--ro media-channels* []\r\n          +--ro flexi-n?          l0-types:flexi-n\r\n          +--ro flexi-m?          l0-types:flexi-m\r\n          +--ro otsi* []\r\n             +--ro otsi-group-id?     string\r\n             +--ro otsi-carrier-id?   uint16\r\n  ***\r\n\r\n\r\n~~~",
+          "createdAt": "2024-04-25T00:46:20Z",
+          "updatedAt": "2024-04-25T00:46:20Z"
         }
       ]
     },
