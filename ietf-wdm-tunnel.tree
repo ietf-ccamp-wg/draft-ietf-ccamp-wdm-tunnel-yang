@@ -25,8 +25,8 @@ module: ietf-wdm-tunnel
             /te:numbered-node-hop/te:numbered-node-hop:
     +--rw path-in-transceiver
     |  +--rw transponder-id?   uint32
-    |  +--rw transceivers* [lane-id]
-    |     +--rw lane-id                       uint8
+    |  +--rw transceivers* [otsi-carrier-id]
+    |     +--rw otsi-carrier-id               uint16
     |     +--rw transceiver-id?               uint32
     |     +--rw operational-modes*            string
     |     +--rw tx-tune-constraints
@@ -38,8 +38,8 @@ module: ietf-wdm-tunnel
     |     +--rw preferred-rx-channel-power?   l0-types:power-dbm
     +--rw path-out-transceiver
        +--rw transponder-id?   uint32
-       +--rw transceivers* [lane-id]
-          +--rw lane-id                       uint8
+       +--rw transceivers* [otsi-carrier-id]
+          +--rw otsi-carrier-id               uint16
           +--rw transceiver-id?               uint32
           +--rw operational-modes*            string
           +--rw tx-tune-constraints
@@ -55,8 +55,8 @@ module: ietf-wdm-tunnel
             /te:type/te:numbered-node-hop/te:numbered-node-hop:
     +--rw path-in-transceiver
     |  +--rw transponder-id?   uint32
-    |  +--rw transceivers* [lane-id]
-    |     +--rw lane-id                       uint8
+    |  +--rw transceivers* [otsi-carrier-id]
+    |     +--rw otsi-carrier-id               uint16
     |     +--rw transceiver-id?               uint32
     |     +--rw operational-modes*            string
     |     +--rw tx-tune-constraints
@@ -68,8 +68,8 @@ module: ietf-wdm-tunnel
     |     +--rw preferred-rx-channel-power?   l0-types:power-dbm
     +--rw path-out-transceiver
        +--rw transponder-id?   uint32
-       +--rw transceivers* [lane-id]
-          +--rw lane-id                       uint8
+       +--rw transceivers* [otsi-carrier-id]
+          +--rw otsi-carrier-id               uint16
           +--rw transceiver-id?               uint32
           +--rw operational-modes*            string
           +--rw tx-tune-constraints
@@ -85,8 +85,8 @@ module: ietf-wdm-tunnel
             /te:numbered-node-hop/te:numbered-node-hop:
     +--rw path-in-transceiver
     |  +--rw transponder-id?   uint32
-    |  +--rw transceivers* [lane-id]
-    |     +--rw lane-id                       uint8
+    |  +--rw transceivers* [otsi-carrier-id]
+    |     +--rw otsi-carrier-id               uint16
     |     +--rw transceiver-id?               uint32
     |     +--rw operational-modes*            string
     |     +--rw tx-tune-constraints
@@ -98,8 +98,8 @@ module: ietf-wdm-tunnel
     |     +--rw preferred-rx-channel-power?   l0-types:power-dbm
     +--rw path-out-transceiver
        +--rw transponder-id?   uint32
-       +--rw transceivers* [lane-id]
-          +--rw lane-id                       uint8
+       +--rw transceivers* [otsi-carrier-id]
+          +--rw otsi-carrier-id               uint16
           +--rw transceiver-id?               uint32
           +--rw operational-modes*            string
           +--rw tx-tune-constraints
@@ -115,8 +115,8 @@ module: ietf-wdm-tunnel
             /te:numbered-node-hop/te:numbered-node-hop:
     +--rw path-in-transceiver
     |  +--rw transponder-id?   uint32
-    |  +--rw transceivers* [lane-id]
-    |     +--rw lane-id                       uint8
+    |  +--rw transceivers* [otsi-carrier-id]
+    |     +--rw otsi-carrier-id               uint16
     |     +--rw transceiver-id?               uint32
     |     +--rw operational-modes*            string
     |     +--rw tx-tune-constraints
@@ -128,8 +128,8 @@ module: ietf-wdm-tunnel
     |     +--rw preferred-rx-channel-power?   l0-types:power-dbm
     +--rw path-out-transceiver
        +--rw transponder-id?   uint32
-       +--rw transceivers* [lane-id]
-          +--rw lane-id                       uint8
+       +--rw transceivers* [otsi-carrier-id]
+          +--rw otsi-carrier-id               uint16
           +--rw transceiver-id?               uint32
           +--rw operational-modes*            string
           +--rw tx-tune-constraints
@@ -171,15 +171,15 @@ module: ietf-wdm-tunnel
             /te:numbered-node-hop/te:numbered-node-hop:
     +--ro path-in-transceiver
     |  +--ro transponder-id?   uint32
-    |  +--ro transceivers* [lane-id]
-    |     +--ro lane-id             uint8
+    |  +--ro transceivers* [otsi-carrier-id]
+    |     +--ro otsi-carrier-id     uint16
     |     +--ro transceiver-id?     uint32
     |     +--ro rx-channel-power?   power-dbm-or-null
     |     +--ro rx-total-power?     power-dbm-or-null
     +--ro path-out-transceiver
        +--ro transponder-id?   uint32
-       +--ro transceivers* [lane-id]
-          +--ro lane-id             uint8
+       +--ro transceivers* [otsi-carrier-id]
+          +--ro otsi-carrier-id     uint16
           +--ro transceiver-id?     uint32
           +--ro rx-channel-power?   power-dbm-or-null
           +--ro rx-total-power?     power-dbm-or-null
@@ -191,15 +191,15 @@ module: ietf-wdm-tunnel
             /te:numbered-node-hop:
     +--ro path-in-transceiver
     |  +--ro transponder-id?   uint32
-    |  +--ro transceivers* [lane-id]
-    |     +--ro lane-id             uint8
+    |  +--ro transceivers* [otsi-carrier-id]
+    |     +--ro otsi-carrier-id     uint16
     |     +--ro transceiver-id?     uint32
     |     +--ro rx-channel-power?   power-dbm-or-null
     |     +--ro rx-total-power?     power-dbm-or-null
     +--ro path-out-transceiver
        +--ro transponder-id?   uint32
-       +--ro transceivers* [lane-id]
-          +--ro lane-id             uint8
+       +--ro transceivers* [otsi-carrier-id]
+          +--ro otsi-carrier-id     uint16
           +--ro transceiver-id?     uint32
           +--ro rx-channel-power?   power-dbm-or-null
           +--ro rx-total-power?     power-dbm-or-null
@@ -210,15 +210,15 @@ module: ietf-wdm-tunnel
             /te:numbered-node-hop/te:numbered-node-hop:
     +--ro path-in-transceiver
     |  +--ro transponder-id?   uint32
-    |  +--ro transceivers* [lane-id]
-    |     +--ro lane-id             uint8
+    |  +--ro transceivers* [otsi-carrier-id]
+    |     +--ro otsi-carrier-id     uint16
     |     +--ro transceiver-id?     uint32
     |     +--ro rx-channel-power?   power-dbm-or-null
     |     +--ro rx-total-power?     power-dbm-or-null
     +--ro path-out-transceiver
        +--ro transponder-id?   uint32
-       +--ro transceivers* [lane-id]
-          +--ro lane-id             uint8
+       +--ro transceivers* [otsi-carrier-id]
+          +--ro otsi-carrier-id     uint16
           +--ro transceiver-id?     uint32
           +--ro rx-channel-power?   power-dbm-or-null
           +--ro rx-total-power?     power-dbm-or-null
@@ -229,15 +229,15 @@ module: ietf-wdm-tunnel
             /te:numbered-node-hop/te:numbered-node-hop:
     +--ro path-in-transceiver
     |  +--ro transponder-id?   uint32
-    |  +--ro transceivers* [lane-id]
-    |     +--ro lane-id             uint8
+    |  +--ro transceivers* [otsi-carrier-id]
+    |     +--ro otsi-carrier-id     uint16
     |     +--ro transceiver-id?     uint32
     |     +--ro rx-channel-power?   power-dbm-or-null
     |     +--ro rx-total-power?     power-dbm-or-null
     +--ro path-out-transceiver
        +--ro transponder-id?   uint32
-       +--ro transceivers* [lane-id]
-          +--ro lane-id             uint8
+       +--ro transceivers* [otsi-carrier-id]
+          +--ro otsi-carrier-id     uint16
           +--ro transceiver-id?     uint32
           +--ro rx-channel-power?   power-dbm-or-null
           +--ro rx-total-power?     power-dbm-or-null
@@ -249,15 +249,15 @@ module: ietf-wdm-tunnel
             /te:numbered-node-hop/te:numbered-node-hop:
     +--ro path-in-transceiver
     |  +--ro transponder-id?   uint32
-    |  +--ro transceivers* [lane-id]
-    |     +--ro lane-id             uint8
+    |  +--ro transceivers* [otsi-carrier-id]
+    |     +--ro otsi-carrier-id     uint16
     |     +--ro transceiver-id?     uint32
     |     +--ro rx-channel-power?   power-dbm-or-null
     |     +--ro rx-total-power?     power-dbm-or-null
     +--ro path-out-transceiver
        +--ro transponder-id?   uint32
-       +--ro transceivers* [lane-id]
-          +--ro lane-id             uint8
+       +--ro transceivers* [otsi-carrier-id]
+          +--ro otsi-carrier-id     uint16
           +--ro transceiver-id?     uint32
           +--ro rx-channel-power?   power-dbm-or-null
           +--ro rx-total-power?     power-dbm-or-null

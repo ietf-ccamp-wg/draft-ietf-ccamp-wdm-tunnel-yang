@@ -699,9 +699,9 @@ module: ietf-te
      |     |     |  |     |     |  +--rw wdm-tnl:transponder-id?
      |     |     |  |     |     |  |       uint32
      |     |     |  |     |     |  +--rw wdm-tnl:transceivers*
-     |     |     |  |     |     |          [lane-id]
-     |     |     |  |     |     |     +--rw wdm-tnl:lane-id
-     |     |     |  |     |     |     |       uint8
+     |     |     |  |     |     |          [otsi-carrier-id]
+     |     |     |  |     |     |     +--rw wdm-tnl:otsi-carrier-id
+     |     |     |  |     |     |     |       uint16
      |     |     |  |     |     |     +--rw wdm-tnl:transceiver-id?
      |     |     |  |     |     |     |       uint32
      |     |     |  |     |     |     +--rw wdm-tnl:operational-modes*
@@ -723,9 +723,9 @@ module: ietf-te
      |     |     |  |     |        +--rw wdm-tnl:transponder-id?
      |     |     |  |     |        |       uint32
      |     |     |  |     |        +--rw wdm-tnl:transceivers*
-     |     |     |  |     |                [lane-id]
-     |     |     |  |     |           +--rw wdm-tnl:lane-id
-     |     |     |  |     |           |       uint8
+     |     |     |  |     |                [otsi-carrier-id]
+     |     |     |  |     |           +--rw wdm-tnl:otsi-carrier-id
+     |     |     |  |     |           |       uint16
      |     |     |  |     |           +--rw wdm-tnl:transceiver-id?
      |     |     |  |     |           |       uint32
      |     |     |  |     |           +--rw wdm-tnl:operational-modes*
@@ -1066,9 +1066,9 @@ module: ietf-te
      |     |     |        |        |     |  +--ro wdm-tnl:transponder-id?
      |     |     |        |        |     |  |       uint32
      |     |     |        |        |     |  +--ro wdm-tnl:transceivers*
-     |     |     |        |        |     |          [lane-id]
-     |     |     |        |        |     |     +--ro wdm-tnl:lane-id
-     |     |     |        |        |     |     |       uint8
+     |     |     |        |        |     |          [otsi-carrier-id]
+     |     |     |        |        |     |     +--ro wdm-tnl:otsi-carrier-id
+     |     |     |        |        |     |     |       uint16
      |     |     |        |        |     |     +--ro wdm-tnl:transceiver-id?
      |     |     |        |        |     |     |       uint32
      |     |     |        |        |     |     +--ro wdm-tnl:rx-channel-power?
@@ -1079,9 +1079,9 @@ module: ietf-te
      |     |     |        |        |        +--ro wdm-tnl:transponder-id?
      |     |     |        |        |        |       uint32
      |     |     |        |        |        +--ro wdm-tnl:transceivers*
-     |     |     |        |        |                [lane-id]
-     |     |     |        |        |           +--ro wdm-tnl:lane-id
-     |     |     |        |        |           |       uint8
+     |     |     |        |        |                [otsi-carrier-id]
+     |     |     |        |        |           +--ro wdm-tnl:otsi-carrier-id
+     |     |     |        |        |           |       uint16
      |     |     |        |        |           +--ro wdm-tnl:transceiver-id?
      |     |     |        |        |           |       uint32
      |     |     |        |        |           +--ro wdm-tnl:rx-channel-power?
@@ -1461,9 +1461,9 @@ module: ietf-te
      |     |     |  |  |     |     |  +--rw wdm-tnl:transponder-id?
      |     |     |  |  |     |     |  |       uint32
      |     |     |  |  |     |     |  +--rw wdm-tnl:transceivers*
-     |     |     |  |  |     |     |          [lane-id]
-     |     |     |  |  |     |     |     +--rw wdm-tnl:lane-id
-     |     |     |  |  |     |     |     |       uint8
+     |     |     |  |  |     |     |          [otsi-carrier-id]
+     |     |     |  |  |     |     |     +--rw wdm-tnl:otsi-carrier-id
+     |     |     |  |  |     |     |     |       uint16
      |     |     |  |  |     |     |     +--rw wdm-tnl:transceiver-id?
      |     |     |  |  |     |     |     |       uint32
      |     |     |  |  |     |     |     +--rw wdm-tnl:operational-modes*
@@ -1485,9 +1485,9 @@ module: ietf-te
      |     |     |  |  |     |        +--rw wdm-tnl:transponder-id?
      |     |     |  |  |     |        |       uint32
      |     |     |  |  |     |        +--rw wdm-tnl:transceivers*
-     |     |     |  |  |     |                [lane-id]
-     |     |     |  |  |     |           +--rw wdm-tnl:lane-id
-     |     |     |  |  |     |           |       uint8
+     |     |     |  |  |     |                [otsi-carrier-id]
+     |     |     |  |  |     |           +--rw wdm-tnl:otsi-carrier-id
+     |     |     |  |  |     |           |       uint16
      |     |     |  |  |     |           +--rw wdm-tnl:transceiver-id?
      |     |     |  |  |     |           |       uint32
      |     |     |  |  |     |           +--rw wdm-tnl:operational-modes*
@@ -1836,9 +1836,9 @@ module: ietf-te
      |     |     |  |        |        |     |  +--ro wdm-tnl:transponder-id?
      |     |     |  |        |        |     |  |       uint32
      |     |     |  |        |        |     |  +--ro wdm-tnl:transceivers*
-     |     |     |  |        |        |     |          [lane-id]
-     |     |     |  |        |        |     |     +--ro wdm-tnl:lane-id
-     |     |     |  |        |        |     |     |       uint8
+     |     |     |  |        |        |     |          [otsi-carrier-id]
+     |     |     |  |        |        |     |     +--ro wdm-tnl:otsi-carrier-id
+     |     |     |  |        |        |     |     |       uint16
      |     |     |  |        |        |     |     +--ro wdm-tnl:transceiver-id?
      |     |     |  |        |        |     |     |       uint32
      |     |     |  |        |        |     |     +--ro wdm-tnl:rx-channel-power?
@@ -1849,9 +1849,9 @@ module: ietf-te
      |     |     |  |        |        |        +--ro wdm-tnl:transponder-id?
      |     |     |  |        |        |        |       uint32
      |     |     |  |        |        |        +--ro wdm-tnl:transceivers*
-     |     |     |  |        |        |                [lane-id]
-     |     |     |  |        |        |           +--ro wdm-tnl:lane-id
-     |     |     |  |        |        |           |       uint8
+     |     |     |  |        |        |                [otsi-carrier-id]
+     |     |     |  |        |        |           +--ro wdm-tnl:otsi-carrier-id
+     |     |     |  |        |        |           |       uint16
      |     |     |  |        |        |           +--ro wdm-tnl:transceiver-id?
      |     |     |  |        |        |           |       uint32
      |     |     |  |        |        |           +--ro wdm-tnl:rx-channel-power?
@@ -2245,9 +2245,9 @@ module: ietf-te
      |     |     |  |     |     |  +--rw wdm-tnl:transponder-id?
      |     |     |  |     |     |  |       uint32
      |     |     |  |     |     |  +--rw wdm-tnl:transceivers*
-     |     |     |  |     |     |          [lane-id]
-     |     |     |  |     |     |     +--rw wdm-tnl:lane-id
-     |     |     |  |     |     |     |       uint8
+     |     |     |  |     |     |          [otsi-carrier-id]
+     |     |     |  |     |     |     +--rw wdm-tnl:otsi-carrier-id
+     |     |     |  |     |     |     |       uint16
      |     |     |  |     |     |     +--rw wdm-tnl:transceiver-id?
      |     |     |  |     |     |     |       uint32
      |     |     |  |     |     |     +--rw wdm-tnl:operational-modes*
@@ -2269,9 +2269,9 @@ module: ietf-te
      |     |     |  |     |        +--rw wdm-tnl:transponder-id?
      |     |     |  |     |        |       uint32
      |     |     |  |     |        +--rw wdm-tnl:transceivers*
-     |     |     |  |     |                [lane-id]
-     |     |     |  |     |           +--rw wdm-tnl:lane-id
-     |     |     |  |     |           |       uint8
+     |     |     |  |     |                [otsi-carrier-id]
+     |     |     |  |     |           +--rw wdm-tnl:otsi-carrier-id
+     |     |     |  |     |           |       uint16
      |     |     |  |     |           +--rw wdm-tnl:transceiver-id?
      |     |     |  |     |           |       uint32
      |     |     |  |     |           +--rw wdm-tnl:operational-modes*
@@ -2627,9 +2627,9 @@ module: ietf-te
      |     |     |        |        |     |  +--ro wdm-tnl:transponder-id?
      |     |     |        |        |     |  |       uint32
      |     |     |        |        |     |  +--ro wdm-tnl:transceivers*
-     |     |     |        |        |     |          [lane-id]
-     |     |     |        |        |     |     +--ro wdm-tnl:lane-id
-     |     |     |        |        |     |     |       uint8
+     |     |     |        |        |     |          [otsi-carrier-id]
+     |     |     |        |        |     |     +--ro wdm-tnl:otsi-carrier-id
+     |     |     |        |        |     |     |       uint16
      |     |     |        |        |     |     +--ro wdm-tnl:transceiver-id?
      |     |     |        |        |     |     |       uint32
      |     |     |        |        |     |     +--ro wdm-tnl:rx-channel-power?
@@ -2640,9 +2640,9 @@ module: ietf-te
      |     |     |        |        |        +--ro wdm-tnl:transponder-id?
      |     |     |        |        |        |       uint32
      |     |     |        |        |        +--ro wdm-tnl:transceivers*
-     |     |     |        |        |                [lane-id]
-     |     |     |        |        |           +--ro wdm-tnl:lane-id
-     |     |     |        |        |           |       uint8
+     |     |     |        |        |                [otsi-carrier-id]
+     |     |     |        |        |           +--ro wdm-tnl:otsi-carrier-id
+     |     |     |        |        |           |       uint16
      |     |     |        |        |           +--ro wdm-tnl:transceiver-id?
      |     |     |        |        |           |       uint32
      |     |     |        |        |           +--ro wdm-tnl:rx-channel-power?
@@ -3018,9 +3018,9 @@ module: ietf-te
      |     |     |  |     |     |  +--rw wdm-tnl:transponder-id?
      |     |     |  |     |     |  |       uint32
      |     |     |  |     |     |  +--rw wdm-tnl:transceivers*
-     |     |     |  |     |     |          [lane-id]
-     |     |     |  |     |     |     +--rw wdm-tnl:lane-id
-     |     |     |  |     |     |     |       uint8
+     |     |     |  |     |     |          [otsi-carrier-id]
+     |     |     |  |     |     |     +--rw wdm-tnl:otsi-carrier-id
+     |     |     |  |     |     |     |       uint16
      |     |     |  |     |     |     +--rw wdm-tnl:transceiver-id?
      |     |     |  |     |     |     |       uint32
      |     |     |  |     |     |     +--rw wdm-tnl:operational-modes*
@@ -3042,9 +3042,9 @@ module: ietf-te
      |     |     |  |     |        +--rw wdm-tnl:transponder-id?
      |     |     |  |     |        |       uint32
      |     |     |  |     |        +--rw wdm-tnl:transceivers*
-     |     |     |  |     |                [lane-id]
-     |     |     |  |     |           +--rw wdm-tnl:lane-id
-     |     |     |  |     |           |       uint8
+     |     |     |  |     |                [otsi-carrier-id]
+     |     |     |  |     |           +--rw wdm-tnl:otsi-carrier-id
+     |     |     |  |     |           |       uint16
      |     |     |  |     |           +--rw wdm-tnl:transceiver-id?
      |     |     |  |     |           |       uint32
      |     |     |  |     |           +--rw wdm-tnl:operational-modes*
@@ -3400,9 +3400,9 @@ module: ietf-te
      |     |     |        |        |     |  +--ro wdm-tnl:transponder-id?
      |     |     |        |        |     |  |       uint32
      |     |     |        |        |     |  +--ro wdm-tnl:transceivers*
-     |     |     |        |        |     |          [lane-id]
-     |     |     |        |        |     |     +--ro wdm-tnl:lane-id
-     |     |     |        |        |     |     |       uint8
+     |     |     |        |        |     |          [otsi-carrier-id]
+     |     |     |        |        |     |     +--ro wdm-tnl:otsi-carrier-id
+     |     |     |        |        |     |     |       uint16
      |     |     |        |        |     |     +--ro wdm-tnl:transceiver-id?
      |     |     |        |        |     |     |       uint32
      |     |     |        |        |     |     +--ro wdm-tnl:rx-channel-power?
@@ -3413,9 +3413,9 @@ module: ietf-te
      |     |     |        |        |        +--ro wdm-tnl:transponder-id?
      |     |     |        |        |        |       uint32
      |     |     |        |        |        +--ro wdm-tnl:transceivers*
-     |     |     |        |        |                [lane-id]
-     |     |     |        |        |           +--ro wdm-tnl:lane-id
-     |     |     |        |        |           |       uint8
+     |     |     |        |        |                [otsi-carrier-id]
+     |     |     |        |        |           +--ro wdm-tnl:otsi-carrier-id
+     |     |     |        |        |           |       uint16
      |     |     |        |        |           +--ro wdm-tnl:transceiver-id?
      |     |     |        |        |           |       uint32
      |     |     |        |        |           +--ro wdm-tnl:rx-channel-power?
@@ -3601,9 +3601,10 @@ module: ietf-te
               |     |     |       path-attribute-flags
               |     |     +--ro wdm-tnl:path-in-transceiver
               |     |     |  +--ro wdm-tnl:transponder-id?   uint32
-              |     |     |  +--ro wdm-tnl:transceivers* [lane-id]
-              |     |     |     +--ro wdm-tnl:lane-id
-              |     |     |     |       uint8
+              |     |     |  +--ro wdm-tnl:transceivers*
+              |     |     |          [otsi-carrier-id]
+              |     |     |     +--ro wdm-tnl:otsi-carrier-id
+              |     |     |     |       uint16
               |     |     |     +--ro wdm-tnl:transceiver-id?
               |     |     |     |       uint32
               |     |     |     +--ro wdm-tnl:rx-channel-power?
@@ -3612,9 +3613,10 @@ module: ietf-te
               |     |     |             power-dbm-or-null
               |     |     +--ro wdm-tnl:path-out-transceiver
               |     |        +--ro wdm-tnl:transponder-id?   uint32
-              |     |        +--ro wdm-tnl:transceivers* [lane-id]
-              |     |           +--ro wdm-tnl:lane-id
-              |     |           |       uint8
+              |     |        +--ro wdm-tnl:transceivers*
+              |     |                [otsi-carrier-id]
+              |     |           +--ro wdm-tnl:otsi-carrier-id
+              |     |           |       uint16
               |     |           +--ro wdm-tnl:transceiver-id?
               |     |           |       uint32
               |     |           +--ro wdm-tnl:rx-channel-power?
