@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-05-14T00:53:58.398031+00:00",
+  "timestamp": "2024-05-16T00:53:59.778586+00:00",
   "repo": "ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang",
   "labels": [
     {
@@ -2389,6 +2389,32 @@
           ]
         }
       ]
+    },
+    {
+      "number": 67,
+      "id": "PR_kwDOEHme9c5vlHvb",
+      "title": "change lane-id to otsi-carrier-id to align with the name used in draf\u2026",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/pull/67",
+      "state": "OPEN",
+      "author": "aguoietf",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-05-15T20:30:14Z",
+      "updatedAt": "2024-05-15T20:30:14Z",
+      "baseRepository": "ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang",
+      "baseRefName": "main",
+      "baseRefOid": "ca46ff267f6e3068ec04c00366ef6d7224d9589d",
+      "headRepository": "aguoietf/draft-ietf-ccamp-wdm-tunnel-yang",
+      "headRefName": "master",
+      "headRefOid": "7e57ab8dc0e1ba0ed5c00150b99d1525c09964a5",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
     }
   ]
 }
