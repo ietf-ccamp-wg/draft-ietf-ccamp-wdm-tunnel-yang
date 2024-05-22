@@ -59,7 +59,7 @@ module ietf-wdm-tunnel {
     This version of this YANG module is part of RFC XXXX; see
     the RFC itself for full legal notices.";
 
-  revision "2023-10-22" {
+  revision "2024-05-15" {
     description
       "Updated revision with combined WSON and Flexi-grid tunnel
        YANG model";
@@ -150,18 +150,15 @@ module ietf-wdm-tunnel {
     }
 
     list transceivers {
-      key "lane-id";
+      key "otsi-carrier-id";
       description
-        "List of transceivers for all lanes.";
+        "List of transceivers used within the transponder.";
 
-      leaf lane-id {
-        type uint8;
-        must '. >= 1' {
-          error-message
-            "Lane identifier must be greater than or equal to 1.";
-        }
+      leaf otsi-carrier-id {
+        type uint16;
         description
-          "Lane identifier starting from 1.";
+          "OTSi carrier identifier associated with the
+           transceiver.";
       }
       leaf transceiver-id {
         type uint32;
@@ -217,18 +214,15 @@ module ietf-wdm-tunnel {
     }
 
     list transceivers {
-      key "lane-id";
+      key "otsi-carrier-id";
       description
-        "List of transceivers for all lanes.";
+        "List of transceivers used within the transponder.";
 
-      leaf lane-id {
-        type uint8;
-        must '. >= 1' {
-          error-message
-            "Lane identifier must be greater than or equal to 1.";
-        }
+      leaf otsi-carrier-id {
+        type uint16;
         description
-          "Lane identifier starting from 1.";
+          "OTSi carrier identifier associated with the
+           transceiver.";
       }
       leaf transceiver-id {
         type uint32;
