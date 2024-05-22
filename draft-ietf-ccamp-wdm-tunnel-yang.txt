@@ -5,14 +5,14 @@
 CCAMP Working Group                                               A. Guo
 Internet-Draft                                    Futurewei Technologies
 Intended status: Standards Track                              S. Belotti
-Expires: 2 September 2024                                          Nokia
+Expires: 23 November 2024                                          Nokia
                                                            G. Galimberti
                                                               Individual
                                                    J. E. L. de V. Mendez
                                                              Naudit HPCN
                                                            D. P. Burrero
                                           Universidad Autonoma de Madrid
-                                                            1 March 2024
+                                                             22 May 2024
 
 
                    A YANG Data Model for WDM Tunnels
@@ -62,7 +62,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 2 September 2024.
+   This Internet-Draft will expire on 23 November 2024.
 
 Copyright Notice
 
@@ -290,8 +290,8 @@ Table of Contents
                /te:numbered-node-hop/te:numbered-node-hop:
        +--rw path-in-transceiver
        |  +--rw transponder-id?   uint32
-       |  +--rw transceivers* [lane-id]
-       |     +--rw lane-id                       uint8
+       |  +--rw transceivers* [otsi-carrier-id]
+       |     +--rw otsi-carrier-id               uint16
        |     +--rw transceiver-id?               uint32
        |     +--rw operational-modes*            string
        |     +--rw tx-tune-constraints
@@ -303,8 +303,8 @@ Table of Contents
        |     +--rw preferred-rx-channel-power?   l0-types:power-dbm
        +--rw path-out-transceiver
           +--rw transponder-id?   uint32
-          +--rw transceivers* [lane-id]
-             +--rw lane-id                       uint8
+          +--rw transceivers* [otsi-carrier-id]
+             +--rw otsi-carrier-id               uint16
              +--rw transceiver-id?               uint32
              +--rw operational-modes*            string
              +--rw tx-tune-constraints
@@ -320,8 +320,8 @@ Table of Contents
                /te:type/te:numbered-node-hop/te:numbered-node-hop:
        +--rw path-in-transceiver
        |  +--rw transponder-id?   uint32
-       |  +--rw transceivers* [lane-id]
-       |     +--rw lane-id                       uint8
+       |  +--rw transceivers* [otsi-carrier-id]
+       |     +--rw otsi-carrier-id               uint16
        |     +--rw transceiver-id?               uint32
        |     +--rw operational-modes*            string
        |     +--rw tx-tune-constraints
@@ -333,8 +333,8 @@ Table of Contents
        |     +--rw preferred-rx-channel-power?   l0-types:power-dbm
        +--rw path-out-transceiver
           +--rw transponder-id?   uint32
-          +--rw transceivers* [lane-id]
-             +--rw lane-id                       uint8
+          +--rw transceivers* [otsi-carrier-id]
+             +--rw otsi-carrier-id               uint16
              +--rw transceiver-id?               uint32
              +--rw operational-modes*            string
              +--rw tx-tune-constraints
@@ -350,8 +350,8 @@ Table of Contents
                /te:numbered-node-hop/te:numbered-node-hop:
        +--rw path-in-transceiver
        |  +--rw transponder-id?   uint32
-       |  +--rw transceivers* [lane-id]
-       |     +--rw lane-id                       uint8
+       |  +--rw transceivers* [otsi-carrier-id]
+       |     +--rw otsi-carrier-id               uint16
        |     +--rw transceiver-id?               uint32
        |     +--rw operational-modes*            string
        |     +--rw tx-tune-constraints
@@ -363,8 +363,8 @@ Table of Contents
        |     +--rw preferred-rx-channel-power?   l0-types:power-dbm
        +--rw path-out-transceiver
           +--rw transponder-id?   uint32
-          +--rw transceivers* [lane-id]
-             +--rw lane-id                       uint8
+          +--rw transceivers* [otsi-carrier-id]
+             +--rw otsi-carrier-id               uint16
              +--rw transceiver-id?               uint32
              +--rw operational-modes*            string
              +--rw tx-tune-constraints
@@ -380,8 +380,8 @@ Table of Contents
                /te:numbered-node-hop/te:numbered-node-hop:
        +--rw path-in-transceiver
        |  +--rw transponder-id?   uint32
-       |  +--rw transceivers* [lane-id]
-       |     +--rw lane-id                       uint8
+       |  +--rw transceivers* [otsi-carrier-id]
+       |     +--rw otsi-carrier-id               uint16
        |     +--rw transceiver-id?               uint32
        |     +--rw operational-modes*            string
        |     +--rw tx-tune-constraints
@@ -393,8 +393,8 @@ Table of Contents
        |     +--rw preferred-rx-channel-power?   l0-types:power-dbm
        +--rw path-out-transceiver
           +--rw transponder-id?   uint32
-          +--rw transceivers* [lane-id]
-             +--rw lane-id                       uint8
+          +--rw transceivers* [otsi-carrier-id]
+             +--rw otsi-carrier-id               uint16
              +--rw transceiver-id?               uint32
              +--rw operational-modes*            string
              +--rw tx-tune-constraints
@@ -436,15 +436,15 @@ Table of Contents
                /te:numbered-node-hop/te:numbered-node-hop:
        +--ro path-in-transceiver
        |  +--ro transponder-id?   uint32
-       |  +--ro transceivers* [lane-id]
-       |     +--ro lane-id             uint8
+       |  +--ro transceivers* [otsi-carrier-id]
+       |     +--ro otsi-carrier-id     uint16
        |     +--ro transceiver-id?     uint32
        |     +--ro rx-channel-power?   power-dbm-or-null
        |     +--ro rx-total-power?     power-dbm-or-null
        +--ro path-out-transceiver
           +--ro transponder-id?   uint32
-          +--ro transceivers* [lane-id]
-             +--ro lane-id             uint8
+          +--ro transceivers* [otsi-carrier-id]
+             +--ro otsi-carrier-id     uint16
              +--ro transceiver-id?     uint32
              +--ro rx-channel-power?   power-dbm-or-null
              +--ro rx-total-power?     power-dbm-or-null
@@ -456,15 +456,15 @@ Table of Contents
                /te:numbered-node-hop:
        +--ro path-in-transceiver
        |  +--ro transponder-id?   uint32
-       |  +--ro transceivers* [lane-id]
-       |     +--ro lane-id             uint8
+       |  +--ro transceivers* [otsi-carrier-id]
+       |     +--ro otsi-carrier-id     uint16
        |     +--ro transceiver-id?     uint32
        |     +--ro rx-channel-power?   power-dbm-or-null
        |     +--ro rx-total-power?     power-dbm-or-null
        +--ro path-out-transceiver
           +--ro transponder-id?   uint32
-          +--ro transceivers* [lane-id]
-             +--ro lane-id             uint8
+          +--ro transceivers* [otsi-carrier-id]
+             +--ro otsi-carrier-id     uint16
              +--ro transceiver-id?     uint32
              +--ro rx-channel-power?   power-dbm-or-null
              +--ro rx-total-power?     power-dbm-or-null
@@ -475,15 +475,15 @@ Table of Contents
                /te:numbered-node-hop/te:numbered-node-hop:
        +--ro path-in-transceiver
        |  +--ro transponder-id?   uint32
-       |  +--ro transceivers* [lane-id]
-       |     +--ro lane-id             uint8
+       |  +--ro transceivers* [otsi-carrier-id]
+       |     +--ro otsi-carrier-id     uint16
        |     +--ro transceiver-id?     uint32
        |     +--ro rx-channel-power?   power-dbm-or-null
        |     +--ro rx-total-power?     power-dbm-or-null
        +--ro path-out-transceiver
           +--ro transponder-id?   uint32
-          +--ro transceivers* [lane-id]
-             +--ro lane-id             uint8
+          +--ro transceivers* [otsi-carrier-id]
+             +--ro otsi-carrier-id     uint16
              +--ro transceiver-id?     uint32
              +--ro rx-channel-power?   power-dbm-or-null
              +--ro rx-total-power?     power-dbm-or-null
@@ -494,15 +494,15 @@ Table of Contents
                /te:numbered-node-hop/te:numbered-node-hop:
        +--ro path-in-transceiver
        |  +--ro transponder-id?   uint32
-       |  +--ro transceivers* [lane-id]
-       |     +--ro lane-id             uint8
+       |  +--ro transceivers* [otsi-carrier-id]
+       |     +--ro otsi-carrier-id     uint16
        |     +--ro transceiver-id?     uint32
        |     +--ro rx-channel-power?   power-dbm-or-null
        |     +--ro rx-total-power?     power-dbm-or-null
        +--ro path-out-transceiver
           +--ro transponder-id?   uint32
-          +--ro transceivers* [lane-id]
-             +--ro lane-id             uint8
+          +--ro transceivers* [otsi-carrier-id]
+             +--ro otsi-carrier-id     uint16
              +--ro transceiver-id?     uint32
              +--ro rx-channel-power?   power-dbm-or-null
              +--ro rx-total-power?     power-dbm-or-null
@@ -514,15 +514,15 @@ Table of Contents
                /te:numbered-node-hop/te:numbered-node-hop:
        +--ro path-in-transceiver
        |  +--ro transponder-id?   uint32
-       |  +--ro transceivers* [lane-id]
-       |     +--ro lane-id             uint8
+       |  +--ro transceivers* [otsi-carrier-id]
+       |     +--ro otsi-carrier-id     uint16
        |     +--ro transceiver-id?     uint32
        |     +--ro rx-channel-power?   power-dbm-or-null
        |     +--ro rx-total-power?     power-dbm-or-null
        +--ro path-out-transceiver
           +--ro transponder-id?   uint32
-          +--ro transceivers* [lane-id]
-             +--ro lane-id             uint8
+          +--ro transceivers* [otsi-carrier-id]
+             +--ro otsi-carrier-id     uint16
              +--ro transceiver-id?     uint32
              +--ro rx-channel-power?   power-dbm-or-null
              +--ro rx-total-power?     power-dbm-or-null
@@ -1731,7 +1731,7 @@ Table of Contents
        This version of this YANG module is part of RFC XXXX; see
        the RFC itself for full legal notices.";
 
-     revision "2023-10-22" {
+     revision "2024-05-15" {
        description
          "Updated revision with combined WSON and Flexi-grid tunnel
           YANG model";
@@ -1822,18 +1822,15 @@ Table of Contents
        }
 
        list transceivers {
-         key "lane-id";
+         key "otsi-carrier-id";
          description
-           "List of transceivers for all lanes.";
+           "List of transceivers used within the transponder.";
 
-         leaf lane-id {
-           type uint8;
-           must '. >= 1' {
-             error-message
-               "Lane identifier must be greater than or equal to 1.";
-           }
+         leaf otsi-carrier-id {
+           type uint16;
            description
-             "Lane identifier starting from 1.";
+             "OTSi carrier identifier associated with the
+              transceiver.";
          }
          leaf transceiver-id {
            type uint32;
@@ -1889,18 +1886,15 @@ Table of Contents
        }
 
        list transceivers {
-         key "lane-id";
+         key "otsi-carrier-id";
          description
-           "List of transceivers for all lanes.";
+           "List of transceivers used within the transponder.";
 
-         leaf lane-id {
-           type uint8;
-           must '. >= 1' {
-             error-message
-               "Lane identifier must be greater than or equal to 1.";
-           }
+         leaf otsi-carrier-id {
+           type uint16;
            description
-             "Lane identifier starting from 1.";
+             "OTSi carrier identifier associated with the
+              transceiver.";
          }
          leaf transceiver-id {
            type uint32;
