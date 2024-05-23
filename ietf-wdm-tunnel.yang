@@ -90,6 +90,13 @@ module ietf-wdm-tunnel {
        the list of operational modes should not include any modes
        applicable only to the L-band.";
 
+    leaf otsi-carrier-frequency {
+        type l0-types:frequency-thz;
+        description
+          "OTSi carrier frequency, i.e. configured transmitter
+           frequency.";
+    }
+
     container tx-tune-constraints {
       description
         "The permissible tuning frequency range for the
@@ -230,7 +237,39 @@ module ietf-wdm-tunnel {
         "transceiver identifier";
       }
 
+      leaf otsi-carrier-frequency {
+        type union {
+          type l0-types:frequency-thz;
+          type empty;
+        }
+        description
+          "OTSi carrier frequency, equivalent to the
+          actual configured transmitter frequency, when known, or
+          an empty value when unknown.";
+      }
+
       uses l0-types:common-transceiver-readonly-param;
+    }
+  }
+
+  grouping e2e-media-channel-info {
+    description
+      "This grouping includes end-to-end media channel path id
+       information.";
+
+    leaf-list e2e-mc-path-id {
+      type uint16;
+      description
+        "The list of the possible end-to-end Media Channel
+        (e2e-MC) paths associated with the OTSi which have
+        different optical impairments.
+
+        This list is meaningful in case the OTSi can be associated
+        with multiple end-to-end Media Channel (e2e-MC) paths
+        (e.g., when OPS protection is configured).
+
+        The list can be empty when the OTSi has only one
+        e2e-MC path.";
     }
   }
 
@@ -552,7 +591,7 @@ module ietf-wdm-tunnel {
   augment "/te:te/te:lsps/te:lsp/"
         + "te:lsp-actual-route-information" {
     description
-      "Augment TE LSP to with WDM path state.";
+      "Augment TE LSP with WDM path state.";
       
     uses wdm-path-state;
   }
@@ -565,9 +604,31 @@ module ietf-wdm-tunnel {
         + "te:lsp-actual-route-information/te:type/"
         + "te:numbered-node-hop/te:numbered-node-hop" {
     description
-      "Augment TE LSP to with WDM path state.";
+      "Augment TE LSP with WDM path state.";
       
     uses path-transceiver-state;
+  }
+
+  augment "/te:te/te:lsps/te:lsp/"
+        + "te:lsp-actual-route-information/"
+        + "te:lsp-actual-route-information/te:type/"
+        + "te:numbered-link-hop/te:numbered-link-hop" {
+    description
+      "Augment TE LSP with end-to-end media channel
+       information.";
+
+    uses e2e-media-channel-info;
+  }
+
+  augment "/te:te/te:lsps/te:lsp/"
+        + "te:lsp-actual-route-information/"
+        + "te:lsp-actual-route-information/te:type/"
+        + "te:unnumbered-link-hop/te:unnumbered-link-hop" {
+    description
+      "Augment TE LSP with end-to-end media channel
+       information.";
+
+    uses e2e-media-channel-info;
   }
 
   /*
