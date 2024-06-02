@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-05-30T00:54:46.005215+00:00",
+  "timestamp": "2024-06-02T00:58:41.334634+00:00",
   "repo": "ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang",
   "labels": [
     {
@@ -1637,6 +1637,22 @@
       "body": "Currently the following structure is used for defining starting, terminating and 3R regenerator transponders:\r\n~~~\r\n    +--rw path-in-transceiver\r\n    |  +--rw transponder-id?   uint32\r\n    |  +--rw transceivers* [lane-id]\r\n    |     +--rw lane-id                       uint8\r\n    |     +--rw transceiver-id?               uint32\r\n    |     +--rw operational-modes*            string\r\n    |     +--rw tx-tune-constraints\r\n    |     |  +--rw min-central-frequency?    frequency-thz\r\n    |     |  +--rw max-central-frequency?    frequency-thz\r\n    |     |  +--rw transceiver-tunability?   frequency-ghz\r\n    |     +--rw line-coding-bitrate*          identityref\r\n    |     +--rw tx-channel-power?             l0-types:power-dbm\r\n    |     +--rw preferred-rx-channel-power?   l0-types:power-dbm\r\n    +--rw path-out-transceiver\r\n       +--rw transponder-id?   uint32\r\n       +--rw transceivers* [lane-id]\r\n          +--rw lane-id                       uint8\r\n          +--rw transceiver-id?               uint32\r\n          +--rw operational-modes*            string\r\n          +--rw tx-tune-constraints\r\n          |  +--rw min-central-frequency?    frequency-thz\r\n          |  +--rw max-central-frequency?    frequency-thz\r\n          |  +--rw transceiver-tunability?   frequency-ghz\r\n          +--rw line-coding-bitrate*          identityref\r\n          +--rw tx-channel-power?             l0-types:power-dbm\r\n          +--rw preferred-rx-channel-power?   l0-types:power-dbm\r\n~~~\r\n\r\nItalo's concern:\r\n- whether we need a new hop type for the 3R function where to put this information\r\n- should the container be named 'path-in-transponder' and 'path-out-transponder'?\r\n- how to provide constraints on the transponders at the ingress/egress of the tunnel?\r\n\r\nWe need to look into use cases to check if the above constructs still stand for describing the ERO and RROs for WDM tunnel.\r\n\r\n",
       "createdAt": "2024-03-01T16:30:31Z",
       "updatedAt": "2024-03-01T16:30:32Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 68,
+      "id": "I_kwDOEHme9c6KnpEK",
+      "title": "modeling measured OSNR",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/68",
+      "state": "OPEN",
+      "author": "aguoietf",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "This is what actual GSNR is modeled today in WDM tunnel:\r\n~~~  \r\naugment /te:te/te:lsps/te:lsp/te:lsp-actual-route-information:\r\n    +--ro wdm-path-state\r\n       +--ro gsnr?   l0-types:snr\r\n~~~\r\n\r\nThere are scenarios where there is 3R regens on an LSP, resulting in multiple receivers along the path.\r\nThere is also the inverse multiplexing scenario where there can be multiple receivers of the same LSP.\r\n\r\nThe \"snr value\" is measured and reported by a coherent transceiver. It is implementation specific and can be reported by a transceiver as osnr or esnr.  It should not be called gsnr\r\n\r\nQ: should gsnr be reported on a transceiver?\r\n     - Yes\r\nQ: should gsnr be reported by both OI topology and WDM tunnel? \r\n     - OI topology does not report actual information but only needed information for path computation and service provisioning\r\n     - gsnr should be reported by \r\n     - \r\nQ: should gsnr definitions be moved to l0-types?\r\n     - gsnr can be reported also by the dwdm-interface model. So gnsr should be defined in a grouping in l0-types and used ",
+      "createdAt": "2024-05-30T13:07:59Z",
+      "updatedAt": "2024-05-30T13:08:00Z",
       "closedAt": null,
       "comments": []
     }
