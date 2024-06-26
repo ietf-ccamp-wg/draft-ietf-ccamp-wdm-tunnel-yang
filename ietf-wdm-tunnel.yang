@@ -501,6 +501,18 @@ module ietf-wdm-tunnel {
     uses l0-types:l0-path-properties;
   }
 
+  augment "/te:te/te:tunnels/te:tunnel/te:primary-paths/"
+        + "te:primary-path/te:computed-paths-properties/"
+        + "te:computed-path-properties/te:path-properties/"
+        + "te:path-route-objects/te:path-route-object/"
+        + "te:type/te:numbered-node-hop/te:numbered-node-hop/"
+        + "wdm-tnl:path-out-transceiver/wdm-tnl:transceivers" {
+    description
+      "Augment transceiver with additional estimated parameters.";
+
+    uses l0-types:l0-path-properties;
+  }
+
   /*
    * Computed transceiver properties for primary reverse path.
    */

@@ -180,6 +180,9 @@ module: ietf-wdm-tunnel
           +--ro otsi-carrier-frequency?   union
           +--ro rx-channel-power?         power-dbm-or-null
           +--ro rx-total-power?           power-dbm-or-null
+          +--ro estimated-gsnr?           snr
+          +--ro estimated-eol-gsnr?       snr
+          +--ro estimated-lowest-gsnr?    snr
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:primary-reverse-path
             /te:computed-paths-properties/te:computed-path-properties
