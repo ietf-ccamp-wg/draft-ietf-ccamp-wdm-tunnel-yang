@@ -706,6 +706,8 @@ module: ietf-te
      |     |     |  |     |     |     |       uint32
      |     |     |  |     |     |     +--rw wdm-tnl:operational-modes*
      |     |     |  |     |     |     |       string
+     |     |     |  |     |     |     +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |  |     |     |     |       l0-types:frequency-thz
      |     |     |  |     |     |     +--rw wdm-tnl:tx-tune-constraints
      |     |     |  |     |     |     |  +--rw wdm-tnl:min-central-frequency?
      |     |     |  |     |     |     |  |       frequency-thz
@@ -718,7 +720,9 @@ module: ietf-te
      |     |     |  |     |     |     +--rw wdm-tnl:tx-channel-power?
      |     |     |  |     |     |     |       l0-types:power-dbm
      |     |     |  |     |     |     +--rw wdm-tnl:preferred-rx-channel-power?
-     |     |     |  |     |     |             l0-types:power-dbm
+     |     |     |  |     |     |     |       l0-types:power-dbm
+     |     |     |  |     |     |     +--rw wdm-tnl:gsnr-extra-margin?
+     |     |     |  |     |     |             snr
      |     |     |  |     |     +--rw wdm-tnl:path-out-transceiver
      |     |     |  |     |        +--rw wdm-tnl:transponder-id?
      |     |     |  |     |        |       uint32
@@ -730,6 +734,8 @@ module: ietf-te
      |     |     |  |     |           |       uint32
      |     |     |  |     |           +--rw wdm-tnl:operational-modes*
      |     |     |  |     |           |       string
+     |     |     |  |     |           +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |  |     |           |       l0-types:frequency-thz
      |     |     |  |     |           +--rw wdm-tnl:tx-tune-constraints
      |     |     |  |     |           |  +--rw wdm-tnl:min-central-frequency?
      |     |     |  |     |           |  |       frequency-thz
@@ -742,7 +748,9 @@ module: ietf-te
      |     |     |  |     |           +--rw wdm-tnl:tx-channel-power?
      |     |     |  |     |           |       l0-types:power-dbm
      |     |     |  |     |           +--rw wdm-tnl:preferred-rx-channel-power?
-     |     |     |  |     |                   l0-types:power-dbm
+     |     |     |  |     |           |       l0-types:power-dbm
+     |     |     |  |     |           +--rw wdm-tnl:gsnr-extra-margin?
+     |     |     |  |     |                   snr
      |     |     |  |     +--:(numbered-link-hop)
      |     |     |  |     |  +--rw numbered-link-hop
      |     |     |  |     |     +--rw link-tp-id    te-tp-id
@@ -1066,28 +1074,44 @@ module: ietf-te
      |     |     |        |        |     |  +--ro wdm-tnl:transponder-id?
      |     |     |        |        |     |  |       uint32
      |     |     |        |        |     |  +--ro wdm-tnl:transceivers*
-     |     |     |        |        |     |          [otsi-carrier-id]
-     |     |     |        |        |     |     +--ro wdm-tnl:otsi-carrier-id
+     |     |     |        |        |     |          [transceiver-id]
+     |     |     |        |        |     |     +--ro wdm-tnl:otsi-carrier-id?
      |     |     |        |        |     |     |       uint16
-     |     |     |        |        |     |     +--ro wdm-tnl:transceiver-id?
+     |     |     |        |        |     |     +--ro wdm-tnl:transceiver-id
      |     |     |        |        |     |     |       uint32
+     |     |     |        |        |     |     +--ro wdm-tnl:otsi-carrier-frequency?
+     |     |     |        |        |     |     |       union
      |     |     |        |        |     |     +--ro wdm-tnl:rx-channel-power?
      |     |     |        |        |     |     |       power-dbm-or-null
      |     |     |        |        |     |     +--ro wdm-tnl:rx-total-power?
-     |     |     |        |        |     |             power-dbm-or-null
+     |     |     |        |        |     |     |       power-dbm-or-null
+     |     |     |        |        |     |     +--ro wdm-tnl:estimated-gsnr?
+     |     |     |        |        |     |     |       snr
+     |     |     |        |        |     |     +--ro wdm-tnl:estimated-eol-gsnr?
+     |     |     |        |        |     |     |       snr
+     |     |     |        |        |     |     +--ro wdm-tnl:estimated-lowest-gsnr?
+     |     |     |        |        |     |             snr
      |     |     |        |        |     +--ro wdm-tnl:path-out-transceiver
      |     |     |        |        |        +--ro wdm-tnl:transponder-id?
      |     |     |        |        |        |       uint32
      |     |     |        |        |        +--ro wdm-tnl:transceivers*
-     |     |     |        |        |                [otsi-carrier-id]
-     |     |     |        |        |           +--ro wdm-tnl:otsi-carrier-id
+     |     |     |        |        |                [transceiver-id]
+     |     |     |        |        |           +--ro wdm-tnl:otsi-carrier-id?
      |     |     |        |        |           |       uint16
-     |     |     |        |        |           +--ro wdm-tnl:transceiver-id?
+     |     |     |        |        |           +--ro wdm-tnl:transceiver-id
      |     |     |        |        |           |       uint32
+     |     |     |        |        |           +--ro wdm-tnl:otsi-carrier-frequency?
+     |     |     |        |        |           |       union
      |     |     |        |        |           +--ro wdm-tnl:rx-channel-power?
      |     |     |        |        |           |       power-dbm-or-null
      |     |     |        |        |           +--ro wdm-tnl:rx-total-power?
-     |     |     |        |        |                   power-dbm-or-null
+     |     |     |        |        |           |       power-dbm-or-null
+     |     |     |        |        |           +--ro wdm-tnl:estimated-gsnr?
+     |     |     |        |        |           |       snr
+     |     |     |        |        |           +--ro wdm-tnl:estimated-eol-gsnr?
+     |     |     |        |        |           |       snr
+     |     |     |        |        |           +--ro wdm-tnl:estimated-lowest-gsnr?
+     |     |     |        |        |                   snr
      |     |     |        |        +--:(numbered-link-hop)
      |     |     |        |        |  +--ro numbered-link-hop
      |     |     |        |        |     +--ro link-tp-id    te-tp-id
@@ -1164,10 +1188,7 @@ module: ietf-te
      |     |     |        |     +--:(generic)
      |     |     |        |        +--ro generic?   te-bandwidth
      |     |     |        +--ro disjointness-type?
-     |     |     |        |       te-types:te-path-disjointness
-     |     |     |        +--ro wdm-tnl:estimated-gsnr?          snr
-     |     |     |        +--ro wdm-tnl:estimated-eol-gsnr?      snr
-     |     |     |        +--ro wdm-tnl:estimated-lowest-gsnr?   snr
+     |     |     |                te-types:te-path-disjointness
      |     |     +--ro computed-path-error-infos
      |     |     |  +--ro computed-path-error-info* []
      |     |     |     +--ro error-description?   string
@@ -1468,6 +1489,8 @@ module: ietf-te
      |     |     |  |  |     |     |     |       uint32
      |     |     |  |  |     |     |     +--rw wdm-tnl:operational-modes*
      |     |     |  |  |     |     |     |       string
+     |     |     |  |  |     |     |     +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |  |  |     |     |     |       l0-types:frequency-thz
      |     |     |  |  |     |     |     +--rw wdm-tnl:tx-tune-constraints
      |     |     |  |  |     |     |     |  +--rw wdm-tnl:min-central-frequency?
      |     |     |  |  |     |     |     |  |       frequency-thz
@@ -1480,7 +1503,9 @@ module: ietf-te
      |     |     |  |  |     |     |     +--rw wdm-tnl:tx-channel-power?
      |     |     |  |  |     |     |     |       l0-types:power-dbm
      |     |     |  |  |     |     |     +--rw wdm-tnl:preferred-rx-channel-power?
-     |     |     |  |  |     |     |             l0-types:power-dbm
+     |     |     |  |  |     |     |     |       l0-types:power-dbm
+     |     |     |  |  |     |     |     +--rw wdm-tnl:gsnr-extra-margin?
+     |     |     |  |  |     |     |             snr
      |     |     |  |  |     |     +--rw wdm-tnl:path-out-transceiver
      |     |     |  |  |     |        +--rw wdm-tnl:transponder-id?
      |     |     |  |  |     |        |       uint32
@@ -1492,6 +1517,8 @@ module: ietf-te
      |     |     |  |  |     |           |       uint32
      |     |     |  |  |     |           +--rw wdm-tnl:operational-modes*
      |     |     |  |  |     |           |       string
+     |     |     |  |  |     |           +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |  |  |     |           |       l0-types:frequency-thz
      |     |     |  |  |     |           +--rw wdm-tnl:tx-tune-constraints
      |     |     |  |  |     |           |  +--rw wdm-tnl:min-central-frequency?
      |     |     |  |  |     |           |  |       frequency-thz
@@ -1504,7 +1531,9 @@ module: ietf-te
      |     |     |  |  |     |           +--rw wdm-tnl:tx-channel-power?
      |     |     |  |  |     |           |       l0-types:power-dbm
      |     |     |  |  |     |           +--rw wdm-tnl:preferred-rx-channel-power?
-     |     |     |  |  |     |                   l0-types:power-dbm
+     |     |     |  |  |     |           |       l0-types:power-dbm
+     |     |     |  |  |     |           +--rw wdm-tnl:gsnr-extra-margin?
+     |     |     |  |  |     |                   snr
      |     |     |  |  |     +--:(numbered-link-hop)
      |     |     |  |  |     |  +--rw numbered-link-hop
      |     |     |  |  |     |     +--rw link-tp-id    te-tp-id
@@ -1836,28 +1865,44 @@ module: ietf-te
      |     |     |  |        |        |     |  +--ro wdm-tnl:transponder-id?
      |     |     |  |        |        |     |  |       uint32
      |     |     |  |        |        |     |  +--ro wdm-tnl:transceivers*
-     |     |     |  |        |        |     |          [otsi-carrier-id]
-     |     |     |  |        |        |     |     +--ro wdm-tnl:otsi-carrier-id
+     |     |     |  |        |        |     |          [transceiver-id]
+     |     |     |  |        |        |     |     +--ro wdm-tnl:otsi-carrier-id?
      |     |     |  |        |        |     |     |       uint16
-     |     |     |  |        |        |     |     +--ro wdm-tnl:transceiver-id?
+     |     |     |  |        |        |     |     +--ro wdm-tnl:transceiver-id
      |     |     |  |        |        |     |     |       uint32
+     |     |     |  |        |        |     |     +--ro wdm-tnl:otsi-carrier-frequency?
+     |     |     |  |        |        |     |     |       union
      |     |     |  |        |        |     |     +--ro wdm-tnl:rx-channel-power?
      |     |     |  |        |        |     |     |       power-dbm-or-null
      |     |     |  |        |        |     |     +--ro wdm-tnl:rx-total-power?
-     |     |     |  |        |        |     |             power-dbm-or-null
+     |     |     |  |        |        |     |     |       power-dbm-or-null
+     |     |     |  |        |        |     |     +--ro wdm-tnl:estimated-gsnr?
+     |     |     |  |        |        |     |     |       snr
+     |     |     |  |        |        |     |     +--ro wdm-tnl:estimated-eol-gsnr?
+     |     |     |  |        |        |     |     |       snr
+     |     |     |  |        |        |     |     +--ro wdm-tnl:estimated-lowest-gsnr?
+     |     |     |  |        |        |     |             snr
      |     |     |  |        |        |     +--ro wdm-tnl:path-out-transceiver
      |     |     |  |        |        |        +--ro wdm-tnl:transponder-id?
      |     |     |  |        |        |        |       uint32
      |     |     |  |        |        |        +--ro wdm-tnl:transceivers*
-     |     |     |  |        |        |                [otsi-carrier-id]
-     |     |     |  |        |        |           +--ro wdm-tnl:otsi-carrier-id
+     |     |     |  |        |        |                [transceiver-id]
+     |     |     |  |        |        |           +--ro wdm-tnl:otsi-carrier-id?
      |     |     |  |        |        |           |       uint16
-     |     |     |  |        |        |           +--ro wdm-tnl:transceiver-id?
+     |     |     |  |        |        |           +--ro wdm-tnl:transceiver-id
      |     |     |  |        |        |           |       uint32
+     |     |     |  |        |        |           +--ro wdm-tnl:otsi-carrier-frequency?
+     |     |     |  |        |        |           |       union
      |     |     |  |        |        |           +--ro wdm-tnl:rx-channel-power?
      |     |     |  |        |        |           |       power-dbm-or-null
      |     |     |  |        |        |           +--ro wdm-tnl:rx-total-power?
-     |     |     |  |        |        |                   power-dbm-or-null
+     |     |     |  |        |        |           |       power-dbm-or-null
+     |     |     |  |        |        |           +--ro wdm-tnl:estimated-gsnr?
+     |     |     |  |        |        |           |       snr
+     |     |     |  |        |        |           +--ro wdm-tnl:estimated-eol-gsnr?
+     |     |     |  |        |        |           |       snr
+     |     |     |  |        |        |           +--ro wdm-tnl:estimated-lowest-gsnr?
+     |     |     |  |        |        |                   snr
      |     |     |  |        |        +--:(numbered-link-hop)
      |     |     |  |        |        |  +--ro numbered-link-hop
      |     |     |  |        |        |     +--ro link-tp-id
@@ -1935,13 +1980,7 @@ module: ietf-te
      |     |     |  |        |     +--:(generic)
      |     |     |  |        |        +--ro generic?   te-bandwidth
      |     |     |  |        +--ro disjointness-type?
-     |     |     |  |        |       te-types:te-path-disjointness
-     |     |     |  |        +--ro wdm-tnl:estimated-gsnr?
-     |     |     |  |        |       snr
-     |     |     |  |        +--ro wdm-tnl:estimated-eol-gsnr?
-     |     |     |  |        |       snr
-     |     |     |  |        +--ro wdm-tnl:estimated-lowest-gsnr?
-     |     |     |  |                snr
+     |     |     |  |                te-types:te-path-disjointness
      |     |     |  +--ro computed-path-error-infos
      |     |     |  |  +--ro computed-path-error-info* []
      |     |     |  |     +--ro error-description?   string
@@ -2252,6 +2291,8 @@ module: ietf-te
      |     |     |  |     |     |     |       uint32
      |     |     |  |     |     |     +--rw wdm-tnl:operational-modes*
      |     |     |  |     |     |     |       string
+     |     |     |  |     |     |     +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |  |     |     |     |       l0-types:frequency-thz
      |     |     |  |     |     |     +--rw wdm-tnl:tx-tune-constraints
      |     |     |  |     |     |     |  +--rw wdm-tnl:min-central-frequency?
      |     |     |  |     |     |     |  |       frequency-thz
@@ -2264,7 +2305,9 @@ module: ietf-te
      |     |     |  |     |     |     +--rw wdm-tnl:tx-channel-power?
      |     |     |  |     |     |     |       l0-types:power-dbm
      |     |     |  |     |     |     +--rw wdm-tnl:preferred-rx-channel-power?
-     |     |     |  |     |     |             l0-types:power-dbm
+     |     |     |  |     |     |     |       l0-types:power-dbm
+     |     |     |  |     |     |     +--rw wdm-tnl:gsnr-extra-margin?
+     |     |     |  |     |     |             snr
      |     |     |  |     |     +--rw wdm-tnl:path-out-transceiver
      |     |     |  |     |        +--rw wdm-tnl:transponder-id?
      |     |     |  |     |        |       uint32
@@ -2276,6 +2319,8 @@ module: ietf-te
      |     |     |  |     |           |       uint32
      |     |     |  |     |           +--rw wdm-tnl:operational-modes*
      |     |     |  |     |           |       string
+     |     |     |  |     |           +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |  |     |           |       l0-types:frequency-thz
      |     |     |  |     |           +--rw wdm-tnl:tx-tune-constraints
      |     |     |  |     |           |  +--rw wdm-tnl:min-central-frequency?
      |     |     |  |     |           |  |       frequency-thz
@@ -2288,7 +2333,9 @@ module: ietf-te
      |     |     |  |     |           +--rw wdm-tnl:tx-channel-power?
      |     |     |  |     |           |       l0-types:power-dbm
      |     |     |  |     |           +--rw wdm-tnl:preferred-rx-channel-power?
-     |     |     |  |     |                   l0-types:power-dbm
+     |     |     |  |     |           |       l0-types:power-dbm
+     |     |     |  |     |           +--rw wdm-tnl:gsnr-extra-margin?
+     |     |     |  |     |                   snr
      |     |     |  |     +--:(numbered-link-hop)
      |     |     |  |     |  +--rw numbered-link-hop
      |     |     |  |     |     +--rw link-tp-id    te-tp-id
@@ -2627,28 +2674,44 @@ module: ietf-te
      |     |     |        |        |     |  +--ro wdm-tnl:transponder-id?
      |     |     |        |        |     |  |       uint32
      |     |     |        |        |     |  +--ro wdm-tnl:transceivers*
-     |     |     |        |        |     |          [otsi-carrier-id]
-     |     |     |        |        |     |     +--ro wdm-tnl:otsi-carrier-id
+     |     |     |        |        |     |          [transceiver-id]
+     |     |     |        |        |     |     +--ro wdm-tnl:otsi-carrier-id?
      |     |     |        |        |     |     |       uint16
-     |     |     |        |        |     |     +--ro wdm-tnl:transceiver-id?
+     |     |     |        |        |     |     +--ro wdm-tnl:transceiver-id
      |     |     |        |        |     |     |       uint32
+     |     |     |        |        |     |     +--ro wdm-tnl:otsi-carrier-frequency?
+     |     |     |        |        |     |     |       union
      |     |     |        |        |     |     +--ro wdm-tnl:rx-channel-power?
      |     |     |        |        |     |     |       power-dbm-or-null
      |     |     |        |        |     |     +--ro wdm-tnl:rx-total-power?
-     |     |     |        |        |     |             power-dbm-or-null
+     |     |     |        |        |     |     |       power-dbm-or-null
+     |     |     |        |        |     |     +--ro wdm-tnl:estimated-gsnr?
+     |     |     |        |        |     |     |       snr
+     |     |     |        |        |     |     +--ro wdm-tnl:estimated-eol-gsnr?
+     |     |     |        |        |     |     |       snr
+     |     |     |        |        |     |     +--ro wdm-tnl:estimated-lowest-gsnr?
+     |     |     |        |        |     |             snr
      |     |     |        |        |     +--ro wdm-tnl:path-out-transceiver
      |     |     |        |        |        +--ro wdm-tnl:transponder-id?
      |     |     |        |        |        |       uint32
      |     |     |        |        |        +--ro wdm-tnl:transceivers*
-     |     |     |        |        |                [otsi-carrier-id]
-     |     |     |        |        |           +--ro wdm-tnl:otsi-carrier-id
+     |     |     |        |        |                [transceiver-id]
+     |     |     |        |        |           +--ro wdm-tnl:otsi-carrier-id?
      |     |     |        |        |           |       uint16
-     |     |     |        |        |           +--ro wdm-tnl:transceiver-id?
+     |     |     |        |        |           +--ro wdm-tnl:transceiver-id
      |     |     |        |        |           |       uint32
+     |     |     |        |        |           +--ro wdm-tnl:otsi-carrier-frequency?
+     |     |     |        |        |           |       union
      |     |     |        |        |           +--ro wdm-tnl:rx-channel-power?
      |     |     |        |        |           |       power-dbm-or-null
      |     |     |        |        |           +--ro wdm-tnl:rx-total-power?
-     |     |     |        |        |                   power-dbm-or-null
+     |     |     |        |        |           |       power-dbm-or-null
+     |     |     |        |        |           +--ro wdm-tnl:estimated-gsnr?
+     |     |     |        |        |           |       snr
+     |     |     |        |        |           +--ro wdm-tnl:estimated-eol-gsnr?
+     |     |     |        |        |           |       snr
+     |     |     |        |        |           +--ro wdm-tnl:estimated-lowest-gsnr?
+     |     |     |        |        |                   snr
      |     |     |        |        +--:(numbered-link-hop)
      |     |     |        |        |  +--ro numbered-link-hop
      |     |     |        |        |     +--ro link-tp-id    te-tp-id
@@ -2725,10 +2788,7 @@ module: ietf-te
      |     |     |        |     +--:(generic)
      |     |     |        |        +--ro generic?   te-bandwidth
      |     |     |        +--ro disjointness-type?
-     |     |     |        |       te-types:te-path-disjointness
-     |     |     |        +--ro wdm-tnl:estimated-gsnr?          snr
-     |     |     |        +--ro wdm-tnl:estimated-eol-gsnr?      snr
-     |     |     |        +--ro wdm-tnl:estimated-lowest-gsnr?   snr
+     |     |     |                te-types:te-path-disjointness
      |     |     +--ro computed-path-error-infos
      |     |     |  +--ro computed-path-error-info* []
      |     |     |     +--ro error-description?   string
@@ -3025,6 +3085,8 @@ module: ietf-te
      |     |     |  |     |     |     |       uint32
      |     |     |  |     |     |     +--rw wdm-tnl:operational-modes*
      |     |     |  |     |     |     |       string
+     |     |     |  |     |     |     +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |  |     |     |     |       l0-types:frequency-thz
      |     |     |  |     |     |     +--rw wdm-tnl:tx-tune-constraints
      |     |     |  |     |     |     |  +--rw wdm-tnl:min-central-frequency?
      |     |     |  |     |     |     |  |       frequency-thz
@@ -3037,7 +3099,9 @@ module: ietf-te
      |     |     |  |     |     |     +--rw wdm-tnl:tx-channel-power?
      |     |     |  |     |     |     |       l0-types:power-dbm
      |     |     |  |     |     |     +--rw wdm-tnl:preferred-rx-channel-power?
-     |     |     |  |     |     |             l0-types:power-dbm
+     |     |     |  |     |     |     |       l0-types:power-dbm
+     |     |     |  |     |     |     +--rw wdm-tnl:gsnr-extra-margin?
+     |     |     |  |     |     |             snr
      |     |     |  |     |     +--rw wdm-tnl:path-out-transceiver
      |     |     |  |     |        +--rw wdm-tnl:transponder-id?
      |     |     |  |     |        |       uint32
@@ -3049,6 +3113,8 @@ module: ietf-te
      |     |     |  |     |           |       uint32
      |     |     |  |     |           +--rw wdm-tnl:operational-modes*
      |     |     |  |     |           |       string
+     |     |     |  |     |           +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |  |     |           |       l0-types:frequency-thz
      |     |     |  |     |           +--rw wdm-tnl:tx-tune-constraints
      |     |     |  |     |           |  +--rw wdm-tnl:min-central-frequency?
      |     |     |  |     |           |  |       frequency-thz
@@ -3061,7 +3127,9 @@ module: ietf-te
      |     |     |  |     |           +--rw wdm-tnl:tx-channel-power?
      |     |     |  |     |           |       l0-types:power-dbm
      |     |     |  |     |           +--rw wdm-tnl:preferred-rx-channel-power?
-     |     |     |  |     |                   l0-types:power-dbm
+     |     |     |  |     |           |       l0-types:power-dbm
+     |     |     |  |     |           +--rw wdm-tnl:gsnr-extra-margin?
+     |     |     |  |     |                   snr
      |     |     |  |     +--:(numbered-link-hop)
      |     |     |  |     |  +--rw numbered-link-hop
      |     |     |  |     |     +--rw link-tp-id    te-tp-id
@@ -3400,28 +3468,44 @@ module: ietf-te
      |     |     |        |        |     |  +--ro wdm-tnl:transponder-id?
      |     |     |        |        |     |  |       uint32
      |     |     |        |        |     |  +--ro wdm-tnl:transceivers*
-     |     |     |        |        |     |          [otsi-carrier-id]
-     |     |     |        |        |     |     +--ro wdm-tnl:otsi-carrier-id
+     |     |     |        |        |     |          [transceiver-id]
+     |     |     |        |        |     |     +--ro wdm-tnl:otsi-carrier-id?
      |     |     |        |        |     |     |       uint16
-     |     |     |        |        |     |     +--ro wdm-tnl:transceiver-id?
+     |     |     |        |        |     |     +--ro wdm-tnl:transceiver-id
      |     |     |        |        |     |     |       uint32
+     |     |     |        |        |     |     +--ro wdm-tnl:otsi-carrier-frequency?
+     |     |     |        |        |     |     |       union
      |     |     |        |        |     |     +--ro wdm-tnl:rx-channel-power?
      |     |     |        |        |     |     |       power-dbm-or-null
      |     |     |        |        |     |     +--ro wdm-tnl:rx-total-power?
-     |     |     |        |        |     |             power-dbm-or-null
+     |     |     |        |        |     |     |       power-dbm-or-null
+     |     |     |        |        |     |     +--ro wdm-tnl:estimated-gsnr?
+     |     |     |        |        |     |     |       snr
+     |     |     |        |        |     |     +--ro wdm-tnl:estimated-eol-gsnr?
+     |     |     |        |        |     |     |       snr
+     |     |     |        |        |     |     +--ro wdm-tnl:estimated-lowest-gsnr?
+     |     |     |        |        |     |             snr
      |     |     |        |        |     +--ro wdm-tnl:path-out-transceiver
      |     |     |        |        |        +--ro wdm-tnl:transponder-id?
      |     |     |        |        |        |       uint32
      |     |     |        |        |        +--ro wdm-tnl:transceivers*
-     |     |     |        |        |                [otsi-carrier-id]
-     |     |     |        |        |           +--ro wdm-tnl:otsi-carrier-id
+     |     |     |        |        |                [transceiver-id]
+     |     |     |        |        |           +--ro wdm-tnl:otsi-carrier-id?
      |     |     |        |        |           |       uint16
-     |     |     |        |        |           +--ro wdm-tnl:transceiver-id?
+     |     |     |        |        |           +--ro wdm-tnl:transceiver-id
      |     |     |        |        |           |       uint32
+     |     |     |        |        |           +--ro wdm-tnl:otsi-carrier-frequency?
+     |     |     |        |        |           |       union
      |     |     |        |        |           +--ro wdm-tnl:rx-channel-power?
      |     |     |        |        |           |       power-dbm-or-null
      |     |     |        |        |           +--ro wdm-tnl:rx-total-power?
-     |     |     |        |        |                   power-dbm-or-null
+     |     |     |        |        |           |       power-dbm-or-null
+     |     |     |        |        |           +--ro wdm-tnl:estimated-gsnr?
+     |     |     |        |        |           |       snr
+     |     |     |        |        |           +--ro wdm-tnl:estimated-eol-gsnr?
+     |     |     |        |        |           |       snr
+     |     |     |        |        |           +--ro wdm-tnl:estimated-lowest-gsnr?
+     |     |     |        |        |                   snr
      |     |     |        |        +--:(numbered-link-hop)
      |     |     |        |        |  +--ro numbered-link-hop
      |     |     |        |        |     +--ro link-tp-id    te-tp-id
@@ -3498,10 +3582,7 @@ module: ietf-te
      |     |     |        |     +--:(generic)
      |     |     |        |        +--ro generic?   te-bandwidth
      |     |     |        +--ro disjointness-type?
-     |     |     |        |       te-types:te-path-disjointness
-     |     |     |        +--ro wdm-tnl:estimated-gsnr?          snr
-     |     |     |        +--ro wdm-tnl:estimated-eol-gsnr?      snr
-     |     |     |        +--ro wdm-tnl:estimated-lowest-gsnr?   snr
+     |     |     |                te-types:te-path-disjointness
      |     |     +--ro computed-path-error-infos
      |     |     |  +--ro computed-path-error-info* []
      |     |     |     +--ro error-description?   string
@@ -3539,6 +3620,8 @@ module: ietf-te
      |     +--rw wdm-tnl:wdm-constraint
      |        +--rw wdm-tnl:transceiver-constraint
      |        |  +--rw wdm-tnl:operational-modes*            string
+     |        |  +--rw wdm-tnl:otsi-carrier-frequency?
+     |        |  |       l0-types:frequency-thz
      |        |  +--rw wdm-tnl:tx-tune-constraints
      |        |  |  +--rw wdm-tnl:min-central-frequency?
      |        |  |  |       frequency-thz
@@ -3551,8 +3634,8 @@ module: ietf-te
      |        |  +--rw wdm-tnl:tx-channel-power?
      |        |  |       l0-types:power-dbm
      |        |  +--rw wdm-tnl:preferred-rx-channel-power?
-     |        |          l0-types:power-dbm
-     |        +--rw wdm-tnl:gsnr-extra-margin?             snr
+     |        |  |       l0-types:power-dbm
+     |        |  +--rw wdm-tnl:gsnr-extra-margin?            snr
      |        +--rw wdm-tnl:use-regen?                     boolean
      |        +--rw wdm-tnl:wavelength-conversion?         boolean
      |        +--rw wdm-tnl:wavelength-assignment?
@@ -3589,99 +3672,124 @@ module: ietf-te
            |       te-types:te-node-id
            +--ro lsp-actual-route-information
               +--ro lsp-actual-route-information* [index]
-              |  +--ro index                        uint32
-              |  +--ro (type)?
-              |     +--:(numbered-node-hop)
-              |     |  +--ro numbered-node-hop
-              |     |     +--ro node-id-uri?
-              |     |     |       nw:node-id
-              |     |     +--ro node-id?
-              |     |     |       te-node-id
-              |     |     +--ro flags*
-              |     |     |       path-attribute-flags
-              |     |     +--ro wdm-tnl:path-in-transceiver
-              |     |     |  +--ro wdm-tnl:transponder-id?   uint32
-              |     |     |  +--ro wdm-tnl:transceivers*
-              |     |     |          [otsi-carrier-id]
-              |     |     |     +--ro wdm-tnl:otsi-carrier-id
-              |     |     |     |       uint16
-              |     |     |     +--ro wdm-tnl:transceiver-id?
-              |     |     |     |       uint32
-              |     |     |     +--ro wdm-tnl:rx-channel-power?
-              |     |     |     |       power-dbm-or-null
-              |     |     |     +--ro wdm-tnl:rx-total-power?
-              |     |     |             power-dbm-or-null
-              |     |     +--ro wdm-tnl:path-out-transceiver
-              |     |        +--ro wdm-tnl:transponder-id?   uint32
-              |     |        +--ro wdm-tnl:transceivers*
-              |     |                [otsi-carrier-id]
-              |     |           +--ro wdm-tnl:otsi-carrier-id
-              |     |           |       uint16
-              |     |           +--ro wdm-tnl:transceiver-id?
-              |     |           |       uint32
-              |     |           +--ro wdm-tnl:rx-channel-power?
-              |     |           |       power-dbm-or-null
-              |     |           +--ro wdm-tnl:rx-total-power?
-              |     |                   power-dbm-or-null
-              |     +--:(numbered-link-hop)
-              |     |  +--ro numbered-link-hop
-              |     |     +--ro link-tp-id    te-tp-id
-              |     |     +--ro flags*        path-attribute-flags
-              |     +--:(unnumbered-link-hop)
-              |     |  +--ro unnumbered-link-hop
-              |     |     +--ro link-tp-id-uri?   nt:tp-id
-              |     |     +--ro link-tp-id?       te-tp-id
-              |     |     +--ro node-id-uri?      nw:node-id
-              |     |     +--ro node-id?          te-node-id
-              |     |     +--ro flags*
-              |     |             path-attribute-flags
-              |     +--:(label)
-              |        +--ro label-hop
-              |           +--ro te-label
-              |           |  +--ro (technology)?
-              |           |  |  +--:(generic)
-              |           |  |  |  +--ro generic?
-              |           |  |  |          rt-types:generalized-label
-              |           |  |  +--:(wdm-tnl:wdm)
-              |           |  |     +--ro (wdm-tnl:grid-type)?
-              |           |  |        +--:(wdm-tnl:fixed-dwdm)
-              |           |  |        |  +--ro (wdm-tnl:fixed-single-or-super-channel)?
-              |           |  |        |     +--:(wdm-tnl:single)
-              |           |  |        |     |  +--ro wdm-tnl:dwdm-n?
-              |           |  |        |     |          l0-types:dwdm-n
-              |           |  |        |     +--:(wdm-tnl:multi)
-              |           |  |        |        +--ro wdm-tnl:subcarrier-dwdm-n*
-              |           |  |        |                l0-types:dwdm-n
-              |           |  |        +--:(wdm-tnl:cwdm)
-              |           |  |        |  +--ro wdm-tnl:cwdm-n?
-              |           |  |        |          l0-types:cwdm-n
-              |           |  |        +--:(wdm-tnl:flexi-grid)
-              |           |  |           +--ro (wdm-tnl:single-or-super-channel)?
-              |           |  |              +--:(wdm-tnl:single)
-              |           |  |              |  +--ro wdm-tnl:flexi-n?
-              |           |  |              |  |       l0-types:flexi-n
-              |           |  |              |  +--ro wdm-tnl:flexi-m?
-              |           |  |              |          l0-types:flexi-m
-              |           |  |              x--:(wdm-tnl:super)
-              |           |  |              |  x--ro wdm-tnl:subcarrier-flexi-n*
-              |           |  |              |          [flexi-n]
-              |           |  |              |     +--ro wdm-tnl:flexi-n
-              |           |  |              |     |       l0-types:flexi-n
-              |           |  |              |     +--ro wdm-tnl:flexi-m?
-              |           |  |              |             l0-types:flexi-m
-              |           |  |              +--:(wdm-tnl:multi)
-              |           |  |                 +--ro wdm-tnl:frequency-slots
-              |           |  |                    +--ro wdm-tnl:frequency-slot*
-              |           |  |                            [flexi-n]
-              |           |  |                       +--ro wdm-tnl:flexi-n
-              |           |  |                       |       l0-types:flexi-n
-              |           |  |                       +--ro wdm-tnl:flexi-m?
-              |           |  |                               l0-types:flexi-m
-              |           |  +--ro direction?
-              |           |          te-label-direction
-              |           +--ro flags*      path-attribute-flags
-              +--ro wdm-tnl:wdm-path-state
-                 +--ro wdm-tnl:gsnr?   l0-types:snr
+                 +--ro index                        uint32
+                 +--ro (type)?
+                    +--:(numbered-node-hop)
+                    |  +--ro numbered-node-hop
+                    |     +--ro node-id-uri?
+                    |     |       nw:node-id
+                    |     +--ro node-id?
+                    |     |       te-node-id
+                    |     +--ro flags*
+                    |     |       path-attribute-flags
+                    |     +--ro wdm-tnl:path-in-transceiver
+                    |     |  +--ro wdm-tnl:transponder-id?   uint32
+                    |     |  +--ro wdm-tnl:transceivers*
+                    |     |          [transceiver-id]
+                    |     |     +--ro wdm-tnl:otsi-carrier-id?
+                    |     |     |       uint16
+                    |     |     +--ro wdm-tnl:transceiver-id
+                    |     |     |       uint32
+                    |     |     +--ro wdm-tnl:otsi-carrier-frequency?
+                    |     |     |       union
+                    |     |     +--ro wdm-tnl:rx-channel-power?
+                    |     |     |       power-dbm-or-null
+                    |     |     +--ro wdm-tnl:rx-total-power?
+                    |     |     |       power-dbm-or-null
+                    |     |     +--ro wdm-tnl:pre-fec-ber
+                    |     |     |  +--ro wdm-tnl:timestamp?
+                    |     |     |  |       yang:timestamp
+                    |     |     |  +--ro wdm-tnl:value?
+                    |     |     |          decimal64
+                    |     |     +--ro wdm-tnl:q-factor
+                    |     |        +--ro wdm-tnl:timestamp?
+                    |     |        |       yang:timestamp
+                    |     |        +--ro wdm-tnl:value?
+                    |     |                l0-types:decimal-2-or-null
+                    |     +--ro wdm-tnl:path-out-transceiver
+                    |        +--ro wdm-tnl:transponder-id?   uint32
+                    |        +--ro wdm-tnl:transceivers*
+                    |                [transceiver-id]
+                    |           +--ro wdm-tnl:otsi-carrier-id?
+                    |           |       uint16
+                    |           +--ro wdm-tnl:transceiver-id
+                    |           |       uint32
+                    |           +--ro wdm-tnl:otsi-carrier-frequency?
+                    |           |       union
+                    |           +--ro wdm-tnl:rx-channel-power?
+                    |           |       power-dbm-or-null
+                    |           +--ro wdm-tnl:rx-total-power?
+                    |           |       power-dbm-or-null
+                    |           +--ro wdm-tnl:pre-fec-ber
+                    |           |  +--ro wdm-tnl:timestamp?
+                    |           |  |       yang:timestamp
+                    |           |  +--ro wdm-tnl:value?
+                    |           |          decimal64
+                    |           +--ro wdm-tnl:q-factor
+                    |              +--ro wdm-tnl:timestamp?
+                    |              |       yang:timestamp
+                    |              +--ro wdm-tnl:value?
+                    |                      l0-types:decimal-2-or-null
+                    +--:(numbered-link-hop)
+                    |  +--ro numbered-link-hop
+                    |     +--ro link-tp-id                te-tp-id
+                    |     +--ro flags*
+                    |     |       path-attribute-flags
+                    |     +--ro wdm-tnl:e2e-mc-path-id*   uint16
+                    +--:(unnumbered-link-hop)
+                    |  +--ro unnumbered-link-hop
+                    |     +--ro link-tp-id-uri?           nt:tp-id
+                    |     +--ro link-tp-id?               te-tp-id
+                    |     +--ro node-id-uri?              nw:node-id
+                    |     +--ro node-id?                  te-node-id
+                    |     +--ro flags*
+                    |     |       path-attribute-flags
+                    |     +--ro wdm-tnl:e2e-mc-path-id*   uint16
+                    +--:(label)
+                       +--ro label-hop
+                          +--ro te-label
+                          |  +--ro (technology)?
+                          |  |  +--:(generic)
+                          |  |  |  +--ro generic?
+                          |  |  |          rt-types:generalized-label
+                          |  |  +--:(wdm-tnl:wdm)
+                          |  |     +--ro (wdm-tnl:grid-type)?
+                          |  |        +--:(wdm-tnl:fixed-dwdm)
+                          |  |        |  +--ro (wdm-tnl:fixed-single-or-super-channel)?
+                          |  |        |     +--:(wdm-tnl:single)
+                          |  |        |     |  +--ro wdm-tnl:dwdm-n?
+                          |  |        |     |          l0-types:dwdm-n
+                          |  |        |     +--:(wdm-tnl:multi)
+                          |  |        |        +--ro wdm-tnl:subcarrier-dwdm-n*
+                          |  |        |                l0-types:dwdm-n
+                          |  |        +--:(wdm-tnl:cwdm)
+                          |  |        |  +--ro wdm-tnl:cwdm-n?
+                          |  |        |          l0-types:cwdm-n
+                          |  |        +--:(wdm-tnl:flexi-grid)
+                          |  |           +--ro (wdm-tnl:single-or-super-channel)?
+                          |  |              +--:(wdm-tnl:single)
+                          |  |              |  +--ro wdm-tnl:flexi-n?
+                          |  |              |  |       l0-types:flexi-n
+                          |  |              |  +--ro wdm-tnl:flexi-m?
+                          |  |              |          l0-types:flexi-m
+                          |  |              x--:(wdm-tnl:super)
+                          |  |              |  x--ro wdm-tnl:subcarrier-flexi-n*
+                          |  |              |          [flexi-n]
+                          |  |              |     +--ro wdm-tnl:flexi-n
+                          |  |              |     |       l0-types:flexi-n
+                          |  |              |     +--ro wdm-tnl:flexi-m?
+                          |  |              |             l0-types:flexi-m
+                          |  |              +--:(wdm-tnl:multi)
+                          |  |                 +--ro wdm-tnl:frequency-slots
+                          |  |                    +--ro wdm-tnl:frequency-slot*
+                          |  |                            [flexi-n]
+                          |  |                       +--ro wdm-tnl:flexi-n
+                          |  |                       |       l0-types:flexi-n
+                          |  |                       +--ro wdm-tnl:flexi-m?
+                          |  |                               l0-types:flexi-m
+                          |  +--ro direction?
+                          |          te-label-direction
+                          +--ro flags*      path-attribute-flags
 
   rpcs:
     +---x tunnels-path-compute
