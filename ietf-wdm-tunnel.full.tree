@@ -1074,10 +1074,10 @@ module: ietf-te
      |     |     |        |        |     |  +--ro wdm-tnl:transponder-id?
      |     |     |        |        |     |  |       uint32
      |     |     |        |        |     |  +--ro wdm-tnl:transceivers*
-     |     |     |        |        |     |          [otsi-carrier-id]
-     |     |     |        |        |     |     +--ro wdm-tnl:otsi-carrier-id
+     |     |     |        |        |     |          [transceiver-id]
+     |     |     |        |        |     |     +--ro wdm-tnl:otsi-carrier-id?
      |     |     |        |        |     |     |       uint16
-     |     |     |        |        |     |     +--ro wdm-tnl:transceiver-id?
+     |     |     |        |        |     |     +--ro wdm-tnl:transceiver-id
      |     |     |        |        |     |     |       uint32
      |     |     |        |        |     |     +--ro wdm-tnl:otsi-carrier-frequency?
      |     |     |        |        |     |     |       union
@@ -1095,10 +1095,10 @@ module: ietf-te
      |     |     |        |        |        +--ro wdm-tnl:transponder-id?
      |     |     |        |        |        |       uint32
      |     |     |        |        |        +--ro wdm-tnl:transceivers*
-     |     |     |        |        |                [otsi-carrier-id]
-     |     |     |        |        |           +--ro wdm-tnl:otsi-carrier-id
+     |     |     |        |        |                [transceiver-id]
+     |     |     |        |        |           +--ro wdm-tnl:otsi-carrier-id?
      |     |     |        |        |           |       uint16
-     |     |     |        |        |           +--ro wdm-tnl:transceiver-id?
+     |     |     |        |        |           +--ro wdm-tnl:transceiver-id
      |     |     |        |        |           |       uint32
      |     |     |        |        |           +--ro wdm-tnl:otsi-carrier-frequency?
      |     |     |        |        |           |       union
@@ -1865,10 +1865,10 @@ module: ietf-te
      |     |     |  |        |        |     |  +--ro wdm-tnl:transponder-id?
      |     |     |  |        |        |     |  |       uint32
      |     |     |  |        |        |     |  +--ro wdm-tnl:transceivers*
-     |     |     |  |        |        |     |          [otsi-carrier-id]
-     |     |     |  |        |        |     |     +--ro wdm-tnl:otsi-carrier-id
+     |     |     |  |        |        |     |          [transceiver-id]
+     |     |     |  |        |        |     |     +--ro wdm-tnl:otsi-carrier-id?
      |     |     |  |        |        |     |     |       uint16
-     |     |     |  |        |        |     |     +--ro wdm-tnl:transceiver-id?
+     |     |     |  |        |        |     |     +--ro wdm-tnl:transceiver-id
      |     |     |  |        |        |     |     |       uint32
      |     |     |  |        |        |     |     +--ro wdm-tnl:otsi-carrier-frequency?
      |     |     |  |        |        |     |     |       union
@@ -1886,10 +1886,10 @@ module: ietf-te
      |     |     |  |        |        |        +--ro wdm-tnl:transponder-id?
      |     |     |  |        |        |        |       uint32
      |     |     |  |        |        |        +--ro wdm-tnl:transceivers*
-     |     |     |  |        |        |                [otsi-carrier-id]
-     |     |     |  |        |        |           +--ro wdm-tnl:otsi-carrier-id
+     |     |     |  |        |        |                [transceiver-id]
+     |     |     |  |        |        |           +--ro wdm-tnl:otsi-carrier-id?
      |     |     |  |        |        |           |       uint16
-     |     |     |  |        |        |           +--ro wdm-tnl:transceiver-id?
+     |     |     |  |        |        |           +--ro wdm-tnl:transceiver-id
      |     |     |  |        |        |           |       uint32
      |     |     |  |        |        |           +--ro wdm-tnl:otsi-carrier-frequency?
      |     |     |  |        |        |           |       union
@@ -2674,10 +2674,10 @@ module: ietf-te
      |     |     |        |        |     |  +--ro wdm-tnl:transponder-id?
      |     |     |        |        |     |  |       uint32
      |     |     |        |        |     |  +--ro wdm-tnl:transceivers*
-     |     |     |        |        |     |          [otsi-carrier-id]
-     |     |     |        |        |     |     +--ro wdm-tnl:otsi-carrier-id
+     |     |     |        |        |     |          [transceiver-id]
+     |     |     |        |        |     |     +--ro wdm-tnl:otsi-carrier-id?
      |     |     |        |        |     |     |       uint16
-     |     |     |        |        |     |     +--ro wdm-tnl:transceiver-id?
+     |     |     |        |        |     |     +--ro wdm-tnl:transceiver-id
      |     |     |        |        |     |     |       uint32
      |     |     |        |        |     |     +--ro wdm-tnl:otsi-carrier-frequency?
      |     |     |        |        |     |     |       union
@@ -2695,10 +2695,10 @@ module: ietf-te
      |     |     |        |        |        +--ro wdm-tnl:transponder-id?
      |     |     |        |        |        |       uint32
      |     |     |        |        |        +--ro wdm-tnl:transceivers*
-     |     |     |        |        |                [otsi-carrier-id]
-     |     |     |        |        |           +--ro wdm-tnl:otsi-carrier-id
+     |     |     |        |        |                [transceiver-id]
+     |     |     |        |        |           +--ro wdm-tnl:otsi-carrier-id?
      |     |     |        |        |           |       uint16
-     |     |     |        |        |           +--ro wdm-tnl:transceiver-id?
+     |     |     |        |        |           +--ro wdm-tnl:transceiver-id
      |     |     |        |        |           |       uint32
      |     |     |        |        |           +--ro wdm-tnl:otsi-carrier-frequency?
      |     |     |        |        |           |       union
@@ -3468,10 +3468,10 @@ module: ietf-te
      |     |     |        |        |     |  +--ro wdm-tnl:transponder-id?
      |     |     |        |        |     |  |       uint32
      |     |     |        |        |     |  +--ro wdm-tnl:transceivers*
-     |     |     |        |        |     |          [otsi-carrier-id]
-     |     |     |        |        |     |     +--ro wdm-tnl:otsi-carrier-id
+     |     |     |        |        |     |          [transceiver-id]
+     |     |     |        |        |     |     +--ro wdm-tnl:otsi-carrier-id?
      |     |     |        |        |     |     |       uint16
-     |     |     |        |        |     |     +--ro wdm-tnl:transceiver-id?
+     |     |     |        |        |     |     +--ro wdm-tnl:transceiver-id
      |     |     |        |        |     |     |       uint32
      |     |     |        |        |     |     +--ro wdm-tnl:otsi-carrier-frequency?
      |     |     |        |        |     |     |       union
@@ -3489,10 +3489,10 @@ module: ietf-te
      |     |     |        |        |        +--ro wdm-tnl:transponder-id?
      |     |     |        |        |        |       uint32
      |     |     |        |        |        +--ro wdm-tnl:transceivers*
-     |     |     |        |        |                [otsi-carrier-id]
-     |     |     |        |        |           +--ro wdm-tnl:otsi-carrier-id
+     |     |     |        |        |                [transceiver-id]
+     |     |     |        |        |           +--ro wdm-tnl:otsi-carrier-id?
      |     |     |        |        |           |       uint16
-     |     |     |        |        |           +--ro wdm-tnl:transceiver-id?
+     |     |     |        |        |           +--ro wdm-tnl:transceiver-id
      |     |     |        |        |           |       uint32
      |     |     |        |        |           +--ro wdm-tnl:otsi-carrier-frequency?
      |     |     |        |        |           |       union
@@ -3685,10 +3685,10 @@ module: ietf-te
                     |     +--ro wdm-tnl:path-in-transceiver
                     |     |  +--ro wdm-tnl:transponder-id?   uint32
                     |     |  +--ro wdm-tnl:transceivers*
-                    |     |          [otsi-carrier-id]
-                    |     |     +--ro wdm-tnl:otsi-carrier-id
+                    |     |          [transceiver-id]
+                    |     |     +--ro wdm-tnl:otsi-carrier-id?
                     |     |     |       uint16
-                    |     |     +--ro wdm-tnl:transceiver-id?
+                    |     |     +--ro wdm-tnl:transceiver-id
                     |     |     |       uint32
                     |     |     +--ro wdm-tnl:otsi-carrier-frequency?
                     |     |     |       union
@@ -3696,17 +3696,23 @@ module: ietf-te
                     |     |     |       power-dbm-or-null
                     |     |     +--ro wdm-tnl:rx-total-power?
                     |     |     |       power-dbm-or-null
-                    |     |     +--ro wdm-tnl:pre-fec-ber?
-                    |     |     |       decimal64
-                    |     |     +--ro wdm-tnl:q-factor?
-                    |     |             int32
+                    |     |     +--ro wdm-tnl:pre-fec-ber
+                    |     |     |  +--ro wdm-tnl:timestamp?
+                    |     |     |  |       yang:timestamp
+                    |     |     |  +--ro wdm-tnl:value?
+                    |     |     |          decimal64
+                    |     |     +--ro wdm-tnl:q-factor
+                    |     |        +--ro wdm-tnl:timestamp?
+                    |     |        |       yang:timestamp
+                    |     |        +--ro wdm-tnl:value?
+                    |     |                l0-types:decimal-2-or-null
                     |     +--ro wdm-tnl:path-out-transceiver
                     |        +--ro wdm-tnl:transponder-id?   uint32
                     |        +--ro wdm-tnl:transceivers*
-                    |                [otsi-carrier-id]
-                    |           +--ro wdm-tnl:otsi-carrier-id
+                    |                [transceiver-id]
+                    |           +--ro wdm-tnl:otsi-carrier-id?
                     |           |       uint16
-                    |           +--ro wdm-tnl:transceiver-id?
+                    |           +--ro wdm-tnl:transceiver-id
                     |           |       uint32
                     |           +--ro wdm-tnl:otsi-carrier-frequency?
                     |           |       union
@@ -3714,10 +3720,16 @@ module: ietf-te
                     |           |       power-dbm-or-null
                     |           +--ro wdm-tnl:rx-total-power?
                     |           |       power-dbm-or-null
-                    |           +--ro wdm-tnl:pre-fec-ber?
-                    |           |       decimal64
-                    |           +--ro wdm-tnl:q-factor?
-                    |                   int32
+                    |           +--ro wdm-tnl:pre-fec-ber
+                    |           |  +--ro wdm-tnl:timestamp?
+                    |           |  |       yang:timestamp
+                    |           |  +--ro wdm-tnl:value?
+                    |           |          decimal64
+                    |           +--ro wdm-tnl:q-factor
+                    |              +--ro wdm-tnl:timestamp?
+                    |              |       yang:timestamp
+                    |              +--ro wdm-tnl:value?
+                    |                      l0-types:decimal-2-or-null
                     +--:(numbered-link-hop)
                     |  +--ro numbered-link-hop
                     |     +--ro link-tp-id                te-tp-id

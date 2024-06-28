@@ -163,9 +163,9 @@ module: ietf-wdm-tunnel
             /te:numbered-node-hop/te:numbered-node-hop:
     +--ro path-in-transceiver
     |  +--ro transponder-id?   uint32
-    |  +--ro transceivers* [otsi-carrier-id]
-    |     +--ro otsi-carrier-id           uint16
-    |     +--ro transceiver-id?           uint32
+    |  +--ro transceivers* [transceiver-id]
+    |     +--ro otsi-carrier-id?          uint16
+    |     +--ro transceiver-id            uint32
     |     +--ro otsi-carrier-frequency?   union
     |     +--ro rx-channel-power?         power-dbm-or-null
     |     +--ro rx-total-power?           power-dbm-or-null
@@ -174,9 +174,9 @@ module: ietf-wdm-tunnel
     |     +--ro estimated-lowest-gsnr?    snr
     +--ro path-out-transceiver
        +--ro transponder-id?   uint32
-       +--ro transceivers* [otsi-carrier-id]
-          +--ro otsi-carrier-id           uint16
-          +--ro transceiver-id?           uint32
+       +--ro transceivers* [transceiver-id]
+          +--ro otsi-carrier-id?          uint16
+          +--ro transceiver-id            uint32
           +--ro otsi-carrier-frequency?   union
           +--ro rx-channel-power?         power-dbm-or-null
           +--ro rx-total-power?           power-dbm-or-null
@@ -191,9 +191,9 @@ module: ietf-wdm-tunnel
             /te:numbered-node-hop:
     +--ro path-in-transceiver
     |  +--ro transponder-id?   uint32
-    |  +--ro transceivers* [otsi-carrier-id]
-    |     +--ro otsi-carrier-id           uint16
-    |     +--ro transceiver-id?           uint32
+    |  +--ro transceivers* [transceiver-id]
+    |     +--ro otsi-carrier-id?          uint16
+    |     +--ro transceiver-id            uint32
     |     +--ro otsi-carrier-frequency?   union
     |     +--ro rx-channel-power?         power-dbm-or-null
     |     +--ro rx-total-power?           power-dbm-or-null
@@ -202,9 +202,9 @@ module: ietf-wdm-tunnel
     |     +--ro estimated-lowest-gsnr?    snr
     +--ro path-out-transceiver
        +--ro transponder-id?   uint32
-       +--ro transceivers* [otsi-carrier-id]
-          +--ro otsi-carrier-id           uint16
-          +--ro transceiver-id?           uint32
+       +--ro transceivers* [transceiver-id]
+          +--ro otsi-carrier-id?          uint16
+          +--ro transceiver-id            uint32
           +--ro otsi-carrier-frequency?   union
           +--ro rx-channel-power?         power-dbm-or-null
           +--ro rx-total-power?           power-dbm-or-null
@@ -218,9 +218,9 @@ module: ietf-wdm-tunnel
             /te:numbered-node-hop/te:numbered-node-hop:
     +--ro path-in-transceiver
     |  +--ro transponder-id?   uint32
-    |  +--ro transceivers* [otsi-carrier-id]
-    |     +--ro otsi-carrier-id           uint16
-    |     +--ro transceiver-id?           uint32
+    |  +--ro transceivers* [transceiver-id]
+    |     +--ro otsi-carrier-id?          uint16
+    |     +--ro transceiver-id            uint32
     |     +--ro otsi-carrier-frequency?   union
     |     +--ro rx-channel-power?         power-dbm-or-null
     |     +--ro rx-total-power?           power-dbm-or-null
@@ -229,9 +229,9 @@ module: ietf-wdm-tunnel
     |     +--ro estimated-lowest-gsnr?    snr
     +--ro path-out-transceiver
        +--ro transponder-id?   uint32
-       +--ro transceivers* [otsi-carrier-id]
-          +--ro otsi-carrier-id           uint16
-          +--ro transceiver-id?           uint32
+       +--ro transceivers* [transceiver-id]
+          +--ro otsi-carrier-id?          uint16
+          +--ro transceiver-id            uint32
           +--ro otsi-carrier-frequency?   union
           +--ro rx-channel-power?         power-dbm-or-null
           +--ro rx-total-power?           power-dbm-or-null
@@ -245,9 +245,9 @@ module: ietf-wdm-tunnel
             /te:numbered-node-hop/te:numbered-node-hop:
     +--ro path-in-transceiver
     |  +--ro transponder-id?   uint32
-    |  +--ro transceivers* [otsi-carrier-id]
-    |     +--ro otsi-carrier-id           uint16
-    |     +--ro transceiver-id?           uint32
+    |  +--ro transceivers* [transceiver-id]
+    |     +--ro otsi-carrier-id?          uint16
+    |     +--ro transceiver-id            uint32
     |     +--ro otsi-carrier-frequency?   union
     |     +--ro rx-channel-power?         power-dbm-or-null
     |     +--ro rx-total-power?           power-dbm-or-null
@@ -256,9 +256,9 @@ module: ietf-wdm-tunnel
     |     +--ro estimated-lowest-gsnr?    snr
     +--ro path-out-transceiver
        +--ro transponder-id?   uint32
-       +--ro transceivers* [otsi-carrier-id]
-          +--ro otsi-carrier-id           uint16
-          +--ro transceiver-id?           uint32
+       +--ro transceivers* [transceiver-id]
+          +--ro otsi-carrier-id?          uint16
+          +--ro transceiver-id            uint32
           +--ro otsi-carrier-frequency?   union
           +--ro rx-channel-power?         power-dbm-or-null
           +--ro rx-total-power?           power-dbm-or-null
@@ -270,24 +270,32 @@ module: ietf-wdm-tunnel
             /te:numbered-node-hop/te:numbered-node-hop:
     +--ro path-in-transceiver
     |  +--ro transponder-id?   uint32
-    |  +--ro transceivers* [otsi-carrier-id]
-    |     +--ro otsi-carrier-id           uint16
-    |     +--ro transceiver-id?           uint32
+    |  +--ro transceivers* [transceiver-id]
+    |     +--ro otsi-carrier-id?          uint16
+    |     +--ro transceiver-id            uint32
     |     +--ro otsi-carrier-frequency?   union
     |     +--ro rx-channel-power?         power-dbm-or-null
     |     +--ro rx-total-power?           power-dbm-or-null
-    |     +--ro pre-fec-ber?              decimal64
-    |     +--ro q-factor?                 int32
+    |     +--ro pre-fec-ber
+    |     |  +--ro timestamp?   yang:timestamp
+    |     |  +--ro value?       decimal64
+    |     +--ro q-factor
+    |        +--ro timestamp?   yang:timestamp
+    |        +--ro value?       l0-types:decimal-2-or-null
     +--ro path-out-transceiver
        +--ro transponder-id?   uint32
-       +--ro transceivers* [otsi-carrier-id]
-          +--ro otsi-carrier-id           uint16
-          +--ro transceiver-id?           uint32
+       +--ro transceivers* [transceiver-id]
+          +--ro otsi-carrier-id?          uint16
+          +--ro transceiver-id            uint32
           +--ro otsi-carrier-frequency?   union
           +--ro rx-channel-power?         power-dbm-or-null
           +--ro rx-total-power?           power-dbm-or-null
-          +--ro pre-fec-ber?              decimal64
-          +--ro q-factor?                 int32
+          +--ro pre-fec-ber
+          |  +--ro timestamp?   yang:timestamp
+          |  +--ro value?       decimal64
+          +--ro q-factor
+             +--ro timestamp?   yang:timestamp
+             +--ro value?       l0-types:decimal-2-or-null
   augment /te:te/te:lsps/te:lsp/te:lsp-actual-route-information
             /te:lsp-actual-route-information/te:type
             /te:numbered-link-hop/te:numbered-link-hop:
