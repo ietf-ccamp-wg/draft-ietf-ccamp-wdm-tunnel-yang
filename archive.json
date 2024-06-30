@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-06-27T00:56:35.139490+00:00",
+  "timestamp": "2024-06-30T01:01:22.376081+00:00",
   "repo": "ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang",
   "labels": [
     {
@@ -2467,6 +2467,153 @@
           "createdAt": "2024-05-16T09:11:09Z",
           "updatedAt": "2024-05-16T09:11:09Z",
           "comments": []
+        }
+      ]
+    },
+    {
+      "number": 69,
+      "id": "PR_kwDOEHme9c5zxD86",
+      "title": "updates to the YANG model",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/pull/69",
+      "state": "OPEN",
+      "author": "aguoietf",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-06-27T12:34:37Z",
+      "updatedAt": "2024-06-28T15:35:25Z",
+      "baseRepository": "ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang",
+      "baseRefName": "main",
+      "baseRefOid": "896156ca2f49782c2ef7cfd8ac94a8ff22d2ca7a",
+      "headRepository": "aguoietf/draft-ietf-ccamp-wdm-tunnel-yang",
+      "headRefName": "master",
+      "headRefOid": "09e75af5f0e509a028f7fcf2b4311edcb01c84ba",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOEHme9c5_3bzd",
+          "commit": {
+            "abbreviatedOid": "8447ade"
+          },
+          "author": "aguoietf",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-06-27T12:35:54Z",
+          "updatedAt": "2024-06-27T12:35:54Z",
+          "comments": [
+            {
+              "originalPosition": 18,
+              "body": "change the key otsi-carrier-id into transceiver-id",
+              "createdAt": "2024-06-27T12:35:54Z",
+              "updatedAt": "2024-06-27T12:35:54Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOEHme9c5_3dq5",
+          "commit": {
+            "abbreviatedOid": "8447ade"
+          },
+          "author": "aguoietf",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-06-27T12:39:10Z",
+          "updatedAt": "2024-06-27T12:39:11Z",
+          "comments": [
+            {
+              "originalPosition": 29,
+              "body": "Add YANG description to indicate that gsnr-extra-margin applies to an OTSi",
+              "createdAt": "2024-06-27T12:39:10Z",
+              "updatedAt": "2024-06-27T12:41:29Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOEHme9c5_3y7F",
+          "commit": {
+            "abbreviatedOid": "8447ade"
+          },
+          "author": "aguoietf",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-06-27T13:09:26Z",
+          "updatedAt": "2024-06-27T13:09:26Z",
+          "comments": [
+            {
+              "originalPosition": 318,
+              "body": "- type for pre-fec-ber and q-factor should be decimal64-or-null\r\n- Add separate timestamp (in minutes?) for pre-fec-ber and q-factor",
+              "createdAt": "2024-06-27T13:09:26Z",
+              "updatedAt": "2024-06-27T13:09:26Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOEHme9c5_4qv_",
+          "commit": {
+            "abbreviatedOid": "8447ade"
+          },
+          "author": "EstherLerouzic",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-06-27T14:23:38Z",
+          "updatedAt": "2024-06-27T14:23:39Z",
+          "comments": [
+            {
+              "originalPosition": 318,
+              "body": "Hello I confirm that pre-fec-ber and q-factor contain redondant information. One is sufficient (I prefer pre-fec-ber :)).\r\nif the two are reported for the same time stamp they should be consistent. if they are not, this can be a symptom of something hapenning on the physical layer that needs further investigation. So my preference would be to keep both, and not force any consistency by the model (the values are transferred as is from the SBI interface, and the usage of the data is left for the applications that consume this model), as we would maybe miss some issues. ",
+              "createdAt": "2024-06-27T14:23:38Z",
+              "updatedAt": "2024-06-27T14:23:39Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOEHme9c6ACki0",
+          "commit": {
+            "abbreviatedOid": "8447ade"
+          },
+          "author": "aguoietf",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-06-28T14:13:57Z",
+          "updatedAt": "2024-06-28T14:13:57Z",
+          "comments": [
+            {
+              "originalPosition": 29,
+              "body": "the grouping containing gsnr-extra-margin is defined in l0-types, where the description indicates that it applies to the OSNR-min of the transceiver (which terminates an OTSi):\r\n\"An additional margin to be added to the OSNR-min of the\r\n        transceiver when checking the estimated received Generalized\r\n        SNR (GSNR).\"\r\nPerhaps keep the description as is, or update with the following description:\r\n\"An additional margin to be added to the OSNR-min of the\r\n        transceiver when checking the estimated\r\n        received Generalized SNR (GSNR) of the OTSi terminated on the transceiver.\"\r\n\r\n",
+              "createdAt": "2024-06-28T14:13:57Z",
+              "updatedAt": "2024-06-28T14:35:30Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOEHme9c6ACpzR",
+          "commit": {
+            "abbreviatedOid": "8447ade"
+          },
+          "author": "aguoietf",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-06-28T14:22:37Z",
+          "updatedAt": "2024-06-28T14:22:37Z",
+          "comments": [
+            {
+              "originalPosition": 318,
+              "body": "in l0-types only decimal-2 and decimal-5 are defined. For pre-fec-ber it is usually 18 decimals. We need to define decimal-18/decimal-18-or-null in l0-types as well.",
+              "createdAt": "2024-06-28T14:22:37Z",
+              "updatedAt": "2024-06-28T14:22:37Z"
+            }
+          ]
         }
       ]
     }
