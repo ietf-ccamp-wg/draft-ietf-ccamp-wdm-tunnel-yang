@@ -126,16 +126,16 @@ The YANG data model defined in this document conforms to the Network Management 
 
 # Introduction
 
-Transport networks have evolved from traditional Wavelength Switched Optical Networks (WSON) systems {{?RFC6163}} based on only fixed-grid wavelength switching, towards elastic optical networks,
-based on flexi-grid Dense Wavelength Division Multiplexing (DWDM) transmission and switching technologies {{?RFC7698}}. Such technology aims
-at increasing transport network scalability and flexibility, allowing bandwidth usage optimization.
+Transport networks have evolved from traditional fixed-grid Wavelength Switched Optical Networks (WSON) {{?RFC6163}} to more scalable and flexible elastic optical networks. These utilize flexi-grid Dense Wavelength Division Multiplexing (DWDM) technologies {{?RFC7698}} to optimize bandwidth usage. Current DWDM Optical Network deployments may include fixed-grid WSON, flexi-grid DWDM, or a combination of both.
 
-While {{!RFC9094}} {{!I-D.ietf-ccamp-flexigrid-yang}} focus on flexi-grid objects such as nodes, transponders
-and links, this document presents a YANG {{!RFC7950}} model for the provisioning and management of Traffic Engineering (TE) tunnels and Label Switched Paths (LSPs) in DWDM Optical Networks, which can be Wavelength Switched Optical Networks (WSON) networks or Flexi-Grid Dense Wavelength Division Multiplexing (DWDM) Networks, or a mix of these two networks. This YANG module defines the path from a source transponder or node to the destination through several intermediate nodes in such a WDM optical network.
+In the optical domain, a WDM tunnel typically originates and concludes at a pair of transponders using one or more transceivers dependent upon the data rate and encoding type of the transceivers. These transponders are then connected to an intermediate line system composed of optical switches and multiplexers, including Reconfigurable Optical Add-Drop Multiplexers (ROADMs) and add-drop multiplexers, complemented by optical amplifiers to boost the transmission distance. The optical wavelength can be routed from the transponder or an incoming fiber, through multiplexing, to various outgoing fibers in the DWDM network. At optical nodes, wavelengths may undergo conversion via optical-electrical-optical (OEO) regenerators, depending on the switching setup and fiber configuration.
 
-This document identifies the WDM tunnel components, parameters and their values, and
-characterizes the features and the performances of the WDM elements. An application example is
-provided towards the end of the document to understand their utility better.
+Optical services, transmitted via analog signals, require careful provisioning across the network to maintain signal quality and prevent interference between different wavelength channels. The technology within optical nodes, like tunable transceivers or Colorless, Directionless and Contentionless Flexi-grid (CDC-F) ROADMs, introduces specific constraints that can limit WDM tunnel path options. These constraints must be factored into WDM tunnel provisioning and pre-computation. Additionally, assessing the end-to-end optical performance—measuring metrics like Generalized Signal-to-noise Ratio (G-SNR), Bit Error Rate (BER), and Q-factor—is crucial to ensure transmission quality and receiver signal integrity.
+
+This draft introduces a YANG {{!RFC7950}} data model for setting up and managing TE tunnels and LSPs in DWDM Optical Networks. It aims to provide an intent-based interface used by a control entity such as a Software-defined Network (SDN) controller at its northbound to establish services between endpoints, typically optical transponders. Clients can utilize this model to either partially or fully delegate service provisioning to the SDN controller, while still capable to express additional constraints to guide its operation. Service provisioning can be as simple as identifying the source and destination transponders and delegate the rest of determination to the SDN controller, or as explicit as specifying a complete detailed path complete with tuned wavelengths and transceiver details.
+
+This document identifies the WDM tunnel components, parameters and their values, and characterizes the features and the performances of the WDM elements. An application example is provided towards the end of the document to understand their utility better.
+
 
 # Conventions and Definitions
 
@@ -164,47 +164,61 @@ The following terms are defined in {{!RFC6241}} and are not redefined here:
 
 # Overview
 
-The generic TE tunnel attributes, such as source and destination node addresses, source and destination tunnel termination points (TTPs), are already defined by the base data model in {{!I-D.ietf-teas-yang-te}}. The present model defines a WDM tunnel by augmenting the base model with the following
-WDM technology-specific constructs:
+The YANG data model in this draft builds upon the generic TE tunnel model from {{!I-D.ietf-teas-yang-te}}. This base model is suitable for all TE-enabled networks and includes universal TE tunnel elements like node addresses, tunnel termination points (TTPs), and path-level constraints such as explicit path hops, label restrictions, and path diversity. The current model enhances {{!I-D.ietf-teas-yang-te}} by incorporating WDM-specific attributes and constraints relevant to WDM tunnels, including definitions for:
 
--  Global WDM layer constraints that influence the TE path selection, e.g., whether wavelength conversion or regeneration is considered
+-  Network-scope optical transceiver configuration constraints, e.g., operational modes, transceiver tuning constraints
 
--  Global transponder/transceiver configuration constraints, e.g., operational modes, tuning constraints of the transceiver
+-  Network-scope WDM path routing policies for influencing WDM TE path selection. For exmaple,  whether or not using regenerator or wavelength conversion is allowed, whether or not wavelength retuing is allowed for tunable transceivers, etc.
 
--  Global optical performance constraints, e.g. generalized Signal-to-noise (G-SNR) margin of a feasible optical path
+-  Network-scope optical performance constraints, e.g. the generalized Signal-to-noise (G-SNR) margin and delta power of a feasible optical path
 
--  Path-scope WDM layer constraints, e.g. identities of transceivers assigned to the primary or secondary path
+-  Path-scope WDM layer constraints and transceiver configurations for working and protection path within a WDM tunnel
 
--  List of links that defines the path
+-  List of WDM nodes, links, and optical wavelength that constitute an end-to-end WDM path
 
--  Other optical attributes
+-  Other relevant optical attributes which characterize the optical signal
 
-Each path can be a segment path (only defined by the source and destination nodes or link termination points)
-or an end-to-end path (additionally needs source and destination transponders). Therefore, all the attributes
-are optional to support both situations.
+The attributes described above are optional, allowing the model to support both simplified and fully-explicit WDM tunnel provisioning to meet diverse client requirements.
 
+Additionally, the YANG model provides the status of a WDM tunnel, which includes:
 
+- Computed paths for various roles such as working, protection, and restoration, indicating potential optical paths confirmed by the SDN controller via pre-computation.
+
+- Actual LSPs for each tunnel path, representing the optical paths currently established in the network.
+
+## Integrated vs. External Optical Transponder
+
+In optical networks built with traditional chassis-based DWDM optical equipment, optical transponder (OTs) are typically inserted into the chassis installed as cards. WDM tunnels are established between pairs of OTs, with the SDN controller serving as the central entity for provisioning and managing these tunnels.
+
+In scenarios like data center interconnects (DCI), optical transponders may be externally mounted on a ‘pizza box’ and linked via dedicated fiber or wavelength multiplexer/demultiplexer to the optical line system. These external OTs could be managed by the same SDN controller or a different entity, such as an orchestrator. Consequently, a WDM tunnel might be composed of several segments joined to create a continuous end-to-end tunnel.
+
+The YANG data model offers a cohesive interface for managing WDM tunnels and tunnel segments, irrespective of transponder location. 
+ 
 # Example of Use
 
-In order to explain how this model is used, the following
-example is provided.  An optical network usually has multiple transponders,
-switches (nodes) and links. {{fig-topology-example}} shows a simple
-topology, where two physical paths interconnect two optical
-transponders via a combination of both WSON and Flexi-grid wavelength
-switched nodes and links.
-
+To illustrate the model’s application, consider an optical network with various transponders, switches, and links. A depicted topology outlines two WDM tunnel scenarios. In the first, an end-to-end WDM tunnel (WDM Tunnel 1) comprises two physical paths (WDM Primary Path 1 and 2) linking two integrated optical transponders, Transponder A and E, through WSON and Flexi-grid nodes. The second scenario describes three WDM tunnel segments (WDM Tunnel Segment 2a to 2c) connecting two external OTs, External OT node X and Y, via the same nodes and links.
 
 ~~~~ ascii-art
-                              WDM Tunnel
+                              WDM Tunnel 1
         <===================================================>
-                         WDM Primary Path
+                         WDM Primary Path 1
         <--------------------------------------------------->
 
+            WDM Tunnel         WDM Tunnel      WDM Tunnel
+            Segment 2a         Segment 2b      Segment 2c
+        <=================><===============><===============>
    +----------+                                        +----------+
-   |  Flexi-  |                                        |  Flexi-  |
-   |   grid   |                                        |   grid   |
-   |  node A  |                                        |  node E  |
-   |          |        +------+        +------+        |          |
+   | External |                                        | External |
+   |    OT    |<----------+                +---------->|    OT    |
+   |  node X  |           |                |           |  node Y  |
+   +----------+           |                |           +----------+
+                          |                |
+                          |                |
+   +----------+           |                |           +----------+
+   |  Flexi-  |           |                |           |  Flexi-  |
+   |   grid   |           |                |           |   grid   |
+   |  node A  |           |                |           |  node E  |
+   |          |        +--v---+        +---v--+        |          |
    |          | Link 1 |Flexi-| Link 2 | WSON | Link 3 |          |
    |          |<------>| grid |<------>|      |<------>|          |
    |......... |        |node B|        |node C|        | .........|
@@ -218,7 +232,7 @@ switched nodes and links.
    +----------+                                        +----------+
 
         <--------------------------------------------------->
-                          WDM Secondary Path
+                          WDM Secondary Path 1
 ~~~~
 {: #fig-topology-example title="Topology Example"}
 
