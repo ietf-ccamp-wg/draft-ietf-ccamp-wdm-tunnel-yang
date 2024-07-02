@@ -242,7 +242,8 @@ module ietf-wdm-tunnel {
 
     container q-factor {
       description
-	    "Timestamp and value of the estimated Q-factor based on the pre-FEC BER.";
+	    "Timestamp and value of the estimated Q-factor based on
+         the pre-FEC BER.";
 
       leaf timestamp {
         type yang:timestamp;
