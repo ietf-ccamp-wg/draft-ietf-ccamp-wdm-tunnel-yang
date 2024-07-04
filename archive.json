@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-07-02T00:57:12.763814+00:00",
+  "timestamp": "2024-07-04T00:56:59.007917+00:00",
   "repo": "ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang",
   "labels": [
     {
@@ -2482,13 +2482,13 @@
       "labels": [],
       "body": "",
       "createdAt": "2024-06-27T12:34:37Z",
-      "updatedAt": "2024-06-28T15:35:25Z",
+      "updatedAt": "2024-07-02T17:48:08Z",
       "baseRepository": "ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang",
       "baseRefName": "main",
       "baseRefOid": "896156ca2f49782c2ef7cfd8ac94a8ff22d2ca7a",
       "headRepository": "aguoietf/draft-ietf-ccamp-wdm-tunnel-yang",
       "headRefName": "master",
-      "headRefOid": "09e75af5f0e509a028f7fcf2b4311edcb01c84ba",
+      "headRefOid": "1a73d641805ca59d2f69265acc254942b828602c",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
