@@ -292,7 +292,7 @@ and this is the way in which they are called in the tunnel.
 ~~~~ yang
 {::include ./ietf-wdm-tunnel.yang}
 ~~~~
-{: #fig-wdm-tunnel-yang title="WDM Tunnel YANG module" sourcecode-markers="true" sourcecode-name="ietf-wdm-tunnel@2023-10-22.yang"}
+{: #fig-wdm-tunnel-yang title="WDM Tunnel YANG module" sourcecode-markers="true" sourcecode-name="ietf-wdm-tunnel@2024-07-02.yang"}
 
 # Security Considerations
 
