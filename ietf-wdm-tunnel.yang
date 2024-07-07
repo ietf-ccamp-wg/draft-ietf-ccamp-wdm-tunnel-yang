@@ -17,6 +17,10 @@ module ietf-wdm-tunnel {
     prefix "l0-types";
   }
 
+  import ietf-yang-types {
+    prefix "yang";
+  }
+
   organization
     "IETF CCAMP Working Group";
   contact
@@ -59,7 +63,7 @@ module ietf-wdm-tunnel {
     This version of this YANG module is part of RFC XXXX; see
     the RFC itself for full legal notices.";
 
-  revision "2024-05-15" {
+  revision "2024-07-02" {
     description
       "Updated revision with combined WSON and Flexi-grid tunnel
        YANG model";
@@ -89,6 +93,13 @@ module ietf-wdm-tunnel {
        For instance, if the frequency is restricted to the C-band,
        the list of operational modes should not include any modes
        applicable only to the L-band.";
+
+    leaf otsi-carrier-frequency {
+        type l0-types:frequency-thz;
+        description
+          "OTSi carrier frequency, i.e. configured transmitter
+           frequency.";
+    }
 
     container tx-tune-constraints {
       description
@@ -121,6 +132,8 @@ module ietf-wdm-tunnel {
       description
         "The preferred channel received power.";
     }
+	
+	uses l0-types:l0-path-constraints;
   }
 
   grouping transceiver-constraints {
@@ -197,12 +210,56 @@ module ietf-wdm-tunnel {
     container path-out-transceiver {
       description
         "Constraints for outgoing direction transceiver
-         configurations";
+         configurations.";
 
       uses transceiver-config;
     }
   }
 
+  grouping transceiver-measured-parameters {
+    description
+	  "Measured transceiver parameters.";
+  
+    container pre-fec-ber {
+      description
+	    "Timestamp and value of the Pre-FEC Bit Error Rate (BER)
+         of the received signal.";
+
+      leaf timestamp {
+        type yang:timestamp;
+        description
+          "Timestamp associated with the Pre-FEC BER.";
+      }
+
+      leaf value {
+        type decimal64 {
+          fraction-digits 18;
+        }
+        description
+          "Pre-FEC BER of the received signal.";
+      }
+    }
+
+    container q-factor {
+      description
+	    "Timestamp and value of the estimated Q-factor based on
+         the pre-FEC BER.";
+
+      leaf timestamp {
+        type yang:timestamp;
+        description
+          "Timestamp associated with the Q-factor.";
+      }
+
+      leaf value {
+        type l0-types:decimal-2-or-null;
+        units "dB";
+        description
+          "Estimated Q-factor based on the pre-FEC BER.";
+      }
+    }
+  }
+  
   grouping transceiver-state {
     description
       "This grouping includes common transceiver state
@@ -214,7 +271,7 @@ module ietf-wdm-tunnel {
     }
 
     list transceivers {
-      key "otsi-carrier-id";
+      key "transceiver-id";
       description
         "List of transceivers used within the transponder.";
 
@@ -230,7 +287,39 @@ module ietf-wdm-tunnel {
         "transceiver identifier";
       }
 
+      leaf otsi-carrier-frequency {
+        type union {
+          type l0-types:frequency-thz;
+          type empty;
+        }
+        description
+          "OTSi carrier frequency, equivalent to the
+          actual configured transmitter frequency, when known, or
+          an empty value when unknown.";
+      }
+
       uses l0-types:common-transceiver-readonly-param;
+    }
+  }
+
+  grouping e2e-media-channel-info {
+    description
+      "This grouping includes end-to-end media channel path id
+       information.";
+
+    leaf-list e2e-mc-path-id {
+      type uint16;
+      description
+        "The list of the possible end-to-end Media Channel
+        (e2e-MC) paths associated with the OTSi which have
+        different optical impairments.
+
+        This list is meaningful in case the OTSi can be associated
+        with multiple end-to-end Media Channel (e2e-MC) paths
+        (e.g., when OPS protection is configured).
+
+        The list can be empty when the OTSi has only one
+        e2e-MC path.";
     }
   }
 
@@ -277,7 +366,6 @@ module ietf-wdm-tunnel {
         "WDM tunnel constraints.";
 
       uses global-transceiver-constraint;
-      uses l0-types:l0-path-constraints;
       
       leaf use-regen {
         type boolean;
@@ -334,23 +422,6 @@ module ietf-wdm-tunnel {
           "Delta power in dB indicating the per-channel power
            deviation from the nominal power per channel at the
            output of an OMS.";
-      }
-    }
-  }
-
-  grouping wdm-path-state {
-    description
-      "Grouping for WDM path state.";
-
-    container wdm-path-state {
-      config false;
-      description
-        "WDM path state.";
-
-      leaf gsnr {
-        type l0-types:snr;
-        description
-          "Actual received GSNR for the WDM path.";
       }
     }
   }
@@ -435,57 +506,6 @@ module ietf-wdm-tunnel {
   }
 
   /*
-   * Computed path properties for primary path.
-   */
-  augment "/te:te/te:tunnels/te:tunnel/te:primary-paths/"
-        + "te:primary-path/te:computed-paths-properties/"
-        + "te:computed-path-properties/te:path-properties" {
-    description
-      "Augment TE computed primary path with WDM properties.";
-      
-    uses l0-types:l0-path-properties;
-  }
-
-  /*
-   * Computed path properties for primary reverse path.
-   */
-  augment "/te:te/te:tunnels/te:tunnel/te:primary-paths/"
-        + "te:primary-path/te:primary-reverse-path/"
-        + "te:computed-paths-properties/"
-        + "te:computed-path-properties/te:path-properties" {
-    description
-      "Augment TE computed primary reverse path with WDM
-       properties.";
-      
-    uses l0-types:l0-path-properties;
-  }
-
-  /*
-   * Computed path properties for secondary path.
-   */
-  augment "/te:te/te:tunnels/te:tunnel/te:secondary-paths/"
-        + "te:secondary-path/te:computed-paths-properties/"
-        + "te:computed-path-properties/te:path-properties" {
-    description
-      "Augment TE computed secondary path with WDM properties.";
-      
-    uses l0-types:l0-path-properties;
-  }
-
-  /*
-   * Computed path properties for secondary reverse path.
-   */
-  augment "/te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths/"
-        + "te:secondary-reverse-path/te:computed-paths-properties/"
-        + "te:computed-path-properties/te:path-properties" {
-    description
-      "Augment TE computed secondary reverse path with WDM
-       properties.";
-      
-    uses l0-types:l0-path-properties;
-  }
-
-  /*
    * Computed transceiver properties for primary path.
    */
   augment "/te:te/te:tunnels/te:tunnel/te:primary-paths/"
@@ -498,6 +518,30 @@ module ietf-wdm-tunnel {
        properties.";
       
     uses path-transceiver-state;
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/te:primary-paths/"
+        + "te:primary-path/te:computed-paths-properties/"
+        + "te:computed-path-properties/te:path-properties/"
+        + "te:path-route-objects/te:path-route-object/"
+        + "te:type/te:numbered-node-hop/te:numbered-node-hop/"
+        + "wdm-tnl:path-in-transceiver/wdm-tnl:transceivers" {
+    description
+      "Augment transceiver with additional estimated parameters.";
+      
+    uses l0-types:l0-path-properties;
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/te:primary-paths/"
+        + "te:primary-path/te:computed-paths-properties/"
+        + "te:computed-path-properties/te:path-properties/"
+        + "te:path-route-objects/te:path-route-object/"
+        + "te:type/te:numbered-node-hop/te:numbered-node-hop/"
+        + "wdm-tnl:path-out-transceiver/wdm-tnl:transceivers" {
+    description
+      "Augment transceiver with additional estimated parameters.";
+
+    uses l0-types:l0-path-properties;
   }
 
   /*
@@ -516,6 +560,32 @@ module ietf-wdm-tunnel {
     uses path-transceiver-state;
   }
 
+  augment "/te:te/te:tunnels/te:tunnel/te:primary-paths/"
+        + "te:primary-path/te:primary-reverse-path/"
+        + "te:computed-paths-properties/"
+        + "te:computed-path-properties/te:path-properties/"
+        + "te:path-route-objects/te:path-route-object/"
+        + "te:type/te:numbered-node-hop/te:numbered-node-hop/"
+        + "wdm-tnl:path-in-transceiver/wdm-tnl:transceivers" {
+    description
+      "Augment transceiver with additional estimated parameters.";
+      
+    uses l0-types:l0-path-properties;
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/te:primary-paths/"
+        + "te:primary-path/te:primary-reverse-path/"
+        + "te:computed-paths-properties/"
+        + "te:computed-path-properties/te:path-properties/"
+        + "te:path-route-objects/te:path-route-object/"
+        + "te:type/te:numbered-node-hop/te:numbered-node-hop/"
+        + "wdm-tnl:path-out-transceiver/wdm-tnl:transceivers" {
+    description
+      "Augment transceiver with additional estimated parameters.";
+      
+    uses l0-types:l0-path-properties;
+  }
+
   /*
    * Computed transceiver properties for secondary path.
    */
@@ -529,6 +599,30 @@ module ietf-wdm-tunnel {
        properties.";
       
     uses path-transceiver-state;
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/te:secondary-paths/"
+        + "te:secondary-path/te:computed-paths-properties/"
+        + "te:computed-path-properties/te:path-properties/"
+        + "te:path-route-objects/te:path-route-object/"
+        + "te:type/te:numbered-node-hop/te:numbered-node-hop/"
+        + "wdm-tnl:path-in-transceiver/wdm-tnl:transceivers" {
+    description
+      "Augment transceiver with additional estimated parameters.";
+      
+    uses l0-types:l0-path-properties;
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/te:secondary-paths/"
+        + "te:secondary-path/te:computed-paths-properties/"
+        + "te:computed-path-properties/te:path-properties/"
+        + "te:path-route-objects/te:path-route-object/"
+        + "te:type/te:numbered-node-hop/te:numbered-node-hop/"
+        + "wdm-tnl:path-out-transceiver/wdm-tnl:transceivers" {
+    description
+      "Augment transceiver with additional estimated parameters.";
+      
+    uses l0-types:l0-path-properties;
   }
 
   /*
@@ -546,15 +640,28 @@ module ietf-wdm-tunnel {
     uses path-transceiver-state;
   }
 
-  /*
-   * WDM path state
-   */
-  augment "/te:te/te:lsps/te:lsp/"
-        + "te:lsp-actual-route-information" {
+  augment "/te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths/"
+        + "te:secondary-reverse-path/te:computed-paths-properties/"
+        + "te:computed-path-properties/te:path-properties/"
+        + "te:path-route-objects/te:path-route-object/"
+        + "te:type/te:numbered-node-hop/te:numbered-node-hop/"
+        + "wdm-tnl:path-in-transceiver/wdm-tnl:transceivers" {
     description
-      "Augment TE LSP to with WDM path state.";
+      "Augment transceiver with additional estimated parameters.";
       
-    uses wdm-path-state;
+    uses l0-types:l0-path-properties;
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths/"
+        + "te:secondary-reverse-path/te:computed-paths-properties/"
+        + "te:computed-path-properties/te:path-properties/"
+        + "te:path-route-objects/te:path-route-object/"
+        + "te:type/te:numbered-node-hop/te:numbered-node-hop/"
+        + "wdm-tnl:path-out-transceiver/wdm-tnl:transceivers" {
+    description
+      "Augment transceiver with additional estimated parameters.";
+      
+    uses l0-types:l0-path-properties;
   }
 
   /*
@@ -565,9 +672,53 @@ module ietf-wdm-tunnel {
         + "te:lsp-actual-route-information/te:type/"
         + "te:numbered-node-hop/te:numbered-node-hop" {
     description
-      "Augment TE LSP to with WDM path state.";
+      "Augment TE LSP with WDM path state.";
       
     uses path-transceiver-state;
+  }
+
+  augment "/te:te/te:lsps/te:lsp/"
+        + "te:lsp-actual-route-information/"
+        + "te:lsp-actual-route-information/te:type/"
+        + "te:numbered-node-hop/te:numbered-node-hop/"
+        + "wdm-tnl:path-in-transceiver/wdm-tnl:transceivers" {
+    description
+      "Augment transceiver with additional measured parameters.";
+      
+    uses transceiver-measured-parameters;
+  }
+
+  augment "/te:te/te:lsps/te:lsp/"
+        + "te:lsp-actual-route-information/"
+        + "te:lsp-actual-route-information/te:type/"
+        + "te:numbered-node-hop/te:numbered-node-hop/"
+        + "wdm-tnl:path-out-transceiver/wdm-tnl:transceivers" {
+    description
+      "Augment transceiver with additional measured parameters.";
+      
+    uses transceiver-measured-parameters;
+  }
+
+  augment "/te:te/te:lsps/te:lsp/"
+        + "te:lsp-actual-route-information/"
+        + "te:lsp-actual-route-information/te:type/"
+        + "te:numbered-link-hop/te:numbered-link-hop" {
+    description
+      "Augment TE LSP with end-to-end media channel
+       information.";
+
+    uses e2e-media-channel-info;
+  }
+
+  augment "/te:te/te:lsps/te:lsp/"
+        + "te:lsp-actual-route-information/"
+        + "te:lsp-actual-route-information/te:type/"
+        + "te:unnumbered-link-hop/te:unnumbered-link-hop" {
+    description
+      "Augment TE LSP with end-to-end media channel
+       information.";
+
+    uses e2e-media-channel-info;
   }
 
   /*
