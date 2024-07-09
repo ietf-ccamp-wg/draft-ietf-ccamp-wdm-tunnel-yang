@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-07-07T01:01:56.556484+00:00",
+  "timestamp": "2024-07-09T00:57:51.017142+00:00",
   "repo": "ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang",
   "labels": [
     {
@@ -2475,24 +2475,26 @@
       "id": "PR_kwDOEHme9c5zxD86",
       "title": "updates to the YANG model",
       "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/pull/69",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "aguoietf",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2024-06-27T12:34:37Z",
-      "updatedAt": "2024-07-02T17:48:08Z",
+      "updatedAt": "2024-07-07T15:09:01Z",
       "baseRepository": "ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang",
       "baseRefName": "main",
       "baseRefOid": "896156ca2f49782c2ef7cfd8ac94a8ff22d2ca7a",
       "headRepository": "aguoietf/draft-ietf-ccamp-wdm-tunnel-yang",
       "headRefName": "master",
       "headRefOid": "1a73d641805ca59d2f69265acc254942b828602c",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2024-07-07T15:09:01Z",
+      "mergedAt": "2024-07-07T15:09:00Z",
+      "mergedBy": "aguoietf",
+      "mergeCommit": {
+        "oid": "3d01169dd280e7b52d3f08047d14e52fe9a6b813"
+      },
       "comments": [],
       "reviews": [
         {
