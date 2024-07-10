@@ -26,9 +26,9 @@ module: ietf-wdm-tunnel
             /te:numbered-node-hop/te:numbered-node-hop:
     +--rw path-in-transceiver
     |  +--rw transponder-id?   uint32
-    |  +--rw transceivers* [otsi-carrier-id]
-    |     +--rw otsi-carrier-id               uint16
-    |     +--rw transceiver-id?               uint32
+    |  +--rw transceivers* [transceiver-id]
+    |     +--rw transceiver-id                uint32
+    |     +--rw otsi-carrier-id?              uint16
     |     +--rw operational-modes*            string
     |     +--rw otsi-carrier-frequency?       l0-types:frequency-thz
     |     +--rw tx-tune-constraints
@@ -41,9 +41,9 @@ module: ietf-wdm-tunnel
     |     +--rw gsnr-extra-margin?            snr
     +--rw path-out-transceiver
        +--rw transponder-id?   uint32
-       +--rw transceivers* [otsi-carrier-id]
-          +--rw otsi-carrier-id               uint16
-          +--rw transceiver-id?               uint32
+       +--rw transceivers* [transceiver-id]
+          +--rw transceiver-id                uint32
+          +--rw otsi-carrier-id?              uint16
           +--rw operational-modes*            string
           +--rw otsi-carrier-frequency?       l0-types:frequency-thz
           +--rw tx-tune-constraints
@@ -60,9 +60,9 @@ module: ietf-wdm-tunnel
             /te:type/te:numbered-node-hop/te:numbered-node-hop:
     +--rw path-in-transceiver
     |  +--rw transponder-id?   uint32
-    |  +--rw transceivers* [otsi-carrier-id]
-    |     +--rw otsi-carrier-id               uint16
-    |     +--rw transceiver-id?               uint32
+    |  +--rw transceivers* [transceiver-id]
+    |     +--rw transceiver-id                uint32
+    |     +--rw otsi-carrier-id?              uint16
     |     +--rw operational-modes*            string
     |     +--rw otsi-carrier-frequency?       l0-types:frequency-thz
     |     +--rw tx-tune-constraints
@@ -75,9 +75,9 @@ module: ietf-wdm-tunnel
     |     +--rw gsnr-extra-margin?            snr
     +--rw path-out-transceiver
        +--rw transponder-id?   uint32
-       +--rw transceivers* [otsi-carrier-id]
-          +--rw otsi-carrier-id               uint16
-          +--rw transceiver-id?               uint32
+       +--rw transceivers* [transceiver-id]
+          +--rw transceiver-id                uint32
+          +--rw otsi-carrier-id?              uint16
           +--rw operational-modes*            string
           +--rw otsi-carrier-frequency?       l0-types:frequency-thz
           +--rw tx-tune-constraints
@@ -94,9 +94,9 @@ module: ietf-wdm-tunnel
             /te:numbered-node-hop/te:numbered-node-hop:
     +--rw path-in-transceiver
     |  +--rw transponder-id?   uint32
-    |  +--rw transceivers* [otsi-carrier-id]
-    |     +--rw otsi-carrier-id               uint16
-    |     +--rw transceiver-id?               uint32
+    |  +--rw transceivers* [transceiver-id]
+    |     +--rw transceiver-id                uint32
+    |     +--rw otsi-carrier-id?              uint16
     |     +--rw operational-modes*            string
     |     +--rw otsi-carrier-frequency?       l0-types:frequency-thz
     |     +--rw tx-tune-constraints
@@ -109,9 +109,9 @@ module: ietf-wdm-tunnel
     |     +--rw gsnr-extra-margin?            snr
     +--rw path-out-transceiver
        +--rw transponder-id?   uint32
-       +--rw transceivers* [otsi-carrier-id]
-          +--rw otsi-carrier-id               uint16
-          +--rw transceiver-id?               uint32
+       +--rw transceivers* [transceiver-id]
+          +--rw transceiver-id                uint32
+          +--rw otsi-carrier-id?              uint16
           +--rw operational-modes*            string
           +--rw otsi-carrier-frequency?       l0-types:frequency-thz
           +--rw tx-tune-constraints
@@ -128,9 +128,9 @@ module: ietf-wdm-tunnel
             /te:numbered-node-hop/te:numbered-node-hop:
     +--rw path-in-transceiver
     |  +--rw transponder-id?   uint32
-    |  +--rw transceivers* [otsi-carrier-id]
-    |     +--rw otsi-carrier-id               uint16
-    |     +--rw transceiver-id?               uint32
+    |  +--rw transceivers* [transceiver-id]
+    |     +--rw transceiver-id                uint32
+    |     +--rw otsi-carrier-id?              uint16
     |     +--rw operational-modes*            string
     |     +--rw otsi-carrier-frequency?       l0-types:frequency-thz
     |     +--rw tx-tune-constraints
@@ -143,9 +143,9 @@ module: ietf-wdm-tunnel
     |     +--rw gsnr-extra-margin?            snr
     +--rw path-out-transceiver
        +--rw transponder-id?   uint32
-       +--rw transceivers* [otsi-carrier-id]
-          +--rw otsi-carrier-id               uint16
-          +--rw transceiver-id?               uint32
+       +--rw transceivers* [transceiver-id]
+          +--rw transceiver-id                uint32
+          +--rw otsi-carrier-id?              uint16
           +--rw operational-modes*            string
           +--rw otsi-carrier-frequency?       l0-types:frequency-thz
           +--rw tx-tune-constraints

@@ -163,20 +163,20 @@ module ietf-wdm-tunnel {
     }
 
     list transceivers {
-      key "otsi-carrier-id";
+      key "transceiver-id";
       description
         "List of transceivers used within the transponder.";
 
+      leaf transceiver-id {
+        type uint32;
+        description
+        "transceiver identifier";
+      }
       leaf otsi-carrier-id {
         type uint16;
         description
           "OTSi carrier identifier associated with the
            transceiver.";
-      }
-      leaf transceiver-id {
-        type uint32;
-        description
-        "transceiver identifier";
       }
 
       uses transceiver-constraints;

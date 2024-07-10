@@ -699,11 +699,11 @@ module: ietf-te
      |     |     |  |     |     |  +--rw wdm-tnl:transponder-id?
      |     |     |  |     |     |  |       uint32
      |     |     |  |     |     |  +--rw wdm-tnl:transceivers*
-     |     |     |  |     |     |          [otsi-carrier-id]
-     |     |     |  |     |     |     +--rw wdm-tnl:otsi-carrier-id
-     |     |     |  |     |     |     |       uint16
-     |     |     |  |     |     |     +--rw wdm-tnl:transceiver-id?
+     |     |     |  |     |     |          [transceiver-id]
+     |     |     |  |     |     |     +--rw wdm-tnl:transceiver-id
      |     |     |  |     |     |     |       uint32
+     |     |     |  |     |     |     +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |  |     |     |     |       uint16
      |     |     |  |     |     |     +--rw wdm-tnl:operational-modes*
      |     |     |  |     |     |     |       string
      |     |     |  |     |     |     +--rw wdm-tnl:otsi-carrier-frequency?
@@ -727,11 +727,11 @@ module: ietf-te
      |     |     |  |     |        +--rw wdm-tnl:transponder-id?
      |     |     |  |     |        |       uint32
      |     |     |  |     |        +--rw wdm-tnl:transceivers*
-     |     |     |  |     |                [otsi-carrier-id]
-     |     |     |  |     |           +--rw wdm-tnl:otsi-carrier-id
-     |     |     |  |     |           |       uint16
-     |     |     |  |     |           +--rw wdm-tnl:transceiver-id?
+     |     |     |  |     |                [transceiver-id]
+     |     |     |  |     |           +--rw wdm-tnl:transceiver-id
      |     |     |  |     |           |       uint32
+     |     |     |  |     |           +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |  |     |           |       uint16
      |     |     |  |     |           +--rw wdm-tnl:operational-modes*
      |     |     |  |     |           |       string
      |     |     |  |     |           +--rw wdm-tnl:otsi-carrier-frequency?
@@ -1482,11 +1482,11 @@ module: ietf-te
      |     |     |  |  |     |     |  +--rw wdm-tnl:transponder-id?
      |     |     |  |  |     |     |  |       uint32
      |     |     |  |  |     |     |  +--rw wdm-tnl:transceivers*
-     |     |     |  |  |     |     |          [otsi-carrier-id]
-     |     |     |  |  |     |     |     +--rw wdm-tnl:otsi-carrier-id
-     |     |     |  |  |     |     |     |       uint16
-     |     |     |  |  |     |     |     +--rw wdm-tnl:transceiver-id?
+     |     |     |  |  |     |     |          [transceiver-id]
+     |     |     |  |  |     |     |     +--rw wdm-tnl:transceiver-id
      |     |     |  |  |     |     |     |       uint32
+     |     |     |  |  |     |     |     +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |  |  |     |     |     |       uint16
      |     |     |  |  |     |     |     +--rw wdm-tnl:operational-modes*
      |     |     |  |  |     |     |     |       string
      |     |     |  |  |     |     |     +--rw wdm-tnl:otsi-carrier-frequency?
@@ -1510,11 +1510,11 @@ module: ietf-te
      |     |     |  |  |     |        +--rw wdm-tnl:transponder-id?
      |     |     |  |  |     |        |       uint32
      |     |     |  |  |     |        +--rw wdm-tnl:transceivers*
-     |     |     |  |  |     |                [otsi-carrier-id]
-     |     |     |  |  |     |           +--rw wdm-tnl:otsi-carrier-id
-     |     |     |  |  |     |           |       uint16
-     |     |     |  |  |     |           +--rw wdm-tnl:transceiver-id?
+     |     |     |  |  |     |                [transceiver-id]
+     |     |     |  |  |     |           +--rw wdm-tnl:transceiver-id
      |     |     |  |  |     |           |       uint32
+     |     |     |  |  |     |           +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |  |  |     |           |       uint16
      |     |     |  |  |     |           +--rw wdm-tnl:operational-modes*
      |     |     |  |  |     |           |       string
      |     |     |  |  |     |           +--rw wdm-tnl:otsi-carrier-frequency?
@@ -2284,11 +2284,11 @@ module: ietf-te
      |     |     |  |     |     |  +--rw wdm-tnl:transponder-id?
      |     |     |  |     |     |  |       uint32
      |     |     |  |     |     |  +--rw wdm-tnl:transceivers*
-     |     |     |  |     |     |          [otsi-carrier-id]
-     |     |     |  |     |     |     +--rw wdm-tnl:otsi-carrier-id
-     |     |     |  |     |     |     |       uint16
-     |     |     |  |     |     |     +--rw wdm-tnl:transceiver-id?
+     |     |     |  |     |     |          [transceiver-id]
+     |     |     |  |     |     |     +--rw wdm-tnl:transceiver-id
      |     |     |  |     |     |     |       uint32
+     |     |     |  |     |     |     +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |  |     |     |     |       uint16
      |     |     |  |     |     |     +--rw wdm-tnl:operational-modes*
      |     |     |  |     |     |     |       string
      |     |     |  |     |     |     +--rw wdm-tnl:otsi-carrier-frequency?
@@ -2312,11 +2312,11 @@ module: ietf-te
      |     |     |  |     |        +--rw wdm-tnl:transponder-id?
      |     |     |  |     |        |       uint32
      |     |     |  |     |        +--rw wdm-tnl:transceivers*
-     |     |     |  |     |                [otsi-carrier-id]
-     |     |     |  |     |           +--rw wdm-tnl:otsi-carrier-id
-     |     |     |  |     |           |       uint16
-     |     |     |  |     |           +--rw wdm-tnl:transceiver-id?
+     |     |     |  |     |                [transceiver-id]
+     |     |     |  |     |           +--rw wdm-tnl:transceiver-id
      |     |     |  |     |           |       uint32
+     |     |     |  |     |           +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |  |     |           |       uint16
      |     |     |  |     |           +--rw wdm-tnl:operational-modes*
      |     |     |  |     |           |       string
      |     |     |  |     |           +--rw wdm-tnl:otsi-carrier-frequency?
@@ -3078,11 +3078,11 @@ module: ietf-te
      |     |     |  |     |     |  +--rw wdm-tnl:transponder-id?
      |     |     |  |     |     |  |       uint32
      |     |     |  |     |     |  +--rw wdm-tnl:transceivers*
-     |     |     |  |     |     |          [otsi-carrier-id]
-     |     |     |  |     |     |     +--rw wdm-tnl:otsi-carrier-id
-     |     |     |  |     |     |     |       uint16
-     |     |     |  |     |     |     +--rw wdm-tnl:transceiver-id?
+     |     |     |  |     |     |          [transceiver-id]
+     |     |     |  |     |     |     +--rw wdm-tnl:transceiver-id
      |     |     |  |     |     |     |       uint32
+     |     |     |  |     |     |     +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |  |     |     |     |       uint16
      |     |     |  |     |     |     +--rw wdm-tnl:operational-modes*
      |     |     |  |     |     |     |       string
      |     |     |  |     |     |     +--rw wdm-tnl:otsi-carrier-frequency?
@@ -3106,11 +3106,11 @@ module: ietf-te
      |     |     |  |     |        +--rw wdm-tnl:transponder-id?
      |     |     |  |     |        |       uint32
      |     |     |  |     |        +--rw wdm-tnl:transceivers*
-     |     |     |  |     |                [otsi-carrier-id]
-     |     |     |  |     |           +--rw wdm-tnl:otsi-carrier-id
-     |     |     |  |     |           |       uint16
-     |     |     |  |     |           +--rw wdm-tnl:transceiver-id?
+     |     |     |  |     |                [transceiver-id]
+     |     |     |  |     |           +--rw wdm-tnl:transceiver-id
      |     |     |  |     |           |       uint32
+     |     |     |  |     |           +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |  |     |           |       uint16
      |     |     |  |     |           +--rw wdm-tnl:operational-modes*
      |     |     |  |     |           |       string
      |     |     |  |     |           +--rw wdm-tnl:otsi-carrier-frequency?
