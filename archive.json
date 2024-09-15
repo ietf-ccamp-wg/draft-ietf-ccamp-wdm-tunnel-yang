@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-09-12T01:02:55.622545+00:00",
+  "timestamp": "2024-09-15T01:10:01.833748+00:00",
   "repo": "ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang",
   "labels": [
     {
@@ -52,6 +52,11 @@
       "name": "wait",
       "description": "",
       "color": "FBCA04"
+    },
+    {
+      "name": "IETF 121",
+      "description": "",
+      "color": "b60205"
     }
   ],
   "issues": [
@@ -720,12 +725,22 @@
       "assignees": [
         "danielkinguk"
       ],
-      "labels": [],
+      "labels": [
+        "IETF 121"
+      ],
       "body": "As per flexi-grid YANG, insert diagram showing relationship between YANG modules used.",
       "createdAt": "2021-06-17T11:49:15Z",
-      "updatedAt": "2021-11-25T13:30:25Z",
+      "updatedAt": "2024-09-12T12:38:26Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "aguoietf",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Need a diagram to illustrate the relationship between this model, the optical impairment , RFC 9093 bis, optical path computation. ",
+          "createdAt": "2024-09-12T12:38:18Z",
+          "updatedAt": "2024-09-12T12:38:18Z"
+        }
+      ]
     },
     {
       "number": 26,
@@ -919,10 +934,12 @@
         "ggalimba56",
         "aguoietf"
       ],
-      "labels": [],
+      "labels": [
+        "IETF 121"
+      ],
       "body": "Some text to describe what use cases we plan to address in the document, and what is out of scope.",
       "createdAt": "2021-10-07T12:19:07Z",
-      "updatedAt": "2024-04-11T13:02:38Z",
+      "updatedAt": "2024-09-12T12:35:36Z",
       "closedAt": null,
       "comments": [
         {
@@ -938,6 +955,13 @@
           "body": "Supporting no-coherent technology requires the knowledge and deployment of Dispersion Compensation Units (DCUs) as part of the amplifier capabilities.\r\nThe DCU availability does not need to be exposed by RFC9093bis and optical impairment, but instead can be exposed through private extensions.\r\nFor WDM tunnel the client only requests for tunnel provisioning and the controller will manage the DCUs and come up with proper path. Therefore the controller is able to support both services with coherent (100G & above) and DD (10G,40G) transponders.\r\nThere are also cases when the controller needs to manage networks built separately with coherent and non-coherent transponders.\r\n\r\nThe conclusions is that for optical impairment and RFC9093-bis the DCU availability will not be supported and exposed, therefore it will not support external path computation by the hierarchical controller (MDSC) for legacy 10G/40G WDM networks. Proprietary extensions are needed for external path computation.\r\n\r\nFor the WDM tunnel model it should support both the legacy 10G/40G and coherent services because the path computation and optical feasibility check are fully delegated to the optical PNC.",
           "createdAt": "2024-04-11T13:02:37Z",
           "updatedAt": "2024-04-11T13:02:37Z"
+        },
+        {
+          "author": "aguoietf",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Action: to reflect the aformentioned conclusion regarding the support for legacy 10G/40G services in the WDM tunnel document. Use cases / examples would be helpful to illustrate.",
+          "createdAt": "2024-09-12T12:35:22Z",
+          "updatedAt": "2024-09-12T12:35:22Z"
         }
       ]
     },
@@ -1248,7 +1272,7 @@
       "id": "I_kwDOEHme9c5Cu7At",
       "title": "Relationship between OTSiG and tunnel identifiers",
       "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/47",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "sergiobelotti",
       "authorAssociation": "NONE",
       "assignees": [
@@ -1258,8 +1282,8 @@
       "labels": [],
       "body": "How is the relationship between OTSi group identifier and tunnel identifiers ? The optical tributary signal group (OTSiG) is a management/control abstraction that represents a group of one or more OTSi that carry the characteristic information (CI) of one client. This management control entity is used to group the modulated signal represented by OTSi as co-routed.\r\nOTSiG identifier is an output of path computation and tunnel setup and need to have a reference to related tunnel identifier supporting the connection used to carry the client mapped onto 1 or more OTSi .\r\n\r\nImported from https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-optical-impairment-topology-yang/issues/87\r\n",
       "createdAt": "2022-01-31T15:42:44Z",
-      "updatedAt": "2024-05-16T13:56:20Z",
-      "closedAt": null,
+      "updatedAt": "2024-09-12T12:32:13Z",
+      "closedAt": "2024-09-12T12:32:12Z",
       "comments": [
         {
           "author": "danielkinguk",
@@ -1302,6 +1326,13 @@
           "body": "Meeting minutes on 2024-05-16:\r\n\r\nWe discussed the relationship between the lsp-id and e2e-mc-path-id.\r\n\r\nIt was shown that in the existence of 3R regens on none of the path, only on one (working/protection) path, or on both working and protection paths, there are 2, 3 or 4 e2e-mc-path-ids, respectively, and there are also 1, 1, 2 OTSis, respectively.\r\n\r\nIt was shown that the number of LSPs per WDM tunnel is implementation specific depending on whether the LSP is contiguous or stitching based on RFC5150 and RFC5151. \r\n\r\nTherefore, it was agreed that therefore there does not exist a single 1:1 mapping between the lsp-id and e2e-mc-path-id. The best way to move forward is to add a mapping of lsp-id to e2e-mc-path-id on the LSP reporting in the WDM tunnel model.\r\n\r\nIt was agreed that the mapping should be contained within each link hop of an lsp. One LSP link hop can be mapped to more than one e2e-mc-path-id. The YANG model should be updated accordingly.",
           "createdAt": "2024-05-16T13:56:18Z",
           "updatedAt": "2024-05-16T13:56:18Z"
+        },
+        {
+          "author": "aguoietf",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "The YANG model since rev-02 has been updated to reflect the mapping (N:M) between lsp-id and e2e-mc-path-id.",
+          "createdAt": "2024-09-12T12:32:12Z",
+          "updatedAt": "2024-09-12T12:32:12Z"
         }
       ]
     },
@@ -1436,15 +1467,15 @@
       "id": "I_kwDOEHme9c5R7kWb",
       "title": "Support wavelength tuning constraints",
       "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/55",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "aguoietf",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "The model can consider to support the following wavelength tuning constraints:\r\n- Use the same wavelength between working, protection and restoration path\r\n- Allow/disallow the use of regenerators (in working or protection or both)\r\n- Allow/disallow wavelength changes along the path (in working or protection or both)\r\n- path optimization objectives, e.g.\r\n    * optimize on TE cost and only validate if path is optically feasible\r\n    * optimize on optical performance, e.g. best OSNR\r\n - specify wavelength tunning range allowed on a transceiver, e.g.\r\n    * allow tuning in 100Ghz grid even if the transceiver supports 50Ghz\r\n    * allow c-band only or full super-c band tuning\r\n    * (these may be done by using the label restriction from the base model but is a bit cumbersome)",
       "createdAt": "2022-09-15T13:54:18Z",
-      "updatedAt": "2024-04-18T12:54:19Z",
-      "closedAt": null,
+      "updatedAt": "2024-09-12T12:31:06Z",
+      "closedAt": "2024-09-12T12:31:05Z",
       "comments": [
         {
           "author": "aguoietf",
@@ -1452,6 +1483,13 @@
           "body": "We need to add a TE metric (optical feasibility) to the list of TE tunnel criteria to be considered.",
           "createdAt": "2024-04-18T12:54:18Z",
           "updatedAt": "2024-04-18T12:54:18Z"
+        },
+        {
+          "author": "aguoietf",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "The support for wavelength continuity constraints has been supported by rev -02.",
+          "createdAt": "2024-09-12T12:31:05Z",
+          "updatedAt": "2024-09-12T12:31:05Z"
         }
       ]
     },
@@ -1591,10 +1629,12 @@
       "author": "sergiobelotti",
       "authorAssociation": "NONE",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "IETF 121"
+      ],
       "body": "",
       "createdAt": "2024-01-18T15:34:14Z",
-      "updatedAt": "2024-01-18T15:40:43Z",
+      "updatedAt": "2024-09-12T12:30:19Z",
       "closedAt": null,
       "comments": [
         {
@@ -1633,27 +1673,37 @@
       "author": "aguoietf",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "IETF 121"
+      ],
       "body": "Currently the following structure is used for defining starting, terminating and 3R regenerator transponders:\r\n~~~\r\n    +--rw path-in-transceiver\r\n    |  +--rw transponder-id?   uint32\r\n    |  +--rw transceivers* [lane-id]\r\n    |     +--rw lane-id                       uint8\r\n    |     +--rw transceiver-id?               uint32\r\n    |     +--rw operational-modes*            string\r\n    |     +--rw tx-tune-constraints\r\n    |     |  +--rw min-central-frequency?    frequency-thz\r\n    |     |  +--rw max-central-frequency?    frequency-thz\r\n    |     |  +--rw transceiver-tunability?   frequency-ghz\r\n    |     +--rw line-coding-bitrate*          identityref\r\n    |     +--rw tx-channel-power?             l0-types:power-dbm\r\n    |     +--rw preferred-rx-channel-power?   l0-types:power-dbm\r\n    +--rw path-out-transceiver\r\n       +--rw transponder-id?   uint32\r\n       +--rw transceivers* [lane-id]\r\n          +--rw lane-id                       uint8\r\n          +--rw transceiver-id?               uint32\r\n          +--rw operational-modes*            string\r\n          +--rw tx-tune-constraints\r\n          |  +--rw min-central-frequency?    frequency-thz\r\n          |  +--rw max-central-frequency?    frequency-thz\r\n          |  +--rw transceiver-tunability?   frequency-ghz\r\n          +--rw line-coding-bitrate*          identityref\r\n          +--rw tx-channel-power?             l0-types:power-dbm\r\n          +--rw preferred-rx-channel-power?   l0-types:power-dbm\r\n~~~\r\n\r\nItalo's concern:\r\n- whether we need a new hop type for the 3R function where to put this information\r\n- should the container be named 'path-in-transponder' and 'path-out-transponder'?\r\n- how to provide constraints on the transponders at the ingress/egress of the tunnel?\r\n\r\nWe need to look into use cases to check if the above constructs still stand for describing the ERO and RROs for WDM tunnel.\r\n\r\n",
       "createdAt": "2024-03-01T16:30:31Z",
-      "updatedAt": "2024-03-01T16:30:32Z",
+      "updatedAt": "2024-09-12T12:28:56Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "aguoietf",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "We need to look into aligning the terminologies with RFC9093-bis/optical impairment, with some examples.\r\nAlso look into the use of \"regen-group\" defined in the optical impairment draft.",
+          "createdAt": "2024-09-12T12:28:18Z",
+          "updatedAt": "2024-09-12T12:28:18Z"
+        }
+      ]
     },
     {
       "number": 68,
       "id": "I_kwDOEHme9c6KnpEK",
       "title": "modeling measured OSNR",
       "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/68",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "aguoietf",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "This is what actual GSNR is modeled today in WDM tunnel:\r\n~~~  \r\naugment /te:te/te:lsps/te:lsp/te:lsp-actual-route-information:\r\n    +--ro wdm-path-state\r\n       +--ro gsnr?   l0-types:snr\r\n~~~\r\n\r\nThere are scenarios where there is 3R regens on an LSP, resulting in multiple receivers along the path.\r\nThere is also the inverse multiplexing scenario where there can be multiple receivers of the same LSP.\r\n\r\nThe principle for modeling a state parameter is that if that parameter is needed for path computation then it should be defined in l0-types and exposed in the OI topology.\r\n\r\nFor example, channel-power could be needed by path computation.\r\nOSNR is an estimated value for an established OTSi, and it is not needed by path computation but rather it is monitored during maintenance. \r\n\r\nThe \"snr value\" is measured and reported by a coherent transceiver. It is implementation specific and can be reported by a transceiver as osnr or esnr.  It should not be called gsnr\r\n\r\nQ: should snr values be reported on a transceiver?\r\n     - Yes. And also the type of transceiver must be reported as well.\r\nQ: should gsnr be reported by both OI topology and WDM tunnel? \r\n     - OI topology does not report actual information but only needed information for path computation and service provisioning\r\n     - Also the WDM tunnel model should not report SNR (or GSNR) values\r\n     - (Pre-FEC) BER, (pre-FEC) Q-factor, channel power should be reported by the WDM tunnel. \r\n     - Also the timestamp of the BER/Q-factor indicating the last updated time of these parameters from the controller.\r\n     - An alternative proposal is to report all service assurance related attributes in a separate model, similar to the TAPI definition.  This can be explored in the future (and can be explained in the WDM tunnel document).\r\n\r\nQ: should gsnr definitions be moved to l0-types?\r\n     - No because gsnr is not needed for path computation. \r\n     \r\nWe need to further decide whether service-assurance related parameters should be reported by the WDM tunnel or be reported separately.  Therefore it is agreed that these parameters will not be included in the WDM tunnel model for now.\r\n \r\n\r\n\r\n",
       "createdAt": "2024-05-30T13:07:59Z",
-      "updatedAt": "2024-06-13T15:36:18Z",
-      "closedAt": null,
+      "updatedAt": "2024-09-12T12:26:24Z",
+      "closedAt": "2024-09-12T12:26:23Z",
       "comments": [
         {
           "author": "EstherLerouzic",
@@ -1668,8 +1718,33 @@
           "body": "> This is what actual GSNR is modeled today in WDM tunnel:\r\n> \r\n> ```\r\n> augment /te:te/te:lsps/te:lsp/te:lsp-actual-route-information:\r\n>     +--ro wdm-path-state\r\n>        +--ro gsnr?   l0-types:snr\r\n> ```\r\n> \r\n> There are scenarios where there is 3R regens on an LSP, resulting in multiple receivers along the path. There is also the inverse multiplexing scenario where there can be multiple receivers of the same LSP.\r\n> \r\n> The principle for modeling a state parameter is that if that parameter is needed for path computation then it should be defined in l0-types and exposed in the OI topology.\r\n> \r\n> For example, channel-power could be needed by path computation. OSNR is an estimated value for an established OTSi, and it is not needed by path computation but rather it is monitored during maintenance.\r\n> \r\n> The \"snr value\" is measured and reported by a coherent transceiver. It is implementation specific and can be reported by a transceiver as osnr or esnr. It should not be called gsnr\r\n> \r\n> Q: should snr values be reported on a transceiver? - Yes. And also the type of transceiver must be reported as well. Q: should gsnr be reported by both OI topology and WDM tunnel? - OI topology does not report actual information but only needed information for path computation and service provisioning - Also the WDM tunnel model should not report SNR (or GSNR) values - (Pre-FEC) BER, (pre-FEC) Q-factor, channel power should be reported by the WDM tunnel. - Also the timestamp of the BER/Q-factor indicating the last updated time of these parameters from the controller. - An alternative proposal is to report all service assurance related attributes in a separate model, similar to the TAPI definition. This can be explored in the future (and can be explained in the WDM tunnel document).\r\n> \r\n> Q: should gsnr definitions be moved to l0-types? - No because gsnr is not needed for path computation.\r\n> \r\n> We need to further decide whether service-assurance related parameters should be reported by the WDM tunnel or be reported separately. Therefore it is agreed that these parameters will not be included in the WDM tunnel model for now.\r\n\r\nQ: should gsnr definitions be moved to l0-types? - No because gsnr is not needed for path computation\r\n@aguoietf : not clear to me this comment since gsnr is already there in l0-types. Should we remove from that?\r\nl0-type has already:\r\n\r\n-  gsnr-extra-margin as constraint\r\n\r\nand as path-properties\r\n- estimated-gsnr\r\n- estimated-eol-gsnr\r\n- estimated-lowest-gsnr\r\n\r\nOptical Impairment topology model has:\r\n\r\n- generalized-snr under OMS-attributes",
           "createdAt": "2024-06-13T15:36:17Z",
           "updatedAt": "2024-06-13T15:36:17Z"
+        },
+        {
+          "author": "aguoietf",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Closed because it has been included in -02 rev.",
+          "createdAt": "2024-09-12T12:26:23Z",
+          "updatedAt": "2024-09-12T12:26:23Z"
         }
       ]
+    },
+    {
+      "number": 70,
+      "id": "I_kwDOEHme9c6WbhP_",
+      "title": "Updating model to reflect the discussion about L0/L0 boundaries ",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/70",
+      "state": "OPEN",
+      "author": "aguoietf",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [
+        "IETF 121"
+      ],
+      "body": "Link to Issue #[81](https://github.com/ietf-ccamp-wg/ietf-ccamp-layer0-types-ext-RFC9093-bis/issues/81) of RFC 9093 bis\r\n\r\nWe may also need some text description regarding the use cases to reflect the consideration. There may also be descriptions in the optical impairment document so the two should align.",
+      "createdAt": "2024-09-13T03:23:29Z",
+      "updatedAt": "2024-09-13T03:23:42Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
