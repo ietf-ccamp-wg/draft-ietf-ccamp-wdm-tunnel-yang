@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-09-17T00:52:54.702702+00:00",
+  "timestamp": "2024-09-19T01:03:56.495748+00:00",
   "repo": "ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang",
   "labels": [
     {
@@ -1731,7 +1731,7 @@
     {
       "number": 70,
       "id": "I_kwDOEHme9c6WbhP_",
-      "title": "Updating model to reflect the discussion about L0/L0 boundaries ",
+      "title": "Updating model to reflect the discussion about L0/L1 boundaries ",
       "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/70",
       "state": "OPEN",
       "author": "aguoietf",
@@ -1742,7 +1742,7 @@
       ],
       "body": "Link to Issue #[81](https://github.com/ietf-ccamp-wg/ietf-ccamp-layer0-types-ext-RFC9093-bis/issues/81) of RFC 9093 bis\r\n\r\nWe may also need some text description regarding the use cases to reflect the consideration. There may also be descriptions in the optical impairment document so the two should align.",
       "createdAt": "2024-09-13T03:23:29Z",
-      "updatedAt": "2024-09-13T03:23:42Z",
+      "updatedAt": "2024-09-18T21:09:41Z",
       "closedAt": null,
       "comments": []
     }
