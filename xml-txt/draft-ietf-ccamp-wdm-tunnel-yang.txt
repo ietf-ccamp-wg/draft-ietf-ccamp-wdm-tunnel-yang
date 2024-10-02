@@ -5,14 +5,14 @@
 CCAMP Working Group                                               A. Guo
 Internet-Draft                                    Futurewei Technologies
 Intended status: Standards Track                              S. Belotti
-Expires: 4 January 2025                                            Nokia
+Expires: 8 January 2025                                            Nokia
                                                            G. Galimberti
                                                               Individual
                                                        J.E.L.d.V. Mendez
                                                              Naudit HPCN
                                                             D.P. Burrero
                                           Universidad Autonoma de Madrid
-                                                             3 July 2024
+                                                             7 July 2024
 
 
                    A YANG Data Model for WDM Tunnels
@@ -44,7 +44,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 4 January 2025.
+   This Internet-Draft will expire on 8 January 2025.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Guo, et al.              Expires 4 January 2025                 [Page 1]
+Guo, et al.              Expires 8 January 2025                 [Page 1]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Guo, et al.              Expires 4 January 2025                 [Page 2]
+Guo, et al.              Expires 8 January 2025                 [Page 2]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
@@ -165,7 +165,7 @@ Internet-Draft            WDM Tunnel YANG Model                July 2024
 
 
 
-Guo, et al.              Expires 4 January 2025                 [Page 3]
+Guo, et al.              Expires 8 January 2025                 [Page 3]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
@@ -221,7 +221,7 @@ Internet-Draft            WDM Tunnel YANG Model                July 2024
 
 
 
-Guo, et al.              Expires 4 January 2025                 [Page 4]
+Guo, et al.              Expires 8 January 2025                 [Page 4]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
@@ -277,7 +277,7 @@ Internet-Draft            WDM Tunnel YANG Model                July 2024
 
 
 
-Guo, et al.              Expires 4 January 2025                 [Page 5]
+Guo, et al.              Expires 8 January 2025                 [Page 5]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
@@ -333,7 +333,7 @@ Internet-Draft            WDM Tunnel YANG Model                July 2024
 
 
 
-Guo, et al.              Expires 4 January 2025                 [Page 6]
+Guo, et al.              Expires 8 January 2025                 [Page 6]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
@@ -389,7 +389,7 @@ Internet-Draft            WDM Tunnel YANG Model                July 2024
 
 
 
-Guo, et al.              Expires 4 January 2025                 [Page 7]
+Guo, et al.              Expires 8 January 2025                 [Page 7]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
@@ -445,7 +445,7 @@ Internet-Draft            WDM Tunnel YANG Model                July 2024
 
 
 
-Guo, et al.              Expires 4 January 2025                 [Page 8]
+Guo, et al.              Expires 8 January 2025                 [Page 8]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
@@ -501,7 +501,7 @@ Internet-Draft            WDM Tunnel YANG Model                July 2024
 
 
 
-Guo, et al.              Expires 4 January 2025                 [Page 9]
+Guo, et al.              Expires 8 January 2025                 [Page 9]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
@@ -557,7 +557,7 @@ Internet-Draft            WDM Tunnel YANG Model                July 2024
 
 
 
-Guo, et al.              Expires 4 January 2025                [Page 10]
+Guo, et al.              Expires 8 January 2025                [Page 10]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
@@ -613,7 +613,7 @@ Internet-Draft            WDM Tunnel YANG Model                July 2024
 
 
 
-Guo, et al.              Expires 4 January 2025                [Page 11]
+Guo, et al.              Expires 8 January 2025                [Page 11]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
@@ -669,7 +669,7 @@ Internet-Draft            WDM Tunnel YANG Model                July 2024
 
 
 
-Guo, et al.              Expires 4 January 2025                [Page 12]
+Guo, et al.              Expires 8 January 2025                [Page 12]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
@@ -725,7 +725,7 @@ Internet-Draft            WDM Tunnel YANG Model                July 2024
 
 
 
-Guo, et al.              Expires 4 January 2025                [Page 13]
+Guo, et al.              Expires 8 January 2025                [Page 13]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
@@ -781,7 +781,7 @@ Internet-Draft            WDM Tunnel YANG Model                July 2024
 
 
 
-Guo, et al.              Expires 4 January 2025                [Page 14]
+Guo, et al.              Expires 8 January 2025                [Page 14]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
@@ -837,7 +837,7 @@ Internet-Draft            WDM Tunnel YANG Model                July 2024
 
 
 
-Guo, et al.              Expires 4 January 2025                [Page 15]
+Guo, et al.              Expires 8 January 2025                [Page 15]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
@@ -893,7 +893,7 @@ Internet-Draft            WDM Tunnel YANG Model                July 2024
 
 
 
-Guo, et al.              Expires 4 January 2025                [Page 16]
+Guo, et al.              Expires 8 January 2025                [Page 16]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
@@ -949,7 +949,7 @@ Internet-Draft            WDM Tunnel YANG Model                July 2024
 
 
 
-Guo, et al.              Expires 4 January 2025                [Page 17]
+Guo, et al.              Expires 8 January 2025                [Page 17]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
@@ -1005,7 +1005,7 @@ Internet-Draft            WDM Tunnel YANG Model                July 2024
 
 
 
-Guo, et al.              Expires 4 January 2025                [Page 18]
+Guo, et al.              Expires 8 January 2025                [Page 18]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
@@ -1061,7 +1061,7 @@ Internet-Draft            WDM Tunnel YANG Model                July 2024
 
 
 
-Guo, et al.              Expires 4 January 2025                [Page 19]
+Guo, et al.              Expires 8 January 2025                [Page 19]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
@@ -1117,7 +1117,7 @@ Internet-Draft            WDM Tunnel YANG Model                July 2024
 
 
 
-Guo, et al.              Expires 4 January 2025                [Page 20]
+Guo, et al.              Expires 8 January 2025                [Page 20]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
@@ -1173,7 +1173,7 @@ Internet-Draft            WDM Tunnel YANG Model                July 2024
 
 
 
-Guo, et al.              Expires 4 January 2025                [Page 21]
+Guo, et al.              Expires 8 January 2025                [Page 21]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
@@ -1229,7 +1229,7 @@ Internet-Draft            WDM Tunnel YANG Model                July 2024
 
 
 
-Guo, et al.              Expires 4 January 2025                [Page 22]
+Guo, et al.              Expires 8 January 2025                [Page 22]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
@@ -1285,7 +1285,7 @@ Internet-Draft            WDM Tunnel YANG Model                July 2024
 
 
 
-Guo, et al.              Expires 4 January 2025                [Page 23]
+Guo, et al.              Expires 8 January 2025                [Page 23]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
@@ -1341,7 +1341,7 @@ Internet-Draft            WDM Tunnel YANG Model                July 2024
 
 
 
-Guo, et al.              Expires 4 January 2025                [Page 24]
+Guo, et al.              Expires 8 January 2025                [Page 24]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
@@ -1397,7 +1397,7 @@ Internet-Draft            WDM Tunnel YANG Model                July 2024
 
 
 
-Guo, et al.              Expires 4 January 2025                [Page 25]
+Guo, et al.              Expires 8 January 2025                [Page 25]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
@@ -1453,7 +1453,7 @@ Internet-Draft            WDM Tunnel YANG Model                July 2024
 
 
 
-Guo, et al.              Expires 4 January 2025                [Page 26]
+Guo, et al.              Expires 8 January 2025                [Page 26]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
@@ -1509,7 +1509,7 @@ Internet-Draft            WDM Tunnel YANG Model                July 2024
 
 
 
-Guo, et al.              Expires 4 January 2025                [Page 27]
+Guo, et al.              Expires 8 January 2025                [Page 27]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
@@ -1565,7 +1565,7 @@ Internet-Draft            WDM Tunnel YANG Model                July 2024
 
 
 
-Guo, et al.              Expires 4 January 2025                [Page 28]
+Guo, et al.              Expires 8 January 2025                [Page 28]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
@@ -1621,7 +1621,7 @@ Internet-Draft            WDM Tunnel YANG Model                July 2024
 
 
 
-Guo, et al.              Expires 4 January 2025                [Page 29]
+Guo, et al.              Expires 8 January 2025                [Page 29]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
@@ -1677,7 +1677,7 @@ Internet-Draft            WDM Tunnel YANG Model                July 2024
 
 
 
-Guo, et al.              Expires 4 January 2025                [Page 30]
+Guo, et al.              Expires 8 January 2025                [Page 30]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
@@ -1733,7 +1733,7 @@ Internet-Draft            WDM Tunnel YANG Model                July 2024
 
 
 
-Guo, et al.              Expires 4 January 2025                [Page 31]
+Guo, et al.              Expires 8 January 2025                [Page 31]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
@@ -1789,7 +1789,7 @@ Internet-Draft            WDM Tunnel YANG Model                July 2024
 
 
 
-Guo, et al.              Expires 4 January 2025                [Page 32]
+Guo, et al.              Expires 8 January 2025                [Page 32]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
@@ -1845,7 +1845,7 @@ Internet-Draft            WDM Tunnel YANG Model                July 2024
 
 
 
-Guo, et al.              Expires 4 January 2025                [Page 33]
+Guo, et al.              Expires 8 January 2025                [Page 33]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
@@ -1901,7 +1901,7 @@ Internet-Draft            WDM Tunnel YANG Model                July 2024
 
 
 
-Guo, et al.              Expires 4 January 2025                [Page 34]
+Guo, et al.              Expires 8 January 2025                [Page 34]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
@@ -1957,7 +1957,7 @@ Internet-Draft            WDM Tunnel YANG Model                July 2024
 
 
 
-Guo, et al.              Expires 4 January 2025                [Page 35]
+Guo, et al.              Expires 8 January 2025                [Page 35]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
@@ -2013,7 +2013,7 @@ Internet-Draft            WDM Tunnel YANG Model                July 2024
 
 
 
-Guo, et al.              Expires 4 January 2025                [Page 36]
+Guo, et al.              Expires 8 January 2025                [Page 36]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
@@ -2069,12 +2069,12 @@ Internet-Draft            WDM Tunnel YANG Model                July 2024
 
 
 
-Guo, et al.              Expires 4 January 2025                [Page 37]
+Guo, et al.              Expires 8 January 2025                [Page 37]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
 
-   <CODE BEGINS> file "ietf-wdm-tunnel@2023-10-22.yang"
+   <CODE BEGINS> file "ietf-wdm-tunnel@2024-07-02.yang"
    module ietf-wdm-tunnel {
      yang-version 1.1;
      namespace
@@ -2125,7 +2125,7 @@ Internet-Draft            WDM Tunnel YANG Model                July 2024
 
 
 
-Guo, et al.              Expires 4 January 2025                [Page 38]
+Guo, et al.              Expires 8 January 2025                [Page 38]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
@@ -2181,7 +2181,7 @@ Internet-Draft            WDM Tunnel YANG Model                July 2024
 
 
 
-Guo, et al.              Expires 4 January 2025                [Page 39]
+Guo, et al.              Expires 8 January 2025                [Page 39]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
@@ -2237,7 +2237,7 @@ Internet-Draft            WDM Tunnel YANG Model                July 2024
 
 
 
-Guo, et al.              Expires 4 January 2025                [Page 40]
+Guo, et al.              Expires 8 January 2025                [Page 40]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
@@ -2293,7 +2293,7 @@ Internet-Draft            WDM Tunnel YANG Model                July 2024
 
 
 
-Guo, et al.              Expires 4 January 2025                [Page 41]
+Guo, et al.              Expires 8 January 2025                [Page 41]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
@@ -2349,7 +2349,7 @@ Internet-Draft            WDM Tunnel YANG Model                July 2024
 
 
 
-Guo, et al.              Expires 4 January 2025                [Page 42]
+Guo, et al.              Expires 8 January 2025                [Page 42]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
@@ -2405,7 +2405,7 @@ Internet-Draft            WDM Tunnel YANG Model                July 2024
 
 
 
-Guo, et al.              Expires 4 January 2025                [Page 43]
+Guo, et al.              Expires 8 January 2025                [Page 43]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
@@ -2461,7 +2461,7 @@ Internet-Draft            WDM Tunnel YANG Model                July 2024
 
 
 
-Guo, et al.              Expires 4 January 2025                [Page 44]
+Guo, et al.              Expires 8 January 2025                [Page 44]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
@@ -2517,7 +2517,7 @@ Internet-Draft            WDM Tunnel YANG Model                July 2024
 
 
 
-Guo, et al.              Expires 4 January 2025                [Page 45]
+Guo, et al.              Expires 8 January 2025                [Page 45]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
@@ -2573,7 +2573,7 @@ Internet-Draft            WDM Tunnel YANG Model                July 2024
 
 
 
-Guo, et al.              Expires 4 January 2025                [Page 46]
+Guo, et al.              Expires 8 January 2025                [Page 46]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
@@ -2629,7 +2629,7 @@ Internet-Draft            WDM Tunnel YANG Model                July 2024
 
 
 
-Guo, et al.              Expires 4 January 2025                [Page 47]
+Guo, et al.              Expires 8 January 2025                [Page 47]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
@@ -2685,7 +2685,7 @@ Internet-Draft            WDM Tunnel YANG Model                July 2024
 
 
 
-Guo, et al.              Expires 4 January 2025                [Page 48]
+Guo, et al.              Expires 8 January 2025                [Page 48]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
@@ -2741,7 +2741,7 @@ Internet-Draft            WDM Tunnel YANG Model                July 2024
 
 
 
-Guo, et al.              Expires 4 January 2025                [Page 49]
+Guo, et al.              Expires 8 January 2025                [Page 49]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
@@ -2797,7 +2797,7 @@ Internet-Draft            WDM Tunnel YANG Model                July 2024
 
 
 
-Guo, et al.              Expires 4 January 2025                [Page 50]
+Guo, et al.              Expires 8 January 2025                [Page 50]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
@@ -2853,7 +2853,7 @@ Internet-Draft            WDM Tunnel YANG Model                July 2024
 
 
 
-Guo, et al.              Expires 4 January 2025                [Page 51]
+Guo, et al.              Expires 8 January 2025                [Page 51]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
@@ -2909,7 +2909,7 @@ Internet-Draft            WDM Tunnel YANG Model                July 2024
 
 
 
-Guo, et al.              Expires 4 January 2025                [Page 52]
+Guo, et al.              Expires 8 January 2025                [Page 52]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
@@ -2965,7 +2965,7 @@ Internet-Draft            WDM Tunnel YANG Model                July 2024
 
 
 
-Guo, et al.              Expires 4 January 2025                [Page 53]
+Guo, et al.              Expires 8 January 2025                [Page 53]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
@@ -3021,7 +3021,7 @@ Internet-Draft            WDM Tunnel YANG Model                July 2024
 
 
 
-Guo, et al.              Expires 4 January 2025                [Page 54]
+Guo, et al.              Expires 8 January 2025                [Page 54]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
@@ -3077,7 +3077,7 @@ Internet-Draft            WDM Tunnel YANG Model                July 2024
 
 
 
-Guo, et al.              Expires 4 January 2025                [Page 55]
+Guo, et al.              Expires 8 January 2025                [Page 55]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
@@ -3133,7 +3133,7 @@ Internet-Draft            WDM Tunnel YANG Model                July 2024
 
 
 
-Guo, et al.              Expires 4 January 2025                [Page 56]
+Guo, et al.              Expires 8 January 2025                [Page 56]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
@@ -3189,7 +3189,7 @@ Internet-Draft            WDM Tunnel YANG Model                July 2024
 
 
 
-Guo, et al.              Expires 4 January 2025                [Page 57]
+Guo, et al.              Expires 8 January 2025                [Page 57]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
@@ -3245,7 +3245,7 @@ Internet-Draft            WDM Tunnel YANG Model                July 2024
 
 
 
-Guo, et al.              Expires 4 January 2025                [Page 58]
+Guo, et al.              Expires 8 January 2025                [Page 58]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
@@ -3301,7 +3301,7 @@ Internet-Draft            WDM Tunnel YANG Model                July 2024
 
 
 
-Guo, et al.              Expires 4 January 2025                [Page 59]
+Guo, et al.              Expires 8 January 2025                [Page 59]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
@@ -3357,7 +3357,7 @@ Internet-Draft            WDM Tunnel YANG Model                July 2024
 
 
 
-Guo, et al.              Expires 4 January 2025                [Page 60]
+Guo, et al.              Expires 8 January 2025                [Page 60]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
@@ -3413,7 +3413,7 @@ Internet-Draft            WDM Tunnel YANG Model                July 2024
 
 
 
-Guo, et al.              Expires 4 January 2025                [Page 61]
+Guo, et al.              Expires 8 January 2025                [Page 61]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
@@ -3469,7 +3469,7 @@ Internet-Draft            WDM Tunnel YANG Model                July 2024
 
 
 
-Guo, et al.              Expires 4 January 2025                [Page 62]
+Guo, et al.              Expires 8 January 2025                [Page 62]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
@@ -3525,7 +3525,7 @@ Internet-Draft            WDM Tunnel YANG Model                July 2024
 
 
 
-Guo, et al.              Expires 4 January 2025                [Page 63]
+Guo, et al.              Expires 8 January 2025                [Page 63]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
@@ -3581,7 +3581,7 @@ Internet-Draft            WDM Tunnel YANG Model                July 2024
 
 
 
-Guo, et al.              Expires 4 January 2025                [Page 64]
+Guo, et al.              Expires 8 January 2025                [Page 64]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
@@ -3637,7 +3637,7 @@ Internet-Draft            WDM Tunnel YANG Model                July 2024
 
 
 
-Guo, et al.              Expires 4 January 2025                [Page 65]
+Guo, et al.              Expires 8 January 2025                [Page 65]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
@@ -3693,7 +3693,7 @@ Internet-Draft            WDM Tunnel YANG Model                July 2024
 
 
 
-Guo, et al.              Expires 4 January 2025                [Page 66]
+Guo, et al.              Expires 8 January 2025                [Page 66]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
@@ -3749,7 +3749,7 @@ Internet-Draft            WDM Tunnel YANG Model                July 2024
 
 
 
-Guo, et al.              Expires 4 January 2025                [Page 67]
+Guo, et al.              Expires 8 January 2025                [Page 67]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
@@ -3805,7 +3805,7 @@ Internet-Draft            WDM Tunnel YANG Model                July 2024
 
 
 
-Guo, et al.              Expires 4 January 2025                [Page 68]
+Guo, et al.              Expires 8 January 2025                [Page 68]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
@@ -3861,7 +3861,7 @@ Internet-Draft            WDM Tunnel YANG Model                July 2024
 
 
 
-Guo, et al.              Expires 4 January 2025                [Page 69]
+Guo, et al.              Expires 8 January 2025                [Page 69]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
@@ -3917,7 +3917,7 @@ Internet-Draft            WDM Tunnel YANG Model                July 2024
 
 
 
-Guo, et al.              Expires 4 January 2025                [Page 70]
+Guo, et al.              Expires 8 January 2025                [Page 70]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
@@ -3973,7 +3973,7 @@ Internet-Draft            WDM Tunnel YANG Model                July 2024
 
 
 
-Guo, et al.              Expires 4 January 2025                [Page 71]
+Guo, et al.              Expires 8 January 2025                [Page 71]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
@@ -4029,7 +4029,7 @@ Internet-Draft            WDM Tunnel YANG Model                July 2024
 
 
 
-Guo, et al.              Expires 4 January 2025                [Page 72]
+Guo, et al.              Expires 8 January 2025                [Page 72]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
@@ -4085,7 +4085,7 @@ Contributors
 
 
 
-Guo, et al.              Expires 4 January 2025                [Page 73]
+Guo, et al.              Expires 8 January 2025                [Page 73]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
@@ -4141,7 +4141,7 @@ Internet-Draft            WDM Tunnel YANG Model                July 2024
 
 
 
-Guo, et al.              Expires 4 January 2025                [Page 74]
+Guo, et al.              Expires 8 January 2025                [Page 74]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
@@ -4197,7 +4197,7 @@ Authors' Addresses
 
 
 
-Guo, et al.              Expires 4 January 2025                [Page 75]
+Guo, et al.              Expires 8 January 2025                [Page 75]
 
 Internet-Draft            WDM Tunnel YANG Model                July 2024
 
@@ -4253,4 +4253,4 @@ Internet-Draft            WDM Tunnel YANG Model                July 2024
 
 
 
-Guo, et al.              Expires 4 January 2025                [Page 76]
+Guo, et al.              Expires 8 January 2025                [Page 76]

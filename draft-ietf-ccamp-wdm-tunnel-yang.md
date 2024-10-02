@@ -130,7 +130,7 @@ Transport networks have evolved from traditional fixed-grid Wavelength Switched 
 
 In the optical domain, a WDM tunnel typically originates and concludes at a pair of transponders using one or more transceivers dependent upon the data rate and encoding type of the transceivers. These transponders are then connected to an intermediate line system composed of optical switches and multiplexers, including Reconfigurable Optical Add-Drop Multiplexers (ROADMs) and add-drop multiplexers, complemented by optical amplifiers to boost the transmission distance. The optical wavelength can be routed from the transponder or an incoming fiber, through multiplexing, to various outgoing fibers in the DWDM network. At optical nodes, wavelengths may undergo conversion via optical-electrical-optical (OEO) regenerators, depending on the switching setup and fiber configuration.
 
-Optical services, transmitted via analog signals, require careful provisioning across the network to maintain signal quality and prevent interference between different wavelength channels. The technology within optical nodes, like tunable transceivers or Colorless, Directionless and Contentionless Flexi-grid (CDC-F) ROADMs, introduces specific constraints that can limit WDM tunnel path options. These constraints must be factored into WDM tunnel provisioning and pre-computation. Additionally, assessing the end-to-end optical performance—measuring metrics like Generalized Signal-to-noise Ratio (G-SNR), Bit Error Rate (BER), and Q-factor—is crucial to ensure transmission quality and receiver signal integrity.
+Optical services, transmitted via analog signals, require careful provisioning across the network to maintain signal quality and prevent interference between different wavelength channels. The technology within optical nodes, like tunable transceivers or Colorless, Directionless and Contentionless Flexi-grid (CDC-F) ROADMs, introduces specific constraints that can limit WDM tunnel path options. These constraints must be factored into WDM tunnel provisioning and pre-computation. Additionally, assessing the end-to-end optical performance-measuring metrics like Generalized Signal-to-noise Ratio (G-SNR), Bit Error Rate (BER), and Q-factor - is crucial to ensure transmission quality and receiver signal integrity.
 
 This draft introduces a YANG {{!RFC7950}} data model for setting up and managing TE tunnels and LSPs in DWDM Optical Networks. It aims to provide an intent-based interface used by a control entity such as a Software-defined Network (SDN) controller at its northbound to establish services between endpoints, typically optical transponders. Clients can utilize this model to either partially or fully delegate service provisioning to the SDN controller, while still capable to express additional constraints to guide its operation. Service provisioning can be as simple as identifying the source and destination transponders and delegate the rest of determination to the SDN controller, or as explicit as specifying a complete detailed path complete with tuned wavelengths and transceiver details.
 
@@ -190,13 +190,13 @@ Additionally, the YANG model provides the status of a WDM tunnel, which includes
 
 In optical networks built with traditional chassis-based DWDM optical equipment, optical transponder (OTs) are typically inserted into the chassis installed as cards. WDM tunnels are established between pairs of OTs, with the SDN controller serving as the central entity for provisioning and managing these tunnels.
 
-In scenarios like data center interconnects (DCI), optical transponders may be externally mounted on a ‘pizza box’ and linked via dedicated fiber or wavelength multiplexer/demultiplexer to the optical line system. These external OTs could be managed by the same SDN controller or a different entity, such as an orchestrator. Consequently, a WDM tunnel might be composed of several segments joined to create a continuous end-to-end tunnel.
+In scenarios like data center interconnects (DCI), optical transponders may be externally mounted on a 'pizza box' and linked via dedicated fiber or wavelength multiplexer/demultiplexer to the optical line system. These external OTs could be managed by the same SDN controller or a different entity, such as an orchestrator. Consequently, a WDM tunnel might be composed of several segments joined to create a continuous end-to-end tunnel.
 
 The YANG data model offers a cohesive interface for managing WDM tunnels and tunnel segments, irrespective of transponder location. 
  
 # Example of Use
 
-To illustrate the model’s application, consider an optical network with various transponders, switches, and links. A depicted topology outlines two WDM tunnel scenarios. In the first, an end-to-end WDM tunnel (WDM Tunnel 1) comprises two physical paths (WDM Primary Path 1 and 2) linking two integrated optical transponders, Transponder A and E, through WSON and Flexi-grid nodes. The second scenario describes three WDM tunnel segments (WDM Tunnel Segment 2a to 2c) connecting two external OTs, External OT node X and Y, via the same nodes and links.
+To illustrate the model's application, consider an optical network with various transponders, switches, and links. A depicted topology outlines two WDM tunnel scenarios. In the first, an end-to-end WDM tunnel (WDM Tunnel 1) comprises two physical paths (WDM Primary Path 1 and 2) linking two integrated optical transponders, Transponder A and E, through WSON and Flexi-grid nodes. The second scenario describes three WDM tunnel segments (WDM Tunnel Segment 2a to 2c) connecting two external OTs, External OT node X and Y, via the same nodes and links.
 
 ~~~~ ascii-art
                               WDM Tunnel 1
@@ -292,7 +292,7 @@ and this is the way in which they are called in the tunnel.
 ~~~~ yang
 {::include ./ietf-wdm-tunnel.yang}
 ~~~~
-{: #fig-wdm-tunnel-yang title="WDM Tunnel YANG module" sourcecode-markers="true" sourcecode-name="ietf-wdm-tunnel@2023-10-22.yang"}
+{: #fig-wdm-tunnel-yang title="WDM Tunnel YANG module" sourcecode-markers="true" sourcecode-name="ietf-wdm-tunnel@2024-07-02.yang"}
 
 # Security Considerations
 
