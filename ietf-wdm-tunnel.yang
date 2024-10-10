@@ -758,6 +758,8 @@ module ietf-wdm-tunnel {
     description
       "Augment regen incoming transceiver with additional estimated
        parameters.";
+
+    uses l0-types:l0-path-properties;
   }
 
   augment "/te:te/te:tunnels/te:tunnel/te:primary-paths/"
@@ -772,6 +774,8 @@ module ietf-wdm-tunnel {
     description
       "Augment regen outgoing transceiver with additional estimated
        parameters.";
+
+    uses l0-types:l0-path-properties;
   }
 
   /*
@@ -828,6 +832,8 @@ module ietf-wdm-tunnel {
     description
       "Augment regen incoming transceiver with additional estimated
        parameters.";
+
+    uses l0-types:l0-path-properties;
   }
 
   augment "/te:te/te:tunnels/te:tunnel/te:secondary-paths/"
@@ -841,6 +847,8 @@ module ietf-wdm-tunnel {
     description
       "Augment regen outgoing transceiver with additional estimated
        parameters.";
+
+    uses l0-types:l0-path-properties;
   }
 
   /*
@@ -897,6 +905,8 @@ module ietf-wdm-tunnel {
     description
       "Augment regen incoming transceiver with additional estimated
        parameters.";
+
+    uses l0-types:l0-path-properties;
   }
 
   augment "/te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths/"
@@ -910,6 +920,8 @@ module ietf-wdm-tunnel {
     description
       "Augment regen outgoing transceiver with additional estimated
        parameters.";
+
+    uses l0-types:l0-path-properties;
   }
 
   /*

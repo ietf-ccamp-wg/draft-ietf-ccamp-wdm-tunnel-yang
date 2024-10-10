@@ -2123,7 +2123,13 @@ module: ietf-te
      |     |     |  |        |        |              |     +--ro wdm-tnl:rx-channel-power?
      |     |     |  |        |        |              |     |       power-dbm-or-null
      |     |     |  |        |        |              |     +--ro wdm-tnl:rx-total-power?
-     |     |     |  |        |        |              |             power-dbm-or-null
+     |     |     |  |        |        |              |     |       power-dbm-or-null
+     |     |     |  |        |        |              |     +--ro wdm-tnl:estimated-gsnr?
+     |     |     |  |        |        |              |     |       snr
+     |     |     |  |        |        |              |     +--ro wdm-tnl:estimated-eol-gsnr?
+     |     |     |  |        |        |              |     |       snr
+     |     |     |  |        |        |              |     +--ro wdm-tnl:estimated-lowest-gsnr?
+     |     |     |  |        |        |              |             snr
      |     |     |  |        |        |              +--ro wdm-tnl:outgoing-transceiver
      |     |     |  |        |        |                 +--ro wdm-tnl:transponder-id?
      |     |     |  |        |        |                 |       uint32
@@ -2138,7 +2144,13 @@ module: ietf-te
      |     |     |  |        |        |                    +--ro wdm-tnl:rx-channel-power?
      |     |     |  |        |        |                    |       power-dbm-or-null
      |     |     |  |        |        |                    +--ro wdm-tnl:rx-total-power?
-     |     |     |  |        |        |                            power-dbm-or-null
+     |     |     |  |        |        |                    |       power-dbm-or-null
+     |     |     |  |        |        |                    +--ro wdm-tnl:estimated-gsnr?
+     |     |     |  |        |        |                    |       snr
+     |     |     |  |        |        |                    +--ro wdm-tnl:estimated-eol-gsnr?
+     |     |     |  |        |        |                    |       snr
+     |     |     |  |        |        |                    +--ro wdm-tnl:estimated-lowest-gsnr?
+     |     |     |  |        |        |                            snr
      |     |     |  |        |        +--:(numbered-link-hop)
      |     |     |  |        |        |  +--ro numbered-link-hop
      |     |     |  |        |        |     +--ro link-tp-id
@@ -3044,7 +3056,13 @@ module: ietf-te
      |     |     |        |        |              |     +--ro wdm-tnl:rx-channel-power?
      |     |     |        |        |              |     |       power-dbm-or-null
      |     |     |        |        |              |     +--ro wdm-tnl:rx-total-power?
-     |     |     |        |        |              |             power-dbm-or-null
+     |     |     |        |        |              |     |       power-dbm-or-null
+     |     |     |        |        |              |     +--ro wdm-tnl:estimated-gsnr?
+     |     |     |        |        |              |     |       snr
+     |     |     |        |        |              |     +--ro wdm-tnl:estimated-eol-gsnr?
+     |     |     |        |        |              |     |       snr
+     |     |     |        |        |              |     +--ro wdm-tnl:estimated-lowest-gsnr?
+     |     |     |        |        |              |             snr
      |     |     |        |        |              +--ro wdm-tnl:outgoing-transceiver
      |     |     |        |        |                 +--ro wdm-tnl:transponder-id?
      |     |     |        |        |                 |       uint32
@@ -3059,7 +3077,13 @@ module: ietf-te
      |     |     |        |        |                    +--ro wdm-tnl:rx-channel-power?
      |     |     |        |        |                    |       power-dbm-or-null
      |     |     |        |        |                    +--ro wdm-tnl:rx-total-power?
-     |     |     |        |        |                            power-dbm-or-null
+     |     |     |        |        |                    |       power-dbm-or-null
+     |     |     |        |        |                    +--ro wdm-tnl:estimated-gsnr?
+     |     |     |        |        |                    |       snr
+     |     |     |        |        |                    +--ro wdm-tnl:estimated-eol-gsnr?
+     |     |     |        |        |                    |       snr
+     |     |     |        |        |                    +--ro wdm-tnl:estimated-lowest-gsnr?
+     |     |     |        |        |                            snr
      |     |     |        |        +--:(numbered-link-hop)
      |     |     |        |        |  +--ro numbered-link-hop
      |     |     |        |        |     +--ro link-tp-id    te-tp-id
@@ -3950,7 +3974,13 @@ module: ietf-te
      |     |     |        |        |              |     +--ro wdm-tnl:rx-channel-power?
      |     |     |        |        |              |     |       power-dbm-or-null
      |     |     |        |        |              |     +--ro wdm-tnl:rx-total-power?
-     |     |     |        |        |              |             power-dbm-or-null
+     |     |     |        |        |              |     |       power-dbm-or-null
+     |     |     |        |        |              |     +--ro wdm-tnl:estimated-gsnr?
+     |     |     |        |        |              |     |       snr
+     |     |     |        |        |              |     +--ro wdm-tnl:estimated-eol-gsnr?
+     |     |     |        |        |              |     |       snr
+     |     |     |        |        |              |     +--ro wdm-tnl:estimated-lowest-gsnr?
+     |     |     |        |        |              |             snr
      |     |     |        |        |              +--ro wdm-tnl:outgoing-transceiver
      |     |     |        |        |                 +--ro wdm-tnl:transponder-id?
      |     |     |        |        |                 |       uint32
@@ -3965,7 +3995,13 @@ module: ietf-te
      |     |     |        |        |                    +--ro wdm-tnl:rx-channel-power?
      |     |     |        |        |                    |       power-dbm-or-null
      |     |     |        |        |                    +--ro wdm-tnl:rx-total-power?
-     |     |     |        |        |                            power-dbm-or-null
+     |     |     |        |        |                    |       power-dbm-or-null
+     |     |     |        |        |                    +--ro wdm-tnl:estimated-gsnr?
+     |     |     |        |        |                    |       snr
+     |     |     |        |        |                    +--ro wdm-tnl:estimated-eol-gsnr?
+     |     |     |        |        |                    |       snr
+     |     |     |        |        |                    +--ro wdm-tnl:estimated-lowest-gsnr?
+     |     |     |        |        |                            snr
      |     |     |        |        +--:(numbered-link-hop)
      |     |     |        |        |  +--ro numbered-link-hop
      |     |     |        |        |     +--ro link-tp-id    te-tp-id

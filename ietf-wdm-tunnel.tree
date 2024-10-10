@@ -472,6 +472,9 @@ module: ietf-wdm-tunnel
              |     +--ro otsi-carrier-frequency?   union
              |     +--ro rx-channel-power?         power-dbm-or-null
              |     +--ro rx-total-power?           power-dbm-or-null
+             |     +--ro estimated-gsnr?           snr
+             |     +--ro estimated-eol-gsnr?       snr
+             |     +--ro estimated-lowest-gsnr?    snr
              +--ro outgoing-transceiver
                 +--ro transponder-id?   uint32
                 +--ro transceivers* [transceiver-id]
@@ -480,6 +483,9 @@ module: ietf-wdm-tunnel
                    +--ro otsi-carrier-frequency?   union
                    +--ro rx-channel-power?         power-dbm-or-null
                    +--ro rx-total-power?           power-dbm-or-null
+                   +--ro estimated-gsnr?           snr
+                   +--ro estimated-eol-gsnr?       snr
+                   +--ro estimated-lowest-gsnr?    snr
   augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
             /te:secondary-path/te:computed-paths-properties
             /te:computed-path-properties/te:path-properties
@@ -522,6 +528,9 @@ module: ietf-wdm-tunnel
              |     +--ro otsi-carrier-frequency?   union
              |     +--ro rx-channel-power?         power-dbm-or-null
              |     +--ro rx-total-power?           power-dbm-or-null
+             |     +--ro estimated-gsnr?           snr
+             |     +--ro estimated-eol-gsnr?       snr
+             |     +--ro estimated-lowest-gsnr?    snr
              +--ro outgoing-transceiver
                 +--ro transponder-id?   uint32
                 +--ro transceivers* [transceiver-id]
@@ -530,6 +539,9 @@ module: ietf-wdm-tunnel
                    +--ro otsi-carrier-frequency?   union
                    +--ro rx-channel-power?         power-dbm-or-null
                    +--ro rx-total-power?           power-dbm-or-null
+                   +--ro estimated-gsnr?           snr
+                   +--ro estimated-eol-gsnr?       snr
+                   +--ro estimated-lowest-gsnr?    snr
   augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
             /te:secondary-reverse-path/te:computed-paths-properties
             /te:computed-path-properties/te:path-properties
@@ -572,6 +584,9 @@ module: ietf-wdm-tunnel
              |     +--ro otsi-carrier-frequency?   union
              |     +--ro rx-channel-power?         power-dbm-or-null
              |     +--ro rx-total-power?           power-dbm-or-null
+             |     +--ro estimated-gsnr?           snr
+             |     +--ro estimated-eol-gsnr?       snr
+             |     +--ro estimated-lowest-gsnr?    snr
              +--ro outgoing-transceiver
                 +--ro transponder-id?   uint32
                 +--ro transceivers* [transceiver-id]
@@ -580,6 +595,9 @@ module: ietf-wdm-tunnel
                    +--ro otsi-carrier-frequency?   union
                    +--ro rx-channel-power?         power-dbm-or-null
                    +--ro rx-total-power?           power-dbm-or-null
+                   +--ro estimated-gsnr?           snr
+                   +--ro estimated-eol-gsnr?       snr
+                   +--ro estimated-lowest-gsnr?    snr
   augment /te:te/te:lsps/te:lsp/te:lsp-actual-route-information
             /te:lsp-actual-route-information/te:type
             /te:numbered-node-hop/te:numbered-node-hop:
