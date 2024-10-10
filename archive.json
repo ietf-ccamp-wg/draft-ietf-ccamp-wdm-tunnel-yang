@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-10-08T01:05:54.005855+00:00",
+  "timestamp": "2024-10-10T01:05:36.459643+00:00",
   "repo": "ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang",
   "labels": [
     {
@@ -2706,19 +2706,72 @@
       "labels": [],
       "body": "See the updated yang model and tree. \r\nCurrently the added identities are temporarily replaced with string type as the base identities need to be defined in l0-types.\r\nIssue #70 ",
       "createdAt": "2024-10-04T17:18:25Z",
-      "updatedAt": "2024-10-04T17:22:41Z",
+      "updatedAt": "2024-10-10T01:05:14Z",
       "baseRepository": "ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang",
       "baseRefName": "main",
       "baseRefOid": "1b86c5edfab950581617e41a83d7681a08f49094",
       "headRepository": "aguoietf/draft-ietf-ccamp-wdm-tunnel-yang",
       "headRefName": "master",
-      "headRefOid": "5660c17f249c62b382af726611a0eaf9fdb77d32",
+      "headRefOid": "200187949976e469093219a9455f66ab1ec572c9",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
-      "reviews": []
+      "comments": [
+        {
+          "author": "sergiobelotti",
+          "authorAssociation": "NONE",
+          "body": "I've approved the changes , but  comments have to be verified",
+          "createdAt": "2024-10-09T16:38:28Z",
+          "updatedAt": "2024-10-09T16:38:28Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOEHme9c6Mhhr7",
+          "commit": {
+            "abbreviatedOid": "5660c17"
+          },
+          "author": "sergiobelotti",
+          "authorAssociation": "NONE",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-10-09T16:06:42Z",
+          "updatedAt": "2024-10-09T16:37:26Z",
+          "comments": [
+            {
+              "originalPosition": 277,
+              "body": "Just a question for clarification: the termination layer is a single value for tunnel. But where would be defined the possible layer of termination in case of encapsulation ? e.g. ODU-->OTU",
+              "createdAt": "2024-10-09T16:06:43Z",
+              "updatedAt": "2024-10-09T16:37:26Z"
+            },
+            {
+              "originalPosition": 417,
+              "body": "Where are the additional estimated parameters?",
+              "createdAt": "2024-10-09T16:33:24Z",
+              "updatedAt": "2024-10-09T16:37:26Z"
+            },
+            {
+              "originalPosition": 433,
+              "body": "same as above",
+              "createdAt": "2024-10-09T16:33:43Z",
+              "updatedAt": "2024-10-09T16:37:26Z"
+            },
+            {
+              "originalPosition": 503,
+              "body": "Where are additional estimated parameters?",
+              "createdAt": "2024-10-09T16:34:59Z",
+              "updatedAt": "2024-10-09T16:37:26Z"
+            },
+            {
+              "originalPosition": 573,
+              "body": "I do not see the additional estimated parameters",
+              "createdAt": "2024-10-09T16:35:36Z",
+              "updatedAt": "2024-10-09T16:37:26Z"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
