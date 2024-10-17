@@ -133,12 +133,14 @@ module ietf-wdm-tunnel {
         "The preferred channel received power.";
     }
 
+    /*
     leaf inverse-multiplexing-mode {
       //type l0-types:inverse-multiplexing-mode;
       type string;
       description
         "The inverse multiplexing mode.";
     }
+    */
 
     uses l0-types:l0-path-constraints;
   }
@@ -229,12 +231,14 @@ module ietf-wdm-tunnel {
               "3R regen group identifier.";
           }
 
+          /*
           leaf regen-level {
             //type l0-types:regen-level;
             type string;
             description
               "Indicate the chosen level of 3R regeneration.";
           }
+          */
 
           container incoming-transceiver {
             description
@@ -400,12 +404,14 @@ module ietf-wdm-tunnel {
               "3R regen group identifier.";
           }
 
+          /*
           leaf regen-level {
             //type l0-types:regen-level;
             type string;
             description
               "Indicate the chosen level of 3R regeneration.";
           }
+          */
           
           container incoming-transceiver {
             description
@@ -460,6 +466,7 @@ module ietf-wdm-tunnel {
            feasible for direct optical reach.";
       }
 
+      /*
       leaf-list regen-levels {
         when '../use-regen = "true"' {
           description
@@ -472,6 +479,7 @@ module ietf-wdm-tunnel {
           "Indicate the levels of 3R regeration permitted by
            the tunnel.";
       }
+      */
 
       leaf wavelength-conversion {
         when '../use-regen = "true"' {
@@ -522,6 +530,7 @@ module ietf-wdm-tunnel {
     }
   }
 
+  /*
   grouping digital-layer-constraint {
     description
       "Grouping for digital layer constraints";
@@ -546,6 +555,7 @@ module ietf-wdm-tunnel {
       }
     }
   }
+  */
 
   /*
    * Data nodes
@@ -559,7 +569,7 @@ module ietf-wdm-tunnel {
       "Augment with additional parameters required for WDM
        tunnel configurations.";
     uses wdm-constraint;
-    uses digital-layer-constraint;
+    //uses digital-layer-constraint;
   }
 
   /*
