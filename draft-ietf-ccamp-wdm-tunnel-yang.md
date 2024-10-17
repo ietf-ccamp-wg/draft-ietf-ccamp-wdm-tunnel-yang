@@ -4,7 +4,7 @@ abbrev: "WDM Tunnel YANG Model"
 category: std
 ipr: trust200902
 
-docname: draft-ietf-ccamp-wdm-tunnel-yang-03
+docname: draft-ietf-ccamp-wdm-tunnel-yang-latest
 submissiontype: IETF  # also: "independent", "editorial", "IAB", or "IRTF"
 number:
 date:
