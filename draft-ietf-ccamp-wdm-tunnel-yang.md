@@ -130,7 +130,7 @@ Transport networks have evolved from traditional fixed-grid Wavelength Switched 
 
 In the optical domain, a WDM tunnel typically originates and concludes at a pair of transponders using one or more transceivers dependent upon the data rate and encoding type of the transceivers. These transponders are then connected to an intermediate line system composed of optical switches and multiplexers, including Reconfigurable Optical Add-Drop Multiplexers (ROADMs) and add-drop multiplexers, complemented by optical amplifiers to boost the transmission distance. The optical wavelength can be routed from the transponder or an incoming fiber, through multiplexing, to various outgoing fibers in the DWDM network. At optical nodes, wavelengths may undergo conversion via optical-electrical-optical (OEO) regenerators, depending on the switching setup and fiber configuration.
 
-Optical services, transmitted via analog signals, require careful provisioning across the network to maintain signal quality and prevent interference between different wavelength channels. The technology within optical nodes, like tunable transceivers or Colorless, Directionless and Contentionless Flexi-grid (CDC-F) ROADMs, introduces specific constraints that can limit WDM tunnel path options. These constraints must be factored into WDM tunnel provisioning and pre-computation. Additionally, assessing the end-to-end optical performance-measuring metrics like Generalized Signal-to-noise Ratio (G-SNR), Bit Error Rate (BER), and Q-factor - is crucial to ensure transmission quality and receiver signal integrity.
+Optical services, transmitted via analog signals, require careful provisioning across the network to maintain signal quality and prevent interference between different wavelength channels. The technology within optical nodes, like tunable transceivers or Colorless, Directionless and Contentionless Flexi-grid (CDC-F) ROADMs, introduces specific constraints that can limit WDM tunnel path options. These constraints must be factored into WDM tunnel provisioning and pre-computation. Additionally, assessing the end-to-end optical performance metrics like Generalized Signal-to-noise Ratio (G-SNR), Bit Error Rate (BER), and Q-factor is crucial to ensure transmission quality and receiver signal integrity.
 
 This draft introduces a YANG {{!RFC7950}} data model for setting up and managing TE tunnels and LSPs in DWDM Optical Networks. It aims to provide an intent-based interface used by a control entity such as a Software-defined Network (SDN) controller at its northbound to establish services between endpoints, typically optical transponders. Clients can utilize this model to either partially or fully delegate service provisioning to the SDN controller, while still capable to express additional constraints to guide its operation. Service provisioning can be as simple as identifying the source and destination transponders and delegate the rest of determination to the SDN controller, or as explicit as specifying a complete detailed path complete with tuned wavelengths and transceiver details.
 
@@ -224,11 +224,11 @@ To illustrate the model's application, consider an optical network with various 
    |......... |        |node B|        |node C|        | .........|
    | Trans- : |        +------+        +------+        | : Trans- |
    | ponder : |                                        | : ponder |
-   |    A   : |              +----------+              | :    E   |
-   |........: |     Link 4   |Flexi-grid|   Link 5     | :........|
-   |          |              |    D     |              |          |
-   |          |<------------>|   node   |<------------>|          |
-   |          |              +----------+              |          |
+   |    A   : |                +------+                | :    E   |
+   |........: |     Link 4     |Flexi-|     Link 5     | :........|
+   |          |                | grid |                |          |
+   |          |<-------------->|node D|<-------------->|          |
+   |          |                +------+                |          |
    +----------+                                        +----------+
 
         <--------------------------------------------------->
