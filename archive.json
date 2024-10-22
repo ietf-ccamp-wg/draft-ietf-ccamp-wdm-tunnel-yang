@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-10-20T01:12:03.209053+00:00",
+  "timestamp": "2024-10-22T01:07:10.121663+00:00",
   "repo": "ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang",
   "labels": [
     {
@@ -2699,24 +2699,26 @@
       "id": "PR_kwDOEHme9c59pciw",
       "title": "Addressing the gap identified on L0/L1 boundary (issue #70)",
       "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/pull/71",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "aguoietf",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "See the updated yang model and tree. \r\nCurrently the added identities are temporarily replaced with string type as the base identities need to be defined in l0-types.\r\nIssue #70 ",
       "createdAt": "2024-10-04T17:18:25Z",
-      "updatedAt": "2024-10-17T17:00:09Z",
+      "updatedAt": "2024-10-21T14:11:10Z",
       "baseRepository": "ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang",
       "baseRefName": "main",
       "baseRefOid": "1b86c5edfab950581617e41a83d7681a08f49094",
       "headRepository": "aguoietf/draft-ietf-ccamp-wdm-tunnel-yang",
       "headRefName": "master",
       "headRefOid": "7fef2adcb0b2454c0c6a276e0e10ae425db06181",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2024-10-21T14:11:10Z",
+      "mergedAt": "2024-10-21T14:11:10Z",
+      "mergedBy": "aguoietf",
+      "mergeCommit": {
+        "oid": "cebcb87190c163bd3e1cb58570f82e3d33f95883"
+      },
       "comments": [
         {
           "author": "sergiobelotti",
