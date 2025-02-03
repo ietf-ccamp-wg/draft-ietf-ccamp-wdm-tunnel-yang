@@ -14,25 +14,24 @@
        This document defines a YANG data model for the provisioning and management of Traffic Engineering (TE) tunnels and Label Switched Paths (LSPs) in Optical Networks (Wavelength Switched Optical Networks (WSON) and Flexi-Grid Dense Wavelength Division Multiplexing (DWDM) Networks). 
        The YANG data model defined in this document conforms to the Network Management Datastore Architecture (NMDA). 
     " name="description">
-<meta content="xml2rfc 3.21.0" name="generator">
+<meta content="xml2rfc 3.26.0" name="generator">
 <meta content="next generation" name="keyword">
 <meta content="unicorn" name="keyword">
 <meta content="sparkling distributed ledger" name="keyword">
 <meta content="draft-ietf-ccamp-wdm-tunnel-yang-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.21.0
-    Python 3.11.9
+  xml2rfc 3.26.0
+    Python 3.12.8
     ConfigArgParse 1.7
-    google-i18n-address 3.1.0
+    google-i18n-address 3.1.1
     intervaltree 3.1.0
-    Jinja2 3.1.2
-    lxml 4.9.3
-    platformdirs 4.2.1
-    pycountry 22.3.5
-    PyYAML 6.0.1
-    requests 2.31.0
-    setuptools 68.2.2
-    six 1.16.0
+    Jinja2 3.1.5
+    lxml 5.3.0
+    platformdirs 4.3.6
+    pycountry 24.6.1
+    PyYAML 6.0.2
+    requests 2.32.3
+    setuptools 70.3.0
     wcwidth 0.2.13
 -->
 <link href="draft-ietf-ccamp-wdm-tunnel-yang.xml" rel="alternate" type="application/rfc+xml">
@@ -169,31 +168,6 @@
 }
 
 @font-face {
-  font-family: 'Cabin Condensed';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: local('Cabin Condensed SemiBold'), local('CabinCondensed-SemiBold'), url('https://martinthomson.github.io/rfc-css/fonts/cabincondensed-semibold-vietnamese.woff2') format('woff2');
-  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
-}
-@font-face {
-  font-family: 'Cabin Condensed';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: local('Cabin Condensed SemiBold'), local('CabinCondensed-SemiBold'), url('https://martinthomson.github.io/rfc-css/fonts/cabincondensed-semibold-latin-ext.woff2') format('woff2');
-  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-@font-face {
-  font-family: 'Cabin Condensed';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: local('Cabin Condensed SemiBold'), local('CabinCondensed-SemiBold'), url('https://martinthomson.github.io/rfc-css/fonts/cabincondensed-semibold-latin.woff2') format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-
-@font-face {
   font-family: 'Oxygen Mono';
   font-style: normal;
   font-weight: 400;
@@ -210,6 +184,77 @@
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-cyrillic.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-greek.woff2') format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-cyrillic.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-greek.woff2') format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 :root {
   color-scheme: light dark;
   --background-color: #fff;
@@ -222,6 +267,7 @@
   --pilcrow-strong: #bbb;
   --small-font-size: 14.5px;
   --font-mono: 'Oxygen Mono', monospace;
+  --font-title: "Sofia Sans Semi Condensed", sans-serif;
   scrollbar-color: #bbb #eee;
 }
 body {
@@ -239,9 +285,15 @@ body {
 }
 
 /* headings */
+section {
+  clear: both;
+}
+.section-number {
+  padding-right: 0.5em;
+}
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Cabin Condensed", sans-serif;
-  font-weight: 600;
+  font-family: var(--font-title);
+  font-weight: 680;
   margin: 0.8em 0 0.3em;
   font-size-adjust: 0.5;
   color: var(--title-color);
@@ -270,6 +322,7 @@ h4, h5, h6 {
 /* general structure */
 .author {
   padding-bottom: 0.3em;
+  vertical-align: top;
 }
 #abstract+p {
   font-size: 18px;
@@ -347,25 +400,26 @@ svg[font-family~="monospace" i], svg [font-family~="monospace" i] {
 ol, ul {
   padding: 0;
   margin: 0 0 0.5em 2em;
-}
-:is(ol, ul) :is(ol, ul) {
-  margin-left: 1em;
+  & :is(ol, ul) {
+    margin-left: 1em;
+  }
 }
 li {
   margin: 0 0 0.25em 0;
 }
-.ulCompact li {
-  margin: 0;
-}
 ul.empty, .ulEmpty {
   list-style-type: none;
-}
-ul.empty li, .ulEmpty li {
-  margin-top: 0.5em;
+  & li {
+    margin-top: 0.5em;
+  }
 }
 :is(ul, ol).compact, .ulCompact, .olCompact {
-  line-height: 1;
   margin: 0 0 0 2em;
+  & li {
+    margin: 0;
+    & :first-child { margin-top: 0; }
+    & :last-child { margin-bottom: 0; }
+  }
 }
 
 /* definition lists */
@@ -373,38 +427,39 @@ dl {
   clear: left;
   --indent: 3ch;
   /* --indent: attr(indent ch); not supported in any browser, but we can dream */
-}
-dl.olPercent {
-  --indent: 5ch;
+  &.olPercent {
+    --indent: 5ch;
+    & > dt {
+      min-width: calc(var(--indent) - 2ch);
+    }
+  }
+  &.olPercent > dt {
+    float: none;
+  }
+
+  dl > dd > & {
+    margin-top: 0.5em;
+    margin-bottom: 0;
+  }
 }
 dl > dt {
   float: left;
   margin-right: 2ch;
   min-width: 8ch;
 }
-dl.dlNewline > dt {
-  float: none;
-}
 dl > dd {
   margin-bottom: .8em;
   margin-left: var(--indent) !important; /* stupid element overrides */
   min-height: 2ex;
 }
-dl.olPercent > dt {
-  min-width: calc(var(--indent) - 2ch);
-}
 :is(dl.compact, .dlCompact) > dd {
   margin-bottom: 0;
-}
-:is(dl.compact, .dlCompact) > dd > :is(:first-child, .break:first-child + *) {
-  margin-top: 0;
-}
-:is(dl.compact, .dlCompact) > dd > :is(:last-child) {
-  margin-bottom: 0;
-}
-dl > dd > dl {
-  margin-top: 0.5em;
-  margin-bottom: 0;
+  & > :is(:first-child, .break:first-child + *) {
+    margin-top: 0;
+  }
+  & > :is(:last-child) {
+    margin-bottom: 0;
+  }
 }
 :is(dd, span).break {
   display: none;
@@ -468,6 +523,7 @@ figcaption, caption {
   font-style: italic;
   margin: 0.5em 1.5em;
   text-align: left;
+  caption-side: bottom;
 }
 @media screen {
   /* Auto-collapse boilerplate. */
@@ -485,7 +541,11 @@ figcaption, caption {
   }
   pre, svg {
     display: inline-block;
-    overflow-x: auto;
+    /* In the horizontal direction, sometimes people make over-sized figures.
+       Scrollbars for those is therefore necessary: auto adds them as necessary..
+       In the vertical direction, the line-height can combine with the font
+       asender/descender height to produce scrollbars: hidden avoids that. */
+    overflow: auto hidden;
   }
   pre {
     max-width: 100%;
@@ -522,6 +582,7 @@ cite {
 
 /* tables */
 table {
+  width: auto;
   max-width: 100%;
   margin: 0 0 1em;
   border-collapse: collapse;
@@ -536,6 +597,16 @@ table.center {
 table.left {
   margin-right: auto;
 }
+table .text-left {
+  text-align: left;
+}
+table .text-center {
+  text-align: center;
+}
+table .text-right {
+  text-align: right;
+}
+
 thead, tbody {
   border: 1px solid var(--line-color);
 }
@@ -566,9 +637,11 @@ a.pilcrow {
   margin-left: 3px;
   opacity: 0.2;
   user-select: none;
+  &[href] {
+    color: var(--pilcrow-weak);
+    &:hover { text-decoration: none; }
+  }
 }
-a.pilcrow[href] { color: var(--pilcrow-weak); }
-a.pilcrow[href]:hover { text-decoration: none; }
 @media not print {
   :hover > a.pilcrow {
     opacity: 1;
@@ -608,26 +681,28 @@ sub, sup {
   font-size: var(--small-font-size);
   line-height: 18px;
   --identifier-width: 15ch;
-}
-#identifiers dt {
-  width: var(--identifier-width);
-  min-width: var(--identifier-width);
-  clear: left;
-  float: left;
-  text-align: right;
-  margin-right: 1ch;
-}
-#identifiers dd {
-  margin: 0;
-  margin-left: calc(1em + var(--identifier-width)) !important;
-  min-width: 5em;
-}
-#identifiers .authors .author {
-  display: inline-block;
-  margin-right: 1.5em;
-}
-#identifiers .authors .org {
-  font-style: italic;
+  & dt {
+    width: var(--identifier-width);
+    min-width: var(--identifier-width);
+    clear: left;
+    float: left;
+    text-align: right;
+    margin-right: 1ch;
+  }
+  & dd {
+    margin: 0;
+    margin-left: calc(1em + var(--identifier-width)) !important;
+    min-width: 5em;
+  }
+  & .authors {
+    & .author {
+      display: inline-block;
+      margin-right: 1.5em;
+    }
+    & .org {
+      font-style: italic;
+    }
+  }
 }
 
 /* The prepared/rendered info at the very bottom of the page */
@@ -638,9 +713,6 @@ sub, sup {
   margin-top: 2em;
 }
 .docInfo .prepared {
-  float: left;
-}
-.docInfo .prepared {
   float: right;
 }
 
@@ -648,47 +720,48 @@ sub, sup {
 #toc {
   padding: 0.75em 0 2em 0;
   margin-bottom: 1em;
-}
-#toc nav ul {
-  margin: 0 0.5em 0 0;
-  padding: 0;
-  list-style: none;
-}
-#toc nav li {
-  line-height: 1.3em;
-  margin: 2px 0;
-  padding-left: 1.2em;
-  text-indent: -1.2em;
-}
-#toc a.xref {
-  white-space: normal;
-}
-/* references */
-.references dt {
-  text-align: right;
-  font-weight: bold;
-  min-width: 10ch;
-  margin-right: 1.5ch;
-}
-.references dt:target::before {
-  content: "⇒";
-  width: 15px;
-  margin: 0 10px 0 -25px;
-}
-.references dd {
-  margin-left: 12ch !important;
-  overflow: auto;
+
+  & nav {
+    & ul {
+      margin: 0 0.5em 0 0;
+      padding: 0;
+      list-style: none;
+    }
+    & li {
+      line-height: 1.3em;
+      margin: 2px 0;
+      padding-left: 1.2em;
+      text-indent: -1.2em;
+    }
+  }
+  & a.xref {
+    white-space: normal;
+  }
 }
 
-.refInstance {
-  margin-bottom: 1.25em;
+.references {
+  & > dt {
+    text-align: right;
+    font-weight: bold;
+    min-width: 10ch;
+    margin-right: 1.5ch;
+    &:target::before {
+      content: "⇒";
+      margin: 0 10px 0 -25px;
+    }
+  }
+  & > dd {
+    margin-left: 12ch !important;
+    overflow: visible;
+    & .refInstance {
+      margin-bottom: 0.8em;
+    }
+    & .ascii {
+      margin-bottom: 0.25em;
+    }
+  }
 }
 
-.references .ascii {
-  margin-bottom: 0.25em;
-}
-
-/* index */
 #rfc\.index\.index + ul {
   margin-left: 0;
 }
@@ -696,21 +769,33 @@ sub, sup {
 /* authors */
 address.vcard {
   font-style: normal;
-  margin: 1em 0;
+  max-width: 20em;
+  margin: 1em auto 1em 0;
+
+  & .nameRole {
+    font-weight: 700;
+    margin-left: 0;
+  }
+  & .label {
+    margin: 0.5em 0;
+  }
+  & .type {
+    display: none;
+  }
+  & .alternative-contact {
+    margin: 0.5em 0 0.25em 0;
+  }
+  & .non-ascii {
+    margin: 0 0 0 2em;
+  }
+  & div.left {
+    text-align: left;
+  }
+  & div.right {
+    text-align: right;
+  }
 }
-address.vcard .nameRole {
-  font-weight: 700;
-  margin-left: 0;
-}
-address.vcard .label {
-  margin: 0.5em 0;
-}
-address.vcard .type {
-  display: none;
-}
-.alternative-contact {
-  margin: 1.5em 0 1em;
-}
+
 hr.addr {
   border-top: 1px dashed;
   margin: 0;
@@ -732,6 +817,7 @@ hr.addr {
   }
 }
 
+/* Comments */
 .rfcEditorRemove p:first-of-type {
   font-style: italic;
 }
@@ -742,7 +828,31 @@ hr.addr {
 .crefSource {
   font-style: italic;
 }
-/* alternative layout for smaller screens */
+
+@media screen {
+  #toc nav {
+    font-family: var(--font-title);
+    font-weight: 360;
+    & > ul { margin-bottom: 2em; }
+    & ul {
+      margin: 0 0 0 4px;
+      & :is(p, li) {
+        margin: 2px 0;
+      }
+    }
+  }
+  #toc a.toplink {
+    float: right;
+  }
+}
+@media not screen {
+  #toc a.toplink {
+    display: none;
+  }
+}
+
+
+/* TOC layout for smaller screens */
 @media screen and (max-width: 929px) {
   #toc {
     position: fixed;
@@ -753,9 +863,6 @@ hr.addr {
     margin: 0;
     border-bottom: 1px solid #ccc;
     opacity: 0.6;
-  }
-  #toc.active {
-      opacity: 1;
   }
   #toc h2 {
     margin: 0;
@@ -768,17 +875,17 @@ hr.addr {
     background-color: #444;
     color: white;
     cursor: pointer;
-  }
-  #toc h2::before { /* css hamburger */
-    float: right;
-    position: relative;
-    width: 1em;
-    height: 1px;
-    left: -164px;
-    margin: 8px 0 0 0;
-    background: white none repeat scroll 0 0;
-    box-shadow: 0 4px 0 0 white, 0 8px 0 0 white;
-    content: "";
+    &::before { /* css hamburger */
+      float: right;
+      position: relative;
+      width: 1em;
+      height: 1px;
+      left: -164px;
+      margin: 8px 0 0 0;
+      background: white none repeat scroll 0 0;
+      box-shadow: 0 4px 0 0 white, 0 8px 0 0 white;
+      content: "";
+    }
   }
   #toc nav {
     display: none;
@@ -789,14 +896,13 @@ hr.addr {
     height: calc(100vh - 48px);
     border-left: 1px solid #ddd;
   }
-  #toc.active nav {
-    display: block;
+  #toc.active {
+    opacity: 1;
+    & nav { display: block; }
   }
   /* Make the collapsed ToC header render white on gray also when it's a link */
   #toc h2 a,
-  #toc h2 a:link,
-  #toc h2 a:focus,
-  #toc h2 a:hover,
+  #toc h2 a:is(:link, :focus, :hover),
   #toc a.toplink,
   #toc a.toplink:hover {
     color: white;
@@ -804,11 +910,11 @@ hr.addr {
     text-decoration: none;
   }
   #toc a.toplink {
-    margin-top: 2px;
+    margin: 2px 0.5em 0;
   }
 }
 
-/* alternative layout for wide screens */
+/* TOC layout for wide screens */
 @media screen and (min-width: 930px) {
   body {
     padding-right: 360px;
@@ -837,20 +943,12 @@ hr.addr {
     overscroll-behavior: contain;
     scrollbar-width: thin;
   }
-  #toc nav > ul  {
-    margin-bottom: 2em;
-  }
-  #toc ul {
-    margin: 0 0 0 4px;
-    font-size: var(--small-font-size);
-  }
-  #toc ul :is(p, li) {
-    margin: 2px 0;
-    line-height: 22px;
-  }
   img { /* future proofing */
     max-width: 100%;
     height: auto;
+  }
+  #toc a.toplink {
+    margin: 8px 0.5em 0;
   }
 }
 
@@ -893,9 +991,6 @@ hr.addr {
   td {
     border-top: 1px solid #ddd;
   }
-  .toplink {
-    display: none;
-  }
 }
 
 @page :first {
@@ -918,82 +1013,6 @@ hr.addr {
   size: A4;
   margin-bottom: 45mm;
   padding-top: 20px;
-}
-
-/* Changes introduced to fix issues found during implementation */
-
-/* Separate body from document info even without intervening H1 */
-section {
-  clear: both;
-}
-
-/* Top align author divs, to avoid names without organization dropping level with org names */
-.author {
-  vertical-align: top;
-}
-
-/* Style section numbers with more space between number and title */
-.section-number {
-  padding-right: 0.5em;
-}
-
-/* Add styling for a link in the ToC that points to the top of the document */
-a.toplink {
-  float: right;
-  margin: 8px 0.5em 0;
-}
-
-/* Provide styling for table cell text alignment */
-table .text-left {
-  text-align: left;
-}
-table .text-center {
-  text-align: center;
-}
-table .text-right {
-  text-align: right;
-}
-
-/* Make the alternative author contact information look less like just another
-   author, and group it closer with the primary author contact information */
-.alternative-contact {
-  margin: 0.5em 0 0.25em 0;
-}
-address .non-ascii {
-  margin: 0 0 0 2em;
-}
-
-/* With it being possible to set tables with alignment
-  left, center, and right, { width: 100%; } does not make sense */
-table {
-  width: auto;
-}
-
-/* Avoid reference text that sits in a block with very wide left margin,
-   because of a long floating dt label.*/
-.references dd {
-  overflow: visible;
-}
-
-/* Control caption placement */
-caption {
-  caption-side: bottom;
-}
-
-/* Limit the width of the author address vcard, so names in right-to-left
-   script don't end up on the other side of the page. */
-
-address.vcard {
-  max-width: 20em;
-  margin-right: auto;
-}
-
-/* For address alignment dependent on LTR or RTL scripts */
-address div.left {
-  text-align: left;
-}
-address div.right {
-  text-align: right;
 }
 
 /* Dark mode. */
@@ -1032,11 +1051,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">WDM Tunnel YANG Model</td>
-<td class="right">May 2024</td>
+<td class="right">February 2025</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Guo, et al.</td>
-<td class="center">Expires 23 November 2024</td>
+<td class="center">Expires 7 August 2025</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1049,12 +1068,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-ccamp-wdm-tunnel-yang-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-05-22" class="published">22 May 2024</time>
+<time datetime="2025-02-03" class="published">3 February 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2024-11-23">23 November 2024</time></dd>
+<dd class="expires"><time datetime="2025-08-07">7 August 2025</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1121,7 +1140,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 23 November 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 7 August 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1130,7 +1149,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <a href="#name-copyright-notice" class="section-name selfRef">Copyright Notice</a>
         </h2>
 <p id="section-boilerplate.2-1">
-            Copyright (c) 2024 IETF Trust and the persons identified as the
+            Copyright (c) 2025 IETF Trust and the persons identified as the
             document authors. All rights reserved.<a href="#section-boilerplate.2-1" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.2-2">
             This document is subject to BCP 78 and the IETF Trust's Legal
@@ -1157,7 +1176,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
             <p id="section-toc.1-1.2.1" class="keepWithNext"><a href="#section-2" class="auto internal xref">2</a>.  <a href="#name-conventions-and-definitions" class="internal xref">Conventions and Definitions</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3">
-            <p id="section-toc.1-1.3.1" class="keepWithNext"><a href="#section-3" class="auto internal xref">3</a>.  <a href="#name-overview" class="internal xref">Overview</a></p>
+            <p id="section-toc.1-1.3.1"><a href="#section-3" class="auto internal xref">3</a>.  <a href="#name-overview" class="internal xref">Overview</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1">
+                <p id="section-toc.1-1.3.2.1.1" class="keepWithNext"><a href="#section-3.1" class="auto internal xref">3.1</a>.  <a href="#name-integrated-vs-external-opti" class="internal xref">Integrated vs. External Optical Transponder</a></p>
+</li>
+            </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4">
             <p id="section-toc.1-1.4.1"><a href="#section-4" class="auto internal xref">4</a>.  <a href="#name-example-of-use" class="internal xref">Example of Use</a></p>
@@ -1208,14 +1232,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
       <h2 id="name-introduction">
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
       </h2>
-<p id="section-1-1">Transport networks have evolved from traditional Wavelength Switched Optical Networks (WSON) systems <span>[<a href="#RFC6163" class="cite xref">RFC6163</a>]</span> based on only fixed-grid wavelength switching, towards elastic optical networks,
-based on flexi-grid Dense Wavelength Division Multiplexing (DWDM) transmission and switching technologies <span>[<a href="#RFC7698" class="cite xref">RFC7698</a>]</span>. Such technology aims
-at increasing transport network scalability and flexibility, allowing bandwidth usage optimization.<a href="#section-1-1" class="pilcrow">¶</a></p>
-<p id="section-1-2">While <span>[<a href="#RFC9094" class="cite xref">RFC9094</a>]</span> <span>[<a href="#I-D.ietf-ccamp-flexigrid-yang" class="cite xref">I-D.ietf-ccamp-flexigrid-yang</a>]</span> focus on flexi-grid objects such as nodes, transponders
-and links, this document presents a YANG <span>[<a href="#RFC7950" class="cite xref">RFC7950</a>]</span> model for the provisioning and management of Traffic Engineering (TE) tunnels and Label Switched Paths (LSPs) in DWDM Optical Networks, which can be Wavelength Switched Optical Networks (WSON) networks or Flexi-Grid Dense Wavelength Division Multiplexing (DWDM) Networks, or a mix of these two networks. This YANG module defines the path from a source transponder or node to the destination through several intermediate nodes in such a WDM optical network.<a href="#section-1-2" class="pilcrow">¶</a></p>
-<p id="section-1-3">This document identifies the WDM tunnel components, parameters and their values, and
-characterizes the features and the performances of the WDM elements. An application example is
-provided towards the end of the document to understand their utility better.<a href="#section-1-3" class="pilcrow">¶</a></p>
+<p id="section-1-1">Transport networks have evolved from traditional fixed-grid Wavelength Switched Optical Networks (WSON) <span>[<a href="#RFC6163" class="cite xref">RFC6163</a>]</span> to more scalable and flexible elastic optical networks. These utilize flexi-grid Dense Wavelength Division Multiplexing (DWDM) technologies <span>[<a href="#RFC7698" class="cite xref">RFC7698</a>]</span> to optimize bandwidth usage. Current DWDM Optical Network deployments may include fixed-grid WSON, flexi-grid DWDM, or a combination of both.<a href="#section-1-1" class="pilcrow">¶</a></p>
+<p id="section-1-2">In the optical domain, a WDM tunnel typically originates and concludes at a pair of transponders using one or more transceivers dependent upon the data rate and encoding type of the transceivers. These transponders are then connected to an intermediate line system composed of optical switches and multiplexers, including Reconfigurable Optical Add-Drop Multiplexers (ROADMs) and add-drop multiplexers, complemented by optical amplifiers to boost the transmission distance. The optical wavelength can be routed from the transponder or an incoming fiber, through multiplexing, to various outgoing fibers in the DWDM network. At optical nodes, wavelengths may undergo conversion via optical-electrical-optical (OEO) regenerators, depending on the switching setup and fiber configuration.<a href="#section-1-2" class="pilcrow">¶</a></p>
+<p id="section-1-3">Optical services, transmitted via analog signals, require careful provisioning across the network to maintain signal quality and prevent interference between different wavelength channels. The technology within optical nodes, like tunable transceivers or Colorless, Directionless and Contentionless Flexi-grid (CDC-F) ROADMs, introduces specific constraints that can limit WDM tunnel path options. These constraints must be factored into WDM tunnel provisioning and pre-computation. Additionally, assessing the end-to-end optical performance metrics like Generalized Signal-to-noise Ratio (G-SNR), Bit Error Rate (BER), and Q-factor is crucial to ensure transmission quality and receiver signal integrity.<a href="#section-1-3" class="pilcrow">¶</a></p>
+<p id="section-1-4">This draft introduces a YANG <span>[<a href="#RFC7950" class="cite xref">RFC7950</a>]</span> data model for setting up and managing TE tunnels and LSPs in DWDM Optical Networks. It aims to provide an intent-based interface used by a control entity such as a Software-defined Network (SDN) controller at its northbound to establish services between endpoints, typically optical transponders. Clients can utilize this model to either partially or fully delegate service provisioning to the SDN controller, while still capable to express additional constraints to guide its operation. Service provisioning can be as simple as identifying the source and destination transponders and delegate the rest of determination to the SDN controller, or as explicit as specifying a complete detailed path complete with tuned wavelengths and transceiver details.<a href="#section-1-4" class="pilcrow">¶</a></p>
+<p id="section-1-5">This document identifies the WDM tunnel components, parameters and their values, and characterizes the features and the performances of the WDM elements. An application example is provided towards the end of the document to understand their utility better.<a href="#section-1-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="conventions-and-definitions">
@@ -1260,31 +1281,47 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
       <h2 id="name-overview">
 <a href="#section-3" class="section-number selfRef">3. </a><a href="#name-overview" class="section-name selfRef">Overview</a>
       </h2>
-<p id="section-3-1">The generic TE tunnel attributes, such as source and destination node addresses, source and destination tunnel termination points (TTPs), are already defined by the base data model in <span>[<a href="#I-D.ietf-teas-yang-te" class="cite xref">I-D.ietf-teas-yang-te</a>]</span>. The present model defines a WDM tunnel by augmenting the base model with the following
-WDM technology-specific constructs:<a href="#section-3-1" class="pilcrow">¶</a></p>
+<p id="section-3-1">The YANG data model in this draft builds upon the generic TE tunnel model from <span>[<a href="#I-D.ietf-teas-yang-te" class="cite xref">I-D.ietf-teas-yang-te</a>]</span>. This base model is suitable for all TE-enabled networks and includes universal TE tunnel elements like node addresses, tunnel termination points (TTPs), and path-level constraints such as explicit path hops, label restrictions, and path diversity. The current model enhances <span>[<a href="#I-D.ietf-teas-yang-te" class="cite xref">I-D.ietf-teas-yang-te</a>]</span> by incorporating WDM-specific attributes and constraints relevant to WDM tunnels, including definitions for:<a href="#section-3-1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-3-2.1">
-          <p id="section-3-2.1.1">Global WDM layer constraints that influence the TE path selection, e.g., whether wavelength conversion or regeneration is considered<a href="#section-3-2.1.1" class="pilcrow">¶</a></p>
+          <p id="section-3-2.1.1">Network-scope optical transceiver configuration constraints, e.g., operational modes, transceiver tuning constraints<a href="#section-3-2.1.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-3-2.2">
-          <p id="section-3-2.2.1">Global transponder/transceiver configuration constraints, e.g., operational modes, tuning constraints of the transceiver<a href="#section-3-2.2.1" class="pilcrow">¶</a></p>
+          <p id="section-3-2.2.1">Network-scope WDM path routing policies for influencing WDM TE path selection. For exmaple,  whether or not using regenerator or wavelength conversion is allowed, whether or not wavelength retuing is allowed for tunable transceivers, etc.<a href="#section-3-2.2.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-3-2.3">
-          <p id="section-3-2.3.1">Global optical performance constraints, e.g. generalized Signal-to-noise (G-SNR) margin of a feasible optical path<a href="#section-3-2.3.1" class="pilcrow">¶</a></p>
+          <p id="section-3-2.3.1">Network-scope optical performance constraints, e.g. the generalized Signal-to-noise (G-SNR) margin and delta power of a feasible optical path<a href="#section-3-2.3.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-3-2.4">
-          <p id="section-3-2.4.1">Path-scope WDM layer constraints, e.g. identities of transceivers assigned to the primary or secondary path<a href="#section-3-2.4.1" class="pilcrow">¶</a></p>
+          <p id="section-3-2.4.1">Path-scope WDM layer constraints and transceiver configurations for working and protection path within a WDM tunnel<a href="#section-3-2.4.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-3-2.5">
-          <p id="section-3-2.5.1">List of links that defines the path<a href="#section-3-2.5.1" class="pilcrow">¶</a></p>
+          <p id="section-3-2.5.1">List of WDM nodes, links, and optical wavelength that constitute an end-to-end WDM path<a href="#section-3-2.5.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-3-2.6">
-          <p id="section-3-2.6.1">Other optical attributes<a href="#section-3-2.6.1" class="pilcrow">¶</a></p>
+          <p id="section-3-2.6.1">Other relevant optical attributes which characterize the optical signal<a href="#section-3-2.6.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
-<p id="section-3-3">Each path can be a segment path (only defined by the source and destination nodes or link termination points)
-or an end-to-end path (additionally needs source and destination transponders). Therefore, all the attributes
-are optional to support both situations.<a href="#section-3-3" class="pilcrow">¶</a></p>
+<p id="section-3-3">The attributes described above are optional, allowing the model to support both simplified and fully-explicit WDM tunnel provisioning to meet diverse client requirements.<a href="#section-3-3" class="pilcrow">¶</a></p>
+<p id="section-3-4">Additionally, the YANG model provides the status of a WDM tunnel, which includes:<a href="#section-3-4" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-3-5.1">
+          <p id="section-3-5.1.1">Computed paths for various roles such as working, protection, and restoration, indicating potential optical paths confirmed by the SDN controller via pre-computation.<a href="#section-3-5.1.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-3-5.2">
+          <p id="section-3-5.2.1">Actual LSPs for each tunnel path, representing the optical paths currently established in the network.<a href="#section-3-5.2.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
+<div id="integrated-vs-external-optical-transponder">
+<section id="section-3.1">
+        <h3 id="name-integrated-vs-external-opti">
+<a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-integrated-vs-external-opti" class="section-name selfRef">Integrated vs. External Optical Transponder</a>
+        </h3>
+<p id="section-3.1-1">In optical networks built with traditional chassis-based DWDM optical equipment, optical transponder (OTs) are typically inserted into the chassis installed as cards. WDM tunnels are established between pairs of OTs, with the SDN controller serving as the central entity for provisioning and managing these tunnels.<a href="#section-3.1-1" class="pilcrow">¶</a></p>
+<p id="section-3.1-2">In scenarios like data center interconnects (DCI), optical transponders may be externally mounted on a 'pizza box' and linked via dedicated fiber or wavelength multiplexer/demultiplexer to the optical line system. These external OTs could be managed by the same SDN controller or a different entity, such as an orchestrator. Consequently, a WDM tunnel might be composed of several segments joined to create a continuous end-to-end tunnel.<a href="#section-3.1-2" class="pilcrow">¶</a></p>
+<p id="section-3.1-3">The YANG data model offers a cohesive interface for managing WDM tunnels and tunnel segments, irrespective of transponder location.<a href="#section-3.1-3" class="pilcrow">¶</a></p>
+</section>
+</div>
 </section>
 </div>
 <div id="example-of-use">
@@ -1292,40 +1329,45 @@ are optional to support both situations.<a href="#section-3-3" class="pilcrow">�
       <h2 id="name-example-of-use">
 <a href="#section-4" class="section-number selfRef">4. </a><a href="#name-example-of-use" class="section-name selfRef">Example of Use</a>
       </h2>
-<p id="section-4-1">In order to explain how this model is used, the following
-example is provided.  An optical network usually has multiple transponders,
-switches (nodes) and links. <a href="#fig-topology-example" class="auto internal xref">Figure 1</a> shows a simple
-topology, where two physical paths interconnect two optical
-transponders via a combination of both WSON and Flexi-grid wavelength
-switched nodes and links.<a href="#section-4-1" class="pilcrow">¶</a></p>
+<p id="section-4-1">To illustrate the model's application, consider an optical network with various transponders, switches, and links. A depicted topology outlines two WDM tunnel scenarios. In the first, an end-to-end WDM tunnel (WDM Tunnel 1) comprises two physical paths (WDM Primary Path 1 and 2) linking two integrated optical transponders, Transponder A and E, through WSON and Flexi-grid nodes. The second scenario describes three WDM tunnel segments (WDM Tunnel Segment 2a to 2c) connecting two external OTs, External OT node X and Y, via the same nodes and links.<a href="#section-4-1" class="pilcrow">¶</a></p>
 <span id="name-topology-example"></span><div id="fig-topology-example">
 <figure id="figure-1">
         <div class="alignLeft art-ascii-art art-text artwork" id="section-4-2.1">
 <pre>
-                              WDM Tunnel
+                              WDM Tunnel 1
         &lt;===================================================&gt;
-                         WDM Primary Path
+                         WDM Primary Path 1
         &lt;---------------------------------------------------&gt;
 
+            WDM Tunnel         WDM Tunnel      WDM Tunnel
+            Segment 2a         Segment 2b      Segment 2c
+        &lt;=================&gt;&lt;===============&gt;&lt;===============&gt;
    +----------+                                        +----------+
-   |  Flexi-  |                                        |  Flexi-  |
-   |   grid   |                                        |   grid   |
-   |  node A  |                                        |  node E  |
-   |          |        +------+        +------+        |          |
+   | External |                                        | External |
+   |    OT    |&lt;----------+                +----------&gt;|    OT    |
+   |  node X  |           |                |           |  node Y  |
+   +----------+           |                |           +----------+
+                          |                |
+                          |                |
+   +----------+           |                |           +----------+
+   |  Flexi-  |           |                |           |  Flexi-  |
+   |   grid   |           |                |           |   grid   |
+   |  node A  |           |                |           |  node E  |
+   |          |        +--v---+        +---v--+        |          |
    |          | Link 1 |Flexi-| Link 2 | WSON | Link 3 |          |
    |          |&lt;------&gt;| grid |&lt;------&gt;|      |&lt;------&gt;|          |
    |......... |        |node B|        |node C|        | .........|
    | Trans- : |        +------+        +------+        | : Trans- |
    | ponder : |                                        | : ponder |
-   |    A   : |              +----------+              | :    E   |
-   |........: |     Link 4   |Flexi-grid|   Link 5     | :........|
-   |          |              |    D     |              |          |
-   |          |&lt;------------&gt;|   node   |&lt;------------&gt;|          |
-   |          |              +----------+              |          |
+   |    A   : |                +------+                | :    E   |
+   |........: |     Link 4     |Flexi-|     Link 5     | :........|
+   |          |                | grid |                |          |
+   |          |&lt;--------------&gt;|node D|&lt;--------------&gt;|          |
+   |          |                +------+                |          |
    +----------+                                        +----------+
 
         &lt;---------------------------------------------------&gt;
-                          WDM Secondary Path
+                          WDM Secondary Path 1
 </pre>
 </div>
 <figcaption><a href="#figure-1" class="selfRef">Figure 1</a>:
@@ -1405,6 +1447,7 @@ module: ietf-wdm-tunnel
     +--rw wdm-constraint
        +--rw transceiver-constraint
        |  +--rw operational-modes*            string
+       |  +--rw otsi-carrier-frequency?       l0-types:frequency-thz
        |  +--rw tx-tune-constraints
        |  |  +--rw min-central-frequency?    frequency-thz
        |  |  +--rw max-central-frequency?    frequency-thz
@@ -1412,7 +1455,7 @@ module: ietf-wdm-tunnel
        |  +--rw line-coding-bitrate*          identityref
        |  +--rw tx-channel-power?             l0-types:power-dbm
        |  +--rw preferred-rx-channel-power?   l0-types:power-dbm
-       +--rw gsnr-extra-margin?             snr
+       |  +--rw gsnr-extra-margin?            snr
        +--rw use-regen?                     boolean
        +--rw wavelength-conversion?         boolean
        +--rw wavelength-assignment?         identityref
@@ -1424,244 +1467,624 @@ module: ietf-wdm-tunnel
             /te:primary-path/te:explicit-route-objects
             /te:route-object-exclude-always/te:type
             /te:numbered-node-hop/te:numbered-node-hop:
-    +--rw path-in-transceiver
-    |  +--rw transponder-id?   uint32
-    |  +--rw transceivers* [otsi-carrier-id]
-    |     +--rw otsi-carrier-id               uint16
-    |     +--rw transceiver-id?               uint32
-    |     +--rw operational-modes*            string
-    |     +--rw tx-tune-constraints
-    |     |  +--rw min-central-frequency?    frequency-thz
-    |     |  +--rw max-central-frequency?    frequency-thz
-    |     |  +--rw transceiver-tunability?   frequency-ghz
-    |     +--rw line-coding-bitrate*          identityref
-    |     +--rw tx-channel-power?             l0-types:power-dbm
-    |     +--rw preferred-rx-channel-power?   l0-types:power-dbm
-    +--rw path-out-transceiver
-       +--rw transponder-id?   uint32
-       +--rw transceivers* [otsi-carrier-id]
-          +--rw otsi-carrier-id               uint16
-          +--rw transceiver-id?               uint32
-          +--rw operational-modes*            string
-          +--rw tx-tune-constraints
-          |  +--rw min-central-frequency?    frequency-thz
-          |  +--rw max-central-frequency?    frequency-thz
-          |  +--rw transceiver-tunability?   frequency-ghz
-          +--rw line-coding-bitrate*          identityref
-          +--rw tx-channel-power?             l0-types:power-dbm
-          +--rw preferred-rx-channel-power?   l0-types:power-dbm
+    +--rw (node-position)?
+       +--:(source)
+       |  +--rw source-transceiver
+       |     +--rw transponder-id?   uint32
+       |     +--rw transceivers* [transceiver-id]
+       |        +--rw transceiver-id                uint32
+       |        +--rw otsi-carrier-id?              uint16
+       |        +--rw operational-modes*            string
+       |        +--rw otsi-carrier-frequency?
+       |        |       l0-types:frequency-thz
+       |        +--rw tx-tune-constraints
+       |        |  +--rw min-central-frequency?    frequency-thz
+       |        |  +--rw max-central-frequency?    frequency-thz
+       |        |  +--rw transceiver-tunability?   frequency-ghz
+       |        +--rw line-coding-bitrate*          identityref
+       |        +--rw tx-channel-power?
+       |        |       l0-types:power-dbm
+       |        +--rw preferred-rx-channel-power?
+       |        |       l0-types:power-dbm
+       |        +--rw gsnr-extra-margin?            snr
+       +--:(destination)
+       |  +--rw destination-transceiver
+       |     +--rw transponder-id?   uint32
+       |     +--rw transceivers* [transceiver-id]
+       |        +--rw transceiver-id                uint32
+       |        +--rw otsi-carrier-id?              uint16
+       |        +--rw operational-modes*            string
+       |        +--rw otsi-carrier-frequency?
+       |        |       l0-types:frequency-thz
+       |        +--rw tx-tune-constraints
+       |        |  +--rw min-central-frequency?    frequency-thz
+       |        |  +--rw max-central-frequency?    frequency-thz
+       |        |  +--rw transceiver-tunability?   frequency-ghz
+       |        +--rw line-coding-bitrate*          identityref
+       |        +--rw tx-channel-power?
+       |        |       l0-types:power-dbm
+       |        +--rw preferred-rx-channel-power?
+       |        |       l0-types:power-dbm
+       |        +--rw gsnr-extra-margin?            snr
+       +--:(transit)
+          +--rw regen-transceivers
+             +--rw regen-group-id?         uint32
+             +--rw incoming-transceiver
+             |  +--rw transponder-id?   uint32
+             |  +--rw transceivers* [transceiver-id]
+             |     +--rw transceiver-id                uint32
+             |     +--rw otsi-carrier-id?              uint16
+             |     +--rw operational-modes*            string
+             |     +--rw otsi-carrier-frequency?
+             |     |       l0-types:frequency-thz
+             |     +--rw tx-tune-constraints
+             |     |  +--rw min-central-frequency?    frequency-thz
+             |     |  +--rw max-central-frequency?    frequency-thz
+             |     |  +--rw transceiver-tunability?   frequency-ghz
+             |     +--rw line-coding-bitrate*          identityref
+             |     +--rw tx-channel-power?
+             |     |       l0-types:power-dbm
+             |     +--rw preferred-rx-channel-power?
+             |     |       l0-types:power-dbm
+             |     +--rw gsnr-extra-margin?            snr
+             +--rw outgoing-transceiver
+                +--rw transponder-id?   uint32
+                +--rw transceivers* [transceiver-id]
+                   +--rw transceiver-id                uint32
+                   +--rw otsi-carrier-id?              uint16
+                   +--rw operational-modes*            string
+                   +--rw otsi-carrier-frequency?
+                   |       l0-types:frequency-thz
+                   +--rw tx-tune-constraints
+                   |  +--rw min-central-frequency?    frequency-thz
+                   |  +--rw max-central-frequency?    frequency-thz
+                   |  +--rw transceiver-tunability?   frequency-ghz
+                   +--rw line-coding-bitrate*          identityref
+                   +--rw tx-channel-power?
+                   |       l0-types:power-dbm
+                   +--rw preferred-rx-channel-power?
+                   |       l0-types:power-dbm
+                   +--rw gsnr-extra-margin?            snr
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:primary-reverse-path
             /te:explicit-route-objects/te:route-object-exclude-always
             /te:type/te:numbered-node-hop/te:numbered-node-hop:
-    +--rw path-in-transceiver
-    |  +--rw transponder-id?   uint32
-    |  +--rw transceivers* [otsi-carrier-id]
-    |     +--rw otsi-carrier-id               uint16
-    |     +--rw transceiver-id?               uint32
-    |     +--rw operational-modes*            string
-    |     +--rw tx-tune-constraints
-    |     |  +--rw min-central-frequency?    frequency-thz
-    |     |  +--rw max-central-frequency?    frequency-thz
-    |     |  +--rw transceiver-tunability?   frequency-ghz
-    |     +--rw line-coding-bitrate*          identityref
-    |     +--rw tx-channel-power?             l0-types:power-dbm
-    |     +--rw preferred-rx-channel-power?   l0-types:power-dbm
-    +--rw path-out-transceiver
-       +--rw transponder-id?   uint32
-       +--rw transceivers* [otsi-carrier-id]
-          +--rw otsi-carrier-id               uint16
-          +--rw transceiver-id?               uint32
-          +--rw operational-modes*            string
-          +--rw tx-tune-constraints
-          |  +--rw min-central-frequency?    frequency-thz
-          |  +--rw max-central-frequency?    frequency-thz
-          |  +--rw transceiver-tunability?   frequency-ghz
-          +--rw line-coding-bitrate*          identityref
-          +--rw tx-channel-power?             l0-types:power-dbm
-          +--rw preferred-rx-channel-power?   l0-types:power-dbm
+    +--rw (node-position)?
+       +--:(source)
+       |  +--rw source-transceiver
+       |     +--rw transponder-id?   uint32
+       |     +--rw transceivers* [transceiver-id]
+       |        +--rw transceiver-id                uint32
+       |        +--rw otsi-carrier-id?              uint16
+       |        +--rw operational-modes*            string
+       |        +--rw otsi-carrier-frequency?
+       |        |       l0-types:frequency-thz
+       |        +--rw tx-tune-constraints
+       |        |  +--rw min-central-frequency?    frequency-thz
+       |        |  +--rw max-central-frequency?    frequency-thz
+       |        |  +--rw transceiver-tunability?   frequency-ghz
+       |        +--rw line-coding-bitrate*          identityref
+       |        +--rw tx-channel-power?
+       |        |       l0-types:power-dbm
+       |        +--rw preferred-rx-channel-power?
+       |        |       l0-types:power-dbm
+       |        +--rw gsnr-extra-margin?            snr
+       +--:(destination)
+       |  +--rw destination-transceiver
+       |     +--rw transponder-id?   uint32
+       |     +--rw transceivers* [transceiver-id]
+       |        +--rw transceiver-id                uint32
+       |        +--rw otsi-carrier-id?              uint16
+       |        +--rw operational-modes*            string
+       |        +--rw otsi-carrier-frequency?
+       |        |       l0-types:frequency-thz
+       |        +--rw tx-tune-constraints
+       |        |  +--rw min-central-frequency?    frequency-thz
+       |        |  +--rw max-central-frequency?    frequency-thz
+       |        |  +--rw transceiver-tunability?   frequency-ghz
+       |        +--rw line-coding-bitrate*          identityref
+       |        +--rw tx-channel-power?
+       |        |       l0-types:power-dbm
+       |        +--rw preferred-rx-channel-power?
+       |        |       l0-types:power-dbm
+       |        +--rw gsnr-extra-margin?            snr
+       +--:(transit)
+          +--rw regen-transceivers
+             +--rw regen-group-id?         uint32
+             +--rw incoming-transceiver
+             |  +--rw transponder-id?   uint32
+             |  +--rw transceivers* [transceiver-id]
+             |     +--rw transceiver-id                uint32
+             |     +--rw otsi-carrier-id?              uint16
+             |     +--rw operational-modes*            string
+             |     +--rw otsi-carrier-frequency?
+             |     |       l0-types:frequency-thz
+             |     +--rw tx-tune-constraints
+             |     |  +--rw min-central-frequency?    frequency-thz
+             |     |  +--rw max-central-frequency?    frequency-thz
+             |     |  +--rw transceiver-tunability?   frequency-ghz
+             |     +--rw line-coding-bitrate*          identityref
+             |     +--rw tx-channel-power?
+             |     |       l0-types:power-dbm
+             |     +--rw preferred-rx-channel-power?
+             |     |       l0-types:power-dbm
+             |     +--rw gsnr-extra-margin?            snr
+             +--rw outgoing-transceiver
+                +--rw transponder-id?   uint32
+                +--rw transceivers* [transceiver-id]
+                   +--rw transceiver-id                uint32
+                   +--rw otsi-carrier-id?              uint16
+                   +--rw operational-modes*            string
+                   +--rw otsi-carrier-frequency?
+                   |       l0-types:frequency-thz
+                   +--rw tx-tune-constraints
+                   |  +--rw min-central-frequency?    frequency-thz
+                   |  +--rw max-central-frequency?    frequency-thz
+                   |  +--rw transceiver-tunability?   frequency-ghz
+                   +--rw line-coding-bitrate*          identityref
+                   +--rw tx-channel-power?
+                   |       l0-types:power-dbm
+                   +--rw preferred-rx-channel-power?
+                   |       l0-types:power-dbm
+                   +--rw gsnr-extra-margin?            snr
   augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
             /te:secondary-path/te:explicit-route-objects
             /te:route-object-exclude-always/te:type
             /te:numbered-node-hop/te:numbered-node-hop:
-    +--rw path-in-transceiver
-    |  +--rw transponder-id?   uint32
-    |  +--rw transceivers* [otsi-carrier-id]
-    |     +--rw otsi-carrier-id               uint16
-    |     +--rw transceiver-id?               uint32
-    |     +--rw operational-modes*            string
-    |     +--rw tx-tune-constraints
-    |     |  +--rw min-central-frequency?    frequency-thz
-    |     |  +--rw max-central-frequency?    frequency-thz
-    |     |  +--rw transceiver-tunability?   frequency-ghz
-    |     +--rw line-coding-bitrate*          identityref
-    |     +--rw tx-channel-power?             l0-types:power-dbm
-    |     +--rw preferred-rx-channel-power?   l0-types:power-dbm
-    +--rw path-out-transceiver
-       +--rw transponder-id?   uint32
-       +--rw transceivers* [otsi-carrier-id]
-          +--rw otsi-carrier-id               uint16
-          +--rw transceiver-id?               uint32
-          +--rw operational-modes*            string
-          +--rw tx-tune-constraints
-          |  +--rw min-central-frequency?    frequency-thz
-          |  +--rw max-central-frequency?    frequency-thz
-          |  +--rw transceiver-tunability?   frequency-ghz
-          +--rw line-coding-bitrate*          identityref
-          +--rw tx-channel-power?             l0-types:power-dbm
-          +--rw preferred-rx-channel-power?   l0-types:power-dbm
+    +--rw (node-position)?
+       +--:(source)
+       |  +--rw source-transceiver
+       |     +--rw transponder-id?   uint32
+       |     +--rw transceivers* [transceiver-id]
+       |        +--rw transceiver-id                uint32
+       |        +--rw otsi-carrier-id?              uint16
+       |        +--rw operational-modes*            string
+       |        +--rw otsi-carrier-frequency?
+       |        |       l0-types:frequency-thz
+       |        +--rw tx-tune-constraints
+       |        |  +--rw min-central-frequency?    frequency-thz
+       |        |  +--rw max-central-frequency?    frequency-thz
+       |        |  +--rw transceiver-tunability?   frequency-ghz
+       |        +--rw line-coding-bitrate*          identityref
+       |        +--rw tx-channel-power?
+       |        |       l0-types:power-dbm
+       |        +--rw preferred-rx-channel-power?
+       |        |       l0-types:power-dbm
+       |        +--rw gsnr-extra-margin?            snr
+       +--:(destination)
+       |  +--rw destination-transceiver
+       |     +--rw transponder-id?   uint32
+       |     +--rw transceivers* [transceiver-id]
+       |        +--rw transceiver-id                uint32
+       |        +--rw otsi-carrier-id?              uint16
+       |        +--rw operational-modes*            string
+       |        +--rw otsi-carrier-frequency?
+       |        |       l0-types:frequency-thz
+       |        +--rw tx-tune-constraints
+       |        |  +--rw min-central-frequency?    frequency-thz
+       |        |  +--rw max-central-frequency?    frequency-thz
+       |        |  +--rw transceiver-tunability?   frequency-ghz
+       |        +--rw line-coding-bitrate*          identityref
+       |        +--rw tx-channel-power?
+       |        |       l0-types:power-dbm
+       |        +--rw preferred-rx-channel-power?
+       |        |       l0-types:power-dbm
+       |        +--rw gsnr-extra-margin?            snr
+       +--:(transit)
+          +--rw regen-transceivers
+             +--rw regen-group-id?         uint32
+             +--rw incoming-transceiver
+             |  +--rw transponder-id?   uint32
+             |  +--rw transceivers* [transceiver-id]
+             |     +--rw transceiver-id                uint32
+             |     +--rw otsi-carrier-id?              uint16
+             |     +--rw operational-modes*            string
+             |     +--rw otsi-carrier-frequency?
+             |     |       l0-types:frequency-thz
+             |     +--rw tx-tune-constraints
+             |     |  +--rw min-central-frequency?    frequency-thz
+             |     |  +--rw max-central-frequency?    frequency-thz
+             |     |  +--rw transceiver-tunability?   frequency-ghz
+             |     +--rw line-coding-bitrate*          identityref
+             |     +--rw tx-channel-power?
+             |     |       l0-types:power-dbm
+             |     +--rw preferred-rx-channel-power?
+             |     |       l0-types:power-dbm
+             |     +--rw gsnr-extra-margin?            snr
+             +--rw outgoing-transceiver
+                +--rw transponder-id?   uint32
+                +--rw transceivers* [transceiver-id]
+                   +--rw transceiver-id                uint32
+                   +--rw otsi-carrier-id?              uint16
+                   +--rw operational-modes*            string
+                   +--rw otsi-carrier-frequency?
+                   |       l0-types:frequency-thz
+                   +--rw tx-tune-constraints
+                   |  +--rw min-central-frequency?    frequency-thz
+                   |  +--rw max-central-frequency?    frequency-thz
+                   |  +--rw transceiver-tunability?   frequency-ghz
+                   +--rw line-coding-bitrate*          identityref
+                   +--rw tx-channel-power?
+                   |       l0-types:power-dbm
+                   +--rw preferred-rx-channel-power?
+                   |       l0-types:power-dbm
+                   +--rw gsnr-extra-margin?            snr
   augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
             /te:secondary-reverse-path/te:explicit-route-objects
             /te:route-object-exclude-always/te:type
             /te:numbered-node-hop/te:numbered-node-hop:
-    +--rw path-in-transceiver
-    |  +--rw transponder-id?   uint32
-    |  +--rw transceivers* [otsi-carrier-id]
-    |     +--rw otsi-carrier-id               uint16
-    |     +--rw transceiver-id?               uint32
-    |     +--rw operational-modes*            string
-    |     +--rw tx-tune-constraints
-    |     |  +--rw min-central-frequency?    frequency-thz
-    |     |  +--rw max-central-frequency?    frequency-thz
-    |     |  +--rw transceiver-tunability?   frequency-ghz
-    |     +--rw line-coding-bitrate*          identityref
-    |     +--rw tx-channel-power?             l0-types:power-dbm
-    |     +--rw preferred-rx-channel-power?   l0-types:power-dbm
-    +--rw path-out-transceiver
-       +--rw transponder-id?   uint32
-       +--rw transceivers* [otsi-carrier-id]
-          +--rw otsi-carrier-id               uint16
-          +--rw transceiver-id?               uint32
-          +--rw operational-modes*            string
-          +--rw tx-tune-constraints
-          |  +--rw min-central-frequency?    frequency-thz
-          |  +--rw max-central-frequency?    frequency-thz
-          |  +--rw transceiver-tunability?   frequency-ghz
-          +--rw line-coding-bitrate*          identityref
-          +--rw tx-channel-power?             l0-types:power-dbm
-          +--rw preferred-rx-channel-power?   l0-types:power-dbm
-  augment /te:te/te:tunnels/te:tunnel/te:primary-paths
-            /te:primary-path/te:computed-paths-properties
-            /te:computed-path-properties/te:path-properties:
-    +--ro estimated-gsnr?          snr
-    +--ro estimated-eol-gsnr?      snr
-    +--ro estimated-lowest-gsnr?   snr
-  augment /te:te/te:tunnels/te:tunnel/te:primary-paths
-            /te:primary-path/te:primary-reverse-path
-            /te:computed-paths-properties/te:computed-path-properties
-            /te:path-properties:
-    +--ro estimated-gsnr?          snr
-    +--ro estimated-eol-gsnr?      snr
-    +--ro estimated-lowest-gsnr?   snr
-  augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
-            /te:secondary-path/te:computed-paths-properties
-            /te:computed-path-properties/te:path-properties:
-    +--ro estimated-gsnr?          snr
-    +--ro estimated-eol-gsnr?      snr
-    +--ro estimated-lowest-gsnr?   snr
-  augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
-            /te:secondary-reverse-path/te:computed-paths-properties
-            /te:computed-path-properties/te:path-properties:
-    +--ro estimated-gsnr?          snr
-    +--ro estimated-eol-gsnr?      snr
-    +--ro estimated-lowest-gsnr?   snr
+    +--rw (node-position)?
+       +--:(source)
+       |  +--rw source-transceiver
+       |     +--rw transponder-id?   uint32
+       |     +--rw transceivers* [transceiver-id]
+       |        +--rw transceiver-id                uint32
+       |        +--rw otsi-carrier-id?              uint16
+       |        +--rw operational-modes*            string
+       |        +--rw otsi-carrier-frequency?
+       |        |       l0-types:frequency-thz
+       |        +--rw tx-tune-constraints
+       |        |  +--rw min-central-frequency?    frequency-thz
+       |        |  +--rw max-central-frequency?    frequency-thz
+       |        |  +--rw transceiver-tunability?   frequency-ghz
+       |        +--rw line-coding-bitrate*          identityref
+       |        +--rw tx-channel-power?
+       |        |       l0-types:power-dbm
+       |        +--rw preferred-rx-channel-power?
+       |        |       l0-types:power-dbm
+       |        +--rw gsnr-extra-margin?            snr
+       +--:(destination)
+       |  +--rw destination-transceiver
+       |     +--rw transponder-id?   uint32
+       |     +--rw transceivers* [transceiver-id]
+       |        +--rw transceiver-id                uint32
+       |        +--rw otsi-carrier-id?              uint16
+       |        +--rw operational-modes*            string
+       |        +--rw otsi-carrier-frequency?
+       |        |       l0-types:frequency-thz
+       |        +--rw tx-tune-constraints
+       |        |  +--rw min-central-frequency?    frequency-thz
+       |        |  +--rw max-central-frequency?    frequency-thz
+       |        |  +--rw transceiver-tunability?   frequency-ghz
+       |        +--rw line-coding-bitrate*          identityref
+       |        +--rw tx-channel-power?
+       |        |       l0-types:power-dbm
+       |        +--rw preferred-rx-channel-power?
+       |        |       l0-types:power-dbm
+       |        +--rw gsnr-extra-margin?            snr
+       +--:(transit)
+          +--rw regen-transceivers
+             +--rw regen-group-id?         uint32
+             +--rw incoming-transceiver
+             |  +--rw transponder-id?   uint32
+             |  +--rw transceivers* [transceiver-id]
+             |     +--rw transceiver-id                uint32
+             |     +--rw otsi-carrier-id?              uint16
+             |     +--rw operational-modes*            string
+             |     +--rw otsi-carrier-frequency?
+             |     |       l0-types:frequency-thz
+             |     +--rw tx-tune-constraints
+             |     |  +--rw min-central-frequency?    frequency-thz
+             |     |  +--rw max-central-frequency?    frequency-thz
+             |     |  +--rw transceiver-tunability?   frequency-ghz
+             |     +--rw line-coding-bitrate*          identityref
+             |     +--rw tx-channel-power?
+             |     |       l0-types:power-dbm
+             |     +--rw preferred-rx-channel-power?
+             |     |       l0-types:power-dbm
+             |     +--rw gsnr-extra-margin?            snr
+             +--rw outgoing-transceiver
+                +--rw transponder-id?   uint32
+                +--rw transceivers* [transceiver-id]
+                   +--rw transceiver-id                uint32
+                   +--rw otsi-carrier-id?              uint16
+                   +--rw operational-modes*            string
+                   +--rw otsi-carrier-frequency?
+                   |       l0-types:frequency-thz
+                   +--rw tx-tune-constraints
+                   |  +--rw min-central-frequency?    frequency-thz
+                   |  +--rw max-central-frequency?    frequency-thz
+                   |  +--rw transceiver-tunability?   frequency-ghz
+                   +--rw line-coding-bitrate*          identityref
+                   +--rw tx-channel-power?
+                   |       l0-types:power-dbm
+                   +--rw preferred-rx-channel-power?
+                   |       l0-types:power-dbm
+                   +--rw gsnr-extra-margin?            snr
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:computed-paths-properties
             /te:computed-path-properties/te:path-properties
             /te:path-route-objects/te:path-route-object/te:type
             /te:numbered-node-hop/te:numbered-node-hop:
-    +--ro path-in-transceiver
-    |  +--ro transponder-id?   uint32
-    |  +--ro transceivers* [otsi-carrier-id]
-    |     +--ro otsi-carrier-id     uint16
-    |     +--ro transceiver-id?     uint32
-    |     +--ro rx-channel-power?   power-dbm-or-null
-    |     +--ro rx-total-power?     power-dbm-or-null
-    +--ro path-out-transceiver
-       +--ro transponder-id?   uint32
-       +--ro transceivers* [otsi-carrier-id]
-          +--ro otsi-carrier-id     uint16
-          +--ro transceiver-id?     uint32
-          +--ro rx-channel-power?   power-dbm-or-null
-          +--ro rx-total-power?     power-dbm-or-null
+    +--ro (node-position)?
+       +--:(source)
+       |  +--ro source-transceiver
+       |     +--ro transponder-id?   uint32
+       |     +--ro transceivers* [transceiver-id]
+       |        +--ro otsi-carrier-id?          uint16
+       |        +--ro transceiver-id            uint32
+       |        +--ro otsi-carrier-frequency?   union
+       |        +--ro rx-channel-power?         power-dbm-or-null
+       |        +--ro rx-total-power?           power-dbm-or-null
+       |        +--ro estimated-gsnr?           snr
+       |        +--ro estimated-eol-gsnr?       snr
+       |        +--ro estimated-lowest-gsnr?    snr
+       +--:(destination)
+       |  +--ro destination-transceiver
+       |     +--ro transponder-id?   uint32
+       |     +--ro transceivers* [transceiver-id]
+       |        +--ro otsi-carrier-id?          uint16
+       |        +--ro transceiver-id            uint32
+       |        +--ro otsi-carrier-frequency?   union
+       |        +--ro rx-channel-power?         power-dbm-or-null
+       |        +--ro rx-total-power?           power-dbm-or-null
+       |        +--ro estimated-gsnr?           snr
+       |        +--ro estimated-eol-gsnr?       snr
+       |        +--ro estimated-lowest-gsnr?    snr
+       +--:(transit)
+          +--ro regen-transceivers
+             +--ro regen-group-id?         uint32
+             +--ro incoming-transceiver
+             |  +--ro transponder-id?   uint32
+             |  +--ro transceivers* [transceiver-id]
+             |     +--ro otsi-carrier-id?          uint16
+             |     +--ro transceiver-id            uint32
+             |     +--ro otsi-carrier-frequency?   union
+             |     +--ro rx-channel-power?         power-dbm-or-null
+             |     +--ro rx-total-power?           power-dbm-or-null
+             |     +--ro estimated-gsnr?           snr
+             |     +--ro estimated-eol-gsnr?       snr
+             |     +--ro estimated-lowest-gsnr?    snr
+             +--ro outgoing-transceiver
+                +--ro transponder-id?   uint32
+                +--ro transceivers* [transceiver-id]
+                   +--ro otsi-carrier-id?          uint16
+                   +--ro transceiver-id            uint32
+                   +--ro otsi-carrier-frequency?   union
+                   +--ro rx-channel-power?         power-dbm-or-null
+                   +--ro rx-total-power?           power-dbm-or-null
+                   +--ro estimated-gsnr?           snr
+                   +--ro estimated-eol-gsnr?       snr
+                   +--ro estimated-lowest-gsnr?    snr
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:primary-reverse-path
             /te:computed-paths-properties/te:computed-path-properties
             /te:path-properties/te:path-route-objects
             /te:path-route-object/te:type/te:numbered-node-hop
             /te:numbered-node-hop:
-    +--ro path-in-transceiver
-    |  +--ro transponder-id?   uint32
-    |  +--ro transceivers* [otsi-carrier-id]
-    |     +--ro otsi-carrier-id     uint16
-    |     +--ro transceiver-id?     uint32
-    |     +--ro rx-channel-power?   power-dbm-or-null
-    |     +--ro rx-total-power?     power-dbm-or-null
-    +--ro path-out-transceiver
-       +--ro transponder-id?   uint32
-       +--ro transceivers* [otsi-carrier-id]
-          +--ro otsi-carrier-id     uint16
-          +--ro transceiver-id?     uint32
-          +--ro rx-channel-power?   power-dbm-or-null
-          +--ro rx-total-power?     power-dbm-or-null
+    +--ro (node-position)?
+       +--:(source)
+       |  +--ro source-transceiver
+       |     +--ro transponder-id?   uint32
+       |     +--ro transceivers* [transceiver-id]
+       |        +--ro otsi-carrier-id?          uint16
+       |        +--ro transceiver-id            uint32
+       |        +--ro otsi-carrier-frequency?   union
+       |        +--ro rx-channel-power?         power-dbm-or-null
+       |        +--ro rx-total-power?           power-dbm-or-null
+       |        +--ro estimated-gsnr?           snr
+       |        +--ro estimated-eol-gsnr?       snr
+       |        +--ro estimated-lowest-gsnr?    snr
+       +--:(destination)
+       |  +--ro destination-transceiver
+       |     +--ro transponder-id?   uint32
+       |     +--ro transceivers* [transceiver-id]
+       |        +--ro otsi-carrier-id?          uint16
+       |        +--ro transceiver-id            uint32
+       |        +--ro otsi-carrier-frequency?   union
+       |        +--ro rx-channel-power?         power-dbm-or-null
+       |        +--ro rx-total-power?           power-dbm-or-null
+       |        +--ro estimated-gsnr?           snr
+       |        +--ro estimated-eol-gsnr?       snr
+       |        +--ro estimated-lowest-gsnr?    snr
+       +--:(transit)
+          +--ro regen-transceivers
+             +--ro regen-group-id?         uint32
+             +--ro incoming-transceiver
+             |  +--ro transponder-id?   uint32
+             |  +--ro transceivers* [transceiver-id]
+             |     +--ro otsi-carrier-id?          uint16
+             |     +--ro transceiver-id            uint32
+             |     +--ro otsi-carrier-frequency?   union
+             |     +--ro rx-channel-power?         power-dbm-or-null
+             |     +--ro rx-total-power?           power-dbm-or-null
+             |     +--ro estimated-gsnr?           snr
+             |     +--ro estimated-eol-gsnr?       snr
+             |     +--ro estimated-lowest-gsnr?    snr
+             +--ro outgoing-transceiver
+                +--ro transponder-id?   uint32
+                +--ro transceivers* [transceiver-id]
+                   +--ro otsi-carrier-id?          uint16
+                   +--ro transceiver-id            uint32
+                   +--ro otsi-carrier-frequency?   union
+                   +--ro rx-channel-power?         power-dbm-or-null
+                   +--ro rx-total-power?           power-dbm-or-null
+                   +--ro estimated-gsnr?           snr
+                   +--ro estimated-eol-gsnr?       snr
+                   +--ro estimated-lowest-gsnr?    snr
   augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
             /te:secondary-path/te:computed-paths-properties
             /te:computed-path-properties/te:path-properties
             /te:path-route-objects/te:path-route-object/te:type
             /te:numbered-node-hop/te:numbered-node-hop:
-    +--ro path-in-transceiver
-    |  +--ro transponder-id?   uint32
-    |  +--ro transceivers* [otsi-carrier-id]
-    |     +--ro otsi-carrier-id     uint16
-    |     +--ro transceiver-id?     uint32
-    |     +--ro rx-channel-power?   power-dbm-or-null
-    |     +--ro rx-total-power?     power-dbm-or-null
-    +--ro path-out-transceiver
-       +--ro transponder-id?   uint32
-       +--ro transceivers* [otsi-carrier-id]
-          +--ro otsi-carrier-id     uint16
-          +--ro transceiver-id?     uint32
-          +--ro rx-channel-power?   power-dbm-or-null
-          +--ro rx-total-power?     power-dbm-or-null
+    +--ro (node-position)?
+       +--:(source)
+       |  +--ro source-transceiver
+       |     +--ro transponder-id?   uint32
+       |     +--ro transceivers* [transceiver-id]
+       |        +--ro otsi-carrier-id?          uint16
+       |        +--ro transceiver-id            uint32
+       |        +--ro otsi-carrier-frequency?   union
+       |        +--ro rx-channel-power?         power-dbm-or-null
+       |        +--ro rx-total-power?           power-dbm-or-null
+       |        +--ro estimated-gsnr?           snr
+       |        +--ro estimated-eol-gsnr?       snr
+       |        +--ro estimated-lowest-gsnr?    snr
+       +--:(destination)
+       |  +--ro destination-transceiver
+       |     +--ro transponder-id?   uint32
+       |     +--ro transceivers* [transceiver-id]
+       |        +--ro otsi-carrier-id?          uint16
+       |        +--ro transceiver-id            uint32
+       |        +--ro otsi-carrier-frequency?   union
+       |        +--ro rx-channel-power?         power-dbm-or-null
+       |        +--ro rx-total-power?           power-dbm-or-null
+       |        +--ro estimated-gsnr?           snr
+       |        +--ro estimated-eol-gsnr?       snr
+       |        +--ro estimated-lowest-gsnr?    snr
+       +--:(transit)
+          +--ro regen-transceivers
+             +--ro regen-group-id?         uint32
+             +--ro incoming-transceiver
+             |  +--ro transponder-id?   uint32
+             |  +--ro transceivers* [transceiver-id]
+             |     +--ro otsi-carrier-id?          uint16
+             |     +--ro transceiver-id            uint32
+             |     +--ro otsi-carrier-frequency?   union
+             |     +--ro rx-channel-power?         power-dbm-or-null
+             |     +--ro rx-total-power?           power-dbm-or-null
+             |     +--ro estimated-gsnr?           snr
+             |     +--ro estimated-eol-gsnr?       snr
+             |     +--ro estimated-lowest-gsnr?    snr
+             +--ro outgoing-transceiver
+                +--ro transponder-id?   uint32
+                +--ro transceivers* [transceiver-id]
+                   +--ro otsi-carrier-id?          uint16
+                   +--ro transceiver-id            uint32
+                   +--ro otsi-carrier-frequency?   union
+                   +--ro rx-channel-power?         power-dbm-or-null
+                   +--ro rx-total-power?           power-dbm-or-null
+                   +--ro estimated-gsnr?           snr
+                   +--ro estimated-eol-gsnr?       snr
+                   +--ro estimated-lowest-gsnr?    snr
   augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
             /te:secondary-reverse-path/te:computed-paths-properties
             /te:computed-path-properties/te:path-properties
             /te:path-route-objects/te:path-route-object/te:type
             /te:numbered-node-hop/te:numbered-node-hop:
-    +--ro path-in-transceiver
-    |  +--ro transponder-id?   uint32
-    |  +--ro transceivers* [otsi-carrier-id]
-    |     +--ro otsi-carrier-id     uint16
-    |     +--ro transceiver-id?     uint32
-    |     +--ro rx-channel-power?   power-dbm-or-null
-    |     +--ro rx-total-power?     power-dbm-or-null
-    +--ro path-out-transceiver
-       +--ro transponder-id?   uint32
-       +--ro transceivers* [otsi-carrier-id]
-          +--ro otsi-carrier-id     uint16
-          +--ro transceiver-id?     uint32
-          +--ro rx-channel-power?   power-dbm-or-null
-          +--ro rx-total-power?     power-dbm-or-null
-  augment /te:te/te:lsps/te:lsp/te:lsp-actual-route-information:
-    +--ro wdm-path-state
-       +--ro gsnr?   l0-types:snr
+    +--ro (node-position)?
+       +--:(source)
+       |  +--ro source-transceiver
+       |     +--ro transponder-id?   uint32
+       |     +--ro transceivers* [transceiver-id]
+       |        +--ro otsi-carrier-id?          uint16
+       |        +--ro transceiver-id            uint32
+       |        +--ro otsi-carrier-frequency?   union
+       |        +--ro rx-channel-power?         power-dbm-or-null
+       |        +--ro rx-total-power?           power-dbm-or-null
+       |        +--ro estimated-gsnr?           snr
+       |        +--ro estimated-eol-gsnr?       snr
+       |        +--ro estimated-lowest-gsnr?    snr
+       +--:(destination)
+       |  +--ro destination-transceiver
+       |     +--ro transponder-id?   uint32
+       |     +--ro transceivers* [transceiver-id]
+       |        +--ro otsi-carrier-id?          uint16
+       |        +--ro transceiver-id            uint32
+       |        +--ro otsi-carrier-frequency?   union
+       |        +--ro rx-channel-power?         power-dbm-or-null
+       |        +--ro rx-total-power?           power-dbm-or-null
+       |        +--ro estimated-gsnr?           snr
+       |        +--ro estimated-eol-gsnr?       snr
+       |        +--ro estimated-lowest-gsnr?    snr
+       +--:(transit)
+          +--ro regen-transceivers
+             +--ro regen-group-id?         uint32
+             +--ro incoming-transceiver
+             |  +--ro transponder-id?   uint32
+             |  +--ro transceivers* [transceiver-id]
+             |     +--ro otsi-carrier-id?          uint16
+             |     +--ro transceiver-id            uint32
+             |     +--ro otsi-carrier-frequency?   union
+             |     +--ro rx-channel-power?         power-dbm-or-null
+             |     +--ro rx-total-power?           power-dbm-or-null
+             |     +--ro estimated-gsnr?           snr
+             |     +--ro estimated-eol-gsnr?       snr
+             |     +--ro estimated-lowest-gsnr?    snr
+             +--ro outgoing-transceiver
+                +--ro transponder-id?   uint32
+                +--ro transceivers* [transceiver-id]
+                   +--ro otsi-carrier-id?          uint16
+                   +--ro transceiver-id            uint32
+                   +--ro otsi-carrier-frequency?   union
+                   +--ro rx-channel-power?         power-dbm-or-null
+                   +--ro rx-total-power?           power-dbm-or-null
+                   +--ro estimated-gsnr?           snr
+                   +--ro estimated-eol-gsnr?       snr
+                   +--ro estimated-lowest-gsnr?    snr
   augment /te:te/te:lsps/te:lsp/te:lsp-actual-route-information
             /te:lsp-actual-route-information/te:type
             /te:numbered-node-hop/te:numbered-node-hop:
-    +--ro path-in-transceiver
-    |  +--ro transponder-id?   uint32
-    |  +--ro transceivers* [otsi-carrier-id]
-    |     +--ro otsi-carrier-id     uint16
-    |     +--ro transceiver-id?     uint32
-    |     +--ro rx-channel-power?   power-dbm-or-null
-    |     +--ro rx-total-power?     power-dbm-or-null
-    +--ro path-out-transceiver
-       +--ro transponder-id?   uint32
-       +--ro transceivers* [otsi-carrier-id]
-          +--ro otsi-carrier-id     uint16
-          +--ro transceiver-id?     uint32
-          +--ro rx-channel-power?   power-dbm-or-null
-          +--ro rx-total-power?     power-dbm-or-null
+    +--ro (node-position)?
+       +--:(source)
+       |  +--ro source-transceiver
+       |     +--ro transponder-id?   uint32
+       |     +--ro transceivers* [transceiver-id]
+       |        +--ro otsi-carrier-id?          uint16
+       |        +--ro transceiver-id            uint32
+       |        +--ro otsi-carrier-frequency?   union
+       |        +--ro rx-channel-power?         power-dbm-or-null
+       |        +--ro rx-total-power?           power-dbm-or-null
+       |        +--ro pre-fec-ber
+       |        |  +--ro timestamp?   yang:timestamp
+       |        |  +--ro value?       decimal64
+       |        +--ro q-factor
+       |           +--ro timestamp?   yang:timestamp
+       |           +--ro value?       l0-types:decimal-2-or-null
+       +--:(destination)
+       |  +--ro destination-transceiver
+       |     +--ro transponder-id?   uint32
+       |     +--ro transceivers* [transceiver-id]
+       |        +--ro otsi-carrier-id?          uint16
+       |        +--ro transceiver-id            uint32
+       |        +--ro otsi-carrier-frequency?   union
+       |        +--ro rx-channel-power?         power-dbm-or-null
+       |        +--ro rx-total-power?           power-dbm-or-null
+       |        +--ro pre-fec-ber
+       |        |  +--ro timestamp?   yang:timestamp
+       |        |  +--ro value?       decimal64
+       |        +--ro q-factor
+       |           +--ro timestamp?   yang:timestamp
+       |           +--ro value?       l0-types:decimal-2-or-null
+       +--:(transit)
+          +--ro regen-transceivers
+             +--ro regen-group-id?         uint32
+             +--ro incoming-transceiver
+             |  +--ro transponder-id?   uint32
+             |  +--ro transceivers* [transceiver-id]
+             |     +--ro otsi-carrier-id?          uint16
+             |     +--ro transceiver-id            uint32
+             |     +--ro otsi-carrier-frequency?   union
+             |     +--ro rx-channel-power?         power-dbm-or-null
+             |     +--ro rx-total-power?           power-dbm-or-null
+             |     +--ro pre-fec-ber
+             |     |  +--ro timestamp?   yang:timestamp
+             |     |  +--ro value?       decimal64
+             |     +--ro q-factor
+             |        +--ro timestamp?   yang:timestamp
+             |        +--ro value?       l0-types:decimal-2-or-null
+             +--ro outgoing-transceiver
+                +--ro transponder-id?   uint32
+                +--ro transceivers* [transceiver-id]
+                   +--ro otsi-carrier-id?          uint16
+                   +--ro transceiver-id            uint32
+                   +--ro otsi-carrier-frequency?   union
+                   +--ro rx-channel-power?         power-dbm-or-null
+                   +--ro rx-total-power?           power-dbm-or-null
+                   +--ro pre-fec-ber
+                   |  +--ro timestamp?   yang:timestamp
+                   |  +--ro value?       decimal64
+                   +--ro q-factor
+                      +--ro timestamp?   yang:timestamp
+                      +--ro value?       l0-types:decimal-2-or-null
+  augment /te:te/te:lsps/te:lsp/te:lsp-actual-route-information
+            /te:lsp-actual-route-information/te:type
+            /te:numbered-link-hop/te:numbered-link-hop:
+    +--ro e2e-mc-path-id*   uint16
+  augment /te:te/te:lsps/te:lsp/te:lsp-actual-route-information
+            /te:lsp-actual-route-information/te:type
+            /te:unnumbered-link-hop/te:unnumbered-link-hop:
+    +--ro e2e-mc-path-id*   uint16
   augment /te:te/te:globals/te:named-path-constraints
             /te:named-path-constraint/te:path-in-segment
             /te:label-restrictions/te:label-restriction:
@@ -2816,7 +3239,7 @@ module: ietf-wdm-tunnel
 <span id="name-wdm-tunnel-yang-module"></span><div id="fig-wdm-tunnel-yang">
 <figure id="figure-3">
           <div class="breakable lang-yang sourcecode" id="section-5.2-1.1">
-<pre>&lt;CODE BEGINS&gt; file "ietf-wdm-tunnel@2023-10-22.yang"
+<pre>&lt;CODE BEGINS&gt; file "ietf-wdm-tunnel@2024-07-02.yang"
 
 module ietf-wdm-tunnel {
   yang-version 1.1;
@@ -2835,6 +3258,10 @@ module ietf-wdm-tunnel {
 
   import ietf-layer0-types {
     prefix "l0-types";
+  }
+
+  import ietf-yang-types {
+    prefix "yang";
   }
 
   organization
@@ -2879,7 +3306,7 @@ module ietf-wdm-tunnel {
     This version of this YANG module is part of RFC XXXX; see
     the RFC itself for full legal notices.";
 
-  revision "2024-05-15" {
+  revision "2024-07-02" {
     description
       "Updated revision with combined WSON and Flexi-grid tunnel
        YANG model";
@@ -2909,6 +3336,13 @@ module ietf-wdm-tunnel {
        For instance, if the frequency is restricted to the C-band,
        the list of operational modes should not include any modes
        applicable only to the L-band.";
+
+    leaf otsi-carrier-frequency {
+        type l0-types:frequency-thz;
+        description
+          "OTSi carrier frequency, i.e. configured transmitter
+           frequency.";
+    }
 
     container tx-tune-constraints {
       description
@@ -2941,6 +3375,17 @@ module ietf-wdm-tunnel {
       description
         "The preferred channel received power.";
     }
+
+    /*
+    leaf inverse-multiplexing-mode {
+      //type l0-types:inverse-multiplexing-mode;
+      type string;
+      description
+        "The inverse multiplexing mode.";
+    }
+    */
+
+    uses l0-types:l0-path-constraints;
   }
 
   grouping transceiver-constraints {
@@ -2956,7 +3401,7 @@ module ietf-wdm-tunnel {
         "List of operational mode ids of the transceiver.";
     }
 
-        uses additional-transceiver-configuration-constraints;
+    uses additional-transceiver-configuration-constraints;
   }
 
   grouping transceiver-config {
@@ -2970,20 +3415,20 @@ module ietf-wdm-tunnel {
     }
 
     list transceivers {
-      key "otsi-carrier-id";
+      key "transceiver-id";
       description
         "List of transceivers used within the transponder.";
 
+      leaf transceiver-id {
+        type uint32;
+        description
+        "transceiver identifier";
+      }
       leaf otsi-carrier-id {
         type uint16;
         description
           "OTSi carrier identifier associated with the
            transceiver.";
-      }
-      leaf transceiver-id {
-        type uint32;
-        description
-        "transceiver identifier";
       }
 
       uses transceiver-constraints;
@@ -2993,33 +3438,112 @@ module ietf-wdm-tunnel {
   grouping path-transceiver-config {
     description
       "This grouping defines a set of transceivers on a node,
-       serving as either starting transceivers, terminating
-       transceivers, or regenerators. The position of each
-       transceiver is determined by the direction of the path.
-       For instance, consider the following uni-directional
-       path with nodes labeled A, B, and C, where a, b1, b2,
-       and c correspond to transceivers on the nodes:
-          A(a) --&gt; (b1)B(b2) --&gt; (c)C
+       serving as either source transceivers, destination
+       transceivers, or regenerators.";
 
-       - Use path-out-transceiver for the starting transceiver
-         a and the regenerator transceiver b2.
-       - Use path-in-transceiver for the terminating transceiver
-         c and the regenerator transceiver b1.";
-
-    container path-in-transceiver {
+    choice node-position {
       description
-        "Constraints for incoming direction transceiver
-         configurations";
+        "The relative position of the node within the path.";
+      case source {
+        container source-transceiver {
+          description
+            "Constraints for transceiver configurations at the
+             source node";
 
-      uses transceiver-config;
+          uses transceiver-config;
+        }
+      }
+      case destination {
+        container destination-transceiver {
+          description
+            "Constraints for transceiver configurations at the
+             destination node";
+
+          uses transceiver-config;
+        }
+      }
+      case transit {
+        container regen-transceivers {
+          description
+            "Constraints for transceiver configurations at the
+             transit node equipped with regenerators";
+
+          leaf regen-group-id {
+            type uint32;
+            description
+              "3R regen group identifier.";
+          }
+
+          /*
+          leaf regen-level {
+            //type l0-types:regen-level;
+            type string;
+            description
+              "Indicate the chosen level of 3R regeneration.";
+          }
+          */
+
+          container incoming-transceiver {
+            description
+              "Constraints for transceiver configurations at the
+               incoming direction of the regenerator";
+
+            uses transceiver-config;
+          }
+
+          container outgoing-transceiver {
+            description
+              "Constraints for transceiver configurations at the
+               outgoing direction of the regenerator";
+
+            uses transceiver-config;
+          }
+        }
+      }
+    }
+  }
+
+  grouping transceiver-measured-parameters {
+    description
+      "Measured transceiver parameters.";
+
+    container pre-fec-ber {
+      description
+        "Timestamp and value of the Pre-FEC Bit Error Rate (BER)
+         of the received signal.";
+
+      leaf timestamp {
+        type yang:timestamp;
+        description
+          "Timestamp associated with the Pre-FEC BER.";
+      }
+
+      leaf value {
+        type decimal64 {
+          fraction-digits 18;
+        }
+        description
+          "Pre-FEC BER of the received signal.";
+      }
     }
 
-    container path-out-transceiver {
+    container q-factor {
       description
-        "Constraints for outgoing direction transceiver
-         configurations";
+        "Timestamp and value of the estimated Q-factor based on
+         the pre-FEC BER.";
 
-      uses transceiver-config;
+      leaf timestamp {
+        type yang:timestamp;
+        description
+          "Timestamp associated with the Q-factor.";
+      }
+
+      leaf value {
+        type l0-types:decimal-2-or-null;
+        units "dB";
+        description
+          "Estimated Q-factor based on the pre-FEC BER.";
+      }
     }
   }
 
@@ -3034,7 +3558,7 @@ module ietf-wdm-tunnel {
     }
 
     list transceivers {
-      key "otsi-carrier-id";
+      key "transceiver-id";
       description
         "List of transceivers used within the transponder.";
 
@@ -3050,7 +3574,39 @@ module ietf-wdm-tunnel {
         "transceiver identifier";
       }
 
+      leaf otsi-carrier-frequency {
+        type union {
+          type l0-types:frequency-thz;
+          type empty;
+        }
+        description
+          "OTSi carrier frequency, equivalent to the
+          actual configured transmitter frequency, when known, or
+          an empty value when unknown.";
+      }
+
       uses l0-types:common-transceiver-readonly-param;
+    }
+  }
+
+  grouping e2e-media-channel-info {
+    description
+      "This grouping includes end-to-end media channel path id
+       information.";
+
+    leaf-list e2e-mc-path-id {
+      type uint16;
+      description
+        "The list of the possible end-to-end Media Channel
+        (e2e-MC) paths associated with the OTSi which have
+        different optical impairments.
+
+        This list is meaningful in case the OTSi can be associated
+        with multiple end-to-end Media Channel (e2e-MC) paths
+        (e.g., when OPS protection is configured).
+
+        The list can be empty when the OTSi has only one
+        e2e-MC path.";
     }
   }
 
@@ -3060,18 +3616,63 @@ module ietf-wdm-tunnel {
        node functioning as starting, terminating transceivers,
        or regenerators.";
 
-    container path-in-transceiver {
+    choice node-position {
       description
-        "Transceiver state on the incoming direction.";
+        "The relative position of the node within the path.";
+      case source {
+        container source-transceiver {
+          description
+            "Transceiver state at the source node.";
 
-      uses transceiver-state;
-    }
+          uses transceiver-state;
+        }
+      }
+      case destination {
+        container destination-transceiver {
+          description
+            "Transceiver state at the destination node.";
 
-    container path-out-transceiver {
-      description
-        "Transceiver state on the outgoing direction.";
+          uses transceiver-state;
+        }
+      }
+      case transit {
+        container regen-transceivers {
+          description
+            "Transceiver state at the transit node equipped
+             with regenerators.";
 
-      uses transceiver-state;
+          leaf regen-group-id {
+            type uint32;
+            description
+              "3R regen group identifier.";
+          }
+
+          /*
+          leaf regen-level {
+            //type l0-types:regen-level;
+            type string;
+            description
+              "Indicate the chosen level of 3R regeneration.";
+          }
+          */
+
+          container incoming-transceiver {
+            description
+              "Transceiver state on the incoming direction of
+               the regenerator.";
+
+            uses transceiver-state;
+          }
+
+          container outgoing-transceiver {
+            description
+              "Transceiver state on the outgoing direction of
+               the regenerator.";
+
+            uses transceiver-state;
+          }
+        }
+      }
     }
   }
 
@@ -3097,7 +3698,6 @@ module ietf-wdm-tunnel {
         "WDM tunnel constraints.";
 
       uses global-transceiver-constraint;
-      uses l0-types:l0-path-constraints;
 
       leaf use-regen {
         type boolean;
@@ -3108,6 +3708,21 @@ module ietf-wdm-tunnel {
            tunnel path may include a regen when the path is not
            feasible for direct optical reach.";
       }
+
+      /*
+      leaf-list regen-levels {
+        when '../use-regen = "true"' {
+          description
+            "Regenerator must be enabled for the regen levels
+             to be considered.";
+        }
+        //type l0-types:regen-level;
+        type string;
+        description
+          "Indicate the levels of 3R regeration permitted by
+           the tunnel.";
+      }
+      */
 
       leaf wavelength-conversion {
         when '../use-regen = "true"' {
@@ -3158,22 +3773,32 @@ module ietf-wdm-tunnel {
     }
   }
 
-  grouping wdm-path-state {
+  /*
+  grouping digital-layer-constraint {
     description
-      "Grouping for WDM path state.";
+      "Grouping for digital layer constraints";
 
-    container wdm-path-state {
-      config false;
+    container digital-constraint {
       description
-        "WDM path state.";
+        "Digital layer constraints.";
 
-      leaf gsnr {
-        type l0-types:snr;
+      leaf digital-termination {
+        //type l0-types:digital-termination-type;
+        type string;
         description
-          "Actual received GSNR for the WDM path.";
+          "Identifies how digital signal is terminated.";
+      }
+
+      leaf multiplexing-label-type {
+        //type l0-types:multiplexing-label-type;
+        type string;
+        description
+          "Identifies the type of multiplexing technology
+           used (e.g. ODUj,k).";
       }
     }
   }
+  */
 
   /*
    * Data nodes
@@ -3187,6 +3812,7 @@ module ietf-wdm-tunnel {
       "Augment with additional parameters required for WDM
        tunnel configurations.";
     uses wdm-constraint;
+    //uses digital-layer-constraint;
   }
 
   /*
@@ -3255,57 +3881,6 @@ module ietf-wdm-tunnel {
   }
 
   /*
-   * Computed path properties for primary path.
-   */
-  augment "/te:te/te:tunnels/te:tunnel/te:primary-paths/"
-        + "te:primary-path/te:computed-paths-properties/"
-        + "te:computed-path-properties/te:path-properties" {
-    description
-      "Augment TE computed primary path with WDM properties.";
-
-    uses l0-types:l0-path-properties;
-  }
-
-  /*
-   * Computed path properties for primary reverse path.
-   */
-  augment "/te:te/te:tunnels/te:tunnel/te:primary-paths/"
-        + "te:primary-path/te:primary-reverse-path/"
-        + "te:computed-paths-properties/"
-        + "te:computed-path-properties/te:path-properties" {
-    description
-      "Augment TE computed primary reverse path with WDM
-       properties.";
-
-    uses l0-types:l0-path-properties;
-  }
-
-  /*
-   * Computed path properties for secondary path.
-   */
-  augment "/te:te/te:tunnels/te:tunnel/te:secondary-paths/"
-        + "te:secondary-path/te:computed-paths-properties/"
-        + "te:computed-path-properties/te:path-properties" {
-    description
-      "Augment TE computed secondary path with WDM properties.";
-
-    uses l0-types:l0-path-properties;
-  }
-
-  /*
-   * Computed path properties for secondary reverse path.
-   */
-  augment "/te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths/"
-        + "te:secondary-reverse-path/te:computed-paths-properties/"
-        + "te:computed-path-properties/te:path-properties" {
-    description
-      "Augment TE computed secondary reverse path with WDM
-       properties.";
-
-    uses l0-types:l0-path-properties;
-  }
-
-  /*
    * Computed transceiver properties for primary path.
    */
   augment "/te:te/te:tunnels/te:tunnel/te:primary-paths/"
@@ -3318,6 +3893,64 @@ module ietf-wdm-tunnel {
        properties.";
 
     uses path-transceiver-state;
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/te:primary-paths/"
+        + "te:primary-path/te:computed-paths-properties/"
+        + "te:computed-path-properties/te:path-properties/"
+        + "te:path-route-objects/te:path-route-object/"
+        + "te:type/te:numbered-node-hop/te:numbered-node-hop/"
+        + "wdm-tnl:node-position/wdm-tnl:source/"
+        + "wdm-tnl:source-transceiver/wdm-tnl:transceivers" {
+    description
+      "Augment source transceiver with additional estimated
+       parameters.";
+
+    uses l0-types:l0-path-properties;
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/te:primary-paths/"
+        + "te:primary-path/te:computed-paths-properties/"
+        + "te:computed-path-properties/te:path-properties/"
+        + "te:path-route-objects/te:path-route-object/"
+        + "te:type/te:numbered-node-hop/te:numbered-node-hop/"
+        + "wdm-tnl:node-position/wdm-tnl:destination/"
+        + "wdm-tnl:destination-transceiver/wdm-tnl:transceivers" {
+    description
+      "Augment destination transceiver with additional estimated
+       parameters.";
+
+    uses l0-types:l0-path-properties;
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/te:primary-paths/"
+        + "te:primary-path/te:computed-paths-properties/"
+        + "te:computed-path-properties/te:path-properties/"
+        + "te:path-route-objects/te:path-route-object/"
+        + "te:type/te:numbered-node-hop/te:numbered-node-hop/"
+        + "wdm-tnl:node-position/wdm-tnl:transit/"
+        + "wdm-tnl:regen-transceivers/"
+        + "wdm-tnl:incoming-transceiver/wdm-tnl:transceivers" {
+    description
+      "Augment regen incoming transceiver with additional estimated
+       parameters.";
+
+    uses l0-types:l0-path-properties;
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/te:primary-paths/"
+        + "te:primary-path/te:computed-paths-properties/"
+        + "te:computed-path-properties/te:path-properties/"
+        + "te:path-route-objects/te:path-route-object/"
+        + "te:type/te:numbered-node-hop/te:numbered-node-hop/"
+        + "wdm-tnl:node-position/wdm-tnl:transit/"
+        + "wdm-tnl:regen-transceivers/"
+        + "wdm-tnl:outgoing-transceiver/wdm-tnl:transceivers" {
+    description
+      "Augment regen outgoing transceiver with additional estimated
+       parameters.";
+
+    uses l0-types:l0-path-properties;
   }
 
   /*
@@ -3336,6 +3969,68 @@ module ietf-wdm-tunnel {
     uses path-transceiver-state;
   }
 
+  augment "/te:te/te:tunnels/te:tunnel/te:primary-paths/"
+        + "te:primary-path/te:primary-reverse-path/"
+        + "te:computed-paths-properties/"
+        + "te:computed-path-properties/te:path-properties/"
+        + "te:path-route-objects/te:path-route-object/"
+        + "te:type/te:numbered-node-hop/te:numbered-node-hop/"
+        + "wdm-tnl:node-position/wdm-tnl:source/"
+        + "wdm-tnl:source-transceiver/wdm-tnl:transceivers" {
+    description
+      "Augment source transceiver with additional estimated
+       parameters.";
+
+    uses l0-types:l0-path-properties;
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/te:primary-paths/"
+        + "te:primary-path/te:primary-reverse-path/"
+        + "te:computed-paths-properties/"
+        + "te:computed-path-properties/te:path-properties/"
+        + "te:path-route-objects/te:path-route-object/"
+        + "te:type/te:numbered-node-hop/te:numbered-node-hop/"
+        + "wdm-tnl:node-position/wdm-tnl:destination/"
+        + "wdm-tnl:destination-transceiver/wdm-tnl:transceivers" {
+    description
+      "Augment destination transceiver with additional estimated
+       parameters.";
+
+    uses l0-types:l0-path-properties;
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/te:primary-paths/"
+        + "te:primary-path/te:primary-reverse-path/"
+        + "te:computed-paths-properties/"
+        + "te:computed-path-properties/te:path-properties/"
+        + "te:path-route-objects/te:path-route-object/"
+        + "te:type/te:numbered-node-hop/te:numbered-node-hop/"
+        + "wdm-tnl:node-position/wdm-tnl:transit/"
+        + "wdm-tnl:regen-transceivers/"
+        + "wdm-tnl:incoming-transceiver/wdm-tnl:transceivers" {
+    description
+      "Augment regen incoming transceiver with additional estimated
+       parameters.";
+
+    uses l0-types:l0-path-properties;
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/te:primary-paths/"
+        + "te:primary-path/te:primary-reverse-path/"
+        + "te:computed-paths-properties/"
+        + "te:computed-path-properties/te:path-properties/"
+        + "te:path-route-objects/te:path-route-object/"
+        + "te:type/te:numbered-node-hop/te:numbered-node-hop/"
+        + "wdm-tnl:node-position/wdm-tnl:transit/"
+        + "wdm-tnl:regen-transceivers/"
+        + "wdm-tnl:outgoing-transceiver/wdm-tnl:transceivers" {
+    description
+      "Augment regen outgoing transceiver with additional estimated
+       parameters.";
+
+    uses l0-types:l0-path-properties;
+  }
+
   /*
    * Computed transceiver properties for secondary path.
    */
@@ -3349,6 +4044,64 @@ module ietf-wdm-tunnel {
        properties.";
 
     uses path-transceiver-state;
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/te:secondary-paths/"
+        + "te:secondary-path/te:computed-paths-properties/"
+        + "te:computed-path-properties/te:path-properties/"
+        + "te:path-route-objects/te:path-route-object/"
+        + "te:type/te:numbered-node-hop/te:numbered-node-hop/"
+        + "wdm-tnl:node-position/wdm-tnl:source/"
+        + "wdm-tnl:source-transceiver/wdm-tnl:transceivers" {
+    description
+      "Augment source transceiver with additional estimated
+       parameters.";
+
+    uses l0-types:l0-path-properties;
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/te:secondary-paths/"
+        + "te:secondary-path/te:computed-paths-properties/"
+        + "te:computed-path-properties/te:path-properties/"
+        + "te:path-route-objects/te:path-route-object/"
+        + "te:type/te:numbered-node-hop/te:numbered-node-hop/"
+        + "wdm-tnl:node-position/wdm-tnl:destination/"
+        + "wdm-tnl:destination-transceiver/wdm-tnl:transceivers" {
+    description
+      "Augment destination transceiver with additional estimated
+       parameters.";
+
+    uses l0-types:l0-path-properties;
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/te:secondary-paths/"
+        + "te:secondary-path/te:computed-paths-properties/"
+        + "te:computed-path-properties/te:path-properties/"
+        + "te:path-route-objects/te:path-route-object/"
+        + "te:type/te:numbered-node-hop/te:numbered-node-hop/"
+        + "wdm-tnl:node-position/wdm-tnl:transit/"
+        + "wdm-tnl:regen-transceivers/"
+        + "wdm-tnl:incoming-transceiver/wdm-tnl:transceivers" {
+    description
+      "Augment regen incoming transceiver with additional estimated
+       parameters.";
+
+    uses l0-types:l0-path-properties;
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/te:secondary-paths/"
+        + "te:secondary-path/te:computed-paths-properties/"
+        + "te:computed-path-properties/te:path-properties/"
+        + "te:path-route-objects/te:path-route-object/"
+        + "te:type/te:numbered-node-hop/te:numbered-node-hop/"
+        + "wdm-tnl:node-position/wdm-tnl:transit/"
+        + "wdm-tnl:regen-transceivers/"
+        + "wdm-tnl:outgoing-transceiver/wdm-tnl:transceivers" {
+    description
+      "Augment regen outgoing transceiver with additional estimated
+       parameters.";
+
+    uses l0-types:l0-path-properties;
   }
 
   /*
@@ -3366,15 +4119,62 @@ module ietf-wdm-tunnel {
     uses path-transceiver-state;
   }
 
-  /*
-   * WDM path state
-   */
-  augment "/te:te/te:lsps/te:lsp/"
-        + "te:lsp-actual-route-information" {
+  augment "/te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths/"
+        + "te:secondary-reverse-path/te:computed-paths-properties/"
+        + "te:computed-path-properties/te:path-properties/"
+        + "te:path-route-objects/te:path-route-object/"
+        + "te:type/te:numbered-node-hop/te:numbered-node-hop/"
+        + "wdm-tnl:node-position/wdm-tnl:source/"
+        + "wdm-tnl:source-transceiver/wdm-tnl:transceivers" {
     description
-      "Augment TE LSP to with WDM path state.";
+      "Augment source transceiver with additional estimated
+       parameters.";
 
-    uses wdm-path-state;
+    uses l0-types:l0-path-properties;
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths/"
+        + "te:secondary-reverse-path/te:computed-paths-properties/"
+        + "te:computed-path-properties/te:path-properties/"
+        + "te:path-route-objects/te:path-route-object/"
+        + "te:type/te:numbered-node-hop/te:numbered-node-hop/"
+        + "wdm-tnl:node-position/wdm-tnl:destination/"
+        + "wdm-tnl:destination-transceiver/wdm-tnl:transceivers" {
+    description
+      "Augment destination transceiver with additional estimated
+       parameters.";
+
+    uses l0-types:l0-path-properties;
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths/"
+        + "te:secondary-reverse-path/te:computed-paths-properties/"
+        + "te:computed-path-properties/te:path-properties/"
+        + "te:path-route-objects/te:path-route-object/"
+        + "te:type/te:numbered-node-hop/te:numbered-node-hop/"
+        + "wdm-tnl:node-position/wdm-tnl:transit/"
+        + "wdm-tnl:regen-transceivers/"
+        + "wdm-tnl:incoming-transceiver/wdm-tnl:transceivers" {
+    description
+      "Augment regen incoming transceiver with additional estimated
+       parameters.";
+
+    uses l0-types:l0-path-properties;
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths/"
+        + "te:secondary-reverse-path/te:computed-paths-properties/"
+        + "te:computed-path-properties/te:path-properties/"
+        + "te:path-route-objects/te:path-route-object/"
+        + "te:type/te:numbered-node-hop/te:numbered-node-hop/"
+        + "wdm-tnl:node-position/wdm-tnl:transit/"
+        + "wdm-tnl:regen-transceivers/"
+        + "wdm-tnl:outgoing-transceiver/wdm-tnl:transceivers" {
+    description
+      "Augment regen outgoing transceiver with additional estimated
+       parameters.";
+
+    uses l0-types:l0-path-properties;
   }
 
   /*
@@ -3385,9 +4185,85 @@ module ietf-wdm-tunnel {
         + "te:lsp-actual-route-information/te:type/"
         + "te:numbered-node-hop/te:numbered-node-hop" {
     description
-      "Augment TE LSP to with WDM path state.";
+      "Augment TE LSP with WDM path state.";
 
     uses path-transceiver-state;
+  }
+
+  augment "/te:te/te:lsps/te:lsp/"
+        + "te:lsp-actual-route-information/"
+        + "te:lsp-actual-route-information/te:type/"
+        + "te:numbered-node-hop/te:numbered-node-hop/"
+        + "wdm-tnl:node-position/wdm-tnl:source/"
+        + "wdm-tnl:source-transceiver/wdm-tnl:transceivers" {
+    description
+      "Augment source transceiver with additional measured
+       parameters.";
+
+    uses transceiver-measured-parameters;
+  }
+
+  augment "/te:te/te:lsps/te:lsp/"
+        + "te:lsp-actual-route-information/"
+        + "te:lsp-actual-route-information/te:type/"
+        + "te:numbered-node-hop/te:numbered-node-hop/"
+        + "wdm-tnl:node-position/wdm-tnl:destination/"
+        + "wdm-tnl:destination-transceiver/wdm-tnl:transceivers" {
+    description
+      "Augment destination transceiver with additional measured
+       parameters.";
+
+    uses transceiver-measured-parameters;
+  }
+
+  augment "/te:te/te:lsps/te:lsp/"
+        + "te:lsp-actual-route-information/"
+        + "te:lsp-actual-route-information/te:type/"
+        + "te:numbered-node-hop/te:numbered-node-hop/"
+        + "wdm-tnl:node-position/wdm-tnl:transit/"
+        + "wdm-tnl:regen-transceivers/"
+        + "wdm-tnl:incoming-transceiver/wdm-tnl:transceivers" {
+    description
+      "Augment regen incoming transceiver with additional measured
+       parameters.";
+
+    uses transceiver-measured-parameters;
+  }
+
+  augment "/te:te/te:lsps/te:lsp/"
+        + "te:lsp-actual-route-information/"
+        + "te:lsp-actual-route-information/te:type/"
+        + "te:numbered-node-hop/te:numbered-node-hop/"
+        + "wdm-tnl:node-position/wdm-tnl:transit/"
+        + "wdm-tnl:regen-transceivers/"
+        + "wdm-tnl:outgoing-transceiver/wdm-tnl:transceivers" {
+    description
+      "Augment regen outgoing transceiver with additional measured
+       parameters.";
+
+    uses transceiver-measured-parameters;
+  }
+
+  augment "/te:te/te:lsps/te:lsp/"
+        + "te:lsp-actual-route-information/"
+        + "te:lsp-actual-route-information/te:type/"
+        + "te:numbered-link-hop/te:numbered-link-hop" {
+    description
+      "Augment TE LSP with end-to-end media channel
+       information.";
+
+    uses e2e-media-channel-info;
+  }
+
+  augment "/te:te/te:lsps/te:lsp/"
+        + "te:lsp-actual-route-information/"
+        + "te:lsp-actual-route-information/te:type/"
+        + "te:unnumbered-link-hop/te:unnumbered-link-hop" {
+    description
+      "Augment TE LSP with end-to-end media channel
+       information.";
+
+    uses e2e-media-channel-info;
   }
 
   /*
@@ -4295,6 +5171,7 @@ branches to avoid repetition.<a href="#section-6-4" class="pilcrow">¶</a></p>
 <p id="section-7-5">RFC Editor: Please replace XXXX with the RFC number assigned to this document.<a href="#section-7-5" class="pilcrow">¶</a></p>
 </section>
 </div>
+<div id="sec-combined-references">
 <section id="section-8">
       <h2 id="name-references">
 <a href="#section-8" class="section-number selfRef">8. </a><a href="#name-references" class="section-name selfRef">References</a>
@@ -4307,11 +5184,11 @@ branches to avoid repetition.<a href="#section-6-4" class="pilcrow">¶</a></p>
 <dl class="references">
 <dt id="I-D.ietf-ccamp-flexigrid-yang">[I-D.ietf-ccamp-flexigrid-yang]</dt>
         <dd>
-<span class="refAuthor">de Madrid, U. A.</span>, <span class="refAuthor">Burrero, D. P.</span>, <span class="refAuthor">King, D.</span>, <span class="refAuthor">Lee, Y.</span>, and <span class="refAuthor">H. Zheng</span>, <span class="refTitle">"A YANG Data Model for Flexi-Grid Optical Networks"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-ccamp-flexigrid-yang-16</span>, <time datetime="2024-01-29" class="refDate">29 January 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-flexigrid-yang-16">https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-flexigrid-yang-16</a>&gt;</span>. </dd>
+<span class="refAuthor">de Madrid, U. A.</span>, <span class="refAuthor">Burrero, D. P.</span>, <span class="refAuthor">King, D.</span>, <span class="refAuthor">Lee, Y.</span>, and <span class="refAuthor">H. Zheng</span>, <span class="refTitle">"A YANG Data Model for Flexi-Grid Optical Networks"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-ccamp-flexigrid-yang-17</span>, <time datetime="2024-09-12" class="refDate">12 September 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-flexigrid-yang-17">https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-flexigrid-yang-17</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.ietf-teas-yang-te">[I-D.ietf-teas-yang-te]</dt>
         <dd>
-<span class="refAuthor">Saad, T.</span>, <span class="refAuthor">Gandhi, R.</span>, <span class="refAuthor">Liu, X.</span>, <span class="refAuthor">Beeram, V. P.</span>, and <span class="refAuthor">I. Bryskin</span>, <span class="refTitle">"A YANG Data Model for Traffic Engineering Tunnels, Label Switched Paths and Interfaces"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-teas-yang-te-36</span>, <time datetime="2024-02-02" class="refDate">2 February 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-teas-yang-te-36">https://datatracker.ietf.org/doc/html/draft-ietf-teas-yang-te-36</a>&gt;</span>. </dd>
+<span class="refAuthor">Saad, T.</span>, <span class="refAuthor">Gandhi, R.</span>, <span class="refAuthor">Liu, X.</span>, <span class="refAuthor">Beeram, V. P.</span>, and <span class="refAuthor">I. Bryskin</span>, <span class="refTitle">"A YANG Data Model for Traffic Engineering Tunnels, Label Switched Paths and Interfaces"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-teas-yang-te-37</span>, <time datetime="2024-10-09" class="refDate">9 October 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-teas-yang-te-37">https://datatracker.ietf.org/doc/html/draft-ietf-teas-yang-te-37</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC2119">[RFC2119]</dt>
         <dd>
@@ -4378,6 +5255,7 @@ branches to avoid repetition.<a href="#section-6-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
+</div>
 <div id="acknowledgments">
 <section id="appendix-A">
       <h2 id="name-acknowledgments">
