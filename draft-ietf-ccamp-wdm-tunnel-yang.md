@@ -192,8 +192,8 @@ In optical networks built with traditional chassis-based DWDM optical equipment,
 
 In scenarios like data center interconnects (DCI), optical transponders may be externally mounted on a 'pizza box' and linked via dedicated fiber or wavelength multiplexer/demultiplexer to the optical line system. These external OTs could be managed by the same SDN controller or a different entity, such as an orchestrator. Consequently, a WDM tunnel might be composed of several segments joined to create a continuous end-to-end tunnel.
 
-The YANG data model offers a cohesive interface for managing WDM tunnels and tunnel segments, irrespective of transponder location. 
- 
+The YANG data model offers a cohesive interface for managing WDM tunnels and tunnel segments, irrespective of transponder location.
+
 # Example of Use
 
 To illustrate the model's application, consider an optical network with various transponders, switches, and links. A depicted topology outlines two WDM tunnel scenarios. In the first, an end-to-end WDM tunnel (WDM Tunnel 1) comprises two physical paths (WDM Primary Path 1 and 2) linking two integrated optical transponders, Transponder A and E, through WSON and Flexi-grid nodes. The second scenario describes three WDM tunnel segments (WDM Tunnel Segment 2a to 2c) connecting two external OTs, External OT node X and Y, via the same nodes and links.
