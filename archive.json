@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-02-16T01:12:02.646774+00:00",
+  "timestamp": "2025-02-18T01:06:28.057802+00:00",
   "repo": "ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang",
   "labels": [
     {
@@ -1767,6 +1767,22 @@
           "updatedAt": "2025-02-12T23:12:39Z"
         }
       ]
+    },
+    {
+      "number": 72,
+      "id": "I_kwDOEHme9c6qZHcH",
+      "title": "Missing parameter for transceivers",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/72",
+      "state": "OPEN",
+      "author": "aguoietf",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "- The operational-mode parameter reporting is missing for regen-transceiver for computed path\n- The output power is missing for all transceivers\n- Also, missing launching/output power for outgoing transceivers",
+      "createdAt": "2025-02-17T20:11:52Z",
+      "updatedAt": "2025-02-17T20:11:52Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
