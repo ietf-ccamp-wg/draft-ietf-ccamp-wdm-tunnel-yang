@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-02-20T01:07:10.832121+00:00",
+  "timestamp": "2025-02-23T01:12:01.360132+00:00",
   "repo": "ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang",
   "labels": [
     {
@@ -1742,7 +1742,7 @@
       ],
       "body": "Link to Issue #[81](https://github.com/ietf-ccamp-wg/ietf-ccamp-layer0-types-ext-RFC9093-bis/issues/81) of RFC 9093 bis\r\n\r\nWe may also need some text description regarding the use cases to reflect the consideration. There may also be descriptions in the optical impairment document so the two should align.",
       "createdAt": "2024-09-13T03:23:29Z",
-      "updatedAt": "2025-02-12T23:12:41Z",
+      "updatedAt": "2025-02-20T16:09:45Z",
       "closedAt": null,
       "comments": [
         {
@@ -1781,6 +1781,63 @@
       "body": "- The operational-mode parameter reporting is missing for regen-transceiver for computed path\n- The output power is missing for all transceivers\n- Also, missing launching/output power for outgoing transceivers",
       "createdAt": "2025-02-17T20:11:52Z",
       "updatedAt": "2025-02-17T20:11:52Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 73,
+      "id": "I_kwDOEHme9c6q1dVf",
+      "title": "Create some text to describe the motivation and thoughts for l0/l1 modeling updates",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/73",
+      "state": "OPEN",
+      "author": "aguoietf",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [
+        "sergiobelotti",
+        "aguoietf"
+      ],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-02-20T13:18:06Z",
+      "updatedAt": "2025-02-20T13:18:06Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 74,
+      "id": "I_kwDOEHme9c6q2KXE",
+      "title": "YANG Doctor Review Comments",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/74",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "> # Summary\n> \n> The '/te' subtree is massive and complex.\n> Reading the drafts that contain modules used by ietf-wdm-tunnel was\n> quite helpful to understand this draft.\n> \n> The ietf-wdm-tunnel module augments the ietf-te module using 95 separate augment\n> statements.  Some of these statements augment the same node\n> in the '/te' subtree.  There are 11 groupings used to define many of the nodes\n> that are augmenting this subtree.\n> \n> Although complex, a developer familiar with all relevant standards documents should\n> be able to implement this module.\n> \n> \n> # Minor Issues\n> \n> 1) No 'prefixes in data nodes' section\n> \n> See example in ietf-te draft\n> https://www.ietf.org/archive/id/draft-ietf-teas-yang-te-37.html#name-prefixes-in-data-node-names\n> \n> 2) YANG Tree section\n> \n> This huge list of augment summaries is difficult to understand.\n> Suggestions:\n> \n> -  combine augments-stmts where the same target is referenced\n> -  break into different sections (e.g. globals, tunnels, lsps)\n> -  move YANG tree to an appendix at the end of the document\n> \n> 3) Use of comments instead of description-stmt\n> \n> Tools often strip YANG comments.  The comments should be moved\n> into the description-stmt. The comments are better than the\n> terse descriptions.\n> \n> Example:\n> \n>   /*\n>    * Transceiver constraints for secondary reverse path\n>    * Applicable to starting, terminating and regenerator\n>    * transceivers.\n>    */\n>   augment \"/te:te/te:tunnels/te:tunnel/\"\n>         + \"te:secondary-reverse-paths/\"\n>         + \"te:secondary-reverse-path/\"\n>         + \"te:explicit-route-objects/\"\n>         + \"te:route-object-exclude-always/te:type/\"\n>         + \"te:numbered-node-hop/te:numbered-node-hop\" {\n>     description\n>       \"Augment TE secondary reverse path with transceiver\n>        configurations.\";\n> \n>     uses path-transceiver-config;\n>   }\n> \n> \n> 4) Lack of descriptions and references\n> \n> The ietf-te-types and ietf-te modules provide excellent examples\n> of good usage of descriptions and references.\n> Only one object 'line-coding-bitrate' has a reference-stmt.\n> Some descriptions contain only the leaf name without any dashes.\n> \n> 5) Commented out definitions\n> \n> There are several places where the specified data is within a comment.\n> There are no explanations at all why these are in the module.\n> Add explanations or preferably remove objects that are commented out\n> \n> Example:\n> \n>     /*\n>     leaf inverse-multiplexing-mode {\n>       //type l0-types:inverse-multiplexing-mode;\n>       type string;\n>       description\n>         \"The inverse multiplexing mode.\";\n>     }\n>     */\n> \n\nSee: https://mailarchive.ietf.org/arch/msg/ccamp/gZf4dKQH4iOnnUzQBgSYBo184jk/",
+      "createdAt": "2025-02-20T14:26:56Z",
+      "updatedAt": "2025-02-20T14:26:56Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 75,
+      "id": "I_kwDOEHme9c6q3UiZ",
+      "title": "Reference Scenarios for L0/L1 boundary discussions",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/75",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "MEMBER",
+      "assignees": [
+        "danielkinguk",
+        "italobusi",
+        "sergiobelotti",
+        "ggalimba56",
+        "dieterbeller"
+      ],
+      "labels": [],
+      "body": "Classify the WDM tunnel scenarios for L0/L1 boundary discussion on two aspects:\n-\tstandard versus proprietary scenario\n-\tapplicable or not to existing or foreseen future scenarios\n\n\nReference: the latest version of the slides, as updated during the call on 2025-02-20 (with a typo fixed on slide 43): [layer0-boundary-15.pptx](https://github.com/user-attachments/files/18891254/layer0-boundary-15.pptx)\n",
+      "createdAt": "2025-02-20T16:11:42Z",
+      "updatedAt": "2025-02-20T16:12:10Z",
       "closedAt": null,
       "comments": []
     }
