@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-02-27T01:08:28.425878+00:00",
+  "timestamp": "2025-03-02T01:12:41.800679+00:00",
   "repo": "ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang",
   "labels": [
     {
@@ -1742,7 +1742,7 @@
       ],
       "body": "Link to Issue #[81](https://github.com/ietf-ccamp-wg/ietf-ccamp-layer0-types-ext-RFC9093-bis/issues/81) of RFC 9093 bis\r\n\r\nWe may also need some text description regarding the use cases to reflect the consideration. There may also be descriptions in the optical impairment document so the two should align.",
       "createdAt": "2024-09-13T03:23:29Z",
-      "updatedAt": "2025-02-20T16:09:45Z",
+      "updatedAt": "2025-02-27T13:58:56Z",
       "closedAt": null,
       "comments": [
         {
@@ -1765,6 +1765,13 @@
           "body": "Proposal for discussion:\n~~~\n   augment  /te:te/te:tunnels/te:tunnel/te:primary-paths\n            /te:primary-path/te:computed-paths-properties\n            /te:computed-path-properties/te:path-properties\n            /te:path-route-objects/te:path-route-object/te:type\n            /te:numbered-node-hop/te:numbered-node-hop:\n   +--ro (node-position)?\n      +--:(source)\n      |  +--ro source-transponder\n      |     +--ro transponder-id?   uint32\n      |     +--ro digital-terminations\n      |     |  +--ro digital-termination [index]\n      |     |  |  +--ro index             uint32\n      |     |  |  +--ro termination-type  identityref // otsig-termination-type\n      |     |  |  +--ro mapping-type?     identityref // mapping-type\n      |     |  +--ro transceiver\n      |     |     +--ro transceiver-id            uint32\n      |     |     +--ro otsi-carrier-id           uint16\n      |     |     +--ro // transceiver applied configurations applicable to all transceivers\n      |     |     +--ro inverse-multiplexing!\n      |     |     |  +--ro inverse-mux-type?      \t\tidentityref // inverse-mux-type\n      |     |     |  +--ro lane-termination-type?    \tidentityref // otsi-termination-type\n      |     |     |  +--ro additional-transceivers[index]\n      |     |     |     +--ro index      \t\t  uint16\n      |     |     |     +--ro transceiver-id      uint32\n      |     |     |     +--ro otsi-carrier-id     uint32\n      |     |     |     +--ro // other transceiver applied configurations applicable to single transceiver\n      +--:(destination)\n      +--:(regenerator) //single or multi-carrier, a pair of transponder as regenerator\n      |  +--ro regenerator\n      |     +--ro regen-group-id?         uint32\n      |     +--ro regeneration-layer      identityref // otsig-regeneration-layer\n      |     +--ro incoming-transponder\n      |     |  +--ro transponder-id?   uint32\n      |     |  +--ro digital-termination [index]\n      |     |  |  +--ro index             uint32\n      |     |  |  +--ro termination-type  identityref // otsig-termination-type\n      |     |  |  +--ro mapping-type?     identityref // mapping-type\n      |     |  +--ro transceiver\n      |     |     .......................................................\n      |     +--ro outgoing-transponder\n      |        +--ro transponder-id?   uint32\n      |        +--ro digital-termination [index]\n      |        |  +--ro index             uint32\n      |        |  +--ro termination-type  identityref // otsig-termination-type\n      |        |  +--ro mapping-type?     identityref // mapping-type\n      |        +--ro transceiver\n      |           .......................................................\n      +--:(regenerators)\n      |  +--ro regenerators //multiple transponder pairs as regenerator. is this a realistic scenario?\n      |     +--ro regenerator [index]\n               +--ro index            uint32\n               +--ro regen-group-id           uint32\n               +--ro regeneration-layer       identityref // otsi-regeneration-layer\n               +--ro incoming-transceiver\n               |  +--ro transponder-id        uint32\n               |  +--ro transceiver-id        uint32\n               |  +--ro otsi-carrier-id?      uint16\n               |  // transceivers applied configuration\n               +--ro outgoing-transceiver\n                  +--ro transponder-id        uint32\n                  +--ro transceiver-id        uint32\n                  +--ro otsi-carrier-id?      uint16\n                  // transceivers applied configuration\n\n~~~",
           "createdAt": "2025-02-12T23:12:39Z",
           "updatedAt": "2025-02-12T23:12:39Z"
+        },
+        {
+          "author": "aguoietf",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "We need to clarify what \"incoming\" and \"outgoing\" transponders are w.r.t. uni-dir and bi-dir regens:\n- For uni-dir regens, incoming means forward direction, outgoing means reverse direction\n- For bi-dir. regens, incoming / outgoing are w.r.t. signal direction\n\nAlso to clarify the \"transponder\" definition - it is a functional model and not a physical model. Add reference to the definition in the optical impairment draft.",
+          "createdAt": "2025-02-27T13:55:44Z",
+          "updatedAt": "2025-02-27T13:58:56Z"
         }
       ]
     },
