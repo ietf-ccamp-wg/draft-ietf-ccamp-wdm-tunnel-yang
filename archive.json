@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-03-06T01:09:45.602029+00:00",
+  "timestamp": "2025-03-09T01:00:43.914387+00:00",
   "repo": "ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang",
   "labels": [
     {
@@ -1742,7 +1742,7 @@
       ],
       "body": "Link to Issue #[81](https://github.com/ietf-ccamp-wg/ietf-ccamp-layer0-types-ext-RFC9093-bis/issues/81) of RFC 9093 bis\r\n\r\nWe may also need some text description regarding the use cases to reflect the consideration. There may also be descriptions in the optical impairment document so the two should align.",
       "createdAt": "2024-09-13T03:23:29Z",
-      "updatedAt": "2025-02-27T13:58:56Z",
+      "updatedAt": "2025-03-06T13:35:42Z",
       "closedAt": null,
       "comments": [
         {
@@ -1769,9 +1769,9 @@
         {
           "author": "aguoietf",
           "authorAssociation": "CONTRIBUTOR",
-          "body": "We need to clarify what \"incoming\" and \"outgoing\" transponders are w.r.t. uni-dir and bi-dir regens:\n- For uni-dir regens, incoming means forward direction, outgoing means reverse direction\n- For bi-dir. regens, incoming / outgoing are w.r.t. signal direction\n\nAlso to clarify the \"transponder\" definition - it is a functional model and not a physical model. Add reference to the definition in the optical impairment draft.",
+          "body": "We need to clarify what \"incoming\" and \"outgoing\" transponders are w.r.t. uni-dir and bi-dir regens:\n- conventional direction: order of path elements from source to destination. Both forward and reverse direction refers to the conventional direction\n\n- For uni-dir regens, there is one incoming transponder regenerating signals in the forward direction, and another outgoing transponder regenerating signals in the reverse direction. In this case, incoming means forward direction, outgoing means reverse direction. \n\n- For bi-dir. regens, both incoming / outgoing direction follow conventional direction\n\nWe can add some diagram (e.g. reusing the regen diagram from optical impairment) to show the direction for uni-dir and bi-dir regen.\n\nAlso to clarify the \"transponder\" definition - it is a functional model and not a physical model. Add reference to the definition in the optical impairment draft.",
           "createdAt": "2025-02-27T13:55:44Z",
-          "updatedAt": "2025-02-27T13:58:56Z"
+          "updatedAt": "2025-03-06T13:35:42Z"
         }
       ]
     },
