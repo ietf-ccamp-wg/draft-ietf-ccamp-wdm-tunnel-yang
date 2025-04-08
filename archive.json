@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-04-06T01:16:28.311760+00:00",
+  "timestamp": "2025-04-08T01:12:20.458461+00:00",
   "repo": "ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang",
   "labels": [
     {
@@ -1859,6 +1859,22 @@
       "body": "Classify the WDM tunnel scenarios for L0/L1 boundary discussion on two aspects:\n-\tstandard versus proprietary scenario\n-\tapplicable or not to existing or foreseen future scenarios\n\n\nReference: the latest version of the slides, as updated during the call on 2025-02-20 (with a typo fixed on slide 43): [layer0-boundary-15.pptx](https://github.com/user-attachments/files/18891254/layer0-boundary-15.pptx)\n",
       "createdAt": "2025-02-20T16:11:42Z",
       "updatedAt": "2025-02-20T16:12:10Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 76,
+      "id": "I_kwDOEHme9c6xa9Ho",
+      "title": "Rtgdir ietf last call review of draft-ietf-ccamp-wdm-tunnel-yang-03",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/issues/76",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "> Some editions would help the yang module readability:\n> \n> 1. Comments on draft that contains imported modules (ietf-te, ietf-layer0-types, ietf-yang-types)\n> \n> 2. The references have problems since:\n>    a. the above dependent modules are not mentioned\n>    b. The yang tree description model  (RFC8340) is not mentioned\n> \n> 3. One augment seems odd in the yang diagram:\n> \n>   ```\n>      augment /te:te/te:tunnels/te:tunnel/te:primary-paths\n>              /te:primary-path/te:explicit-route-objects\n>              /te:route-object-exclude-always/te:type\n>              /te:numbered-node-hop/te:numbered-node-hop:\n>   ```\n> \n> It would seem natural to have\n> \n>   ```\n>           \u2026./te:numbered-node-hops:/te-numbered-node-hop.\n>   ```\n> \n> Rather than\n> \n>   ```\n>            /te:numbered-node-hop/te:numbered-node-hop:\n>   ```\n> \n> I am having trouble tracking this down in the yang module.\n> \n> Andy Bierman has reviewed this model, so perhaps it is ok.  It just seems odd.\n> \n> 5) The (multi) structures under grid-type for super-channels\n> \n> A second set of structures that are not easy to check are the (multi) structure below. My reading of the RFC8340 would indicate that (multi) \u2013 is the result of a choice (single or super channel) where the super-channel has a list of\n> types:dwdm-n. (   RFC88340 *  for a leaf-list or list).\n> \n> The data structure is reasonable.  However, I\u2019ve not seen a list of configured identity types in yang before. I am assuming that Andy Bierman (Yang Doctor) looked at this issue.\n> \n> ```\n>           +--rw (grid-type)?\n>              +--:(fixed-dwdm)\n>              |  +--rw (fixed-single-or-super-channel)?\n>              |     +--:(single)\n>              |     |  +--rw dwdm-n?               l0-types:dwdm-n\n>              |     +--:(multi)\n>              |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n\n> \n> ```\n> Is it appropriate to a list of types?\n> \n> Give time allows, I will send in a second review to the RTG-DIR chairs after a deep dive into the model. I suspect that a deep dive has been done by Andy Bierman.\n> \n\nSee: https://mailarchive.ietf.org/arch/msg/ccamp/CJKKbtIjR4bQk_r8HQP2-6-2qIQ/",
+      "createdAt": "2025-04-07T12:02:39Z",
+      "updatedAt": "2025-04-07T12:02:39Z",
       "closedAt": null,
       "comments": []
     }
