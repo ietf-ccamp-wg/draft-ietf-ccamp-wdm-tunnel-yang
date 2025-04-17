@@ -697,123 +697,245 @@ module: ietf-te
      |     |     |  |     |     |       te-hop-type
      |     |     |  |     |     +--rw (wdm-tnl:node-position)?
      |     |     |  |     |        +--:(wdm-tnl:source)
-     |     |     |  |     |        |  +--rw wdm-tnl:source-transceiver
+     |     |     |  |     |        |  +--rw wdm-tnl:source-transponder
      |     |     |  |     |        |     +--rw wdm-tnl:transponder-id?
      |     |     |  |     |        |     |       uint32
-     |     |     |  |     |        |     +--rw wdm-tnl:transceivers*
-     |     |     |  |     |        |             [transceiver-id]
-     |     |     |  |     |        |        +--rw wdm-tnl:transceiver-id
+     |     |     |  |     |        |     +--rw wdm-tnl:digital-terminations
+     |     |     |  |     |        |     |  +--rw wdm-tnl:digital-termination*
+     |     |     |  |     |        |     |          [index]
+     |     |     |  |     |        |     |     +--rw wdm-tnl:index
+     |     |     |  |     |        |     |     |       uint8
+     |     |     |  |     |        |     |     +--rw wdm-tnl:termination-type?
+     |     |     |  |     |        |     |     |       identityref
+     |     |     |  |     |        |     |     +--rw wdm-tnl:mapping-type?
+     |     |     |  |     |        |     |             identityref
+     |     |     |  |     |        |     +--rw wdm-tnl:transceiver
+     |     |     |  |     |        |        +--rw wdm-tnl:transceiver-id?
      |     |     |  |     |        |        |       uint32
      |     |     |  |     |        |        +--rw wdm-tnl:otsi-carrier-id?
      |     |     |  |     |        |        |       uint16
-     |     |     |  |     |        |        +--rw wdm-tnl:operational-modes*
-     |     |     |  |     |        |        |       string
      |     |     |  |     |        |        +--rw wdm-tnl:otsi-carrier-frequency?
      |     |     |  |     |        |        |       l0-types:frequency-thz
-     |     |     |  |     |        |        +--rw wdm-tnl:tx-tune-constraints
-     |     |     |  |     |        |        |  +--rw wdm-tnl:min-central-frequency?
-     |     |     |  |     |        |        |  |       frequency-thz
-     |     |     |  |     |        |        |  +--rw wdm-tnl:max-central-frequency?
-     |     |     |  |     |        |        |  |       frequency-thz
-     |     |     |  |     |        |        |  +--rw wdm-tnl:transceiver-tunability?
-     |     |     |  |     |        |        |          frequency-ghz
-     |     |     |  |     |        |        +--rw wdm-tnl:line-coding-bitrate*
-     |     |     |  |     |        |        |       identityref
      |     |     |  |     |        |        +--rw wdm-tnl:tx-channel-power?
      |     |     |  |     |        |        |       l0-types:power-dbm
+     |     |     |  |     |        |        +--rw wdm-tnl:operational-mode?
+     |     |     |  |     |        |        |       string
+     |     |     |  |     |        |        +--rw wdm-tnl:line-coding-bitrate?
+     |     |     |  |     |        |        |       identityref
      |     |     |  |     |        |        +--rw wdm-tnl:preferred-rx-channel-power?
      |     |     |  |     |        |        |       l0-types:power-dbm
      |     |     |  |     |        |        +--rw wdm-tnl:gsnr-extra-margin?
-     |     |     |  |     |        |                snr
+     |     |     |  |     |        |        |       snr
+     |     |     |  |     |        |        +--rw wdm-tnl:inverse-multiplexing!
+     |     |     |  |     |        |           +--rw wdm-tnl:inverse-mux-type?
+     |     |     |  |     |        |           |       identityref
+     |     |     |  |     |        |           +--rw wdm-tnl:otsi-lane-termination-type?
+     |     |     |  |     |        |           |       identityref
+     |     |     |  |     |        |           +--rw wdm-tnl:additional-transceivers
+     |     |     |  |     |        |              +--rw wdm-tnl:index?
+     |     |     |  |     |        |              |       uint8
+     |     |     |  |     |        |              +--rw wdm-tnl:transceiver-id?
+     |     |     |  |     |        |              |       uint32
+     |     |     |  |     |        |              +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |  |     |        |              |       uint16
+     |     |     |  |     |        |              +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |  |     |        |              |       l0-types:frequency-thz
+     |     |     |  |     |        |              +--rw wdm-tnl:tx-channel-power?
+     |     |     |  |     |        |                      l0-types:power-dbm
      |     |     |  |     |        +--:(wdm-tnl:destination)
-     |     |     |  |     |        |  +--rw wdm-tnl:destination-transceiver
+     |     |     |  |     |        |  +--rw wdm-tnl:destination-transponder
      |     |     |  |     |        |     +--rw wdm-tnl:transponder-id?
      |     |     |  |     |        |     |       uint32
-     |     |     |  |     |        |     +--rw wdm-tnl:transceivers*
-     |     |     |  |     |        |             [transceiver-id]
-     |     |     |  |     |        |        +--rw wdm-tnl:transceiver-id
+     |     |     |  |     |        |     +--rw wdm-tnl:digital-terminations
+     |     |     |  |     |        |     |  +--rw wdm-tnl:digital-termination*
+     |     |     |  |     |        |     |          [index]
+     |     |     |  |     |        |     |     +--rw wdm-tnl:index
+     |     |     |  |     |        |     |     |       uint8
+     |     |     |  |     |        |     |     +--rw wdm-tnl:termination-type?
+     |     |     |  |     |        |     |     |       identityref
+     |     |     |  |     |        |     |     +--rw wdm-tnl:mapping-type?
+     |     |     |  |     |        |     |             identityref
+     |     |     |  |     |        |     +--rw wdm-tnl:transceiver
+     |     |     |  |     |        |        +--rw wdm-tnl:transceiver-id?
      |     |     |  |     |        |        |       uint32
      |     |     |  |     |        |        +--rw wdm-tnl:otsi-carrier-id?
      |     |     |  |     |        |        |       uint16
-     |     |     |  |     |        |        +--rw wdm-tnl:operational-modes*
-     |     |     |  |     |        |        |       string
      |     |     |  |     |        |        +--rw wdm-tnl:otsi-carrier-frequency?
      |     |     |  |     |        |        |       l0-types:frequency-thz
-     |     |     |  |     |        |        +--rw wdm-tnl:tx-tune-constraints
-     |     |     |  |     |        |        |  +--rw wdm-tnl:min-central-frequency?
-     |     |     |  |     |        |        |  |       frequency-thz
-     |     |     |  |     |        |        |  +--rw wdm-tnl:max-central-frequency?
-     |     |     |  |     |        |        |  |       frequency-thz
-     |     |     |  |     |        |        |  +--rw wdm-tnl:transceiver-tunability?
-     |     |     |  |     |        |        |          frequency-ghz
-     |     |     |  |     |        |        +--rw wdm-tnl:line-coding-bitrate*
-     |     |     |  |     |        |        |       identityref
      |     |     |  |     |        |        +--rw wdm-tnl:tx-channel-power?
      |     |     |  |     |        |        |       l0-types:power-dbm
+     |     |     |  |     |        |        +--rw wdm-tnl:operational-mode?
+     |     |     |  |     |        |        |       string
+     |     |     |  |     |        |        +--rw wdm-tnl:line-coding-bitrate?
+     |     |     |  |     |        |        |       identityref
      |     |     |  |     |        |        +--rw wdm-tnl:preferred-rx-channel-power?
      |     |     |  |     |        |        |       l0-types:power-dbm
      |     |     |  |     |        |        +--rw wdm-tnl:gsnr-extra-margin?
-     |     |     |  |     |        |                snr
-     |     |     |  |     |        +--:(wdm-tnl:transit)
-     |     |     |  |     |           +--rw wdm-tnl:regen-transceivers
-     |     |     |  |     |              +--rw wdm-tnl:regen-group-id?
-     |     |     |  |     |              |       uint32
-     |     |     |  |     |              +--rw wdm-tnl:incoming-transceiver
-     |     |     |  |     |              |  +--rw wdm-tnl:transponder-id?
-     |     |     |  |     |              |  |       uint32
-     |     |     |  |     |              |  +--rw wdm-tnl:transceivers*
-     |     |     |  |     |              |          [transceiver-id]
-     |     |     |  |     |              |     +--rw wdm-tnl:transceiver-id
-     |     |     |  |     |              |     |       uint32
-     |     |     |  |     |              |     +--rw wdm-tnl:otsi-carrier-id?
-     |     |     |  |     |              |     |       uint16
-     |     |     |  |     |              |     +--rw wdm-tnl:operational-modes*
-     |     |     |  |     |              |     |       string
-     |     |     |  |     |              |     +--rw wdm-tnl:otsi-carrier-frequency?
-     |     |     |  |     |              |     |       l0-types:frequency-thz
-     |     |     |  |     |              |     +--rw wdm-tnl:tx-tune-constraints
-     |     |     |  |     |              |     |  +--rw wdm-tnl:min-central-frequency?
-     |     |     |  |     |              |     |  |       frequency-thz
-     |     |     |  |     |              |     |  +--rw wdm-tnl:max-central-frequency?
-     |     |     |  |     |              |     |  |       frequency-thz
-     |     |     |  |     |              |     |  +--rw wdm-tnl:transceiver-tunability?
-     |     |     |  |     |              |     |          frequency-ghz
-     |     |     |  |     |              |     +--rw wdm-tnl:line-coding-bitrate*
-     |     |     |  |     |              |     |       identityref
-     |     |     |  |     |              |     +--rw wdm-tnl:tx-channel-power?
-     |     |     |  |     |              |     |       l0-types:power-dbm
-     |     |     |  |     |              |     +--rw wdm-tnl:preferred-rx-channel-power?
-     |     |     |  |     |              |     |       l0-types:power-dbm
-     |     |     |  |     |              |     +--rw wdm-tnl:gsnr-extra-margin?
-     |     |     |  |     |              |             snr
-     |     |     |  |     |              +--rw wdm-tnl:outgoing-transceiver
-     |     |     |  |     |                 +--rw wdm-tnl:transponder-id?
+     |     |     |  |     |        |        |       snr
+     |     |     |  |     |        |        +--rw wdm-tnl:inverse-multiplexing!
+     |     |     |  |     |        |           +--rw wdm-tnl:inverse-mux-type?
+     |     |     |  |     |        |           |       identityref
+     |     |     |  |     |        |           +--rw wdm-tnl:otsi-lane-termination-type?
+     |     |     |  |     |        |           |       identityref
+     |     |     |  |     |        |           +--rw wdm-tnl:additional-transceivers
+     |     |     |  |     |        |              +--rw wdm-tnl:index?
+     |     |     |  |     |        |              |       uint8
+     |     |     |  |     |        |              +--rw wdm-tnl:transceiver-id?
+     |     |     |  |     |        |              |       uint32
+     |     |     |  |     |        |              +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |  |     |        |              |       uint16
+     |     |     |  |     |        |              +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |  |     |        |              |       l0-types:frequency-thz
+     |     |     |  |     |        |              +--rw wdm-tnl:tx-channel-power?
+     |     |     |  |     |        |                      l0-types:power-dbm
+     |     |     |  |     |        +--:(wdm-tnl:regenerator)
+     |     |     |  |     |        |  +--rw wdm-tnl:regenerator
+     |     |     |  |     |        |     +--rw wdm-tnl:regen-group-id?
+     |     |     |  |     |        |     |       uint32
+     |     |     |  |     |        |     +--rw wdm-tnl:regeneration-layer?
+     |     |     |  |     |        |     |       identityref
+     |     |     |  |     |        |     +--rw wdm-tnl:incoming-transponder
+     |     |     |  |     |        |     |  +--rw wdm-tnl:transponder-id?
+     |     |     |  |     |        |     |  |       uint32
+     |     |     |  |     |        |     |  +--rw wdm-tnl:digital-terminations
+     |     |     |  |     |        |     |  |  +--rw wdm-tnl:digital-termination*
+     |     |     |  |     |        |     |  |          [index]
+     |     |     |  |     |        |     |  |     +--rw wdm-tnl:index
+     |     |     |  |     |        |     |  |     |       uint8
+     |     |     |  |     |        |     |  |     +--rw wdm-tnl:termination-type?
+     |     |     |  |     |        |     |  |     |       identityref
+     |     |     |  |     |        |     |  |     +--rw wdm-tnl:mapping-type?
+     |     |     |  |     |        |     |  |             identityref
+     |     |     |  |     |        |     |  +--rw wdm-tnl:transceiver
+     |     |     |  |     |        |     |     +--rw wdm-tnl:transceiver-id?
+     |     |     |  |     |        |     |     |       uint32
+     |     |     |  |     |        |     |     +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |  |     |        |     |     |       uint16
+     |     |     |  |     |        |     |     +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |  |     |        |     |     |       l0-types:frequency-thz
+     |     |     |  |     |        |     |     +--rw wdm-tnl:tx-channel-power?
+     |     |     |  |     |        |     |     |       l0-types:power-dbm
+     |     |     |  |     |        |     |     +--rw wdm-tnl:operational-mode?
+     |     |     |  |     |        |     |     |       string
+     |     |     |  |     |        |     |     +--rw wdm-tnl:line-coding-bitrate?
+     |     |     |  |     |        |     |     |       identityref
+     |     |     |  |     |        |     |     +--rw wdm-tnl:preferred-rx-channel-power?
+     |     |     |  |     |        |     |     |       l0-types:power-dbm
+     |     |     |  |     |        |     |     +--rw wdm-tnl:gsnr-extra-margin?
+     |     |     |  |     |        |     |     |       snr
+     |     |     |  |     |        |     |     +--rw wdm-tnl:inverse-multiplexing!
+     |     |     |  |     |        |     |        +--rw wdm-tnl:inverse-mux-type?
+     |     |     |  |     |        |     |        |       identityref
+     |     |     |  |     |        |     |        +--rw wdm-tnl:otsi-lane-termination-type?
+     |     |     |  |     |        |     |        |       identityref
+     |     |     |  |     |        |     |        +--rw wdm-tnl:additional-transceivers
+     |     |     |  |     |        |     |           +--rw wdm-tnl:index?
+     |     |     |  |     |        |     |           |       uint8
+     |     |     |  |     |        |     |           +--rw wdm-tnl:transceiver-id?
+     |     |     |  |     |        |     |           |       uint32
+     |     |     |  |     |        |     |           +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |  |     |        |     |           |       uint16
+     |     |     |  |     |        |     |           +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |  |     |        |     |           |       l0-types:frequency-thz
+     |     |     |  |     |        |     |           +--rw wdm-tnl:tx-channel-power?
+     |     |     |  |     |        |     |                   l0-types:power-dbm
+     |     |     |  |     |        |     +--rw wdm-tnl:outgoing-transponder
+     |     |     |  |     |        |        +--rw wdm-tnl:transponder-id?
+     |     |     |  |     |        |        |       uint32
+     |     |     |  |     |        |        +--rw wdm-tnl:digital-terminations
+     |     |     |  |     |        |        |  +--rw wdm-tnl:digital-termination*
+     |     |     |  |     |        |        |          [index]
+     |     |     |  |     |        |        |     +--rw wdm-tnl:index
+     |     |     |  |     |        |        |     |       uint8
+     |     |     |  |     |        |        |     +--rw wdm-tnl:termination-type?
+     |     |     |  |     |        |        |     |       identityref
+     |     |     |  |     |        |        |     +--rw wdm-tnl:mapping-type?
+     |     |     |  |     |        |        |             identityref
+     |     |     |  |     |        |        +--rw wdm-tnl:transceiver
+     |     |     |  |     |        |           +--rw wdm-tnl:transceiver-id?
+     |     |     |  |     |        |           |       uint32
+     |     |     |  |     |        |           +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |  |     |        |           |       uint16
+     |     |     |  |     |        |           +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |  |     |        |           |       l0-types:frequency-thz
+     |     |     |  |     |        |           +--rw wdm-tnl:tx-channel-power?
+     |     |     |  |     |        |           |       l0-types:power-dbm
+     |     |     |  |     |        |           +--rw wdm-tnl:operational-mode?
+     |     |     |  |     |        |           |       string
+     |     |     |  |     |        |           +--rw wdm-tnl:line-coding-bitrate?
+     |     |     |  |     |        |           |       identityref
+     |     |     |  |     |        |           +--rw wdm-tnl:preferred-rx-channel-power?
+     |     |     |  |     |        |           |       l0-types:power-dbm
+     |     |     |  |     |        |           +--rw wdm-tnl:gsnr-extra-margin?
+     |     |     |  |     |        |           |       snr
+     |     |     |  |     |        |           +--rw wdm-tnl:inverse-multiplexing!
+     |     |     |  |     |        |              +--rw wdm-tnl:inverse-mux-type?
+     |     |     |  |     |        |              |       identityref
+     |     |     |  |     |        |              +--rw wdm-tnl:otsi-lane-termination-type?
+     |     |     |  |     |        |              |       identityref
+     |     |     |  |     |        |              +--rw wdm-tnl:additional-transceivers
+     |     |     |  |     |        |                 +--rw wdm-tnl:index?
+     |     |     |  |     |        |                 |       uint8
+     |     |     |  |     |        |                 +--rw wdm-tnl:transceiver-id?
+     |     |     |  |     |        |                 |       uint32
+     |     |     |  |     |        |                 +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |  |     |        |                 |       uint16
+     |     |     |  |     |        |                 +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |  |     |        |                 |       l0-types:frequency-thz
+     |     |     |  |     |        |                 +--rw wdm-tnl:tx-channel-power?
+     |     |     |  |     |        |                         l0-types:power-dbm
+     |     |     |  |     |        +--:(wdm-tnl:regenerators)
+     |     |     |  |     |           +--rw wdm-tnl:regenerators
+     |     |     |  |     |              +--rw wdm-tnl:common-incoming
+     |     |     |  |     |              |  +--rw wdm-tnl:operational-mode?
+     |     |     |  |     |              |  |       string
+     |     |     |  |     |              |  +--rw wdm-tnl:line-coding-bitrate?
+     |     |     |  |     |              |  |       identityref
+     |     |     |  |     |              |  +--rw wdm-tnl:preferred-rx-channel-power?
+     |     |     |  |     |              |  |       l0-types:power-dbm
+     |     |     |  |     |              |  +--rw wdm-tnl:gsnr-extra-margin?
+     |     |     |  |     |              |          snr
+     |     |     |  |     |              +--rw wdm-tnl:common-outcoming
+     |     |     |  |     |              |  +--rw wdm-tnl:operational-mode?
+     |     |     |  |     |              |  |       string
+     |     |     |  |     |              |  +--rw wdm-tnl:line-coding-bitrate?
+     |     |     |  |     |              |  |       identityref
+     |     |     |  |     |              |  +--rw wdm-tnl:preferred-rx-channel-power?
+     |     |     |  |     |              |  |       l0-types:power-dbm
+     |     |     |  |     |              |  +--rw wdm-tnl:gsnr-extra-margin?
+     |     |     |  |     |              |          snr
+     |     |     |  |     |              +--rw wdm-tnl:regenerator*
+     |     |     |  |     |                      [index]
+     |     |     |  |     |                 +--rw wdm-tnl:index
+     |     |     |  |     |                 |       uint8
+     |     |     |  |     |                 +--rw wdm-tnl:regen-group-id?
      |     |     |  |     |                 |       uint32
-     |     |     |  |     |                 +--rw wdm-tnl:transceivers*
-     |     |     |  |     |                         [transceiver-id]
-     |     |     |  |     |                    +--rw wdm-tnl:transceiver-id
+     |     |     |  |     |                 +--rw wdm-tnl:regeneration-layer?
+     |     |     |  |     |                 |       identityref
+     |     |     |  |     |                 +--rw wdm-tnl:incoming-transponder
+     |     |     |  |     |                 |  +--rw wdm-tnl:transponder-id?
+     |     |     |  |     |                 |  |       uint32
+     |     |     |  |     |                 |  +--rw wdm-tnl:transceiver
+     |     |     |  |     |                 |     +--rw wdm-tnl:transceiver-id?
+     |     |     |  |     |                 |     |       uint32
+     |     |     |  |     |                 |     +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |  |     |                 |     |       uint16
+     |     |     |  |     |                 |     +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |  |     |                 |     |       l0-types:frequency-thz
+     |     |     |  |     |                 |     +--rw wdm-tnl:tx-channel-power?
+     |     |     |  |     |                 |             l0-types:power-dbm
+     |     |     |  |     |                 +--rw wdm-tnl:outgoing-transponder
+     |     |     |  |     |                    +--rw wdm-tnl:transponder-id?
      |     |     |  |     |                    |       uint32
-     |     |     |  |     |                    +--rw wdm-tnl:otsi-carrier-id?
-     |     |     |  |     |                    |       uint16
-     |     |     |  |     |                    +--rw wdm-tnl:operational-modes*
-     |     |     |  |     |                    |       string
-     |     |     |  |     |                    +--rw wdm-tnl:otsi-carrier-frequency?
-     |     |     |  |     |                    |       l0-types:frequency-thz
-     |     |     |  |     |                    +--rw wdm-tnl:tx-tune-constraints
-     |     |     |  |     |                    |  +--rw wdm-tnl:min-central-frequency?
-     |     |     |  |     |                    |  |       frequency-thz
-     |     |     |  |     |                    |  +--rw wdm-tnl:max-central-frequency?
-     |     |     |  |     |                    |  |       frequency-thz
-     |     |     |  |     |                    |  +--rw wdm-tnl:transceiver-tunability?
-     |     |     |  |     |                    |          frequency-ghz
-     |     |     |  |     |                    +--rw wdm-tnl:line-coding-bitrate*
-     |     |     |  |     |                    |       identityref
-     |     |     |  |     |                    +--rw wdm-tnl:tx-channel-power?
-     |     |     |  |     |                    |       l0-types:power-dbm
-     |     |     |  |     |                    +--rw wdm-tnl:preferred-rx-channel-power?
-     |     |     |  |     |                    |       l0-types:power-dbm
-     |     |     |  |     |                    +--rw wdm-tnl:gsnr-extra-margin?
-     |     |     |  |     |                            snr
+     |     |     |  |     |                    +--rw wdm-tnl:transceiver
+     |     |     |  |     |                       +--rw wdm-tnl:transceiver-id?
+     |     |     |  |     |                       |       uint32
+     |     |     |  |     |                       +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |  |     |                       |       uint16
+     |     |     |  |     |                       +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |  |     |                       |       l0-types:frequency-thz
+     |     |     |  |     |                       +--rw wdm-tnl:tx-channel-power?
+     |     |     |  |     |                               l0-types:power-dbm
      |     |     |  |     +--:(numbered-link-hop)
      |     |     |  |     |  +--rw numbered-link-hop
      |     |     |  |     |     +--rw link-tp-id    te-tp-id
@@ -882,9 +1004,253 @@ module: ietf-te
      |     |     |     +--rw (type)?
      |     |     |        +--:(numbered-node-hop)
      |     |     |        |  +--rw numbered-node-hop
-     |     |     |        |     +--rw node-id-uri?   nw:node-id
-     |     |     |        |     +--rw node-id?       te-node-id
-     |     |     |        |     +--rw hop-type?      te-hop-type
+     |     |     |        |     +--rw node-id-uri?
+     |     |     |        |     |       nw:node-id
+     |     |     |        |     +--rw node-id?
+     |     |     |        |     |       te-node-id
+     |     |     |        |     +--rw hop-type?
+     |     |     |        |     |       te-hop-type
+     |     |     |        |     +--rw (wdm-tnl:node-position)?
+     |     |     |        |        +--:(wdm-tnl:source)
+     |     |     |        |        |  +--rw wdm-tnl:source-transponder
+     |     |     |        |        |     +--rw wdm-tnl:transponder-id?
+     |     |     |        |        |     |       uint32
+     |     |     |        |        |     +--rw wdm-tnl:digital-terminations
+     |     |     |        |        |     |  +--rw wdm-tnl:digital-termination*
+     |     |     |        |        |     |          [index]
+     |     |     |        |        |     |     +--rw wdm-tnl:index
+     |     |     |        |        |     |     |       uint8
+     |     |     |        |        |     |     +--rw wdm-tnl:termination-type?
+     |     |     |        |        |     |     |       identityref
+     |     |     |        |        |     |     +--rw wdm-tnl:mapping-type?
+     |     |     |        |        |     |             identityref
+     |     |     |        |        |     +--rw wdm-tnl:transceiver
+     |     |     |        |        |        +--rw wdm-tnl:transceiver-id?
+     |     |     |        |        |        |       uint32
+     |     |     |        |        |        +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |        |        |        |       uint16
+     |     |     |        |        |        +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |        |        |        |       l0-types:frequency-thz
+     |     |     |        |        |        +--rw wdm-tnl:tx-channel-power?
+     |     |     |        |        |        |       l0-types:power-dbm
+     |     |     |        |        |        +--rw wdm-tnl:operational-mode?
+     |     |     |        |        |        |       string
+     |     |     |        |        |        +--rw wdm-tnl:line-coding-bitrate?
+     |     |     |        |        |        |       identityref
+     |     |     |        |        |        +--rw wdm-tnl:preferred-rx-channel-power?
+     |     |     |        |        |        |       l0-types:power-dbm
+     |     |     |        |        |        +--rw wdm-tnl:gsnr-extra-margin?
+     |     |     |        |        |        |       snr
+     |     |     |        |        |        +--rw wdm-tnl:inverse-multiplexing!
+     |     |     |        |        |           +--rw wdm-tnl:inverse-mux-type?
+     |     |     |        |        |           |       identityref
+     |     |     |        |        |           +--rw wdm-tnl:otsi-lane-termination-type?
+     |     |     |        |        |           |       identityref
+     |     |     |        |        |           +--rw wdm-tnl:additional-transceivers
+     |     |     |        |        |              +--rw wdm-tnl:index?
+     |     |     |        |        |              |       uint8
+     |     |     |        |        |              +--rw wdm-tnl:transceiver-id?
+     |     |     |        |        |              |       uint32
+     |     |     |        |        |              +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |        |        |              |       uint16
+     |     |     |        |        |              +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |        |        |              |       l0-types:frequency-thz
+     |     |     |        |        |              +--rw wdm-tnl:tx-channel-power?
+     |     |     |        |        |                      l0-types:power-dbm
+     |     |     |        |        +--:(wdm-tnl:destination)
+     |     |     |        |        |  +--rw wdm-tnl:destination-transponder
+     |     |     |        |        |     +--rw wdm-tnl:transponder-id?
+     |     |     |        |        |     |       uint32
+     |     |     |        |        |     +--rw wdm-tnl:digital-terminations
+     |     |     |        |        |     |  +--rw wdm-tnl:digital-termination*
+     |     |     |        |        |     |          [index]
+     |     |     |        |        |     |     +--rw wdm-tnl:index
+     |     |     |        |        |     |     |       uint8
+     |     |     |        |        |     |     +--rw wdm-tnl:termination-type?
+     |     |     |        |        |     |     |       identityref
+     |     |     |        |        |     |     +--rw wdm-tnl:mapping-type?
+     |     |     |        |        |     |             identityref
+     |     |     |        |        |     +--rw wdm-tnl:transceiver
+     |     |     |        |        |        +--rw wdm-tnl:transceiver-id?
+     |     |     |        |        |        |       uint32
+     |     |     |        |        |        +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |        |        |        |       uint16
+     |     |     |        |        |        +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |        |        |        |       l0-types:frequency-thz
+     |     |     |        |        |        +--rw wdm-tnl:tx-channel-power?
+     |     |     |        |        |        |       l0-types:power-dbm
+     |     |     |        |        |        +--rw wdm-tnl:operational-mode?
+     |     |     |        |        |        |       string
+     |     |     |        |        |        +--rw wdm-tnl:line-coding-bitrate?
+     |     |     |        |        |        |       identityref
+     |     |     |        |        |        +--rw wdm-tnl:preferred-rx-channel-power?
+     |     |     |        |        |        |       l0-types:power-dbm
+     |     |     |        |        |        +--rw wdm-tnl:gsnr-extra-margin?
+     |     |     |        |        |        |       snr
+     |     |     |        |        |        +--rw wdm-tnl:inverse-multiplexing!
+     |     |     |        |        |           +--rw wdm-tnl:inverse-mux-type?
+     |     |     |        |        |           |       identityref
+     |     |     |        |        |           +--rw wdm-tnl:otsi-lane-termination-type?
+     |     |     |        |        |           |       identityref
+     |     |     |        |        |           +--rw wdm-tnl:additional-transceivers
+     |     |     |        |        |              +--rw wdm-tnl:index?
+     |     |     |        |        |              |       uint8
+     |     |     |        |        |              +--rw wdm-tnl:transceiver-id?
+     |     |     |        |        |              |       uint32
+     |     |     |        |        |              +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |        |        |              |       uint16
+     |     |     |        |        |              +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |        |        |              |       l0-types:frequency-thz
+     |     |     |        |        |              +--rw wdm-tnl:tx-channel-power?
+     |     |     |        |        |                      l0-types:power-dbm
+     |     |     |        |        +--:(wdm-tnl:regenerator)
+     |     |     |        |        |  +--rw wdm-tnl:regenerator
+     |     |     |        |        |     +--rw wdm-tnl:regen-group-id?
+     |     |     |        |        |     |       uint32
+     |     |     |        |        |     +--rw wdm-tnl:regeneration-layer?
+     |     |     |        |        |     |       identityref
+     |     |     |        |        |     +--rw wdm-tnl:incoming-transponder
+     |     |     |        |        |     |  +--rw wdm-tnl:transponder-id?
+     |     |     |        |        |     |  |       uint32
+     |     |     |        |        |     |  +--rw wdm-tnl:digital-terminations
+     |     |     |        |        |     |  |  +--rw wdm-tnl:digital-termination*
+     |     |     |        |        |     |  |          [index]
+     |     |     |        |        |     |  |     +--rw wdm-tnl:index
+     |     |     |        |        |     |  |     |       uint8
+     |     |     |        |        |     |  |     +--rw wdm-tnl:termination-type?
+     |     |     |        |        |     |  |     |       identityref
+     |     |     |        |        |     |  |     +--rw wdm-tnl:mapping-type?
+     |     |     |        |        |     |  |             identityref
+     |     |     |        |        |     |  +--rw wdm-tnl:transceiver
+     |     |     |        |        |     |     +--rw wdm-tnl:transceiver-id?
+     |     |     |        |        |     |     |       uint32
+     |     |     |        |        |     |     +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |        |        |     |     |       uint16
+     |     |     |        |        |     |     +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |        |        |     |     |       l0-types:frequency-thz
+     |     |     |        |        |     |     +--rw wdm-tnl:tx-channel-power?
+     |     |     |        |        |     |     |       l0-types:power-dbm
+     |     |     |        |        |     |     +--rw wdm-tnl:operational-mode?
+     |     |     |        |        |     |     |       string
+     |     |     |        |        |     |     +--rw wdm-tnl:line-coding-bitrate?
+     |     |     |        |        |     |     |       identityref
+     |     |     |        |        |     |     +--rw wdm-tnl:preferred-rx-channel-power?
+     |     |     |        |        |     |     |       l0-types:power-dbm
+     |     |     |        |        |     |     +--rw wdm-tnl:gsnr-extra-margin?
+     |     |     |        |        |     |     |       snr
+     |     |     |        |        |     |     +--rw wdm-tnl:inverse-multiplexing!
+     |     |     |        |        |     |        +--rw wdm-tnl:inverse-mux-type?
+     |     |     |        |        |     |        |       identityref
+     |     |     |        |        |     |        +--rw wdm-tnl:otsi-lane-termination-type?
+     |     |     |        |        |     |        |       identityref
+     |     |     |        |        |     |        +--rw wdm-tnl:additional-transceivers
+     |     |     |        |        |     |           +--rw wdm-tnl:index?
+     |     |     |        |        |     |           |       uint8
+     |     |     |        |        |     |           +--rw wdm-tnl:transceiver-id?
+     |     |     |        |        |     |           |       uint32
+     |     |     |        |        |     |           +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |        |        |     |           |       uint16
+     |     |     |        |        |     |           +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |        |        |     |           |       l0-types:frequency-thz
+     |     |     |        |        |     |           +--rw wdm-tnl:tx-channel-power?
+     |     |     |        |        |     |                   l0-types:power-dbm
+     |     |     |        |        |     +--rw wdm-tnl:outgoing-transponder
+     |     |     |        |        |        +--rw wdm-tnl:transponder-id?
+     |     |     |        |        |        |       uint32
+     |     |     |        |        |        +--rw wdm-tnl:digital-terminations
+     |     |     |        |        |        |  +--rw wdm-tnl:digital-termination*
+     |     |     |        |        |        |          [index]
+     |     |     |        |        |        |     +--rw wdm-tnl:index
+     |     |     |        |        |        |     |       uint8
+     |     |     |        |        |        |     +--rw wdm-tnl:termination-type?
+     |     |     |        |        |        |     |       identityref
+     |     |     |        |        |        |     +--rw wdm-tnl:mapping-type?
+     |     |     |        |        |        |             identityref
+     |     |     |        |        |        +--rw wdm-tnl:transceiver
+     |     |     |        |        |           +--rw wdm-tnl:transceiver-id?
+     |     |     |        |        |           |       uint32
+     |     |     |        |        |           +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |        |        |           |       uint16
+     |     |     |        |        |           +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |        |        |           |       l0-types:frequency-thz
+     |     |     |        |        |           +--rw wdm-tnl:tx-channel-power?
+     |     |     |        |        |           |       l0-types:power-dbm
+     |     |     |        |        |           +--rw wdm-tnl:operational-mode?
+     |     |     |        |        |           |       string
+     |     |     |        |        |           +--rw wdm-tnl:line-coding-bitrate?
+     |     |     |        |        |           |       identityref
+     |     |     |        |        |           +--rw wdm-tnl:preferred-rx-channel-power?
+     |     |     |        |        |           |       l0-types:power-dbm
+     |     |     |        |        |           +--rw wdm-tnl:gsnr-extra-margin?
+     |     |     |        |        |           |       snr
+     |     |     |        |        |           +--rw wdm-tnl:inverse-multiplexing!
+     |     |     |        |        |              +--rw wdm-tnl:inverse-mux-type?
+     |     |     |        |        |              |       identityref
+     |     |     |        |        |              +--rw wdm-tnl:otsi-lane-termination-type?
+     |     |     |        |        |              |       identityref
+     |     |     |        |        |              +--rw wdm-tnl:additional-transceivers
+     |     |     |        |        |                 +--rw wdm-tnl:index?
+     |     |     |        |        |                 |       uint8
+     |     |     |        |        |                 +--rw wdm-tnl:transceiver-id?
+     |     |     |        |        |                 |       uint32
+     |     |     |        |        |                 +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |        |        |                 |       uint16
+     |     |     |        |        |                 +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |        |        |                 |       l0-types:frequency-thz
+     |     |     |        |        |                 +--rw wdm-tnl:tx-channel-power?
+     |     |     |        |        |                         l0-types:power-dbm
+     |     |     |        |        +--:(wdm-tnl:regenerators)
+     |     |     |        |           +--rw wdm-tnl:regenerators
+     |     |     |        |              +--rw wdm-tnl:common-incoming
+     |     |     |        |              |  +--rw wdm-tnl:operational-mode?
+     |     |     |        |              |  |       string
+     |     |     |        |              |  +--rw wdm-tnl:line-coding-bitrate?
+     |     |     |        |              |  |       identityref
+     |     |     |        |              |  +--rw wdm-tnl:preferred-rx-channel-power?
+     |     |     |        |              |  |       l0-types:power-dbm
+     |     |     |        |              |  +--rw wdm-tnl:gsnr-extra-margin?
+     |     |     |        |              |          snr
+     |     |     |        |              +--rw wdm-tnl:common-outcoming
+     |     |     |        |              |  +--rw wdm-tnl:operational-mode?
+     |     |     |        |              |  |       string
+     |     |     |        |              |  +--rw wdm-tnl:line-coding-bitrate?
+     |     |     |        |              |  |       identityref
+     |     |     |        |              |  +--rw wdm-tnl:preferred-rx-channel-power?
+     |     |     |        |              |  |       l0-types:power-dbm
+     |     |     |        |              |  +--rw wdm-tnl:gsnr-extra-margin?
+     |     |     |        |              |          snr
+     |     |     |        |              +--rw wdm-tnl:regenerator*
+     |     |     |        |                      [index]
+     |     |     |        |                 +--rw wdm-tnl:index
+     |     |     |        |                 |       uint8
+     |     |     |        |                 +--rw wdm-tnl:regen-group-id?
+     |     |     |        |                 |       uint32
+     |     |     |        |                 +--rw wdm-tnl:regeneration-layer?
+     |     |     |        |                 |       identityref
+     |     |     |        |                 +--rw wdm-tnl:incoming-transponder
+     |     |     |        |                 |  +--rw wdm-tnl:transponder-id?
+     |     |     |        |                 |  |       uint32
+     |     |     |        |                 |  +--rw wdm-tnl:transceiver
+     |     |     |        |                 |     +--rw wdm-tnl:transceiver-id?
+     |     |     |        |                 |     |       uint32
+     |     |     |        |                 |     +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |        |                 |     |       uint16
+     |     |     |        |                 |     +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |        |                 |     |       l0-types:frequency-thz
+     |     |     |        |                 |     +--rw wdm-tnl:tx-channel-power?
+     |     |     |        |                 |             l0-types:power-dbm
+     |     |     |        |                 +--rw wdm-tnl:outgoing-transponder
+     |     |     |        |                    +--rw wdm-tnl:transponder-id?
+     |     |     |        |                    |       uint32
+     |     |     |        |                    +--rw wdm-tnl:transceiver
+     |     |     |        |                       +--rw wdm-tnl:transceiver-id?
+     |     |     |        |                       |       uint32
+     |     |     |        |                       +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |        |                       |       uint16
+     |     |     |        |                       +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |        |                       |       l0-types:frequency-thz
+     |     |     |        |                       +--rw wdm-tnl:tx-channel-power?
+     |     |     |        |                               l0-types:power-dbm
      |     |     |        +--:(numbered-link-hop)
      |     |     |        |  +--rw numbered-link-hop
      |     |     |        |     +--rw link-tp-id    te-tp-id
@@ -1138,7 +1504,7 @@ module: ietf-te
      |     |     |        |        |        |  +--ro wdm-tnl:source-transceiver
      |     |     |        |        |        |     +--ro wdm-tnl:transponder-id?
      |     |     |        |        |        |     |       uint32
-     |     |     |        |        |        |     +--ro wdm-tnl:transceivers*
+     |     |     |        |        |        |     +--ro wdm-tnl:transceiver*
      |     |     |        |        |        |             [transceiver-id]
      |     |     |        |        |        |        +--ro wdm-tnl:otsi-carrier-id?
      |     |     |        |        |        |        |       uint16
@@ -1160,7 +1526,7 @@ module: ietf-te
      |     |     |        |        |        |  +--ro wdm-tnl:destination-transceiver
      |     |     |        |        |        |     +--ro wdm-tnl:transponder-id?
      |     |     |        |        |        |     |       uint32
-     |     |     |        |        |        |     +--ro wdm-tnl:transceivers*
+     |     |     |        |        |        |     +--ro wdm-tnl:transceiver*
      |     |     |        |        |        |             [transceiver-id]
      |     |     |        |        |        |        +--ro wdm-tnl:otsi-carrier-id?
      |     |     |        |        |        |        |       uint16
@@ -1185,7 +1551,7 @@ module: ietf-te
      |     |     |        |        |              +--ro wdm-tnl:incoming-transceiver
      |     |     |        |        |              |  +--ro wdm-tnl:transponder-id?
      |     |     |        |        |              |  |       uint32
-     |     |     |        |        |              |  +--ro wdm-tnl:transceivers*
+     |     |     |        |        |              |  +--ro wdm-tnl:transceiver*
      |     |     |        |        |              |          [transceiver-id]
      |     |     |        |        |              |     +--ro wdm-tnl:otsi-carrier-id?
      |     |     |        |        |              |     |       uint16
@@ -1206,7 +1572,7 @@ module: ietf-te
      |     |     |        |        |              +--ro wdm-tnl:outgoing-transceiver
      |     |     |        |        |                 +--ro wdm-tnl:transponder-id?
      |     |     |        |        |                 |       uint32
-     |     |     |        |        |                 +--ro wdm-tnl:transceivers*
+     |     |     |        |        |                 +--ro wdm-tnl:transceiver*
      |     |     |        |        |                         [transceiver-id]
      |     |     |        |        |                    +--ro wdm-tnl:otsi-carrier-id?
      |     |     |        |        |                    |       uint16
@@ -1592,123 +1958,245 @@ module: ietf-te
      |     |     |  |  |     |     |       te-hop-type
      |     |     |  |  |     |     +--rw (wdm-tnl:node-position)?
      |     |     |  |  |     |        +--:(wdm-tnl:source)
-     |     |     |  |  |     |        |  +--rw wdm-tnl:source-transceiver
+     |     |     |  |  |     |        |  +--rw wdm-tnl:source-transponder
      |     |     |  |  |     |        |     +--rw wdm-tnl:transponder-id?
      |     |     |  |  |     |        |     |       uint32
-     |     |     |  |  |     |        |     +--rw wdm-tnl:transceivers*
-     |     |     |  |  |     |        |             [transceiver-id]
-     |     |     |  |  |     |        |        +--rw wdm-tnl:transceiver-id
+     |     |     |  |  |     |        |     +--rw wdm-tnl:digital-terminations
+     |     |     |  |  |     |        |     |  +--rw wdm-tnl:digital-termination*
+     |     |     |  |  |     |        |     |          [index]
+     |     |     |  |  |     |        |     |     +--rw wdm-tnl:index
+     |     |     |  |  |     |        |     |     |       uint8
+     |     |     |  |  |     |        |     |     +--rw wdm-tnl:termination-type?
+     |     |     |  |  |     |        |     |     |       identityref
+     |     |     |  |  |     |        |     |     +--rw wdm-tnl:mapping-type?
+     |     |     |  |  |     |        |     |             identityref
+     |     |     |  |  |     |        |     +--rw wdm-tnl:transceiver
+     |     |     |  |  |     |        |        +--rw wdm-tnl:transceiver-id?
      |     |     |  |  |     |        |        |       uint32
      |     |     |  |  |     |        |        +--rw wdm-tnl:otsi-carrier-id?
      |     |     |  |  |     |        |        |       uint16
-     |     |     |  |  |     |        |        +--rw wdm-tnl:operational-modes*
-     |     |     |  |  |     |        |        |       string
      |     |     |  |  |     |        |        +--rw wdm-tnl:otsi-carrier-frequency?
      |     |     |  |  |     |        |        |       l0-types:frequency-thz
-     |     |     |  |  |     |        |        +--rw wdm-tnl:tx-tune-constraints
-     |     |     |  |  |     |        |        |  +--rw wdm-tnl:min-central-frequency?
-     |     |     |  |  |     |        |        |  |       frequency-thz
-     |     |     |  |  |     |        |        |  +--rw wdm-tnl:max-central-frequency?
-     |     |     |  |  |     |        |        |  |       frequency-thz
-     |     |     |  |  |     |        |        |  +--rw wdm-tnl:transceiver-tunability?
-     |     |     |  |  |     |        |        |          frequency-ghz
-     |     |     |  |  |     |        |        +--rw wdm-tnl:line-coding-bitrate*
-     |     |     |  |  |     |        |        |       identityref
      |     |     |  |  |     |        |        +--rw wdm-tnl:tx-channel-power?
      |     |     |  |  |     |        |        |       l0-types:power-dbm
+     |     |     |  |  |     |        |        +--rw wdm-tnl:operational-mode?
+     |     |     |  |  |     |        |        |       string
+     |     |     |  |  |     |        |        +--rw wdm-tnl:line-coding-bitrate?
+     |     |     |  |  |     |        |        |       identityref
      |     |     |  |  |     |        |        +--rw wdm-tnl:preferred-rx-channel-power?
      |     |     |  |  |     |        |        |       l0-types:power-dbm
      |     |     |  |  |     |        |        +--rw wdm-tnl:gsnr-extra-margin?
-     |     |     |  |  |     |        |                snr
+     |     |     |  |  |     |        |        |       snr
+     |     |     |  |  |     |        |        +--rw wdm-tnl:inverse-multiplexing!
+     |     |     |  |  |     |        |           +--rw wdm-tnl:inverse-mux-type?
+     |     |     |  |  |     |        |           |       identityref
+     |     |     |  |  |     |        |           +--rw wdm-tnl:otsi-lane-termination-type?
+     |     |     |  |  |     |        |           |       identityref
+     |     |     |  |  |     |        |           +--rw wdm-tnl:additional-transceivers
+     |     |     |  |  |     |        |              +--rw wdm-tnl:index?
+     |     |     |  |  |     |        |              |       uint8
+     |     |     |  |  |     |        |              +--rw wdm-tnl:transceiver-id?
+     |     |     |  |  |     |        |              |       uint32
+     |     |     |  |  |     |        |              +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |  |  |     |        |              |       uint16
+     |     |     |  |  |     |        |              +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |  |  |     |        |              |       l0-types:frequency-thz
+     |     |     |  |  |     |        |              +--rw wdm-tnl:tx-channel-power?
+     |     |     |  |  |     |        |                      l0-types:power-dbm
      |     |     |  |  |     |        +--:(wdm-tnl:destination)
-     |     |     |  |  |     |        |  +--rw wdm-tnl:destination-transceiver
+     |     |     |  |  |     |        |  +--rw wdm-tnl:destination-transponder
      |     |     |  |  |     |        |     +--rw wdm-tnl:transponder-id?
      |     |     |  |  |     |        |     |       uint32
-     |     |     |  |  |     |        |     +--rw wdm-tnl:transceivers*
-     |     |     |  |  |     |        |             [transceiver-id]
-     |     |     |  |  |     |        |        +--rw wdm-tnl:transceiver-id
+     |     |     |  |  |     |        |     +--rw wdm-tnl:digital-terminations
+     |     |     |  |  |     |        |     |  +--rw wdm-tnl:digital-termination*
+     |     |     |  |  |     |        |     |          [index]
+     |     |     |  |  |     |        |     |     +--rw wdm-tnl:index
+     |     |     |  |  |     |        |     |     |       uint8
+     |     |     |  |  |     |        |     |     +--rw wdm-tnl:termination-type?
+     |     |     |  |  |     |        |     |     |       identityref
+     |     |     |  |  |     |        |     |     +--rw wdm-tnl:mapping-type?
+     |     |     |  |  |     |        |     |             identityref
+     |     |     |  |  |     |        |     +--rw wdm-tnl:transceiver
+     |     |     |  |  |     |        |        +--rw wdm-tnl:transceiver-id?
      |     |     |  |  |     |        |        |       uint32
      |     |     |  |  |     |        |        +--rw wdm-tnl:otsi-carrier-id?
      |     |     |  |  |     |        |        |       uint16
-     |     |     |  |  |     |        |        +--rw wdm-tnl:operational-modes*
-     |     |     |  |  |     |        |        |       string
      |     |     |  |  |     |        |        +--rw wdm-tnl:otsi-carrier-frequency?
      |     |     |  |  |     |        |        |       l0-types:frequency-thz
-     |     |     |  |  |     |        |        +--rw wdm-tnl:tx-tune-constraints
-     |     |     |  |  |     |        |        |  +--rw wdm-tnl:min-central-frequency?
-     |     |     |  |  |     |        |        |  |       frequency-thz
-     |     |     |  |  |     |        |        |  +--rw wdm-tnl:max-central-frequency?
-     |     |     |  |  |     |        |        |  |       frequency-thz
-     |     |     |  |  |     |        |        |  +--rw wdm-tnl:transceiver-tunability?
-     |     |     |  |  |     |        |        |          frequency-ghz
-     |     |     |  |  |     |        |        +--rw wdm-tnl:line-coding-bitrate*
-     |     |     |  |  |     |        |        |       identityref
      |     |     |  |  |     |        |        +--rw wdm-tnl:tx-channel-power?
      |     |     |  |  |     |        |        |       l0-types:power-dbm
+     |     |     |  |  |     |        |        +--rw wdm-tnl:operational-mode?
+     |     |     |  |  |     |        |        |       string
+     |     |     |  |  |     |        |        +--rw wdm-tnl:line-coding-bitrate?
+     |     |     |  |  |     |        |        |       identityref
      |     |     |  |  |     |        |        +--rw wdm-tnl:preferred-rx-channel-power?
      |     |     |  |  |     |        |        |       l0-types:power-dbm
      |     |     |  |  |     |        |        +--rw wdm-tnl:gsnr-extra-margin?
-     |     |     |  |  |     |        |                snr
-     |     |     |  |  |     |        +--:(wdm-tnl:transit)
-     |     |     |  |  |     |           +--rw wdm-tnl:regen-transceivers
-     |     |     |  |  |     |              +--rw wdm-tnl:regen-group-id?
-     |     |     |  |  |     |              |       uint32
-     |     |     |  |  |     |              +--rw wdm-tnl:incoming-transceiver
-     |     |     |  |  |     |              |  +--rw wdm-tnl:transponder-id?
-     |     |     |  |  |     |              |  |       uint32
-     |     |     |  |  |     |              |  +--rw wdm-tnl:transceivers*
-     |     |     |  |  |     |              |          [transceiver-id]
-     |     |     |  |  |     |              |     +--rw wdm-tnl:transceiver-id
-     |     |     |  |  |     |              |     |       uint32
-     |     |     |  |  |     |              |     +--rw wdm-tnl:otsi-carrier-id?
-     |     |     |  |  |     |              |     |       uint16
-     |     |     |  |  |     |              |     +--rw wdm-tnl:operational-modes*
-     |     |     |  |  |     |              |     |       string
-     |     |     |  |  |     |              |     +--rw wdm-tnl:otsi-carrier-frequency?
-     |     |     |  |  |     |              |     |       l0-types:frequency-thz
-     |     |     |  |  |     |              |     +--rw wdm-tnl:tx-tune-constraints
-     |     |     |  |  |     |              |     |  +--rw wdm-tnl:min-central-frequency?
-     |     |     |  |  |     |              |     |  |       frequency-thz
-     |     |     |  |  |     |              |     |  +--rw wdm-tnl:max-central-frequency?
-     |     |     |  |  |     |              |     |  |       frequency-thz
-     |     |     |  |  |     |              |     |  +--rw wdm-tnl:transceiver-tunability?
-     |     |     |  |  |     |              |     |          frequency-ghz
-     |     |     |  |  |     |              |     +--rw wdm-tnl:line-coding-bitrate*
-     |     |     |  |  |     |              |     |       identityref
-     |     |     |  |  |     |              |     +--rw wdm-tnl:tx-channel-power?
-     |     |     |  |  |     |              |     |       l0-types:power-dbm
-     |     |     |  |  |     |              |     +--rw wdm-tnl:preferred-rx-channel-power?
-     |     |     |  |  |     |              |     |       l0-types:power-dbm
-     |     |     |  |  |     |              |     +--rw wdm-tnl:gsnr-extra-margin?
-     |     |     |  |  |     |              |             snr
-     |     |     |  |  |     |              +--rw wdm-tnl:outgoing-transceiver
-     |     |     |  |  |     |                 +--rw wdm-tnl:transponder-id?
+     |     |     |  |  |     |        |        |       snr
+     |     |     |  |  |     |        |        +--rw wdm-tnl:inverse-multiplexing!
+     |     |     |  |  |     |        |           +--rw wdm-tnl:inverse-mux-type?
+     |     |     |  |  |     |        |           |       identityref
+     |     |     |  |  |     |        |           +--rw wdm-tnl:otsi-lane-termination-type?
+     |     |     |  |  |     |        |           |       identityref
+     |     |     |  |  |     |        |           +--rw wdm-tnl:additional-transceivers
+     |     |     |  |  |     |        |              +--rw wdm-tnl:index?
+     |     |     |  |  |     |        |              |       uint8
+     |     |     |  |  |     |        |              +--rw wdm-tnl:transceiver-id?
+     |     |     |  |  |     |        |              |       uint32
+     |     |     |  |  |     |        |              +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |  |  |     |        |              |       uint16
+     |     |     |  |  |     |        |              +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |  |  |     |        |              |       l0-types:frequency-thz
+     |     |     |  |  |     |        |              +--rw wdm-tnl:tx-channel-power?
+     |     |     |  |  |     |        |                      l0-types:power-dbm
+     |     |     |  |  |     |        +--:(wdm-tnl:regenerator)
+     |     |     |  |  |     |        |  +--rw wdm-tnl:regenerator
+     |     |     |  |  |     |        |     +--rw wdm-tnl:regen-group-id?
+     |     |     |  |  |     |        |     |       uint32
+     |     |     |  |  |     |        |     +--rw wdm-tnl:regeneration-layer?
+     |     |     |  |  |     |        |     |       identityref
+     |     |     |  |  |     |        |     +--rw wdm-tnl:incoming-transponder
+     |     |     |  |  |     |        |     |  +--rw wdm-tnl:transponder-id?
+     |     |     |  |  |     |        |     |  |       uint32
+     |     |     |  |  |     |        |     |  +--rw wdm-tnl:digital-terminations
+     |     |     |  |  |     |        |     |  |  +--rw wdm-tnl:digital-termination*
+     |     |     |  |  |     |        |     |  |          [index]
+     |     |     |  |  |     |        |     |  |     +--rw wdm-tnl:index
+     |     |     |  |  |     |        |     |  |     |       uint8
+     |     |     |  |  |     |        |     |  |     +--rw wdm-tnl:termination-type?
+     |     |     |  |  |     |        |     |  |     |       identityref
+     |     |     |  |  |     |        |     |  |     +--rw wdm-tnl:mapping-type?
+     |     |     |  |  |     |        |     |  |             identityref
+     |     |     |  |  |     |        |     |  +--rw wdm-tnl:transceiver
+     |     |     |  |  |     |        |     |     +--rw wdm-tnl:transceiver-id?
+     |     |     |  |  |     |        |     |     |       uint32
+     |     |     |  |  |     |        |     |     +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |  |  |     |        |     |     |       uint16
+     |     |     |  |  |     |        |     |     +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |  |  |     |        |     |     |       l0-types:frequency-thz
+     |     |     |  |  |     |        |     |     +--rw wdm-tnl:tx-channel-power?
+     |     |     |  |  |     |        |     |     |       l0-types:power-dbm
+     |     |     |  |  |     |        |     |     +--rw wdm-tnl:operational-mode?
+     |     |     |  |  |     |        |     |     |       string
+     |     |     |  |  |     |        |     |     +--rw wdm-tnl:line-coding-bitrate?
+     |     |     |  |  |     |        |     |     |       identityref
+     |     |     |  |  |     |        |     |     +--rw wdm-tnl:preferred-rx-channel-power?
+     |     |     |  |  |     |        |     |     |       l0-types:power-dbm
+     |     |     |  |  |     |        |     |     +--rw wdm-tnl:gsnr-extra-margin?
+     |     |     |  |  |     |        |     |     |       snr
+     |     |     |  |  |     |        |     |     +--rw wdm-tnl:inverse-multiplexing!
+     |     |     |  |  |     |        |     |        +--rw wdm-tnl:inverse-mux-type?
+     |     |     |  |  |     |        |     |        |       identityref
+     |     |     |  |  |     |        |     |        +--rw wdm-tnl:otsi-lane-termination-type?
+     |     |     |  |  |     |        |     |        |       identityref
+     |     |     |  |  |     |        |     |        +--rw wdm-tnl:additional-transceivers
+     |     |     |  |  |     |        |     |           +--rw wdm-tnl:index?
+     |     |     |  |  |     |        |     |           |       uint8
+     |     |     |  |  |     |        |     |           +--rw wdm-tnl:transceiver-id?
+     |     |     |  |  |     |        |     |           |       uint32
+     |     |     |  |  |     |        |     |           +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |  |  |     |        |     |           |       uint16
+     |     |     |  |  |     |        |     |           +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |  |  |     |        |     |           |       l0-types:frequency-thz
+     |     |     |  |  |     |        |     |           +--rw wdm-tnl:tx-channel-power?
+     |     |     |  |  |     |        |     |                   l0-types:power-dbm
+     |     |     |  |  |     |        |     +--rw wdm-tnl:outgoing-transponder
+     |     |     |  |  |     |        |        +--rw wdm-tnl:transponder-id?
+     |     |     |  |  |     |        |        |       uint32
+     |     |     |  |  |     |        |        +--rw wdm-tnl:digital-terminations
+     |     |     |  |  |     |        |        |  +--rw wdm-tnl:digital-termination*
+     |     |     |  |  |     |        |        |          [index]
+     |     |     |  |  |     |        |        |     +--rw wdm-tnl:index
+     |     |     |  |  |     |        |        |     |       uint8
+     |     |     |  |  |     |        |        |     +--rw wdm-tnl:termination-type?
+     |     |     |  |  |     |        |        |     |       identityref
+     |     |     |  |  |     |        |        |     +--rw wdm-tnl:mapping-type?
+     |     |     |  |  |     |        |        |             identityref
+     |     |     |  |  |     |        |        +--rw wdm-tnl:transceiver
+     |     |     |  |  |     |        |           +--rw wdm-tnl:transceiver-id?
+     |     |     |  |  |     |        |           |       uint32
+     |     |     |  |  |     |        |           +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |  |  |     |        |           |       uint16
+     |     |     |  |  |     |        |           +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |  |  |     |        |           |       l0-types:frequency-thz
+     |     |     |  |  |     |        |           +--rw wdm-tnl:tx-channel-power?
+     |     |     |  |  |     |        |           |       l0-types:power-dbm
+     |     |     |  |  |     |        |           +--rw wdm-tnl:operational-mode?
+     |     |     |  |  |     |        |           |       string
+     |     |     |  |  |     |        |           +--rw wdm-tnl:line-coding-bitrate?
+     |     |     |  |  |     |        |           |       identityref
+     |     |     |  |  |     |        |           +--rw wdm-tnl:preferred-rx-channel-power?
+     |     |     |  |  |     |        |           |       l0-types:power-dbm
+     |     |     |  |  |     |        |           +--rw wdm-tnl:gsnr-extra-margin?
+     |     |     |  |  |     |        |           |       snr
+     |     |     |  |  |     |        |           +--rw wdm-tnl:inverse-multiplexing!
+     |     |     |  |  |     |        |              +--rw wdm-tnl:inverse-mux-type?
+     |     |     |  |  |     |        |              |       identityref
+     |     |     |  |  |     |        |              +--rw wdm-tnl:otsi-lane-termination-type?
+     |     |     |  |  |     |        |              |       identityref
+     |     |     |  |  |     |        |              +--rw wdm-tnl:additional-transceivers
+     |     |     |  |  |     |        |                 +--rw wdm-tnl:index?
+     |     |     |  |  |     |        |                 |       uint8
+     |     |     |  |  |     |        |                 +--rw wdm-tnl:transceiver-id?
+     |     |     |  |  |     |        |                 |       uint32
+     |     |     |  |  |     |        |                 +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |  |  |     |        |                 |       uint16
+     |     |     |  |  |     |        |                 +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |  |  |     |        |                 |       l0-types:frequency-thz
+     |     |     |  |  |     |        |                 +--rw wdm-tnl:tx-channel-power?
+     |     |     |  |  |     |        |                         l0-types:power-dbm
+     |     |     |  |  |     |        +--:(wdm-tnl:regenerators)
+     |     |     |  |  |     |           +--rw wdm-tnl:regenerators
+     |     |     |  |  |     |              +--rw wdm-tnl:common-incoming
+     |     |     |  |  |     |              |  +--rw wdm-tnl:operational-mode?
+     |     |     |  |  |     |              |  |       string
+     |     |     |  |  |     |              |  +--rw wdm-tnl:line-coding-bitrate?
+     |     |     |  |  |     |              |  |       identityref
+     |     |     |  |  |     |              |  +--rw wdm-tnl:preferred-rx-channel-power?
+     |     |     |  |  |     |              |  |       l0-types:power-dbm
+     |     |     |  |  |     |              |  +--rw wdm-tnl:gsnr-extra-margin?
+     |     |     |  |  |     |              |          snr
+     |     |     |  |  |     |              +--rw wdm-tnl:common-outcoming
+     |     |     |  |  |     |              |  +--rw wdm-tnl:operational-mode?
+     |     |     |  |  |     |              |  |       string
+     |     |     |  |  |     |              |  +--rw wdm-tnl:line-coding-bitrate?
+     |     |     |  |  |     |              |  |       identityref
+     |     |     |  |  |     |              |  +--rw wdm-tnl:preferred-rx-channel-power?
+     |     |     |  |  |     |              |  |       l0-types:power-dbm
+     |     |     |  |  |     |              |  +--rw wdm-tnl:gsnr-extra-margin?
+     |     |     |  |  |     |              |          snr
+     |     |     |  |  |     |              +--rw wdm-tnl:regenerator*
+     |     |     |  |  |     |                      [index]
+     |     |     |  |  |     |                 +--rw wdm-tnl:index
+     |     |     |  |  |     |                 |       uint8
+     |     |     |  |  |     |                 +--rw wdm-tnl:regen-group-id?
      |     |     |  |  |     |                 |       uint32
-     |     |     |  |  |     |                 +--rw wdm-tnl:transceivers*
-     |     |     |  |  |     |                         [transceiver-id]
-     |     |     |  |  |     |                    +--rw wdm-tnl:transceiver-id
+     |     |     |  |  |     |                 +--rw wdm-tnl:regeneration-layer?
+     |     |     |  |  |     |                 |       identityref
+     |     |     |  |  |     |                 +--rw wdm-tnl:incoming-transponder
+     |     |     |  |  |     |                 |  +--rw wdm-tnl:transponder-id?
+     |     |     |  |  |     |                 |  |       uint32
+     |     |     |  |  |     |                 |  +--rw wdm-tnl:transceiver
+     |     |     |  |  |     |                 |     +--rw wdm-tnl:transceiver-id?
+     |     |     |  |  |     |                 |     |       uint32
+     |     |     |  |  |     |                 |     +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |  |  |     |                 |     |       uint16
+     |     |     |  |  |     |                 |     +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |  |  |     |                 |     |       l0-types:frequency-thz
+     |     |     |  |  |     |                 |     +--rw wdm-tnl:tx-channel-power?
+     |     |     |  |  |     |                 |             l0-types:power-dbm
+     |     |     |  |  |     |                 +--rw wdm-tnl:outgoing-transponder
+     |     |     |  |  |     |                    +--rw wdm-tnl:transponder-id?
      |     |     |  |  |     |                    |       uint32
-     |     |     |  |  |     |                    +--rw wdm-tnl:otsi-carrier-id?
-     |     |     |  |  |     |                    |       uint16
-     |     |     |  |  |     |                    +--rw wdm-tnl:operational-modes*
-     |     |     |  |  |     |                    |       string
-     |     |     |  |  |     |                    +--rw wdm-tnl:otsi-carrier-frequency?
-     |     |     |  |  |     |                    |       l0-types:frequency-thz
-     |     |     |  |  |     |                    +--rw wdm-tnl:tx-tune-constraints
-     |     |     |  |  |     |                    |  +--rw wdm-tnl:min-central-frequency?
-     |     |     |  |  |     |                    |  |       frequency-thz
-     |     |     |  |  |     |                    |  +--rw wdm-tnl:max-central-frequency?
-     |     |     |  |  |     |                    |  |       frequency-thz
-     |     |     |  |  |     |                    |  +--rw wdm-tnl:transceiver-tunability?
-     |     |     |  |  |     |                    |          frequency-ghz
-     |     |     |  |  |     |                    +--rw wdm-tnl:line-coding-bitrate*
-     |     |     |  |  |     |                    |       identityref
-     |     |     |  |  |     |                    +--rw wdm-tnl:tx-channel-power?
-     |     |     |  |  |     |                    |       l0-types:power-dbm
-     |     |     |  |  |     |                    +--rw wdm-tnl:preferred-rx-channel-power?
-     |     |     |  |  |     |                    |       l0-types:power-dbm
-     |     |     |  |  |     |                    +--rw wdm-tnl:gsnr-extra-margin?
-     |     |     |  |  |     |                            snr
+     |     |     |  |  |     |                    +--rw wdm-tnl:transceiver
+     |     |     |  |  |     |                       +--rw wdm-tnl:transceiver-id?
+     |     |     |  |  |     |                       |       uint32
+     |     |     |  |  |     |                       +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |  |  |     |                       |       uint16
+     |     |     |  |  |     |                       +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |  |  |     |                       |       l0-types:frequency-thz
+     |     |     |  |  |     |                       +--rw wdm-tnl:tx-channel-power?
+     |     |     |  |  |     |                               l0-types:power-dbm
      |     |     |  |  |     +--:(numbered-link-hop)
      |     |     |  |  |     |  +--rw numbered-link-hop
      |     |     |  |  |     |     +--rw link-tp-id    te-tp-id
@@ -1780,9 +2268,253 @@ module: ietf-te
      |     |     |  |     +--rw (type)?
      |     |     |  |        +--:(numbered-node-hop)
      |     |     |  |        |  +--rw numbered-node-hop
-     |     |     |  |        |     +--rw node-id-uri?   nw:node-id
-     |     |     |  |        |     +--rw node-id?       te-node-id
-     |     |     |  |        |     +--rw hop-type?      te-hop-type
+     |     |     |  |        |     +--rw node-id-uri?
+     |     |     |  |        |     |       nw:node-id
+     |     |     |  |        |     +--rw node-id?
+     |     |     |  |        |     |       te-node-id
+     |     |     |  |        |     +--rw hop-type?
+     |     |     |  |        |     |       te-hop-type
+     |     |     |  |        |     +--rw (wdm-tnl:node-position)?
+     |     |     |  |        |        +--:(wdm-tnl:source)
+     |     |     |  |        |        |  +--rw wdm-tnl:source-transponder
+     |     |     |  |        |        |     +--rw wdm-tnl:transponder-id?
+     |     |     |  |        |        |     |       uint32
+     |     |     |  |        |        |     +--rw wdm-tnl:digital-terminations
+     |     |     |  |        |        |     |  +--rw wdm-tnl:digital-termination*
+     |     |     |  |        |        |     |          [index]
+     |     |     |  |        |        |     |     +--rw wdm-tnl:index
+     |     |     |  |        |        |     |     |       uint8
+     |     |     |  |        |        |     |     +--rw wdm-tnl:termination-type?
+     |     |     |  |        |        |     |     |       identityref
+     |     |     |  |        |        |     |     +--rw wdm-tnl:mapping-type?
+     |     |     |  |        |        |     |             identityref
+     |     |     |  |        |        |     +--rw wdm-tnl:transceiver
+     |     |     |  |        |        |        +--rw wdm-tnl:transceiver-id?
+     |     |     |  |        |        |        |       uint32
+     |     |     |  |        |        |        +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |  |        |        |        |       uint16
+     |     |     |  |        |        |        +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |  |        |        |        |       l0-types:frequency-thz
+     |     |     |  |        |        |        +--rw wdm-tnl:tx-channel-power?
+     |     |     |  |        |        |        |       l0-types:power-dbm
+     |     |     |  |        |        |        +--rw wdm-tnl:operational-mode?
+     |     |     |  |        |        |        |       string
+     |     |     |  |        |        |        +--rw wdm-tnl:line-coding-bitrate?
+     |     |     |  |        |        |        |       identityref
+     |     |     |  |        |        |        +--rw wdm-tnl:preferred-rx-channel-power?
+     |     |     |  |        |        |        |       l0-types:power-dbm
+     |     |     |  |        |        |        +--rw wdm-tnl:gsnr-extra-margin?
+     |     |     |  |        |        |        |       snr
+     |     |     |  |        |        |        +--rw wdm-tnl:inverse-multiplexing!
+     |     |     |  |        |        |           +--rw wdm-tnl:inverse-mux-type?
+     |     |     |  |        |        |           |       identityref
+     |     |     |  |        |        |           +--rw wdm-tnl:otsi-lane-termination-type?
+     |     |     |  |        |        |           |       identityref
+     |     |     |  |        |        |           +--rw wdm-tnl:additional-transceivers
+     |     |     |  |        |        |              +--rw wdm-tnl:index?
+     |     |     |  |        |        |              |       uint8
+     |     |     |  |        |        |              +--rw wdm-tnl:transceiver-id?
+     |     |     |  |        |        |              |       uint32
+     |     |     |  |        |        |              +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |  |        |        |              |       uint16
+     |     |     |  |        |        |              +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |  |        |        |              |       l0-types:frequency-thz
+     |     |     |  |        |        |              +--rw wdm-tnl:tx-channel-power?
+     |     |     |  |        |        |                      l0-types:power-dbm
+     |     |     |  |        |        +--:(wdm-tnl:destination)
+     |     |     |  |        |        |  +--rw wdm-tnl:destination-transponder
+     |     |     |  |        |        |     +--rw wdm-tnl:transponder-id?
+     |     |     |  |        |        |     |       uint32
+     |     |     |  |        |        |     +--rw wdm-tnl:digital-terminations
+     |     |     |  |        |        |     |  +--rw wdm-tnl:digital-termination*
+     |     |     |  |        |        |     |          [index]
+     |     |     |  |        |        |     |     +--rw wdm-tnl:index
+     |     |     |  |        |        |     |     |       uint8
+     |     |     |  |        |        |     |     +--rw wdm-tnl:termination-type?
+     |     |     |  |        |        |     |     |       identityref
+     |     |     |  |        |        |     |     +--rw wdm-tnl:mapping-type?
+     |     |     |  |        |        |     |             identityref
+     |     |     |  |        |        |     +--rw wdm-tnl:transceiver
+     |     |     |  |        |        |        +--rw wdm-tnl:transceiver-id?
+     |     |     |  |        |        |        |       uint32
+     |     |     |  |        |        |        +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |  |        |        |        |       uint16
+     |     |     |  |        |        |        +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |  |        |        |        |       l0-types:frequency-thz
+     |     |     |  |        |        |        +--rw wdm-tnl:tx-channel-power?
+     |     |     |  |        |        |        |       l0-types:power-dbm
+     |     |     |  |        |        |        +--rw wdm-tnl:operational-mode?
+     |     |     |  |        |        |        |       string
+     |     |     |  |        |        |        +--rw wdm-tnl:line-coding-bitrate?
+     |     |     |  |        |        |        |       identityref
+     |     |     |  |        |        |        +--rw wdm-tnl:preferred-rx-channel-power?
+     |     |     |  |        |        |        |       l0-types:power-dbm
+     |     |     |  |        |        |        +--rw wdm-tnl:gsnr-extra-margin?
+     |     |     |  |        |        |        |       snr
+     |     |     |  |        |        |        +--rw wdm-tnl:inverse-multiplexing!
+     |     |     |  |        |        |           +--rw wdm-tnl:inverse-mux-type?
+     |     |     |  |        |        |           |       identityref
+     |     |     |  |        |        |           +--rw wdm-tnl:otsi-lane-termination-type?
+     |     |     |  |        |        |           |       identityref
+     |     |     |  |        |        |           +--rw wdm-tnl:additional-transceivers
+     |     |     |  |        |        |              +--rw wdm-tnl:index?
+     |     |     |  |        |        |              |       uint8
+     |     |     |  |        |        |              +--rw wdm-tnl:transceiver-id?
+     |     |     |  |        |        |              |       uint32
+     |     |     |  |        |        |              +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |  |        |        |              |       uint16
+     |     |     |  |        |        |              +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |  |        |        |              |       l0-types:frequency-thz
+     |     |     |  |        |        |              +--rw wdm-tnl:tx-channel-power?
+     |     |     |  |        |        |                      l0-types:power-dbm
+     |     |     |  |        |        +--:(wdm-tnl:regenerator)
+     |     |     |  |        |        |  +--rw wdm-tnl:regenerator
+     |     |     |  |        |        |     +--rw wdm-tnl:regen-group-id?
+     |     |     |  |        |        |     |       uint32
+     |     |     |  |        |        |     +--rw wdm-tnl:regeneration-layer?
+     |     |     |  |        |        |     |       identityref
+     |     |     |  |        |        |     +--rw wdm-tnl:incoming-transponder
+     |     |     |  |        |        |     |  +--rw wdm-tnl:transponder-id?
+     |     |     |  |        |        |     |  |       uint32
+     |     |     |  |        |        |     |  +--rw wdm-tnl:digital-terminations
+     |     |     |  |        |        |     |  |  +--rw wdm-tnl:digital-termination*
+     |     |     |  |        |        |     |  |          [index]
+     |     |     |  |        |        |     |  |     +--rw wdm-tnl:index
+     |     |     |  |        |        |     |  |     |       uint8
+     |     |     |  |        |        |     |  |     +--rw wdm-tnl:termination-type?
+     |     |     |  |        |        |     |  |     |       identityref
+     |     |     |  |        |        |     |  |     +--rw wdm-tnl:mapping-type?
+     |     |     |  |        |        |     |  |             identityref
+     |     |     |  |        |        |     |  +--rw wdm-tnl:transceiver
+     |     |     |  |        |        |     |     +--rw wdm-tnl:transceiver-id?
+     |     |     |  |        |        |     |     |       uint32
+     |     |     |  |        |        |     |     +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |  |        |        |     |     |       uint16
+     |     |     |  |        |        |     |     +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |  |        |        |     |     |       l0-types:frequency-thz
+     |     |     |  |        |        |     |     +--rw wdm-tnl:tx-channel-power?
+     |     |     |  |        |        |     |     |       l0-types:power-dbm
+     |     |     |  |        |        |     |     +--rw wdm-tnl:operational-mode?
+     |     |     |  |        |        |     |     |       string
+     |     |     |  |        |        |     |     +--rw wdm-tnl:line-coding-bitrate?
+     |     |     |  |        |        |     |     |       identityref
+     |     |     |  |        |        |     |     +--rw wdm-tnl:preferred-rx-channel-power?
+     |     |     |  |        |        |     |     |       l0-types:power-dbm
+     |     |     |  |        |        |     |     +--rw wdm-tnl:gsnr-extra-margin?
+     |     |     |  |        |        |     |     |       snr
+     |     |     |  |        |        |     |     +--rw wdm-tnl:inverse-multiplexing!
+     |     |     |  |        |        |     |        +--rw wdm-tnl:inverse-mux-type?
+     |     |     |  |        |        |     |        |       identityref
+     |     |     |  |        |        |     |        +--rw wdm-tnl:otsi-lane-termination-type?
+     |     |     |  |        |        |     |        |       identityref
+     |     |     |  |        |        |     |        +--rw wdm-tnl:additional-transceivers
+     |     |     |  |        |        |     |           +--rw wdm-tnl:index?
+     |     |     |  |        |        |     |           |       uint8
+     |     |     |  |        |        |     |           +--rw wdm-tnl:transceiver-id?
+     |     |     |  |        |        |     |           |       uint32
+     |     |     |  |        |        |     |           +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |  |        |        |     |           |       uint16
+     |     |     |  |        |        |     |           +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |  |        |        |     |           |       l0-types:frequency-thz
+     |     |     |  |        |        |     |           +--rw wdm-tnl:tx-channel-power?
+     |     |     |  |        |        |     |                   l0-types:power-dbm
+     |     |     |  |        |        |     +--rw wdm-tnl:outgoing-transponder
+     |     |     |  |        |        |        +--rw wdm-tnl:transponder-id?
+     |     |     |  |        |        |        |       uint32
+     |     |     |  |        |        |        +--rw wdm-tnl:digital-terminations
+     |     |     |  |        |        |        |  +--rw wdm-tnl:digital-termination*
+     |     |     |  |        |        |        |          [index]
+     |     |     |  |        |        |        |     +--rw wdm-tnl:index
+     |     |     |  |        |        |        |     |       uint8
+     |     |     |  |        |        |        |     +--rw wdm-tnl:termination-type?
+     |     |     |  |        |        |        |     |       identityref
+     |     |     |  |        |        |        |     +--rw wdm-tnl:mapping-type?
+     |     |     |  |        |        |        |             identityref
+     |     |     |  |        |        |        +--rw wdm-tnl:transceiver
+     |     |     |  |        |        |           +--rw wdm-tnl:transceiver-id?
+     |     |     |  |        |        |           |       uint32
+     |     |     |  |        |        |           +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |  |        |        |           |       uint16
+     |     |     |  |        |        |           +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |  |        |        |           |       l0-types:frequency-thz
+     |     |     |  |        |        |           +--rw wdm-tnl:tx-channel-power?
+     |     |     |  |        |        |           |       l0-types:power-dbm
+     |     |     |  |        |        |           +--rw wdm-tnl:operational-mode?
+     |     |     |  |        |        |           |       string
+     |     |     |  |        |        |           +--rw wdm-tnl:line-coding-bitrate?
+     |     |     |  |        |        |           |       identityref
+     |     |     |  |        |        |           +--rw wdm-tnl:preferred-rx-channel-power?
+     |     |     |  |        |        |           |       l0-types:power-dbm
+     |     |     |  |        |        |           +--rw wdm-tnl:gsnr-extra-margin?
+     |     |     |  |        |        |           |       snr
+     |     |     |  |        |        |           +--rw wdm-tnl:inverse-multiplexing!
+     |     |     |  |        |        |              +--rw wdm-tnl:inverse-mux-type?
+     |     |     |  |        |        |              |       identityref
+     |     |     |  |        |        |              +--rw wdm-tnl:otsi-lane-termination-type?
+     |     |     |  |        |        |              |       identityref
+     |     |     |  |        |        |              +--rw wdm-tnl:additional-transceivers
+     |     |     |  |        |        |                 +--rw wdm-tnl:index?
+     |     |     |  |        |        |                 |       uint8
+     |     |     |  |        |        |                 +--rw wdm-tnl:transceiver-id?
+     |     |     |  |        |        |                 |       uint32
+     |     |     |  |        |        |                 +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |  |        |        |                 |       uint16
+     |     |     |  |        |        |                 +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |  |        |        |                 |       l0-types:frequency-thz
+     |     |     |  |        |        |                 +--rw wdm-tnl:tx-channel-power?
+     |     |     |  |        |        |                         l0-types:power-dbm
+     |     |     |  |        |        +--:(wdm-tnl:regenerators)
+     |     |     |  |        |           +--rw wdm-tnl:regenerators
+     |     |     |  |        |              +--rw wdm-tnl:common-incoming
+     |     |     |  |        |              |  +--rw wdm-tnl:operational-mode?
+     |     |     |  |        |              |  |       string
+     |     |     |  |        |              |  +--rw wdm-tnl:line-coding-bitrate?
+     |     |     |  |        |              |  |       identityref
+     |     |     |  |        |              |  +--rw wdm-tnl:preferred-rx-channel-power?
+     |     |     |  |        |              |  |       l0-types:power-dbm
+     |     |     |  |        |              |  +--rw wdm-tnl:gsnr-extra-margin?
+     |     |     |  |        |              |          snr
+     |     |     |  |        |              +--rw wdm-tnl:common-outcoming
+     |     |     |  |        |              |  +--rw wdm-tnl:operational-mode?
+     |     |     |  |        |              |  |       string
+     |     |     |  |        |              |  +--rw wdm-tnl:line-coding-bitrate?
+     |     |     |  |        |              |  |       identityref
+     |     |     |  |        |              |  +--rw wdm-tnl:preferred-rx-channel-power?
+     |     |     |  |        |              |  |       l0-types:power-dbm
+     |     |     |  |        |              |  +--rw wdm-tnl:gsnr-extra-margin?
+     |     |     |  |        |              |          snr
+     |     |     |  |        |              +--rw wdm-tnl:regenerator*
+     |     |     |  |        |                      [index]
+     |     |     |  |        |                 +--rw wdm-tnl:index
+     |     |     |  |        |                 |       uint8
+     |     |     |  |        |                 +--rw wdm-tnl:regen-group-id?
+     |     |     |  |        |                 |       uint32
+     |     |     |  |        |                 +--rw wdm-tnl:regeneration-layer?
+     |     |     |  |        |                 |       identityref
+     |     |     |  |        |                 +--rw wdm-tnl:incoming-transponder
+     |     |     |  |        |                 |  +--rw wdm-tnl:transponder-id?
+     |     |     |  |        |                 |  |       uint32
+     |     |     |  |        |                 |  +--rw wdm-tnl:transceiver
+     |     |     |  |        |                 |     +--rw wdm-tnl:transceiver-id?
+     |     |     |  |        |                 |     |       uint32
+     |     |     |  |        |                 |     +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |  |        |                 |     |       uint16
+     |     |     |  |        |                 |     +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |  |        |                 |     |       l0-types:frequency-thz
+     |     |     |  |        |                 |     +--rw wdm-tnl:tx-channel-power?
+     |     |     |  |        |                 |             l0-types:power-dbm
+     |     |     |  |        |                 +--rw wdm-tnl:outgoing-transponder
+     |     |     |  |        |                    +--rw wdm-tnl:transponder-id?
+     |     |     |  |        |                    |       uint32
+     |     |     |  |        |                    +--rw wdm-tnl:transceiver
+     |     |     |  |        |                       +--rw wdm-tnl:transceiver-id?
+     |     |     |  |        |                       |       uint32
+     |     |     |  |        |                       +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |  |        |                       |       uint16
+     |     |     |  |        |                       +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |  |        |                       |       l0-types:frequency-thz
+     |     |     |  |        |                       +--rw wdm-tnl:tx-channel-power?
+     |     |     |  |        |                               l0-types:power-dbm
      |     |     |  |        +--:(numbered-link-hop)
      |     |     |  |        |  +--rw numbered-link-hop
      |     |     |  |        |     +--rw link-tp-id    te-tp-id
@@ -2041,7 +2773,7 @@ module: ietf-te
      |     |     |  |        |        |        |  +--ro wdm-tnl:source-transceiver
      |     |     |  |        |        |        |     +--ro wdm-tnl:transponder-id?
      |     |     |  |        |        |        |     |       uint32
-     |     |     |  |        |        |        |     +--ro wdm-tnl:transceivers*
+     |     |     |  |        |        |        |     +--ro wdm-tnl:transceiver*
      |     |     |  |        |        |        |             [transceiver-id]
      |     |     |  |        |        |        |        +--ro wdm-tnl:otsi-carrier-id?
      |     |     |  |        |        |        |        |       uint16
@@ -2063,7 +2795,7 @@ module: ietf-te
      |     |     |  |        |        |        |  +--ro wdm-tnl:destination-transceiver
      |     |     |  |        |        |        |     +--ro wdm-tnl:transponder-id?
      |     |     |  |        |        |        |     |       uint32
-     |     |     |  |        |        |        |     +--ro wdm-tnl:transceivers*
+     |     |     |  |        |        |        |     +--ro wdm-tnl:transceiver*
      |     |     |  |        |        |        |             [transceiver-id]
      |     |     |  |        |        |        |        +--ro wdm-tnl:otsi-carrier-id?
      |     |     |  |        |        |        |        |       uint16
@@ -2088,7 +2820,7 @@ module: ietf-te
      |     |     |  |        |        |              +--ro wdm-tnl:incoming-transceiver
      |     |     |  |        |        |              |  +--ro wdm-tnl:transponder-id?
      |     |     |  |        |        |              |  |       uint32
-     |     |     |  |        |        |              |  +--ro wdm-tnl:transceivers*
+     |     |     |  |        |        |              |  +--ro wdm-tnl:transceiver*
      |     |     |  |        |        |              |          [transceiver-id]
      |     |     |  |        |        |              |     +--ro wdm-tnl:otsi-carrier-id?
      |     |     |  |        |        |              |     |       uint16
@@ -2109,7 +2841,7 @@ module: ietf-te
      |     |     |  |        |        |              +--ro wdm-tnl:outgoing-transceiver
      |     |     |  |        |        |                 +--ro wdm-tnl:transponder-id?
      |     |     |  |        |        |                 |       uint32
-     |     |     |  |        |        |                 +--ro wdm-tnl:transceivers*
+     |     |     |  |        |        |                 +--ro wdm-tnl:transceiver*
      |     |     |  |        |        |                         [transceiver-id]
      |     |     |  |        |        |                    +--ro wdm-tnl:otsi-carrier-id?
      |     |     |  |        |        |                    |       uint16
@@ -2506,123 +3238,245 @@ module: ietf-te
      |     |     |  |     |     |       te-hop-type
      |     |     |  |     |     +--rw (wdm-tnl:node-position)?
      |     |     |  |     |        +--:(wdm-tnl:source)
-     |     |     |  |     |        |  +--rw wdm-tnl:source-transceiver
+     |     |     |  |     |        |  +--rw wdm-tnl:source-transponder
      |     |     |  |     |        |     +--rw wdm-tnl:transponder-id?
      |     |     |  |     |        |     |       uint32
-     |     |     |  |     |        |     +--rw wdm-tnl:transceivers*
-     |     |     |  |     |        |             [transceiver-id]
-     |     |     |  |     |        |        +--rw wdm-tnl:transceiver-id
+     |     |     |  |     |        |     +--rw wdm-tnl:digital-terminations
+     |     |     |  |     |        |     |  +--rw wdm-tnl:digital-termination*
+     |     |     |  |     |        |     |          [index]
+     |     |     |  |     |        |     |     +--rw wdm-tnl:index
+     |     |     |  |     |        |     |     |       uint8
+     |     |     |  |     |        |     |     +--rw wdm-tnl:termination-type?
+     |     |     |  |     |        |     |     |       identityref
+     |     |     |  |     |        |     |     +--rw wdm-tnl:mapping-type?
+     |     |     |  |     |        |     |             identityref
+     |     |     |  |     |        |     +--rw wdm-tnl:transceiver
+     |     |     |  |     |        |        +--rw wdm-tnl:transceiver-id?
      |     |     |  |     |        |        |       uint32
      |     |     |  |     |        |        +--rw wdm-tnl:otsi-carrier-id?
      |     |     |  |     |        |        |       uint16
-     |     |     |  |     |        |        +--rw wdm-tnl:operational-modes*
-     |     |     |  |     |        |        |       string
      |     |     |  |     |        |        +--rw wdm-tnl:otsi-carrier-frequency?
      |     |     |  |     |        |        |       l0-types:frequency-thz
-     |     |     |  |     |        |        +--rw wdm-tnl:tx-tune-constraints
-     |     |     |  |     |        |        |  +--rw wdm-tnl:min-central-frequency?
-     |     |     |  |     |        |        |  |       frequency-thz
-     |     |     |  |     |        |        |  +--rw wdm-tnl:max-central-frequency?
-     |     |     |  |     |        |        |  |       frequency-thz
-     |     |     |  |     |        |        |  +--rw wdm-tnl:transceiver-tunability?
-     |     |     |  |     |        |        |          frequency-ghz
-     |     |     |  |     |        |        +--rw wdm-tnl:line-coding-bitrate*
-     |     |     |  |     |        |        |       identityref
      |     |     |  |     |        |        +--rw wdm-tnl:tx-channel-power?
      |     |     |  |     |        |        |       l0-types:power-dbm
+     |     |     |  |     |        |        +--rw wdm-tnl:operational-mode?
+     |     |     |  |     |        |        |       string
+     |     |     |  |     |        |        +--rw wdm-tnl:line-coding-bitrate?
+     |     |     |  |     |        |        |       identityref
      |     |     |  |     |        |        +--rw wdm-tnl:preferred-rx-channel-power?
      |     |     |  |     |        |        |       l0-types:power-dbm
      |     |     |  |     |        |        +--rw wdm-tnl:gsnr-extra-margin?
-     |     |     |  |     |        |                snr
+     |     |     |  |     |        |        |       snr
+     |     |     |  |     |        |        +--rw wdm-tnl:inverse-multiplexing!
+     |     |     |  |     |        |           +--rw wdm-tnl:inverse-mux-type?
+     |     |     |  |     |        |           |       identityref
+     |     |     |  |     |        |           +--rw wdm-tnl:otsi-lane-termination-type?
+     |     |     |  |     |        |           |       identityref
+     |     |     |  |     |        |           +--rw wdm-tnl:additional-transceivers
+     |     |     |  |     |        |              +--rw wdm-tnl:index?
+     |     |     |  |     |        |              |       uint8
+     |     |     |  |     |        |              +--rw wdm-tnl:transceiver-id?
+     |     |     |  |     |        |              |       uint32
+     |     |     |  |     |        |              +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |  |     |        |              |       uint16
+     |     |     |  |     |        |              +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |  |     |        |              |       l0-types:frequency-thz
+     |     |     |  |     |        |              +--rw wdm-tnl:tx-channel-power?
+     |     |     |  |     |        |                      l0-types:power-dbm
      |     |     |  |     |        +--:(wdm-tnl:destination)
-     |     |     |  |     |        |  +--rw wdm-tnl:destination-transceiver
+     |     |     |  |     |        |  +--rw wdm-tnl:destination-transponder
      |     |     |  |     |        |     +--rw wdm-tnl:transponder-id?
      |     |     |  |     |        |     |       uint32
-     |     |     |  |     |        |     +--rw wdm-tnl:transceivers*
-     |     |     |  |     |        |             [transceiver-id]
-     |     |     |  |     |        |        +--rw wdm-tnl:transceiver-id
+     |     |     |  |     |        |     +--rw wdm-tnl:digital-terminations
+     |     |     |  |     |        |     |  +--rw wdm-tnl:digital-termination*
+     |     |     |  |     |        |     |          [index]
+     |     |     |  |     |        |     |     +--rw wdm-tnl:index
+     |     |     |  |     |        |     |     |       uint8
+     |     |     |  |     |        |     |     +--rw wdm-tnl:termination-type?
+     |     |     |  |     |        |     |     |       identityref
+     |     |     |  |     |        |     |     +--rw wdm-tnl:mapping-type?
+     |     |     |  |     |        |     |             identityref
+     |     |     |  |     |        |     +--rw wdm-tnl:transceiver
+     |     |     |  |     |        |        +--rw wdm-tnl:transceiver-id?
      |     |     |  |     |        |        |       uint32
      |     |     |  |     |        |        +--rw wdm-tnl:otsi-carrier-id?
      |     |     |  |     |        |        |       uint16
-     |     |     |  |     |        |        +--rw wdm-tnl:operational-modes*
-     |     |     |  |     |        |        |       string
      |     |     |  |     |        |        +--rw wdm-tnl:otsi-carrier-frequency?
      |     |     |  |     |        |        |       l0-types:frequency-thz
-     |     |     |  |     |        |        +--rw wdm-tnl:tx-tune-constraints
-     |     |     |  |     |        |        |  +--rw wdm-tnl:min-central-frequency?
-     |     |     |  |     |        |        |  |       frequency-thz
-     |     |     |  |     |        |        |  +--rw wdm-tnl:max-central-frequency?
-     |     |     |  |     |        |        |  |       frequency-thz
-     |     |     |  |     |        |        |  +--rw wdm-tnl:transceiver-tunability?
-     |     |     |  |     |        |        |          frequency-ghz
-     |     |     |  |     |        |        +--rw wdm-tnl:line-coding-bitrate*
-     |     |     |  |     |        |        |       identityref
      |     |     |  |     |        |        +--rw wdm-tnl:tx-channel-power?
      |     |     |  |     |        |        |       l0-types:power-dbm
+     |     |     |  |     |        |        +--rw wdm-tnl:operational-mode?
+     |     |     |  |     |        |        |       string
+     |     |     |  |     |        |        +--rw wdm-tnl:line-coding-bitrate?
+     |     |     |  |     |        |        |       identityref
      |     |     |  |     |        |        +--rw wdm-tnl:preferred-rx-channel-power?
      |     |     |  |     |        |        |       l0-types:power-dbm
      |     |     |  |     |        |        +--rw wdm-tnl:gsnr-extra-margin?
-     |     |     |  |     |        |                snr
-     |     |     |  |     |        +--:(wdm-tnl:transit)
-     |     |     |  |     |           +--rw wdm-tnl:regen-transceivers
-     |     |     |  |     |              +--rw wdm-tnl:regen-group-id?
-     |     |     |  |     |              |       uint32
-     |     |     |  |     |              +--rw wdm-tnl:incoming-transceiver
-     |     |     |  |     |              |  +--rw wdm-tnl:transponder-id?
-     |     |     |  |     |              |  |       uint32
-     |     |     |  |     |              |  +--rw wdm-tnl:transceivers*
-     |     |     |  |     |              |          [transceiver-id]
-     |     |     |  |     |              |     +--rw wdm-tnl:transceiver-id
-     |     |     |  |     |              |     |       uint32
-     |     |     |  |     |              |     +--rw wdm-tnl:otsi-carrier-id?
-     |     |     |  |     |              |     |       uint16
-     |     |     |  |     |              |     +--rw wdm-tnl:operational-modes*
-     |     |     |  |     |              |     |       string
-     |     |     |  |     |              |     +--rw wdm-tnl:otsi-carrier-frequency?
-     |     |     |  |     |              |     |       l0-types:frequency-thz
-     |     |     |  |     |              |     +--rw wdm-tnl:tx-tune-constraints
-     |     |     |  |     |              |     |  +--rw wdm-tnl:min-central-frequency?
-     |     |     |  |     |              |     |  |       frequency-thz
-     |     |     |  |     |              |     |  +--rw wdm-tnl:max-central-frequency?
-     |     |     |  |     |              |     |  |       frequency-thz
-     |     |     |  |     |              |     |  +--rw wdm-tnl:transceiver-tunability?
-     |     |     |  |     |              |     |          frequency-ghz
-     |     |     |  |     |              |     +--rw wdm-tnl:line-coding-bitrate*
-     |     |     |  |     |              |     |       identityref
-     |     |     |  |     |              |     +--rw wdm-tnl:tx-channel-power?
-     |     |     |  |     |              |     |       l0-types:power-dbm
-     |     |     |  |     |              |     +--rw wdm-tnl:preferred-rx-channel-power?
-     |     |     |  |     |              |     |       l0-types:power-dbm
-     |     |     |  |     |              |     +--rw wdm-tnl:gsnr-extra-margin?
-     |     |     |  |     |              |             snr
-     |     |     |  |     |              +--rw wdm-tnl:outgoing-transceiver
-     |     |     |  |     |                 +--rw wdm-tnl:transponder-id?
+     |     |     |  |     |        |        |       snr
+     |     |     |  |     |        |        +--rw wdm-tnl:inverse-multiplexing!
+     |     |     |  |     |        |           +--rw wdm-tnl:inverse-mux-type?
+     |     |     |  |     |        |           |       identityref
+     |     |     |  |     |        |           +--rw wdm-tnl:otsi-lane-termination-type?
+     |     |     |  |     |        |           |       identityref
+     |     |     |  |     |        |           +--rw wdm-tnl:additional-transceivers
+     |     |     |  |     |        |              +--rw wdm-tnl:index?
+     |     |     |  |     |        |              |       uint8
+     |     |     |  |     |        |              +--rw wdm-tnl:transceiver-id?
+     |     |     |  |     |        |              |       uint32
+     |     |     |  |     |        |              +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |  |     |        |              |       uint16
+     |     |     |  |     |        |              +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |  |     |        |              |       l0-types:frequency-thz
+     |     |     |  |     |        |              +--rw wdm-tnl:tx-channel-power?
+     |     |     |  |     |        |                      l0-types:power-dbm
+     |     |     |  |     |        +--:(wdm-tnl:regenerator)
+     |     |     |  |     |        |  +--rw wdm-tnl:regenerator
+     |     |     |  |     |        |     +--rw wdm-tnl:regen-group-id?
+     |     |     |  |     |        |     |       uint32
+     |     |     |  |     |        |     +--rw wdm-tnl:regeneration-layer?
+     |     |     |  |     |        |     |       identityref
+     |     |     |  |     |        |     +--rw wdm-tnl:incoming-transponder
+     |     |     |  |     |        |     |  +--rw wdm-tnl:transponder-id?
+     |     |     |  |     |        |     |  |       uint32
+     |     |     |  |     |        |     |  +--rw wdm-tnl:digital-terminations
+     |     |     |  |     |        |     |  |  +--rw wdm-tnl:digital-termination*
+     |     |     |  |     |        |     |  |          [index]
+     |     |     |  |     |        |     |  |     +--rw wdm-tnl:index
+     |     |     |  |     |        |     |  |     |       uint8
+     |     |     |  |     |        |     |  |     +--rw wdm-tnl:termination-type?
+     |     |     |  |     |        |     |  |     |       identityref
+     |     |     |  |     |        |     |  |     +--rw wdm-tnl:mapping-type?
+     |     |     |  |     |        |     |  |             identityref
+     |     |     |  |     |        |     |  +--rw wdm-tnl:transceiver
+     |     |     |  |     |        |     |     +--rw wdm-tnl:transceiver-id?
+     |     |     |  |     |        |     |     |       uint32
+     |     |     |  |     |        |     |     +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |  |     |        |     |     |       uint16
+     |     |     |  |     |        |     |     +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |  |     |        |     |     |       l0-types:frequency-thz
+     |     |     |  |     |        |     |     +--rw wdm-tnl:tx-channel-power?
+     |     |     |  |     |        |     |     |       l0-types:power-dbm
+     |     |     |  |     |        |     |     +--rw wdm-tnl:operational-mode?
+     |     |     |  |     |        |     |     |       string
+     |     |     |  |     |        |     |     +--rw wdm-tnl:line-coding-bitrate?
+     |     |     |  |     |        |     |     |       identityref
+     |     |     |  |     |        |     |     +--rw wdm-tnl:preferred-rx-channel-power?
+     |     |     |  |     |        |     |     |       l0-types:power-dbm
+     |     |     |  |     |        |     |     +--rw wdm-tnl:gsnr-extra-margin?
+     |     |     |  |     |        |     |     |       snr
+     |     |     |  |     |        |     |     +--rw wdm-tnl:inverse-multiplexing!
+     |     |     |  |     |        |     |        +--rw wdm-tnl:inverse-mux-type?
+     |     |     |  |     |        |     |        |       identityref
+     |     |     |  |     |        |     |        +--rw wdm-tnl:otsi-lane-termination-type?
+     |     |     |  |     |        |     |        |       identityref
+     |     |     |  |     |        |     |        +--rw wdm-tnl:additional-transceivers
+     |     |     |  |     |        |     |           +--rw wdm-tnl:index?
+     |     |     |  |     |        |     |           |       uint8
+     |     |     |  |     |        |     |           +--rw wdm-tnl:transceiver-id?
+     |     |     |  |     |        |     |           |       uint32
+     |     |     |  |     |        |     |           +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |  |     |        |     |           |       uint16
+     |     |     |  |     |        |     |           +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |  |     |        |     |           |       l0-types:frequency-thz
+     |     |     |  |     |        |     |           +--rw wdm-tnl:tx-channel-power?
+     |     |     |  |     |        |     |                   l0-types:power-dbm
+     |     |     |  |     |        |     +--rw wdm-tnl:outgoing-transponder
+     |     |     |  |     |        |        +--rw wdm-tnl:transponder-id?
+     |     |     |  |     |        |        |       uint32
+     |     |     |  |     |        |        +--rw wdm-tnl:digital-terminations
+     |     |     |  |     |        |        |  +--rw wdm-tnl:digital-termination*
+     |     |     |  |     |        |        |          [index]
+     |     |     |  |     |        |        |     +--rw wdm-tnl:index
+     |     |     |  |     |        |        |     |       uint8
+     |     |     |  |     |        |        |     +--rw wdm-tnl:termination-type?
+     |     |     |  |     |        |        |     |       identityref
+     |     |     |  |     |        |        |     +--rw wdm-tnl:mapping-type?
+     |     |     |  |     |        |        |             identityref
+     |     |     |  |     |        |        +--rw wdm-tnl:transceiver
+     |     |     |  |     |        |           +--rw wdm-tnl:transceiver-id?
+     |     |     |  |     |        |           |       uint32
+     |     |     |  |     |        |           +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |  |     |        |           |       uint16
+     |     |     |  |     |        |           +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |  |     |        |           |       l0-types:frequency-thz
+     |     |     |  |     |        |           +--rw wdm-tnl:tx-channel-power?
+     |     |     |  |     |        |           |       l0-types:power-dbm
+     |     |     |  |     |        |           +--rw wdm-tnl:operational-mode?
+     |     |     |  |     |        |           |       string
+     |     |     |  |     |        |           +--rw wdm-tnl:line-coding-bitrate?
+     |     |     |  |     |        |           |       identityref
+     |     |     |  |     |        |           +--rw wdm-tnl:preferred-rx-channel-power?
+     |     |     |  |     |        |           |       l0-types:power-dbm
+     |     |     |  |     |        |           +--rw wdm-tnl:gsnr-extra-margin?
+     |     |     |  |     |        |           |       snr
+     |     |     |  |     |        |           +--rw wdm-tnl:inverse-multiplexing!
+     |     |     |  |     |        |              +--rw wdm-tnl:inverse-mux-type?
+     |     |     |  |     |        |              |       identityref
+     |     |     |  |     |        |              +--rw wdm-tnl:otsi-lane-termination-type?
+     |     |     |  |     |        |              |       identityref
+     |     |     |  |     |        |              +--rw wdm-tnl:additional-transceivers
+     |     |     |  |     |        |                 +--rw wdm-tnl:index?
+     |     |     |  |     |        |                 |       uint8
+     |     |     |  |     |        |                 +--rw wdm-tnl:transceiver-id?
+     |     |     |  |     |        |                 |       uint32
+     |     |     |  |     |        |                 +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |  |     |        |                 |       uint16
+     |     |     |  |     |        |                 +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |  |     |        |                 |       l0-types:frequency-thz
+     |     |     |  |     |        |                 +--rw wdm-tnl:tx-channel-power?
+     |     |     |  |     |        |                         l0-types:power-dbm
+     |     |     |  |     |        +--:(wdm-tnl:regenerators)
+     |     |     |  |     |           +--rw wdm-tnl:regenerators
+     |     |     |  |     |              +--rw wdm-tnl:common-incoming
+     |     |     |  |     |              |  +--rw wdm-tnl:operational-mode?
+     |     |     |  |     |              |  |       string
+     |     |     |  |     |              |  +--rw wdm-tnl:line-coding-bitrate?
+     |     |     |  |     |              |  |       identityref
+     |     |     |  |     |              |  +--rw wdm-tnl:preferred-rx-channel-power?
+     |     |     |  |     |              |  |       l0-types:power-dbm
+     |     |     |  |     |              |  +--rw wdm-tnl:gsnr-extra-margin?
+     |     |     |  |     |              |          snr
+     |     |     |  |     |              +--rw wdm-tnl:common-outcoming
+     |     |     |  |     |              |  +--rw wdm-tnl:operational-mode?
+     |     |     |  |     |              |  |       string
+     |     |     |  |     |              |  +--rw wdm-tnl:line-coding-bitrate?
+     |     |     |  |     |              |  |       identityref
+     |     |     |  |     |              |  +--rw wdm-tnl:preferred-rx-channel-power?
+     |     |     |  |     |              |  |       l0-types:power-dbm
+     |     |     |  |     |              |  +--rw wdm-tnl:gsnr-extra-margin?
+     |     |     |  |     |              |          snr
+     |     |     |  |     |              +--rw wdm-tnl:regenerator*
+     |     |     |  |     |                      [index]
+     |     |     |  |     |                 +--rw wdm-tnl:index
+     |     |     |  |     |                 |       uint8
+     |     |     |  |     |                 +--rw wdm-tnl:regen-group-id?
      |     |     |  |     |                 |       uint32
-     |     |     |  |     |                 +--rw wdm-tnl:transceivers*
-     |     |     |  |     |                         [transceiver-id]
-     |     |     |  |     |                    +--rw wdm-tnl:transceiver-id
+     |     |     |  |     |                 +--rw wdm-tnl:regeneration-layer?
+     |     |     |  |     |                 |       identityref
+     |     |     |  |     |                 +--rw wdm-tnl:incoming-transponder
+     |     |     |  |     |                 |  +--rw wdm-tnl:transponder-id?
+     |     |     |  |     |                 |  |       uint32
+     |     |     |  |     |                 |  +--rw wdm-tnl:transceiver
+     |     |     |  |     |                 |     +--rw wdm-tnl:transceiver-id?
+     |     |     |  |     |                 |     |       uint32
+     |     |     |  |     |                 |     +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |  |     |                 |     |       uint16
+     |     |     |  |     |                 |     +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |  |     |                 |     |       l0-types:frequency-thz
+     |     |     |  |     |                 |     +--rw wdm-tnl:tx-channel-power?
+     |     |     |  |     |                 |             l0-types:power-dbm
+     |     |     |  |     |                 +--rw wdm-tnl:outgoing-transponder
+     |     |     |  |     |                    +--rw wdm-tnl:transponder-id?
      |     |     |  |     |                    |       uint32
-     |     |     |  |     |                    +--rw wdm-tnl:otsi-carrier-id?
-     |     |     |  |     |                    |       uint16
-     |     |     |  |     |                    +--rw wdm-tnl:operational-modes*
-     |     |     |  |     |                    |       string
-     |     |     |  |     |                    +--rw wdm-tnl:otsi-carrier-frequency?
-     |     |     |  |     |                    |       l0-types:frequency-thz
-     |     |     |  |     |                    +--rw wdm-tnl:tx-tune-constraints
-     |     |     |  |     |                    |  +--rw wdm-tnl:min-central-frequency?
-     |     |     |  |     |                    |  |       frequency-thz
-     |     |     |  |     |                    |  +--rw wdm-tnl:max-central-frequency?
-     |     |     |  |     |                    |  |       frequency-thz
-     |     |     |  |     |                    |  +--rw wdm-tnl:transceiver-tunability?
-     |     |     |  |     |                    |          frequency-ghz
-     |     |     |  |     |                    +--rw wdm-tnl:line-coding-bitrate*
-     |     |     |  |     |                    |       identityref
-     |     |     |  |     |                    +--rw wdm-tnl:tx-channel-power?
-     |     |     |  |     |                    |       l0-types:power-dbm
-     |     |     |  |     |                    +--rw wdm-tnl:preferred-rx-channel-power?
-     |     |     |  |     |                    |       l0-types:power-dbm
-     |     |     |  |     |                    +--rw wdm-tnl:gsnr-extra-margin?
-     |     |     |  |     |                            snr
+     |     |     |  |     |                    +--rw wdm-tnl:transceiver
+     |     |     |  |     |                       +--rw wdm-tnl:transceiver-id?
+     |     |     |  |     |                       |       uint32
+     |     |     |  |     |                       +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |  |     |                       |       uint16
+     |     |     |  |     |                       +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |  |     |                       |       l0-types:frequency-thz
+     |     |     |  |     |                       +--rw wdm-tnl:tx-channel-power?
+     |     |     |  |     |                               l0-types:power-dbm
      |     |     |  |     +--:(numbered-link-hop)
      |     |     |  |     |  +--rw numbered-link-hop
      |     |     |  |     |     +--rw link-tp-id    te-tp-id
@@ -2691,9 +3545,253 @@ module: ietf-te
      |     |     |     +--rw (type)?
      |     |     |        +--:(numbered-node-hop)
      |     |     |        |  +--rw numbered-node-hop
-     |     |     |        |     +--rw node-id-uri?   nw:node-id
-     |     |     |        |     +--rw node-id?       te-node-id
-     |     |     |        |     +--rw hop-type?      te-hop-type
+     |     |     |        |     +--rw node-id-uri?
+     |     |     |        |     |       nw:node-id
+     |     |     |        |     +--rw node-id?
+     |     |     |        |     |       te-node-id
+     |     |     |        |     +--rw hop-type?
+     |     |     |        |     |       te-hop-type
+     |     |     |        |     +--rw (wdm-tnl:node-position)?
+     |     |     |        |        +--:(wdm-tnl:source)
+     |     |     |        |        |  +--rw wdm-tnl:source-transponder
+     |     |     |        |        |     +--rw wdm-tnl:transponder-id?
+     |     |     |        |        |     |       uint32
+     |     |     |        |        |     +--rw wdm-tnl:digital-terminations
+     |     |     |        |        |     |  +--rw wdm-tnl:digital-termination*
+     |     |     |        |        |     |          [index]
+     |     |     |        |        |     |     +--rw wdm-tnl:index
+     |     |     |        |        |     |     |       uint8
+     |     |     |        |        |     |     +--rw wdm-tnl:termination-type?
+     |     |     |        |        |     |     |       identityref
+     |     |     |        |        |     |     +--rw wdm-tnl:mapping-type?
+     |     |     |        |        |     |             identityref
+     |     |     |        |        |     +--rw wdm-tnl:transceiver
+     |     |     |        |        |        +--rw wdm-tnl:transceiver-id?
+     |     |     |        |        |        |       uint32
+     |     |     |        |        |        +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |        |        |        |       uint16
+     |     |     |        |        |        +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |        |        |        |       l0-types:frequency-thz
+     |     |     |        |        |        +--rw wdm-tnl:tx-channel-power?
+     |     |     |        |        |        |       l0-types:power-dbm
+     |     |     |        |        |        +--rw wdm-tnl:operational-mode?
+     |     |     |        |        |        |       string
+     |     |     |        |        |        +--rw wdm-tnl:line-coding-bitrate?
+     |     |     |        |        |        |       identityref
+     |     |     |        |        |        +--rw wdm-tnl:preferred-rx-channel-power?
+     |     |     |        |        |        |       l0-types:power-dbm
+     |     |     |        |        |        +--rw wdm-tnl:gsnr-extra-margin?
+     |     |     |        |        |        |       snr
+     |     |     |        |        |        +--rw wdm-tnl:inverse-multiplexing!
+     |     |     |        |        |           +--rw wdm-tnl:inverse-mux-type?
+     |     |     |        |        |           |       identityref
+     |     |     |        |        |           +--rw wdm-tnl:otsi-lane-termination-type?
+     |     |     |        |        |           |       identityref
+     |     |     |        |        |           +--rw wdm-tnl:additional-transceivers
+     |     |     |        |        |              +--rw wdm-tnl:index?
+     |     |     |        |        |              |       uint8
+     |     |     |        |        |              +--rw wdm-tnl:transceiver-id?
+     |     |     |        |        |              |       uint32
+     |     |     |        |        |              +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |        |        |              |       uint16
+     |     |     |        |        |              +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |        |        |              |       l0-types:frequency-thz
+     |     |     |        |        |              +--rw wdm-tnl:tx-channel-power?
+     |     |     |        |        |                      l0-types:power-dbm
+     |     |     |        |        +--:(wdm-tnl:destination)
+     |     |     |        |        |  +--rw wdm-tnl:destination-transponder
+     |     |     |        |        |     +--rw wdm-tnl:transponder-id?
+     |     |     |        |        |     |       uint32
+     |     |     |        |        |     +--rw wdm-tnl:digital-terminations
+     |     |     |        |        |     |  +--rw wdm-tnl:digital-termination*
+     |     |     |        |        |     |          [index]
+     |     |     |        |        |     |     +--rw wdm-tnl:index
+     |     |     |        |        |     |     |       uint8
+     |     |     |        |        |     |     +--rw wdm-tnl:termination-type?
+     |     |     |        |        |     |     |       identityref
+     |     |     |        |        |     |     +--rw wdm-tnl:mapping-type?
+     |     |     |        |        |     |             identityref
+     |     |     |        |        |     +--rw wdm-tnl:transceiver
+     |     |     |        |        |        +--rw wdm-tnl:transceiver-id?
+     |     |     |        |        |        |       uint32
+     |     |     |        |        |        +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |        |        |        |       uint16
+     |     |     |        |        |        +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |        |        |        |       l0-types:frequency-thz
+     |     |     |        |        |        +--rw wdm-tnl:tx-channel-power?
+     |     |     |        |        |        |       l0-types:power-dbm
+     |     |     |        |        |        +--rw wdm-tnl:operational-mode?
+     |     |     |        |        |        |       string
+     |     |     |        |        |        +--rw wdm-tnl:line-coding-bitrate?
+     |     |     |        |        |        |       identityref
+     |     |     |        |        |        +--rw wdm-tnl:preferred-rx-channel-power?
+     |     |     |        |        |        |       l0-types:power-dbm
+     |     |     |        |        |        +--rw wdm-tnl:gsnr-extra-margin?
+     |     |     |        |        |        |       snr
+     |     |     |        |        |        +--rw wdm-tnl:inverse-multiplexing!
+     |     |     |        |        |           +--rw wdm-tnl:inverse-mux-type?
+     |     |     |        |        |           |       identityref
+     |     |     |        |        |           +--rw wdm-tnl:otsi-lane-termination-type?
+     |     |     |        |        |           |       identityref
+     |     |     |        |        |           +--rw wdm-tnl:additional-transceivers
+     |     |     |        |        |              +--rw wdm-tnl:index?
+     |     |     |        |        |              |       uint8
+     |     |     |        |        |              +--rw wdm-tnl:transceiver-id?
+     |     |     |        |        |              |       uint32
+     |     |     |        |        |              +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |        |        |              |       uint16
+     |     |     |        |        |              +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |        |        |              |       l0-types:frequency-thz
+     |     |     |        |        |              +--rw wdm-tnl:tx-channel-power?
+     |     |     |        |        |                      l0-types:power-dbm
+     |     |     |        |        +--:(wdm-tnl:regenerator)
+     |     |     |        |        |  +--rw wdm-tnl:regenerator
+     |     |     |        |        |     +--rw wdm-tnl:regen-group-id?
+     |     |     |        |        |     |       uint32
+     |     |     |        |        |     +--rw wdm-tnl:regeneration-layer?
+     |     |     |        |        |     |       identityref
+     |     |     |        |        |     +--rw wdm-tnl:incoming-transponder
+     |     |     |        |        |     |  +--rw wdm-tnl:transponder-id?
+     |     |     |        |        |     |  |       uint32
+     |     |     |        |        |     |  +--rw wdm-tnl:digital-terminations
+     |     |     |        |        |     |  |  +--rw wdm-tnl:digital-termination*
+     |     |     |        |        |     |  |          [index]
+     |     |     |        |        |     |  |     +--rw wdm-tnl:index
+     |     |     |        |        |     |  |     |       uint8
+     |     |     |        |        |     |  |     +--rw wdm-tnl:termination-type?
+     |     |     |        |        |     |  |     |       identityref
+     |     |     |        |        |     |  |     +--rw wdm-tnl:mapping-type?
+     |     |     |        |        |     |  |             identityref
+     |     |     |        |        |     |  +--rw wdm-tnl:transceiver
+     |     |     |        |        |     |     +--rw wdm-tnl:transceiver-id?
+     |     |     |        |        |     |     |       uint32
+     |     |     |        |        |     |     +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |        |        |     |     |       uint16
+     |     |     |        |        |     |     +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |        |        |     |     |       l0-types:frequency-thz
+     |     |     |        |        |     |     +--rw wdm-tnl:tx-channel-power?
+     |     |     |        |        |     |     |       l0-types:power-dbm
+     |     |     |        |        |     |     +--rw wdm-tnl:operational-mode?
+     |     |     |        |        |     |     |       string
+     |     |     |        |        |     |     +--rw wdm-tnl:line-coding-bitrate?
+     |     |     |        |        |     |     |       identityref
+     |     |     |        |        |     |     +--rw wdm-tnl:preferred-rx-channel-power?
+     |     |     |        |        |     |     |       l0-types:power-dbm
+     |     |     |        |        |     |     +--rw wdm-tnl:gsnr-extra-margin?
+     |     |     |        |        |     |     |       snr
+     |     |     |        |        |     |     +--rw wdm-tnl:inverse-multiplexing!
+     |     |     |        |        |     |        +--rw wdm-tnl:inverse-mux-type?
+     |     |     |        |        |     |        |       identityref
+     |     |     |        |        |     |        +--rw wdm-tnl:otsi-lane-termination-type?
+     |     |     |        |        |     |        |       identityref
+     |     |     |        |        |     |        +--rw wdm-tnl:additional-transceivers
+     |     |     |        |        |     |           +--rw wdm-tnl:index?
+     |     |     |        |        |     |           |       uint8
+     |     |     |        |        |     |           +--rw wdm-tnl:transceiver-id?
+     |     |     |        |        |     |           |       uint32
+     |     |     |        |        |     |           +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |        |        |     |           |       uint16
+     |     |     |        |        |     |           +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |        |        |     |           |       l0-types:frequency-thz
+     |     |     |        |        |     |           +--rw wdm-tnl:tx-channel-power?
+     |     |     |        |        |     |                   l0-types:power-dbm
+     |     |     |        |        |     +--rw wdm-tnl:outgoing-transponder
+     |     |     |        |        |        +--rw wdm-tnl:transponder-id?
+     |     |     |        |        |        |       uint32
+     |     |     |        |        |        +--rw wdm-tnl:digital-terminations
+     |     |     |        |        |        |  +--rw wdm-tnl:digital-termination*
+     |     |     |        |        |        |          [index]
+     |     |     |        |        |        |     +--rw wdm-tnl:index
+     |     |     |        |        |        |     |       uint8
+     |     |     |        |        |        |     +--rw wdm-tnl:termination-type?
+     |     |     |        |        |        |     |       identityref
+     |     |     |        |        |        |     +--rw wdm-tnl:mapping-type?
+     |     |     |        |        |        |             identityref
+     |     |     |        |        |        +--rw wdm-tnl:transceiver
+     |     |     |        |        |           +--rw wdm-tnl:transceiver-id?
+     |     |     |        |        |           |       uint32
+     |     |     |        |        |           +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |        |        |           |       uint16
+     |     |     |        |        |           +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |        |        |           |       l0-types:frequency-thz
+     |     |     |        |        |           +--rw wdm-tnl:tx-channel-power?
+     |     |     |        |        |           |       l0-types:power-dbm
+     |     |     |        |        |           +--rw wdm-tnl:operational-mode?
+     |     |     |        |        |           |       string
+     |     |     |        |        |           +--rw wdm-tnl:line-coding-bitrate?
+     |     |     |        |        |           |       identityref
+     |     |     |        |        |           +--rw wdm-tnl:preferred-rx-channel-power?
+     |     |     |        |        |           |       l0-types:power-dbm
+     |     |     |        |        |           +--rw wdm-tnl:gsnr-extra-margin?
+     |     |     |        |        |           |       snr
+     |     |     |        |        |           +--rw wdm-tnl:inverse-multiplexing!
+     |     |     |        |        |              +--rw wdm-tnl:inverse-mux-type?
+     |     |     |        |        |              |       identityref
+     |     |     |        |        |              +--rw wdm-tnl:otsi-lane-termination-type?
+     |     |     |        |        |              |       identityref
+     |     |     |        |        |              +--rw wdm-tnl:additional-transceivers
+     |     |     |        |        |                 +--rw wdm-tnl:index?
+     |     |     |        |        |                 |       uint8
+     |     |     |        |        |                 +--rw wdm-tnl:transceiver-id?
+     |     |     |        |        |                 |       uint32
+     |     |     |        |        |                 +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |        |        |                 |       uint16
+     |     |     |        |        |                 +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |        |        |                 |       l0-types:frequency-thz
+     |     |     |        |        |                 +--rw wdm-tnl:tx-channel-power?
+     |     |     |        |        |                         l0-types:power-dbm
+     |     |     |        |        +--:(wdm-tnl:regenerators)
+     |     |     |        |           +--rw wdm-tnl:regenerators
+     |     |     |        |              +--rw wdm-tnl:common-incoming
+     |     |     |        |              |  +--rw wdm-tnl:operational-mode?
+     |     |     |        |              |  |       string
+     |     |     |        |              |  +--rw wdm-tnl:line-coding-bitrate?
+     |     |     |        |              |  |       identityref
+     |     |     |        |              |  +--rw wdm-tnl:preferred-rx-channel-power?
+     |     |     |        |              |  |       l0-types:power-dbm
+     |     |     |        |              |  +--rw wdm-tnl:gsnr-extra-margin?
+     |     |     |        |              |          snr
+     |     |     |        |              +--rw wdm-tnl:common-outcoming
+     |     |     |        |              |  +--rw wdm-tnl:operational-mode?
+     |     |     |        |              |  |       string
+     |     |     |        |              |  +--rw wdm-tnl:line-coding-bitrate?
+     |     |     |        |              |  |       identityref
+     |     |     |        |              |  +--rw wdm-tnl:preferred-rx-channel-power?
+     |     |     |        |              |  |       l0-types:power-dbm
+     |     |     |        |              |  +--rw wdm-tnl:gsnr-extra-margin?
+     |     |     |        |              |          snr
+     |     |     |        |              +--rw wdm-tnl:regenerator*
+     |     |     |        |                      [index]
+     |     |     |        |                 +--rw wdm-tnl:index
+     |     |     |        |                 |       uint8
+     |     |     |        |                 +--rw wdm-tnl:regen-group-id?
+     |     |     |        |                 |       uint32
+     |     |     |        |                 +--rw wdm-tnl:regeneration-layer?
+     |     |     |        |                 |       identityref
+     |     |     |        |                 +--rw wdm-tnl:incoming-transponder
+     |     |     |        |                 |  +--rw wdm-tnl:transponder-id?
+     |     |     |        |                 |  |       uint32
+     |     |     |        |                 |  +--rw wdm-tnl:transceiver
+     |     |     |        |                 |     +--rw wdm-tnl:transceiver-id?
+     |     |     |        |                 |     |       uint32
+     |     |     |        |                 |     +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |        |                 |     |       uint16
+     |     |     |        |                 |     +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |        |                 |     |       l0-types:frequency-thz
+     |     |     |        |                 |     +--rw wdm-tnl:tx-channel-power?
+     |     |     |        |                 |             l0-types:power-dbm
+     |     |     |        |                 +--rw wdm-tnl:outgoing-transponder
+     |     |     |        |                    +--rw wdm-tnl:transponder-id?
+     |     |     |        |                    |       uint32
+     |     |     |        |                    +--rw wdm-tnl:transceiver
+     |     |     |        |                       +--rw wdm-tnl:transceiver-id?
+     |     |     |        |                       |       uint32
+     |     |     |        |                       +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |        |                       |       uint16
+     |     |     |        |                       +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |        |                       |       l0-types:frequency-thz
+     |     |     |        |                       +--rw wdm-tnl:tx-channel-power?
+     |     |     |        |                               l0-types:power-dbm
      |     |     |        +--:(numbered-link-hop)
      |     |     |        |  +--rw numbered-link-hop
      |     |     |        |     +--rw link-tp-id    te-tp-id
@@ -2962,7 +4060,7 @@ module: ietf-te
      |     |     |        |        |        |  +--ro wdm-tnl:source-transceiver
      |     |     |        |        |        |     +--ro wdm-tnl:transponder-id?
      |     |     |        |        |        |     |       uint32
-     |     |     |        |        |        |     +--ro wdm-tnl:transceivers*
+     |     |     |        |        |        |     +--ro wdm-tnl:transceiver*
      |     |     |        |        |        |             [transceiver-id]
      |     |     |        |        |        |        +--ro wdm-tnl:otsi-carrier-id?
      |     |     |        |        |        |        |       uint16
@@ -2984,7 +4082,7 @@ module: ietf-te
      |     |     |        |        |        |  +--ro wdm-tnl:destination-transceiver
      |     |     |        |        |        |     +--ro wdm-tnl:transponder-id?
      |     |     |        |        |        |     |       uint32
-     |     |     |        |        |        |     +--ro wdm-tnl:transceivers*
+     |     |     |        |        |        |     +--ro wdm-tnl:transceiver*
      |     |     |        |        |        |             [transceiver-id]
      |     |     |        |        |        |        +--ro wdm-tnl:otsi-carrier-id?
      |     |     |        |        |        |        |       uint16
@@ -3009,7 +4107,7 @@ module: ietf-te
      |     |     |        |        |              +--ro wdm-tnl:incoming-transceiver
      |     |     |        |        |              |  +--ro wdm-tnl:transponder-id?
      |     |     |        |        |              |  |       uint32
-     |     |     |        |        |              |  +--ro wdm-tnl:transceivers*
+     |     |     |        |        |              |  +--ro wdm-tnl:transceiver*
      |     |     |        |        |              |          [transceiver-id]
      |     |     |        |        |              |     +--ro wdm-tnl:otsi-carrier-id?
      |     |     |        |        |              |     |       uint16
@@ -3030,7 +4128,7 @@ module: ietf-te
      |     |     |        |        |              +--ro wdm-tnl:outgoing-transceiver
      |     |     |        |        |                 +--ro wdm-tnl:transponder-id?
      |     |     |        |        |                 |       uint32
-     |     |     |        |        |                 +--ro wdm-tnl:transceivers*
+     |     |     |        |        |                 +--ro wdm-tnl:transceiver*
      |     |     |        |        |                         [transceiver-id]
      |     |     |        |        |                    +--ro wdm-tnl:otsi-carrier-id?
      |     |     |        |        |                    |       uint16
@@ -3412,123 +4510,245 @@ module: ietf-te
      |     |     |  |     |     |       te-hop-type
      |     |     |  |     |     +--rw (wdm-tnl:node-position)?
      |     |     |  |     |        +--:(wdm-tnl:source)
-     |     |     |  |     |        |  +--rw wdm-tnl:source-transceiver
+     |     |     |  |     |        |  +--rw wdm-tnl:source-transponder
      |     |     |  |     |        |     +--rw wdm-tnl:transponder-id?
      |     |     |  |     |        |     |       uint32
-     |     |     |  |     |        |     +--rw wdm-tnl:transceivers*
-     |     |     |  |     |        |             [transceiver-id]
-     |     |     |  |     |        |        +--rw wdm-tnl:transceiver-id
+     |     |     |  |     |        |     +--rw wdm-tnl:digital-terminations
+     |     |     |  |     |        |     |  +--rw wdm-tnl:digital-termination*
+     |     |     |  |     |        |     |          [index]
+     |     |     |  |     |        |     |     +--rw wdm-tnl:index
+     |     |     |  |     |        |     |     |       uint8
+     |     |     |  |     |        |     |     +--rw wdm-tnl:termination-type?
+     |     |     |  |     |        |     |     |       identityref
+     |     |     |  |     |        |     |     +--rw wdm-tnl:mapping-type?
+     |     |     |  |     |        |     |             identityref
+     |     |     |  |     |        |     +--rw wdm-tnl:transceiver
+     |     |     |  |     |        |        +--rw wdm-tnl:transceiver-id?
      |     |     |  |     |        |        |       uint32
      |     |     |  |     |        |        +--rw wdm-tnl:otsi-carrier-id?
      |     |     |  |     |        |        |       uint16
-     |     |     |  |     |        |        +--rw wdm-tnl:operational-modes*
-     |     |     |  |     |        |        |       string
      |     |     |  |     |        |        +--rw wdm-tnl:otsi-carrier-frequency?
      |     |     |  |     |        |        |       l0-types:frequency-thz
-     |     |     |  |     |        |        +--rw wdm-tnl:tx-tune-constraints
-     |     |     |  |     |        |        |  +--rw wdm-tnl:min-central-frequency?
-     |     |     |  |     |        |        |  |       frequency-thz
-     |     |     |  |     |        |        |  +--rw wdm-tnl:max-central-frequency?
-     |     |     |  |     |        |        |  |       frequency-thz
-     |     |     |  |     |        |        |  +--rw wdm-tnl:transceiver-tunability?
-     |     |     |  |     |        |        |          frequency-ghz
-     |     |     |  |     |        |        +--rw wdm-tnl:line-coding-bitrate*
-     |     |     |  |     |        |        |       identityref
      |     |     |  |     |        |        +--rw wdm-tnl:tx-channel-power?
      |     |     |  |     |        |        |       l0-types:power-dbm
+     |     |     |  |     |        |        +--rw wdm-tnl:operational-mode?
+     |     |     |  |     |        |        |       string
+     |     |     |  |     |        |        +--rw wdm-tnl:line-coding-bitrate?
+     |     |     |  |     |        |        |       identityref
      |     |     |  |     |        |        +--rw wdm-tnl:preferred-rx-channel-power?
      |     |     |  |     |        |        |       l0-types:power-dbm
      |     |     |  |     |        |        +--rw wdm-tnl:gsnr-extra-margin?
-     |     |     |  |     |        |                snr
+     |     |     |  |     |        |        |       snr
+     |     |     |  |     |        |        +--rw wdm-tnl:inverse-multiplexing!
+     |     |     |  |     |        |           +--rw wdm-tnl:inverse-mux-type?
+     |     |     |  |     |        |           |       identityref
+     |     |     |  |     |        |           +--rw wdm-tnl:otsi-lane-termination-type?
+     |     |     |  |     |        |           |       identityref
+     |     |     |  |     |        |           +--rw wdm-tnl:additional-transceivers
+     |     |     |  |     |        |              +--rw wdm-tnl:index?
+     |     |     |  |     |        |              |       uint8
+     |     |     |  |     |        |              +--rw wdm-tnl:transceiver-id?
+     |     |     |  |     |        |              |       uint32
+     |     |     |  |     |        |              +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |  |     |        |              |       uint16
+     |     |     |  |     |        |              +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |  |     |        |              |       l0-types:frequency-thz
+     |     |     |  |     |        |              +--rw wdm-tnl:tx-channel-power?
+     |     |     |  |     |        |                      l0-types:power-dbm
      |     |     |  |     |        +--:(wdm-tnl:destination)
-     |     |     |  |     |        |  +--rw wdm-tnl:destination-transceiver
+     |     |     |  |     |        |  +--rw wdm-tnl:destination-transponder
      |     |     |  |     |        |     +--rw wdm-tnl:transponder-id?
      |     |     |  |     |        |     |       uint32
-     |     |     |  |     |        |     +--rw wdm-tnl:transceivers*
-     |     |     |  |     |        |             [transceiver-id]
-     |     |     |  |     |        |        +--rw wdm-tnl:transceiver-id
+     |     |     |  |     |        |     +--rw wdm-tnl:digital-terminations
+     |     |     |  |     |        |     |  +--rw wdm-tnl:digital-termination*
+     |     |     |  |     |        |     |          [index]
+     |     |     |  |     |        |     |     +--rw wdm-tnl:index
+     |     |     |  |     |        |     |     |       uint8
+     |     |     |  |     |        |     |     +--rw wdm-tnl:termination-type?
+     |     |     |  |     |        |     |     |       identityref
+     |     |     |  |     |        |     |     +--rw wdm-tnl:mapping-type?
+     |     |     |  |     |        |     |             identityref
+     |     |     |  |     |        |     +--rw wdm-tnl:transceiver
+     |     |     |  |     |        |        +--rw wdm-tnl:transceiver-id?
      |     |     |  |     |        |        |       uint32
      |     |     |  |     |        |        +--rw wdm-tnl:otsi-carrier-id?
      |     |     |  |     |        |        |       uint16
-     |     |     |  |     |        |        +--rw wdm-tnl:operational-modes*
-     |     |     |  |     |        |        |       string
      |     |     |  |     |        |        +--rw wdm-tnl:otsi-carrier-frequency?
      |     |     |  |     |        |        |       l0-types:frequency-thz
-     |     |     |  |     |        |        +--rw wdm-tnl:tx-tune-constraints
-     |     |     |  |     |        |        |  +--rw wdm-tnl:min-central-frequency?
-     |     |     |  |     |        |        |  |       frequency-thz
-     |     |     |  |     |        |        |  +--rw wdm-tnl:max-central-frequency?
-     |     |     |  |     |        |        |  |       frequency-thz
-     |     |     |  |     |        |        |  +--rw wdm-tnl:transceiver-tunability?
-     |     |     |  |     |        |        |          frequency-ghz
-     |     |     |  |     |        |        +--rw wdm-tnl:line-coding-bitrate*
-     |     |     |  |     |        |        |       identityref
      |     |     |  |     |        |        +--rw wdm-tnl:tx-channel-power?
      |     |     |  |     |        |        |       l0-types:power-dbm
+     |     |     |  |     |        |        +--rw wdm-tnl:operational-mode?
+     |     |     |  |     |        |        |       string
+     |     |     |  |     |        |        +--rw wdm-tnl:line-coding-bitrate?
+     |     |     |  |     |        |        |       identityref
      |     |     |  |     |        |        +--rw wdm-tnl:preferred-rx-channel-power?
      |     |     |  |     |        |        |       l0-types:power-dbm
      |     |     |  |     |        |        +--rw wdm-tnl:gsnr-extra-margin?
-     |     |     |  |     |        |                snr
-     |     |     |  |     |        +--:(wdm-tnl:transit)
-     |     |     |  |     |           +--rw wdm-tnl:regen-transceivers
-     |     |     |  |     |              +--rw wdm-tnl:regen-group-id?
-     |     |     |  |     |              |       uint32
-     |     |     |  |     |              +--rw wdm-tnl:incoming-transceiver
-     |     |     |  |     |              |  +--rw wdm-tnl:transponder-id?
-     |     |     |  |     |              |  |       uint32
-     |     |     |  |     |              |  +--rw wdm-tnl:transceivers*
-     |     |     |  |     |              |          [transceiver-id]
-     |     |     |  |     |              |     +--rw wdm-tnl:transceiver-id
-     |     |     |  |     |              |     |       uint32
-     |     |     |  |     |              |     +--rw wdm-tnl:otsi-carrier-id?
-     |     |     |  |     |              |     |       uint16
-     |     |     |  |     |              |     +--rw wdm-tnl:operational-modes*
-     |     |     |  |     |              |     |       string
-     |     |     |  |     |              |     +--rw wdm-tnl:otsi-carrier-frequency?
-     |     |     |  |     |              |     |       l0-types:frequency-thz
-     |     |     |  |     |              |     +--rw wdm-tnl:tx-tune-constraints
-     |     |     |  |     |              |     |  +--rw wdm-tnl:min-central-frequency?
-     |     |     |  |     |              |     |  |       frequency-thz
-     |     |     |  |     |              |     |  +--rw wdm-tnl:max-central-frequency?
-     |     |     |  |     |              |     |  |       frequency-thz
-     |     |     |  |     |              |     |  +--rw wdm-tnl:transceiver-tunability?
-     |     |     |  |     |              |     |          frequency-ghz
-     |     |     |  |     |              |     +--rw wdm-tnl:line-coding-bitrate*
-     |     |     |  |     |              |     |       identityref
-     |     |     |  |     |              |     +--rw wdm-tnl:tx-channel-power?
-     |     |     |  |     |              |     |       l0-types:power-dbm
-     |     |     |  |     |              |     +--rw wdm-tnl:preferred-rx-channel-power?
-     |     |     |  |     |              |     |       l0-types:power-dbm
-     |     |     |  |     |              |     +--rw wdm-tnl:gsnr-extra-margin?
-     |     |     |  |     |              |             snr
-     |     |     |  |     |              +--rw wdm-tnl:outgoing-transceiver
-     |     |     |  |     |                 +--rw wdm-tnl:transponder-id?
+     |     |     |  |     |        |        |       snr
+     |     |     |  |     |        |        +--rw wdm-tnl:inverse-multiplexing!
+     |     |     |  |     |        |           +--rw wdm-tnl:inverse-mux-type?
+     |     |     |  |     |        |           |       identityref
+     |     |     |  |     |        |           +--rw wdm-tnl:otsi-lane-termination-type?
+     |     |     |  |     |        |           |       identityref
+     |     |     |  |     |        |           +--rw wdm-tnl:additional-transceivers
+     |     |     |  |     |        |              +--rw wdm-tnl:index?
+     |     |     |  |     |        |              |       uint8
+     |     |     |  |     |        |              +--rw wdm-tnl:transceiver-id?
+     |     |     |  |     |        |              |       uint32
+     |     |     |  |     |        |              +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |  |     |        |              |       uint16
+     |     |     |  |     |        |              +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |  |     |        |              |       l0-types:frequency-thz
+     |     |     |  |     |        |              +--rw wdm-tnl:tx-channel-power?
+     |     |     |  |     |        |                      l0-types:power-dbm
+     |     |     |  |     |        +--:(wdm-tnl:regenerator)
+     |     |     |  |     |        |  +--rw wdm-tnl:regenerator
+     |     |     |  |     |        |     +--rw wdm-tnl:regen-group-id?
+     |     |     |  |     |        |     |       uint32
+     |     |     |  |     |        |     +--rw wdm-tnl:regeneration-layer?
+     |     |     |  |     |        |     |       identityref
+     |     |     |  |     |        |     +--rw wdm-tnl:incoming-transponder
+     |     |     |  |     |        |     |  +--rw wdm-tnl:transponder-id?
+     |     |     |  |     |        |     |  |       uint32
+     |     |     |  |     |        |     |  +--rw wdm-tnl:digital-terminations
+     |     |     |  |     |        |     |  |  +--rw wdm-tnl:digital-termination*
+     |     |     |  |     |        |     |  |          [index]
+     |     |     |  |     |        |     |  |     +--rw wdm-tnl:index
+     |     |     |  |     |        |     |  |     |       uint8
+     |     |     |  |     |        |     |  |     +--rw wdm-tnl:termination-type?
+     |     |     |  |     |        |     |  |     |       identityref
+     |     |     |  |     |        |     |  |     +--rw wdm-tnl:mapping-type?
+     |     |     |  |     |        |     |  |             identityref
+     |     |     |  |     |        |     |  +--rw wdm-tnl:transceiver
+     |     |     |  |     |        |     |     +--rw wdm-tnl:transceiver-id?
+     |     |     |  |     |        |     |     |       uint32
+     |     |     |  |     |        |     |     +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |  |     |        |     |     |       uint16
+     |     |     |  |     |        |     |     +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |  |     |        |     |     |       l0-types:frequency-thz
+     |     |     |  |     |        |     |     +--rw wdm-tnl:tx-channel-power?
+     |     |     |  |     |        |     |     |       l0-types:power-dbm
+     |     |     |  |     |        |     |     +--rw wdm-tnl:operational-mode?
+     |     |     |  |     |        |     |     |       string
+     |     |     |  |     |        |     |     +--rw wdm-tnl:line-coding-bitrate?
+     |     |     |  |     |        |     |     |       identityref
+     |     |     |  |     |        |     |     +--rw wdm-tnl:preferred-rx-channel-power?
+     |     |     |  |     |        |     |     |       l0-types:power-dbm
+     |     |     |  |     |        |     |     +--rw wdm-tnl:gsnr-extra-margin?
+     |     |     |  |     |        |     |     |       snr
+     |     |     |  |     |        |     |     +--rw wdm-tnl:inverse-multiplexing!
+     |     |     |  |     |        |     |        +--rw wdm-tnl:inverse-mux-type?
+     |     |     |  |     |        |     |        |       identityref
+     |     |     |  |     |        |     |        +--rw wdm-tnl:otsi-lane-termination-type?
+     |     |     |  |     |        |     |        |       identityref
+     |     |     |  |     |        |     |        +--rw wdm-tnl:additional-transceivers
+     |     |     |  |     |        |     |           +--rw wdm-tnl:index?
+     |     |     |  |     |        |     |           |       uint8
+     |     |     |  |     |        |     |           +--rw wdm-tnl:transceiver-id?
+     |     |     |  |     |        |     |           |       uint32
+     |     |     |  |     |        |     |           +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |  |     |        |     |           |       uint16
+     |     |     |  |     |        |     |           +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |  |     |        |     |           |       l0-types:frequency-thz
+     |     |     |  |     |        |     |           +--rw wdm-tnl:tx-channel-power?
+     |     |     |  |     |        |     |                   l0-types:power-dbm
+     |     |     |  |     |        |     +--rw wdm-tnl:outgoing-transponder
+     |     |     |  |     |        |        +--rw wdm-tnl:transponder-id?
+     |     |     |  |     |        |        |       uint32
+     |     |     |  |     |        |        +--rw wdm-tnl:digital-terminations
+     |     |     |  |     |        |        |  +--rw wdm-tnl:digital-termination*
+     |     |     |  |     |        |        |          [index]
+     |     |     |  |     |        |        |     +--rw wdm-tnl:index
+     |     |     |  |     |        |        |     |       uint8
+     |     |     |  |     |        |        |     +--rw wdm-tnl:termination-type?
+     |     |     |  |     |        |        |     |       identityref
+     |     |     |  |     |        |        |     +--rw wdm-tnl:mapping-type?
+     |     |     |  |     |        |        |             identityref
+     |     |     |  |     |        |        +--rw wdm-tnl:transceiver
+     |     |     |  |     |        |           +--rw wdm-tnl:transceiver-id?
+     |     |     |  |     |        |           |       uint32
+     |     |     |  |     |        |           +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |  |     |        |           |       uint16
+     |     |     |  |     |        |           +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |  |     |        |           |       l0-types:frequency-thz
+     |     |     |  |     |        |           +--rw wdm-tnl:tx-channel-power?
+     |     |     |  |     |        |           |       l0-types:power-dbm
+     |     |     |  |     |        |           +--rw wdm-tnl:operational-mode?
+     |     |     |  |     |        |           |       string
+     |     |     |  |     |        |           +--rw wdm-tnl:line-coding-bitrate?
+     |     |     |  |     |        |           |       identityref
+     |     |     |  |     |        |           +--rw wdm-tnl:preferred-rx-channel-power?
+     |     |     |  |     |        |           |       l0-types:power-dbm
+     |     |     |  |     |        |           +--rw wdm-tnl:gsnr-extra-margin?
+     |     |     |  |     |        |           |       snr
+     |     |     |  |     |        |           +--rw wdm-tnl:inverse-multiplexing!
+     |     |     |  |     |        |              +--rw wdm-tnl:inverse-mux-type?
+     |     |     |  |     |        |              |       identityref
+     |     |     |  |     |        |              +--rw wdm-tnl:otsi-lane-termination-type?
+     |     |     |  |     |        |              |       identityref
+     |     |     |  |     |        |              +--rw wdm-tnl:additional-transceivers
+     |     |     |  |     |        |                 +--rw wdm-tnl:index?
+     |     |     |  |     |        |                 |       uint8
+     |     |     |  |     |        |                 +--rw wdm-tnl:transceiver-id?
+     |     |     |  |     |        |                 |       uint32
+     |     |     |  |     |        |                 +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |  |     |        |                 |       uint16
+     |     |     |  |     |        |                 +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |  |     |        |                 |       l0-types:frequency-thz
+     |     |     |  |     |        |                 +--rw wdm-tnl:tx-channel-power?
+     |     |     |  |     |        |                         l0-types:power-dbm
+     |     |     |  |     |        +--:(wdm-tnl:regenerators)
+     |     |     |  |     |           +--rw wdm-tnl:regenerators
+     |     |     |  |     |              +--rw wdm-tnl:common-incoming
+     |     |     |  |     |              |  +--rw wdm-tnl:operational-mode?
+     |     |     |  |     |              |  |       string
+     |     |     |  |     |              |  +--rw wdm-tnl:line-coding-bitrate?
+     |     |     |  |     |              |  |       identityref
+     |     |     |  |     |              |  +--rw wdm-tnl:preferred-rx-channel-power?
+     |     |     |  |     |              |  |       l0-types:power-dbm
+     |     |     |  |     |              |  +--rw wdm-tnl:gsnr-extra-margin?
+     |     |     |  |     |              |          snr
+     |     |     |  |     |              +--rw wdm-tnl:common-outcoming
+     |     |     |  |     |              |  +--rw wdm-tnl:operational-mode?
+     |     |     |  |     |              |  |       string
+     |     |     |  |     |              |  +--rw wdm-tnl:line-coding-bitrate?
+     |     |     |  |     |              |  |       identityref
+     |     |     |  |     |              |  +--rw wdm-tnl:preferred-rx-channel-power?
+     |     |     |  |     |              |  |       l0-types:power-dbm
+     |     |     |  |     |              |  +--rw wdm-tnl:gsnr-extra-margin?
+     |     |     |  |     |              |          snr
+     |     |     |  |     |              +--rw wdm-tnl:regenerator*
+     |     |     |  |     |                      [index]
+     |     |     |  |     |                 +--rw wdm-tnl:index
+     |     |     |  |     |                 |       uint8
+     |     |     |  |     |                 +--rw wdm-tnl:regen-group-id?
      |     |     |  |     |                 |       uint32
-     |     |     |  |     |                 +--rw wdm-tnl:transceivers*
-     |     |     |  |     |                         [transceiver-id]
-     |     |     |  |     |                    +--rw wdm-tnl:transceiver-id
+     |     |     |  |     |                 +--rw wdm-tnl:regeneration-layer?
+     |     |     |  |     |                 |       identityref
+     |     |     |  |     |                 +--rw wdm-tnl:incoming-transponder
+     |     |     |  |     |                 |  +--rw wdm-tnl:transponder-id?
+     |     |     |  |     |                 |  |       uint32
+     |     |     |  |     |                 |  +--rw wdm-tnl:transceiver
+     |     |     |  |     |                 |     +--rw wdm-tnl:transceiver-id?
+     |     |     |  |     |                 |     |       uint32
+     |     |     |  |     |                 |     +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |  |     |                 |     |       uint16
+     |     |     |  |     |                 |     +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |  |     |                 |     |       l0-types:frequency-thz
+     |     |     |  |     |                 |     +--rw wdm-tnl:tx-channel-power?
+     |     |     |  |     |                 |             l0-types:power-dbm
+     |     |     |  |     |                 +--rw wdm-tnl:outgoing-transponder
+     |     |     |  |     |                    +--rw wdm-tnl:transponder-id?
      |     |     |  |     |                    |       uint32
-     |     |     |  |     |                    +--rw wdm-tnl:otsi-carrier-id?
-     |     |     |  |     |                    |       uint16
-     |     |     |  |     |                    +--rw wdm-tnl:operational-modes*
-     |     |     |  |     |                    |       string
-     |     |     |  |     |                    +--rw wdm-tnl:otsi-carrier-frequency?
-     |     |     |  |     |                    |       l0-types:frequency-thz
-     |     |     |  |     |                    +--rw wdm-tnl:tx-tune-constraints
-     |     |     |  |     |                    |  +--rw wdm-tnl:min-central-frequency?
-     |     |     |  |     |                    |  |       frequency-thz
-     |     |     |  |     |                    |  +--rw wdm-tnl:max-central-frequency?
-     |     |     |  |     |                    |  |       frequency-thz
-     |     |     |  |     |                    |  +--rw wdm-tnl:transceiver-tunability?
-     |     |     |  |     |                    |          frequency-ghz
-     |     |     |  |     |                    +--rw wdm-tnl:line-coding-bitrate*
-     |     |     |  |     |                    |       identityref
-     |     |     |  |     |                    +--rw wdm-tnl:tx-channel-power?
-     |     |     |  |     |                    |       l0-types:power-dbm
-     |     |     |  |     |                    +--rw wdm-tnl:preferred-rx-channel-power?
-     |     |     |  |     |                    |       l0-types:power-dbm
-     |     |     |  |     |                    +--rw wdm-tnl:gsnr-extra-margin?
-     |     |     |  |     |                            snr
+     |     |     |  |     |                    +--rw wdm-tnl:transceiver
+     |     |     |  |     |                       +--rw wdm-tnl:transceiver-id?
+     |     |     |  |     |                       |       uint32
+     |     |     |  |     |                       +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |  |     |                       |       uint16
+     |     |     |  |     |                       +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |  |     |                       |       l0-types:frequency-thz
+     |     |     |  |     |                       +--rw wdm-tnl:tx-channel-power?
+     |     |     |  |     |                               l0-types:power-dbm
      |     |     |  |     +--:(numbered-link-hop)
      |     |     |  |     |  +--rw numbered-link-hop
      |     |     |  |     |     +--rw link-tp-id    te-tp-id
@@ -3597,9 +4817,253 @@ module: ietf-te
      |     |     |     +--rw (type)?
      |     |     |        +--:(numbered-node-hop)
      |     |     |        |  +--rw numbered-node-hop
-     |     |     |        |     +--rw node-id-uri?   nw:node-id
-     |     |     |        |     +--rw node-id?       te-node-id
-     |     |     |        |     +--rw hop-type?      te-hop-type
+     |     |     |        |     +--rw node-id-uri?
+     |     |     |        |     |       nw:node-id
+     |     |     |        |     +--rw node-id?
+     |     |     |        |     |       te-node-id
+     |     |     |        |     +--rw hop-type?
+     |     |     |        |     |       te-hop-type
+     |     |     |        |     +--rw (wdm-tnl:node-position)?
+     |     |     |        |        +--:(wdm-tnl:source)
+     |     |     |        |        |  +--rw wdm-tnl:source-transponder
+     |     |     |        |        |     +--rw wdm-tnl:transponder-id?
+     |     |     |        |        |     |       uint32
+     |     |     |        |        |     +--rw wdm-tnl:digital-terminations
+     |     |     |        |        |     |  +--rw wdm-tnl:digital-termination*
+     |     |     |        |        |     |          [index]
+     |     |     |        |        |     |     +--rw wdm-tnl:index
+     |     |     |        |        |     |     |       uint8
+     |     |     |        |        |     |     +--rw wdm-tnl:termination-type?
+     |     |     |        |        |     |     |       identityref
+     |     |     |        |        |     |     +--rw wdm-tnl:mapping-type?
+     |     |     |        |        |     |             identityref
+     |     |     |        |        |     +--rw wdm-tnl:transceiver
+     |     |     |        |        |        +--rw wdm-tnl:transceiver-id?
+     |     |     |        |        |        |       uint32
+     |     |     |        |        |        +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |        |        |        |       uint16
+     |     |     |        |        |        +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |        |        |        |       l0-types:frequency-thz
+     |     |     |        |        |        +--rw wdm-tnl:tx-channel-power?
+     |     |     |        |        |        |       l0-types:power-dbm
+     |     |     |        |        |        +--rw wdm-tnl:operational-mode?
+     |     |     |        |        |        |       string
+     |     |     |        |        |        +--rw wdm-tnl:line-coding-bitrate?
+     |     |     |        |        |        |       identityref
+     |     |     |        |        |        +--rw wdm-tnl:preferred-rx-channel-power?
+     |     |     |        |        |        |       l0-types:power-dbm
+     |     |     |        |        |        +--rw wdm-tnl:gsnr-extra-margin?
+     |     |     |        |        |        |       snr
+     |     |     |        |        |        +--rw wdm-tnl:inverse-multiplexing!
+     |     |     |        |        |           +--rw wdm-tnl:inverse-mux-type?
+     |     |     |        |        |           |       identityref
+     |     |     |        |        |           +--rw wdm-tnl:otsi-lane-termination-type?
+     |     |     |        |        |           |       identityref
+     |     |     |        |        |           +--rw wdm-tnl:additional-transceivers
+     |     |     |        |        |              +--rw wdm-tnl:index?
+     |     |     |        |        |              |       uint8
+     |     |     |        |        |              +--rw wdm-tnl:transceiver-id?
+     |     |     |        |        |              |       uint32
+     |     |     |        |        |              +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |        |        |              |       uint16
+     |     |     |        |        |              +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |        |        |              |       l0-types:frequency-thz
+     |     |     |        |        |              +--rw wdm-tnl:tx-channel-power?
+     |     |     |        |        |                      l0-types:power-dbm
+     |     |     |        |        +--:(wdm-tnl:destination)
+     |     |     |        |        |  +--rw wdm-tnl:destination-transponder
+     |     |     |        |        |     +--rw wdm-tnl:transponder-id?
+     |     |     |        |        |     |       uint32
+     |     |     |        |        |     +--rw wdm-tnl:digital-terminations
+     |     |     |        |        |     |  +--rw wdm-tnl:digital-termination*
+     |     |     |        |        |     |          [index]
+     |     |     |        |        |     |     +--rw wdm-tnl:index
+     |     |     |        |        |     |     |       uint8
+     |     |     |        |        |     |     +--rw wdm-tnl:termination-type?
+     |     |     |        |        |     |     |       identityref
+     |     |     |        |        |     |     +--rw wdm-tnl:mapping-type?
+     |     |     |        |        |     |             identityref
+     |     |     |        |        |     +--rw wdm-tnl:transceiver
+     |     |     |        |        |        +--rw wdm-tnl:transceiver-id?
+     |     |     |        |        |        |       uint32
+     |     |     |        |        |        +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |        |        |        |       uint16
+     |     |     |        |        |        +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |        |        |        |       l0-types:frequency-thz
+     |     |     |        |        |        +--rw wdm-tnl:tx-channel-power?
+     |     |     |        |        |        |       l0-types:power-dbm
+     |     |     |        |        |        +--rw wdm-tnl:operational-mode?
+     |     |     |        |        |        |       string
+     |     |     |        |        |        +--rw wdm-tnl:line-coding-bitrate?
+     |     |     |        |        |        |       identityref
+     |     |     |        |        |        +--rw wdm-tnl:preferred-rx-channel-power?
+     |     |     |        |        |        |       l0-types:power-dbm
+     |     |     |        |        |        +--rw wdm-tnl:gsnr-extra-margin?
+     |     |     |        |        |        |       snr
+     |     |     |        |        |        +--rw wdm-tnl:inverse-multiplexing!
+     |     |     |        |        |           +--rw wdm-tnl:inverse-mux-type?
+     |     |     |        |        |           |       identityref
+     |     |     |        |        |           +--rw wdm-tnl:otsi-lane-termination-type?
+     |     |     |        |        |           |       identityref
+     |     |     |        |        |           +--rw wdm-tnl:additional-transceivers
+     |     |     |        |        |              +--rw wdm-tnl:index?
+     |     |     |        |        |              |       uint8
+     |     |     |        |        |              +--rw wdm-tnl:transceiver-id?
+     |     |     |        |        |              |       uint32
+     |     |     |        |        |              +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |        |        |              |       uint16
+     |     |     |        |        |              +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |        |        |              |       l0-types:frequency-thz
+     |     |     |        |        |              +--rw wdm-tnl:tx-channel-power?
+     |     |     |        |        |                      l0-types:power-dbm
+     |     |     |        |        +--:(wdm-tnl:regenerator)
+     |     |     |        |        |  +--rw wdm-tnl:regenerator
+     |     |     |        |        |     +--rw wdm-tnl:regen-group-id?
+     |     |     |        |        |     |       uint32
+     |     |     |        |        |     +--rw wdm-tnl:regeneration-layer?
+     |     |     |        |        |     |       identityref
+     |     |     |        |        |     +--rw wdm-tnl:incoming-transponder
+     |     |     |        |        |     |  +--rw wdm-tnl:transponder-id?
+     |     |     |        |        |     |  |       uint32
+     |     |     |        |        |     |  +--rw wdm-tnl:digital-terminations
+     |     |     |        |        |     |  |  +--rw wdm-tnl:digital-termination*
+     |     |     |        |        |     |  |          [index]
+     |     |     |        |        |     |  |     +--rw wdm-tnl:index
+     |     |     |        |        |     |  |     |       uint8
+     |     |     |        |        |     |  |     +--rw wdm-tnl:termination-type?
+     |     |     |        |        |     |  |     |       identityref
+     |     |     |        |        |     |  |     +--rw wdm-tnl:mapping-type?
+     |     |     |        |        |     |  |             identityref
+     |     |     |        |        |     |  +--rw wdm-tnl:transceiver
+     |     |     |        |        |     |     +--rw wdm-tnl:transceiver-id?
+     |     |     |        |        |     |     |       uint32
+     |     |     |        |        |     |     +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |        |        |     |     |       uint16
+     |     |     |        |        |     |     +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |        |        |     |     |       l0-types:frequency-thz
+     |     |     |        |        |     |     +--rw wdm-tnl:tx-channel-power?
+     |     |     |        |        |     |     |       l0-types:power-dbm
+     |     |     |        |        |     |     +--rw wdm-tnl:operational-mode?
+     |     |     |        |        |     |     |       string
+     |     |     |        |        |     |     +--rw wdm-tnl:line-coding-bitrate?
+     |     |     |        |        |     |     |       identityref
+     |     |     |        |        |     |     +--rw wdm-tnl:preferred-rx-channel-power?
+     |     |     |        |        |     |     |       l0-types:power-dbm
+     |     |     |        |        |     |     +--rw wdm-tnl:gsnr-extra-margin?
+     |     |     |        |        |     |     |       snr
+     |     |     |        |        |     |     +--rw wdm-tnl:inverse-multiplexing!
+     |     |     |        |        |     |        +--rw wdm-tnl:inverse-mux-type?
+     |     |     |        |        |     |        |       identityref
+     |     |     |        |        |     |        +--rw wdm-tnl:otsi-lane-termination-type?
+     |     |     |        |        |     |        |       identityref
+     |     |     |        |        |     |        +--rw wdm-tnl:additional-transceivers
+     |     |     |        |        |     |           +--rw wdm-tnl:index?
+     |     |     |        |        |     |           |       uint8
+     |     |     |        |        |     |           +--rw wdm-tnl:transceiver-id?
+     |     |     |        |        |     |           |       uint32
+     |     |     |        |        |     |           +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |        |        |     |           |       uint16
+     |     |     |        |        |     |           +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |        |        |     |           |       l0-types:frequency-thz
+     |     |     |        |        |     |           +--rw wdm-tnl:tx-channel-power?
+     |     |     |        |        |     |                   l0-types:power-dbm
+     |     |     |        |        |     +--rw wdm-tnl:outgoing-transponder
+     |     |     |        |        |        +--rw wdm-tnl:transponder-id?
+     |     |     |        |        |        |       uint32
+     |     |     |        |        |        +--rw wdm-tnl:digital-terminations
+     |     |     |        |        |        |  +--rw wdm-tnl:digital-termination*
+     |     |     |        |        |        |          [index]
+     |     |     |        |        |        |     +--rw wdm-tnl:index
+     |     |     |        |        |        |     |       uint8
+     |     |     |        |        |        |     +--rw wdm-tnl:termination-type?
+     |     |     |        |        |        |     |       identityref
+     |     |     |        |        |        |     +--rw wdm-tnl:mapping-type?
+     |     |     |        |        |        |             identityref
+     |     |     |        |        |        +--rw wdm-tnl:transceiver
+     |     |     |        |        |           +--rw wdm-tnl:transceiver-id?
+     |     |     |        |        |           |       uint32
+     |     |     |        |        |           +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |        |        |           |       uint16
+     |     |     |        |        |           +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |        |        |           |       l0-types:frequency-thz
+     |     |     |        |        |           +--rw wdm-tnl:tx-channel-power?
+     |     |     |        |        |           |       l0-types:power-dbm
+     |     |     |        |        |           +--rw wdm-tnl:operational-mode?
+     |     |     |        |        |           |       string
+     |     |     |        |        |           +--rw wdm-tnl:line-coding-bitrate?
+     |     |     |        |        |           |       identityref
+     |     |     |        |        |           +--rw wdm-tnl:preferred-rx-channel-power?
+     |     |     |        |        |           |       l0-types:power-dbm
+     |     |     |        |        |           +--rw wdm-tnl:gsnr-extra-margin?
+     |     |     |        |        |           |       snr
+     |     |     |        |        |           +--rw wdm-tnl:inverse-multiplexing!
+     |     |     |        |        |              +--rw wdm-tnl:inverse-mux-type?
+     |     |     |        |        |              |       identityref
+     |     |     |        |        |              +--rw wdm-tnl:otsi-lane-termination-type?
+     |     |     |        |        |              |       identityref
+     |     |     |        |        |              +--rw wdm-tnl:additional-transceivers
+     |     |     |        |        |                 +--rw wdm-tnl:index?
+     |     |     |        |        |                 |       uint8
+     |     |     |        |        |                 +--rw wdm-tnl:transceiver-id?
+     |     |     |        |        |                 |       uint32
+     |     |     |        |        |                 +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |        |        |                 |       uint16
+     |     |     |        |        |                 +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |        |        |                 |       l0-types:frequency-thz
+     |     |     |        |        |                 +--rw wdm-tnl:tx-channel-power?
+     |     |     |        |        |                         l0-types:power-dbm
+     |     |     |        |        +--:(wdm-tnl:regenerators)
+     |     |     |        |           +--rw wdm-tnl:regenerators
+     |     |     |        |              +--rw wdm-tnl:common-incoming
+     |     |     |        |              |  +--rw wdm-tnl:operational-mode?
+     |     |     |        |              |  |       string
+     |     |     |        |              |  +--rw wdm-tnl:line-coding-bitrate?
+     |     |     |        |              |  |       identityref
+     |     |     |        |              |  +--rw wdm-tnl:preferred-rx-channel-power?
+     |     |     |        |              |  |       l0-types:power-dbm
+     |     |     |        |              |  +--rw wdm-tnl:gsnr-extra-margin?
+     |     |     |        |              |          snr
+     |     |     |        |              +--rw wdm-tnl:common-outcoming
+     |     |     |        |              |  +--rw wdm-tnl:operational-mode?
+     |     |     |        |              |  |       string
+     |     |     |        |              |  +--rw wdm-tnl:line-coding-bitrate?
+     |     |     |        |              |  |       identityref
+     |     |     |        |              |  +--rw wdm-tnl:preferred-rx-channel-power?
+     |     |     |        |              |  |       l0-types:power-dbm
+     |     |     |        |              |  +--rw wdm-tnl:gsnr-extra-margin?
+     |     |     |        |              |          snr
+     |     |     |        |              +--rw wdm-tnl:regenerator*
+     |     |     |        |                      [index]
+     |     |     |        |                 +--rw wdm-tnl:index
+     |     |     |        |                 |       uint8
+     |     |     |        |                 +--rw wdm-tnl:regen-group-id?
+     |     |     |        |                 |       uint32
+     |     |     |        |                 +--rw wdm-tnl:regeneration-layer?
+     |     |     |        |                 |       identityref
+     |     |     |        |                 +--rw wdm-tnl:incoming-transponder
+     |     |     |        |                 |  +--rw wdm-tnl:transponder-id?
+     |     |     |        |                 |  |       uint32
+     |     |     |        |                 |  +--rw wdm-tnl:transceiver
+     |     |     |        |                 |     +--rw wdm-tnl:transceiver-id?
+     |     |     |        |                 |     |       uint32
+     |     |     |        |                 |     +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |        |                 |     |       uint16
+     |     |     |        |                 |     +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |        |                 |     |       l0-types:frequency-thz
+     |     |     |        |                 |     +--rw wdm-tnl:tx-channel-power?
+     |     |     |        |                 |             l0-types:power-dbm
+     |     |     |        |                 +--rw wdm-tnl:outgoing-transponder
+     |     |     |        |                    +--rw wdm-tnl:transponder-id?
+     |     |     |        |                    |       uint32
+     |     |     |        |                    +--rw wdm-tnl:transceiver
+     |     |     |        |                       +--rw wdm-tnl:transceiver-id?
+     |     |     |        |                       |       uint32
+     |     |     |        |                       +--rw wdm-tnl:otsi-carrier-id?
+     |     |     |        |                       |       uint16
+     |     |     |        |                       +--rw wdm-tnl:otsi-carrier-frequency?
+     |     |     |        |                       |       l0-types:frequency-thz
+     |     |     |        |                       +--rw wdm-tnl:tx-channel-power?
+     |     |     |        |                               l0-types:power-dbm
      |     |     |        +--:(numbered-link-hop)
      |     |     |        |  +--rw numbered-link-hop
      |     |     |        |     +--rw link-tp-id    te-tp-id
@@ -3868,7 +5332,7 @@ module: ietf-te
      |     |     |        |        |        |  +--ro wdm-tnl:source-transceiver
      |     |     |        |        |        |     +--ro wdm-tnl:transponder-id?
      |     |     |        |        |        |     |       uint32
-     |     |     |        |        |        |     +--ro wdm-tnl:transceivers*
+     |     |     |        |        |        |     +--ro wdm-tnl:transceiver*
      |     |     |        |        |        |             [transceiver-id]
      |     |     |        |        |        |        +--ro wdm-tnl:otsi-carrier-id?
      |     |     |        |        |        |        |       uint16
@@ -3890,7 +5354,7 @@ module: ietf-te
      |     |     |        |        |        |  +--ro wdm-tnl:destination-transceiver
      |     |     |        |        |        |     +--ro wdm-tnl:transponder-id?
      |     |     |        |        |        |     |       uint32
-     |     |     |        |        |        |     +--ro wdm-tnl:transceivers*
+     |     |     |        |        |        |     +--ro wdm-tnl:transceiver*
      |     |     |        |        |        |             [transceiver-id]
      |     |     |        |        |        |        +--ro wdm-tnl:otsi-carrier-id?
      |     |     |        |        |        |        |       uint16
@@ -3915,7 +5379,7 @@ module: ietf-te
      |     |     |        |        |              +--ro wdm-tnl:incoming-transceiver
      |     |     |        |        |              |  +--ro wdm-tnl:transponder-id?
      |     |     |        |        |              |  |       uint32
-     |     |     |        |        |              |  +--ro wdm-tnl:transceivers*
+     |     |     |        |        |              |  +--ro wdm-tnl:transceiver*
      |     |     |        |        |              |          [transceiver-id]
      |     |     |        |        |              |     +--ro wdm-tnl:otsi-carrier-id?
      |     |     |        |        |              |     |       uint16
@@ -3936,7 +5400,7 @@ module: ietf-te
      |     |     |        |        |              +--ro wdm-tnl:outgoing-transceiver
      |     |     |        |        |                 +--ro wdm-tnl:transponder-id?
      |     |     |        |        |                 |       uint32
-     |     |     |        |        |                 +--ro wdm-tnl:transceivers*
+     |     |     |        |        |                 +--ro wdm-tnl:transceiver*
      |     |     |        |        |                         [transceiver-id]
      |     |     |        |        |                    +--ro wdm-tnl:otsi-carrier-id?
      |     |     |        |        |                    |       uint16
@@ -4135,7 +5599,7 @@ module: ietf-te
                     |        |  +--ro wdm-tnl:source-transceiver
                     |        |     +--ro wdm-tnl:transponder-id?
                     |        |     |       uint32
-                    |        |     +--ro wdm-tnl:transceivers*
+                    |        |     +--ro wdm-tnl:transceiver*
                     |        |             [transceiver-id]
                     |        |        +--ro wdm-tnl:otsi-carrier-id?
                     |        |        |       uint16
@@ -4161,7 +5625,7 @@ module: ietf-te
                     |        |  +--ro wdm-tnl:destination-transceiver
                     |        |     +--ro wdm-tnl:transponder-id?
                     |        |     |       uint32
-                    |        |     +--ro wdm-tnl:transceivers*
+                    |        |     +--ro wdm-tnl:transceiver*
                     |        |             [transceiver-id]
                     |        |        +--ro wdm-tnl:otsi-carrier-id?
                     |        |        |       uint16
@@ -4190,7 +5654,7 @@ module: ietf-te
                     |              +--ro wdm-tnl:incoming-transceiver
                     |              |  +--ro wdm-tnl:transponder-id?
                     |              |  |       uint32
-                    |              |  +--ro wdm-tnl:transceivers*
+                    |              |  +--ro wdm-tnl:transceiver*
                     |              |          [transceiver-id]
                     |              |     +--ro wdm-tnl:otsi-carrier-id?
                     |              |     |       uint16
@@ -4215,7 +5679,7 @@ module: ietf-te
                     |              +--ro wdm-tnl:outgoing-transceiver
                     |                 +--ro wdm-tnl:transponder-id?
                     |                 |       uint32
-                    |                 +--ro wdm-tnl:transceivers*
+                    |                 +--ro wdm-tnl:transceiver*
                     |                         [transceiver-id]
                     |                    +--ro wdm-tnl:otsi-carrier-id?
                     |                    |       uint16
