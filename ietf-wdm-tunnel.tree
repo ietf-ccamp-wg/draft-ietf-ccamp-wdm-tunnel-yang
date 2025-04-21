@@ -159,7 +159,7 @@ module: ietf-wdm-tunnel
              |  +--rw preferred-rx-channel-power?
              |  |       l0-types:power-dbm
              |  +--rw gsnr-extra-margin?            snr
-             +--rw common-outcoming
+             +--rw common-outgoing
              |  +--rw operational-mode?             string
              |  +--rw line-coding-bitrate?          identityref
              |  +--rw preferred-rx-channel-power?
@@ -326,7 +326,7 @@ module: ietf-wdm-tunnel
              |  +--rw preferred-rx-channel-power?
              |  |       l0-types:power-dbm
              |  +--rw gsnr-extra-margin?            snr
-             +--rw common-outcoming
+             +--rw common-outgoing
              |  +--rw operational-mode?             string
              |  +--rw line-coding-bitrate?          identityref
              |  +--rw preferred-rx-channel-power?
@@ -494,7 +494,7 @@ module: ietf-wdm-tunnel
              |  +--rw preferred-rx-channel-power?
              |  |       l0-types:power-dbm
              |  +--rw gsnr-extra-margin?            snr
-             +--rw common-outcoming
+             +--rw common-outgoing
              |  +--rw operational-mode?             string
              |  +--rw line-coding-bitrate?          identityref
              |  +--rw preferred-rx-channel-power?
@@ -661,7 +661,7 @@ module: ietf-wdm-tunnel
              |  +--rw preferred-rx-channel-power?
              |  |       l0-types:power-dbm
              |  +--rw gsnr-extra-margin?            snr
-             +--rw common-outcoming
+             +--rw common-outgoing
              |  +--rw operational-mode?             string
              |  +--rw line-coding-bitrate?          identityref
              |  +--rw preferred-rx-channel-power?
@@ -828,7 +828,7 @@ module: ietf-wdm-tunnel
              |  +--rw preferred-rx-channel-power?
              |  |       l0-types:power-dbm
              |  +--rw gsnr-extra-margin?            snr
-             +--rw common-outcoming
+             +--rw common-outgoing
              |  +--rw operational-mode?             string
              |  +--rw line-coding-bitrate?          identityref
              |  +--rw preferred-rx-channel-power?
@@ -995,7 +995,7 @@ module: ietf-wdm-tunnel
              |  +--rw preferred-rx-channel-power?
              |  |       l0-types:power-dbm
              |  +--rw gsnr-extra-margin?            snr
-             +--rw common-outcoming
+             +--rw common-outgoing
              |  +--rw operational-mode?             string
              |  +--rw line-coding-bitrate?          identityref
              |  +--rw preferred-rx-channel-power?
@@ -1162,7 +1162,7 @@ module: ietf-wdm-tunnel
              |  +--rw preferred-rx-channel-power?
              |  |       l0-types:power-dbm
              |  +--rw gsnr-extra-margin?            snr
-             +--rw common-outcoming
+             +--rw common-outgoing
              |  +--rw operational-mode?             string
              |  +--rw line-coding-bitrate?          identityref
              |  +--rw preferred-rx-channel-power?
@@ -1329,7 +1329,7 @@ module: ietf-wdm-tunnel
              |  +--rw preferred-rx-channel-power?
              |  |       l0-types:power-dbm
              |  +--rw gsnr-extra-margin?            snr
-             +--rw common-outcoming
+             +--rw common-outgoing
              |  +--rw operational-mode?             string
              |  +--rw line-coding-bitrate?          identityref
              |  +--rw preferred-rx-channel-power?
@@ -1364,54 +1364,171 @@ module: ietf-wdm-tunnel
             /te:numbered-node-hop/te:numbered-node-hop:
     +--ro (node-position)?
        +--:(source)
-       |  +--ro source-transceiver
-       |     +--ro transponder-id?   uint32
-       |     +--ro transceiver* [transceiver-id]
+       |  +--ro source-transponder
+       |     +--ro transponder-id?         uint32
+       |     +--ro digital-terminations
+       |     |  +--ro digital-termination* [index]
+       |     |     +--ro index               uint8
+       |     |     +--ro termination-type?   identityref
+       |     |     +--ro mapping-type?       identityref
+       |     +--ro transceiver
+       |        +--ro transceiver-id?           uint32
        |        +--ro otsi-carrier-id?          uint16
-       |        +--ro transceiver-id            uint32
-       |        +--ro otsi-carrier-frequency?   union
+       |        +--ro otsi-carrier-frequency?
+       |        |       l0-types:frequency-thz
+       |        +--ro tx-channel-power?         l0-types:power-dbm
+       |        +--ro operational-mode?         string
+       |        +--ro line-coding-bitrate?      identityref
        |        +--ro rx-channel-power?         power-dbm-or-null
        |        +--ro rx-total-power?           power-dbm-or-null
+       |        +--ro inverse-multiplexing!
+       |        |  +--ro inverse-mux-type?             identityref
+       |        |  +--ro otsi-lane-termination-type?   identityref
+       |        |  +--ro additional-transceivers
+       |        |     +--ro index?                    uint8
+       |        |     +--ro transceiver-id?           uint32
+       |        |     +--ro otsi-carrier-id?          uint16
+       |        |     +--ro otsi-carrier-frequency?
+       |        |     |       l0-types:frequency-thz
+       |        |     +--ro tx-channel-power?
+       |        |             l0-types:power-dbm
        |        +--ro estimated-gsnr?           snr
        |        +--ro estimated-eol-gsnr?       snr
        |        +--ro estimated-lowest-gsnr?    snr
        +--:(destination)
-       |  +--ro destination-transceiver
-       |     +--ro transponder-id?   uint32
-       |     +--ro transceiver* [transceiver-id]
+       |  +--ro destination-transponder
+       |     +--ro transponder-id?         uint32
+       |     +--ro digital-terminations
+       |     |  +--ro digital-termination* [index]
+       |     |     +--ro index               uint8
+       |     |     +--ro termination-type?   identityref
+       |     |     +--ro mapping-type?       identityref
+       |     +--ro transceiver
+       |        +--ro transceiver-id?           uint32
        |        +--ro otsi-carrier-id?          uint16
-       |        +--ro transceiver-id            uint32
-       |        +--ro otsi-carrier-frequency?   union
+       |        +--ro otsi-carrier-frequency?
+       |        |       l0-types:frequency-thz
+       |        +--ro tx-channel-power?         l0-types:power-dbm
+       |        +--ro operational-mode?         string
+       |        +--ro line-coding-bitrate?      identityref
        |        +--ro rx-channel-power?         power-dbm-or-null
        |        +--ro rx-total-power?           power-dbm-or-null
+       |        +--ro inverse-multiplexing!
+       |        |  +--ro inverse-mux-type?             identityref
+       |        |  +--ro otsi-lane-termination-type?   identityref
+       |        |  +--ro additional-transceivers
+       |        |     +--ro index?                    uint8
+       |        |     +--ro transceiver-id?           uint32
+       |        |     +--ro otsi-carrier-id?          uint16
+       |        |     +--ro otsi-carrier-frequency?
+       |        |     |       l0-types:frequency-thz
+       |        |     +--ro tx-channel-power?
+       |        |             l0-types:power-dbm
        |        +--ro estimated-gsnr?           snr
        |        +--ro estimated-eol-gsnr?       snr
        |        +--ro estimated-lowest-gsnr?    snr
-       +--:(transit)
-          +--ro regen-transceivers
-             +--ro regen-group-id?         uint32
-             +--ro incoming-transceiver
-             |  +--ro transponder-id?   uint32
-             |  +--ro transceiver* [transceiver-id]
-             |     +--ro otsi-carrier-id?          uint16
-             |     +--ro transceiver-id            uint32
-             |     +--ro otsi-carrier-frequency?   union
-             |     +--ro rx-channel-power?         power-dbm-or-null
-             |     +--ro rx-total-power?           power-dbm-or-null
-             |     +--ro estimated-gsnr?           snr
-             |     +--ro estimated-eol-gsnr?       snr
-             |     +--ro estimated-lowest-gsnr?    snr
-             +--ro outgoing-transceiver
-                +--ro transponder-id?   uint32
-                +--ro transceiver* [transceiver-id]
-                   +--ro otsi-carrier-id?          uint16
-                   +--ro transceiver-id            uint32
-                   +--ro otsi-carrier-frequency?   union
-                   +--ro rx-channel-power?         power-dbm-or-null
-                   +--ro rx-total-power?           power-dbm-or-null
-                   +--ro estimated-gsnr?           snr
-                   +--ro estimated-eol-gsnr?       snr
-                   +--ro estimated-lowest-gsnr?    snr
+       +--:(regenerator)
+       |  +--ro regenerator
+       |     +--ro regen-group-id?         uint32
+       |     +--ro regeneration-layer?     identityref
+       |     +--ro incoming-transponder
+       |     |  +--ro transponder-id?         uint32
+       |     |  +--ro digital-terminations
+       |     |  |  +--ro digital-termination* [index]
+       |     |  |     +--ro index               uint8
+       |     |  |     +--ro termination-type?   identityref
+       |     |  |     +--ro mapping-type?       identityref
+       |     |  +--ro transceiver
+       |     |     +--ro transceiver-id?           uint32
+       |     |     +--ro otsi-carrier-id?          uint16
+       |     |     +--ro otsi-carrier-frequency?
+       |     |     |       l0-types:frequency-thz
+       |     |     +--ro tx-channel-power?         l0-types:power-dbm
+       |     |     +--ro operational-mode?         string
+       |     |     +--ro line-coding-bitrate?      identityref
+       |     |     +--ro rx-channel-power?         power-dbm-or-null
+       |     |     +--ro rx-total-power?           power-dbm-or-null
+       |     |     +--ro inverse-multiplexing!
+       |     |     |  +--ro inverse-mux-type?             identityref
+       |     |     |  +--ro otsi-lane-termination-type?   identityref
+       |     |     |  +--ro additional-transceivers
+       |     |     |     +--ro index?                    uint8
+       |     |     |     +--ro transceiver-id?           uint32
+       |     |     |     +--ro otsi-carrier-id?          uint16
+       |     |     |     +--ro otsi-carrier-frequency?
+       |     |     |     |       l0-types:frequency-thz
+       |     |     |     +--ro tx-channel-power?
+       |     |     |             l0-types:power-dbm
+       |     |     +--ro estimated-gsnr?           snr
+       |     |     +--ro estimated-eol-gsnr?       snr
+       |     |     +--ro estimated-lowest-gsnr?    snr
+       |     +--ro outgoing-transponder
+       |        +--ro transponder-id?         uint32
+       |        +--ro digital-terminations
+       |        |  +--ro digital-termination* [index]
+       |        |     +--ro index               uint8
+       |        |     +--ro termination-type?   identityref
+       |        |     +--ro mapping-type?       identityref
+       |        +--ro transceiver
+       |           +--ro transceiver-id?           uint32
+       |           +--ro otsi-carrier-id?          uint16
+       |           +--ro otsi-carrier-frequency?
+       |           |       l0-types:frequency-thz
+       |           +--ro tx-channel-power?         l0-types:power-dbm
+       |           +--ro operational-mode?         string
+       |           +--ro line-coding-bitrate?      identityref
+       |           +--ro rx-channel-power?         power-dbm-or-null
+       |           +--ro rx-total-power?           power-dbm-or-null
+       |           +--ro inverse-multiplexing!
+       |           |  +--ro inverse-mux-type?             identityref
+       |           |  +--ro otsi-lane-termination-type?   identityref
+       |           |  +--ro additional-transceivers
+       |           |     +--ro index?                    uint8
+       |           |     +--ro transceiver-id?           uint32
+       |           |     +--ro otsi-carrier-id?          uint16
+       |           |     +--ro otsi-carrier-frequency?
+       |           |     |       l0-types:frequency-thz
+       |           |     +--ro tx-channel-power?
+       |           |             l0-types:power-dbm
+       |           +--ro estimated-gsnr?           snr
+       |           +--ro estimated-eol-gsnr?       snr
+       |           +--ro estimated-lowest-gsnr?    snr
+       +--:(regenerators)
+          +--ro regenerators
+             +--ro common-incoming
+             |  +--ro operational-mode?        string
+             |  +--ro line-coding-bitrate?     identityref
+             |  +--ro estimated-gsnr?          snr
+             |  +--ro estimated-eol-gsnr?      snr
+             |  +--ro estimated-lowest-gsnr?   snr
+             +--ro common-outgoing
+             |  +--ro operational-mode?        string
+             |  +--ro line-coding-bitrate?     identityref
+             |  +--ro estimated-gsnr?          snr
+             |  +--ro estimated-eol-gsnr?      snr
+             |  +--ro estimated-lowest-gsnr?   snr
+             +--ro regenerator* [index]
+                +--ro index                   uint8
+                +--ro regen-group-id?         uint32
+                +--ro regeneration-layer?     identityref
+                +--ro incoming-transponder
+                |  +--ro transponder-id?   uint32
+                |  +--ro transceiver
+                |     +--ro transceiver-id?           uint32
+                |     +--ro otsi-carrier-id?          uint16
+                |     +--ro otsi-carrier-frequency?
+                |     |       l0-types:frequency-thz
+                |     +--ro tx-channel-power?
+                |             l0-types:power-dbm
+                +--ro outgoing-transponder
+                   +--ro transponder-id?   uint32
+                   +--ro transceiver
+                      +--ro transceiver-id?           uint32
+                      +--ro otsi-carrier-id?          uint16
+                      +--ro otsi-carrier-frequency?
+                      |       l0-types:frequency-thz
+                      +--ro tx-channel-power?
+                              l0-types:power-dbm
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:primary-reverse-path
             /te:computed-paths-properties/te:computed-path-properties
@@ -1420,54 +1537,171 @@ module: ietf-wdm-tunnel
             /te:numbered-node-hop:
     +--ro (node-position)?
        +--:(source)
-       |  +--ro source-transceiver
-       |     +--ro transponder-id?   uint32
-       |     +--ro transceiver* [transceiver-id]
+       |  +--ro source-transponder
+       |     +--ro transponder-id?         uint32
+       |     +--ro digital-terminations
+       |     |  +--ro digital-termination* [index]
+       |     |     +--ro index               uint8
+       |     |     +--ro termination-type?   identityref
+       |     |     +--ro mapping-type?       identityref
+       |     +--ro transceiver
+       |        +--ro transceiver-id?           uint32
        |        +--ro otsi-carrier-id?          uint16
-       |        +--ro transceiver-id            uint32
-       |        +--ro otsi-carrier-frequency?   union
+       |        +--ro otsi-carrier-frequency?
+       |        |       l0-types:frequency-thz
+       |        +--ro tx-channel-power?         l0-types:power-dbm
+       |        +--ro operational-mode?         string
+       |        +--ro line-coding-bitrate?      identityref
        |        +--ro rx-channel-power?         power-dbm-or-null
        |        +--ro rx-total-power?           power-dbm-or-null
+       |        +--ro inverse-multiplexing!
+       |        |  +--ro inverse-mux-type?             identityref
+       |        |  +--ro otsi-lane-termination-type?   identityref
+       |        |  +--ro additional-transceivers
+       |        |     +--ro index?                    uint8
+       |        |     +--ro transceiver-id?           uint32
+       |        |     +--ro otsi-carrier-id?          uint16
+       |        |     +--ro otsi-carrier-frequency?
+       |        |     |       l0-types:frequency-thz
+       |        |     +--ro tx-channel-power?
+       |        |             l0-types:power-dbm
        |        +--ro estimated-gsnr?           snr
        |        +--ro estimated-eol-gsnr?       snr
        |        +--ro estimated-lowest-gsnr?    snr
        +--:(destination)
-       |  +--ro destination-transceiver
-       |     +--ro transponder-id?   uint32
-       |     +--ro transceiver* [transceiver-id]
+       |  +--ro destination-transponder
+       |     +--ro transponder-id?         uint32
+       |     +--ro digital-terminations
+       |     |  +--ro digital-termination* [index]
+       |     |     +--ro index               uint8
+       |     |     +--ro termination-type?   identityref
+       |     |     +--ro mapping-type?       identityref
+       |     +--ro transceiver
+       |        +--ro transceiver-id?           uint32
        |        +--ro otsi-carrier-id?          uint16
-       |        +--ro transceiver-id            uint32
-       |        +--ro otsi-carrier-frequency?   union
+       |        +--ro otsi-carrier-frequency?
+       |        |       l0-types:frequency-thz
+       |        +--ro tx-channel-power?         l0-types:power-dbm
+       |        +--ro operational-mode?         string
+       |        +--ro line-coding-bitrate?      identityref
        |        +--ro rx-channel-power?         power-dbm-or-null
        |        +--ro rx-total-power?           power-dbm-or-null
+       |        +--ro inverse-multiplexing!
+       |        |  +--ro inverse-mux-type?             identityref
+       |        |  +--ro otsi-lane-termination-type?   identityref
+       |        |  +--ro additional-transceivers
+       |        |     +--ro index?                    uint8
+       |        |     +--ro transceiver-id?           uint32
+       |        |     +--ro otsi-carrier-id?          uint16
+       |        |     +--ro otsi-carrier-frequency?
+       |        |     |       l0-types:frequency-thz
+       |        |     +--ro tx-channel-power?
+       |        |             l0-types:power-dbm
        |        +--ro estimated-gsnr?           snr
        |        +--ro estimated-eol-gsnr?       snr
        |        +--ro estimated-lowest-gsnr?    snr
-       +--:(transit)
-          +--ro regen-transceivers
-             +--ro regen-group-id?         uint32
-             +--ro incoming-transceiver
-             |  +--ro transponder-id?   uint32
-             |  +--ro transceiver* [transceiver-id]
-             |     +--ro otsi-carrier-id?          uint16
-             |     +--ro transceiver-id            uint32
-             |     +--ro otsi-carrier-frequency?   union
-             |     +--ro rx-channel-power?         power-dbm-or-null
-             |     +--ro rx-total-power?           power-dbm-or-null
-             |     +--ro estimated-gsnr?           snr
-             |     +--ro estimated-eol-gsnr?       snr
-             |     +--ro estimated-lowest-gsnr?    snr
-             +--ro outgoing-transceiver
-                +--ro transponder-id?   uint32
-                +--ro transceiver* [transceiver-id]
-                   +--ro otsi-carrier-id?          uint16
-                   +--ro transceiver-id            uint32
-                   +--ro otsi-carrier-frequency?   union
-                   +--ro rx-channel-power?         power-dbm-or-null
-                   +--ro rx-total-power?           power-dbm-or-null
-                   +--ro estimated-gsnr?           snr
-                   +--ro estimated-eol-gsnr?       snr
-                   +--ro estimated-lowest-gsnr?    snr
+       +--:(regenerator)
+       |  +--ro regenerator
+       |     +--ro regen-group-id?         uint32
+       |     +--ro regeneration-layer?     identityref
+       |     +--ro incoming-transponder
+       |     |  +--ro transponder-id?         uint32
+       |     |  +--ro digital-terminations
+       |     |  |  +--ro digital-termination* [index]
+       |     |  |     +--ro index               uint8
+       |     |  |     +--ro termination-type?   identityref
+       |     |  |     +--ro mapping-type?       identityref
+       |     |  +--ro transceiver
+       |     |     +--ro transceiver-id?           uint32
+       |     |     +--ro otsi-carrier-id?          uint16
+       |     |     +--ro otsi-carrier-frequency?
+       |     |     |       l0-types:frequency-thz
+       |     |     +--ro tx-channel-power?         l0-types:power-dbm
+       |     |     +--ro operational-mode?         string
+       |     |     +--ro line-coding-bitrate?      identityref
+       |     |     +--ro rx-channel-power?         power-dbm-or-null
+       |     |     +--ro rx-total-power?           power-dbm-or-null
+       |     |     +--ro inverse-multiplexing!
+       |     |     |  +--ro inverse-mux-type?             identityref
+       |     |     |  +--ro otsi-lane-termination-type?   identityref
+       |     |     |  +--ro additional-transceivers
+       |     |     |     +--ro index?                    uint8
+       |     |     |     +--ro transceiver-id?           uint32
+       |     |     |     +--ro otsi-carrier-id?          uint16
+       |     |     |     +--ro otsi-carrier-frequency?
+       |     |     |     |       l0-types:frequency-thz
+       |     |     |     +--ro tx-channel-power?
+       |     |     |             l0-types:power-dbm
+       |     |     +--ro estimated-gsnr?           snr
+       |     |     +--ro estimated-eol-gsnr?       snr
+       |     |     +--ro estimated-lowest-gsnr?    snr
+       |     +--ro outgoing-transponder
+       |        +--ro transponder-id?         uint32
+       |        +--ro digital-terminations
+       |        |  +--ro digital-termination* [index]
+       |        |     +--ro index               uint8
+       |        |     +--ro termination-type?   identityref
+       |        |     +--ro mapping-type?       identityref
+       |        +--ro transceiver
+       |           +--ro transceiver-id?           uint32
+       |           +--ro otsi-carrier-id?          uint16
+       |           +--ro otsi-carrier-frequency?
+       |           |       l0-types:frequency-thz
+       |           +--ro tx-channel-power?         l0-types:power-dbm
+       |           +--ro operational-mode?         string
+       |           +--ro line-coding-bitrate?      identityref
+       |           +--ro rx-channel-power?         power-dbm-or-null
+       |           +--ro rx-total-power?           power-dbm-or-null
+       |           +--ro inverse-multiplexing!
+       |           |  +--ro inverse-mux-type?             identityref
+       |           |  +--ro otsi-lane-termination-type?   identityref
+       |           |  +--ro additional-transceivers
+       |           |     +--ro index?                    uint8
+       |           |     +--ro transceiver-id?           uint32
+       |           |     +--ro otsi-carrier-id?          uint16
+       |           |     +--ro otsi-carrier-frequency?
+       |           |     |       l0-types:frequency-thz
+       |           |     +--ro tx-channel-power?
+       |           |             l0-types:power-dbm
+       |           +--ro estimated-gsnr?           snr
+       |           +--ro estimated-eol-gsnr?       snr
+       |           +--ro estimated-lowest-gsnr?    snr
+       +--:(regenerators)
+          +--ro regenerators
+             +--ro common-incoming
+             |  +--ro operational-mode?        string
+             |  +--ro line-coding-bitrate?     identityref
+             |  +--ro estimated-gsnr?          snr
+             |  +--ro estimated-eol-gsnr?      snr
+             |  +--ro estimated-lowest-gsnr?   snr
+             +--ro common-outgoing
+             |  +--ro operational-mode?        string
+             |  +--ro line-coding-bitrate?     identityref
+             |  +--ro estimated-gsnr?          snr
+             |  +--ro estimated-eol-gsnr?      snr
+             |  +--ro estimated-lowest-gsnr?   snr
+             +--ro regenerator* [index]
+                +--ro index                   uint8
+                +--ro regen-group-id?         uint32
+                +--ro regeneration-layer?     identityref
+                +--ro incoming-transponder
+                |  +--ro transponder-id?   uint32
+                |  +--ro transceiver
+                |     +--ro transceiver-id?           uint32
+                |     +--ro otsi-carrier-id?          uint16
+                |     +--ro otsi-carrier-frequency?
+                |     |       l0-types:frequency-thz
+                |     +--ro tx-channel-power?
+                |             l0-types:power-dbm
+                +--ro outgoing-transponder
+                   +--ro transponder-id?   uint32
+                   +--ro transceiver
+                      +--ro transceiver-id?           uint32
+                      +--ro otsi-carrier-id?          uint16
+                      +--ro otsi-carrier-frequency?
+                      |       l0-types:frequency-thz
+                      +--ro tx-channel-power?
+                              l0-types:power-dbm
   augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
             /te:secondary-path/te:computed-paths-properties
             /te:computed-path-properties/te:path-properties
@@ -1475,54 +1709,171 @@ module: ietf-wdm-tunnel
             /te:numbered-node-hop/te:numbered-node-hop:
     +--ro (node-position)?
        +--:(source)
-       |  +--ro source-transceiver
-       |     +--ro transponder-id?   uint32
-       |     +--ro transceiver* [transceiver-id]
+       |  +--ro source-transponder
+       |     +--ro transponder-id?         uint32
+       |     +--ro digital-terminations
+       |     |  +--ro digital-termination* [index]
+       |     |     +--ro index               uint8
+       |     |     +--ro termination-type?   identityref
+       |     |     +--ro mapping-type?       identityref
+       |     +--ro transceiver
+       |        +--ro transceiver-id?           uint32
        |        +--ro otsi-carrier-id?          uint16
-       |        +--ro transceiver-id            uint32
-       |        +--ro otsi-carrier-frequency?   union
+       |        +--ro otsi-carrier-frequency?
+       |        |       l0-types:frequency-thz
+       |        +--ro tx-channel-power?         l0-types:power-dbm
+       |        +--ro operational-mode?         string
+       |        +--ro line-coding-bitrate?      identityref
        |        +--ro rx-channel-power?         power-dbm-or-null
        |        +--ro rx-total-power?           power-dbm-or-null
+       |        +--ro inverse-multiplexing!
+       |        |  +--ro inverse-mux-type?             identityref
+       |        |  +--ro otsi-lane-termination-type?   identityref
+       |        |  +--ro additional-transceivers
+       |        |     +--ro index?                    uint8
+       |        |     +--ro transceiver-id?           uint32
+       |        |     +--ro otsi-carrier-id?          uint16
+       |        |     +--ro otsi-carrier-frequency?
+       |        |     |       l0-types:frequency-thz
+       |        |     +--ro tx-channel-power?
+       |        |             l0-types:power-dbm
        |        +--ro estimated-gsnr?           snr
        |        +--ro estimated-eol-gsnr?       snr
        |        +--ro estimated-lowest-gsnr?    snr
        +--:(destination)
-       |  +--ro destination-transceiver
-       |     +--ro transponder-id?   uint32
-       |     +--ro transceiver* [transceiver-id]
+       |  +--ro destination-transponder
+       |     +--ro transponder-id?         uint32
+       |     +--ro digital-terminations
+       |     |  +--ro digital-termination* [index]
+       |     |     +--ro index               uint8
+       |     |     +--ro termination-type?   identityref
+       |     |     +--ro mapping-type?       identityref
+       |     +--ro transceiver
+       |        +--ro transceiver-id?           uint32
        |        +--ro otsi-carrier-id?          uint16
-       |        +--ro transceiver-id            uint32
-       |        +--ro otsi-carrier-frequency?   union
+       |        +--ro otsi-carrier-frequency?
+       |        |       l0-types:frequency-thz
+       |        +--ro tx-channel-power?         l0-types:power-dbm
+       |        +--ro operational-mode?         string
+       |        +--ro line-coding-bitrate?      identityref
        |        +--ro rx-channel-power?         power-dbm-or-null
        |        +--ro rx-total-power?           power-dbm-or-null
+       |        +--ro inverse-multiplexing!
+       |        |  +--ro inverse-mux-type?             identityref
+       |        |  +--ro otsi-lane-termination-type?   identityref
+       |        |  +--ro additional-transceivers
+       |        |     +--ro index?                    uint8
+       |        |     +--ro transceiver-id?           uint32
+       |        |     +--ro otsi-carrier-id?          uint16
+       |        |     +--ro otsi-carrier-frequency?
+       |        |     |       l0-types:frequency-thz
+       |        |     +--ro tx-channel-power?
+       |        |             l0-types:power-dbm
        |        +--ro estimated-gsnr?           snr
        |        +--ro estimated-eol-gsnr?       snr
        |        +--ro estimated-lowest-gsnr?    snr
-       +--:(transit)
-          +--ro regen-transceivers
-             +--ro regen-group-id?         uint32
-             +--ro incoming-transceiver
-             |  +--ro transponder-id?   uint32
-             |  +--ro transceiver* [transceiver-id]
-             |     +--ro otsi-carrier-id?          uint16
-             |     +--ro transceiver-id            uint32
-             |     +--ro otsi-carrier-frequency?   union
-             |     +--ro rx-channel-power?         power-dbm-or-null
-             |     +--ro rx-total-power?           power-dbm-or-null
-             |     +--ro estimated-gsnr?           snr
-             |     +--ro estimated-eol-gsnr?       snr
-             |     +--ro estimated-lowest-gsnr?    snr
-             +--ro outgoing-transceiver
-                +--ro transponder-id?   uint32
-                +--ro transceiver* [transceiver-id]
-                   +--ro otsi-carrier-id?          uint16
-                   +--ro transceiver-id            uint32
-                   +--ro otsi-carrier-frequency?   union
-                   +--ro rx-channel-power?         power-dbm-or-null
-                   +--ro rx-total-power?           power-dbm-or-null
-                   +--ro estimated-gsnr?           snr
-                   +--ro estimated-eol-gsnr?       snr
-                   +--ro estimated-lowest-gsnr?    snr
+       +--:(regenerator)
+       |  +--ro regenerator
+       |     +--ro regen-group-id?         uint32
+       |     +--ro regeneration-layer?     identityref
+       |     +--ro incoming-transponder
+       |     |  +--ro transponder-id?         uint32
+       |     |  +--ro digital-terminations
+       |     |  |  +--ro digital-termination* [index]
+       |     |  |     +--ro index               uint8
+       |     |  |     +--ro termination-type?   identityref
+       |     |  |     +--ro mapping-type?       identityref
+       |     |  +--ro transceiver
+       |     |     +--ro transceiver-id?           uint32
+       |     |     +--ro otsi-carrier-id?          uint16
+       |     |     +--ro otsi-carrier-frequency?
+       |     |     |       l0-types:frequency-thz
+       |     |     +--ro tx-channel-power?         l0-types:power-dbm
+       |     |     +--ro operational-mode?         string
+       |     |     +--ro line-coding-bitrate?      identityref
+       |     |     +--ro rx-channel-power?         power-dbm-or-null
+       |     |     +--ro rx-total-power?           power-dbm-or-null
+       |     |     +--ro inverse-multiplexing!
+       |     |     |  +--ro inverse-mux-type?             identityref
+       |     |     |  +--ro otsi-lane-termination-type?   identityref
+       |     |     |  +--ro additional-transceivers
+       |     |     |     +--ro index?                    uint8
+       |     |     |     +--ro transceiver-id?           uint32
+       |     |     |     +--ro otsi-carrier-id?          uint16
+       |     |     |     +--ro otsi-carrier-frequency?
+       |     |     |     |       l0-types:frequency-thz
+       |     |     |     +--ro tx-channel-power?
+       |     |     |             l0-types:power-dbm
+       |     |     +--ro estimated-gsnr?           snr
+       |     |     +--ro estimated-eol-gsnr?       snr
+       |     |     +--ro estimated-lowest-gsnr?    snr
+       |     +--ro outgoing-transponder
+       |        +--ro transponder-id?         uint32
+       |        +--ro digital-terminations
+       |        |  +--ro digital-termination* [index]
+       |        |     +--ro index               uint8
+       |        |     +--ro termination-type?   identityref
+       |        |     +--ro mapping-type?       identityref
+       |        +--ro transceiver
+       |           +--ro transceiver-id?           uint32
+       |           +--ro otsi-carrier-id?          uint16
+       |           +--ro otsi-carrier-frequency?
+       |           |       l0-types:frequency-thz
+       |           +--ro tx-channel-power?         l0-types:power-dbm
+       |           +--ro operational-mode?         string
+       |           +--ro line-coding-bitrate?      identityref
+       |           +--ro rx-channel-power?         power-dbm-or-null
+       |           +--ro rx-total-power?           power-dbm-or-null
+       |           +--ro inverse-multiplexing!
+       |           |  +--ro inverse-mux-type?             identityref
+       |           |  +--ro otsi-lane-termination-type?   identityref
+       |           |  +--ro additional-transceivers
+       |           |     +--ro index?                    uint8
+       |           |     +--ro transceiver-id?           uint32
+       |           |     +--ro otsi-carrier-id?          uint16
+       |           |     +--ro otsi-carrier-frequency?
+       |           |     |       l0-types:frequency-thz
+       |           |     +--ro tx-channel-power?
+       |           |             l0-types:power-dbm
+       |           +--ro estimated-gsnr?           snr
+       |           +--ro estimated-eol-gsnr?       snr
+       |           +--ro estimated-lowest-gsnr?    snr
+       +--:(regenerators)
+          +--ro regenerators
+             +--ro common-incoming
+             |  +--ro operational-mode?        string
+             |  +--ro line-coding-bitrate?     identityref
+             |  +--ro estimated-gsnr?          snr
+             |  +--ro estimated-eol-gsnr?      snr
+             |  +--ro estimated-lowest-gsnr?   snr
+             +--ro common-outgoing
+             |  +--ro operational-mode?        string
+             |  +--ro line-coding-bitrate?     identityref
+             |  +--ro estimated-gsnr?          snr
+             |  +--ro estimated-eol-gsnr?      snr
+             |  +--ro estimated-lowest-gsnr?   snr
+             +--ro regenerator* [index]
+                +--ro index                   uint8
+                +--ro regen-group-id?         uint32
+                +--ro regeneration-layer?     identityref
+                +--ro incoming-transponder
+                |  +--ro transponder-id?   uint32
+                |  +--ro transceiver
+                |     +--ro transceiver-id?           uint32
+                |     +--ro otsi-carrier-id?          uint16
+                |     +--ro otsi-carrier-frequency?
+                |     |       l0-types:frequency-thz
+                |     +--ro tx-channel-power?
+                |             l0-types:power-dbm
+                +--ro outgoing-transponder
+                   +--ro transponder-id?   uint32
+                   +--ro transceiver
+                      +--ro transceiver-id?           uint32
+                      +--ro otsi-carrier-id?          uint16
+                      +--ro otsi-carrier-frequency?
+                      |       l0-types:frequency-thz
+                      +--ro tx-channel-power?
+                              l0-types:power-dbm
   augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
             /te:secondary-reverse-path/te:computed-paths-properties
             /te:computed-path-properties/te:path-properties
@@ -1530,67 +1881,204 @@ module: ietf-wdm-tunnel
             /te:numbered-node-hop/te:numbered-node-hop:
     +--ro (node-position)?
        +--:(source)
-       |  +--ro source-transceiver
-       |     +--ro transponder-id?   uint32
-       |     +--ro transceiver* [transceiver-id]
+       |  +--ro source-transponder
+       |     +--ro transponder-id?         uint32
+       |     +--ro digital-terminations
+       |     |  +--ro digital-termination* [index]
+       |     |     +--ro index               uint8
+       |     |     +--ro termination-type?   identityref
+       |     |     +--ro mapping-type?       identityref
+       |     +--ro transceiver
+       |        +--ro transceiver-id?           uint32
        |        +--ro otsi-carrier-id?          uint16
-       |        +--ro transceiver-id            uint32
-       |        +--ro otsi-carrier-frequency?   union
+       |        +--ro otsi-carrier-frequency?
+       |        |       l0-types:frequency-thz
+       |        +--ro tx-channel-power?         l0-types:power-dbm
+       |        +--ro operational-mode?         string
+       |        +--ro line-coding-bitrate?      identityref
        |        +--ro rx-channel-power?         power-dbm-or-null
        |        +--ro rx-total-power?           power-dbm-or-null
+       |        +--ro inverse-multiplexing!
+       |        |  +--ro inverse-mux-type?             identityref
+       |        |  +--ro otsi-lane-termination-type?   identityref
+       |        |  +--ro additional-transceivers
+       |        |     +--ro index?                    uint8
+       |        |     +--ro transceiver-id?           uint32
+       |        |     +--ro otsi-carrier-id?          uint16
+       |        |     +--ro otsi-carrier-frequency?
+       |        |     |       l0-types:frequency-thz
+       |        |     +--ro tx-channel-power?
+       |        |             l0-types:power-dbm
        |        +--ro estimated-gsnr?           snr
        |        +--ro estimated-eol-gsnr?       snr
        |        +--ro estimated-lowest-gsnr?    snr
        +--:(destination)
-       |  +--ro destination-transceiver
-       |     +--ro transponder-id?   uint32
-       |     +--ro transceiver* [transceiver-id]
+       |  +--ro destination-transponder
+       |     +--ro transponder-id?         uint32
+       |     +--ro digital-terminations
+       |     |  +--ro digital-termination* [index]
+       |     |     +--ro index               uint8
+       |     |     +--ro termination-type?   identityref
+       |     |     +--ro mapping-type?       identityref
+       |     +--ro transceiver
+       |        +--ro transceiver-id?           uint32
        |        +--ro otsi-carrier-id?          uint16
-       |        +--ro transceiver-id            uint32
-       |        +--ro otsi-carrier-frequency?   union
+       |        +--ro otsi-carrier-frequency?
+       |        |       l0-types:frequency-thz
+       |        +--ro tx-channel-power?         l0-types:power-dbm
+       |        +--ro operational-mode?         string
+       |        +--ro line-coding-bitrate?      identityref
        |        +--ro rx-channel-power?         power-dbm-or-null
        |        +--ro rx-total-power?           power-dbm-or-null
+       |        +--ro inverse-multiplexing!
+       |        |  +--ro inverse-mux-type?             identityref
+       |        |  +--ro otsi-lane-termination-type?   identityref
+       |        |  +--ro additional-transceivers
+       |        |     +--ro index?                    uint8
+       |        |     +--ro transceiver-id?           uint32
+       |        |     +--ro otsi-carrier-id?          uint16
+       |        |     +--ro otsi-carrier-frequency?
+       |        |     |       l0-types:frequency-thz
+       |        |     +--ro tx-channel-power?
+       |        |             l0-types:power-dbm
        |        +--ro estimated-gsnr?           snr
        |        +--ro estimated-eol-gsnr?       snr
        |        +--ro estimated-lowest-gsnr?    snr
-       +--:(transit)
-          +--ro regen-transceivers
-             +--ro regen-group-id?         uint32
-             +--ro incoming-transceiver
-             |  +--ro transponder-id?   uint32
-             |  +--ro transceiver* [transceiver-id]
-             |     +--ro otsi-carrier-id?          uint16
-             |     +--ro transceiver-id            uint32
-             |     +--ro otsi-carrier-frequency?   union
-             |     +--ro rx-channel-power?         power-dbm-or-null
-             |     +--ro rx-total-power?           power-dbm-or-null
-             |     +--ro estimated-gsnr?           snr
-             |     +--ro estimated-eol-gsnr?       snr
-             |     +--ro estimated-lowest-gsnr?    snr
-             +--ro outgoing-transceiver
-                +--ro transponder-id?   uint32
-                +--ro transceiver* [transceiver-id]
-                   +--ro otsi-carrier-id?          uint16
-                   +--ro transceiver-id            uint32
-                   +--ro otsi-carrier-frequency?   union
-                   +--ro rx-channel-power?         power-dbm-or-null
-                   +--ro rx-total-power?           power-dbm-or-null
-                   +--ro estimated-gsnr?           snr
-                   +--ro estimated-eol-gsnr?       snr
-                   +--ro estimated-lowest-gsnr?    snr
+       +--:(regenerator)
+       |  +--ro regenerator
+       |     +--ro regen-group-id?         uint32
+       |     +--ro regeneration-layer?     identityref
+       |     +--ro incoming-transponder
+       |     |  +--ro transponder-id?         uint32
+       |     |  +--ro digital-terminations
+       |     |  |  +--ro digital-termination* [index]
+       |     |  |     +--ro index               uint8
+       |     |  |     +--ro termination-type?   identityref
+       |     |  |     +--ro mapping-type?       identityref
+       |     |  +--ro transceiver
+       |     |     +--ro transceiver-id?           uint32
+       |     |     +--ro otsi-carrier-id?          uint16
+       |     |     +--ro otsi-carrier-frequency?
+       |     |     |       l0-types:frequency-thz
+       |     |     +--ro tx-channel-power?         l0-types:power-dbm
+       |     |     +--ro operational-mode?         string
+       |     |     +--ro line-coding-bitrate?      identityref
+       |     |     +--ro rx-channel-power?         power-dbm-or-null
+       |     |     +--ro rx-total-power?           power-dbm-or-null
+       |     |     +--ro inverse-multiplexing!
+       |     |     |  +--ro inverse-mux-type?             identityref
+       |     |     |  +--ro otsi-lane-termination-type?   identityref
+       |     |     |  +--ro additional-transceivers
+       |     |     |     +--ro index?                    uint8
+       |     |     |     +--ro transceiver-id?           uint32
+       |     |     |     +--ro otsi-carrier-id?          uint16
+       |     |     |     +--ro otsi-carrier-frequency?
+       |     |     |     |       l0-types:frequency-thz
+       |     |     |     +--ro tx-channel-power?
+       |     |     |             l0-types:power-dbm
+       |     |     +--ro estimated-gsnr?           snr
+       |     |     +--ro estimated-eol-gsnr?       snr
+       |     |     +--ro estimated-lowest-gsnr?    snr
+       |     +--ro outgoing-transponder
+       |        +--ro transponder-id?         uint32
+       |        +--ro digital-terminations
+       |        |  +--ro digital-termination* [index]
+       |        |     +--ro index               uint8
+       |        |     +--ro termination-type?   identityref
+       |        |     +--ro mapping-type?       identityref
+       |        +--ro transceiver
+       |           +--ro transceiver-id?           uint32
+       |           +--ro otsi-carrier-id?          uint16
+       |           +--ro otsi-carrier-frequency?
+       |           |       l0-types:frequency-thz
+       |           +--ro tx-channel-power?         l0-types:power-dbm
+       |           +--ro operational-mode?         string
+       |           +--ro line-coding-bitrate?      identityref
+       |           +--ro rx-channel-power?         power-dbm-or-null
+       |           +--ro rx-total-power?           power-dbm-or-null
+       |           +--ro inverse-multiplexing!
+       |           |  +--ro inverse-mux-type?             identityref
+       |           |  +--ro otsi-lane-termination-type?   identityref
+       |           |  +--ro additional-transceivers
+       |           |     +--ro index?                    uint8
+       |           |     +--ro transceiver-id?           uint32
+       |           |     +--ro otsi-carrier-id?          uint16
+       |           |     +--ro otsi-carrier-frequency?
+       |           |     |       l0-types:frequency-thz
+       |           |     +--ro tx-channel-power?
+       |           |             l0-types:power-dbm
+       |           +--ro estimated-gsnr?           snr
+       |           +--ro estimated-eol-gsnr?       snr
+       |           +--ro estimated-lowest-gsnr?    snr
+       +--:(regenerators)
+          +--ro regenerators
+             +--ro common-incoming
+             |  +--ro operational-mode?        string
+             |  +--ro line-coding-bitrate?     identityref
+             |  +--ro estimated-gsnr?          snr
+             |  +--ro estimated-eol-gsnr?      snr
+             |  +--ro estimated-lowest-gsnr?   snr
+             +--ro common-outgoing
+             |  +--ro operational-mode?        string
+             |  +--ro line-coding-bitrate?     identityref
+             |  +--ro estimated-gsnr?          snr
+             |  +--ro estimated-eol-gsnr?      snr
+             |  +--ro estimated-lowest-gsnr?   snr
+             +--ro regenerator* [index]
+                +--ro index                   uint8
+                +--ro regen-group-id?         uint32
+                +--ro regeneration-layer?     identityref
+                +--ro incoming-transponder
+                |  +--ro transponder-id?   uint32
+                |  +--ro transceiver
+                |     +--ro transceiver-id?           uint32
+                |     +--ro otsi-carrier-id?          uint16
+                |     +--ro otsi-carrier-frequency?
+                |     |       l0-types:frequency-thz
+                |     +--ro tx-channel-power?
+                |             l0-types:power-dbm
+                +--ro outgoing-transponder
+                   +--ro transponder-id?   uint32
+                   +--ro transceiver
+                      +--ro transceiver-id?           uint32
+                      +--ro otsi-carrier-id?          uint16
+                      +--ro otsi-carrier-frequency?
+                      |       l0-types:frequency-thz
+                      +--ro tx-channel-power?
+                              l0-types:power-dbm
   augment /te:te/te:lsps/te:lsp/te:lsp-actual-route-information
             /te:lsp-actual-route-information/te:type
             /te:numbered-node-hop/te:numbered-node-hop:
     +--ro (node-position)?
        +--:(source)
-       |  +--ro source-transceiver
-       |     +--ro transponder-id?   uint32
-       |     +--ro transceiver* [transceiver-id]
+       |  +--ro source-transponder
+       |     +--ro transponder-id?         uint32
+       |     +--ro digital-terminations
+       |     |  +--ro digital-termination* [index]
+       |     |     +--ro index               uint8
+       |     |     +--ro termination-type?   identityref
+       |     |     +--ro mapping-type?       identityref
+       |     +--ro transceiver
+       |        +--ro transceiver-id?           uint32
        |        +--ro otsi-carrier-id?          uint16
-       |        +--ro transceiver-id            uint32
-       |        +--ro otsi-carrier-frequency?   union
+       |        +--ro otsi-carrier-frequency?
+       |        |       l0-types:frequency-thz
+       |        +--ro tx-channel-power?         l0-types:power-dbm
+       |        +--ro operational-mode?         string
+       |        +--ro line-coding-bitrate?      identityref
        |        +--ro rx-channel-power?         power-dbm-or-null
        |        +--ro rx-total-power?           power-dbm-or-null
+       |        +--ro inverse-multiplexing!
+       |        |  +--ro inverse-mux-type?             identityref
+       |        |  +--ro otsi-lane-termination-type?   identityref
+       |        |  +--ro additional-transceivers
+       |        |     +--ro index?                    uint8
+       |        |     +--ro transceiver-id?           uint32
+       |        |     +--ro otsi-carrier-id?          uint16
+       |        |     +--ro otsi-carrier-frequency?
+       |        |     |       l0-types:frequency-thz
+       |        |     +--ro tx-channel-power?
+       |        |             l0-types:power-dbm
        |        +--ro pre-fec-ber
        |        |  +--ro timestamp?   yang:timestamp
        |        |  +--ro value?       decimal64
@@ -1598,51 +2086,154 @@ module: ietf-wdm-tunnel
        |           +--ro timestamp?   yang:timestamp
        |           +--ro value?       l0-types:decimal-2-or-null
        +--:(destination)
-       |  +--ro destination-transceiver
-       |     +--ro transponder-id?   uint32
-       |     +--ro transceiver* [transceiver-id]
+       |  +--ro destination-transponder
+       |     +--ro transponder-id?         uint32
+       |     +--ro digital-terminations
+       |     |  +--ro digital-termination* [index]
+       |     |     +--ro index               uint8
+       |     |     +--ro termination-type?   identityref
+       |     |     +--ro mapping-type?       identityref
+       |     +--ro transceiver
+       |        +--ro transceiver-id?           uint32
        |        +--ro otsi-carrier-id?          uint16
-       |        +--ro transceiver-id            uint32
-       |        +--ro otsi-carrier-frequency?   union
+       |        +--ro otsi-carrier-frequency?
+       |        |       l0-types:frequency-thz
+       |        +--ro tx-channel-power?         l0-types:power-dbm
+       |        +--ro operational-mode?         string
+       |        +--ro line-coding-bitrate?      identityref
        |        +--ro rx-channel-power?         power-dbm-or-null
        |        +--ro rx-total-power?           power-dbm-or-null
+       |        +--ro inverse-multiplexing!
+       |        |  +--ro inverse-mux-type?             identityref
+       |        |  +--ro otsi-lane-termination-type?   identityref
+       |        |  +--ro additional-transceivers
+       |        |     +--ro index?                    uint8
+       |        |     +--ro transceiver-id?           uint32
+       |        |     +--ro otsi-carrier-id?          uint16
+       |        |     +--ro otsi-carrier-frequency?
+       |        |     |       l0-types:frequency-thz
+       |        |     +--ro tx-channel-power?
+       |        |             l0-types:power-dbm
        |        +--ro pre-fec-ber
        |        |  +--ro timestamp?   yang:timestamp
        |        |  +--ro value?       decimal64
        |        +--ro q-factor
        |           +--ro timestamp?   yang:timestamp
        |           +--ro value?       l0-types:decimal-2-or-null
-       +--:(transit)
-          +--ro regen-transceivers
-             +--ro regen-group-id?         uint32
-             +--ro incoming-transceiver
-             |  +--ro transponder-id?   uint32
-             |  +--ro transceiver* [transceiver-id]
-             |     +--ro otsi-carrier-id?          uint16
-             |     +--ro transceiver-id            uint32
-             |     +--ro otsi-carrier-frequency?   union
-             |     +--ro rx-channel-power?         power-dbm-or-null
-             |     +--ro rx-total-power?           power-dbm-or-null
-             |     +--ro pre-fec-ber
-             |     |  +--ro timestamp?   yang:timestamp
-             |     |  +--ro value?       decimal64
-             |     +--ro q-factor
-             |        +--ro timestamp?   yang:timestamp
-             |        +--ro value?       l0-types:decimal-2-or-null
-             +--ro outgoing-transceiver
-                +--ro transponder-id?   uint32
-                +--ro transceiver* [transceiver-id]
-                   +--ro otsi-carrier-id?          uint16
-                   +--ro transceiver-id            uint32
-                   +--ro otsi-carrier-frequency?   union
-                   +--ro rx-channel-power?         power-dbm-or-null
-                   +--ro rx-total-power?           power-dbm-or-null
-                   +--ro pre-fec-ber
-                   |  +--ro timestamp?   yang:timestamp
-                   |  +--ro value?       decimal64
-                   +--ro q-factor
-                      +--ro timestamp?   yang:timestamp
-                      +--ro value?       l0-types:decimal-2-or-null
+       +--:(regenerator)
+       |  +--ro regenerator
+       |     +--ro regen-group-id?         uint32
+       |     +--ro regeneration-layer?     identityref
+       |     +--ro incoming-transponder
+       |     |  +--ro transponder-id?         uint32
+       |     |  +--ro digital-terminations
+       |     |  |  +--ro digital-termination* [index]
+       |     |  |     +--ro index               uint8
+       |     |  |     +--ro termination-type?   identityref
+       |     |  |     +--ro mapping-type?       identityref
+       |     |  +--ro transceiver
+       |     |     +--ro transceiver-id?           uint32
+       |     |     +--ro otsi-carrier-id?          uint16
+       |     |     +--ro otsi-carrier-frequency?
+       |     |     |       l0-types:frequency-thz
+       |     |     +--ro tx-channel-power?         l0-types:power-dbm
+       |     |     +--ro operational-mode?         string
+       |     |     +--ro line-coding-bitrate?      identityref
+       |     |     +--ro rx-channel-power?         power-dbm-or-null
+       |     |     +--ro rx-total-power?           power-dbm-or-null
+       |     |     +--ro inverse-multiplexing!
+       |     |     |  +--ro inverse-mux-type?             identityref
+       |     |     |  +--ro otsi-lane-termination-type?   identityref
+       |     |     |  +--ro additional-transceivers
+       |     |     |     +--ro index?                    uint8
+       |     |     |     +--ro transceiver-id?           uint32
+       |     |     |     +--ro otsi-carrier-id?          uint16
+       |     |     |     +--ro otsi-carrier-frequency?
+       |     |     |     |       l0-types:frequency-thz
+       |     |     |     +--ro tx-channel-power?
+       |     |     |             l0-types:power-dbm
+       |     |     +--ro pre-fec-ber
+       |     |     |  +--ro timestamp?   yang:timestamp
+       |     |     |  +--ro value?       decimal64
+       |     |     +--ro q-factor
+       |     |        +--ro timestamp?   yang:timestamp
+       |     |        +--ro value?       l0-types:decimal-2-or-null
+       |     +--ro outgoing-transponder
+       |        +--ro transponder-id?         uint32
+       |        +--ro digital-terminations
+       |        |  +--ro digital-termination* [index]
+       |        |     +--ro index               uint8
+       |        |     +--ro termination-type?   identityref
+       |        |     +--ro mapping-type?       identityref
+       |        +--ro transceiver
+       |           +--ro transceiver-id?           uint32
+       |           +--ro otsi-carrier-id?          uint16
+       |           +--ro otsi-carrier-frequency?
+       |           |       l0-types:frequency-thz
+       |           +--ro tx-channel-power?         l0-types:power-dbm
+       |           +--ro operational-mode?         string
+       |           +--ro line-coding-bitrate?      identityref
+       |           +--ro rx-channel-power?         power-dbm-or-null
+       |           +--ro rx-total-power?           power-dbm-or-null
+       |           +--ro inverse-multiplexing!
+       |           |  +--ro inverse-mux-type?             identityref
+       |           |  +--ro otsi-lane-termination-type?   identityref
+       |           |  +--ro additional-transceivers
+       |           |     +--ro index?                    uint8
+       |           |     +--ro transceiver-id?           uint32
+       |           |     +--ro otsi-carrier-id?          uint16
+       |           |     +--ro otsi-carrier-frequency?
+       |           |     |       l0-types:frequency-thz
+       |           |     +--ro tx-channel-power?
+       |           |             l0-types:power-dbm
+       |           +--ro pre-fec-ber
+       |           |  +--ro timestamp?   yang:timestamp
+       |           |  +--ro value?       decimal64
+       |           +--ro q-factor
+       |              +--ro timestamp?   yang:timestamp
+       |              +--ro value?       l0-types:decimal-2-or-null
+       +--:(regenerators)
+          +--ro regenerators
+             +--ro common-incoming
+             |  +--ro operational-mode?      string
+             |  +--ro line-coding-bitrate?   identityref
+             |  +--ro pre-fec-ber
+             |  |  +--ro timestamp?   yang:timestamp
+             |  |  +--ro value?       decimal64
+             |  +--ro q-factor
+             |     +--ro timestamp?   yang:timestamp
+             |     +--ro value?       l0-types:decimal-2-or-null
+             +--ro common-outgoing
+             |  +--ro operational-mode?      string
+             |  +--ro line-coding-bitrate?   identityref
+             |  +--ro pre-fec-ber
+             |  |  +--ro timestamp?   yang:timestamp
+             |  |  +--ro value?       decimal64
+             |  +--ro q-factor
+             |     +--ro timestamp?   yang:timestamp
+             |     +--ro value?       l0-types:decimal-2-or-null
+             +--ro regenerator* [index]
+                +--ro index                   uint8
+                +--ro regen-group-id?         uint32
+                +--ro regeneration-layer?     identityref
+                +--ro incoming-transponder
+                |  +--ro transponder-id?   uint32
+                |  +--ro transceiver
+                |     +--ro transceiver-id?           uint32
+                |     +--ro otsi-carrier-id?          uint16
+                |     +--ro otsi-carrier-frequency?
+                |     |       l0-types:frequency-thz
+                |     +--ro tx-channel-power?
+                |             l0-types:power-dbm
+                +--ro outgoing-transponder
+                   +--ro transponder-id?   uint32
+                   +--ro transceiver
+                      +--ro transceiver-id?           uint32
+                      +--ro otsi-carrier-id?          uint16
+                      +--ro otsi-carrier-frequency?
+                      |       l0-types:frequency-thz
+                      +--ro tx-channel-power?
+                              l0-types:power-dbm
   augment /te:te/te:lsps/te:lsp/te:lsp-actual-route-information
             /te:lsp-actual-route-information/te:type
             /te:numbered-link-hop/te:numbered-link-hop:

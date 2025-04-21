@@ -207,9 +207,9 @@ module ietf-wdm-tunnel {
     }
   }
 
-  grouping regenerator-incoming-outgoing-common-config {
+  grouping regenerator-incoming-outgoing-common-state {
     description
-      "This grouping specifies common configurations
+      "This grouping specifies common states
        for incoming and outgoing transceivers
        associated with a regenerator group.";
 
@@ -233,6 +233,15 @@ module ietf-wdm-tunnel {
       reference
         "ITU-T G.698.2 section 7.1.2";
     }
+  }
+
+  grouping regenerator-incoming-outgoing-common-config {
+    description
+      "This grouping specifies common configurations
+       for incoming and outgoing transceivers
+       associated with a regenerator group.";
+
+    uses regenerator-incoming-outgoing-common-state;
 
     leaf preferred-rx-channel-power {
       type l0-types:power-dbm;
@@ -530,7 +539,7 @@ module ietf-wdm-tunnel {
             uses regenerator-incoming-outgoing-common-config;
           }
 
-          container common-outcoming {
+          container common-outgoing {
             description
               "Common configuration for transponders in the outcoming
                direction.";
@@ -617,43 +626,38 @@ module ietf-wdm-tunnel {
   
   grouping transceiver-state {
     description
-      "This grouping includes common transceiver state
-       information.";
+      "This grouping specifies transceiver state parameters
+       at source, destination nodes, as well as at regenerator
+       nodes with a single pair of regenerator.";
 
     leaf transponder-id {
       type uint32;
       description "transponder identifier";
     }
 
-    list transceiver {
-      key "transceiver-id";
+    uses transceiver-digital-termination-config;
+
+    container transceiver {
       description
-        "List of transceivers used within the transponder.";
+         "Specifies transceiver states. The attributes
+          specified in this container, excluding those within
+          the inverse-multiplexing container, apply to a single
+          transceiver when inverse multiplexing is not supported,
+          as well as to the first transceiver, identified by an
+          index value of 0 when inverse multiplexing is enabled.
 
-      leaf otsi-carrier-id {
-        type uint16;
-        description
-          "OTSi carrier identifier associated with the
-           transceiver.";
-      }
-      leaf transceiver-id {
-        type uint32;
-        description
-        "Transceiver identifier";
-      }
+          Attributes within the inverse-multiplexing container
+          are applicable exclusively to transceivers with an
+          index value of 1 or higher, belonging to the same
+          inverse multiplexing group.";
 
-      leaf otsi-carrier-frequency {
-        type union {
-          type l0-types:frequency-thz;
-          type empty;
-        }
-        description
-          "OTSi carrier frequency, equivalent to the
-          actual configured transmitter frequency, when known, or
-          an empty value when unknown.";
-      }
+      uses transceiver-common-config;
+
+      uses regenerator-incoming-outgoing-common-state;
 
       uses l0-types:common-transceiver-readonly-param;
+
+      uses transceiver-inverse-multiplexing-config;
     }
   }
 
@@ -680,64 +684,146 @@ module ietf-wdm-tunnel {
 
   grouping path-transceiver-state {
     description
-      "This grouping defines the state of transceivers on a
-       node functioning as starting, terminating transceivers,
-       or regenerators.";
+      "This grouping defines a set of transceivers on a node,
+       serving as either source transceivers, destination
+       transceivers, or regenerators.";
 
     choice node-position {
       description
         "The relative position of the node within the path.";
       case source {
-        container source-transceiver {
+        container source-transponder {
           description
-            "Transceiver state at the source node.";
+            "Transceiver states at the source node transponder.";
 
           uses transceiver-state;
         }
       }
       case destination {
-        container destination-transceiver {
+        container destination-transponder {
           description
-            "Transceiver state at the destination node.";
+            "Transceiver states at the destination node
+             transponder.";
 
           uses transceiver-state;
         }
       }
-      case transit {
-        container regen-transceivers {
+      case regenerator {
+        container regenerator {
           description
-            "Transceiver state at the transit node equipped
-             with regenerators.";
+            "The states of a regenerator node with a pair of
+             transponder as regenerator.
 
-          leaf regen-group-id {
-            type uint32;
-            description
-              "3R regen group identifier.";
-          }
+             The forward direction refers to the direction of
+             the optical path traversing from the source to the
+             destination, while the reverse direction refers to
+             direction of the optical path, traveling from the
+             destination back to the source.
 
-          /*
-          leaf regen-level {
-            //type l0-types:regen-level;
-            type string;
+             For uni-directional regenerators, one transponder,
+             labeled 'incoming', regenerates signals in the
+             forward direction, while another transponder,
+             labeled 'outgoing', handles signal regeneration
+             in the reverse direction.
+
+             For bi-directional, or back-to-back regenerators,
+             one transponder, labeled 'incoming', receives and
+             transmits signal from/to the same segment of the
+             optical path toward the source, while another
+             transponder, labeled 'outgoing', receives and
+             transmits signal from/to the same segment of the
+             optical path toward the destination.";
+
+          uses regenerator-common-config;
+
+          container incoming-transponder {
             description
-              "Indicate the chosen level of 3R regeneration.";
-          }
-          */
-          
-          container incoming-transceiver {
-            description
-              "Transceiver state on the incoming direction of
-               the regenerator.";
+              "Constraints for transceiver configurations in the
+               incoming direction of the regenerator.";
 
             uses transceiver-state;
           }
 
-          container outgoing-transceiver {
+          container outgoing-transponder {
             description
-              "Transceiver state on the outgoing direction of
-               the regenerator.";
+              "Constraints for transceiver configurations at the
+               outgoing direction of the regenerator";
 
             uses transceiver-state;
+          }
+        }
+      }
+      case regenerators {
+        container regenerators {
+          description
+            "Regenerator states at regenerator node with multiple
+             transponder pairs (therefore, in multiple regenerator
+             groups) as regenerators. A such example is described in
+             ITU-T for FlexOxR.
+
+             The forward direction refers to the direction of
+             the optical path traversing from the source to the
+             destination, while the reverse direction refers to
+             direction of the optical path, traveling from the
+             destination back to the source.
+
+             For uni-directional regenerators, mulitple
+             transponders, labeled 'incoming', together regenerate
+             signals in the forward direction, while another
+             multiple transponders, labeled 'outgoing', handles
+             signal regeneration in the reverse direction.
+
+             For bi-directional, or back-to-back regenerators,
+             mulitple transponder, labeled 'incoming', receive and
+             transmits signal from/to the same segment of the
+             optical path toward the source, while another
+             multiple transponder, labeled 'outgoing', receives and
+             transmits signal from/to the same segment of the
+             optical path toward the destination.";
+
+          container common-incoming {
+            description
+              "Common configuration for transponders in the incoming
+               direction.";
+
+            uses regenerator-incoming-outgoing-common-state;
+          }
+
+          container common-outgoing {
+            description
+              "Common configuration for transponders in the outcoming
+               direction.";
+
+            uses regenerator-incoming-outgoing-common-state;
+          }
+
+          list regenerator {
+            key "index";
+
+            leaf index {
+              type uint8;
+              description
+                "An index number used to identify regenerator group
+                 in the list, organized in ascending order of their
+                 values.";
+            }
+            uses regenerator-common-config;
+
+            container incoming-transponder {
+              description
+                "Constraints for transceiver configurations in the
+                 incoming direction of the regenerator.";
+
+              uses multi-regen-group-transceiver-config;
+            }
+
+            container outgoing-transponder {
+              description
+                "Constraints for transceiver configurations at the
+                 outgoing direction of the regenerator";
+
+              uses multi-regen-group-transceiver-config;
+            }
           }
         }
       }
@@ -1018,7 +1104,7 @@ module ietf-wdm-tunnel {
         + "te:path-route-objects/te:path-route-object/"
         + "te:type/te:numbered-node-hop/te:numbered-node-hop/"
         + "wdm-tnl:node-position/wdm-tnl:source/"
-        + "wdm-tnl:source-transceiver/wdm-tnl:transceiver" {
+        + "wdm-tnl:source-transponder/wdm-tnl:transceiver" {
     description
       "Augment source transceiver with additional estimated
        parameters.";
@@ -1032,7 +1118,7 @@ module ietf-wdm-tunnel {
         + "te:path-route-objects/te:path-route-object/"
         + "te:type/te:numbered-node-hop/te:numbered-node-hop/"
         + "wdm-tnl:node-position/wdm-tnl:destination/"
-        + "wdm-tnl:destination-transceiver/wdm-tnl:transceiver" {
+        + "wdm-tnl:destination-transponder/wdm-tnl:transceiver" {
     description
       "Augment destination transceiver with additional estimated
        parameters.";
@@ -1045,9 +1131,9 @@ module ietf-wdm-tunnel {
         + "te:computed-path-properties/te:path-properties/"
         + "te:path-route-objects/te:path-route-object/"
         + "te:type/te:numbered-node-hop/te:numbered-node-hop/"
-        + "wdm-tnl:node-position/wdm-tnl:transit/"
-        + "wdm-tnl:regen-transceivers/"
-        + "wdm-tnl:incoming-transceiver/wdm-tnl:transceiver" {
+        + "wdm-tnl:node-position/wdm-tnl:regenerator/"
+        + "wdm-tnl:regenerator/"
+        + "wdm-tnl:incoming-transponder/wdm-tnl:transceiver" {
     description
       "Augment regen incoming transceiver with additional estimated
        parameters.";
@@ -1060,9 +1146,37 @@ module ietf-wdm-tunnel {
         + "te:computed-path-properties/te:path-properties/"
         + "te:path-route-objects/te:path-route-object/"
         + "te:type/te:numbered-node-hop/te:numbered-node-hop/"
-        + "wdm-tnl:node-position/wdm-tnl:transit/"
-        + "wdm-tnl:regen-transceivers/"
-        + "wdm-tnl:outgoing-transceiver/wdm-tnl:transceiver" {
+        + "wdm-tnl:node-position/wdm-tnl:regenerator/"
+        + "wdm-tnl:regenerator/"
+        + "wdm-tnl:outgoing-transponder/wdm-tnl:transceiver" {
+    description
+      "Augment regen outgoing transceiver with additional estimated
+       parameters.";
+
+    uses l0-types:l0-path-properties;
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/te:primary-paths/"
+        + "te:primary-path/te:computed-paths-properties/"
+        + "te:computed-path-properties/te:path-properties/"
+        + "te:path-route-objects/te:path-route-object/"
+        + "te:type/te:numbered-node-hop/te:numbered-node-hop/"
+        + "wdm-tnl:node-position/wdm-tnl:regenerators/"
+        + "wdm-tnl:regenerators/wdm-tnl:common-incoming" {
+    description
+      "Augment regen incoming transceiver with additional estimated
+       parameters.";
+
+    uses l0-types:l0-path-properties;
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/te:primary-paths/"
+        + "te:primary-path/te:computed-paths-properties/"
+        + "te:computed-path-properties/te:path-properties/"
+        + "te:path-route-objects/te:path-route-object/"
+        + "te:type/te:numbered-node-hop/te:numbered-node-hop/"
+        + "wdm-tnl:node-position/wdm-tnl:regenerators/"
+        + "wdm-tnl:regenerators/wdm-tnl:common-outgoing" {
     description
       "Augment regen outgoing transceiver with additional estimated
        parameters.";
@@ -1093,7 +1207,7 @@ module ietf-wdm-tunnel {
         + "te:path-route-objects/te:path-route-object/"
         + "te:type/te:numbered-node-hop/te:numbered-node-hop/"
         + "wdm-tnl:node-position/wdm-tnl:source/"
-        + "wdm-tnl:source-transceiver/wdm-tnl:transceiver" {
+        + "wdm-tnl:source-transponder/wdm-tnl:transceiver" {
     description
       "Augment source transceiver with additional estimated
        parameters.";
@@ -1108,7 +1222,7 @@ module ietf-wdm-tunnel {
         + "te:path-route-objects/te:path-route-object/"
         + "te:type/te:numbered-node-hop/te:numbered-node-hop/"
         + "wdm-tnl:node-position/wdm-tnl:destination/"
-        + "wdm-tnl:destination-transceiver/wdm-tnl:transceiver" {
+        + "wdm-tnl:destination-transponder/wdm-tnl:transceiver" {
     description
       "Augment destination transceiver with additional estimated
        parameters.";
@@ -1122,9 +1236,9 @@ module ietf-wdm-tunnel {
         + "te:computed-path-properties/te:path-properties/"
         + "te:path-route-objects/te:path-route-object/"
         + "te:type/te:numbered-node-hop/te:numbered-node-hop/"
-        + "wdm-tnl:node-position/wdm-tnl:transit/"
-        + "wdm-tnl:regen-transceivers/"
-        + "wdm-tnl:incoming-transceiver/wdm-tnl:transceiver" {
+        + "wdm-tnl:node-position/wdm-tnl:regenerator/"
+        + "wdm-tnl:regenerator/"
+        + "wdm-tnl:incoming-transponder/wdm-tnl:transceiver" {
     description
       "Augment regen incoming transceiver with additional estimated
        parameters.";
@@ -1138,9 +1252,39 @@ module ietf-wdm-tunnel {
         + "te:computed-path-properties/te:path-properties/"
         + "te:path-route-objects/te:path-route-object/"
         + "te:type/te:numbered-node-hop/te:numbered-node-hop/"
-        + "wdm-tnl:node-position/wdm-tnl:transit/"
-        + "wdm-tnl:regen-transceivers/"
-        + "wdm-tnl:outgoing-transceiver/wdm-tnl:transceiver" {
+        + "wdm-tnl:node-position/wdm-tnl:regenerator/"
+        + "wdm-tnl:regenerator/"
+        + "wdm-tnl:outgoing-transponder/wdm-tnl:transceiver" {
+    description
+      "Augment regen outgoing transceiver with additional estimated
+       parameters.";
+
+    uses l0-types:l0-path-properties;
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/te:primary-paths/"
+        + "te:primary-path/te:primary-reverse-path/"
+        + "te:computed-paths-properties/"
+        + "te:computed-path-properties/te:path-properties/"
+        + "te:path-route-objects/te:path-route-object/"
+        + "te:type/te:numbered-node-hop/te:numbered-node-hop/"
+        + "wdm-tnl:node-position/wdm-tnl:regenerators/"
+        + "wdm-tnl:regenerators/wdm-tnl:common-incoming" {
+    description
+      "Augment regen incoming transceiver with additional estimated
+       parameters.";
+
+    uses l0-types:l0-path-properties;
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/te:primary-paths/"
+        + "te:primary-path/te:primary-reverse-path/"
+        + "te:computed-paths-properties/"
+        + "te:computed-path-properties/te:path-properties/"
+        + "te:path-route-objects/te:path-route-object/"
+        + "te:type/te:numbered-node-hop/te:numbered-node-hop/"
+        + "wdm-tnl:node-position/wdm-tnl:regenerators/"
+        + "wdm-tnl:regenerators/wdm-tnl:common-outgoing" {
     description
       "Augment regen outgoing transceiver with additional estimated
        parameters.";
@@ -1169,7 +1313,7 @@ module ietf-wdm-tunnel {
         + "te:path-route-objects/te:path-route-object/"
         + "te:type/te:numbered-node-hop/te:numbered-node-hop/"
         + "wdm-tnl:node-position/wdm-tnl:source/"
-        + "wdm-tnl:source-transceiver/wdm-tnl:transceiver" {
+        + "wdm-tnl:source-transponder/wdm-tnl:transceiver" {
     description
       "Augment source transceiver with additional estimated
        parameters.";
@@ -1183,7 +1327,7 @@ module ietf-wdm-tunnel {
         + "te:path-route-objects/te:path-route-object/"
         + "te:type/te:numbered-node-hop/te:numbered-node-hop/"
         + "wdm-tnl:node-position/wdm-tnl:destination/"
-        + "wdm-tnl:destination-transceiver/wdm-tnl:transceiver" {
+        + "wdm-tnl:destination-transponder/wdm-tnl:transceiver" {
     description
       "Augment destination transceiver with additional estimated
        parameters.";
@@ -1196,9 +1340,9 @@ module ietf-wdm-tunnel {
         + "te:computed-path-properties/te:path-properties/"
         + "te:path-route-objects/te:path-route-object/"
         + "te:type/te:numbered-node-hop/te:numbered-node-hop/"
-        + "wdm-tnl:node-position/wdm-tnl:transit/"
-        + "wdm-tnl:regen-transceivers/"
-        + "wdm-tnl:incoming-transceiver/wdm-tnl:transceiver" {
+        + "wdm-tnl:node-position/wdm-tnl:regenerator/"
+        + "wdm-tnl:regenerator/"
+        + "wdm-tnl:incoming-transponder/wdm-tnl:transceiver" {
     description
       "Augment regen incoming transceiver with additional estimated
        parameters.";
@@ -1211,9 +1355,37 @@ module ietf-wdm-tunnel {
         + "te:computed-path-properties/te:path-properties/"
         + "te:path-route-objects/te:path-route-object/"
         + "te:type/te:numbered-node-hop/te:numbered-node-hop/"
-        + "wdm-tnl:node-position/wdm-tnl:transit/"
-        + "wdm-tnl:regen-transceivers/"
-        + "wdm-tnl:outgoing-transceiver/wdm-tnl:transceiver" {
+        + "wdm-tnl:node-position/wdm-tnl:regenerator/"
+        + "wdm-tnl:regenerator/"
+        + "wdm-tnl:outgoing-transponder/wdm-tnl:transceiver" {
+    description
+      "Augment regen outgoing transceiver with additional estimated
+       parameters.";
+
+    uses l0-types:l0-path-properties;
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/te:secondary-paths/"
+        + "te:secondary-path/te:computed-paths-properties/"
+        + "te:computed-path-properties/te:path-properties/"
+        + "te:path-route-objects/te:path-route-object/"
+        + "te:type/te:numbered-node-hop/te:numbered-node-hop/"
+        + "wdm-tnl:node-position/wdm-tnl:regenerators/"
+        + "wdm-tnl:regenerators/wdm-tnl:common-incoming" {
+    description
+      "Augment regen incoming transceiver with additional estimated
+       parameters.";
+
+    uses l0-types:l0-path-properties;
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/te:secondary-paths/"
+        + "te:secondary-path/te:computed-paths-properties/"
+        + "te:computed-path-properties/te:path-properties/"
+        + "te:path-route-objects/te:path-route-object/"
+        + "te:type/te:numbered-node-hop/te:numbered-node-hop/"
+        + "wdm-tnl:node-position/wdm-tnl:regenerators/"
+        + "wdm-tnl:regenerators/wdm-tnl:common-outgoing" {
     description
       "Augment regen outgoing transceiver with additional estimated
        parameters.";
@@ -1242,7 +1414,7 @@ module ietf-wdm-tunnel {
         + "te:path-route-objects/te:path-route-object/"
         + "te:type/te:numbered-node-hop/te:numbered-node-hop/"
         + "wdm-tnl:node-position/wdm-tnl:source/"
-        + "wdm-tnl:source-transceiver/wdm-tnl:transceiver" {
+        + "wdm-tnl:source-transponder/wdm-tnl:transceiver" {
     description
       "Augment source transceiver with additional estimated
        parameters.";
@@ -1256,7 +1428,7 @@ module ietf-wdm-tunnel {
         + "te:path-route-objects/te:path-route-object/"
         + "te:type/te:numbered-node-hop/te:numbered-node-hop/"
         + "wdm-tnl:node-position/wdm-tnl:destination/"
-        + "wdm-tnl:destination-transceiver/wdm-tnl:transceiver" {
+        + "wdm-tnl:destination-transponder/wdm-tnl:transceiver" {
     description
       "Augment destination transceiver with additional estimated
        parameters.";
@@ -1269,9 +1441,9 @@ module ietf-wdm-tunnel {
         + "te:computed-path-properties/te:path-properties/"
         + "te:path-route-objects/te:path-route-object/"
         + "te:type/te:numbered-node-hop/te:numbered-node-hop/"
-        + "wdm-tnl:node-position/wdm-tnl:transit/"
-        + "wdm-tnl:regen-transceivers/"
-        + "wdm-tnl:incoming-transceiver/wdm-tnl:transceiver" {
+        + "wdm-tnl:node-position/wdm-tnl:regenerator/"
+        + "wdm-tnl:regenerator/"
+        + "wdm-tnl:incoming-transponder/wdm-tnl:transceiver" {
     description
       "Augment regen incoming transceiver with additional estimated
        parameters.";
@@ -1284,9 +1456,37 @@ module ietf-wdm-tunnel {
         + "te:computed-path-properties/te:path-properties/"
         + "te:path-route-objects/te:path-route-object/"
         + "te:type/te:numbered-node-hop/te:numbered-node-hop/"
-        + "wdm-tnl:node-position/wdm-tnl:transit/"
-        + "wdm-tnl:regen-transceivers/"
-        + "wdm-tnl:outgoing-transceiver/wdm-tnl:transceiver" {
+        + "wdm-tnl:node-position/wdm-tnl:regenerator/"
+        + "wdm-tnl:regenerator/"
+        + "wdm-tnl:outgoing-transponder/wdm-tnl:transceiver" {
+    description
+      "Augment regen outgoing transceiver with additional estimated
+       parameters.";
+
+    uses l0-types:l0-path-properties;
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths/"
+        + "te:secondary-reverse-path/te:computed-paths-properties/"
+        + "te:computed-path-properties/te:path-properties/"
+        + "te:path-route-objects/te:path-route-object/"
+        + "te:type/te:numbered-node-hop/te:numbered-node-hop/"
+        + "wdm-tnl:node-position/wdm-tnl:regenerators/"
+        + "wdm-tnl:regenerators/wdm-tnl:common-incoming" {
+    description
+      "Augment regen incoming transceiver with additional estimated
+       parameters.";
+
+    uses l0-types:l0-path-properties;
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths/"
+        + "te:secondary-reverse-path/te:computed-paths-properties/"
+        + "te:computed-path-properties/te:path-properties/"
+        + "te:path-route-objects/te:path-route-object/"
+        + "te:type/te:numbered-node-hop/te:numbered-node-hop/"
+        + "wdm-tnl:node-position/wdm-tnl:regenerators/"
+        + "wdm-tnl:regenerators/wdm-tnl:common-outgoing" {
     description
       "Augment regen outgoing transceiver with additional estimated
        parameters.";
@@ -1312,7 +1512,7 @@ module ietf-wdm-tunnel {
         + "te:lsp-actual-route-information/te:type/"
         + "te:numbered-node-hop/te:numbered-node-hop/"
         + "wdm-tnl:node-position/wdm-tnl:source/"
-        + "wdm-tnl:source-transceiver/wdm-tnl:transceiver" {
+        + "wdm-tnl:source-transponder/wdm-tnl:transceiver" {
     description
       "Augment source transceiver with additional measured
        parameters.";
@@ -1325,7 +1525,7 @@ module ietf-wdm-tunnel {
         + "te:lsp-actual-route-information/te:type/"
         + "te:numbered-node-hop/te:numbered-node-hop/"
         + "wdm-tnl:node-position/wdm-tnl:destination/"
-        + "wdm-tnl:destination-transceiver/wdm-tnl:transceiver" {
+        + "wdm-tnl:destination-transponder/wdm-tnl:transceiver" {
     description
       "Augment destination transceiver with additional measured
        parameters.";
@@ -1337,9 +1537,9 @@ module ietf-wdm-tunnel {
         + "te:lsp-actual-route-information/"
         + "te:lsp-actual-route-information/te:type/"
         + "te:numbered-node-hop/te:numbered-node-hop/"
-        + "wdm-tnl:node-position/wdm-tnl:transit/"
-        + "wdm-tnl:regen-transceivers/"
-        + "wdm-tnl:incoming-transceiver/wdm-tnl:transceiver" {
+        + "wdm-tnl:node-position/wdm-tnl:regenerator/"
+        + "wdm-tnl:regenerator/"
+        + "wdm-tnl:incoming-transponder/wdm-tnl:transceiver" {
     description
       "Augment regen incoming transceiver with additional measured
        parameters.";
@@ -1351,9 +1551,35 @@ module ietf-wdm-tunnel {
         + "te:lsp-actual-route-information/"
         + "te:lsp-actual-route-information/te:type/"
         + "te:numbered-node-hop/te:numbered-node-hop/"
-        + "wdm-tnl:node-position/wdm-tnl:transit/"
-        + "wdm-tnl:regen-transceivers/"
-        + "wdm-tnl:outgoing-transceiver/wdm-tnl:transceiver" {
+        + "wdm-tnl:node-position/wdm-tnl:regenerator/"
+        + "wdm-tnl:regenerator/"
+        + "wdm-tnl:outgoing-transponder/wdm-tnl:transceiver" {
+    description
+      "Augment regen outgoing transceiver with additional measured
+       parameters.";
+
+    uses transceiver-measured-parameters;
+  }
+
+  augment "/te:te/te:lsps/te:lsp/"
+        + "te:lsp-actual-route-information/"
+        + "te:lsp-actual-route-information/te:type/"
+        + "te:numbered-node-hop/te:numbered-node-hop/"
+        + "wdm-tnl:node-position/wdm-tnl:regenerators/"
+        + "wdm-tnl:regenerators/wdm-tnl:common-incoming" {
+    description
+      "Augment regen incoming transceiver with additional measured
+       parameters.";
+
+    uses transceiver-measured-parameters;
+  }
+
+  augment "/te:te/te:lsps/te:lsp/"
+        + "te:lsp-actual-route-information/"
+        + "te:lsp-actual-route-information/te:type/"
+        + "te:numbered-node-hop/te:numbered-node-hop/"
+        + "wdm-tnl:node-position/wdm-tnl:regenerators/"
+        + "wdm-tnl:regenerators/wdm-tnl:common-outgoing" {
     description
       "Augment regen outgoing transceiver with additional measured
        parameters.";
