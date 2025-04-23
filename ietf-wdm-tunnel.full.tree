@@ -715,7 +715,7 @@ module: ietf-te
      |     |     |  |     |        |        |  |       frequency-thz
      |     |     |  |     |        |        |  +--rw wdm-tnl:max-central-frequency?
      |     |     |  |     |        |        |  |       frequency-thz
-     |     |     |  |     |        |        |  +--rw wdm-tnl:transceiver-tunability?
+     |     |     |  |     |        |        |  +--rw wdm-tnl:transceiver-tunability-granularity?
      |     |     |  |     |        |        |          frequency-ghz
      |     |     |  |     |        |        +--rw wdm-tnl:line-coding-bitrate*
      |     |     |  |     |        |        |       identityref
@@ -744,7 +744,7 @@ module: ietf-te
      |     |     |  |     |        |        |  |       frequency-thz
      |     |     |  |     |        |        |  +--rw wdm-tnl:max-central-frequency?
      |     |     |  |     |        |        |  |       frequency-thz
-     |     |     |  |     |        |        |  +--rw wdm-tnl:transceiver-tunability?
+     |     |     |  |     |        |        |  +--rw wdm-tnl:transceiver-tunability-granularity?
      |     |     |  |     |        |        |          frequency-ghz
      |     |     |  |     |        |        +--rw wdm-tnl:line-coding-bitrate*
      |     |     |  |     |        |        |       identityref
@@ -776,7 +776,7 @@ module: ietf-te
      |     |     |  |     |              |     |  |       frequency-thz
      |     |     |  |     |              |     |  +--rw wdm-tnl:max-central-frequency?
      |     |     |  |     |              |     |  |       frequency-thz
-     |     |     |  |     |              |     |  +--rw wdm-tnl:transceiver-tunability?
+     |     |     |  |     |              |     |  +--rw wdm-tnl:transceiver-tunability-granularity?
      |     |     |  |     |              |     |          frequency-ghz
      |     |     |  |     |              |     +--rw wdm-tnl:line-coding-bitrate*
      |     |     |  |     |              |     |       identityref
@@ -804,7 +804,7 @@ module: ietf-te
      |     |     |  |     |                    |  |       frequency-thz
      |     |     |  |     |                    |  +--rw wdm-tnl:max-central-frequency?
      |     |     |  |     |                    |  |       frequency-thz
-     |     |     |  |     |                    |  +--rw wdm-tnl:transceiver-tunability?
+     |     |     |  |     |                    |  +--rw wdm-tnl:transceiver-tunability-granularity?
      |     |     |  |     |                    |          frequency-ghz
      |     |     |  |     |                    +--rw wdm-tnl:line-coding-bitrate*
      |     |     |  |     |                    |       identityref
@@ -1610,7 +1610,7 @@ module: ietf-te
      |     |     |  |  |     |        |        |  |       frequency-thz
      |     |     |  |  |     |        |        |  +--rw wdm-tnl:max-central-frequency?
      |     |     |  |  |     |        |        |  |       frequency-thz
-     |     |     |  |  |     |        |        |  +--rw wdm-tnl:transceiver-tunability?
+     |     |     |  |  |     |        |        |  +--rw wdm-tnl:transceiver-tunability-granularity?
      |     |     |  |  |     |        |        |          frequency-ghz
      |     |     |  |  |     |        |        +--rw wdm-tnl:line-coding-bitrate*
      |     |     |  |  |     |        |        |       identityref
@@ -1639,7 +1639,7 @@ module: ietf-te
      |     |     |  |  |     |        |        |  |       frequency-thz
      |     |     |  |  |     |        |        |  +--rw wdm-tnl:max-central-frequency?
      |     |     |  |  |     |        |        |  |       frequency-thz
-     |     |     |  |  |     |        |        |  +--rw wdm-tnl:transceiver-tunability?
+     |     |     |  |  |     |        |        |  +--rw wdm-tnl:transceiver-tunability-granularity?
      |     |     |  |  |     |        |        |          frequency-ghz
      |     |     |  |  |     |        |        +--rw wdm-tnl:line-coding-bitrate*
      |     |     |  |  |     |        |        |       identityref
@@ -1671,7 +1671,7 @@ module: ietf-te
      |     |     |  |  |     |              |     |  |       frequency-thz
      |     |     |  |  |     |              |     |  +--rw wdm-tnl:max-central-frequency?
      |     |     |  |  |     |              |     |  |       frequency-thz
-     |     |     |  |  |     |              |     |  +--rw wdm-tnl:transceiver-tunability?
+     |     |     |  |  |     |              |     |  +--rw wdm-tnl:transceiver-tunability-granularity?
      |     |     |  |  |     |              |     |          frequency-ghz
      |     |     |  |  |     |              |     +--rw wdm-tnl:line-coding-bitrate*
      |     |     |  |  |     |              |     |       identityref
@@ -1699,7 +1699,7 @@ module: ietf-te
      |     |     |  |  |     |                    |  |       frequency-thz
      |     |     |  |  |     |                    |  +--rw wdm-tnl:max-central-frequency?
      |     |     |  |  |     |                    |  |       frequency-thz
-     |     |     |  |  |     |                    |  +--rw wdm-tnl:transceiver-tunability?
+     |     |     |  |  |     |                    |  +--rw wdm-tnl:transceiver-tunability-granularity?
      |     |     |  |  |     |                    |          frequency-ghz
      |     |     |  |  |     |                    +--rw wdm-tnl:line-coding-bitrate*
      |     |     |  |  |     |                    |       identityref
@@ -2524,7 +2524,7 @@ module: ietf-te
      |     |     |  |     |        |        |  |       frequency-thz
      |     |     |  |     |        |        |  +--rw wdm-tnl:max-central-frequency?
      |     |     |  |     |        |        |  |       frequency-thz
-     |     |     |  |     |        |        |  +--rw wdm-tnl:transceiver-tunability?
+     |     |     |  |     |        |        |  +--rw wdm-tnl:transceiver-tunability-granularity?
      |     |     |  |     |        |        |          frequency-ghz
      |     |     |  |     |        |        +--rw wdm-tnl:line-coding-bitrate*
      |     |     |  |     |        |        |       identityref
@@ -2553,7 +2553,7 @@ module: ietf-te
      |     |     |  |     |        |        |  |       frequency-thz
      |     |     |  |     |        |        |  +--rw wdm-tnl:max-central-frequency?
      |     |     |  |     |        |        |  |       frequency-thz
-     |     |     |  |     |        |        |  +--rw wdm-tnl:transceiver-tunability?
+     |     |     |  |     |        |        |  +--rw wdm-tnl:transceiver-tunability-granularity?
      |     |     |  |     |        |        |          frequency-ghz
      |     |     |  |     |        |        +--rw wdm-tnl:line-coding-bitrate*
      |     |     |  |     |        |        |       identityref
@@ -2585,7 +2585,7 @@ module: ietf-te
      |     |     |  |     |              |     |  |       frequency-thz
      |     |     |  |     |              |     |  +--rw wdm-tnl:max-central-frequency?
      |     |     |  |     |              |     |  |       frequency-thz
-     |     |     |  |     |              |     |  +--rw wdm-tnl:transceiver-tunability?
+     |     |     |  |     |              |     |  +--rw wdm-tnl:transceiver-tunability-granularity?
      |     |     |  |     |              |     |          frequency-ghz
      |     |     |  |     |              |     +--rw wdm-tnl:line-coding-bitrate*
      |     |     |  |     |              |     |       identityref
@@ -2613,7 +2613,7 @@ module: ietf-te
      |     |     |  |     |                    |  |       frequency-thz
      |     |     |  |     |                    |  +--rw wdm-tnl:max-central-frequency?
      |     |     |  |     |                    |  |       frequency-thz
-     |     |     |  |     |                    |  +--rw wdm-tnl:transceiver-tunability?
+     |     |     |  |     |                    |  +--rw wdm-tnl:transceiver-tunability-granularity?
      |     |     |  |     |                    |          frequency-ghz
      |     |     |  |     |                    +--rw wdm-tnl:line-coding-bitrate*
      |     |     |  |     |                    |       identityref
@@ -3430,7 +3430,7 @@ module: ietf-te
      |     |     |  |     |        |        |  |       frequency-thz
      |     |     |  |     |        |        |  +--rw wdm-tnl:max-central-frequency?
      |     |     |  |     |        |        |  |       frequency-thz
-     |     |     |  |     |        |        |  +--rw wdm-tnl:transceiver-tunability?
+     |     |     |  |     |        |        |  +--rw wdm-tnl:transceiver-tunability-granularity?
      |     |     |  |     |        |        |          frequency-ghz
      |     |     |  |     |        |        +--rw wdm-tnl:line-coding-bitrate*
      |     |     |  |     |        |        |       identityref
@@ -3459,7 +3459,7 @@ module: ietf-te
      |     |     |  |     |        |        |  |       frequency-thz
      |     |     |  |     |        |        |  +--rw wdm-tnl:max-central-frequency?
      |     |     |  |     |        |        |  |       frequency-thz
-     |     |     |  |     |        |        |  +--rw wdm-tnl:transceiver-tunability?
+     |     |     |  |     |        |        |  +--rw wdm-tnl:transceiver-tunability-granularity?
      |     |     |  |     |        |        |          frequency-ghz
      |     |     |  |     |        |        +--rw wdm-tnl:line-coding-bitrate*
      |     |     |  |     |        |        |       identityref
@@ -3491,7 +3491,7 @@ module: ietf-te
      |     |     |  |     |              |     |  |       frequency-thz
      |     |     |  |     |              |     |  +--rw wdm-tnl:max-central-frequency?
      |     |     |  |     |              |     |  |       frequency-thz
-     |     |     |  |     |              |     |  +--rw wdm-tnl:transceiver-tunability?
+     |     |     |  |     |              |     |  +--rw wdm-tnl:transceiver-tunability-granularity?
      |     |     |  |     |              |     |          frequency-ghz
      |     |     |  |     |              |     +--rw wdm-tnl:line-coding-bitrate*
      |     |     |  |     |              |     |       identityref
@@ -3519,7 +3519,7 @@ module: ietf-te
      |     |     |  |     |                    |  |       frequency-thz
      |     |     |  |     |                    |  +--rw wdm-tnl:max-central-frequency?
      |     |     |  |     |                    |  |       frequency-thz
-     |     |     |  |     |                    |  +--rw wdm-tnl:transceiver-tunability?
+     |     |     |  |     |                    |  +--rw wdm-tnl:transceiver-tunability-granularity?
      |     |     |  |     |                    |          frequency-ghz
      |     |     |  |     |                    +--rw wdm-tnl:line-coding-bitrate*
      |     |     |  |     |                    |       identityref
@@ -4075,7 +4075,7 @@ module: ietf-te
      |        |  |  |       frequency-thz
      |        |  |  +--rw wdm-tnl:max-central-frequency?
      |        |  |  |       frequency-thz
-     |        |  |  +--rw wdm-tnl:transceiver-tunability?
+     |        |  |  +--rw wdm-tnl:transceiver-tunability-granularity?
      |        |  |          frequency-ghz
      |        |  +--rw wdm-tnl:line-coding-bitrate*
      |        |  |       identityref
