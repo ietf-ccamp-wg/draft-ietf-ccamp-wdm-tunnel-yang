@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-04-22T01:13:58.165493+00:00",
+  "timestamp": "2025-05-11T01:20:44.972536+00:00",
   "repo": "ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang",
   "labels": [
     {
@@ -2910,7 +2910,7 @@
     {
       "number": 77,
       "id": "PR_kwDOEHme9c6TB82p",
-      "title": "YANG model update to reflect L0-L1 boundary discussion (part 1: config only)",
+      "title": "YANG model update to reflect L0-L1 boundary discussion",
       "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/pull/77",
       "state": "OPEN",
       "author": "aguoietf",
@@ -2919,7 +2919,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2025-04-17T19:07:46Z",
-      "updatedAt": "2025-04-21T21:20:11Z",
+      "updatedAt": "2025-05-08T12:08:02Z",
       "baseRepository": "ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang",
       "baseRefName": "main",
       "baseRefOid": "c3a812b37363b8c86f0d24a658de4e3ea83bb51f",
