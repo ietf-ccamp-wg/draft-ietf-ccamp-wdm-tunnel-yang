@@ -5,18 +5,18 @@
 CCAMP Working Group                                               A. Guo
 Internet-Draft                                    Futurewei Technologies
 Intended status: Standards Track                              S. Belotti
-Expires: 21 April 2025                                             Nokia
+Expires: 25 October 2025                                           Nokia
                                                            G. Galimberti
                                                               Individual
                                                        J.E.L.d.V. Mendez
                                                              Naudit HPCN
                                                             D.P. Burrero
                                           Universidad Autonoma de Madrid
-                                                         18 October 2024
+                                                           23 April 2025
 
 
                    A YANG Data Model for WDM Tunnels
-                  draft-ietf-ccamp-wdm-tunnel-yang-03
+                  draft-ietf-ccamp-wdm-tunnel-yang-04
 
 Abstract
 
@@ -44,18 +44,18 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 21 April 2025.
+   This Internet-Draft will expire on 25 October 2025.
 
 Copyright Notice
 
-   Copyright (c) 2024 IETF Trust and the persons identified as the
+   Copyright (c) 2025 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
 
 
-Guo, et al.               Expires 21 April 2025                 [Page 1]
+Guo, et al.              Expires 25 October 2025                [Page 1]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Guo, et al.               Expires 21 April 2025                 [Page 2]
+Guo, et al.              Expires 25 October 2025                [Page 2]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
    may undergo conversion via optical-electrical-optical (OEO)
@@ -165,9 +165,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                 [Page 3]
+Guo, et al.              Expires 25 October 2025                [Page 3]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
    The following terms are defined in [RFC7950] and are not redefined
@@ -221,9 +221,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                 [Page 4]
+Guo, et al.              Expires 25 October 2025                [Page 4]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
    The attributes described above are optional, allowing the model to
@@ -277,9 +277,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                 [Page 5]
+Guo, et al.              Expires 25 October 2025                [Page 5]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
                                  WDM Tunnel 1
@@ -333,9 +333,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                 [Page 6]
+Guo, et al.              Expires 25 October 2025                [Page 6]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
    *  We do the same for the nodes B, C and D, providing their
@@ -389,9 +389,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                 [Page 7]
+Guo, et al.              Expires 25 October 2025                [Page 7]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
           |  +--rw line-coding-bitrate*          identityref
@@ -445,9 +445,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                 [Page 8]
+Guo, et al.              Expires 25 October 2025                [Page 8]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
           |        +--rw line-coding-bitrate*          identityref
@@ -501,9 +501,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                 [Page 9]
+Guo, et al.              Expires 25 October 2025                [Page 9]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
                /te:type/te:numbered-node-hop/te:numbered-node-hop:
@@ -557,9 +557,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 10]
+Guo, et al.              Expires 25 October 2025               [Page 10]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
                 |     +--rw operational-modes*            string
@@ -613,9 +613,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 11]
+Guo, et al.              Expires 25 October 2025               [Page 11]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
           |        |  +--rw transceiver-tunability?   frequency-ghz
@@ -669,9 +669,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 12]
+Guo, et al.              Expires 25 October 2025               [Page 12]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
                    +--rw transponder-id?   uint32
@@ -725,9 +725,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 13]
+Guo, et al.              Expires 25 October 2025               [Page 13]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
           |        +--rw otsi-carrier-frequency?
@@ -781,9 +781,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 14]
+Guo, et al.              Expires 25 October 2025               [Page 14]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
                       +--rw preferred-rx-channel-power?
@@ -837,9 +837,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 15]
+Guo, et al.              Expires 25 October 2025               [Page 15]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
                    +--ro transponder-id?   uint32
@@ -893,9 +893,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 16]
+Guo, et al.              Expires 25 October 2025               [Page 16]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
                 |     +--ro transceiver-id            uint32
@@ -949,9 +949,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 17]
+Guo, et al.              Expires 25 October 2025               [Page 17]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
           +--:(transit)
@@ -1005,9 +1005,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 18]
+Guo, et al.              Expires 25 October 2025               [Page 18]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
           |        +--ro transceiver-id            uint32
@@ -1061,9 +1061,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 19]
+Guo, et al.              Expires 25 October 2025               [Page 19]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
           |        +--ro q-factor
@@ -1117,9 +1117,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 20]
+Guo, et al.              Expires 25 October 2025               [Page 20]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
                          +--ro value?       l0-types:decimal-2-or-null
@@ -1173,9 +1173,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 21]
+Guo, et al.              Expires 25 October 2025               [Page 21]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
                /te:label-restriction:
@@ -1229,9 +1229,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 22]
+Guo, et al.              Expires 25 October 2025               [Page 22]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
        +--rw priority?     uint8
@@ -1285,9 +1285,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 23]
+Guo, et al.              Expires 25 October 2025               [Page 23]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
                 +--rw (single-or-super-channel)?
@@ -1341,9 +1341,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 24]
+Guo, et al.              Expires 25 October 2025               [Page 24]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
                 x--rw flexi-grid-channel-spacing?   identityref
@@ -1397,9 +1397,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 25]
+Guo, et al.              Expires 25 October 2025               [Page 25]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
              +--:(fixed-dwdm)
@@ -1453,9 +1453,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 26]
+Guo, et al.              Expires 25 October 2025               [Page 26]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
                          +--rw frequency-slot* [flexi-n]
@@ -1509,9 +1509,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 27]
+Guo, et al.              Expires 25 October 2025               [Page 27]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
                    |  +--rw flexi-n?              l0-types:flexi-n
@@ -1565,9 +1565,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 28]
+Guo, et al.              Expires 25 October 2025               [Page 28]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
      augment /te:te/te:tunnels/te:tunnel/te:primary-paths
@@ -1621,9 +1621,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 29]
+Guo, et al.              Expires 25 October 2025               [Page 29]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
              |     |  +--ro dwdm-n?               l0-types:dwdm-n
@@ -1677,9 +1677,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 30]
+Guo, et al.              Expires 25 October 2025               [Page 30]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
                             +--rw flexi-m?   l0-types:flexi-m
@@ -1733,9 +1733,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 31]
+Guo, et al.              Expires 25 October 2025               [Page 31]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
                    |  +--rw flexi-n?              l0-types:flexi-n
@@ -1789,9 +1789,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 32]
+Guo, et al.              Expires 25 October 2025               [Page 32]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
              |  +--rw dwdm-n?    l0-types:dwdm-n
@@ -1845,9 +1845,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 33]
+Guo, et al.              Expires 25 October 2025               [Page 33]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
                /te:label-restriction/te:label-end/te:te-label
@@ -1901,9 +1901,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 34]
+Guo, et al.              Expires 25 October 2025               [Page 34]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
                    |     +--ro flexi-m?   l0-types:flexi-m
@@ -1957,9 +1957,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 35]
+Guo, et al.              Expires 25 October 2025               [Page 35]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
              |     +--:(multi)
@@ -2013,9 +2013,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 36]
+Guo, et al.              Expires 25 October 2025               [Page 36]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
                /te:route-object-include-exclude/te:type/te:label
@@ -2069,9 +2069,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 37]
+Guo, et al.              Expires 25 October 2025               [Page 37]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
              +--:(flexi-grid)
@@ -2125,9 +2125,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 38]
+Guo, et al.              Expires 25 October 2025               [Page 38]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
              +--:(cwdm)
@@ -2181,9 +2181,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 39]
+Guo, et al.              Expires 25 October 2025               [Page 39]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
              |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
@@ -2237,9 +2237,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 40]
+Guo, et al.              Expires 25 October 2025               [Page 40]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
                /te:secondary-reverse-path/te:explicit-route-objects
@@ -2293,9 +2293,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 41]
+Guo, et al.              Expires 25 October 2025               [Page 41]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
                    |     +--rw flexi-n    l0-types:flexi-n
@@ -2349,9 +2349,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 42]
+Guo, et al.              Expires 25 October 2025               [Page 42]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
                /te:label-start/te:te-label/te:technology:
@@ -2405,9 +2405,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 43]
+Guo, et al.              Expires 25 October 2025               [Page 43]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
              +--:(cwdm)
@@ -2461,9 +2461,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 44]
+Guo, et al.              Expires 25 October 2025               [Page 44]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
    <CODE BEGINS> file "ietf-wdm-tunnel@2024-07-02.yang"
@@ -2517,9 +2517,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 45]
+Guo, et al.              Expires 25 October 2025               [Page 45]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
         optical tunnels.
@@ -2573,9 +2573,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 46]
+Guo, et al.              Expires 25 October 2025               [Page 46]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
        leaf otsi-carrier-frequency {
@@ -2590,7 +2590,7 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
            "The permissible tuning frequency range for the
             transmitter.";
 
-         uses l0-types:transmitter-tuning-range;
+         uses l0-types:transceiver-tuning-range;
        }
 
        leaf-list line-coding-bitrate {
@@ -2629,9 +2629,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 47]
+Guo, et al.              Expires 25 October 2025               [Page 47]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
        uses l0-types:l0-path-constraints;
@@ -2685,9 +2685,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 48]
+Guo, et al.              Expires 25 October 2025               [Page 48]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
      }
@@ -2741,9 +2741,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 49]
+Guo, et al.              Expires 25 October 2025               [Page 49]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
              */
@@ -2797,9 +2797,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 50]
+Guo, et al.              Expires 25 October 2025               [Page 50]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
            "Timestamp and value of the estimated Q-factor based on
@@ -2853,9 +2853,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 51]
+Guo, et al.              Expires 25 October 2025               [Page 51]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
              type empty;
@@ -2909,9 +2909,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 52]
+Guo, et al.              Expires 25 October 2025               [Page 52]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
            }
@@ -2965,9 +2965,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 53]
+Guo, et al.              Expires 25 October 2025               [Page 53]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
        }
@@ -3021,9 +3021,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 54]
+Guo, et al.              Expires 25 October 2025               [Page 54]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
          }
@@ -3077,9 +3077,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 55]
+Guo, et al.              Expires 25 October 2025               [Page 55]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
          }
@@ -3133,9 +3133,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 56]
+Guo, et al.              Expires 25 October 2025               [Page 56]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
       * Applicable to starting, terminating and regenerator
@@ -3189,9 +3189,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 57]
+Guo, et al.              Expires 25 October 2025               [Page 57]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
       * transceivers.
@@ -3245,9 +3245,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 58]
+Guo, et al.              Expires 25 October 2025               [Page 58]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
            + "te:type/te:numbered-node-hop/te:numbered-node-hop/"
@@ -3301,9 +3301,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 59]
+Guo, et al.              Expires 25 October 2025               [Page 59]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
            + "te:type/te:numbered-node-hop/te:numbered-node-hop" {
@@ -3357,9 +3357,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 60]
+Guo, et al.              Expires 25 October 2025               [Page 60]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
          "Augment regen incoming transceiver with additional estimated
@@ -3413,9 +3413,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 61]
+Guo, et al.              Expires 25 October 2025               [Page 61]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
        uses l0-types:l0-path-properties;
@@ -3469,9 +3469,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 62]
+Guo, et al.              Expires 25 October 2025               [Page 62]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
       * Computed transceiver properties for secondary reverse path.
@@ -3525,9 +3525,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 63]
+Guo, et al.              Expires 25 October 2025               [Page 63]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
            + "wdm-tnl:regen-transceivers/"
@@ -3581,9 +3581,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 64]
+Guo, et al.              Expires 25 October 2025               [Page 64]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
      }
@@ -3637,9 +3637,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 65]
+Guo, et al.              Expires 25 October 2025               [Page 65]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
          "Augment TE LSP with end-to-end media channel
@@ -3693,9 +3693,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 66]
+Guo, et al.              Expires 25 October 2025               [Page 66]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
      }
@@ -3749,9 +3749,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 67]
+Guo, et al.              Expires 25 October 2025               [Page 67]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
        description
@@ -3805,9 +3805,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 68]
+Guo, et al.              Expires 25 October 2025               [Page 68]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
        description
@@ -3861,9 +3861,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 69]
+Guo, et al.              Expires 25 October 2025               [Page 69]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
            + "te:label-restrictions/"
@@ -3917,9 +3917,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 70]
+Guo, et al.              Expires 25 October 2025               [Page 70]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
        }
@@ -3973,9 +3973,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 71]
+Guo, et al.              Expires 25 October 2025               [Page 71]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
            + "te:te-label/te:technology" {
@@ -4029,9 +4029,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 72]
+Guo, et al.              Expires 25 October 2025               [Page 72]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
            + "te:primary-paths/te:primary-path/"
@@ -4085,9 +4085,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 73]
+Guo, et al.              Expires 25 October 2025               [Page 73]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
          route objects excluded by the path computation of the primary
@@ -4141,9 +4141,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 74]
+Guo, et al.              Expires 25 October 2025               [Page 74]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
          or excluded by the path computation of the primary reverse
@@ -4197,9 +4197,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 75]
+Guo, et al.              Expires 25 October 2025               [Page 75]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
      augment "/te:te/te:tunnels/te:tunnel/"
@@ -4253,9 +4253,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 76]
+Guo, et al.              Expires 25 October 2025               [Page 76]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
        description
@@ -4309,9 +4309,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 77]
+Guo, et al.              Expires 25 October 2025               [Page 77]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
        }
@@ -4365,9 +4365,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 78]
+Guo, et al.              Expires 25 October 2025               [Page 78]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
        case wdm {
@@ -4421,9 +4421,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 79]
+Guo, et al.              Expires 25 October 2025               [Page 79]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
            + "te:path-route-object/te:type/te:label/"
@@ -4477,9 +4477,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 80]
+Guo, et al.              Expires 25 October 2025               [Page 80]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
          path.";
@@ -4533,9 +4533,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 81]
+Guo, et al.              Expires 25 October 2025               [Page 81]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
            + "te:path-in-segment/te:label-restrictions/"
@@ -4589,9 +4589,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 82]
+Guo, et al.              Expires 25 October 2025               [Page 82]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
      augment "/te:te/te:tunnels/te:tunnel/"
@@ -4645,9 +4645,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 83]
+Guo, et al.              Expires 25 October 2025               [Page 83]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
    *  /te:te/.../te:te-bandwidth/te:technology
@@ -4701,9 +4701,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 84]
+Guo, et al.              Expires 25 October 2025               [Page 84]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
@@ -4743,9 +4743,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
               de Madrid, U. A., Burrero, D. P., King, D., Lee, Y., and
               H. Zheng, "A YANG Data Model for Flexi-Grid Optical
               Networks", Work in Progress, Internet-Draft, draft-ietf-
-              ccamp-flexigrid-yang-17, 12 September 2024,
+              ccamp-flexigrid-yang-18, 17 March 2025,
               <https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-
-              flexigrid-yang-17>.
+              flexigrid-yang-18>.
 
    [RFC9094]  Zheng, H., Lee, Y., Guo, A., Lopez, V., and D. King, "A
               YANG Data Model for Wavelength Switched Optical Networks
@@ -4757,9 +4757,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 85]
+Guo, et al.              Expires 25 October 2025               [Page 85]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
    [RFC8040]  Bierman, A., Bjorklund, M., and K. Watsen, "RESTCONF
@@ -4813,9 +4813,9 @@ Contributors
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 86]
+Guo, et al.              Expires 25 October 2025               [Page 86]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
    Haomian Zheng
@@ -4869,9 +4869,9 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 87]
+Guo, et al.              Expires 25 October 2025               [Page 87]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
    Email: byyun@etri.re.kr
@@ -4925,9 +4925,9 @@ Authors' Addresses
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 88]
+Guo, et al.              Expires 25 October 2025               [Page 88]
 
-Internet-Draft            WDM Tunnel YANG Model             October 2024
+Internet-Draft            WDM Tunnel YANG Model               April 2025
 
 
    Sergio Belotti
@@ -4981,4 +4981,4 @@ Internet-Draft            WDM Tunnel YANG Model             October 2024
 
 
 
-Guo, et al.               Expires 21 April 2025                [Page 89]
+Guo, et al.              Expires 25 October 2025               [Page 89]
