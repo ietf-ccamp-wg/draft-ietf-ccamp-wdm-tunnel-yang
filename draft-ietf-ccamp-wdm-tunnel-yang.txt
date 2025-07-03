@@ -5,14 +5,14 @@
 CCAMP Working Group                                               A. Guo
 Internet-Draft                                    Futurewei Technologies
 Intended status: Standards Track                              S. Belotti
-Expires: 25 October 2025                                           Nokia
+Expires: 4 January 2026                                            Nokia
                                                            G. Galimberti
                                                               Individual
                                                    J. E. L. de V. Mendez
                                                              Naudit HPCN
                                                            D. P. Burrero
                                           Universidad Autonoma de Madrid
-                                                           23 April 2025
+                                                             3 July 2025
 
 
                    A YANG Data Model for WDM Tunnels
@@ -62,7 +62,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 25 October 2025.
+   This Internet-Draft will expire on 4 January 2026.
 
 Copyright Notice
 
@@ -1137,25 +1137,25 @@ Table of Contents
              +--:(fixed-dwdm)
              |  +--rw (fixed-single-or-super-channel)?
              |     +--:(single)
-             |     |  +--rw dwdm-n?               l0-types:dwdm-n
+             |     |  +--rw dwdm-n?               dwdm-n
              |     +--:(multi)
-             |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+             |        +--rw subcarrier-dwdm-n*    dwdm-n
              +--:(cwdm)
-             |  +--rw cwdm-n?                     l0-types:cwdm-n
+             |  +--rw cwdm-n?                     cwdm-n
              +--:(flexi-grid)
                 +--rw (single-or-super-channel)?
                    +--:(single)
-                   |  +--rw flexi-n?              l0-types:flexi-n
-                   |  +--rw flexi-m?              l0-types:flexi-m
+                   |  +--rw flexi-n?              flexi-n
+                   |  +--rw flexi-m?              flexi-m
                    x--:(super)
                    |  x--rw subcarrier-flexi-n* [flexi-n]
-                   |     +--rw flexi-n    l0-types:flexi-n
-                   |     +--rw flexi-m?   l0-types:flexi-m
+                   |     +--rw flexi-n    flexi-n
+                   |     +--rw flexi-m?   flexi-m
                    +--:(multi)
                       +--rw frequency-slots
                          +--rw frequency-slot* [flexi-n]
-                            +--rw flexi-n    l0-types:flexi-n
-                            +--rw flexi-m?   l0-types:flexi-m
+                            +--rw flexi-n    flexi-n
+                            +--rw flexi-m?   flexi-m
      augment /te:te/te:globals/te:named-path-constraints
                /te:named-path-constraint/te:explicit-route-objects
                /te:route-object-include-exclude/te:type/te:label
@@ -1165,25 +1165,25 @@ Table of Contents
              +--:(fixed-dwdm)
              |  +--rw (fixed-single-or-super-channel)?
              |     +--:(single)
-             |     |  +--rw dwdm-n?               l0-types:dwdm-n
+             |     |  +--rw dwdm-n?               dwdm-n
              |     +--:(multi)
-             |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+             |        +--rw subcarrier-dwdm-n*    dwdm-n
              +--:(cwdm)
-             |  +--rw cwdm-n?                     l0-types:cwdm-n
+             |  +--rw cwdm-n?                     cwdm-n
              +--:(flexi-grid)
                 +--rw (single-or-super-channel)?
                    +--:(single)
-                   |  +--rw flexi-n?              l0-types:flexi-n
-                   |  +--rw flexi-m?              l0-types:flexi-m
+                   |  +--rw flexi-n?              flexi-n
+                   |  +--rw flexi-m?              flexi-m
                    x--:(super)
                    |  x--rw subcarrier-flexi-n* [flexi-n]
-                   |     +--rw flexi-n    l0-types:flexi-n
-                   |     +--rw flexi-m?   l0-types:flexi-m
+                   |     +--rw flexi-n    flexi-n
+                   |     +--rw flexi-m?   flexi-m
                    +--:(multi)
                       +--rw frequency-slots
                          +--rw frequency-slot* [flexi-n]
-                            +--rw flexi-n    l0-types:flexi-n
-                            +--rw flexi-m?   l0-types:flexi-m
+                            +--rw flexi-n    flexi-n
+                            +--rw flexi-m?   flexi-m
      augment /te:te/te:globals/te:named-path-constraints
                /te:named-path-constraint/te:path-in-segment
                /te:label-restrictions/te:label-restriction
@@ -1191,11 +1191,11 @@ Table of Contents
        +--:(wdm)
           +--rw (grid-type)?
              +--:(fixed-dwdm)
-             |  +--rw dwdm-n?    l0-types:dwdm-n
+             |  +--rw dwdm-n?    dwdm-n
              +--:(cwdm)
-             |  +--rw cwdm-n?    l0-types:cwdm-n
+             |  +--rw cwdm-n?    cwdm-n
              +--:(flexi-grid)
-                +--rw flexi-n?   l0-types:flexi-n
+                +--rw flexi-n?   flexi-n
      augment /te:te/te:globals/te:named-path-constraints
                /te:named-path-constraint/te:path-in-segment
                /te:label-restrictions/te:label-restriction/te:label-end
@@ -1203,11 +1203,11 @@ Table of Contents
        +--:(wdm)
           +--rw (grid-type)?
              +--:(fixed-dwdm)
-             |  +--rw dwdm-n?    l0-types:dwdm-n
+             |  +--rw dwdm-n?    dwdm-n
              +--:(cwdm)
-             |  +--rw cwdm-n?    l0-types:cwdm-n
+             |  +--rw cwdm-n?    cwdm-n
              +--:(flexi-grid)
-                +--rw flexi-n?   l0-types:flexi-n
+                +--rw flexi-n?   flexi-n
      augment /te:te/te:globals/te:named-path-constraints
                /te:named-path-constraint/te:path-in-segment
                /te:label-restrictions/te:label-restriction/te:label-step
@@ -1229,11 +1229,11 @@ Table of Contents
        +--:(wdm)
           +--rw (grid-type)?
              +--:(fixed-dwdm)
-             |  +--rw dwdm-n?    l0-types:dwdm-n
+             |  +--rw dwdm-n?    dwdm-n
              +--:(cwdm)
-             |  +--rw cwdm-n?    l0-types:cwdm-n
+             |  +--rw cwdm-n?    cwdm-n
              +--:(flexi-grid)
-                +--rw flexi-n?   l0-types:flexi-n
+                +--rw flexi-n?   flexi-n
      augment /te:te/te:globals/te:named-path-constraints
                /te:named-path-constraint/te:path-out-segment
                /te:label-restrictions/te:label-restriction/te:label-end
@@ -1241,11 +1241,11 @@ Table of Contents
        +--:(wdm)
           +--rw (grid-type)?
              +--:(fixed-dwdm)
-             |  +--rw dwdm-n?    l0-types:dwdm-n
+             |  +--rw dwdm-n?    dwdm-n
              +--:(cwdm)
-             |  +--rw cwdm-n?    l0-types:cwdm-n
+             |  +--rw cwdm-n?    cwdm-n
              +--:(flexi-grid)
-                +--rw flexi-n?   l0-types:flexi-n
+                +--rw flexi-n?   flexi-n
      augment /te:te/te:globals/te:named-path-constraints
                /te:named-path-constraint/te:path-out-segment
                /te:label-restrictions/te:label-restriction/te:label-step
@@ -1270,25 +1270,25 @@ Table of Contents
              +--:(fixed-dwdm)
              |  +--rw (fixed-single-or-super-channel)?
              |     +--:(single)
-             |     |  +--rw dwdm-n?               l0-types:dwdm-n
+             |     |  +--rw dwdm-n?               dwdm-n
              |     +--:(multi)
-             |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+             |        +--rw subcarrier-dwdm-n*    dwdm-n
              +--:(cwdm)
-             |  +--rw cwdm-n?                     l0-types:cwdm-n
+             |  +--rw cwdm-n?                     cwdm-n
              +--:(flexi-grid)
                 +--rw (single-or-super-channel)?
                    +--:(single)
-                   |  +--rw flexi-n?              l0-types:flexi-n
-                   |  +--rw flexi-m?              l0-types:flexi-m
+                   |  +--rw flexi-n?              flexi-n
+                   |  +--rw flexi-m?              flexi-m
                    x--:(super)
                    |  x--rw subcarrier-flexi-n* [flexi-n]
-                   |     +--rw flexi-n    l0-types:flexi-n
-                   |     +--rw flexi-m?   l0-types:flexi-m
+                   |     +--rw flexi-n    flexi-n
+                   |     +--rw flexi-m?   flexi-m
                    +--:(multi)
                       +--rw frequency-slots
                          +--rw frequency-slot* [flexi-n]
-                            +--rw flexi-n    l0-types:flexi-n
-                            +--rw flexi-m?   l0-types:flexi-m
+                            +--rw flexi-n    flexi-n
+                            +--rw flexi-m?   flexi-m
      augment /te:te/te:tunnels/te:tunnel/te:primary-paths
                /te:primary-path/te:optimizations/te:algorithm/te:metric
                /te:optimization-metric/te:explicit-route-include-objects
@@ -1299,25 +1299,25 @@ Table of Contents
              +--:(fixed-dwdm)
              |  +--rw (fixed-single-or-super-channel)?
              |     +--:(single)
-             |     |  +--rw dwdm-n?               l0-types:dwdm-n
+             |     |  +--rw dwdm-n?               dwdm-n
              |     +--:(multi)
-             |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+             |        +--rw subcarrier-dwdm-n*    dwdm-n
              +--:(cwdm)
-             |  +--rw cwdm-n?                     l0-types:cwdm-n
+             |  +--rw cwdm-n?                     cwdm-n
              +--:(flexi-grid)
                 +--rw (single-or-super-channel)?
                    +--:(single)
-                   |  +--rw flexi-n?              l0-types:flexi-n
-                   |  +--rw flexi-m?              l0-types:flexi-m
+                   |  +--rw flexi-n?              flexi-n
+                   |  +--rw flexi-m?              flexi-m
                    x--:(super)
                    |  x--rw subcarrier-flexi-n* [flexi-n]
-                   |     +--rw flexi-n    l0-types:flexi-n
-                   |     +--rw flexi-m?   l0-types:flexi-m
+                   |     +--rw flexi-n    flexi-n
+                   |     +--rw flexi-m?   flexi-m
                    +--:(multi)
                       +--rw frequency-slots
                          +--rw frequency-slot* [flexi-n]
-                            +--rw flexi-n    l0-types:flexi-n
-                            +--rw flexi-m?   l0-types:flexi-m
+                            +--rw flexi-n    flexi-n
+                            +--rw flexi-m?   flexi-m
      augment /te:te/te:tunnels/te:tunnel/te:primary-paths
                /te:primary-path/te:explicit-route-objects
                /te:route-object-exclude-always/te:type/te:label
@@ -1327,25 +1327,25 @@ Table of Contents
              +--:(fixed-dwdm)
              |  +--rw (fixed-single-or-super-channel)?
              |     +--:(single)
-             |     |  +--rw dwdm-n?               l0-types:dwdm-n
+             |     |  +--rw dwdm-n?               dwdm-n
              |     +--:(multi)
-             |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+             |        +--rw subcarrier-dwdm-n*    dwdm-n
              +--:(cwdm)
-             |  +--rw cwdm-n?                     l0-types:cwdm-n
+             |  +--rw cwdm-n?                     cwdm-n
              +--:(flexi-grid)
                 +--rw (single-or-super-channel)?
                    +--:(single)
-                   |  +--rw flexi-n?              l0-types:flexi-n
-                   |  +--rw flexi-m?              l0-types:flexi-m
+                   |  +--rw flexi-n?              flexi-n
+                   |  +--rw flexi-m?              flexi-m
                    x--:(super)
                    |  x--rw subcarrier-flexi-n* [flexi-n]
-                   |     +--rw flexi-n    l0-types:flexi-n
-                   |     +--rw flexi-m?   l0-types:flexi-m
+                   |     +--rw flexi-n    flexi-n
+                   |     +--rw flexi-m?   flexi-m
                    +--:(multi)
                       +--rw frequency-slots
                          +--rw frequency-slot* [flexi-n]
-                            +--rw flexi-n    l0-types:flexi-n
-                            +--rw flexi-m?   l0-types:flexi-m
+                            +--rw flexi-n    flexi-n
+                            +--rw flexi-m?   flexi-m
      augment /te:te/te:tunnels/te:tunnel/te:primary-paths
                /te:primary-path/te:explicit-route-objects
                /te:route-object-include-exclude/te:type/te:label
@@ -1355,25 +1355,25 @@ Table of Contents
              +--:(fixed-dwdm)
              |  +--rw (fixed-single-or-super-channel)?
              |     +--:(single)
-             |     |  +--rw dwdm-n?               l0-types:dwdm-n
+             |     |  +--rw dwdm-n?               dwdm-n
              |     +--:(multi)
-             |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+             |        +--rw subcarrier-dwdm-n*    dwdm-n
              +--:(cwdm)
-             |  +--rw cwdm-n?                     l0-types:cwdm-n
+             |  +--rw cwdm-n?                     cwdm-n
              +--:(flexi-grid)
                 +--rw (single-or-super-channel)?
                    +--:(single)
-                   |  +--rw flexi-n?              l0-types:flexi-n
-                   |  +--rw flexi-m?              l0-types:flexi-m
+                   |  +--rw flexi-n?              flexi-n
+                   |  +--rw flexi-m?              flexi-m
                    x--:(super)
                    |  x--rw subcarrier-flexi-n* [flexi-n]
-                   |     +--rw flexi-n    l0-types:flexi-n
-                   |     +--rw flexi-m?   l0-types:flexi-m
+                   |     +--rw flexi-n    flexi-n
+                   |     +--rw flexi-m?   flexi-m
                    +--:(multi)
                       +--rw frequency-slots
                          +--rw frequency-slot* [flexi-n]
-                            +--rw flexi-n    l0-types:flexi-n
-                            +--rw flexi-m?   l0-types:flexi-m
+                            +--rw flexi-n    flexi-n
+                            +--rw flexi-m?   flexi-m
      augment /te:te/te:tunnels/te:tunnel/te:primary-paths
                /te:primary-path/te:path-in-segment/te:label-restrictions
                /te:label-restriction/te:label-start/te:te-label
@@ -1381,11 +1381,11 @@ Table of Contents
        +--:(wdm)
           +--rw (grid-type)?
              +--:(fixed-dwdm)
-             |  +--rw dwdm-n?    l0-types:dwdm-n
+             |  +--rw dwdm-n?    dwdm-n
              +--:(cwdm)
-             |  +--rw cwdm-n?    l0-types:cwdm-n
+             |  +--rw cwdm-n?    cwdm-n
              +--:(flexi-grid)
-                +--rw flexi-n?   l0-types:flexi-n
+                +--rw flexi-n?   flexi-n
      augment /te:te/te:tunnels/te:tunnel/te:primary-paths
                /te:primary-path/te:path-in-segment/te:label-restrictions
                /te:label-restriction/te:label-end/te:te-label
@@ -1393,11 +1393,11 @@ Table of Contents
        +--:(wdm)
           +--rw (grid-type)?
              +--:(fixed-dwdm)
-             |  +--rw dwdm-n?    l0-types:dwdm-n
+             |  +--rw dwdm-n?    dwdm-n
              +--:(cwdm)
-             |  +--rw cwdm-n?    l0-types:cwdm-n
+             |  +--rw cwdm-n?    cwdm-n
              +--:(flexi-grid)
-                +--rw flexi-n?   l0-types:flexi-n
+                +--rw flexi-n?   flexi-n
      augment /te:te/te:tunnels/te:tunnel/te:primary-paths
                /te:primary-path/te:path-in-segment/te:label-restrictions
                /te:label-restriction/te:label-step/te:technology:
@@ -1418,11 +1418,11 @@ Table of Contents
        +--:(wdm)
           +--rw (grid-type)?
              +--:(fixed-dwdm)
-             |  +--rw dwdm-n?    l0-types:dwdm-n
+             |  +--rw dwdm-n?    dwdm-n
              +--:(cwdm)
-             |  +--rw cwdm-n?    l0-types:cwdm-n
+             |  +--rw cwdm-n?    cwdm-n
              +--:(flexi-grid)
-                +--rw flexi-n?   l0-types:flexi-n
+                +--rw flexi-n?   flexi-n
      augment /te:te/te:tunnels/te:tunnel/te:primary-paths
                /te:primary-path/te:path-out-segment
                /te:label-restrictions/te:label-restriction/te:label-end
@@ -1430,11 +1430,11 @@ Table of Contents
        +--:(wdm)
           +--rw (grid-type)?
              +--:(fixed-dwdm)
-             |  +--rw dwdm-n?    l0-types:dwdm-n
+             |  +--rw dwdm-n?    dwdm-n
              +--:(cwdm)
-             |  +--rw cwdm-n?    l0-types:cwdm-n
+             |  +--rw cwdm-n?    cwdm-n
              +--:(flexi-grid)
-                +--rw flexi-n?   l0-types:flexi-n
+                +--rw flexi-n?   flexi-n
      augment /te:te/te:tunnels/te:tunnel/te:primary-paths
                /te:primary-path/te:path-out-segment
                /te:label-restrictions/te:label-restriction/te:label-step
@@ -1459,25 +1459,25 @@ Table of Contents
              +--:(fixed-dwdm)
              |  +--ro (fixed-single-or-super-channel)?
              |     +--:(single)
-             |     |  +--ro dwdm-n?               l0-types:dwdm-n
+             |     |  +--ro dwdm-n?               dwdm-n
              |     +--:(multi)
-             |        +--ro subcarrier-dwdm-n*    l0-types:dwdm-n
+             |        +--ro subcarrier-dwdm-n*    dwdm-n
              +--:(cwdm)
-             |  +--ro cwdm-n?                     l0-types:cwdm-n
+             |  +--ro cwdm-n?                     cwdm-n
              +--:(flexi-grid)
                 +--ro (single-or-super-channel)?
                    +--:(single)
-                   |  +--ro flexi-n?              l0-types:flexi-n
-                   |  +--ro flexi-m?              l0-types:flexi-m
+                   |  +--ro flexi-n?              flexi-n
+                   |  +--ro flexi-m?              flexi-m
                    x--:(super)
                    |  x--ro subcarrier-flexi-n* [flexi-n]
-                   |     +--ro flexi-n    l0-types:flexi-n
-                   |     +--ro flexi-m?   l0-types:flexi-m
+                   |     +--ro flexi-n    flexi-n
+                   |     +--ro flexi-m?   flexi-m
                    +--:(multi)
                       +--ro frequency-slots
                          +--ro frequency-slot* [flexi-n]
-                            +--ro flexi-n    l0-types:flexi-n
-                            +--ro flexi-m?   l0-types:flexi-m
+                            +--ro flexi-n    flexi-n
+                            +--ro flexi-m?   flexi-m
      augment /te:te/te:tunnels/te:tunnel/te:primary-paths
                /te:primary-path/te:primary-reverse-path/te:optimizations
                /te:algorithm/te:metric/te:optimization-metric
@@ -1489,25 +1489,25 @@ Table of Contents
              +--:(fixed-dwdm)
              |  +--rw (fixed-single-or-super-channel)?
              |     +--:(single)
-             |     |  +--rw dwdm-n?               l0-types:dwdm-n
+             |     |  +--rw dwdm-n?               dwdm-n
              |     +--:(multi)
-             |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+             |        +--rw subcarrier-dwdm-n*    dwdm-n
              +--:(cwdm)
-             |  +--rw cwdm-n?                     l0-types:cwdm-n
+             |  +--rw cwdm-n?                     cwdm-n
              +--:(flexi-grid)
                 +--rw (single-or-super-channel)?
                    +--:(single)
-                   |  +--rw flexi-n?              l0-types:flexi-n
-                   |  +--rw flexi-m?              l0-types:flexi-m
+                   |  +--rw flexi-n?              flexi-n
+                   |  +--rw flexi-m?              flexi-m
                    x--:(super)
                    |  x--rw subcarrier-flexi-n* [flexi-n]
-                   |     +--rw flexi-n    l0-types:flexi-n
-                   |     +--rw flexi-m?   l0-types:flexi-m
+                   |     +--rw flexi-n    flexi-n
+                   |     +--rw flexi-m?   flexi-m
                    +--:(multi)
                       +--rw frequency-slots
                          +--rw frequency-slot* [flexi-n]
-                            +--rw flexi-n    l0-types:flexi-n
-                            +--rw flexi-m?   l0-types:flexi-m
+                            +--rw flexi-n    flexi-n
+                            +--rw flexi-m?   flexi-m
      augment /te:te/te:tunnels/te:tunnel/te:primary-paths
                /te:primary-path/te:primary-reverse-path/te:optimizations
                /te:algorithm/te:metric/te:optimization-metric
@@ -1519,25 +1519,25 @@ Table of Contents
              +--:(fixed-dwdm)
              |  +--rw (fixed-single-or-super-channel)?
              |     +--:(single)
-             |     |  +--rw dwdm-n?               l0-types:dwdm-n
+             |     |  +--rw dwdm-n?               dwdm-n
              |     +--:(multi)
-             |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+             |        +--rw subcarrier-dwdm-n*    dwdm-n
              +--:(cwdm)
-             |  +--rw cwdm-n?                     l0-types:cwdm-n
+             |  +--rw cwdm-n?                     cwdm-n
              +--:(flexi-grid)
                 +--rw (single-or-super-channel)?
                    +--:(single)
-                   |  +--rw flexi-n?              l0-types:flexi-n
-                   |  +--rw flexi-m?              l0-types:flexi-m
+                   |  +--rw flexi-n?              flexi-n
+                   |  +--rw flexi-m?              flexi-m
                    x--:(super)
                    |  x--rw subcarrier-flexi-n* [flexi-n]
-                   |     +--rw flexi-n    l0-types:flexi-n
-                   |     +--rw flexi-m?   l0-types:flexi-m
+                   |     +--rw flexi-n    flexi-n
+                   |     +--rw flexi-m?   flexi-m
                    +--:(multi)
                       +--rw frequency-slots
                          +--rw frequency-slot* [flexi-n]
-                            +--rw flexi-n    l0-types:flexi-n
-                            +--rw flexi-m?   l0-types:flexi-m
+                            +--rw flexi-n    flexi-n
+                            +--rw flexi-m?   flexi-m
      augment /te:te/te:tunnels/te:tunnel/te:primary-paths
                /te:primary-path/te:primary-reverse-path
                /te:explicit-route-objects/te:route-object-exclude-always
@@ -1547,25 +1547,25 @@ Table of Contents
              +--:(fixed-dwdm)
              |  +--rw (fixed-single-or-super-channel)?
              |     +--:(single)
-             |     |  +--rw dwdm-n?               l0-types:dwdm-n
+             |     |  +--rw dwdm-n?               dwdm-n
              |     +--:(multi)
-             |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+             |        +--rw subcarrier-dwdm-n*    dwdm-n
              +--:(cwdm)
-             |  +--rw cwdm-n?                     l0-types:cwdm-n
+             |  +--rw cwdm-n?                     cwdm-n
              +--:(flexi-grid)
                 +--rw (single-or-super-channel)?
                    +--:(single)
-                   |  +--rw flexi-n?              l0-types:flexi-n
-                   |  +--rw flexi-m?              l0-types:flexi-m
+                   |  +--rw flexi-n?              flexi-n
+                   |  +--rw flexi-m?              flexi-m
                    x--:(super)
                    |  x--rw subcarrier-flexi-n* [flexi-n]
-                   |     +--rw flexi-n    l0-types:flexi-n
-                   |     +--rw flexi-m?   l0-types:flexi-m
+                   |     +--rw flexi-n    flexi-n
+                   |     +--rw flexi-m?   flexi-m
                    +--:(multi)
                       +--rw frequency-slots
                          +--rw frequency-slot* [flexi-n]
-                            +--rw flexi-n    l0-types:flexi-n
-                            +--rw flexi-m?   l0-types:flexi-m
+                            +--rw flexi-n    flexi-n
+                            +--rw flexi-m?   flexi-m
      augment /te:te/te:tunnels/te:tunnel/te:primary-paths
                /te:primary-path/te:primary-reverse-path
                /te:explicit-route-objects
@@ -1576,25 +1576,25 @@ Table of Contents
              +--:(fixed-dwdm)
              |  +--rw (fixed-single-or-super-channel)?
              |     +--:(single)
-             |     |  +--rw dwdm-n?               l0-types:dwdm-n
+             |     |  +--rw dwdm-n?               dwdm-n
              |     +--:(multi)
-             |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+             |        +--rw subcarrier-dwdm-n*    dwdm-n
              +--:(cwdm)
-             |  +--rw cwdm-n?                     l0-types:cwdm-n
+             |  +--rw cwdm-n?                     cwdm-n
              +--:(flexi-grid)
                 +--rw (single-or-super-channel)?
                    +--:(single)
-                   |  +--rw flexi-n?              l0-types:flexi-n
-                   |  +--rw flexi-m?              l0-types:flexi-m
+                   |  +--rw flexi-n?              flexi-n
+                   |  +--rw flexi-m?              flexi-m
                    x--:(super)
                    |  x--rw subcarrier-flexi-n* [flexi-n]
-                   |     +--rw flexi-n    l0-types:flexi-n
-                   |     +--rw flexi-m?   l0-types:flexi-m
+                   |     +--rw flexi-n    flexi-n
+                   |     +--rw flexi-m?   flexi-m
                    +--:(multi)
                       +--rw frequency-slots
                          +--rw frequency-slot* [flexi-n]
-                            +--rw flexi-n    l0-types:flexi-n
-                            +--rw flexi-m?   l0-types:flexi-m
+                            +--rw flexi-n    flexi-n
+                            +--rw flexi-m?   flexi-m
      augment /te:te/te:tunnels/te:tunnel/te:primary-paths
                /te:primary-path/te:primary-reverse-path
                /te:path-in-segment/te:label-restrictions
@@ -1603,11 +1603,11 @@ Table of Contents
        +--:(wdm)
           +--rw (grid-type)?
              +--:(fixed-dwdm)
-             |  +--rw dwdm-n?    l0-types:dwdm-n
+             |  +--rw dwdm-n?    dwdm-n
              +--:(cwdm)
-             |  +--rw cwdm-n?    l0-types:cwdm-n
+             |  +--rw cwdm-n?    cwdm-n
              +--:(flexi-grid)
-                +--rw flexi-n?   l0-types:flexi-n
+                +--rw flexi-n?   flexi-n
      augment /te:te/te:tunnels/te:tunnel/te:primary-paths
                /te:primary-path/te:primary-reverse-path
                /te:path-in-segment/te:label-restrictions
@@ -1616,11 +1616,11 @@ Table of Contents
        +--:(wdm)
           +--rw (grid-type)?
              +--:(fixed-dwdm)
-             |  +--rw dwdm-n?    l0-types:dwdm-n
+             |  +--rw dwdm-n?    dwdm-n
              +--:(cwdm)
-             |  +--rw cwdm-n?    l0-types:cwdm-n
+             |  +--rw cwdm-n?    cwdm-n
              +--:(flexi-grid)
-                +--rw flexi-n?   l0-types:flexi-n
+                +--rw flexi-n?   flexi-n
      augment /te:te/te:tunnels/te:tunnel/te:primary-paths
                /te:primary-path/te:primary-reverse-path
                /te:path-in-segment/te:label-restrictions
@@ -1643,11 +1643,11 @@ Table of Contents
        +--:(wdm)
           +--rw (grid-type)?
              +--:(fixed-dwdm)
-             |  +--rw dwdm-n?    l0-types:dwdm-n
+             |  +--rw dwdm-n?    dwdm-n
              +--:(cwdm)
-             |  +--rw cwdm-n?    l0-types:cwdm-n
+             |  +--rw cwdm-n?    cwdm-n
              +--:(flexi-grid)
-                +--rw flexi-n?   l0-types:flexi-n
+                +--rw flexi-n?   flexi-n
      augment /te:te/te:tunnels/te:tunnel/te:primary-paths
                /te:primary-path/te:primary-reverse-path
                /te:path-out-segment/te:label-restrictions
@@ -1656,11 +1656,11 @@ Table of Contents
        +--:(wdm)
           +--rw (grid-type)?
              +--:(fixed-dwdm)
-             |  +--rw dwdm-n?    l0-types:dwdm-n
+             |  +--rw dwdm-n?    dwdm-n
              +--:(cwdm)
-             |  +--rw cwdm-n?    l0-types:cwdm-n
+             |  +--rw cwdm-n?    cwdm-n
              +--:(flexi-grid)
-                +--rw flexi-n?   l0-types:flexi-n
+                +--rw flexi-n?   flexi-n
      augment /te:te/te:tunnels/te:tunnel/te:primary-paths
                /te:primary-path/te:primary-reverse-path
                /te:path-out-segment/te:label-restrictions
@@ -1686,25 +1686,25 @@ Table of Contents
              +--:(fixed-dwdm)
              |  +--ro (fixed-single-or-super-channel)?
              |     +--:(single)
-             |     |  +--ro dwdm-n?               l0-types:dwdm-n
+             |     |  +--ro dwdm-n?               dwdm-n
              |     +--:(multi)
-             |        +--ro subcarrier-dwdm-n*    l0-types:dwdm-n
+             |        +--ro subcarrier-dwdm-n*    dwdm-n
              +--:(cwdm)
-             |  +--ro cwdm-n?                     l0-types:cwdm-n
+             |  +--ro cwdm-n?                     cwdm-n
              +--:(flexi-grid)
                 +--ro (single-or-super-channel)?
                    +--:(single)
-                   |  +--ro flexi-n?              l0-types:flexi-n
-                   |  +--ro flexi-m?              l0-types:flexi-m
+                   |  +--ro flexi-n?              flexi-n
+                   |  +--ro flexi-m?              flexi-m
                    x--:(super)
                    |  x--ro subcarrier-flexi-n* [flexi-n]
-                   |     +--ro flexi-n    l0-types:flexi-n
-                   |     +--ro flexi-m?   l0-types:flexi-m
+                   |     +--ro flexi-n    flexi-n
+                   |     +--ro flexi-m?   flexi-m
                    +--:(multi)
                       +--ro frequency-slots
                          +--ro frequency-slot* [flexi-n]
-                            +--ro flexi-n    l0-types:flexi-n
-                            +--ro flexi-m?   l0-types:flexi-m
+                            +--ro flexi-n    flexi-n
+                            +--ro flexi-m?   flexi-m
      augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
                /te:secondary-path/te:optimizations/te:algorithm
                /te:metric/te:optimization-metric
@@ -1716,25 +1716,25 @@ Table of Contents
              +--:(fixed-dwdm)
              |  +--rw (fixed-single-or-super-channel)?
              |     +--:(single)
-             |     |  +--rw dwdm-n?               l0-types:dwdm-n
+             |     |  +--rw dwdm-n?               dwdm-n
              |     +--:(multi)
-             |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+             |        +--rw subcarrier-dwdm-n*    dwdm-n
              +--:(cwdm)
-             |  +--rw cwdm-n?                     l0-types:cwdm-n
+             |  +--rw cwdm-n?                     cwdm-n
              +--:(flexi-grid)
                 +--rw (single-or-super-channel)?
                    +--:(single)
-                   |  +--rw flexi-n?              l0-types:flexi-n
-                   |  +--rw flexi-m?              l0-types:flexi-m
+                   |  +--rw flexi-n?              flexi-n
+                   |  +--rw flexi-m?              flexi-m
                    x--:(super)
                    |  x--rw subcarrier-flexi-n* [flexi-n]
-                   |     +--rw flexi-n    l0-types:flexi-n
-                   |     +--rw flexi-m?   l0-types:flexi-m
+                   |     +--rw flexi-n    flexi-n
+                   |     +--rw flexi-m?   flexi-m
                    +--:(multi)
                       +--rw frequency-slots
                          +--rw frequency-slot* [flexi-n]
-                            +--rw flexi-n    l0-types:flexi-n
-                            +--rw flexi-m?   l0-types:flexi-m
+                            +--rw flexi-n    flexi-n
+                            +--rw flexi-m?   flexi-m
      augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
                /te:secondary-path/te:optimizations/te:algorithm
                /te:metric/te:optimization-metric
@@ -1746,25 +1746,25 @@ Table of Contents
              +--:(fixed-dwdm)
              |  +--rw (fixed-single-or-super-channel)?
              |     +--:(single)
-             |     |  +--rw dwdm-n?               l0-types:dwdm-n
+             |     |  +--rw dwdm-n?               dwdm-n
              |     +--:(multi)
-             |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+             |        +--rw subcarrier-dwdm-n*    dwdm-n
              +--:(cwdm)
-             |  +--rw cwdm-n?                     l0-types:cwdm-n
+             |  +--rw cwdm-n?                     cwdm-n
              +--:(flexi-grid)
                 +--rw (single-or-super-channel)?
                    +--:(single)
-                   |  +--rw flexi-n?              l0-types:flexi-n
-                   |  +--rw flexi-m?              l0-types:flexi-m
+                   |  +--rw flexi-n?              flexi-n
+                   |  +--rw flexi-m?              flexi-m
                    x--:(super)
                    |  x--rw subcarrier-flexi-n* [flexi-n]
-                   |     +--rw flexi-n    l0-types:flexi-n
-                   |     +--rw flexi-m?   l0-types:flexi-m
+                   |     +--rw flexi-n    flexi-n
+                   |     +--rw flexi-m?   flexi-m
                    +--:(multi)
                       +--rw frequency-slots
                          +--rw frequency-slot* [flexi-n]
-                            +--rw flexi-n    l0-types:flexi-n
-                            +--rw flexi-m?   l0-types:flexi-m
+                            +--rw flexi-n    flexi-n
+                            +--rw flexi-m?   flexi-m
      augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
                /te:secondary-path/te:explicit-route-objects
                /te:route-object-exclude-always/te:type/te:label
@@ -1774,25 +1774,25 @@ Table of Contents
              +--:(fixed-dwdm)
              |  +--rw (fixed-single-or-super-channel)?
              |     +--:(single)
-             |     |  +--rw dwdm-n?               l0-types:dwdm-n
+             |     |  +--rw dwdm-n?               dwdm-n
              |     +--:(multi)
-             |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+             |        +--rw subcarrier-dwdm-n*    dwdm-n
              +--:(cwdm)
-             |  +--rw cwdm-n?                     l0-types:cwdm-n
+             |  +--rw cwdm-n?                     cwdm-n
              +--:(flexi-grid)
                 +--rw (single-or-super-channel)?
                    +--:(single)
-                   |  +--rw flexi-n?              l0-types:flexi-n
-                   |  +--rw flexi-m?              l0-types:flexi-m
+                   |  +--rw flexi-n?              flexi-n
+                   |  +--rw flexi-m?              flexi-m
                    x--:(super)
                    |  x--rw subcarrier-flexi-n* [flexi-n]
-                   |     +--rw flexi-n    l0-types:flexi-n
-                   |     +--rw flexi-m?   l0-types:flexi-m
+                   |     +--rw flexi-n    flexi-n
+                   |     +--rw flexi-m?   flexi-m
                    +--:(multi)
                       +--rw frequency-slots
                          +--rw frequency-slot* [flexi-n]
-                            +--rw flexi-n    l0-types:flexi-n
-                            +--rw flexi-m?   l0-types:flexi-m
+                            +--rw flexi-n    flexi-n
+                            +--rw flexi-m?   flexi-m
      augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
                /te:secondary-path/te:explicit-route-objects
                /te:route-object-include-exclude/te:type/te:label
@@ -1802,25 +1802,25 @@ Table of Contents
              +--:(fixed-dwdm)
              |  +--rw (fixed-single-or-super-channel)?
              |     +--:(single)
-             |     |  +--rw dwdm-n?               l0-types:dwdm-n
+             |     |  +--rw dwdm-n?               dwdm-n
              |     +--:(multi)
-             |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+             |        +--rw subcarrier-dwdm-n*    dwdm-n
              +--:(cwdm)
-             |  +--rw cwdm-n?                     l0-types:cwdm-n
+             |  +--rw cwdm-n?                     cwdm-n
              +--:(flexi-grid)
                 +--rw (single-or-super-channel)?
                    +--:(single)
-                   |  +--rw flexi-n?              l0-types:flexi-n
-                   |  +--rw flexi-m?              l0-types:flexi-m
+                   |  +--rw flexi-n?              flexi-n
+                   |  +--rw flexi-m?              flexi-m
                    x--:(super)
                    |  x--rw subcarrier-flexi-n* [flexi-n]
-                   |     +--rw flexi-n    l0-types:flexi-n
-                   |     +--rw flexi-m?   l0-types:flexi-m
+                   |     +--rw flexi-n    flexi-n
+                   |     +--rw flexi-m?   flexi-m
                    +--:(multi)
                       +--rw frequency-slots
                          +--rw frequency-slot* [flexi-n]
-                            +--rw flexi-n    l0-types:flexi-n
-                            +--rw flexi-m?   l0-types:flexi-m
+                            +--rw flexi-n    flexi-n
+                            +--rw flexi-m?   flexi-m
      augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
                /te:secondary-path/te:path-in-segment
                /te:label-restrictions/te:label-restriction
@@ -1828,11 +1828,11 @@ Table of Contents
        +--:(wdm)
           +--rw (grid-type)?
              +--:(fixed-dwdm)
-             |  +--rw dwdm-n?    l0-types:dwdm-n
+             |  +--rw dwdm-n?    dwdm-n
              +--:(cwdm)
-             |  +--rw cwdm-n?    l0-types:cwdm-n
+             |  +--rw cwdm-n?    cwdm-n
              +--:(flexi-grid)
-                +--rw flexi-n?   l0-types:flexi-n
+                +--rw flexi-n?   flexi-n
      augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
                /te:secondary-path/te:path-in-segment
                /te:label-restrictions/te:label-restriction/te:label-end
@@ -1840,11 +1840,11 @@ Table of Contents
        +--:(wdm)
           +--rw (grid-type)?
              +--:(fixed-dwdm)
-             |  +--rw dwdm-n?    l0-types:dwdm-n
+             |  +--rw dwdm-n?    dwdm-n
              +--:(cwdm)
-             |  +--rw cwdm-n?    l0-types:cwdm-n
+             |  +--rw cwdm-n?    cwdm-n
              +--:(flexi-grid)
-                +--rw flexi-n?   l0-types:flexi-n
+                +--rw flexi-n?   flexi-n
      augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
                /te:secondary-path/te:path-in-segment
                /te:label-restrictions/te:label-restriction/te:label-step
@@ -1866,11 +1866,11 @@ Table of Contents
        +--:(wdm)
           +--rw (grid-type)?
              +--:(fixed-dwdm)
-             |  +--rw dwdm-n?    l0-types:dwdm-n
+             |  +--rw dwdm-n?    dwdm-n
              +--:(cwdm)
-             |  +--rw cwdm-n?    l0-types:cwdm-n
+             |  +--rw cwdm-n?    cwdm-n
              +--:(flexi-grid)
-                +--rw flexi-n?   l0-types:flexi-n
+                +--rw flexi-n?   flexi-n
      augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
                /te:secondary-path/te:path-out-segment
                /te:label-restrictions/te:label-restriction/te:label-end
@@ -1878,11 +1878,11 @@ Table of Contents
        +--:(wdm)
           +--rw (grid-type)?
              +--:(fixed-dwdm)
-             |  +--rw dwdm-n?    l0-types:dwdm-n
+             |  +--rw dwdm-n?    dwdm-n
              +--:(cwdm)
-             |  +--rw cwdm-n?    l0-types:cwdm-n
+             |  +--rw cwdm-n?    cwdm-n
              +--:(flexi-grid)
-                +--rw flexi-n?   l0-types:flexi-n
+                +--rw flexi-n?   flexi-n
      augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
                /te:secondary-path/te:path-out-segment
                /te:label-restrictions/te:label-restriction/te:label-step
@@ -1907,25 +1907,25 @@ Table of Contents
              +--:(fixed-dwdm)
              |  +--ro (fixed-single-or-super-channel)?
              |     +--:(single)
-             |     |  +--ro dwdm-n?               l0-types:dwdm-n
+             |     |  +--ro dwdm-n?               dwdm-n
              |     +--:(multi)
-             |        +--ro subcarrier-dwdm-n*    l0-types:dwdm-n
+             |        +--ro subcarrier-dwdm-n*    dwdm-n
              +--:(cwdm)
-             |  +--ro cwdm-n?                     l0-types:cwdm-n
+             |  +--ro cwdm-n?                     cwdm-n
              +--:(flexi-grid)
                 +--ro (single-or-super-channel)?
                    +--:(single)
-                   |  +--ro flexi-n?              l0-types:flexi-n
-                   |  +--ro flexi-m?              l0-types:flexi-m
+                   |  +--ro flexi-n?              flexi-n
+                   |  +--ro flexi-m?              flexi-m
                    x--:(super)
                    |  x--ro subcarrier-flexi-n* [flexi-n]
-                   |     +--ro flexi-n    l0-types:flexi-n
-                   |     +--ro flexi-m?   l0-types:flexi-m
+                   |     +--ro flexi-n    flexi-n
+                   |     +--ro flexi-m?   flexi-m
                    +--:(multi)
                       +--ro frequency-slots
                          +--ro frequency-slot* [flexi-n]
-                            +--ro flexi-n    l0-types:flexi-n
-                            +--ro flexi-m?   l0-types:flexi-m
+                            +--ro flexi-n    flexi-n
+                            +--ro flexi-m?   flexi-m
      augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
                /te:secondary-reverse-path/te:optimizations/te:algorithm
                /te:metric/te:optimization-metric
@@ -1937,25 +1937,25 @@ Table of Contents
              +--:(fixed-dwdm)
              |  +--rw (fixed-single-or-super-channel)?
              |     +--:(single)
-             |     |  +--rw dwdm-n?               l0-types:dwdm-n
+             |     |  +--rw dwdm-n?               dwdm-n
              |     +--:(multi)
-             |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+             |        +--rw subcarrier-dwdm-n*    dwdm-n
              +--:(cwdm)
-             |  +--rw cwdm-n?                     l0-types:cwdm-n
+             |  +--rw cwdm-n?                     cwdm-n
              +--:(flexi-grid)
                 +--rw (single-or-super-channel)?
                    +--:(single)
-                   |  +--rw flexi-n?              l0-types:flexi-n
-                   |  +--rw flexi-m?              l0-types:flexi-m
+                   |  +--rw flexi-n?              flexi-n
+                   |  +--rw flexi-m?              flexi-m
                    x--:(super)
                    |  x--rw subcarrier-flexi-n* [flexi-n]
-                   |     +--rw flexi-n    l0-types:flexi-n
-                   |     +--rw flexi-m?   l0-types:flexi-m
+                   |     +--rw flexi-n    flexi-n
+                   |     +--rw flexi-m?   flexi-m
                    +--:(multi)
                       +--rw frequency-slots
                          +--rw frequency-slot* [flexi-n]
-                            +--rw flexi-n    l0-types:flexi-n
-                            +--rw flexi-m?   l0-types:flexi-m
+                            +--rw flexi-n    flexi-n
+                            +--rw flexi-m?   flexi-m
      augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
                /te:secondary-reverse-path/te:optimizations/te:algorithm
                /te:metric/te:optimization-metric
@@ -1967,25 +1967,25 @@ Table of Contents
              +--:(fixed-dwdm)
              |  +--rw (fixed-single-or-super-channel)?
              |     +--:(single)
-             |     |  +--rw dwdm-n?               l0-types:dwdm-n
+             |     |  +--rw dwdm-n?               dwdm-n
              |     +--:(multi)
-             |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+             |        +--rw subcarrier-dwdm-n*    dwdm-n
              +--:(cwdm)
-             |  +--rw cwdm-n?                     l0-types:cwdm-n
+             |  +--rw cwdm-n?                     cwdm-n
              +--:(flexi-grid)
                 +--rw (single-or-super-channel)?
                    +--:(single)
-                   |  +--rw flexi-n?              l0-types:flexi-n
-                   |  +--rw flexi-m?              l0-types:flexi-m
+                   |  +--rw flexi-n?              flexi-n
+                   |  +--rw flexi-m?              flexi-m
                    x--:(super)
                    |  x--rw subcarrier-flexi-n* [flexi-n]
-                   |     +--rw flexi-n    l0-types:flexi-n
-                   |     +--rw flexi-m?   l0-types:flexi-m
+                   |     +--rw flexi-n    flexi-n
+                   |     +--rw flexi-m?   flexi-m
                    +--:(multi)
                       +--rw frequency-slots
                          +--rw frequency-slot* [flexi-n]
-                            +--rw flexi-n    l0-types:flexi-n
-                            +--rw flexi-m?   l0-types:flexi-m
+                            +--rw flexi-n    flexi-n
+                            +--rw flexi-m?   flexi-m
      augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
                /te:secondary-reverse-path/te:explicit-route-objects
                /te:route-object-exclude-always/te:type/te:label
@@ -1995,25 +1995,25 @@ Table of Contents
              +--:(fixed-dwdm)
              |  +--rw (fixed-single-or-super-channel)?
              |     +--:(single)
-             |     |  +--rw dwdm-n?               l0-types:dwdm-n
+             |     |  +--rw dwdm-n?               dwdm-n
              |     +--:(multi)
-             |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+             |        +--rw subcarrier-dwdm-n*    dwdm-n
              +--:(cwdm)
-             |  +--rw cwdm-n?                     l0-types:cwdm-n
+             |  +--rw cwdm-n?                     cwdm-n
              +--:(flexi-grid)
                 +--rw (single-or-super-channel)?
                    +--:(single)
-                   |  +--rw flexi-n?              l0-types:flexi-n
-                   |  +--rw flexi-m?              l0-types:flexi-m
+                   |  +--rw flexi-n?              flexi-n
+                   |  +--rw flexi-m?              flexi-m
                    x--:(super)
                    |  x--rw subcarrier-flexi-n* [flexi-n]
-                   |     +--rw flexi-n    l0-types:flexi-n
-                   |     +--rw flexi-m?   l0-types:flexi-m
+                   |     +--rw flexi-n    flexi-n
+                   |     +--rw flexi-m?   flexi-m
                    +--:(multi)
                       +--rw frequency-slots
                          +--rw frequency-slot* [flexi-n]
-                            +--rw flexi-n    l0-types:flexi-n
-                            +--rw flexi-m?   l0-types:flexi-m
+                            +--rw flexi-n    flexi-n
+                            +--rw flexi-m?   flexi-m
      augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
                /te:secondary-reverse-path/te:explicit-route-objects
                /te:route-object-include-exclude/te:type/te:label
@@ -2023,25 +2023,25 @@ Table of Contents
              +--:(fixed-dwdm)
              |  +--rw (fixed-single-or-super-channel)?
              |     +--:(single)
-             |     |  +--rw dwdm-n?               l0-types:dwdm-n
+             |     |  +--rw dwdm-n?               dwdm-n
              |     +--:(multi)
-             |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+             |        +--rw subcarrier-dwdm-n*    dwdm-n
              +--:(cwdm)
-             |  +--rw cwdm-n?                     l0-types:cwdm-n
+             |  +--rw cwdm-n?                     cwdm-n
              +--:(flexi-grid)
                 +--rw (single-or-super-channel)?
                    +--:(single)
-                   |  +--rw flexi-n?              l0-types:flexi-n
-                   |  +--rw flexi-m?              l0-types:flexi-m
+                   |  +--rw flexi-n?              flexi-n
+                   |  +--rw flexi-m?              flexi-m
                    x--:(super)
                    |  x--rw subcarrier-flexi-n* [flexi-n]
-                   |     +--rw flexi-n    l0-types:flexi-n
-                   |     +--rw flexi-m?   l0-types:flexi-m
+                   |     +--rw flexi-n    flexi-n
+                   |     +--rw flexi-m?   flexi-m
                    +--:(multi)
                       +--rw frequency-slots
                          +--rw frequency-slot* [flexi-n]
-                            +--rw flexi-n    l0-types:flexi-n
-                            +--rw flexi-m?   l0-types:flexi-m
+                            +--rw flexi-n    flexi-n
+                            +--rw flexi-m?   flexi-m
      augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
                /te:secondary-reverse-path/te:path-in-segment
                /te:label-restrictions/te:label-restriction
@@ -2049,11 +2049,11 @@ Table of Contents
        +--:(wdm)
           +--rw (grid-type)?
              +--:(fixed-dwdm)
-             |  +--rw dwdm-n?    l0-types:dwdm-n
+             |  +--rw dwdm-n?    dwdm-n
              +--:(cwdm)
-             |  +--rw cwdm-n?    l0-types:cwdm-n
+             |  +--rw cwdm-n?    cwdm-n
              +--:(flexi-grid)
-                +--rw flexi-n?   l0-types:flexi-n
+                +--rw flexi-n?   flexi-n
      augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
                /te:secondary-reverse-path/te:path-in-segment
                /te:label-restrictions/te:label-restriction/te:label-end
@@ -2061,11 +2061,11 @@ Table of Contents
        +--:(wdm)
           +--rw (grid-type)?
              +--:(fixed-dwdm)
-             |  +--rw dwdm-n?    l0-types:dwdm-n
+             |  +--rw dwdm-n?    dwdm-n
              +--:(cwdm)
-             |  +--rw cwdm-n?    l0-types:cwdm-n
+             |  +--rw cwdm-n?    cwdm-n
              +--:(flexi-grid)
-                +--rw flexi-n?   l0-types:flexi-n
+                +--rw flexi-n?   flexi-n
      augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
                /te:secondary-reverse-path/te:path-in-segment
                /te:label-restrictions/te:label-restriction/te:label-step
@@ -2087,11 +2087,11 @@ Table of Contents
        +--:(wdm)
           +--rw (grid-type)?
              +--:(fixed-dwdm)
-             |  +--rw dwdm-n?    l0-types:dwdm-n
+             |  +--rw dwdm-n?    dwdm-n
              +--:(cwdm)
-             |  +--rw cwdm-n?    l0-types:cwdm-n
+             |  +--rw cwdm-n?    cwdm-n
              +--:(flexi-grid)
-                +--rw flexi-n?   l0-types:flexi-n
+                +--rw flexi-n?   flexi-n
      augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
                /te:secondary-reverse-path/te:path-out-segment
                /te:label-restrictions/te:label-restriction/te:label-end
@@ -2099,11 +2099,11 @@ Table of Contents
        +--:(wdm)
           +--rw (grid-type)?
              +--:(fixed-dwdm)
-             |  +--rw dwdm-n?    l0-types:dwdm-n
+             |  +--rw dwdm-n?    dwdm-n
              +--:(cwdm)
-             |  +--rw cwdm-n?    l0-types:cwdm-n
+             |  +--rw cwdm-n?    cwdm-n
              +--:(flexi-grid)
-                +--rw flexi-n?   l0-types:flexi-n
+                +--rw flexi-n?   flexi-n
      augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
                /te:secondary-reverse-path/te:path-out-segment
                /te:label-restrictions/te:label-restriction/te:label-step
@@ -2128,25 +2128,25 @@ Table of Contents
              +--:(fixed-dwdm)
              |  +--ro (fixed-single-or-super-channel)?
              |     +--:(single)
-             |     |  +--ro dwdm-n?               l0-types:dwdm-n
+             |     |  +--ro dwdm-n?               dwdm-n
              |     +--:(multi)
-             |        +--ro subcarrier-dwdm-n*    l0-types:dwdm-n
+             |        +--ro subcarrier-dwdm-n*    dwdm-n
              +--:(cwdm)
-             |  +--ro cwdm-n?                     l0-types:cwdm-n
+             |  +--ro cwdm-n?                     cwdm-n
              +--:(flexi-grid)
                 +--ro (single-or-super-channel)?
                    +--:(single)
-                   |  +--ro flexi-n?              l0-types:flexi-n
-                   |  +--ro flexi-m?              l0-types:flexi-m
+                   |  +--ro flexi-n?              flexi-n
+                   |  +--ro flexi-m?              flexi-m
                    x--:(super)
                    |  x--ro subcarrier-flexi-n* [flexi-n]
-                   |     +--ro flexi-n    l0-types:flexi-n
-                   |     +--ro flexi-m?   l0-types:flexi-m
+                   |     +--ro flexi-n    flexi-n
+                   |     +--ro flexi-m?   flexi-m
                    +--:(multi)
                       +--ro frequency-slots
                          +--ro frequency-slot* [flexi-n]
-                            +--ro flexi-n    l0-types:flexi-n
-                            +--ro flexi-m?   l0-types:flexi-m
+                            +--ro flexi-n    flexi-n
+                            +--ro flexi-m?   flexi-m
      augment /te:te/te:lsps/te:lsp/te:lsp-actual-route-information
                /te:lsp-actual-route-information/te:type/te:label
                /te:label-hop/te:te-label/te:technology:
@@ -2155,25 +2155,25 @@ Table of Contents
              +--:(fixed-dwdm)
              |  +--ro (fixed-single-or-super-channel)?
              |     +--:(single)
-             |     |  +--ro dwdm-n?               l0-types:dwdm-n
+             |     |  +--ro dwdm-n?               dwdm-n
              |     +--:(multi)
-             |        +--ro subcarrier-dwdm-n*    l0-types:dwdm-n
+             |        +--ro subcarrier-dwdm-n*    dwdm-n
              +--:(cwdm)
-             |  +--ro cwdm-n?                     l0-types:cwdm-n
+             |  +--ro cwdm-n?                     cwdm-n
              +--:(flexi-grid)
                 +--ro (single-or-super-channel)?
                    +--:(single)
-                   |  +--ro flexi-n?              l0-types:flexi-n
-                   |  +--ro flexi-m?              l0-types:flexi-m
+                   |  +--ro flexi-n?              flexi-n
+                   |  +--ro flexi-m?              flexi-m
                    x--:(super)
                    |  x--ro subcarrier-flexi-n* [flexi-n]
-                   |     +--ro flexi-n    l0-types:flexi-n
-                   |     +--ro flexi-m?   l0-types:flexi-m
+                   |     +--ro flexi-n    flexi-n
+                   |     +--ro flexi-m?   flexi-m
                    +--:(multi)
                       +--ro frequency-slots
                          +--ro frequency-slot* [flexi-n]
-                            +--ro flexi-n    l0-types:flexi-n
-                            +--ro flexi-m?   l0-types:flexi-m
+                            +--ro flexi-n    flexi-n
+                            +--ro flexi-m?   flexi-m
 
                        Figure 2: WDM Tunnel YANG tree
 
@@ -2324,7 +2324,7 @@ Table of Contents
        }
        */
 
-       uses l0-types:l0-path-constraints;
+       uses l0-types:path-constraints;
      }
 
      grouping transceiver-constraints {
@@ -2677,7 +2677,7 @@ Table of Contents
               regeneration is enabled.";
          }
 
-         uses l0-types:l0-tunnel-attributes;
+         uses l0-types:tunnel-attributes;
 
          leaf guard-band-size {
            type l0-types:frequency-thz;
@@ -2845,7 +2845,7 @@ Table of Contents
          "Augment source transceiver with additional estimated
           parameters.";
 
-       uses l0-types:l0-path-properties;
+       uses l0-types:path-properties;
      }
 
      augment "/te:te/te:tunnels/te:tunnel/te:primary-paths/"
@@ -2859,7 +2859,7 @@ Table of Contents
          "Augment destination transceiver with additional estimated
           parameters.";
 
-       uses l0-types:l0-path-properties;
+       uses l0-types:path-properties;
      }
 
      augment "/te:te/te:tunnels/te:tunnel/te:primary-paths/"
@@ -2874,7 +2874,7 @@ Table of Contents
          "Augment regen incoming transceiver with additional estimated
           parameters.";
 
-       uses l0-types:l0-path-properties;
+       uses l0-types:path-properties;
      }
 
      augment "/te:te/te:tunnels/te:tunnel/te:primary-paths/"
@@ -2889,7 +2889,7 @@ Table of Contents
          "Augment regen outgoing transceiver with additional estimated
           parameters.";
 
-       uses l0-types:l0-path-properties;
+       uses l0-types:path-properties;
      }
 
      /*
@@ -2920,7 +2920,7 @@ Table of Contents
          "Augment source transceiver with additional estimated
           parameters.";
 
-       uses l0-types:l0-path-properties;
+       uses l0-types:path-properties;
      }
 
      augment "/te:te/te:tunnels/te:tunnel/te:primary-paths/"
@@ -2935,7 +2935,7 @@ Table of Contents
          "Augment destination transceiver with additional estimated
           parameters.";
 
-       uses l0-types:l0-path-properties;
+       uses l0-types:path-properties;
      }
 
      augment "/te:te/te:tunnels/te:tunnel/te:primary-paths/"
@@ -2951,7 +2951,7 @@ Table of Contents
          "Augment regen incoming transceiver with additional estimated
           parameters.";
 
-       uses l0-types:l0-path-properties;
+       uses l0-types:path-properties;
      }
 
      augment "/te:te/te:tunnels/te:tunnel/te:primary-paths/"
@@ -2967,7 +2967,7 @@ Table of Contents
          "Augment regen outgoing transceiver with additional estimated
           parameters.";
 
-       uses l0-types:l0-path-properties;
+       uses l0-types:path-properties;
      }
 
      /*
@@ -2996,7 +2996,7 @@ Table of Contents
          "Augment source transceiver with additional estimated
           parameters.";
 
-       uses l0-types:l0-path-properties;
+       uses l0-types:path-properties;
      }
 
      augment "/te:te/te:tunnels/te:tunnel/te:secondary-paths/"
@@ -3010,7 +3010,7 @@ Table of Contents
          "Augment destination transceiver with additional estimated
           parameters.";
 
-       uses l0-types:l0-path-properties;
+       uses l0-types:path-properties;
      }
 
      augment "/te:te/te:tunnels/te:tunnel/te:secondary-paths/"
@@ -3025,7 +3025,7 @@ Table of Contents
          "Augment regen incoming transceiver with additional estimated
           parameters.";
 
-       uses l0-types:l0-path-properties;
+       uses l0-types:path-properties;
      }
 
      augment "/te:te/te:tunnels/te:tunnel/te:secondary-paths/"
@@ -3040,7 +3040,7 @@ Table of Contents
          "Augment regen outgoing transceiver with additional estimated
           parameters.";
 
-       uses l0-types:l0-path-properties;
+       uses l0-types:path-properties;
      }
 
      /*
@@ -3069,7 +3069,7 @@ Table of Contents
          "Augment source transceiver with additional estimated
           parameters.";
 
-       uses l0-types:l0-path-properties;
+       uses l0-types:path-properties;
      }
 
      augment "/te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths/"
@@ -3083,7 +3083,7 @@ Table of Contents
          "Augment destination transceiver with additional estimated
           parameters.";
 
-       uses l0-types:l0-path-properties;
+       uses l0-types:path-properties;
      }
 
      augment "/te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths/"
@@ -3098,7 +3098,7 @@ Table of Contents
          "Augment regen incoming transceiver with additional estimated
           parameters.";
 
-       uses l0-types:l0-path-properties;
+       uses l0-types:path-properties;
      }
 
      augment "/te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths/"
@@ -3113,7 +3113,7 @@ Table of Contents
          "Augment regen outgoing transceiver with additional estimated
           parameters.";
 
-       uses l0-types:l0-path-properties;
+       uses l0-types:path-properties;
      }
 
      /*
@@ -4106,9 +4106,9 @@ Table of Contents
               Saad, T., Gandhi, R., Liu, X., Beeram, V. P., and I.
               Bryskin, "A YANG Data Model for Traffic Engineering
               Tunnels, Label Switched Paths and Interfaces", Work in
-              Progress, Internet-Draft, draft-ietf-teas-yang-te-37, 9
-              October 2024, <https://datatracker.ietf.org/doc/html/
-              draft-ietf-teas-yang-te-37>.
+              Progress, Internet-Draft, draft-ietf-teas-yang-te-38, 29
+              May 2025, <https://datatracker.ietf.org/doc/html/draft-
+              ietf-teas-yang-te-38>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
