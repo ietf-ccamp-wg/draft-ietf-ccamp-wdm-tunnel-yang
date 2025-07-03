@@ -21,7 +21,7 @@
 ]>
 
 
-<rfc ipr="trust200902" docName="draft-ietf-ccamp-wdm-tunnel-yang-04" category="std" consensus="true" submissionType="IETF">
+<rfc ipr="trust200902" docName="draft-ietf-ccamp-wdm-tunnel-yang-05" category="std" consensus="true" submissionType="IETF">
 
   <front>
     <title abbrev="WDM Tunnel YANG Model">A YANG Data Model for WDM Tunnels</title>
@@ -57,7 +57,7 @@
       </address>
     </author>
 
-    <date year="2025" month="April" day="23"/>
+    <date year="2025" month="July" day="03"/>
 
     <area>Routing</area>
     <workgroup>CCAMP Working Group</workgroup>
@@ -252,9 +252,12 @@ module: ietf-wdm-tunnel
        |  +--rw operational-modes*            string
        |  +--rw otsi-carrier-frequency?       l0-types:frequency-thz
        |  +--rw tx-tune-constraints
-       |  |  +--rw min-central-frequency?    frequency-thz
-       |  |  +--rw max-central-frequency?    frequency-thz
-       |  |  +--rw transceiver-tunability?   frequency-ghz
+       |  |  +--rw min-central-frequency?
+       |  |  |       frequency-thz
+       |  |  +--rw max-central-frequency?
+       |  |  |       frequency-thz
+       |  |  +--rw transceiver-tunability-granularity?
+       |  |          frequency-ghz
        |  +--rw line-coding-bitrate*          identityref
        |  +--rw tx-channel-power?             l0-types:power-dbm
        |  +--rw preferred-rx-channel-power?   l0-types:power-dbm
@@ -281,9 +284,12 @@ module: ietf-wdm-tunnel
        |        +--rw otsi-carrier-frequency?
        |        |       l0-types:frequency-thz
        |        +--rw tx-tune-constraints
-       |        |  +--rw min-central-frequency?    frequency-thz
-       |        |  +--rw max-central-frequency?    frequency-thz
-       |        |  +--rw transceiver-tunability?   frequency-ghz
+       |        |  +--rw min-central-frequency?
+       |        |  |       frequency-thz
+       |        |  +--rw max-central-frequency?
+       |        |  |       frequency-thz
+       |        |  +--rw transceiver-tunability-granularity?
+       |        |          frequency-ghz
        |        +--rw line-coding-bitrate*          identityref
        |        +--rw tx-channel-power?
        |        |       l0-types:power-dbm
@@ -300,9 +306,12 @@ module: ietf-wdm-tunnel
        |        +--rw otsi-carrier-frequency?
        |        |       l0-types:frequency-thz
        |        +--rw tx-tune-constraints
-       |        |  +--rw min-central-frequency?    frequency-thz
-       |        |  +--rw max-central-frequency?    frequency-thz
-       |        |  +--rw transceiver-tunability?   frequency-ghz
+       |        |  +--rw min-central-frequency?
+       |        |  |       frequency-thz
+       |        |  +--rw max-central-frequency?
+       |        |  |       frequency-thz
+       |        |  +--rw transceiver-tunability-granularity?
+       |        |          frequency-ghz
        |        +--rw line-coding-bitrate*          identityref
        |        +--rw tx-channel-power?
        |        |       l0-types:power-dbm
@@ -321,9 +330,12 @@ module: ietf-wdm-tunnel
              |     +--rw otsi-carrier-frequency?
              |     |       l0-types:frequency-thz
              |     +--rw tx-tune-constraints
-             |     |  +--rw min-central-frequency?    frequency-thz
-             |     |  +--rw max-central-frequency?    frequency-thz
-             |     |  +--rw transceiver-tunability?   frequency-ghz
+             |     |  +--rw min-central-frequency?
+             |     |  |       frequency-thz
+             |     |  +--rw max-central-frequency?
+             |     |  |       frequency-thz
+             |     |  +--rw transceiver-tunability-granularity?
+             |     |          frequency-ghz
              |     +--rw line-coding-bitrate*          identityref
              |     +--rw tx-channel-power?
              |     |       l0-types:power-dbm
@@ -339,9 +351,12 @@ module: ietf-wdm-tunnel
                    +--rw otsi-carrier-frequency?
                    |       l0-types:frequency-thz
                    +--rw tx-tune-constraints
-                   |  +--rw min-central-frequency?    frequency-thz
-                   |  +--rw max-central-frequency?    frequency-thz
-                   |  +--rw transceiver-tunability?   frequency-ghz
+                   |  +--rw min-central-frequency?
+                   |  |       frequency-thz
+                   |  +--rw max-central-frequency?
+                   |  |       frequency-thz
+                   |  +--rw transceiver-tunability-granularity?
+                   |          frequency-ghz
                    +--rw line-coding-bitrate*          identityref
                    +--rw tx-channel-power?
                    |       l0-types:power-dbm
@@ -363,9 +378,12 @@ module: ietf-wdm-tunnel
        |        +--rw otsi-carrier-frequency?
        |        |       l0-types:frequency-thz
        |        +--rw tx-tune-constraints
-       |        |  +--rw min-central-frequency?    frequency-thz
-       |        |  +--rw max-central-frequency?    frequency-thz
-       |        |  +--rw transceiver-tunability?   frequency-ghz
+       |        |  +--rw min-central-frequency?
+       |        |  |       frequency-thz
+       |        |  +--rw max-central-frequency?
+       |        |  |       frequency-thz
+       |        |  +--rw transceiver-tunability-granularity?
+       |        |          frequency-ghz
        |        +--rw line-coding-bitrate*          identityref
        |        +--rw tx-channel-power?
        |        |       l0-types:power-dbm
@@ -382,9 +400,12 @@ module: ietf-wdm-tunnel
        |        +--rw otsi-carrier-frequency?
        |        |       l0-types:frequency-thz
        |        +--rw tx-tune-constraints
-       |        |  +--rw min-central-frequency?    frequency-thz
-       |        |  +--rw max-central-frequency?    frequency-thz
-       |        |  +--rw transceiver-tunability?   frequency-ghz
+       |        |  +--rw min-central-frequency?
+       |        |  |       frequency-thz
+       |        |  +--rw max-central-frequency?
+       |        |  |       frequency-thz
+       |        |  +--rw transceiver-tunability-granularity?
+       |        |          frequency-ghz
        |        +--rw line-coding-bitrate*          identityref
        |        +--rw tx-channel-power?
        |        |       l0-types:power-dbm
@@ -403,9 +424,12 @@ module: ietf-wdm-tunnel
              |     +--rw otsi-carrier-frequency?
              |     |       l0-types:frequency-thz
              |     +--rw tx-tune-constraints
-             |     |  +--rw min-central-frequency?    frequency-thz
-             |     |  +--rw max-central-frequency?    frequency-thz
-             |     |  +--rw transceiver-tunability?   frequency-ghz
+             |     |  +--rw min-central-frequency?
+             |     |  |       frequency-thz
+             |     |  +--rw max-central-frequency?
+             |     |  |       frequency-thz
+             |     |  +--rw transceiver-tunability-granularity?
+             |     |          frequency-ghz
              |     +--rw line-coding-bitrate*          identityref
              |     +--rw tx-channel-power?
              |     |       l0-types:power-dbm
@@ -421,9 +445,12 @@ module: ietf-wdm-tunnel
                    +--rw otsi-carrier-frequency?
                    |       l0-types:frequency-thz
                    +--rw tx-tune-constraints
-                   |  +--rw min-central-frequency?    frequency-thz
-                   |  +--rw max-central-frequency?    frequency-thz
-                   |  +--rw transceiver-tunability?   frequency-ghz
+                   |  +--rw min-central-frequency?
+                   |  |       frequency-thz
+                   |  +--rw max-central-frequency?
+                   |  |       frequency-thz
+                   |  +--rw transceiver-tunability-granularity?
+                   |          frequency-ghz
                    +--rw line-coding-bitrate*          identityref
                    +--rw tx-channel-power?
                    |       l0-types:power-dbm
@@ -445,9 +472,12 @@ module: ietf-wdm-tunnel
        |        +--rw otsi-carrier-frequency?
        |        |       l0-types:frequency-thz
        |        +--rw tx-tune-constraints
-       |        |  +--rw min-central-frequency?    frequency-thz
-       |        |  +--rw max-central-frequency?    frequency-thz
-       |        |  +--rw transceiver-tunability?   frequency-ghz
+       |        |  +--rw min-central-frequency?
+       |        |  |       frequency-thz
+       |        |  +--rw max-central-frequency?
+       |        |  |       frequency-thz
+       |        |  +--rw transceiver-tunability-granularity?
+       |        |          frequency-ghz
        |        +--rw line-coding-bitrate*          identityref
        |        +--rw tx-channel-power?
        |        |       l0-types:power-dbm
@@ -464,9 +494,12 @@ module: ietf-wdm-tunnel
        |        +--rw otsi-carrier-frequency?
        |        |       l0-types:frequency-thz
        |        +--rw tx-tune-constraints
-       |        |  +--rw min-central-frequency?    frequency-thz
-       |        |  +--rw max-central-frequency?    frequency-thz
-       |        |  +--rw transceiver-tunability?   frequency-ghz
+       |        |  +--rw min-central-frequency?
+       |        |  |       frequency-thz
+       |        |  +--rw max-central-frequency?
+       |        |  |       frequency-thz
+       |        |  +--rw transceiver-tunability-granularity?
+       |        |          frequency-ghz
        |        +--rw line-coding-bitrate*          identityref
        |        +--rw tx-channel-power?
        |        |       l0-types:power-dbm
@@ -485,9 +518,12 @@ module: ietf-wdm-tunnel
              |     +--rw otsi-carrier-frequency?
              |     |       l0-types:frequency-thz
              |     +--rw tx-tune-constraints
-             |     |  +--rw min-central-frequency?    frequency-thz
-             |     |  +--rw max-central-frequency?    frequency-thz
-             |     |  +--rw transceiver-tunability?   frequency-ghz
+             |     |  +--rw min-central-frequency?
+             |     |  |       frequency-thz
+             |     |  +--rw max-central-frequency?
+             |     |  |       frequency-thz
+             |     |  +--rw transceiver-tunability-granularity?
+             |     |          frequency-ghz
              |     +--rw line-coding-bitrate*          identityref
              |     +--rw tx-channel-power?
              |     |       l0-types:power-dbm
@@ -503,9 +539,12 @@ module: ietf-wdm-tunnel
                    +--rw otsi-carrier-frequency?
                    |       l0-types:frequency-thz
                    +--rw tx-tune-constraints
-                   |  +--rw min-central-frequency?    frequency-thz
-                   |  +--rw max-central-frequency?    frequency-thz
-                   |  +--rw transceiver-tunability?   frequency-ghz
+                   |  +--rw min-central-frequency?
+                   |  |       frequency-thz
+                   |  +--rw max-central-frequency?
+                   |  |       frequency-thz
+                   |  +--rw transceiver-tunability-granularity?
+                   |          frequency-ghz
                    +--rw line-coding-bitrate*          identityref
                    +--rw tx-channel-power?
                    |       l0-types:power-dbm
@@ -527,9 +566,12 @@ module: ietf-wdm-tunnel
        |        +--rw otsi-carrier-frequency?
        |        |       l0-types:frequency-thz
        |        +--rw tx-tune-constraints
-       |        |  +--rw min-central-frequency?    frequency-thz
-       |        |  +--rw max-central-frequency?    frequency-thz
-       |        |  +--rw transceiver-tunability?   frequency-ghz
+       |        |  +--rw min-central-frequency?
+       |        |  |       frequency-thz
+       |        |  +--rw max-central-frequency?
+       |        |  |       frequency-thz
+       |        |  +--rw transceiver-tunability-granularity?
+       |        |          frequency-ghz
        |        +--rw line-coding-bitrate*          identityref
        |        +--rw tx-channel-power?
        |        |       l0-types:power-dbm
@@ -546,9 +588,12 @@ module: ietf-wdm-tunnel
        |        +--rw otsi-carrier-frequency?
        |        |       l0-types:frequency-thz
        |        +--rw tx-tune-constraints
-       |        |  +--rw min-central-frequency?    frequency-thz
-       |        |  +--rw max-central-frequency?    frequency-thz
-       |        |  +--rw transceiver-tunability?   frequency-ghz
+       |        |  +--rw min-central-frequency?
+       |        |  |       frequency-thz
+       |        |  +--rw max-central-frequency?
+       |        |  |       frequency-thz
+       |        |  +--rw transceiver-tunability-granularity?
+       |        |          frequency-ghz
        |        +--rw line-coding-bitrate*          identityref
        |        +--rw tx-channel-power?
        |        |       l0-types:power-dbm
@@ -567,9 +612,12 @@ module: ietf-wdm-tunnel
              |     +--rw otsi-carrier-frequency?
              |     |       l0-types:frequency-thz
              |     +--rw tx-tune-constraints
-             |     |  +--rw min-central-frequency?    frequency-thz
-             |     |  +--rw max-central-frequency?    frequency-thz
-             |     |  +--rw transceiver-tunability?   frequency-ghz
+             |     |  +--rw min-central-frequency?
+             |     |  |       frequency-thz
+             |     |  +--rw max-central-frequency?
+             |     |  |       frequency-thz
+             |     |  +--rw transceiver-tunability-granularity?
+             |     |          frequency-ghz
              |     +--rw line-coding-bitrate*          identityref
              |     +--rw tx-channel-power?
              |     |       l0-types:power-dbm
@@ -585,9 +633,12 @@ module: ietf-wdm-tunnel
                    +--rw otsi-carrier-frequency?
                    |       l0-types:frequency-thz
                    +--rw tx-tune-constraints
-                   |  +--rw min-central-frequency?    frequency-thz
-                   |  +--rw max-central-frequency?    frequency-thz
-                   |  +--rw transceiver-tunability?   frequency-ghz
+                   |  +--rw min-central-frequency?
+                   |  |       frequency-thz
+                   |  +--rw max-central-frequency?
+                   |  |       frequency-thz
+                   |  +--rw transceiver-tunability-granularity?
+                   |          frequency-ghz
                    +--rw line-coding-bitrate*          identityref
                    +--rw tx-channel-power?
                    |       l0-types:power-dbm
@@ -989,25 +1040,25 @@ module: ietf-wdm-tunnel
           +--:(fixed-dwdm)
           |  +--rw (fixed-single-or-super-channel)?
           |     +--:(single)
-          |     |  +--rw dwdm-n?               l0-types:dwdm-n
+          |     |  +--rw dwdm-n?               dwdm-n
           |     +--:(multi)
-          |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+          |        +--rw subcarrier-dwdm-n*    dwdm-n
           +--:(cwdm)
-          |  +--rw cwdm-n?                     l0-types:cwdm-n
+          |  +--rw cwdm-n?                     cwdm-n
           +--:(flexi-grid)
              +--rw (single-or-super-channel)?
                 +--:(single)
-                |  +--rw flexi-n?              l0-types:flexi-n
-                |  +--rw flexi-m?              l0-types:flexi-m
+                |  +--rw flexi-n?              flexi-n
+                |  +--rw flexi-m?              flexi-m
                 x--:(super)
                 |  x--rw subcarrier-flexi-n* [flexi-n]
-                |     +--rw flexi-n    l0-types:flexi-n
-                |     +--rw flexi-m?   l0-types:flexi-m
+                |     +--rw flexi-n    flexi-n
+                |     +--rw flexi-m?   flexi-m
                 +--:(multi)
                    +--rw frequency-slots
                       +--rw frequency-slot* [flexi-n]
-                         +--rw flexi-n    l0-types:flexi-n
-                         +--rw flexi-m?   l0-types:flexi-m
+                         +--rw flexi-n    flexi-n
+                         +--rw flexi-m?   flexi-m
   augment /te:te/te:globals/te:named-path-constraints
             /te:named-path-constraint/te:explicit-route-objects
             /te:route-object-include-exclude/te:type/te:label
@@ -1017,25 +1068,25 @@ module: ietf-wdm-tunnel
           +--:(fixed-dwdm)
           |  +--rw (fixed-single-or-super-channel)?
           |     +--:(single)
-          |     |  +--rw dwdm-n?               l0-types:dwdm-n
+          |     |  +--rw dwdm-n?               dwdm-n
           |     +--:(multi)
-          |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+          |        +--rw subcarrier-dwdm-n*    dwdm-n
           +--:(cwdm)
-          |  +--rw cwdm-n?                     l0-types:cwdm-n
+          |  +--rw cwdm-n?                     cwdm-n
           +--:(flexi-grid)
              +--rw (single-or-super-channel)?
                 +--:(single)
-                |  +--rw flexi-n?              l0-types:flexi-n
-                |  +--rw flexi-m?              l0-types:flexi-m
+                |  +--rw flexi-n?              flexi-n
+                |  +--rw flexi-m?              flexi-m
                 x--:(super)
                 |  x--rw subcarrier-flexi-n* [flexi-n]
-                |     +--rw flexi-n    l0-types:flexi-n
-                |     +--rw flexi-m?   l0-types:flexi-m
+                |     +--rw flexi-n    flexi-n
+                |     +--rw flexi-m?   flexi-m
                 +--:(multi)
                    +--rw frequency-slots
                       +--rw frequency-slot* [flexi-n]
-                         +--rw flexi-n    l0-types:flexi-n
-                         +--rw flexi-m?   l0-types:flexi-m
+                         +--rw flexi-n    flexi-n
+                         +--rw flexi-m?   flexi-m
   augment /te:te/te:globals/te:named-path-constraints
             /te:named-path-constraint/te:path-in-segment
             /te:label-restrictions/te:label-restriction
@@ -1043,11 +1094,11 @@ module: ietf-wdm-tunnel
     +--:(wdm)
        +--rw (grid-type)?
           +--:(fixed-dwdm)
-          |  +--rw dwdm-n?    l0-types:dwdm-n
+          |  +--rw dwdm-n?    dwdm-n
           +--:(cwdm)
-          |  +--rw cwdm-n?    l0-types:cwdm-n
+          |  +--rw cwdm-n?    cwdm-n
           +--:(flexi-grid)
-             +--rw flexi-n?   l0-types:flexi-n
+             +--rw flexi-n?   flexi-n
   augment /te:te/te:globals/te:named-path-constraints
             /te:named-path-constraint/te:path-in-segment
             /te:label-restrictions/te:label-restriction/te:label-end
@@ -1055,11 +1106,11 @@ module: ietf-wdm-tunnel
     +--:(wdm)
        +--rw (grid-type)?
           +--:(fixed-dwdm)
-          |  +--rw dwdm-n?    l0-types:dwdm-n
+          |  +--rw dwdm-n?    dwdm-n
           +--:(cwdm)
-          |  +--rw cwdm-n?    l0-types:cwdm-n
+          |  +--rw cwdm-n?    cwdm-n
           +--:(flexi-grid)
-             +--rw flexi-n?   l0-types:flexi-n
+             +--rw flexi-n?   flexi-n
   augment /te:te/te:globals/te:named-path-constraints
             /te:named-path-constraint/te:path-in-segment
             /te:label-restrictions/te:label-restriction/te:label-step
@@ -1081,11 +1132,11 @@ module: ietf-wdm-tunnel
     +--:(wdm)
        +--rw (grid-type)?
           +--:(fixed-dwdm)
-          |  +--rw dwdm-n?    l0-types:dwdm-n
+          |  +--rw dwdm-n?    dwdm-n
           +--:(cwdm)
-          |  +--rw cwdm-n?    l0-types:cwdm-n
+          |  +--rw cwdm-n?    cwdm-n
           +--:(flexi-grid)
-             +--rw flexi-n?   l0-types:flexi-n
+             +--rw flexi-n?   flexi-n
   augment /te:te/te:globals/te:named-path-constraints
             /te:named-path-constraint/te:path-out-segment
             /te:label-restrictions/te:label-restriction/te:label-end
@@ -1093,11 +1144,11 @@ module: ietf-wdm-tunnel
     +--:(wdm)
        +--rw (grid-type)?
           +--:(fixed-dwdm)
-          |  +--rw dwdm-n?    l0-types:dwdm-n
+          |  +--rw dwdm-n?    dwdm-n
           +--:(cwdm)
-          |  +--rw cwdm-n?    l0-types:cwdm-n
+          |  +--rw cwdm-n?    cwdm-n
           +--:(flexi-grid)
-             +--rw flexi-n?   l0-types:flexi-n
+             +--rw flexi-n?   flexi-n
   augment /te:te/te:globals/te:named-path-constraints
             /te:named-path-constraint/te:path-out-segment
             /te:label-restrictions/te:label-restriction/te:label-step
@@ -1122,25 +1173,25 @@ module: ietf-wdm-tunnel
           +--:(fixed-dwdm)
           |  +--rw (fixed-single-or-super-channel)?
           |     +--:(single)
-          |     |  +--rw dwdm-n?               l0-types:dwdm-n
+          |     |  +--rw dwdm-n?               dwdm-n
           |     +--:(multi)
-          |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+          |        +--rw subcarrier-dwdm-n*    dwdm-n
           +--:(cwdm)
-          |  +--rw cwdm-n?                     l0-types:cwdm-n
+          |  +--rw cwdm-n?                     cwdm-n
           +--:(flexi-grid)
              +--rw (single-or-super-channel)?
                 +--:(single)
-                |  +--rw flexi-n?              l0-types:flexi-n
-                |  +--rw flexi-m?              l0-types:flexi-m
+                |  +--rw flexi-n?              flexi-n
+                |  +--rw flexi-m?              flexi-m
                 x--:(super)
                 |  x--rw subcarrier-flexi-n* [flexi-n]
-                |     +--rw flexi-n    l0-types:flexi-n
-                |     +--rw flexi-m?   l0-types:flexi-m
+                |     +--rw flexi-n    flexi-n
+                |     +--rw flexi-m?   flexi-m
                 +--:(multi)
                    +--rw frequency-slots
                       +--rw frequency-slot* [flexi-n]
-                         +--rw flexi-n    l0-types:flexi-n
-                         +--rw flexi-m?   l0-types:flexi-m
+                         +--rw flexi-n    flexi-n
+                         +--rw flexi-m?   flexi-m
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:optimizations/te:algorithm/te:metric
             /te:optimization-metric/te:explicit-route-include-objects
@@ -1151,25 +1202,25 @@ module: ietf-wdm-tunnel
           +--:(fixed-dwdm)
           |  +--rw (fixed-single-or-super-channel)?
           |     +--:(single)
-          |     |  +--rw dwdm-n?               l0-types:dwdm-n
+          |     |  +--rw dwdm-n?               dwdm-n
           |     +--:(multi)
-          |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+          |        +--rw subcarrier-dwdm-n*    dwdm-n
           +--:(cwdm)
-          |  +--rw cwdm-n?                     l0-types:cwdm-n
+          |  +--rw cwdm-n?                     cwdm-n
           +--:(flexi-grid)
              +--rw (single-or-super-channel)?
                 +--:(single)
-                |  +--rw flexi-n?              l0-types:flexi-n
-                |  +--rw flexi-m?              l0-types:flexi-m
+                |  +--rw flexi-n?              flexi-n
+                |  +--rw flexi-m?              flexi-m
                 x--:(super)
                 |  x--rw subcarrier-flexi-n* [flexi-n]
-                |     +--rw flexi-n    l0-types:flexi-n
-                |     +--rw flexi-m?   l0-types:flexi-m
+                |     +--rw flexi-n    flexi-n
+                |     +--rw flexi-m?   flexi-m
                 +--:(multi)
                    +--rw frequency-slots
                       +--rw frequency-slot* [flexi-n]
-                         +--rw flexi-n    l0-types:flexi-n
-                         +--rw flexi-m?   l0-types:flexi-m
+                         +--rw flexi-n    flexi-n
+                         +--rw flexi-m?   flexi-m
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:explicit-route-objects
             /te:route-object-exclude-always/te:type/te:label
@@ -1179,25 +1230,25 @@ module: ietf-wdm-tunnel
           +--:(fixed-dwdm)
           |  +--rw (fixed-single-or-super-channel)?
           |     +--:(single)
-          |     |  +--rw dwdm-n?               l0-types:dwdm-n
+          |     |  +--rw dwdm-n?               dwdm-n
           |     +--:(multi)
-          |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+          |        +--rw subcarrier-dwdm-n*    dwdm-n
           +--:(cwdm)
-          |  +--rw cwdm-n?                     l0-types:cwdm-n
+          |  +--rw cwdm-n?                     cwdm-n
           +--:(flexi-grid)
              +--rw (single-or-super-channel)?
                 +--:(single)
-                |  +--rw flexi-n?              l0-types:flexi-n
-                |  +--rw flexi-m?              l0-types:flexi-m
+                |  +--rw flexi-n?              flexi-n
+                |  +--rw flexi-m?              flexi-m
                 x--:(super)
                 |  x--rw subcarrier-flexi-n* [flexi-n]
-                |     +--rw flexi-n    l0-types:flexi-n
-                |     +--rw flexi-m?   l0-types:flexi-m
+                |     +--rw flexi-n    flexi-n
+                |     +--rw flexi-m?   flexi-m
                 +--:(multi)
                    +--rw frequency-slots
                       +--rw frequency-slot* [flexi-n]
-                         +--rw flexi-n    l0-types:flexi-n
-                         +--rw flexi-m?   l0-types:flexi-m
+                         +--rw flexi-n    flexi-n
+                         +--rw flexi-m?   flexi-m
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:explicit-route-objects
             /te:route-object-include-exclude/te:type/te:label
@@ -1207,25 +1258,25 @@ module: ietf-wdm-tunnel
           +--:(fixed-dwdm)
           |  +--rw (fixed-single-or-super-channel)?
           |     +--:(single)
-          |     |  +--rw dwdm-n?               l0-types:dwdm-n
+          |     |  +--rw dwdm-n?               dwdm-n
           |     +--:(multi)
-          |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+          |        +--rw subcarrier-dwdm-n*    dwdm-n
           +--:(cwdm)
-          |  +--rw cwdm-n?                     l0-types:cwdm-n
+          |  +--rw cwdm-n?                     cwdm-n
           +--:(flexi-grid)
              +--rw (single-or-super-channel)?
                 +--:(single)
-                |  +--rw flexi-n?              l0-types:flexi-n
-                |  +--rw flexi-m?              l0-types:flexi-m
+                |  +--rw flexi-n?              flexi-n
+                |  +--rw flexi-m?              flexi-m
                 x--:(super)
                 |  x--rw subcarrier-flexi-n* [flexi-n]
-                |     +--rw flexi-n    l0-types:flexi-n
-                |     +--rw flexi-m?   l0-types:flexi-m
+                |     +--rw flexi-n    flexi-n
+                |     +--rw flexi-m?   flexi-m
                 +--:(multi)
                    +--rw frequency-slots
                       +--rw frequency-slot* [flexi-n]
-                         +--rw flexi-n    l0-types:flexi-n
-                         +--rw flexi-m?   l0-types:flexi-m
+                         +--rw flexi-n    flexi-n
+                         +--rw flexi-m?   flexi-m
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:path-in-segment/te:label-restrictions
             /te:label-restriction/te:label-start/te:te-label
@@ -1233,11 +1284,11 @@ module: ietf-wdm-tunnel
     +--:(wdm)
        +--rw (grid-type)?
           +--:(fixed-dwdm)
-          |  +--rw dwdm-n?    l0-types:dwdm-n
+          |  +--rw dwdm-n?    dwdm-n
           +--:(cwdm)
-          |  +--rw cwdm-n?    l0-types:cwdm-n
+          |  +--rw cwdm-n?    cwdm-n
           +--:(flexi-grid)
-             +--rw flexi-n?   l0-types:flexi-n
+             +--rw flexi-n?   flexi-n
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:path-in-segment/te:label-restrictions
             /te:label-restriction/te:label-end/te:te-label
@@ -1245,11 +1296,11 @@ module: ietf-wdm-tunnel
     +--:(wdm)
        +--rw (grid-type)?
           +--:(fixed-dwdm)
-          |  +--rw dwdm-n?    l0-types:dwdm-n
+          |  +--rw dwdm-n?    dwdm-n
           +--:(cwdm)
-          |  +--rw cwdm-n?    l0-types:cwdm-n
+          |  +--rw cwdm-n?    cwdm-n
           +--:(flexi-grid)
-             +--rw flexi-n?   l0-types:flexi-n
+             +--rw flexi-n?   flexi-n
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:path-in-segment/te:label-restrictions
             /te:label-restriction/te:label-step/te:technology:
@@ -1270,11 +1321,11 @@ module: ietf-wdm-tunnel
     +--:(wdm)
        +--rw (grid-type)?
           +--:(fixed-dwdm)
-          |  +--rw dwdm-n?    l0-types:dwdm-n
+          |  +--rw dwdm-n?    dwdm-n
           +--:(cwdm)
-          |  +--rw cwdm-n?    l0-types:cwdm-n
+          |  +--rw cwdm-n?    cwdm-n
           +--:(flexi-grid)
-             +--rw flexi-n?   l0-types:flexi-n
+             +--rw flexi-n?   flexi-n
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:path-out-segment
             /te:label-restrictions/te:label-restriction/te:label-end
@@ -1282,11 +1333,11 @@ module: ietf-wdm-tunnel
     +--:(wdm)
        +--rw (grid-type)?
           +--:(fixed-dwdm)
-          |  +--rw dwdm-n?    l0-types:dwdm-n
+          |  +--rw dwdm-n?    dwdm-n
           +--:(cwdm)
-          |  +--rw cwdm-n?    l0-types:cwdm-n
+          |  +--rw cwdm-n?    cwdm-n
           +--:(flexi-grid)
-             +--rw flexi-n?   l0-types:flexi-n
+             +--rw flexi-n?   flexi-n
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:path-out-segment
             /te:label-restrictions/te:label-restriction/te:label-step
@@ -1311,25 +1362,25 @@ module: ietf-wdm-tunnel
           +--:(fixed-dwdm)
           |  +--ro (fixed-single-or-super-channel)?
           |     +--:(single)
-          |     |  +--ro dwdm-n?               l0-types:dwdm-n
+          |     |  +--ro dwdm-n?               dwdm-n
           |     +--:(multi)
-          |        +--ro subcarrier-dwdm-n*    l0-types:dwdm-n
+          |        +--ro subcarrier-dwdm-n*    dwdm-n
           +--:(cwdm)
-          |  +--ro cwdm-n?                     l0-types:cwdm-n
+          |  +--ro cwdm-n?                     cwdm-n
           +--:(flexi-grid)
              +--ro (single-or-super-channel)?
                 +--:(single)
-                |  +--ro flexi-n?              l0-types:flexi-n
-                |  +--ro flexi-m?              l0-types:flexi-m
+                |  +--ro flexi-n?              flexi-n
+                |  +--ro flexi-m?              flexi-m
                 x--:(super)
                 |  x--ro subcarrier-flexi-n* [flexi-n]
-                |     +--ro flexi-n    l0-types:flexi-n
-                |     +--ro flexi-m?   l0-types:flexi-m
+                |     +--ro flexi-n    flexi-n
+                |     +--ro flexi-m?   flexi-m
                 +--:(multi)
                    +--ro frequency-slots
                       +--ro frequency-slot* [flexi-n]
-                         +--ro flexi-n    l0-types:flexi-n
-                         +--ro flexi-m?   l0-types:flexi-m
+                         +--ro flexi-n    flexi-n
+                         +--ro flexi-m?   flexi-m
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:primary-reverse-path/te:optimizations
             /te:algorithm/te:metric/te:optimization-metric
@@ -1341,25 +1392,25 @@ module: ietf-wdm-tunnel
           +--:(fixed-dwdm)
           |  +--rw (fixed-single-or-super-channel)?
           |     +--:(single)
-          |     |  +--rw dwdm-n?               l0-types:dwdm-n
+          |     |  +--rw dwdm-n?               dwdm-n
           |     +--:(multi)
-          |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+          |        +--rw subcarrier-dwdm-n*    dwdm-n
           +--:(cwdm)
-          |  +--rw cwdm-n?                     l0-types:cwdm-n
+          |  +--rw cwdm-n?                     cwdm-n
           +--:(flexi-grid)
              +--rw (single-or-super-channel)?
                 +--:(single)
-                |  +--rw flexi-n?              l0-types:flexi-n
-                |  +--rw flexi-m?              l0-types:flexi-m
+                |  +--rw flexi-n?              flexi-n
+                |  +--rw flexi-m?              flexi-m
                 x--:(super)
                 |  x--rw subcarrier-flexi-n* [flexi-n]
-                |     +--rw flexi-n    l0-types:flexi-n
-                |     +--rw flexi-m?   l0-types:flexi-m
+                |     +--rw flexi-n    flexi-n
+                |     +--rw flexi-m?   flexi-m
                 +--:(multi)
                    +--rw frequency-slots
                       +--rw frequency-slot* [flexi-n]
-                         +--rw flexi-n    l0-types:flexi-n
-                         +--rw flexi-m?   l0-types:flexi-m
+                         +--rw flexi-n    flexi-n
+                         +--rw flexi-m?   flexi-m
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:primary-reverse-path/te:optimizations
             /te:algorithm/te:metric/te:optimization-metric
@@ -1371,25 +1422,25 @@ module: ietf-wdm-tunnel
           +--:(fixed-dwdm)
           |  +--rw (fixed-single-or-super-channel)?
           |     +--:(single)
-          |     |  +--rw dwdm-n?               l0-types:dwdm-n
+          |     |  +--rw dwdm-n?               dwdm-n
           |     +--:(multi)
-          |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+          |        +--rw subcarrier-dwdm-n*    dwdm-n
           +--:(cwdm)
-          |  +--rw cwdm-n?                     l0-types:cwdm-n
+          |  +--rw cwdm-n?                     cwdm-n
           +--:(flexi-grid)
              +--rw (single-or-super-channel)?
                 +--:(single)
-                |  +--rw flexi-n?              l0-types:flexi-n
-                |  +--rw flexi-m?              l0-types:flexi-m
+                |  +--rw flexi-n?              flexi-n
+                |  +--rw flexi-m?              flexi-m
                 x--:(super)
                 |  x--rw subcarrier-flexi-n* [flexi-n]
-                |     +--rw flexi-n    l0-types:flexi-n
-                |     +--rw flexi-m?   l0-types:flexi-m
+                |     +--rw flexi-n    flexi-n
+                |     +--rw flexi-m?   flexi-m
                 +--:(multi)
                    +--rw frequency-slots
                       +--rw frequency-slot* [flexi-n]
-                         +--rw flexi-n    l0-types:flexi-n
-                         +--rw flexi-m?   l0-types:flexi-m
+                         +--rw flexi-n    flexi-n
+                         +--rw flexi-m?   flexi-m
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:primary-reverse-path
             /te:explicit-route-objects/te:route-object-exclude-always
@@ -1399,25 +1450,25 @@ module: ietf-wdm-tunnel
           +--:(fixed-dwdm)
           |  +--rw (fixed-single-or-super-channel)?
           |     +--:(single)
-          |     |  +--rw dwdm-n?               l0-types:dwdm-n
+          |     |  +--rw dwdm-n?               dwdm-n
           |     +--:(multi)
-          |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+          |        +--rw subcarrier-dwdm-n*    dwdm-n
           +--:(cwdm)
-          |  +--rw cwdm-n?                     l0-types:cwdm-n
+          |  +--rw cwdm-n?                     cwdm-n
           +--:(flexi-grid)
              +--rw (single-or-super-channel)?
                 +--:(single)
-                |  +--rw flexi-n?              l0-types:flexi-n
-                |  +--rw flexi-m?              l0-types:flexi-m
+                |  +--rw flexi-n?              flexi-n
+                |  +--rw flexi-m?              flexi-m
                 x--:(super)
                 |  x--rw subcarrier-flexi-n* [flexi-n]
-                |     +--rw flexi-n    l0-types:flexi-n
-                |     +--rw flexi-m?   l0-types:flexi-m
+                |     +--rw flexi-n    flexi-n
+                |     +--rw flexi-m?   flexi-m
                 +--:(multi)
                    +--rw frequency-slots
                       +--rw frequency-slot* [flexi-n]
-                         +--rw flexi-n    l0-types:flexi-n
-                         +--rw flexi-m?   l0-types:flexi-m
+                         +--rw flexi-n    flexi-n
+                         +--rw flexi-m?   flexi-m
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:primary-reverse-path
             /te:explicit-route-objects
@@ -1428,25 +1479,25 @@ module: ietf-wdm-tunnel
           +--:(fixed-dwdm)
           |  +--rw (fixed-single-or-super-channel)?
           |     +--:(single)
-          |     |  +--rw dwdm-n?               l0-types:dwdm-n
+          |     |  +--rw dwdm-n?               dwdm-n
           |     +--:(multi)
-          |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+          |        +--rw subcarrier-dwdm-n*    dwdm-n
           +--:(cwdm)
-          |  +--rw cwdm-n?                     l0-types:cwdm-n
+          |  +--rw cwdm-n?                     cwdm-n
           +--:(flexi-grid)
              +--rw (single-or-super-channel)?
                 +--:(single)
-                |  +--rw flexi-n?              l0-types:flexi-n
-                |  +--rw flexi-m?              l0-types:flexi-m
+                |  +--rw flexi-n?              flexi-n
+                |  +--rw flexi-m?              flexi-m
                 x--:(super)
                 |  x--rw subcarrier-flexi-n* [flexi-n]
-                |     +--rw flexi-n    l0-types:flexi-n
-                |     +--rw flexi-m?   l0-types:flexi-m
+                |     +--rw flexi-n    flexi-n
+                |     +--rw flexi-m?   flexi-m
                 +--:(multi)
                    +--rw frequency-slots
                       +--rw frequency-slot* [flexi-n]
-                         +--rw flexi-n    l0-types:flexi-n
-                         +--rw flexi-m?   l0-types:flexi-m
+                         +--rw flexi-n    flexi-n
+                         +--rw flexi-m?   flexi-m
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:primary-reverse-path
             /te:path-in-segment/te:label-restrictions
@@ -1455,11 +1506,11 @@ module: ietf-wdm-tunnel
     +--:(wdm)
        +--rw (grid-type)?
           +--:(fixed-dwdm)
-          |  +--rw dwdm-n?    l0-types:dwdm-n
+          |  +--rw dwdm-n?    dwdm-n
           +--:(cwdm)
-          |  +--rw cwdm-n?    l0-types:cwdm-n
+          |  +--rw cwdm-n?    cwdm-n
           +--:(flexi-grid)
-             +--rw flexi-n?   l0-types:flexi-n
+             +--rw flexi-n?   flexi-n
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:primary-reverse-path
             /te:path-in-segment/te:label-restrictions
@@ -1468,11 +1519,11 @@ module: ietf-wdm-tunnel
     +--:(wdm)
        +--rw (grid-type)?
           +--:(fixed-dwdm)
-          |  +--rw dwdm-n?    l0-types:dwdm-n
+          |  +--rw dwdm-n?    dwdm-n
           +--:(cwdm)
-          |  +--rw cwdm-n?    l0-types:cwdm-n
+          |  +--rw cwdm-n?    cwdm-n
           +--:(flexi-grid)
-             +--rw flexi-n?   l0-types:flexi-n
+             +--rw flexi-n?   flexi-n
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:primary-reverse-path
             /te:path-in-segment/te:label-restrictions
@@ -1495,11 +1546,11 @@ module: ietf-wdm-tunnel
     +--:(wdm)
        +--rw (grid-type)?
           +--:(fixed-dwdm)
-          |  +--rw dwdm-n?    l0-types:dwdm-n
+          |  +--rw dwdm-n?    dwdm-n
           +--:(cwdm)
-          |  +--rw cwdm-n?    l0-types:cwdm-n
+          |  +--rw cwdm-n?    cwdm-n
           +--:(flexi-grid)
-             +--rw flexi-n?   l0-types:flexi-n
+             +--rw flexi-n?   flexi-n
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:primary-reverse-path
             /te:path-out-segment/te:label-restrictions
@@ -1508,11 +1559,11 @@ module: ietf-wdm-tunnel
     +--:(wdm)
        +--rw (grid-type)?
           +--:(fixed-dwdm)
-          |  +--rw dwdm-n?    l0-types:dwdm-n
+          |  +--rw dwdm-n?    dwdm-n
           +--:(cwdm)
-          |  +--rw cwdm-n?    l0-types:cwdm-n
+          |  +--rw cwdm-n?    cwdm-n
           +--:(flexi-grid)
-             +--rw flexi-n?   l0-types:flexi-n
+             +--rw flexi-n?   flexi-n
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:primary-reverse-path
             /te:path-out-segment/te:label-restrictions
@@ -1538,25 +1589,25 @@ module: ietf-wdm-tunnel
           +--:(fixed-dwdm)
           |  +--ro (fixed-single-or-super-channel)?
           |     +--:(single)
-          |     |  +--ro dwdm-n?               l0-types:dwdm-n
+          |     |  +--ro dwdm-n?               dwdm-n
           |     +--:(multi)
-          |        +--ro subcarrier-dwdm-n*    l0-types:dwdm-n
+          |        +--ro subcarrier-dwdm-n*    dwdm-n
           +--:(cwdm)
-          |  +--ro cwdm-n?                     l0-types:cwdm-n
+          |  +--ro cwdm-n?                     cwdm-n
           +--:(flexi-grid)
              +--ro (single-or-super-channel)?
                 +--:(single)
-                |  +--ro flexi-n?              l0-types:flexi-n
-                |  +--ro flexi-m?              l0-types:flexi-m
+                |  +--ro flexi-n?              flexi-n
+                |  +--ro flexi-m?              flexi-m
                 x--:(super)
                 |  x--ro subcarrier-flexi-n* [flexi-n]
-                |     +--ro flexi-n    l0-types:flexi-n
-                |     +--ro flexi-m?   l0-types:flexi-m
+                |     +--ro flexi-n    flexi-n
+                |     +--ro flexi-m?   flexi-m
                 +--:(multi)
                    +--ro frequency-slots
                       +--ro frequency-slot* [flexi-n]
-                         +--ro flexi-n    l0-types:flexi-n
-                         +--ro flexi-m?   l0-types:flexi-m
+                         +--ro flexi-n    flexi-n
+                         +--ro flexi-m?   flexi-m
   augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
             /te:secondary-path/te:optimizations/te:algorithm
             /te:metric/te:optimization-metric
@@ -1568,25 +1619,25 @@ module: ietf-wdm-tunnel
           +--:(fixed-dwdm)
           |  +--rw (fixed-single-or-super-channel)?
           |     +--:(single)
-          |     |  +--rw dwdm-n?               l0-types:dwdm-n
+          |     |  +--rw dwdm-n?               dwdm-n
           |     +--:(multi)
-          |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+          |        +--rw subcarrier-dwdm-n*    dwdm-n
           +--:(cwdm)
-          |  +--rw cwdm-n?                     l0-types:cwdm-n
+          |  +--rw cwdm-n?                     cwdm-n
           +--:(flexi-grid)
              +--rw (single-or-super-channel)?
                 +--:(single)
-                |  +--rw flexi-n?              l0-types:flexi-n
-                |  +--rw flexi-m?              l0-types:flexi-m
+                |  +--rw flexi-n?              flexi-n
+                |  +--rw flexi-m?              flexi-m
                 x--:(super)
                 |  x--rw subcarrier-flexi-n* [flexi-n]
-                |     +--rw flexi-n    l0-types:flexi-n
-                |     +--rw flexi-m?   l0-types:flexi-m
+                |     +--rw flexi-n    flexi-n
+                |     +--rw flexi-m?   flexi-m
                 +--:(multi)
                    +--rw frequency-slots
                       +--rw frequency-slot* [flexi-n]
-                         +--rw flexi-n    l0-types:flexi-n
-                         +--rw flexi-m?   l0-types:flexi-m
+                         +--rw flexi-n    flexi-n
+                         +--rw flexi-m?   flexi-m
   augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
             /te:secondary-path/te:optimizations/te:algorithm
             /te:metric/te:optimization-metric
@@ -1598,25 +1649,25 @@ module: ietf-wdm-tunnel
           +--:(fixed-dwdm)
           |  +--rw (fixed-single-or-super-channel)?
           |     +--:(single)
-          |     |  +--rw dwdm-n?               l0-types:dwdm-n
+          |     |  +--rw dwdm-n?               dwdm-n
           |     +--:(multi)
-          |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+          |        +--rw subcarrier-dwdm-n*    dwdm-n
           +--:(cwdm)
-          |  +--rw cwdm-n?                     l0-types:cwdm-n
+          |  +--rw cwdm-n?                     cwdm-n
           +--:(flexi-grid)
              +--rw (single-or-super-channel)?
                 +--:(single)
-                |  +--rw flexi-n?              l0-types:flexi-n
-                |  +--rw flexi-m?              l0-types:flexi-m
+                |  +--rw flexi-n?              flexi-n
+                |  +--rw flexi-m?              flexi-m
                 x--:(super)
                 |  x--rw subcarrier-flexi-n* [flexi-n]
-                |     +--rw flexi-n    l0-types:flexi-n
-                |     +--rw flexi-m?   l0-types:flexi-m
+                |     +--rw flexi-n    flexi-n
+                |     +--rw flexi-m?   flexi-m
                 +--:(multi)
                    +--rw frequency-slots
                       +--rw frequency-slot* [flexi-n]
-                         +--rw flexi-n    l0-types:flexi-n
-                         +--rw flexi-m?   l0-types:flexi-m
+                         +--rw flexi-n    flexi-n
+                         +--rw flexi-m?   flexi-m
   augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
             /te:secondary-path/te:explicit-route-objects
             /te:route-object-exclude-always/te:type/te:label
@@ -1626,25 +1677,25 @@ module: ietf-wdm-tunnel
           +--:(fixed-dwdm)
           |  +--rw (fixed-single-or-super-channel)?
           |     +--:(single)
-          |     |  +--rw dwdm-n?               l0-types:dwdm-n
+          |     |  +--rw dwdm-n?               dwdm-n
           |     +--:(multi)
-          |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+          |        +--rw subcarrier-dwdm-n*    dwdm-n
           +--:(cwdm)
-          |  +--rw cwdm-n?                     l0-types:cwdm-n
+          |  +--rw cwdm-n?                     cwdm-n
           +--:(flexi-grid)
              +--rw (single-or-super-channel)?
                 +--:(single)
-                |  +--rw flexi-n?              l0-types:flexi-n
-                |  +--rw flexi-m?              l0-types:flexi-m
+                |  +--rw flexi-n?              flexi-n
+                |  +--rw flexi-m?              flexi-m
                 x--:(super)
                 |  x--rw subcarrier-flexi-n* [flexi-n]
-                |     +--rw flexi-n    l0-types:flexi-n
-                |     +--rw flexi-m?   l0-types:flexi-m
+                |     +--rw flexi-n    flexi-n
+                |     +--rw flexi-m?   flexi-m
                 +--:(multi)
                    +--rw frequency-slots
                       +--rw frequency-slot* [flexi-n]
-                         +--rw flexi-n    l0-types:flexi-n
-                         +--rw flexi-m?   l0-types:flexi-m
+                         +--rw flexi-n    flexi-n
+                         +--rw flexi-m?   flexi-m
   augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
             /te:secondary-path/te:explicit-route-objects
             /te:route-object-include-exclude/te:type/te:label
@@ -1654,25 +1705,25 @@ module: ietf-wdm-tunnel
           +--:(fixed-dwdm)
           |  +--rw (fixed-single-or-super-channel)?
           |     +--:(single)
-          |     |  +--rw dwdm-n?               l0-types:dwdm-n
+          |     |  +--rw dwdm-n?               dwdm-n
           |     +--:(multi)
-          |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+          |        +--rw subcarrier-dwdm-n*    dwdm-n
           +--:(cwdm)
-          |  +--rw cwdm-n?                     l0-types:cwdm-n
+          |  +--rw cwdm-n?                     cwdm-n
           +--:(flexi-grid)
              +--rw (single-or-super-channel)?
                 +--:(single)
-                |  +--rw flexi-n?              l0-types:flexi-n
-                |  +--rw flexi-m?              l0-types:flexi-m
+                |  +--rw flexi-n?              flexi-n
+                |  +--rw flexi-m?              flexi-m
                 x--:(super)
                 |  x--rw subcarrier-flexi-n* [flexi-n]
-                |     +--rw flexi-n    l0-types:flexi-n
-                |     +--rw flexi-m?   l0-types:flexi-m
+                |     +--rw flexi-n    flexi-n
+                |     +--rw flexi-m?   flexi-m
                 +--:(multi)
                    +--rw frequency-slots
                       +--rw frequency-slot* [flexi-n]
-                         +--rw flexi-n    l0-types:flexi-n
-                         +--rw flexi-m?   l0-types:flexi-m
+                         +--rw flexi-n    flexi-n
+                         +--rw flexi-m?   flexi-m
   augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
             /te:secondary-path/te:path-in-segment
             /te:label-restrictions/te:label-restriction
@@ -1680,11 +1731,11 @@ module: ietf-wdm-tunnel
     +--:(wdm)
        +--rw (grid-type)?
           +--:(fixed-dwdm)
-          |  +--rw dwdm-n?    l0-types:dwdm-n
+          |  +--rw dwdm-n?    dwdm-n
           +--:(cwdm)
-          |  +--rw cwdm-n?    l0-types:cwdm-n
+          |  +--rw cwdm-n?    cwdm-n
           +--:(flexi-grid)
-             +--rw flexi-n?   l0-types:flexi-n
+             +--rw flexi-n?   flexi-n
   augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
             /te:secondary-path/te:path-in-segment
             /te:label-restrictions/te:label-restriction/te:label-end
@@ -1692,11 +1743,11 @@ module: ietf-wdm-tunnel
     +--:(wdm)
        +--rw (grid-type)?
           +--:(fixed-dwdm)
-          |  +--rw dwdm-n?    l0-types:dwdm-n
+          |  +--rw dwdm-n?    dwdm-n
           +--:(cwdm)
-          |  +--rw cwdm-n?    l0-types:cwdm-n
+          |  +--rw cwdm-n?    cwdm-n
           +--:(flexi-grid)
-             +--rw flexi-n?   l0-types:flexi-n
+             +--rw flexi-n?   flexi-n
   augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
             /te:secondary-path/te:path-in-segment
             /te:label-restrictions/te:label-restriction/te:label-step
@@ -1718,11 +1769,11 @@ module: ietf-wdm-tunnel
     +--:(wdm)
        +--rw (grid-type)?
           +--:(fixed-dwdm)
-          |  +--rw dwdm-n?    l0-types:dwdm-n
+          |  +--rw dwdm-n?    dwdm-n
           +--:(cwdm)
-          |  +--rw cwdm-n?    l0-types:cwdm-n
+          |  +--rw cwdm-n?    cwdm-n
           +--:(flexi-grid)
-             +--rw flexi-n?   l0-types:flexi-n
+             +--rw flexi-n?   flexi-n
   augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
             /te:secondary-path/te:path-out-segment
             /te:label-restrictions/te:label-restriction/te:label-end
@@ -1730,11 +1781,11 @@ module: ietf-wdm-tunnel
     +--:(wdm)
        +--rw (grid-type)?
           +--:(fixed-dwdm)
-          |  +--rw dwdm-n?    l0-types:dwdm-n
+          |  +--rw dwdm-n?    dwdm-n
           +--:(cwdm)
-          |  +--rw cwdm-n?    l0-types:cwdm-n
+          |  +--rw cwdm-n?    cwdm-n
           +--:(flexi-grid)
-             +--rw flexi-n?   l0-types:flexi-n
+             +--rw flexi-n?   flexi-n
   augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
             /te:secondary-path/te:path-out-segment
             /te:label-restrictions/te:label-restriction/te:label-step
@@ -1759,25 +1810,25 @@ module: ietf-wdm-tunnel
           +--:(fixed-dwdm)
           |  +--ro (fixed-single-or-super-channel)?
           |     +--:(single)
-          |     |  +--ro dwdm-n?               l0-types:dwdm-n
+          |     |  +--ro dwdm-n?               dwdm-n
           |     +--:(multi)
-          |        +--ro subcarrier-dwdm-n*    l0-types:dwdm-n
+          |        +--ro subcarrier-dwdm-n*    dwdm-n
           +--:(cwdm)
-          |  +--ro cwdm-n?                     l0-types:cwdm-n
+          |  +--ro cwdm-n?                     cwdm-n
           +--:(flexi-grid)
              +--ro (single-or-super-channel)?
                 +--:(single)
-                |  +--ro flexi-n?              l0-types:flexi-n
-                |  +--ro flexi-m?              l0-types:flexi-m
+                |  +--ro flexi-n?              flexi-n
+                |  +--ro flexi-m?              flexi-m
                 x--:(super)
                 |  x--ro subcarrier-flexi-n* [flexi-n]
-                |     +--ro flexi-n    l0-types:flexi-n
-                |     +--ro flexi-m?   l0-types:flexi-m
+                |     +--ro flexi-n    flexi-n
+                |     +--ro flexi-m?   flexi-m
                 +--:(multi)
                    +--ro frequency-slots
                       +--ro frequency-slot* [flexi-n]
-                         +--ro flexi-n    l0-types:flexi-n
-                         +--ro flexi-m?   l0-types:flexi-m
+                         +--ro flexi-n    flexi-n
+                         +--ro flexi-m?   flexi-m
   augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
             /te:secondary-reverse-path/te:optimizations/te:algorithm
             /te:metric/te:optimization-metric
@@ -1789,25 +1840,25 @@ module: ietf-wdm-tunnel
           +--:(fixed-dwdm)
           |  +--rw (fixed-single-or-super-channel)?
           |     +--:(single)
-          |     |  +--rw dwdm-n?               l0-types:dwdm-n
+          |     |  +--rw dwdm-n?               dwdm-n
           |     +--:(multi)
-          |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+          |        +--rw subcarrier-dwdm-n*    dwdm-n
           +--:(cwdm)
-          |  +--rw cwdm-n?                     l0-types:cwdm-n
+          |  +--rw cwdm-n?                     cwdm-n
           +--:(flexi-grid)
              +--rw (single-or-super-channel)?
                 +--:(single)
-                |  +--rw flexi-n?              l0-types:flexi-n
-                |  +--rw flexi-m?              l0-types:flexi-m
+                |  +--rw flexi-n?              flexi-n
+                |  +--rw flexi-m?              flexi-m
                 x--:(super)
                 |  x--rw subcarrier-flexi-n* [flexi-n]
-                |     +--rw flexi-n    l0-types:flexi-n
-                |     +--rw flexi-m?   l0-types:flexi-m
+                |     +--rw flexi-n    flexi-n
+                |     +--rw flexi-m?   flexi-m
                 +--:(multi)
                    +--rw frequency-slots
                       +--rw frequency-slot* [flexi-n]
-                         +--rw flexi-n    l0-types:flexi-n
-                         +--rw flexi-m?   l0-types:flexi-m
+                         +--rw flexi-n    flexi-n
+                         +--rw flexi-m?   flexi-m
   augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
             /te:secondary-reverse-path/te:optimizations/te:algorithm
             /te:metric/te:optimization-metric
@@ -1819,25 +1870,25 @@ module: ietf-wdm-tunnel
           +--:(fixed-dwdm)
           |  +--rw (fixed-single-or-super-channel)?
           |     +--:(single)
-          |     |  +--rw dwdm-n?               l0-types:dwdm-n
+          |     |  +--rw dwdm-n?               dwdm-n
           |     +--:(multi)
-          |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+          |        +--rw subcarrier-dwdm-n*    dwdm-n
           +--:(cwdm)
-          |  +--rw cwdm-n?                     l0-types:cwdm-n
+          |  +--rw cwdm-n?                     cwdm-n
           +--:(flexi-grid)
              +--rw (single-or-super-channel)?
                 +--:(single)
-                |  +--rw flexi-n?              l0-types:flexi-n
-                |  +--rw flexi-m?              l0-types:flexi-m
+                |  +--rw flexi-n?              flexi-n
+                |  +--rw flexi-m?              flexi-m
                 x--:(super)
                 |  x--rw subcarrier-flexi-n* [flexi-n]
-                |     +--rw flexi-n    l0-types:flexi-n
-                |     +--rw flexi-m?   l0-types:flexi-m
+                |     +--rw flexi-n    flexi-n
+                |     +--rw flexi-m?   flexi-m
                 +--:(multi)
                    +--rw frequency-slots
                       +--rw frequency-slot* [flexi-n]
-                         +--rw flexi-n    l0-types:flexi-n
-                         +--rw flexi-m?   l0-types:flexi-m
+                         +--rw flexi-n    flexi-n
+                         +--rw flexi-m?   flexi-m
   augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
             /te:secondary-reverse-path/te:explicit-route-objects
             /te:route-object-exclude-always/te:type/te:label
@@ -1847,25 +1898,25 @@ module: ietf-wdm-tunnel
           +--:(fixed-dwdm)
           |  +--rw (fixed-single-or-super-channel)?
           |     +--:(single)
-          |     |  +--rw dwdm-n?               l0-types:dwdm-n
+          |     |  +--rw dwdm-n?               dwdm-n
           |     +--:(multi)
-          |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+          |        +--rw subcarrier-dwdm-n*    dwdm-n
           +--:(cwdm)
-          |  +--rw cwdm-n?                     l0-types:cwdm-n
+          |  +--rw cwdm-n?                     cwdm-n
           +--:(flexi-grid)
              +--rw (single-or-super-channel)?
                 +--:(single)
-                |  +--rw flexi-n?              l0-types:flexi-n
-                |  +--rw flexi-m?              l0-types:flexi-m
+                |  +--rw flexi-n?              flexi-n
+                |  +--rw flexi-m?              flexi-m
                 x--:(super)
                 |  x--rw subcarrier-flexi-n* [flexi-n]
-                |     +--rw flexi-n    l0-types:flexi-n
-                |     +--rw flexi-m?   l0-types:flexi-m
+                |     +--rw flexi-n    flexi-n
+                |     +--rw flexi-m?   flexi-m
                 +--:(multi)
                    +--rw frequency-slots
                       +--rw frequency-slot* [flexi-n]
-                         +--rw flexi-n    l0-types:flexi-n
-                         +--rw flexi-m?   l0-types:flexi-m
+                         +--rw flexi-n    flexi-n
+                         +--rw flexi-m?   flexi-m
   augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
             /te:secondary-reverse-path/te:explicit-route-objects
             /te:route-object-include-exclude/te:type/te:label
@@ -1875,25 +1926,25 @@ module: ietf-wdm-tunnel
           +--:(fixed-dwdm)
           |  +--rw (fixed-single-or-super-channel)?
           |     +--:(single)
-          |     |  +--rw dwdm-n?               l0-types:dwdm-n
+          |     |  +--rw dwdm-n?               dwdm-n
           |     +--:(multi)
-          |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+          |        +--rw subcarrier-dwdm-n*    dwdm-n
           +--:(cwdm)
-          |  +--rw cwdm-n?                     l0-types:cwdm-n
+          |  +--rw cwdm-n?                     cwdm-n
           +--:(flexi-grid)
              +--rw (single-or-super-channel)?
                 +--:(single)
-                |  +--rw flexi-n?              l0-types:flexi-n
-                |  +--rw flexi-m?              l0-types:flexi-m
+                |  +--rw flexi-n?              flexi-n
+                |  +--rw flexi-m?              flexi-m
                 x--:(super)
                 |  x--rw subcarrier-flexi-n* [flexi-n]
-                |     +--rw flexi-n    l0-types:flexi-n
-                |     +--rw flexi-m?   l0-types:flexi-m
+                |     +--rw flexi-n    flexi-n
+                |     +--rw flexi-m?   flexi-m
                 +--:(multi)
                    +--rw frequency-slots
                       +--rw frequency-slot* [flexi-n]
-                         +--rw flexi-n    l0-types:flexi-n
-                         +--rw flexi-m?   l0-types:flexi-m
+                         +--rw flexi-n    flexi-n
+                         +--rw flexi-m?   flexi-m
   augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
             /te:secondary-reverse-path/te:path-in-segment
             /te:label-restrictions/te:label-restriction
@@ -1901,11 +1952,11 @@ module: ietf-wdm-tunnel
     +--:(wdm)
        +--rw (grid-type)?
           +--:(fixed-dwdm)
-          |  +--rw dwdm-n?    l0-types:dwdm-n
+          |  +--rw dwdm-n?    dwdm-n
           +--:(cwdm)
-          |  +--rw cwdm-n?    l0-types:cwdm-n
+          |  +--rw cwdm-n?    cwdm-n
           +--:(flexi-grid)
-             +--rw flexi-n?   l0-types:flexi-n
+             +--rw flexi-n?   flexi-n
   augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
             /te:secondary-reverse-path/te:path-in-segment
             /te:label-restrictions/te:label-restriction/te:label-end
@@ -1913,11 +1964,11 @@ module: ietf-wdm-tunnel
     +--:(wdm)
        +--rw (grid-type)?
           +--:(fixed-dwdm)
-          |  +--rw dwdm-n?    l0-types:dwdm-n
+          |  +--rw dwdm-n?    dwdm-n
           +--:(cwdm)
-          |  +--rw cwdm-n?    l0-types:cwdm-n
+          |  +--rw cwdm-n?    cwdm-n
           +--:(flexi-grid)
-             +--rw flexi-n?   l0-types:flexi-n
+             +--rw flexi-n?   flexi-n
   augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
             /te:secondary-reverse-path/te:path-in-segment
             /te:label-restrictions/te:label-restriction/te:label-step
@@ -1939,11 +1990,11 @@ module: ietf-wdm-tunnel
     +--:(wdm)
        +--rw (grid-type)?
           +--:(fixed-dwdm)
-          |  +--rw dwdm-n?    l0-types:dwdm-n
+          |  +--rw dwdm-n?    dwdm-n
           +--:(cwdm)
-          |  +--rw cwdm-n?    l0-types:cwdm-n
+          |  +--rw cwdm-n?    cwdm-n
           +--:(flexi-grid)
-             +--rw flexi-n?   l0-types:flexi-n
+             +--rw flexi-n?   flexi-n
   augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
             /te:secondary-reverse-path/te:path-out-segment
             /te:label-restrictions/te:label-restriction/te:label-end
@@ -1951,11 +2002,11 @@ module: ietf-wdm-tunnel
     +--:(wdm)
        +--rw (grid-type)?
           +--:(fixed-dwdm)
-          |  +--rw dwdm-n?    l0-types:dwdm-n
+          |  +--rw dwdm-n?    dwdm-n
           +--:(cwdm)
-          |  +--rw cwdm-n?    l0-types:cwdm-n
+          |  +--rw cwdm-n?    cwdm-n
           +--:(flexi-grid)
-             +--rw flexi-n?   l0-types:flexi-n
+             +--rw flexi-n?   flexi-n
   augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
             /te:secondary-reverse-path/te:path-out-segment
             /te:label-restrictions/te:label-restriction/te:label-step
@@ -1980,25 +2031,25 @@ module: ietf-wdm-tunnel
           +--:(fixed-dwdm)
           |  +--ro (fixed-single-or-super-channel)?
           |     +--:(single)
-          |     |  +--ro dwdm-n?               l0-types:dwdm-n
+          |     |  +--ro dwdm-n?               dwdm-n
           |     +--:(multi)
-          |        +--ro subcarrier-dwdm-n*    l0-types:dwdm-n
+          |        +--ro subcarrier-dwdm-n*    dwdm-n
           +--:(cwdm)
-          |  +--ro cwdm-n?                     l0-types:cwdm-n
+          |  +--ro cwdm-n?                     cwdm-n
           +--:(flexi-grid)
              +--ro (single-or-super-channel)?
                 +--:(single)
-                |  +--ro flexi-n?              l0-types:flexi-n
-                |  +--ro flexi-m?              l0-types:flexi-m
+                |  +--ro flexi-n?              flexi-n
+                |  +--ro flexi-m?              flexi-m
                 x--:(super)
                 |  x--ro subcarrier-flexi-n* [flexi-n]
-                |     +--ro flexi-n    l0-types:flexi-n
-                |     +--ro flexi-m?   l0-types:flexi-m
+                |     +--ro flexi-n    flexi-n
+                |     +--ro flexi-m?   flexi-m
                 +--:(multi)
                    +--ro frequency-slots
                       +--ro frequency-slot* [flexi-n]
-                         +--ro flexi-n    l0-types:flexi-n
-                         +--ro flexi-m?   l0-types:flexi-m
+                         +--ro flexi-n    flexi-n
+                         +--ro flexi-m?   flexi-m
   augment /te:te/te:lsps/te:lsp/te:lsp-actual-route-information
             /te:lsp-actual-route-information/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
@@ -2007,25 +2058,25 @@ module: ietf-wdm-tunnel
           +--:(fixed-dwdm)
           |  +--ro (fixed-single-or-super-channel)?
           |     +--:(single)
-          |     |  +--ro dwdm-n?               l0-types:dwdm-n
+          |     |  +--ro dwdm-n?               dwdm-n
           |     +--:(multi)
-          |        +--ro subcarrier-dwdm-n*    l0-types:dwdm-n
+          |        +--ro subcarrier-dwdm-n*    dwdm-n
           +--:(cwdm)
-          |  +--ro cwdm-n?                     l0-types:cwdm-n
+          |  +--ro cwdm-n?                     cwdm-n
           +--:(flexi-grid)
              +--ro (single-or-super-channel)?
                 +--:(single)
-                |  +--ro flexi-n?              l0-types:flexi-n
-                |  +--ro flexi-m?              l0-types:flexi-m
+                |  +--ro flexi-n?              flexi-n
+                |  +--ro flexi-m?              flexi-m
                 x--:(super)
                 |  x--ro subcarrier-flexi-n* [flexi-n]
-                |     +--ro flexi-n    l0-types:flexi-n
-                |     +--ro flexi-m?   l0-types:flexi-m
+                |     +--ro flexi-n    flexi-n
+                |     +--ro flexi-m?   flexi-m
                 +--:(multi)
                    +--ro frequency-slots
                       +--ro frequency-slot* [flexi-n]
-                         +--ro flexi-n    l0-types:flexi-n
-                         +--ro flexi-m?   l0-types:flexi-m
+                         +--ro flexi-n    flexi-n
+                         +--ro flexi-m?   flexi-m
 ]]></artwork></figure>
 
 </section>
@@ -2176,7 +2227,7 @@ module ietf-wdm-tunnel {
     }
     */
 
-    uses l0-types:l0-path-constraints;
+    uses l0-types:path-constraints;
   }
 
   grouping transceiver-constraints {
@@ -2529,7 +2580,7 @@ module ietf-wdm-tunnel {
            regeneration is enabled.";
       }
 
-      uses l0-types:l0-tunnel-attributes;
+      uses l0-types:tunnel-attributes;
 
       leaf guard-band-size {
         type l0-types:frequency-thz;
@@ -2697,7 +2748,7 @@ module ietf-wdm-tunnel {
       "Augment source transceiver with additional estimated
        parameters.";
 
-    uses l0-types:l0-path-properties;
+    uses l0-types:path-properties;
   }
 
   augment "/te:te/te:tunnels/te:tunnel/te:primary-paths/"
@@ -2711,7 +2762,7 @@ module ietf-wdm-tunnel {
       "Augment destination transceiver with additional estimated
        parameters.";
 
-    uses l0-types:l0-path-properties;
+    uses l0-types:path-properties;
   }
 
   augment "/te:te/te:tunnels/te:tunnel/te:primary-paths/"
@@ -2726,7 +2777,7 @@ module ietf-wdm-tunnel {
       "Augment regen incoming transceiver with additional estimated
        parameters.";
 
-    uses l0-types:l0-path-properties;
+    uses l0-types:path-properties;
   }
 
   augment "/te:te/te:tunnels/te:tunnel/te:primary-paths/"
@@ -2741,7 +2792,7 @@ module ietf-wdm-tunnel {
       "Augment regen outgoing transceiver with additional estimated
        parameters.";
 
-    uses l0-types:l0-path-properties;
+    uses l0-types:path-properties;
   }
 
   /*
@@ -2772,7 +2823,7 @@ module ietf-wdm-tunnel {
       "Augment source transceiver with additional estimated
        parameters.";
 
-    uses l0-types:l0-path-properties;
+    uses l0-types:path-properties;
   }
 
   augment "/te:te/te:tunnels/te:tunnel/te:primary-paths/"
@@ -2787,7 +2838,7 @@ module ietf-wdm-tunnel {
       "Augment destination transceiver with additional estimated
        parameters.";
 
-    uses l0-types:l0-path-properties;
+    uses l0-types:path-properties;
   }
 
   augment "/te:te/te:tunnels/te:tunnel/te:primary-paths/"
@@ -2803,7 +2854,7 @@ module ietf-wdm-tunnel {
       "Augment regen incoming transceiver with additional estimated
        parameters.";
 
-    uses l0-types:l0-path-properties;
+    uses l0-types:path-properties;
   }
 
   augment "/te:te/te:tunnels/te:tunnel/te:primary-paths/"
@@ -2819,7 +2870,7 @@ module ietf-wdm-tunnel {
       "Augment regen outgoing transceiver with additional estimated
        parameters.";
 
-    uses l0-types:l0-path-properties;
+    uses l0-types:path-properties;
   }
 
   /*
@@ -2848,7 +2899,7 @@ module ietf-wdm-tunnel {
       "Augment source transceiver with additional estimated
        parameters.";
 
-    uses l0-types:l0-path-properties;
+    uses l0-types:path-properties;
   }
 
   augment "/te:te/te:tunnels/te:tunnel/te:secondary-paths/"
@@ -2862,7 +2913,7 @@ module ietf-wdm-tunnel {
       "Augment destination transceiver with additional estimated
        parameters.";
 
-    uses l0-types:l0-path-properties;
+    uses l0-types:path-properties;
   }
 
   augment "/te:te/te:tunnels/te:tunnel/te:secondary-paths/"
@@ -2877,7 +2928,7 @@ module ietf-wdm-tunnel {
       "Augment regen incoming transceiver with additional estimated
        parameters.";
 
-    uses l0-types:l0-path-properties;
+    uses l0-types:path-properties;
   }
 
   augment "/te:te/te:tunnels/te:tunnel/te:secondary-paths/"
@@ -2892,7 +2943,7 @@ module ietf-wdm-tunnel {
       "Augment regen outgoing transceiver with additional estimated
        parameters.";
 
-    uses l0-types:l0-path-properties;
+    uses l0-types:path-properties;
   }
 
   /*
@@ -2921,7 +2972,7 @@ module ietf-wdm-tunnel {
       "Augment source transceiver with additional estimated
        parameters.";
 
-    uses l0-types:l0-path-properties;
+    uses l0-types:path-properties;
   }
 
   augment "/te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths/"
@@ -2935,7 +2986,7 @@ module ietf-wdm-tunnel {
       "Augment destination transceiver with additional estimated
        parameters.";
 
-    uses l0-types:l0-path-properties;
+    uses l0-types:path-properties;
   }
 
   augment "/te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths/"
@@ -2950,7 +3001,7 @@ module ietf-wdm-tunnel {
       "Augment regen incoming transceiver with additional estimated
        parameters.";
 
-    uses l0-types:l0-path-properties;
+    uses l0-types:path-properties;
   }
 
   augment "/te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths/"
@@ -2965,7 +3016,7 @@ module ietf-wdm-tunnel {
       "Augment regen outgoing transceiver with additional estimated
        parameters.";
 
-    uses l0-types:l0-path-properties;
+    uses l0-types:path-properties;
   }
 
   /*
@@ -4086,331 +4137,332 @@ FPU19/05678).</t>
   </back>
 
 <!-- ##markdown-source:
-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
-5GmNVDVfndby5YTq9kXws8XwzdfbfSDicAWttH2oC0XT8TX7b/1Xs+1e7lEU
-q1p2KaxlNRcuoV2v7NuIsHjHIbqb1jc2doxdtNQ64AqrbQXtWvDa+UAZKR+o
-faFzgubjnKBzghqMOSd4d5zgNVVMHXBpxpPsy3s+y0Vdg/O4mq+wTLtFLe6C
-bMuLIgoaSJxk74Nk00w0X7W2rDhh9ZeX6FkaRyram9Mf6Zz7EDBbi/plBEwY
-/Utg7JT3h1qzoA1x53vAK8rijydtCclywCSlJrhpatyJ3WYXKNbVnVyDcF2k
-eACidaHiPoaKa9hRjueZnMmPvFAiHk6w9z6d4ZeZQFVqILGBPDWmpTdjWs8r
-9ambb5d1LRrXonEtGteiWWa1raDLt2jW25+aNvZKPW/nT6sf50+dP9VgzPnT
-9fen7syDBcOc77M463yf833O97mzDs75scpd5/yc82sFvFPO75oeOFqwW9UA
-dvsbi/Y31lGmIgqcRO+VRHELxO1NWZ8HvDflji/cV4/hji04kbrjChdgdCGh
-qWp34/cHCtdzteZKfHmfFN9McyW+ueZKfK3NlfjGmivxdTdX4is2V+IbbK7E
-l26uxJdsrsTX3VyJV2iu1Mcu3VxZbbWtoF+2udLyHpHG6YUGlpajDB2nFxqg
-7miY62i7jjZzHe2Lx97fjvYtO113fsw53TpnndN1TvfBOd2LHKVV8y84V9bs
-T9kO0vnEGm7nE6sf5xMXwDmfuKY+cbmk0R0+q4naeUjnITUYcx7ynnhId0Lt
-Hm5l34rg3TG2Byl2d9bNHWy4lTf7u5BzJ33PtUrexZyHKXcXdFzQWUkFO4/c
-NW5eeKSu5RTe4u5S55G79j57ixNzR+7ckbsWUt2RO3fk7qotpdV/hKj75UAN
-YHe8rrzlevauZ98K73r297pnv74O1h2lcw62zlnnYJ2DvfcO1r2OzYJhzv9Z
-nHX+z/k/5//cqTjrpnOAJZ3OAToH2AS8cw7Q/fTcXdiJvjW5Vs4XNJA4qd51
-qboX8zyYowSX1Db3vrYminvhRtw725xYXXhw4eHS6ube3VaqiDtI5g6SuYNk
-7iBZzZXaB3EXudSFrxC6wXMP7mCZa3vXOeva3q7tfWfb3uvucN1BM+dw65x1
-Dtc53AfncN3BMwuGOX9ocdb5Q+cPnT90B9GcQ3QOscTtHOLDcojuYNrd2qS+
-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
-aphNeyBOpTLWcRLPdCmPHQU9FqGLllhzow/y3nlObSsesbeHx+19+p6OlmVa
-ifs7kLzQA16rJ10anBH44rzLzLRs7rXfhbreDDeIiwZMJebUg2nLaLpzychq
-6tWUTeOzgh36KCtorpmm1fEqT2YfiVQPcxMF3UvogLjyCijKIGhcpYqVT5Lb
-Gkf7FSqbfLv/6x/991tde0MqTTDPYdDDkpE5Wl6995JS6UaBU7oSDVI+gr+x
-4PUmC56K2dXg6oGT8vi9tSmN0UsafwMUmLWXBUGtwtJMSWslhrqxvU23uuzt
-h4p5AidOqrVVhR3zRM7wxDQ6WzXaygcgv2lvSqogVORPCtDuMQ1WYi69fUUR
-ol78sr1RaMef8enZyt3ud/o2wJZ5x3kdRj0nJAKPuqj6ZQiNi0vow8lBhbu6
-d99Z55YaX0q/45jgpSRskoY7JmnzvfKmoDrQHVMHWxQNtTDzfxntKF7FdPt6
-UfuZxIYkmj+TeEfEXuXxbfmBkor18ATd4q28PGzJcXfVJbRL5Qs4hT39/rTq
-cbjinWmN5OCm/Xznm98akCu8+a0565JvfqvDmfcmXafozToWZwmGkHJRS0m9
-2GUgoTuRXSSyKrh+s8uwspG+ba6qfeh2iOamdwFm+8olNKT5hEajwihOJhZK
-UjnOWqpH45G1kt9OR25ER6xt/nawjtMFl9UW+1iBU5k7qTL6YEU7SPMYR/u4
-tv39y+qU2lYptvadWj1ctWo7YXE1tSoOV3wxtbpM5msn5WvR6bhPWnzzafIt
-J8gPTqIui3aK5FJtp1f3Qq9cPu50707r3kNL2qv7LF9iA+o+qecdzMYftsBc
-su30xOXSTm3WQG1cquxUa51V6+FmwldrYF/xTM49U9s7nSE7AbqM2emNy6Cd
-Gt0JNXIZtVO1u6Rq9ynD3lXvTrPnpexrYf5s/2prXXYLf5V1pcFGEW7ySPrr
-43eKz/ioHCWvavVXzE/vAoPuZIJo3oJ7kQnY0mp5c+5Dkt26JmlOlA8qUXLi
-flDJysMRdyij9w1xm4srZiFd73I1c7e9w5XY2P4u2fXlHpQybfxrubwmHCzy
-5XJOeoWE/pE6C61OnNu5rt55RozHH+YOGj+q1dSztmFFGSUjLxU0S1Mu9IYL
-8wuH+AjldtvV5fjbsdbi3V3gDgAnvuOMQDQG82pVXILKrsslVN78UFQs6Jg0
-iTjXhVp83fwEBV6FoRcOuR7uitth7sXPMVdPwdUutLcDLI29VZ4u1Fhaxnnl
-HcBryEpbWddWP9eflcuczbxzqlvZC73jfL9Len4bfK8fsGhcusPqXDvnut4c
-vROKetscrW5ZdN66Fzp7u97gSpy+Y7p8RU53lXcLt0Guq/ioj7rG1/kYsXQI
-S5fdgEaNor/NSwtXER8gKgVmfkuYCGSafKYo0xg0ufjS5PK11mqrUUm/+PGX
-sr7RoM0qh34XAsRbvPuxS/BApYL4vMDC1kmq+jXgRrrrKFZNomn0weC1kO0a
-dl8uHFL6WXorWXNb/MryVF6WsF9D62Zp2dCE2JP7ctZ34yKC1dyYgLB76cSz
-XP+yAy7NxPzqdiLmX1YO4gvGp5tqed6OF7t0i/QuWMnNiehLeTEnnvXwYl9C
-Dss4setuJuJv3czkR15wmIeTOIE8c4ZfZgL5vBDI02OaibqprFYqw/TBxtvM
-1+3VFT/vrJemEVQz+QvzdrvTmZh32tsF9/UWYndIR0ydtlJRdxd1xFR791VH
-XOulLsJ7Lrz72WG5syK8pib/GnZSWvbBbyK3XXuBrEXfxAnjNrokV+P6bZQV
-17UTtn49kbtsAdcqkHXogDhhXKM/+jJMvw1vdDce2vziabOdLRvhGgaYAvTu
-JcLLnI5zXa/b6nq1HTdxCuVaZJdukd1ThbqGftraxJmbaK5p5pkw5YRf78et
-u/Sv3py71ypw7/t5V/Lbt1m73Yr01qn55yS39p3CK4roVjqGX/KpprVtK95/
-27qvPUgnudt1izcvorX1it3tzfrNC9uXLR3PxTVIs715m7XGCh3NdegbrP60
-pGtcfrHGpYZtf+rzQWuK60jeK01xR/cKbXhIIrzXB/juqiDvb9vvihK51gpp
-DeSyFg29m5DJ3RXJl+3UXZn311OO3t4LW9avB3cPXNS96645mdxi3+zO+qhr
-OPD3QNtj65Y4X/ZVTK5RdnuNsvVqra6hBrkG2oPQINdYa+nHrM+prdsR8ANp
-u90nMT+Eptz6HF9YQ3mtWbPOyWoNu3hrcbhkfV5hu87dvXtnP/e46+dktYbd
-wHvi61yX8Opdwpuv1On3thrLT+f63jX/3tZtMFwRZfiuGP76+N1V2fm592/4
-9D4N2VdjOfHop+vIlLxzjj9CJ7NQ/LSBv996QpfZ77tvXrJZHOSh2NC/Kerj
-7+vNePIehPzTRpbk1Tv45sOfNqTIxhb6ZzuPdp54j/7iPdoZ4EwbINmv2LHw
-80Rm52wPfJwMRKIaa73eCalXBCTm6lpf/ZRsn3GIFpw8Hgt4xoGvYxlBESoj
-YJFMWRD7Obkpnghkupzg3SxmI+SpD44Mvp5Kzjib8YhPBIkArDOL/TjUv7yH
-upwnoke/pzePIZkI+blIgIjch9spe3Nwsvf2zQv26dN/HL3Ye7rz5PHnz1gT
-Hx0c2ze+e/Tk0efPA1qOAVFE4OqyBCYE1gKX9fBvCA8QcwrMSEnmMwEkAP09
-4+sNAlSUOYQy6echTwr0oAcJjodFzBNheAhGmuajVJDt8jBk/JRLUJCwpKtg
-AfopJQdiNhIKLBqQUICnyFfO1C/LITaSAv7kYtqQhaU7cIFnCNs7A4HjxNt+
-Irj6Czgg6C+2KQdi0NeiZ6hafXY2lcB0SezowRQ8D7OtAWNADtiANT0e5x6R
-3pAuASGpwJ98lKcCZXOahxGsDKbpAYFpPBMsEtlZnLyHFORUJnGEqpAC5t+A
-RGHzYVMMJkCWCGTmKdq2esDirE4Bag8YLFPOnlgqlK76PGJTfkqsExOONPXE
-eEzeNCroKKcs1ofspkCbj7JECCWTcsoefoX7MikWC/a0bdYqQ/g27PU8xhaE
-Ufv+YDDQzmwEqM9koH7ivHRobYMrTnI5v9iCpiXtWZzpoF9TlcSNT4MJ8E1M
-0usdgFLFYLIR6MqQnSmJ5yn+JGgqZ/NQjiVoshU+sN82jsNAjwAzTnojcFT+
-VCjDP41lADF4LjL6/dABetpXu292W7ys5TAB4p85UJaqsYAoERMJiZmKRzBj
-GJ/hnL8evUqViQu2EaUbqJpqKIR+tABz79XByQv2j8PX7Ejf3dB+7pun330H
-bpG9KHCqGTDuImZ7VL82u57JOCjglaZbBLBQCm4gLqBxyPIkGmIYGtIvoKbD
-D7NwGKVDDD/DWnhCGE0lB1YAozIIMkO0Qfbq4Pgl3oeVDNmb7d0fVEJkZsW5
-0DuBgeNaMfqlc+6LgSLmkky2XGfJbII5VP70Dc5jGPr00c6jixmqRq3A0GHJ
-UFzWkLVwrVjvyvyG8DSWH4ZM/3wuXoIr4LcjRAb0sn/AR3MRvypLGbJ3ocDs
-BzQ8hHlpVPkrGDhQByeeltG/khuAoniex0bcf4+2seu/j+KzUASUjqWQHJnf
-Tf1pY8zDVGCyQmIkJ42yDtNYBV+IpWCNeWT1wY/nPJLplB1jwgJalQqe+NPe
-7gQWds5waKIfQIopm96dyFAcgl1v7h68Yu9e7e88evy99/jRkyffPj567u3t
-PN4ipz8679noD2WkTA5i8LEvkWt99iqK4lPVfUeQXyP6MWKJZYeauadnnoCE
-ilyTXk6NugCocgNyzkKgDlIH8E2bL8ksFFuGvRfvfn38/fajb5/+5butQe//
-A1rqvCwtcgIA
+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
+awW5VpBrBblWkIXYtYJcK8j6uFaQawU9yFbQag+F+foXQNRwb56gAWZSNCEr
+I62BhLV6qTkr3m88Uda4emMdpPgqHaR4qQ5SvEKpGF+lVIwXeNAFtV68wG0v
+qC7jLp+JYJF+gWELVNv7x9Sn0HYvTjzwEmE3hizOeMur0JbFgNX9DF/956H5
+2BisUNsJI+KwArcMDP4QVJqVYCt0I+LluxFOxZyKdapYR2UbL1XZxitXtvHy
+le3lats2fOXKdnnlbUIuq7+XzNmtwk3AK2hxK5JVFbmJZCldXgS2QJ0XgS3Q
+aGZzeNk6aFk9Y1fRswpFK+lZx4xL6FnnnJfpmQ14ZT2rIbmantlIVtCzdrBL
+9awdrF3P7u5VCp2p9aJsuj11bsm2F2/TdqbWrYnz5fm2S61d3qM+LrV2KvZA
+Vcyl1i61tka51Nql1i61vn5qvfpjqa4p7TJnl9YsC+MyZ6di+uMy5+LjMmeX
+OS8Ac5kzq0K6zHkx2N1mzld9qsdl0i6TdmnOsjAuk3Yqpj8uky4+LpN2mfQC
+MJdJsyqky6QXg91yJh2m81T/q//xuJ/lsGqVi1q/bd1IRBcNdtmrSy1WwDBP
+hDcWvjeqy4nZIVLOQKf5bI4zXPBoMiyudAOd8jAvfuo4ED7YR/j0SQcZ//TG
+oNBxkwZ2FRpYKw3Fgw6aGG+nzhuXPTsV/xJU3GXvLnu3Rq2ApMWW7EGrmFMr
+3GKLatJTNyp7BLsiMeyKpmWDujLigZQRnQqvPqsrfA1uGYW36WlX+NqgFYlh
+qyv8OtUzoYzeN+oZc9GuZ8SO8Ga+2jmQwdfMUv01WE8eta6o5fKV1zQJ4xFX
+uzcRn5lNlK5HxDuHFbsmMvJSQZM0WcBHYLyJwEfhfVx32nrVfpvaJJEBqRxp
+YP1ZajVmnsiYHuemiXCp31l3x6E4lx7isdIdfOVaGGfemQyAZPuR8JZZChB8
+Ht4CU0b3s5m0dJd6ND+/bPTtSwM0zYnj6uK4iedtqkbRzvjLZeOkcH0pOGO4
+czEs8/CZs5j7JSrLrJysbkhWqx88d8nXWknCxZrbFMVVz5Q5I1lryTijWZfi
+8eZeqV5IqUOiuqUBaOi7+tufRnEYTy4KaQ43z4LZVpVHm4V8t+yXmdHosTyH
+hQU2ECs6bACq7qcymoQCW1hpPheJ6S9W0P2rRKqGbzVuFmhxPq/6/jP4qKvt
+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
+xrbL3Mew1OJoIMKM187RtZ+kIzyXMnEf8aljc6i9wXP4P7FVavu1HsZUw2za
+A3EqlaWOk3im63hsJ+ixCF30w5q7fJD0znPqWfGIvT08bm/S93SoLHNK3NyB
+zIUe7Vo949LgjMAXJ11mpmUTr/0u1PVOuEFcdF8qAaceSVtG050rhlVTrKZs
+Gp8V7NCHWEFzzTStXld5MvswpHrqmijoXkIHxLVXQCEGQeMqVax85NvWONqs
+UKnk2/1f/+i/3+raGFI5gnkCgx6TjMyh8uq9l5RHN6qb0pVokPJZ+Y0Frw1Z
+8DzMrgZXj5qUB++tHWmMXtL4G6DArL2sBmrllWZKWqsv1I3tbbrVZW8/VMwT
+OHFSLawq7JgncoZnpdHZqtFWMgDJTXtHUgWhInlSgHaDabASc+mtJooQ9UKV
+7Y1CO/6Mz81W7na/brYBtszbsusw6gkhEXjUQtVvLWhcXEIfTg4q3NWN+84i
+t9T4UvodZwSvJGGTNNwzSZvvlTfw1IHumTrYomiohZn/82hH8Yqju9eL2q/P
+NSTR/PW5eyL2Ko/vyg+UVKyHJ+gWb+WlXEuOu68uoV0qn8Ep7On3klXPwhXv
+ImskB7ft5zvfqNaAXOGNas1Zl3yjWh3OvODoJkVv1rE4SzCElItaSurFFgMJ
+3YnsMpFVwfU7XYaVXfRtc1VtQrdDNHe8CzDbVy6hIc3HMxoVRnEssVCSylnW
+Uj2qD6uVzHYKcisKYm3wt4N1nCu4qqrYBwqcvtw/fdHnKdpBmqc32se1betf
+VaHUbkqxo+906gvVqbZTFdfTqeJAxefRqatku3YivhbdjYekwrefGt9xUvzF
+SdRlzk6LXHrtlOqeK5XLwZ3i3V/F+6IS9ep+yufYaHpIunkPM/AvW2AuwXZK
+4vJnpzP3P0v5YtJjp1efVa++0Oz3eo3qa563eWA6e6+zYidAlyU7pXFZs9Oh
+Ndchl0U7Pbs3evZgsupd9SI0e1LKuBbmzPbPpdYFt/DnUFcabLTgNo+Yvz5+
+p5iMj75RwqpWf82c9D4w6F4mheaVtpfpvy2tltfgfkmyW9fczInyi0qRnLi/
+qEzlyxF3KKP3DXGbiytmIV0vZjVzt72QldjY/mLY9eUe1DFt/Gu5vCYcLPLl
+ck56JYT+uTkLrU6c27muXmBGjMef2NYllfU4alPP2oYVNZSMvFTQLE250Bsr
+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
+/5J1sU5vbgIA
 
 -->
 
