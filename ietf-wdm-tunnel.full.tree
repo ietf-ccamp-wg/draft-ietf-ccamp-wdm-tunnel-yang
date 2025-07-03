@@ -86,35 +86,35 @@ module: ietf-te
      |        |  |              |        |  +--rw (wdm-tnl:fixed-single-or-super-channel)?
      |        |  |              |        |     +--:(wdm-tnl:single)
      |        |  |              |        |     |  +--rw wdm-tnl:dwdm-n?
-     |        |  |              |        |     |          l0-types:dwdm-n
+     |        |  |              |        |     |          dwdm-n
      |        |  |              |        |     +--:(wdm-tnl:multi)
      |        |  |              |        |        +--rw wdm-tnl:subcarrier-dwdm-n*
-     |        |  |              |        |                l0-types:dwdm-n
+     |        |  |              |        |                dwdm-n
      |        |  |              |        +--:(wdm-tnl:cwdm)
      |        |  |              |        |  +--rw wdm-tnl:cwdm-n?
-     |        |  |              |        |          l0-types:cwdm-n
+     |        |  |              |        |          cwdm-n
      |        |  |              |        +--:(wdm-tnl:flexi-grid)
      |        |  |              |           +--rw (wdm-tnl:single-or-super-channel)?
      |        |  |              |              +--:(wdm-tnl:single)
      |        |  |              |              |  +--rw wdm-tnl:flexi-n?
-     |        |  |              |              |  |       l0-types:flexi-n
+     |        |  |              |              |  |       flexi-n
      |        |  |              |              |  +--rw wdm-tnl:flexi-m?
-     |        |  |              |              |          l0-types:flexi-m
+     |        |  |              |              |          flexi-m
      |        |  |              |              x--:(wdm-tnl:super)
      |        |  |              |              |  x--rw wdm-tnl:subcarrier-flexi-n*
      |        |  |              |              |          [flexi-n]
      |        |  |              |              |     +--rw wdm-tnl:flexi-n
-     |        |  |              |              |     |       l0-types:flexi-n
+     |        |  |              |              |     |       flexi-n
      |        |  |              |              |     +--rw wdm-tnl:flexi-m?
-     |        |  |              |              |             l0-types:flexi-m
+     |        |  |              |              |             flexi-m
      |        |  |              |              +--:(wdm-tnl:multi)
      |        |  |              |                 +--rw wdm-tnl:frequency-slots
      |        |  |              |                    +--rw wdm-tnl:frequency-slot*
      |        |  |              |                            [flexi-n]
      |        |  |              |                       +--rw wdm-tnl:flexi-n
-     |        |  |              |                       |       l0-types:flexi-n
+     |        |  |              |                       |       flexi-n
      |        |  |              |                       +--rw wdm-tnl:flexi-m?
-     |        |  |              |                               l0-types:flexi-m
+     |        |  |              |                               flexi-m
      |        |  |              +--rw direction?
      |        |  |                      te-label-direction
      |        |  +--rw route-object-include-exclude* [index]
@@ -157,35 +157,35 @@ module: ietf-te
      |        |        |        |        |  +--rw (wdm-tnl:fixed-single-or-super-channel)?
      |        |        |        |        |     +--:(wdm-tnl:single)
      |        |        |        |        |     |  +--rw wdm-tnl:dwdm-n?
-     |        |        |        |        |     |          l0-types:dwdm-n
+     |        |        |        |        |     |          dwdm-n
      |        |        |        |        |     +--:(wdm-tnl:multi)
      |        |        |        |        |        +--rw wdm-tnl:subcarrier-dwdm-n*
-     |        |        |        |        |                l0-types:dwdm-n
+     |        |        |        |        |                dwdm-n
      |        |        |        |        +--:(wdm-tnl:cwdm)
      |        |        |        |        |  +--rw wdm-tnl:cwdm-n?
-     |        |        |        |        |          l0-types:cwdm-n
+     |        |        |        |        |          cwdm-n
      |        |        |        |        +--:(wdm-tnl:flexi-grid)
      |        |        |        |           +--rw (wdm-tnl:single-or-super-channel)?
      |        |        |        |              +--:(wdm-tnl:single)
      |        |        |        |              |  +--rw wdm-tnl:flexi-n?
-     |        |        |        |              |  |       l0-types:flexi-n
+     |        |        |        |              |  |       flexi-n
      |        |        |        |              |  +--rw wdm-tnl:flexi-m?
-     |        |        |        |              |          l0-types:flexi-m
+     |        |        |        |              |          flexi-m
      |        |        |        |              x--:(wdm-tnl:super)
      |        |        |        |              |  x--rw wdm-tnl:subcarrier-flexi-n*
      |        |        |        |              |          [flexi-n]
      |        |        |        |              |     +--rw wdm-tnl:flexi-n
-     |        |        |        |              |     |       l0-types:flexi-n
+     |        |        |        |              |     |       flexi-n
      |        |        |        |              |     +--rw wdm-tnl:flexi-m?
-     |        |        |        |              |             l0-types:flexi-m
+     |        |        |        |              |             flexi-m
      |        |        |        |              +--:(wdm-tnl:multi)
      |        |        |        |                 +--rw wdm-tnl:frequency-slots
      |        |        |        |                    +--rw wdm-tnl:frequency-slot*
      |        |        |        |                            [flexi-n]
      |        |        |        |                       +--rw wdm-tnl:flexi-n
-     |        |        |        |                       |       l0-types:flexi-n
+     |        |        |        |                       |       flexi-n
      |        |        |        |                       +--rw wdm-tnl:flexi-m?
-     |        |        |        |                               l0-types:flexi-m
+     |        |        |        |                               flexi-m
      |        |        |        +--rw direction?
      |        |        |                te-label-direction
      |        |        +--:(srlg)
@@ -206,13 +206,13 @@ module: ietf-te
      |        |        |     |     +--rw (wdm-tnl:grid-type)?
      |        |        |     |        +--:(wdm-tnl:fixed-dwdm)
      |        |        |     |        |  +--rw wdm-tnl:dwdm-n?
-     |        |        |     |        |          l0-types:dwdm-n
+     |        |        |     |        |          dwdm-n
      |        |        |     |        +--:(wdm-tnl:cwdm)
      |        |        |     |        |  +--rw wdm-tnl:cwdm-n?
-     |        |        |     |        |          l0-types:cwdm-n
+     |        |        |     |        |          cwdm-n
      |        |        |     |        +--:(wdm-tnl:flexi-grid)
      |        |        |     |           +--rw wdm-tnl:flexi-n?
-     |        |        |     |                   l0-types:flexi-n
+     |        |        |     |                   flexi-n
      |        |        |     +--rw direction?
      |        |        |             te-label-direction
      |        |        +--rw label-end
@@ -225,13 +225,13 @@ module: ietf-te
      |        |        |     |     +--rw (wdm-tnl:grid-type)?
      |        |        |     |        +--:(wdm-tnl:fixed-dwdm)
      |        |        |     |        |  +--rw wdm-tnl:dwdm-n?
-     |        |        |     |        |          l0-types:dwdm-n
+     |        |        |     |        |          dwdm-n
      |        |        |     |        +--:(wdm-tnl:cwdm)
      |        |        |     |        |  +--rw wdm-tnl:cwdm-n?
-     |        |        |     |        |          l0-types:cwdm-n
+     |        |        |     |        |          cwdm-n
      |        |        |     |        +--:(wdm-tnl:flexi-grid)
      |        |        |     |           +--rw wdm-tnl:flexi-n?
-     |        |        |     |                   l0-types:flexi-n
+     |        |        |     |                   flexi-n
      |        |        |     +--rw direction?
      |        |        |             te-label-direction
      |        |        +--rw label-step
@@ -279,13 +279,13 @@ module: ietf-te
      |                 |     |     +--rw (wdm-tnl:grid-type)?
      |                 |     |        +--:(wdm-tnl:fixed-dwdm)
      |                 |     |        |  +--rw wdm-tnl:dwdm-n?
-     |                 |     |        |          l0-types:dwdm-n
+     |                 |     |        |          dwdm-n
      |                 |     |        +--:(wdm-tnl:cwdm)
      |                 |     |        |  +--rw wdm-tnl:cwdm-n?
-     |                 |     |        |          l0-types:cwdm-n
+     |                 |     |        |          cwdm-n
      |                 |     |        +--:(wdm-tnl:flexi-grid)
      |                 |     |           +--rw wdm-tnl:flexi-n?
-     |                 |     |                   l0-types:flexi-n
+     |                 |     |                   flexi-n
      |                 |     +--rw direction?
      |                 |             te-label-direction
      |                 +--rw label-end
@@ -298,13 +298,13 @@ module: ietf-te
      |                 |     |     +--rw (wdm-tnl:grid-type)?
      |                 |     |        +--:(wdm-tnl:fixed-dwdm)
      |                 |     |        |  +--rw wdm-tnl:dwdm-n?
-     |                 |     |        |          l0-types:dwdm-n
+     |                 |     |        |          dwdm-n
      |                 |     |        +--:(wdm-tnl:cwdm)
      |                 |     |        |  +--rw wdm-tnl:cwdm-n?
-     |                 |     |        |          l0-types:cwdm-n
+     |                 |     |        |          cwdm-n
      |                 |     |        +--:(wdm-tnl:flexi-grid)
      |                 |     |           +--rw wdm-tnl:flexi-n?
-     |                 |     |                   l0-types:flexi-n
+     |                 |     |                   flexi-n
      |                 |     +--rw direction?
      |                 |             te-label-direction
      |                 +--rw label-step
@@ -522,35 +522,35 @@ module: ietf-te
      |     |     |     |  |  |        |        |        |  +--rw (wdm-tnl:fixed-single-or-super-channel)?
      |     |     |     |  |  |        |        |        |     +--:(wdm-tnl:single)
      |     |     |     |  |  |        |        |        |     |  +--rw wdm-tnl:dwdm-n?
-     |     |     |     |  |  |        |        |        |     |          l0-types:dwdm-n
+     |     |     |     |  |  |        |        |        |     |          dwdm-n
      |     |     |     |  |  |        |        |        |     +--:(wdm-tnl:multi)
      |     |     |     |  |  |        |        |        |        +--rw wdm-tnl:subcarrier-dwdm-n*
-     |     |     |     |  |  |        |        |        |                l0-types:dwdm-n
+     |     |     |     |  |  |        |        |        |                dwdm-n
      |     |     |     |  |  |        |        |        +--:(wdm-tnl:cwdm)
      |     |     |     |  |  |        |        |        |  +--rw wdm-tnl:cwdm-n?
-     |     |     |     |  |  |        |        |        |          l0-types:cwdm-n
+     |     |     |     |  |  |        |        |        |          cwdm-n
      |     |     |     |  |  |        |        |        +--:(wdm-tnl:flexi-grid)
      |     |     |     |  |  |        |        |           +--rw (wdm-tnl:single-or-super-channel)?
      |     |     |     |  |  |        |        |              +--:(wdm-tnl:single)
      |     |     |     |  |  |        |        |              |  +--rw wdm-tnl:flexi-n?
-     |     |     |     |  |  |        |        |              |  |       l0-types:flexi-n
+     |     |     |     |  |  |        |        |              |  |       flexi-n
      |     |     |     |  |  |        |        |              |  +--rw wdm-tnl:flexi-m?
-     |     |     |     |  |  |        |        |              |          l0-types:flexi-m
+     |     |     |     |  |  |        |        |              |          flexi-m
      |     |     |     |  |  |        |        |              x--:(wdm-tnl:super)
      |     |     |     |  |  |        |        |              |  x--rw wdm-tnl:subcarrier-flexi-n*
      |     |     |     |  |  |        |        |              |          [flexi-n]
      |     |     |     |  |  |        |        |              |     +--rw wdm-tnl:flexi-n
-     |     |     |     |  |  |        |        |              |     |       l0-types:flexi-n
+     |     |     |     |  |  |        |        |              |     |       flexi-n
      |     |     |     |  |  |        |        |              |     +--rw wdm-tnl:flexi-m?
-     |     |     |     |  |  |        |        |              |             l0-types:flexi-m
+     |     |     |     |  |  |        |        |              |             flexi-m
      |     |     |     |  |  |        |        |              +--:(wdm-tnl:multi)
      |     |     |     |  |  |        |        |                 +--rw wdm-tnl:frequency-slots
      |     |     |     |  |  |        |        |                    +--rw wdm-tnl:frequency-slot*
      |     |     |     |  |  |        |        |                            [flexi-n]
      |     |     |     |  |  |        |        |                       +--rw wdm-tnl:flexi-n
-     |     |     |     |  |  |        |        |                       |       l0-types:flexi-n
+     |     |     |     |  |  |        |        |                       |       flexi-n
      |     |     |     |  |  |        |        |                       +--rw wdm-tnl:flexi-m?
-     |     |     |     |  |  |        |        |                               l0-types:flexi-m
+     |     |     |     |  |  |        |        |                               flexi-m
      |     |     |     |  |  |        |        +--rw direction?
      |     |     |     |  |  |        |                te-label-direction
      |     |     |     |  |  |        +--:(srlg)
@@ -611,35 +611,35 @@ module: ietf-te
      |     |     |     |  |                    |        |  +--rw (wdm-tnl:fixed-single-or-super-channel)?
      |     |     |     |  |                    |        |     +--:(wdm-tnl:single)
      |     |     |     |  |                    |        |     |  +--rw wdm-tnl:dwdm-n?
-     |     |     |     |  |                    |        |     |          l0-types:dwdm-n
+     |     |     |     |  |                    |        |     |          dwdm-n
      |     |     |     |  |                    |        |     +--:(wdm-tnl:multi)
      |     |     |     |  |                    |        |        +--rw wdm-tnl:subcarrier-dwdm-n*
-     |     |     |     |  |                    |        |                l0-types:dwdm-n
+     |     |     |     |  |                    |        |                dwdm-n
      |     |     |     |  |                    |        +--:(wdm-tnl:cwdm)
      |     |     |     |  |                    |        |  +--rw wdm-tnl:cwdm-n?
-     |     |     |     |  |                    |        |          l0-types:cwdm-n
+     |     |     |     |  |                    |        |          cwdm-n
      |     |     |     |  |                    |        +--:(wdm-tnl:flexi-grid)
      |     |     |     |  |                    |           +--rw (wdm-tnl:single-or-super-channel)?
      |     |     |     |  |                    |              +--:(wdm-tnl:single)
      |     |     |     |  |                    |              |  +--rw wdm-tnl:flexi-n?
-     |     |     |     |  |                    |              |  |       l0-types:flexi-n
+     |     |     |     |  |                    |              |  |       flexi-n
      |     |     |     |  |                    |              |  +--rw wdm-tnl:flexi-m?
-     |     |     |     |  |                    |              |          l0-types:flexi-m
+     |     |     |     |  |                    |              |          flexi-m
      |     |     |     |  |                    |              x--:(wdm-tnl:super)
      |     |     |     |  |                    |              |  x--rw wdm-tnl:subcarrier-flexi-n*
      |     |     |     |  |                    |              |          [flexi-n]
      |     |     |     |  |                    |              |     +--rw wdm-tnl:flexi-n
-     |     |     |     |  |                    |              |     |       l0-types:flexi-n
+     |     |     |     |  |                    |              |     |       flexi-n
      |     |     |     |  |                    |              |     +--rw wdm-tnl:flexi-m?
-     |     |     |     |  |                    |              |             l0-types:flexi-m
+     |     |     |     |  |                    |              |             flexi-m
      |     |     |     |  |                    |              +--:(wdm-tnl:multi)
      |     |     |     |  |                    |                 +--rw wdm-tnl:frequency-slots
      |     |     |     |  |                    |                    +--rw wdm-tnl:frequency-slot*
      |     |     |     |  |                    |                            [flexi-n]
      |     |     |     |  |                    |                       +--rw wdm-tnl:flexi-n
-     |     |     |     |  |                    |                       |       l0-types:flexi-n
+     |     |     |     |  |                    |                       |       flexi-n
      |     |     |     |  |                    |                       +--rw wdm-tnl:flexi-m?
-     |     |     |     |  |                    |                               l0-types:flexi-m
+     |     |     |     |  |                    |                               flexi-m
      |     |     |     |  |                    +--rw direction?
      |     |     |     |  |                            te-label-direction
      |     |     |     |  +--rw tiebreakers
@@ -845,35 +845,35 @@ module: ietf-te
      |     |     |  |              |        |  +--rw (wdm-tnl:fixed-single-or-super-channel)?
      |     |     |  |              |        |     +--:(wdm-tnl:single)
      |     |     |  |              |        |     |  +--rw wdm-tnl:dwdm-n?
-     |     |     |  |              |        |     |          l0-types:dwdm-n
+     |     |     |  |              |        |     |          dwdm-n
      |     |     |  |              |        |     +--:(wdm-tnl:multi)
      |     |     |  |              |        |        +--rw wdm-tnl:subcarrier-dwdm-n*
-     |     |     |  |              |        |                l0-types:dwdm-n
+     |     |     |  |              |        |                dwdm-n
      |     |     |  |              |        +--:(wdm-tnl:cwdm)
      |     |     |  |              |        |  +--rw wdm-tnl:cwdm-n?
-     |     |     |  |              |        |          l0-types:cwdm-n
+     |     |     |  |              |        |          cwdm-n
      |     |     |  |              |        +--:(wdm-tnl:flexi-grid)
      |     |     |  |              |           +--rw (wdm-tnl:single-or-super-channel)?
      |     |     |  |              |              +--:(wdm-tnl:single)
      |     |     |  |              |              |  +--rw wdm-tnl:flexi-n?
-     |     |     |  |              |              |  |       l0-types:flexi-n
+     |     |     |  |              |              |  |       flexi-n
      |     |     |  |              |              |  +--rw wdm-tnl:flexi-m?
-     |     |     |  |              |              |          l0-types:flexi-m
+     |     |     |  |              |              |          flexi-m
      |     |     |  |              |              x--:(wdm-tnl:super)
      |     |     |  |              |              |  x--rw wdm-tnl:subcarrier-flexi-n*
      |     |     |  |              |              |          [flexi-n]
      |     |     |  |              |              |     +--rw wdm-tnl:flexi-n
-     |     |     |  |              |              |     |       l0-types:flexi-n
+     |     |     |  |              |              |     |       flexi-n
      |     |     |  |              |              |     +--rw wdm-tnl:flexi-m?
-     |     |     |  |              |              |             l0-types:flexi-m
+     |     |     |  |              |              |             flexi-m
      |     |     |  |              |              +--:(wdm-tnl:multi)
      |     |     |  |              |                 +--rw wdm-tnl:frequency-slots
      |     |     |  |              |                    +--rw wdm-tnl:frequency-slot*
      |     |     |  |              |                            [flexi-n]
      |     |     |  |              |                       +--rw wdm-tnl:flexi-n
-     |     |     |  |              |                       |       l0-types:flexi-n
+     |     |     |  |              |                       |       flexi-n
      |     |     |  |              |                       +--rw wdm-tnl:flexi-m?
-     |     |     |  |              |                               l0-types:flexi-m
+     |     |     |  |              |                               flexi-m
      |     |     |  |              +--rw direction?
      |     |     |  |                      te-label-direction
      |     |     |  +--rw route-object-include-exclude* [index]
@@ -916,35 +916,35 @@ module: ietf-te
      |     |     |        |        |        |  +--rw (wdm-tnl:fixed-single-or-super-channel)?
      |     |     |        |        |        |     +--:(wdm-tnl:single)
      |     |     |        |        |        |     |  +--rw wdm-tnl:dwdm-n?
-     |     |     |        |        |        |     |          l0-types:dwdm-n
+     |     |     |        |        |        |     |          dwdm-n
      |     |     |        |        |        |     +--:(wdm-tnl:multi)
      |     |     |        |        |        |        +--rw wdm-tnl:subcarrier-dwdm-n*
-     |     |     |        |        |        |                l0-types:dwdm-n
+     |     |     |        |        |        |                dwdm-n
      |     |     |        |        |        +--:(wdm-tnl:cwdm)
      |     |     |        |        |        |  +--rw wdm-tnl:cwdm-n?
-     |     |     |        |        |        |          l0-types:cwdm-n
+     |     |     |        |        |        |          cwdm-n
      |     |     |        |        |        +--:(wdm-tnl:flexi-grid)
      |     |     |        |        |           +--rw (wdm-tnl:single-or-super-channel)?
      |     |     |        |        |              +--:(wdm-tnl:single)
      |     |     |        |        |              |  +--rw wdm-tnl:flexi-n?
-     |     |     |        |        |              |  |       l0-types:flexi-n
+     |     |     |        |        |              |  |       flexi-n
      |     |     |        |        |              |  +--rw wdm-tnl:flexi-m?
-     |     |     |        |        |              |          l0-types:flexi-m
+     |     |     |        |        |              |          flexi-m
      |     |     |        |        |              x--:(wdm-tnl:super)
      |     |     |        |        |              |  x--rw wdm-tnl:subcarrier-flexi-n*
      |     |     |        |        |              |          [flexi-n]
      |     |     |        |        |              |     +--rw wdm-tnl:flexi-n
-     |     |     |        |        |              |     |       l0-types:flexi-n
+     |     |     |        |        |              |     |       flexi-n
      |     |     |        |        |              |     +--rw wdm-tnl:flexi-m?
-     |     |     |        |        |              |             l0-types:flexi-m
+     |     |     |        |        |              |             flexi-m
      |     |     |        |        |              +--:(wdm-tnl:multi)
      |     |     |        |        |                 +--rw wdm-tnl:frequency-slots
      |     |     |        |        |                    +--rw wdm-tnl:frequency-slot*
      |     |     |        |        |                            [flexi-n]
      |     |     |        |        |                       +--rw wdm-tnl:flexi-n
-     |     |     |        |        |                       |       l0-types:flexi-n
+     |     |     |        |        |                       |       flexi-n
      |     |     |        |        |                       +--rw wdm-tnl:flexi-m?
-     |     |     |        |        |                               l0-types:flexi-m
+     |     |     |        |        |                               flexi-m
      |     |     |        |        +--rw direction?
      |     |     |        |                te-label-direction
      |     |     |        +--:(srlg)
@@ -965,13 +965,13 @@ module: ietf-te
      |     |     |        |     |     +--rw (wdm-tnl:grid-type)?
      |     |     |        |     |        +--:(wdm-tnl:fixed-dwdm)
      |     |     |        |     |        |  +--rw wdm-tnl:dwdm-n?
-     |     |     |        |     |        |          l0-types:dwdm-n
+     |     |     |        |     |        |          dwdm-n
      |     |     |        |     |        +--:(wdm-tnl:cwdm)
      |     |     |        |     |        |  +--rw wdm-tnl:cwdm-n?
-     |     |     |        |     |        |          l0-types:cwdm-n
+     |     |     |        |     |        |          cwdm-n
      |     |     |        |     |        +--:(wdm-tnl:flexi-grid)
      |     |     |        |     |           +--rw wdm-tnl:flexi-n?
-     |     |     |        |     |                   l0-types:flexi-n
+     |     |     |        |     |                   flexi-n
      |     |     |        |     +--rw direction?
      |     |     |        |             te-label-direction
      |     |     |        +--rw label-end
@@ -984,13 +984,13 @@ module: ietf-te
      |     |     |        |     |     +--rw (wdm-tnl:grid-type)?
      |     |     |        |     |        +--:(wdm-tnl:fixed-dwdm)
      |     |     |        |     |        |  +--rw wdm-tnl:dwdm-n?
-     |     |     |        |     |        |          l0-types:dwdm-n
+     |     |     |        |     |        |          dwdm-n
      |     |     |        |     |        +--:(wdm-tnl:cwdm)
      |     |     |        |     |        |  +--rw wdm-tnl:cwdm-n?
-     |     |     |        |     |        |          l0-types:cwdm-n
+     |     |     |        |     |        |          cwdm-n
      |     |     |        |     |        +--:(wdm-tnl:flexi-grid)
      |     |     |        |     |           +--rw wdm-tnl:flexi-n?
-     |     |     |        |     |                   l0-types:flexi-n
+     |     |     |        |     |                   flexi-n
      |     |     |        |     +--rw direction?
      |     |     |        |             te-label-direction
      |     |     |        +--rw label-step
@@ -1038,13 +1038,13 @@ module: ietf-te
      |     |     |        |     |     +--rw (wdm-tnl:grid-type)?
      |     |     |        |     |        +--:(wdm-tnl:fixed-dwdm)
      |     |     |        |     |        |  +--rw wdm-tnl:dwdm-n?
-     |     |     |        |     |        |          l0-types:dwdm-n
+     |     |     |        |     |        |          dwdm-n
      |     |     |        |     |        +--:(wdm-tnl:cwdm)
      |     |     |        |     |        |  +--rw wdm-tnl:cwdm-n?
-     |     |     |        |     |        |          l0-types:cwdm-n
+     |     |     |        |     |        |          cwdm-n
      |     |     |        |     |        +--:(wdm-tnl:flexi-grid)
      |     |     |        |     |           +--rw wdm-tnl:flexi-n?
-     |     |     |        |     |                   l0-types:flexi-n
+     |     |     |        |     |                   flexi-n
      |     |     |        |     +--rw direction?
      |     |     |        |             te-label-direction
      |     |     |        +--rw label-end
@@ -1057,13 +1057,13 @@ module: ietf-te
      |     |     |        |     |     +--rw (wdm-tnl:grid-type)?
      |     |     |        |     |        +--:(wdm-tnl:fixed-dwdm)
      |     |     |        |     |        |  +--rw wdm-tnl:dwdm-n?
-     |     |     |        |     |        |          l0-types:dwdm-n
+     |     |     |        |     |        |          dwdm-n
      |     |     |        |     |        +--:(wdm-tnl:cwdm)
      |     |     |        |     |        |  +--rw wdm-tnl:cwdm-n?
-     |     |     |        |     |        |          l0-types:cwdm-n
+     |     |     |        |     |        |          cwdm-n
      |     |     |        |     |        +--:(wdm-tnl:flexi-grid)
      |     |     |        |     |           +--rw wdm-tnl:flexi-n?
-     |     |     |        |     |                   l0-types:flexi-n
+     |     |     |        |     |                   flexi-n
      |     |     |        |     +--rw direction?
      |     |     |        |             te-label-direction
      |     |     |        +--rw label-step
@@ -1264,35 +1264,35 @@ module: ietf-te
      |     |     |        |                 |        |  +--ro (wdm-tnl:fixed-single-or-super-channel)?
      |     |     |        |                 |        |     +--:(wdm-tnl:single)
      |     |     |        |                 |        |     |  +--ro wdm-tnl:dwdm-n?
-     |     |     |        |                 |        |     |          l0-types:dwdm-n
+     |     |     |        |                 |        |     |          dwdm-n
      |     |     |        |                 |        |     +--:(wdm-tnl:multi)
      |     |     |        |                 |        |        +--ro wdm-tnl:subcarrier-dwdm-n*
-     |     |     |        |                 |        |                l0-types:dwdm-n
+     |     |     |        |                 |        |                dwdm-n
      |     |     |        |                 |        +--:(wdm-tnl:cwdm)
      |     |     |        |                 |        |  +--ro wdm-tnl:cwdm-n?
-     |     |     |        |                 |        |          l0-types:cwdm-n
+     |     |     |        |                 |        |          cwdm-n
      |     |     |        |                 |        +--:(wdm-tnl:flexi-grid)
      |     |     |        |                 |           +--ro (wdm-tnl:single-or-super-channel)?
      |     |     |        |                 |              +--:(wdm-tnl:single)
      |     |     |        |                 |              |  +--ro wdm-tnl:flexi-n?
-     |     |     |        |                 |              |  |       l0-types:flexi-n
+     |     |     |        |                 |              |  |       flexi-n
      |     |     |        |                 |              |  +--ro wdm-tnl:flexi-m?
-     |     |     |        |                 |              |          l0-types:flexi-m
+     |     |     |        |                 |              |          flexi-m
      |     |     |        |                 |              x--:(wdm-tnl:super)
      |     |     |        |                 |              |  x--ro wdm-tnl:subcarrier-flexi-n*
      |     |     |        |                 |              |          [flexi-n]
      |     |     |        |                 |              |     +--ro wdm-tnl:flexi-n
-     |     |     |        |                 |              |     |       l0-types:flexi-n
+     |     |     |        |                 |              |     |       flexi-n
      |     |     |        |                 |              |     +--ro wdm-tnl:flexi-m?
-     |     |     |        |                 |              |             l0-types:flexi-m
+     |     |     |        |                 |              |             flexi-m
      |     |     |        |                 |              +--:(wdm-tnl:multi)
      |     |     |        |                 |                 +--ro wdm-tnl:frequency-slots
      |     |     |        |                 |                    +--ro wdm-tnl:frequency-slot*
      |     |     |        |                 |                            [flexi-n]
      |     |     |        |                 |                       +--ro wdm-tnl:flexi-n
-     |     |     |        |                 |                       |       l0-types:flexi-n
+     |     |     |        |                 |                       |       flexi-n
      |     |     |        |                 |                       +--ro wdm-tnl:flexi-m?
-     |     |     |        |                 |                               l0-types:flexi-m
+     |     |     |        |                 |                               flexi-m
      |     |     |        |                 +--ro direction?
      |     |     |        |                         te-label-direction
      |     |     |        +--ro te-bandwidth
@@ -1414,35 +1414,35 @@ module: ietf-te
      |     |     |  |     |  |  |        |        |        |  +--rw (wdm-tnl:fixed-single-or-super-channel)?
      |     |     |  |     |  |  |        |        |        |     +--:(wdm-tnl:single)
      |     |     |  |     |  |  |        |        |        |     |  +--rw wdm-tnl:dwdm-n?
-     |     |     |  |     |  |  |        |        |        |     |          l0-types:dwdm-n
+     |     |     |  |     |  |  |        |        |        |     |          dwdm-n
      |     |     |  |     |  |  |        |        |        |     +--:(wdm-tnl:multi)
      |     |     |  |     |  |  |        |        |        |        +--rw wdm-tnl:subcarrier-dwdm-n*
-     |     |     |  |     |  |  |        |        |        |                l0-types:dwdm-n
+     |     |     |  |     |  |  |        |        |        |                dwdm-n
      |     |     |  |     |  |  |        |        |        +--:(wdm-tnl:cwdm)
      |     |     |  |     |  |  |        |        |        |  +--rw wdm-tnl:cwdm-n?
-     |     |     |  |     |  |  |        |        |        |          l0-types:cwdm-n
+     |     |     |  |     |  |  |        |        |        |          cwdm-n
      |     |     |  |     |  |  |        |        |        +--:(wdm-tnl:flexi-grid)
      |     |     |  |     |  |  |        |        |           +--rw (wdm-tnl:single-or-super-channel)?
      |     |     |  |     |  |  |        |        |              +--:(wdm-tnl:single)
      |     |     |  |     |  |  |        |        |              |  +--rw wdm-tnl:flexi-n?
-     |     |     |  |     |  |  |        |        |              |  |       l0-types:flexi-n
+     |     |     |  |     |  |  |        |        |              |  |       flexi-n
      |     |     |  |     |  |  |        |        |              |  +--rw wdm-tnl:flexi-m?
-     |     |     |  |     |  |  |        |        |              |          l0-types:flexi-m
+     |     |     |  |     |  |  |        |        |              |          flexi-m
      |     |     |  |     |  |  |        |        |              x--:(wdm-tnl:super)
      |     |     |  |     |  |  |        |        |              |  x--rw wdm-tnl:subcarrier-flexi-n*
      |     |     |  |     |  |  |        |        |              |          [flexi-n]
      |     |     |  |     |  |  |        |        |              |     +--rw wdm-tnl:flexi-n
-     |     |     |  |     |  |  |        |        |              |     |       l0-types:flexi-n
+     |     |     |  |     |  |  |        |        |              |     |       flexi-n
      |     |     |  |     |  |  |        |        |              |     +--rw wdm-tnl:flexi-m?
-     |     |     |  |     |  |  |        |        |              |             l0-types:flexi-m
+     |     |     |  |     |  |  |        |        |              |             flexi-m
      |     |     |  |     |  |  |        |        |              +--:(wdm-tnl:multi)
      |     |     |  |     |  |  |        |        |                 +--rw wdm-tnl:frequency-slots
      |     |     |  |     |  |  |        |        |                    +--rw wdm-tnl:frequency-slot*
      |     |     |  |     |  |  |        |        |                            [flexi-n]
      |     |     |  |     |  |  |        |        |                       +--rw wdm-tnl:flexi-n
-     |     |     |  |     |  |  |        |        |                       |       l0-types:flexi-n
+     |     |     |  |     |  |  |        |        |                       |       flexi-n
      |     |     |  |     |  |  |        |        |                       +--rw wdm-tnl:flexi-m?
-     |     |     |  |     |  |  |        |        |                               l0-types:flexi-m
+     |     |     |  |     |  |  |        |        |                               flexi-m
      |     |     |  |     |  |  |        |        +--rw direction?
      |     |     |  |     |  |  |        |                te-label-direction
      |     |     |  |     |  |  |        +--:(srlg)
@@ -1503,35 +1503,35 @@ module: ietf-te
      |     |     |  |     |  |                    |        |  +--rw (wdm-tnl:fixed-single-or-super-channel)?
      |     |     |  |     |  |                    |        |     +--:(wdm-tnl:single)
      |     |     |  |     |  |                    |        |     |  +--rw wdm-tnl:dwdm-n?
-     |     |     |  |     |  |                    |        |     |          l0-types:dwdm-n
+     |     |     |  |     |  |                    |        |     |          dwdm-n
      |     |     |  |     |  |                    |        |     +--:(wdm-tnl:multi)
      |     |     |  |     |  |                    |        |        +--rw wdm-tnl:subcarrier-dwdm-n*
-     |     |     |  |     |  |                    |        |                l0-types:dwdm-n
+     |     |     |  |     |  |                    |        |                dwdm-n
      |     |     |  |     |  |                    |        +--:(wdm-tnl:cwdm)
      |     |     |  |     |  |                    |        |  +--rw wdm-tnl:cwdm-n?
-     |     |     |  |     |  |                    |        |          l0-types:cwdm-n
+     |     |     |  |     |  |                    |        |          cwdm-n
      |     |     |  |     |  |                    |        +--:(wdm-tnl:flexi-grid)
      |     |     |  |     |  |                    |           +--rw (wdm-tnl:single-or-super-channel)?
      |     |     |  |     |  |                    |              +--:(wdm-tnl:single)
      |     |     |  |     |  |                    |              |  +--rw wdm-tnl:flexi-n?
-     |     |     |  |     |  |                    |              |  |       l0-types:flexi-n
+     |     |     |  |     |  |                    |              |  |       flexi-n
      |     |     |  |     |  |                    |              |  +--rw wdm-tnl:flexi-m?
-     |     |     |  |     |  |                    |              |          l0-types:flexi-m
+     |     |     |  |     |  |                    |              |          flexi-m
      |     |     |  |     |  |                    |              x--:(wdm-tnl:super)
      |     |     |  |     |  |                    |              |  x--rw wdm-tnl:subcarrier-flexi-n*
      |     |     |  |     |  |                    |              |          [flexi-n]
      |     |     |  |     |  |                    |              |     +--rw wdm-tnl:flexi-n
-     |     |     |  |     |  |                    |              |     |       l0-types:flexi-n
+     |     |     |  |     |  |                    |              |     |       flexi-n
      |     |     |  |     |  |                    |              |     +--rw wdm-tnl:flexi-m?
-     |     |     |  |     |  |                    |              |             l0-types:flexi-m
+     |     |     |  |     |  |                    |              |             flexi-m
      |     |     |  |     |  |                    |              +--:(wdm-tnl:multi)
      |     |     |  |     |  |                    |                 +--rw wdm-tnl:frequency-slots
      |     |     |  |     |  |                    |                    +--rw wdm-tnl:frequency-slot*
      |     |     |  |     |  |                    |                            [flexi-n]
      |     |     |  |     |  |                    |                       +--rw wdm-tnl:flexi-n
-     |     |     |  |     |  |                    |                       |       l0-types:flexi-n
+     |     |     |  |     |  |                    |                       |       flexi-n
      |     |     |  |     |  |                    |                       +--rw wdm-tnl:flexi-m?
-     |     |     |  |     |  |                    |                               l0-types:flexi-m
+     |     |     |  |     |  |                    |                               flexi-m
      |     |     |  |     |  |                    +--rw direction?
      |     |     |  |     |  |                            te-label-direction
      |     |     |  |     |  +--rw tiebreakers
@@ -1742,35 +1742,35 @@ module: ietf-te
      |     |     |  |  |              |        |  +--rw (wdm-tnl:fixed-single-or-super-channel)?
      |     |     |  |  |              |        |     +--:(wdm-tnl:single)
      |     |     |  |  |              |        |     |  +--rw wdm-tnl:dwdm-n?
-     |     |     |  |  |              |        |     |          l0-types:dwdm-n
+     |     |     |  |  |              |        |     |          dwdm-n
      |     |     |  |  |              |        |     +--:(wdm-tnl:multi)
      |     |     |  |  |              |        |        +--rw wdm-tnl:subcarrier-dwdm-n*
-     |     |     |  |  |              |        |                l0-types:dwdm-n
+     |     |     |  |  |              |        |                dwdm-n
      |     |     |  |  |              |        +--:(wdm-tnl:cwdm)
      |     |     |  |  |              |        |  +--rw wdm-tnl:cwdm-n?
-     |     |     |  |  |              |        |          l0-types:cwdm-n
+     |     |     |  |  |              |        |          cwdm-n
      |     |     |  |  |              |        +--:(wdm-tnl:flexi-grid)
      |     |     |  |  |              |           +--rw (wdm-tnl:single-or-super-channel)?
      |     |     |  |  |              |              +--:(wdm-tnl:single)
      |     |     |  |  |              |              |  +--rw wdm-tnl:flexi-n?
-     |     |     |  |  |              |              |  |       l0-types:flexi-n
+     |     |     |  |  |              |              |  |       flexi-n
      |     |     |  |  |              |              |  +--rw wdm-tnl:flexi-m?
-     |     |     |  |  |              |              |          l0-types:flexi-m
+     |     |     |  |  |              |              |          flexi-m
      |     |     |  |  |              |              x--:(wdm-tnl:super)
      |     |     |  |  |              |              |  x--rw wdm-tnl:subcarrier-flexi-n*
      |     |     |  |  |              |              |          [flexi-n]
      |     |     |  |  |              |              |     +--rw wdm-tnl:flexi-n
-     |     |     |  |  |              |              |     |       l0-types:flexi-n
+     |     |     |  |  |              |              |     |       flexi-n
      |     |     |  |  |              |              |     +--rw wdm-tnl:flexi-m?
-     |     |     |  |  |              |              |             l0-types:flexi-m
+     |     |     |  |  |              |              |             flexi-m
      |     |     |  |  |              |              +--:(wdm-tnl:multi)
      |     |     |  |  |              |                 +--rw wdm-tnl:frequency-slots
      |     |     |  |  |              |                    +--rw wdm-tnl:frequency-slot*
      |     |     |  |  |              |                            [flexi-n]
      |     |     |  |  |              |                       +--rw wdm-tnl:flexi-n
-     |     |     |  |  |              |                       |       l0-types:flexi-n
+     |     |     |  |  |              |                       |       flexi-n
      |     |     |  |  |              |                       +--rw wdm-tnl:flexi-m?
-     |     |     |  |  |              |                               l0-types:flexi-m
+     |     |     |  |  |              |                               flexi-m
      |     |     |  |  |              +--rw direction?
      |     |     |  |  |                      te-label-direction
      |     |     |  |  +--rw route-object-include-exclude* [index]
@@ -1816,35 +1816,35 @@ module: ietf-te
      |     |     |  |        |        |        |  +--rw (wdm-tnl:fixed-single-or-super-channel)?
      |     |     |  |        |        |        |     +--:(wdm-tnl:single)
      |     |     |  |        |        |        |     |  +--rw wdm-tnl:dwdm-n?
-     |     |     |  |        |        |        |     |          l0-types:dwdm-n
+     |     |     |  |        |        |        |     |          dwdm-n
      |     |     |  |        |        |        |     +--:(wdm-tnl:multi)
      |     |     |  |        |        |        |        +--rw wdm-tnl:subcarrier-dwdm-n*
-     |     |     |  |        |        |        |                l0-types:dwdm-n
+     |     |     |  |        |        |        |                dwdm-n
      |     |     |  |        |        |        +--:(wdm-tnl:cwdm)
      |     |     |  |        |        |        |  +--rw wdm-tnl:cwdm-n?
-     |     |     |  |        |        |        |          l0-types:cwdm-n
+     |     |     |  |        |        |        |          cwdm-n
      |     |     |  |        |        |        +--:(wdm-tnl:flexi-grid)
      |     |     |  |        |        |           +--rw (wdm-tnl:single-or-super-channel)?
      |     |     |  |        |        |              +--:(wdm-tnl:single)
      |     |     |  |        |        |              |  +--rw wdm-tnl:flexi-n?
-     |     |     |  |        |        |              |  |       l0-types:flexi-n
+     |     |     |  |        |        |              |  |       flexi-n
      |     |     |  |        |        |              |  +--rw wdm-tnl:flexi-m?
-     |     |     |  |        |        |              |          l0-types:flexi-m
+     |     |     |  |        |        |              |          flexi-m
      |     |     |  |        |        |              x--:(wdm-tnl:super)
      |     |     |  |        |        |              |  x--rw wdm-tnl:subcarrier-flexi-n*
      |     |     |  |        |        |              |          [flexi-n]
      |     |     |  |        |        |              |     +--rw wdm-tnl:flexi-n
-     |     |     |  |        |        |              |     |       l0-types:flexi-n
+     |     |     |  |        |        |              |     |       flexi-n
      |     |     |  |        |        |              |     +--rw wdm-tnl:flexi-m?
-     |     |     |  |        |        |              |             l0-types:flexi-m
+     |     |     |  |        |        |              |             flexi-m
      |     |     |  |        |        |              +--:(wdm-tnl:multi)
      |     |     |  |        |        |                 +--rw wdm-tnl:frequency-slots
      |     |     |  |        |        |                    +--rw wdm-tnl:frequency-slot*
      |     |     |  |        |        |                            [flexi-n]
      |     |     |  |        |        |                       +--rw wdm-tnl:flexi-n
-     |     |     |  |        |        |                       |       l0-types:flexi-n
+     |     |     |  |        |        |                       |       flexi-n
      |     |     |  |        |        |                       +--rw wdm-tnl:flexi-m?
-     |     |     |  |        |        |                               l0-types:flexi-m
+     |     |     |  |        |        |                               flexi-m
      |     |     |  |        |        +--rw direction?
      |     |     |  |        |                te-label-direction
      |     |     |  |        +--:(srlg)
@@ -1865,13 +1865,13 @@ module: ietf-te
      |     |     |  |        |     |     +--rw (wdm-tnl:grid-type)?
      |     |     |  |        |     |        +--:(wdm-tnl:fixed-dwdm)
      |     |     |  |        |     |        |  +--rw wdm-tnl:dwdm-n?
-     |     |     |  |        |     |        |          l0-types:dwdm-n
+     |     |     |  |        |     |        |          dwdm-n
      |     |     |  |        |     |        +--:(wdm-tnl:cwdm)
      |     |     |  |        |     |        |  +--rw wdm-tnl:cwdm-n?
-     |     |     |  |        |     |        |          l0-types:cwdm-n
+     |     |     |  |        |     |        |          cwdm-n
      |     |     |  |        |     |        +--:(wdm-tnl:flexi-grid)
      |     |     |  |        |     |           +--rw wdm-tnl:flexi-n?
-     |     |     |  |        |     |                   l0-types:flexi-n
+     |     |     |  |        |     |                   flexi-n
      |     |     |  |        |     +--rw direction?
      |     |     |  |        |             te-label-direction
      |     |     |  |        +--rw label-end
@@ -1884,13 +1884,13 @@ module: ietf-te
      |     |     |  |        |     |     +--rw (wdm-tnl:grid-type)?
      |     |     |  |        |     |        +--:(wdm-tnl:fixed-dwdm)
      |     |     |  |        |     |        |  +--rw wdm-tnl:dwdm-n?
-     |     |     |  |        |     |        |          l0-types:dwdm-n
+     |     |     |  |        |     |        |          dwdm-n
      |     |     |  |        |     |        +--:(wdm-tnl:cwdm)
      |     |     |  |        |     |        |  +--rw wdm-tnl:cwdm-n?
-     |     |     |  |        |     |        |          l0-types:cwdm-n
+     |     |     |  |        |     |        |          cwdm-n
      |     |     |  |        |     |        +--:(wdm-tnl:flexi-grid)
      |     |     |  |        |     |           +--rw wdm-tnl:flexi-n?
-     |     |     |  |        |     |                   l0-types:flexi-n
+     |     |     |  |        |     |                   flexi-n
      |     |     |  |        |     +--rw direction?
      |     |     |  |        |             te-label-direction
      |     |     |  |        +--rw label-step
@@ -1939,13 +1939,13 @@ module: ietf-te
      |     |     |  |        |     |     +--rw (wdm-tnl:grid-type)?
      |     |     |  |        |     |        +--:(wdm-tnl:fixed-dwdm)
      |     |     |  |        |     |        |  +--rw wdm-tnl:dwdm-n?
-     |     |     |  |        |     |        |          l0-types:dwdm-n
+     |     |     |  |        |     |        |          dwdm-n
      |     |     |  |        |     |        +--:(wdm-tnl:cwdm)
      |     |     |  |        |     |        |  +--rw wdm-tnl:cwdm-n?
-     |     |     |  |        |     |        |          l0-types:cwdm-n
+     |     |     |  |        |     |        |          cwdm-n
      |     |     |  |        |     |        +--:(wdm-tnl:flexi-grid)
      |     |     |  |        |     |           +--rw wdm-tnl:flexi-n?
-     |     |     |  |        |     |                   l0-types:flexi-n
+     |     |     |  |        |     |                   flexi-n
      |     |     |  |        |     +--rw direction?
      |     |     |  |        |             te-label-direction
      |     |     |  |        +--rw label-end
@@ -1958,13 +1958,13 @@ module: ietf-te
      |     |     |  |        |     |     +--rw (wdm-tnl:grid-type)?
      |     |     |  |        |     |        +--:(wdm-tnl:fixed-dwdm)
      |     |     |  |        |     |        |  +--rw wdm-tnl:dwdm-n?
-     |     |     |  |        |     |        |          l0-types:dwdm-n
+     |     |     |  |        |     |        |          dwdm-n
      |     |     |  |        |     |        +--:(wdm-tnl:cwdm)
      |     |     |  |        |     |        |  +--rw wdm-tnl:cwdm-n?
-     |     |     |  |        |     |        |          l0-types:cwdm-n
+     |     |     |  |        |     |        |          cwdm-n
      |     |     |  |        |     |        +--:(wdm-tnl:flexi-grid)
      |     |     |  |        |     |           +--rw wdm-tnl:flexi-n?
-     |     |     |  |        |     |                   l0-types:flexi-n
+     |     |     |  |        |     |                   flexi-n
      |     |     |  |        |     +--rw direction?
      |     |     |  |        |             te-label-direction
      |     |     |  |        +--rw label-step
@@ -2168,35 +2168,35 @@ module: ietf-te
      |     |     |  |        |                 |        |  +--ro (wdm-tnl:fixed-single-or-super-channel)?
      |     |     |  |        |                 |        |     +--:(wdm-tnl:single)
      |     |     |  |        |                 |        |     |  +--ro wdm-tnl:dwdm-n?
-     |     |     |  |        |                 |        |     |          l0-types:dwdm-n
+     |     |     |  |        |                 |        |     |          dwdm-n
      |     |     |  |        |                 |        |     +--:(wdm-tnl:multi)
      |     |     |  |        |                 |        |        +--ro wdm-tnl:subcarrier-dwdm-n*
-     |     |     |  |        |                 |        |                l0-types:dwdm-n
+     |     |     |  |        |                 |        |                dwdm-n
      |     |     |  |        |                 |        +--:(wdm-tnl:cwdm)
      |     |     |  |        |                 |        |  +--ro wdm-tnl:cwdm-n?
-     |     |     |  |        |                 |        |          l0-types:cwdm-n
+     |     |     |  |        |                 |        |          cwdm-n
      |     |     |  |        |                 |        +--:(wdm-tnl:flexi-grid)
      |     |     |  |        |                 |           +--ro (wdm-tnl:single-or-super-channel)?
      |     |     |  |        |                 |              +--:(wdm-tnl:single)
      |     |     |  |        |                 |              |  +--ro wdm-tnl:flexi-n?
-     |     |     |  |        |                 |              |  |       l0-types:flexi-n
+     |     |     |  |        |                 |              |  |       flexi-n
      |     |     |  |        |                 |              |  +--ro wdm-tnl:flexi-m?
-     |     |     |  |        |                 |              |          l0-types:flexi-m
+     |     |     |  |        |                 |              |          flexi-m
      |     |     |  |        |                 |              x--:(wdm-tnl:super)
      |     |     |  |        |                 |              |  x--ro wdm-tnl:subcarrier-flexi-n*
      |     |     |  |        |                 |              |          [flexi-n]
      |     |     |  |        |                 |              |     +--ro wdm-tnl:flexi-n
-     |     |     |  |        |                 |              |     |       l0-types:flexi-n
+     |     |     |  |        |                 |              |     |       flexi-n
      |     |     |  |        |                 |              |     +--ro wdm-tnl:flexi-m?
-     |     |     |  |        |                 |              |             l0-types:flexi-m
+     |     |     |  |        |                 |              |             flexi-m
      |     |     |  |        |                 |              +--:(wdm-tnl:multi)
      |     |     |  |        |                 |                 +--ro wdm-tnl:frequency-slots
      |     |     |  |        |                 |                    +--ro wdm-tnl:frequency-slot*
      |     |     |  |        |                 |                            [flexi-n]
      |     |     |  |        |                 |                       +--ro wdm-tnl:flexi-n
-     |     |     |  |        |                 |                       |       l0-types:flexi-n
+     |     |     |  |        |                 |                       |       flexi-n
      |     |     |  |        |                 |                       +--ro wdm-tnl:flexi-m?
-     |     |     |  |        |                 |                               l0-types:flexi-m
+     |     |     |  |        |                 |                               flexi-m
      |     |     |  |        |                 +--ro direction?
      |     |     |  |        |                         te-label-direction
      |     |     |  |        +--ro te-bandwidth
@@ -2331,35 +2331,35 @@ module: ietf-te
      |     |     |     |  |  |        |        |        |  +--rw (wdm-tnl:fixed-single-or-super-channel)?
      |     |     |     |  |  |        |        |        |     +--:(wdm-tnl:single)
      |     |     |     |  |  |        |        |        |     |  +--rw wdm-tnl:dwdm-n?
-     |     |     |     |  |  |        |        |        |     |          l0-types:dwdm-n
+     |     |     |     |  |  |        |        |        |     |          dwdm-n
      |     |     |     |  |  |        |        |        |     +--:(wdm-tnl:multi)
      |     |     |     |  |  |        |        |        |        +--rw wdm-tnl:subcarrier-dwdm-n*
-     |     |     |     |  |  |        |        |        |                l0-types:dwdm-n
+     |     |     |     |  |  |        |        |        |                dwdm-n
      |     |     |     |  |  |        |        |        +--:(wdm-tnl:cwdm)
      |     |     |     |  |  |        |        |        |  +--rw wdm-tnl:cwdm-n?
-     |     |     |     |  |  |        |        |        |          l0-types:cwdm-n
+     |     |     |     |  |  |        |        |        |          cwdm-n
      |     |     |     |  |  |        |        |        +--:(wdm-tnl:flexi-grid)
      |     |     |     |  |  |        |        |           +--rw (wdm-tnl:single-or-super-channel)?
      |     |     |     |  |  |        |        |              +--:(wdm-tnl:single)
      |     |     |     |  |  |        |        |              |  +--rw wdm-tnl:flexi-n?
-     |     |     |     |  |  |        |        |              |  |       l0-types:flexi-n
+     |     |     |     |  |  |        |        |              |  |       flexi-n
      |     |     |     |  |  |        |        |              |  +--rw wdm-tnl:flexi-m?
-     |     |     |     |  |  |        |        |              |          l0-types:flexi-m
+     |     |     |     |  |  |        |        |              |          flexi-m
      |     |     |     |  |  |        |        |              x--:(wdm-tnl:super)
      |     |     |     |  |  |        |        |              |  x--rw wdm-tnl:subcarrier-flexi-n*
      |     |     |     |  |  |        |        |              |          [flexi-n]
      |     |     |     |  |  |        |        |              |     +--rw wdm-tnl:flexi-n
-     |     |     |     |  |  |        |        |              |     |       l0-types:flexi-n
+     |     |     |     |  |  |        |        |              |     |       flexi-n
      |     |     |     |  |  |        |        |              |     +--rw wdm-tnl:flexi-m?
-     |     |     |     |  |  |        |        |              |             l0-types:flexi-m
+     |     |     |     |  |  |        |        |              |             flexi-m
      |     |     |     |  |  |        |        |              +--:(wdm-tnl:multi)
      |     |     |     |  |  |        |        |                 +--rw wdm-tnl:frequency-slots
      |     |     |     |  |  |        |        |                    +--rw wdm-tnl:frequency-slot*
      |     |     |     |  |  |        |        |                            [flexi-n]
      |     |     |     |  |  |        |        |                       +--rw wdm-tnl:flexi-n
-     |     |     |     |  |  |        |        |                       |       l0-types:flexi-n
+     |     |     |     |  |  |        |        |                       |       flexi-n
      |     |     |     |  |  |        |        |                       +--rw wdm-tnl:flexi-m?
-     |     |     |     |  |  |        |        |                               l0-types:flexi-m
+     |     |     |     |  |  |        |        |                               flexi-m
      |     |     |     |  |  |        |        +--rw direction?
      |     |     |     |  |  |        |                te-label-direction
      |     |     |     |  |  |        +--:(srlg)
@@ -2420,35 +2420,35 @@ module: ietf-te
      |     |     |     |  |                    |        |  +--rw (wdm-tnl:fixed-single-or-super-channel)?
      |     |     |     |  |                    |        |     +--:(wdm-tnl:single)
      |     |     |     |  |                    |        |     |  +--rw wdm-tnl:dwdm-n?
-     |     |     |     |  |                    |        |     |          l0-types:dwdm-n
+     |     |     |     |  |                    |        |     |          dwdm-n
      |     |     |     |  |                    |        |     +--:(wdm-tnl:multi)
      |     |     |     |  |                    |        |        +--rw wdm-tnl:subcarrier-dwdm-n*
-     |     |     |     |  |                    |        |                l0-types:dwdm-n
+     |     |     |     |  |                    |        |                dwdm-n
      |     |     |     |  |                    |        +--:(wdm-tnl:cwdm)
      |     |     |     |  |                    |        |  +--rw wdm-tnl:cwdm-n?
-     |     |     |     |  |                    |        |          l0-types:cwdm-n
+     |     |     |     |  |                    |        |          cwdm-n
      |     |     |     |  |                    |        +--:(wdm-tnl:flexi-grid)
      |     |     |     |  |                    |           +--rw (wdm-tnl:single-or-super-channel)?
      |     |     |     |  |                    |              +--:(wdm-tnl:single)
      |     |     |     |  |                    |              |  +--rw wdm-tnl:flexi-n?
-     |     |     |     |  |                    |              |  |       l0-types:flexi-n
+     |     |     |     |  |                    |              |  |       flexi-n
      |     |     |     |  |                    |              |  +--rw wdm-tnl:flexi-m?
-     |     |     |     |  |                    |              |          l0-types:flexi-m
+     |     |     |     |  |                    |              |          flexi-m
      |     |     |     |  |                    |              x--:(wdm-tnl:super)
      |     |     |     |  |                    |              |  x--rw wdm-tnl:subcarrier-flexi-n*
      |     |     |     |  |                    |              |          [flexi-n]
      |     |     |     |  |                    |              |     +--rw wdm-tnl:flexi-n
-     |     |     |     |  |                    |              |     |       l0-types:flexi-n
+     |     |     |     |  |                    |              |     |       flexi-n
      |     |     |     |  |                    |              |     +--rw wdm-tnl:flexi-m?
-     |     |     |     |  |                    |              |             l0-types:flexi-m
+     |     |     |     |  |                    |              |             flexi-m
      |     |     |     |  |                    |              +--:(wdm-tnl:multi)
      |     |     |     |  |                    |                 +--rw wdm-tnl:frequency-slots
      |     |     |     |  |                    |                    +--rw wdm-tnl:frequency-slot*
      |     |     |     |  |                    |                            [flexi-n]
      |     |     |     |  |                    |                       +--rw wdm-tnl:flexi-n
-     |     |     |     |  |                    |                       |       l0-types:flexi-n
+     |     |     |     |  |                    |                       |       flexi-n
      |     |     |     |  |                    |                       +--rw wdm-tnl:flexi-m?
-     |     |     |     |  |                    |                               l0-types:flexi-m
+     |     |     |     |  |                    |                               flexi-m
      |     |     |     |  |                    +--rw direction?
      |     |     |     |  |                            te-label-direction
      |     |     |     |  +--rw tiebreakers
@@ -2654,35 +2654,35 @@ module: ietf-te
      |     |     |  |              |        |  +--rw (wdm-tnl:fixed-single-or-super-channel)?
      |     |     |  |              |        |     +--:(wdm-tnl:single)
      |     |     |  |              |        |     |  +--rw wdm-tnl:dwdm-n?
-     |     |     |  |              |        |     |          l0-types:dwdm-n
+     |     |     |  |              |        |     |          dwdm-n
      |     |     |  |              |        |     +--:(wdm-tnl:multi)
      |     |     |  |              |        |        +--rw wdm-tnl:subcarrier-dwdm-n*
-     |     |     |  |              |        |                l0-types:dwdm-n
+     |     |     |  |              |        |                dwdm-n
      |     |     |  |              |        +--:(wdm-tnl:cwdm)
      |     |     |  |              |        |  +--rw wdm-tnl:cwdm-n?
-     |     |     |  |              |        |          l0-types:cwdm-n
+     |     |     |  |              |        |          cwdm-n
      |     |     |  |              |        +--:(wdm-tnl:flexi-grid)
      |     |     |  |              |           +--rw (wdm-tnl:single-or-super-channel)?
      |     |     |  |              |              +--:(wdm-tnl:single)
      |     |     |  |              |              |  +--rw wdm-tnl:flexi-n?
-     |     |     |  |              |              |  |       l0-types:flexi-n
+     |     |     |  |              |              |  |       flexi-n
      |     |     |  |              |              |  +--rw wdm-tnl:flexi-m?
-     |     |     |  |              |              |          l0-types:flexi-m
+     |     |     |  |              |              |          flexi-m
      |     |     |  |              |              x--:(wdm-tnl:super)
      |     |     |  |              |              |  x--rw wdm-tnl:subcarrier-flexi-n*
      |     |     |  |              |              |          [flexi-n]
      |     |     |  |              |              |     +--rw wdm-tnl:flexi-n
-     |     |     |  |              |              |     |       l0-types:flexi-n
+     |     |     |  |              |              |     |       flexi-n
      |     |     |  |              |              |     +--rw wdm-tnl:flexi-m?
-     |     |     |  |              |              |             l0-types:flexi-m
+     |     |     |  |              |              |             flexi-m
      |     |     |  |              |              +--:(wdm-tnl:multi)
      |     |     |  |              |                 +--rw wdm-tnl:frequency-slots
      |     |     |  |              |                    +--rw wdm-tnl:frequency-slot*
      |     |     |  |              |                            [flexi-n]
      |     |     |  |              |                       +--rw wdm-tnl:flexi-n
-     |     |     |  |              |                       |       l0-types:flexi-n
+     |     |     |  |              |                       |       flexi-n
      |     |     |  |              |                       +--rw wdm-tnl:flexi-m?
-     |     |     |  |              |                               l0-types:flexi-m
+     |     |     |  |              |                               flexi-m
      |     |     |  |              +--rw direction?
      |     |     |  |                      te-label-direction
      |     |     |  +--rw route-object-include-exclude* [index]
@@ -2725,35 +2725,35 @@ module: ietf-te
      |     |     |        |        |        |  +--rw (wdm-tnl:fixed-single-or-super-channel)?
      |     |     |        |        |        |     +--:(wdm-tnl:single)
      |     |     |        |        |        |     |  +--rw wdm-tnl:dwdm-n?
-     |     |     |        |        |        |     |          l0-types:dwdm-n
+     |     |     |        |        |        |     |          dwdm-n
      |     |     |        |        |        |     +--:(wdm-tnl:multi)
      |     |     |        |        |        |        +--rw wdm-tnl:subcarrier-dwdm-n*
-     |     |     |        |        |        |                l0-types:dwdm-n
+     |     |     |        |        |        |                dwdm-n
      |     |     |        |        |        +--:(wdm-tnl:cwdm)
      |     |     |        |        |        |  +--rw wdm-tnl:cwdm-n?
-     |     |     |        |        |        |          l0-types:cwdm-n
+     |     |     |        |        |        |          cwdm-n
      |     |     |        |        |        +--:(wdm-tnl:flexi-grid)
      |     |     |        |        |           +--rw (wdm-tnl:single-or-super-channel)?
      |     |     |        |        |              +--:(wdm-tnl:single)
      |     |     |        |        |              |  +--rw wdm-tnl:flexi-n?
-     |     |     |        |        |              |  |       l0-types:flexi-n
+     |     |     |        |        |              |  |       flexi-n
      |     |     |        |        |              |  +--rw wdm-tnl:flexi-m?
-     |     |     |        |        |              |          l0-types:flexi-m
+     |     |     |        |        |              |          flexi-m
      |     |     |        |        |              x--:(wdm-tnl:super)
      |     |     |        |        |              |  x--rw wdm-tnl:subcarrier-flexi-n*
      |     |     |        |        |              |          [flexi-n]
      |     |     |        |        |              |     +--rw wdm-tnl:flexi-n
-     |     |     |        |        |              |     |       l0-types:flexi-n
+     |     |     |        |        |              |     |       flexi-n
      |     |     |        |        |              |     +--rw wdm-tnl:flexi-m?
-     |     |     |        |        |              |             l0-types:flexi-m
+     |     |     |        |        |              |             flexi-m
      |     |     |        |        |              +--:(wdm-tnl:multi)
      |     |     |        |        |                 +--rw wdm-tnl:frequency-slots
      |     |     |        |        |                    +--rw wdm-tnl:frequency-slot*
      |     |     |        |        |                            [flexi-n]
      |     |     |        |        |                       +--rw wdm-tnl:flexi-n
-     |     |     |        |        |                       |       l0-types:flexi-n
+     |     |     |        |        |                       |       flexi-n
      |     |     |        |        |                       +--rw wdm-tnl:flexi-m?
-     |     |     |        |        |                               l0-types:flexi-m
+     |     |     |        |        |                               flexi-m
      |     |     |        |        +--rw direction?
      |     |     |        |                te-label-direction
      |     |     |        +--:(srlg)
@@ -2774,13 +2774,13 @@ module: ietf-te
      |     |     |        |     |     +--rw (wdm-tnl:grid-type)?
      |     |     |        |     |        +--:(wdm-tnl:fixed-dwdm)
      |     |     |        |     |        |  +--rw wdm-tnl:dwdm-n?
-     |     |     |        |     |        |          l0-types:dwdm-n
+     |     |     |        |     |        |          dwdm-n
      |     |     |        |     |        +--:(wdm-tnl:cwdm)
      |     |     |        |     |        |  +--rw wdm-tnl:cwdm-n?
-     |     |     |        |     |        |          l0-types:cwdm-n
+     |     |     |        |     |        |          cwdm-n
      |     |     |        |     |        +--:(wdm-tnl:flexi-grid)
      |     |     |        |     |           +--rw wdm-tnl:flexi-n?
-     |     |     |        |     |                   l0-types:flexi-n
+     |     |     |        |     |                   flexi-n
      |     |     |        |     +--rw direction?
      |     |     |        |             te-label-direction
      |     |     |        +--rw label-end
@@ -2793,13 +2793,13 @@ module: ietf-te
      |     |     |        |     |     +--rw (wdm-tnl:grid-type)?
      |     |     |        |     |        +--:(wdm-tnl:fixed-dwdm)
      |     |     |        |     |        |  +--rw wdm-tnl:dwdm-n?
-     |     |     |        |     |        |          l0-types:dwdm-n
+     |     |     |        |     |        |          dwdm-n
      |     |     |        |     |        +--:(wdm-tnl:cwdm)
      |     |     |        |     |        |  +--rw wdm-tnl:cwdm-n?
-     |     |     |        |     |        |          l0-types:cwdm-n
+     |     |     |        |     |        |          cwdm-n
      |     |     |        |     |        +--:(wdm-tnl:flexi-grid)
      |     |     |        |     |           +--rw wdm-tnl:flexi-n?
-     |     |     |        |     |                   l0-types:flexi-n
+     |     |     |        |     |                   flexi-n
      |     |     |        |     +--rw direction?
      |     |     |        |             te-label-direction
      |     |     |        +--rw label-step
@@ -2847,13 +2847,13 @@ module: ietf-te
      |     |     |        |     |     +--rw (wdm-tnl:grid-type)?
      |     |     |        |     |        +--:(wdm-tnl:fixed-dwdm)
      |     |     |        |     |        |  +--rw wdm-tnl:dwdm-n?
-     |     |     |        |     |        |          l0-types:dwdm-n
+     |     |     |        |     |        |          dwdm-n
      |     |     |        |     |        +--:(wdm-tnl:cwdm)
      |     |     |        |     |        |  +--rw wdm-tnl:cwdm-n?
-     |     |     |        |     |        |          l0-types:cwdm-n
+     |     |     |        |     |        |          cwdm-n
      |     |     |        |     |        +--:(wdm-tnl:flexi-grid)
      |     |     |        |     |           +--rw wdm-tnl:flexi-n?
-     |     |     |        |     |                   l0-types:flexi-n
+     |     |     |        |     |                   flexi-n
      |     |     |        |     +--rw direction?
      |     |     |        |             te-label-direction
      |     |     |        +--rw label-end
@@ -2866,13 +2866,13 @@ module: ietf-te
      |     |     |        |     |     +--rw (wdm-tnl:grid-type)?
      |     |     |        |     |        +--:(wdm-tnl:fixed-dwdm)
      |     |     |        |     |        |  +--rw wdm-tnl:dwdm-n?
-     |     |     |        |     |        |          l0-types:dwdm-n
+     |     |     |        |     |        |          dwdm-n
      |     |     |        |     |        +--:(wdm-tnl:cwdm)
      |     |     |        |     |        |  +--rw wdm-tnl:cwdm-n?
-     |     |     |        |     |        |          l0-types:cwdm-n
+     |     |     |        |     |        |          cwdm-n
      |     |     |        |     |        +--:(wdm-tnl:flexi-grid)
      |     |     |        |     |           +--rw wdm-tnl:flexi-n?
-     |     |     |        |     |                   l0-types:flexi-n
+     |     |     |        |     |                   flexi-n
      |     |     |        |     +--rw direction?
      |     |     |        |             te-label-direction
      |     |     |        +--rw label-step
@@ -3088,35 +3088,35 @@ module: ietf-te
      |     |     |        |                 |        |  +--ro (wdm-tnl:fixed-single-or-super-channel)?
      |     |     |        |                 |        |     +--:(wdm-tnl:single)
      |     |     |        |                 |        |     |  +--ro wdm-tnl:dwdm-n?
-     |     |     |        |                 |        |     |          l0-types:dwdm-n
+     |     |     |        |                 |        |     |          dwdm-n
      |     |     |        |                 |        |     +--:(wdm-tnl:multi)
      |     |     |        |                 |        |        +--ro wdm-tnl:subcarrier-dwdm-n*
-     |     |     |        |                 |        |                l0-types:dwdm-n
+     |     |     |        |                 |        |                dwdm-n
      |     |     |        |                 |        +--:(wdm-tnl:cwdm)
      |     |     |        |                 |        |  +--ro wdm-tnl:cwdm-n?
-     |     |     |        |                 |        |          l0-types:cwdm-n
+     |     |     |        |                 |        |          cwdm-n
      |     |     |        |                 |        +--:(wdm-tnl:flexi-grid)
      |     |     |        |                 |           +--ro (wdm-tnl:single-or-super-channel)?
      |     |     |        |                 |              +--:(wdm-tnl:single)
      |     |     |        |                 |              |  +--ro wdm-tnl:flexi-n?
-     |     |     |        |                 |              |  |       l0-types:flexi-n
+     |     |     |        |                 |              |  |       flexi-n
      |     |     |        |                 |              |  +--ro wdm-tnl:flexi-m?
-     |     |     |        |                 |              |          l0-types:flexi-m
+     |     |     |        |                 |              |          flexi-m
      |     |     |        |                 |              x--:(wdm-tnl:super)
      |     |     |        |                 |              |  x--ro wdm-tnl:subcarrier-flexi-n*
      |     |     |        |                 |              |          [flexi-n]
      |     |     |        |                 |              |     +--ro wdm-tnl:flexi-n
-     |     |     |        |                 |              |     |       l0-types:flexi-n
+     |     |     |        |                 |              |     |       flexi-n
      |     |     |        |                 |              |     +--ro wdm-tnl:flexi-m?
-     |     |     |        |                 |              |             l0-types:flexi-m
+     |     |     |        |                 |              |             flexi-m
      |     |     |        |                 |              +--:(wdm-tnl:multi)
      |     |     |        |                 |                 +--ro wdm-tnl:frequency-slots
      |     |     |        |                 |                    +--ro wdm-tnl:frequency-slot*
      |     |     |        |                 |                            [flexi-n]
      |     |     |        |                 |                       +--ro wdm-tnl:flexi-n
-     |     |     |        |                 |                       |       l0-types:flexi-n
+     |     |     |        |                 |                       |       flexi-n
      |     |     |        |                 |                       +--ro wdm-tnl:flexi-m?
-     |     |     |        |                 |                               l0-types:flexi-m
+     |     |     |        |                 |                               flexi-m
      |     |     |        |                 +--ro direction?
      |     |     |        |                         te-label-direction
      |     |     |        +--ro te-bandwidth
@@ -3237,35 +3237,35 @@ module: ietf-te
      |     |     |     |  |  |        |        |        |  +--rw (wdm-tnl:fixed-single-or-super-channel)?
      |     |     |     |  |  |        |        |        |     +--:(wdm-tnl:single)
      |     |     |     |  |  |        |        |        |     |  +--rw wdm-tnl:dwdm-n?
-     |     |     |     |  |  |        |        |        |     |          l0-types:dwdm-n
+     |     |     |     |  |  |        |        |        |     |          dwdm-n
      |     |     |     |  |  |        |        |        |     +--:(wdm-tnl:multi)
      |     |     |     |  |  |        |        |        |        +--rw wdm-tnl:subcarrier-dwdm-n*
-     |     |     |     |  |  |        |        |        |                l0-types:dwdm-n
+     |     |     |     |  |  |        |        |        |                dwdm-n
      |     |     |     |  |  |        |        |        +--:(wdm-tnl:cwdm)
      |     |     |     |  |  |        |        |        |  +--rw wdm-tnl:cwdm-n?
-     |     |     |     |  |  |        |        |        |          l0-types:cwdm-n
+     |     |     |     |  |  |        |        |        |          cwdm-n
      |     |     |     |  |  |        |        |        +--:(wdm-tnl:flexi-grid)
      |     |     |     |  |  |        |        |           +--rw (wdm-tnl:single-or-super-channel)?
      |     |     |     |  |  |        |        |              +--:(wdm-tnl:single)
      |     |     |     |  |  |        |        |              |  +--rw wdm-tnl:flexi-n?
-     |     |     |     |  |  |        |        |              |  |       l0-types:flexi-n
+     |     |     |     |  |  |        |        |              |  |       flexi-n
      |     |     |     |  |  |        |        |              |  +--rw wdm-tnl:flexi-m?
-     |     |     |     |  |  |        |        |              |          l0-types:flexi-m
+     |     |     |     |  |  |        |        |              |          flexi-m
      |     |     |     |  |  |        |        |              x--:(wdm-tnl:super)
      |     |     |     |  |  |        |        |              |  x--rw wdm-tnl:subcarrier-flexi-n*
      |     |     |     |  |  |        |        |              |          [flexi-n]
      |     |     |     |  |  |        |        |              |     +--rw wdm-tnl:flexi-n
-     |     |     |     |  |  |        |        |              |     |       l0-types:flexi-n
+     |     |     |     |  |  |        |        |              |     |       flexi-n
      |     |     |     |  |  |        |        |              |     +--rw wdm-tnl:flexi-m?
-     |     |     |     |  |  |        |        |              |             l0-types:flexi-m
+     |     |     |     |  |  |        |        |              |             flexi-m
      |     |     |     |  |  |        |        |              +--:(wdm-tnl:multi)
      |     |     |     |  |  |        |        |                 +--rw wdm-tnl:frequency-slots
      |     |     |     |  |  |        |        |                    +--rw wdm-tnl:frequency-slot*
      |     |     |     |  |  |        |        |                            [flexi-n]
      |     |     |     |  |  |        |        |                       +--rw wdm-tnl:flexi-n
-     |     |     |     |  |  |        |        |                       |       l0-types:flexi-n
+     |     |     |     |  |  |        |        |                       |       flexi-n
      |     |     |     |  |  |        |        |                       +--rw wdm-tnl:flexi-m?
-     |     |     |     |  |  |        |        |                               l0-types:flexi-m
+     |     |     |     |  |  |        |        |                               flexi-m
      |     |     |     |  |  |        |        +--rw direction?
      |     |     |     |  |  |        |                te-label-direction
      |     |     |     |  |  |        +--:(srlg)
@@ -3326,35 +3326,35 @@ module: ietf-te
      |     |     |     |  |                    |        |  +--rw (wdm-tnl:fixed-single-or-super-channel)?
      |     |     |     |  |                    |        |     +--:(wdm-tnl:single)
      |     |     |     |  |                    |        |     |  +--rw wdm-tnl:dwdm-n?
-     |     |     |     |  |                    |        |     |          l0-types:dwdm-n
+     |     |     |     |  |                    |        |     |          dwdm-n
      |     |     |     |  |                    |        |     +--:(wdm-tnl:multi)
      |     |     |     |  |                    |        |        +--rw wdm-tnl:subcarrier-dwdm-n*
-     |     |     |     |  |                    |        |                l0-types:dwdm-n
+     |     |     |     |  |                    |        |                dwdm-n
      |     |     |     |  |                    |        +--:(wdm-tnl:cwdm)
      |     |     |     |  |                    |        |  +--rw wdm-tnl:cwdm-n?
-     |     |     |     |  |                    |        |          l0-types:cwdm-n
+     |     |     |     |  |                    |        |          cwdm-n
      |     |     |     |  |                    |        +--:(wdm-tnl:flexi-grid)
      |     |     |     |  |                    |           +--rw (wdm-tnl:single-or-super-channel)?
      |     |     |     |  |                    |              +--:(wdm-tnl:single)
      |     |     |     |  |                    |              |  +--rw wdm-tnl:flexi-n?
-     |     |     |     |  |                    |              |  |       l0-types:flexi-n
+     |     |     |     |  |                    |              |  |       flexi-n
      |     |     |     |  |                    |              |  +--rw wdm-tnl:flexi-m?
-     |     |     |     |  |                    |              |          l0-types:flexi-m
+     |     |     |     |  |                    |              |          flexi-m
      |     |     |     |  |                    |              x--:(wdm-tnl:super)
      |     |     |     |  |                    |              |  x--rw wdm-tnl:subcarrier-flexi-n*
      |     |     |     |  |                    |              |          [flexi-n]
      |     |     |     |  |                    |              |     +--rw wdm-tnl:flexi-n
-     |     |     |     |  |                    |              |     |       l0-types:flexi-n
+     |     |     |     |  |                    |              |     |       flexi-n
      |     |     |     |  |                    |              |     +--rw wdm-tnl:flexi-m?
-     |     |     |     |  |                    |              |             l0-types:flexi-m
+     |     |     |     |  |                    |              |             flexi-m
      |     |     |     |  |                    |              +--:(wdm-tnl:multi)
      |     |     |     |  |                    |                 +--rw wdm-tnl:frequency-slots
      |     |     |     |  |                    |                    +--rw wdm-tnl:frequency-slot*
      |     |     |     |  |                    |                            [flexi-n]
      |     |     |     |  |                    |                       +--rw wdm-tnl:flexi-n
-     |     |     |     |  |                    |                       |       l0-types:flexi-n
+     |     |     |     |  |                    |                       |       flexi-n
      |     |     |     |  |                    |                       +--rw wdm-tnl:flexi-m?
-     |     |     |     |  |                    |                               l0-types:flexi-m
+     |     |     |     |  |                    |                               flexi-m
      |     |     |     |  |                    +--rw direction?
      |     |     |     |  |                            te-label-direction
      |     |     |     |  +--rw tiebreakers
@@ -3560,35 +3560,35 @@ module: ietf-te
      |     |     |  |              |        |  +--rw (wdm-tnl:fixed-single-or-super-channel)?
      |     |     |  |              |        |     +--:(wdm-tnl:single)
      |     |     |  |              |        |     |  +--rw wdm-tnl:dwdm-n?
-     |     |     |  |              |        |     |          l0-types:dwdm-n
+     |     |     |  |              |        |     |          dwdm-n
      |     |     |  |              |        |     +--:(wdm-tnl:multi)
      |     |     |  |              |        |        +--rw wdm-tnl:subcarrier-dwdm-n*
-     |     |     |  |              |        |                l0-types:dwdm-n
+     |     |     |  |              |        |                dwdm-n
      |     |     |  |              |        +--:(wdm-tnl:cwdm)
      |     |     |  |              |        |  +--rw wdm-tnl:cwdm-n?
-     |     |     |  |              |        |          l0-types:cwdm-n
+     |     |     |  |              |        |          cwdm-n
      |     |     |  |              |        +--:(wdm-tnl:flexi-grid)
      |     |     |  |              |           +--rw (wdm-tnl:single-or-super-channel)?
      |     |     |  |              |              +--:(wdm-tnl:single)
      |     |     |  |              |              |  +--rw wdm-tnl:flexi-n?
-     |     |     |  |              |              |  |       l0-types:flexi-n
+     |     |     |  |              |              |  |       flexi-n
      |     |     |  |              |              |  +--rw wdm-tnl:flexi-m?
-     |     |     |  |              |              |          l0-types:flexi-m
+     |     |     |  |              |              |          flexi-m
      |     |     |  |              |              x--:(wdm-tnl:super)
      |     |     |  |              |              |  x--rw wdm-tnl:subcarrier-flexi-n*
      |     |     |  |              |              |          [flexi-n]
      |     |     |  |              |              |     +--rw wdm-tnl:flexi-n
-     |     |     |  |              |              |     |       l0-types:flexi-n
+     |     |     |  |              |              |     |       flexi-n
      |     |     |  |              |              |     +--rw wdm-tnl:flexi-m?
-     |     |     |  |              |              |             l0-types:flexi-m
+     |     |     |  |              |              |             flexi-m
      |     |     |  |              |              +--:(wdm-tnl:multi)
      |     |     |  |              |                 +--rw wdm-tnl:frequency-slots
      |     |     |  |              |                    +--rw wdm-tnl:frequency-slot*
      |     |     |  |              |                            [flexi-n]
      |     |     |  |              |                       +--rw wdm-tnl:flexi-n
-     |     |     |  |              |                       |       l0-types:flexi-n
+     |     |     |  |              |                       |       flexi-n
      |     |     |  |              |                       +--rw wdm-tnl:flexi-m?
-     |     |     |  |              |                               l0-types:flexi-m
+     |     |     |  |              |                               flexi-m
      |     |     |  |              +--rw direction?
      |     |     |  |                      te-label-direction
      |     |     |  +--rw route-object-include-exclude* [index]
@@ -3631,35 +3631,35 @@ module: ietf-te
      |     |     |        |        |        |  +--rw (wdm-tnl:fixed-single-or-super-channel)?
      |     |     |        |        |        |     +--:(wdm-tnl:single)
      |     |     |        |        |        |     |  +--rw wdm-tnl:dwdm-n?
-     |     |     |        |        |        |     |          l0-types:dwdm-n
+     |     |     |        |        |        |     |          dwdm-n
      |     |     |        |        |        |     +--:(wdm-tnl:multi)
      |     |     |        |        |        |        +--rw wdm-tnl:subcarrier-dwdm-n*
-     |     |     |        |        |        |                l0-types:dwdm-n
+     |     |     |        |        |        |                dwdm-n
      |     |     |        |        |        +--:(wdm-tnl:cwdm)
      |     |     |        |        |        |  +--rw wdm-tnl:cwdm-n?
-     |     |     |        |        |        |          l0-types:cwdm-n
+     |     |     |        |        |        |          cwdm-n
      |     |     |        |        |        +--:(wdm-tnl:flexi-grid)
      |     |     |        |        |           +--rw (wdm-tnl:single-or-super-channel)?
      |     |     |        |        |              +--:(wdm-tnl:single)
      |     |     |        |        |              |  +--rw wdm-tnl:flexi-n?
-     |     |     |        |        |              |  |       l0-types:flexi-n
+     |     |     |        |        |              |  |       flexi-n
      |     |     |        |        |              |  +--rw wdm-tnl:flexi-m?
-     |     |     |        |        |              |          l0-types:flexi-m
+     |     |     |        |        |              |          flexi-m
      |     |     |        |        |              x--:(wdm-tnl:super)
      |     |     |        |        |              |  x--rw wdm-tnl:subcarrier-flexi-n*
      |     |     |        |        |              |          [flexi-n]
      |     |     |        |        |              |     +--rw wdm-tnl:flexi-n
-     |     |     |        |        |              |     |       l0-types:flexi-n
+     |     |     |        |        |              |     |       flexi-n
      |     |     |        |        |              |     +--rw wdm-tnl:flexi-m?
-     |     |     |        |        |              |             l0-types:flexi-m
+     |     |     |        |        |              |             flexi-m
      |     |     |        |        |              +--:(wdm-tnl:multi)
      |     |     |        |        |                 +--rw wdm-tnl:frequency-slots
      |     |     |        |        |                    +--rw wdm-tnl:frequency-slot*
      |     |     |        |        |                            [flexi-n]
      |     |     |        |        |                       +--rw wdm-tnl:flexi-n
-     |     |     |        |        |                       |       l0-types:flexi-n
+     |     |     |        |        |                       |       flexi-n
      |     |     |        |        |                       +--rw wdm-tnl:flexi-m?
-     |     |     |        |        |                               l0-types:flexi-m
+     |     |     |        |        |                               flexi-m
      |     |     |        |        +--rw direction?
      |     |     |        |                te-label-direction
      |     |     |        +--:(srlg)
@@ -3680,13 +3680,13 @@ module: ietf-te
      |     |     |        |     |     +--rw (wdm-tnl:grid-type)?
      |     |     |        |     |        +--:(wdm-tnl:fixed-dwdm)
      |     |     |        |     |        |  +--rw wdm-tnl:dwdm-n?
-     |     |     |        |     |        |          l0-types:dwdm-n
+     |     |     |        |     |        |          dwdm-n
      |     |     |        |     |        +--:(wdm-tnl:cwdm)
      |     |     |        |     |        |  +--rw wdm-tnl:cwdm-n?
-     |     |     |        |     |        |          l0-types:cwdm-n
+     |     |     |        |     |        |          cwdm-n
      |     |     |        |     |        +--:(wdm-tnl:flexi-grid)
      |     |     |        |     |           +--rw wdm-tnl:flexi-n?
-     |     |     |        |     |                   l0-types:flexi-n
+     |     |     |        |     |                   flexi-n
      |     |     |        |     +--rw direction?
      |     |     |        |             te-label-direction
      |     |     |        +--rw label-end
@@ -3699,13 +3699,13 @@ module: ietf-te
      |     |     |        |     |     +--rw (wdm-tnl:grid-type)?
      |     |     |        |     |        +--:(wdm-tnl:fixed-dwdm)
      |     |     |        |     |        |  +--rw wdm-tnl:dwdm-n?
-     |     |     |        |     |        |          l0-types:dwdm-n
+     |     |     |        |     |        |          dwdm-n
      |     |     |        |     |        +--:(wdm-tnl:cwdm)
      |     |     |        |     |        |  +--rw wdm-tnl:cwdm-n?
-     |     |     |        |     |        |          l0-types:cwdm-n
+     |     |     |        |     |        |          cwdm-n
      |     |     |        |     |        +--:(wdm-tnl:flexi-grid)
      |     |     |        |     |           +--rw wdm-tnl:flexi-n?
-     |     |     |        |     |                   l0-types:flexi-n
+     |     |     |        |     |                   flexi-n
      |     |     |        |     +--rw direction?
      |     |     |        |             te-label-direction
      |     |     |        +--rw label-step
@@ -3753,13 +3753,13 @@ module: ietf-te
      |     |     |        |     |     +--rw (wdm-tnl:grid-type)?
      |     |     |        |     |        +--:(wdm-tnl:fixed-dwdm)
      |     |     |        |     |        |  +--rw wdm-tnl:dwdm-n?
-     |     |     |        |     |        |          l0-types:dwdm-n
+     |     |     |        |     |        |          dwdm-n
      |     |     |        |     |        +--:(wdm-tnl:cwdm)
      |     |     |        |     |        |  +--rw wdm-tnl:cwdm-n?
-     |     |     |        |     |        |          l0-types:cwdm-n
+     |     |     |        |     |        |          cwdm-n
      |     |     |        |     |        +--:(wdm-tnl:flexi-grid)
      |     |     |        |     |           +--rw wdm-tnl:flexi-n?
-     |     |     |        |     |                   l0-types:flexi-n
+     |     |     |        |     |                   flexi-n
      |     |     |        |     +--rw direction?
      |     |     |        |             te-label-direction
      |     |     |        +--rw label-end
@@ -3772,13 +3772,13 @@ module: ietf-te
      |     |     |        |     |     +--rw (wdm-tnl:grid-type)?
      |     |     |        |     |        +--:(wdm-tnl:fixed-dwdm)
      |     |     |        |     |        |  +--rw wdm-tnl:dwdm-n?
-     |     |     |        |     |        |          l0-types:dwdm-n
+     |     |     |        |     |        |          dwdm-n
      |     |     |        |     |        +--:(wdm-tnl:cwdm)
      |     |     |        |     |        |  +--rw wdm-tnl:cwdm-n?
-     |     |     |        |     |        |          l0-types:cwdm-n
+     |     |     |        |     |        |          cwdm-n
      |     |     |        |     |        +--:(wdm-tnl:flexi-grid)
      |     |     |        |     |           +--rw wdm-tnl:flexi-n?
-     |     |     |        |     |                   l0-types:flexi-n
+     |     |     |        |     |                   flexi-n
      |     |     |        |     +--rw direction?
      |     |     |        |             te-label-direction
      |     |     |        +--rw label-step
@@ -3994,35 +3994,35 @@ module: ietf-te
      |     |     |        |                 |        |  +--ro (wdm-tnl:fixed-single-or-super-channel)?
      |     |     |        |                 |        |     +--:(wdm-tnl:single)
      |     |     |        |                 |        |     |  +--ro wdm-tnl:dwdm-n?
-     |     |     |        |                 |        |     |          l0-types:dwdm-n
+     |     |     |        |                 |        |     |          dwdm-n
      |     |     |        |                 |        |     +--:(wdm-tnl:multi)
      |     |     |        |                 |        |        +--ro wdm-tnl:subcarrier-dwdm-n*
-     |     |     |        |                 |        |                l0-types:dwdm-n
+     |     |     |        |                 |        |                dwdm-n
      |     |     |        |                 |        +--:(wdm-tnl:cwdm)
      |     |     |        |                 |        |  +--ro wdm-tnl:cwdm-n?
-     |     |     |        |                 |        |          l0-types:cwdm-n
+     |     |     |        |                 |        |          cwdm-n
      |     |     |        |                 |        +--:(wdm-tnl:flexi-grid)
      |     |     |        |                 |           +--ro (wdm-tnl:single-or-super-channel)?
      |     |     |        |                 |              +--:(wdm-tnl:single)
      |     |     |        |                 |              |  +--ro wdm-tnl:flexi-n?
-     |     |     |        |                 |              |  |       l0-types:flexi-n
+     |     |     |        |                 |              |  |       flexi-n
      |     |     |        |                 |              |  +--ro wdm-tnl:flexi-m?
-     |     |     |        |                 |              |          l0-types:flexi-m
+     |     |     |        |                 |              |          flexi-m
      |     |     |        |                 |              x--:(wdm-tnl:super)
      |     |     |        |                 |              |  x--ro wdm-tnl:subcarrier-flexi-n*
      |     |     |        |                 |              |          [flexi-n]
      |     |     |        |                 |              |     +--ro wdm-tnl:flexi-n
-     |     |     |        |                 |              |     |       l0-types:flexi-n
+     |     |     |        |                 |              |     |       flexi-n
      |     |     |        |                 |              |     +--ro wdm-tnl:flexi-m?
-     |     |     |        |                 |              |             l0-types:flexi-m
+     |     |     |        |                 |              |             flexi-m
      |     |     |        |                 |              +--:(wdm-tnl:multi)
      |     |     |        |                 |                 +--ro wdm-tnl:frequency-slots
      |     |     |        |                 |                    +--ro wdm-tnl:frequency-slot*
      |     |     |        |                 |                            [flexi-n]
      |     |     |        |                 |                       +--ro wdm-tnl:flexi-n
-     |     |     |        |                 |                       |       l0-types:flexi-n
+     |     |     |        |                 |                       |       flexi-n
      |     |     |        |                 |                       +--ro wdm-tnl:flexi-m?
-     |     |     |        |                 |                               l0-types:flexi-m
+     |     |     |        |                 |                               flexi-m
      |     |     |        |                 +--ro direction?
      |     |     |        |                         te-label-direction
      |     |     |        +--ro te-bandwidth
@@ -4265,35 +4265,35 @@ module: ietf-te
                           |  |        |  +--ro (wdm-tnl:fixed-single-or-super-channel)?
                           |  |        |     +--:(wdm-tnl:single)
                           |  |        |     |  +--ro wdm-tnl:dwdm-n?
-                          |  |        |     |          l0-types:dwdm-n
+                          |  |        |     |          dwdm-n
                           |  |        |     +--:(wdm-tnl:multi)
                           |  |        |        +--ro wdm-tnl:subcarrier-dwdm-n*
-                          |  |        |                l0-types:dwdm-n
+                          |  |        |                dwdm-n
                           |  |        +--:(wdm-tnl:cwdm)
                           |  |        |  +--ro wdm-tnl:cwdm-n?
-                          |  |        |          l0-types:cwdm-n
+                          |  |        |          cwdm-n
                           |  |        +--:(wdm-tnl:flexi-grid)
                           |  |           +--ro (wdm-tnl:single-or-super-channel)?
                           |  |              +--:(wdm-tnl:single)
                           |  |              |  +--ro wdm-tnl:flexi-n?
-                          |  |              |  |       l0-types:flexi-n
+                          |  |              |  |       flexi-n
                           |  |              |  +--ro wdm-tnl:flexi-m?
-                          |  |              |          l0-types:flexi-m
+                          |  |              |          flexi-m
                           |  |              x--:(wdm-tnl:super)
                           |  |              |  x--ro wdm-tnl:subcarrier-flexi-n*
                           |  |              |          [flexi-n]
                           |  |              |     +--ro wdm-tnl:flexi-n
-                          |  |              |     |       l0-types:flexi-n
+                          |  |              |     |       flexi-n
                           |  |              |     +--ro wdm-tnl:flexi-m?
-                          |  |              |             l0-types:flexi-m
+                          |  |              |             flexi-m
                           |  |              +--:(wdm-tnl:multi)
                           |  |                 +--ro wdm-tnl:frequency-slots
                           |  |                    +--ro wdm-tnl:frequency-slot*
                           |  |                            [flexi-n]
                           |  |                       +--ro wdm-tnl:flexi-n
-                          |  |                       |       l0-types:flexi-n
+                          |  |                       |       flexi-n
                           |  |                       +--ro wdm-tnl:flexi-m?
-                          |  |                               l0-types:flexi-m
+                          |  |                               flexi-m
                           |  +--ro direction?
                           |          te-label-direction
                           +--ro flags*      path-attribute-flags
