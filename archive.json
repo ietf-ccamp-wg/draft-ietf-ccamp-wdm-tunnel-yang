@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-07-03T01:19:46.626370+00:00",
+  "timestamp": "2025-07-06T01:26:43.890175+00:00",
   "repo": "ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang",
   "labels": [
     {
@@ -2937,6 +2937,34 @@
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 78,
+      "id": "PR_kwDOEHme9c6dRjZj",
+      "title": "cherry-pick fix: align with the latest updates of ietf-l0-types",
+      "url": "https://github.com/ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang/pull/78",
+      "state": "MERGED",
+      "author": "aguoietf",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-07-03T13:49:01Z",
+      "updatedAt": "2025-07-03T18:48:52Z",
+      "baseRepository": "ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang",
+      "baseRefName": "main",
+      "baseRefOid": "c512b247d8dacd0910a81808b8c172951a3bfe3a",
+      "headRepository": "ietf-ccamp-wg/draft-ietf-ccamp-wdm-tunnel-yang",
+      "headRefName": "l0-types-alignment",
+      "headRefOid": "e9a2342cb23de09cb2174472385e7dc88b3469ad",
+      "closedAt": "2025-07-03T18:48:51Z",
+      "mergedAt": "2025-07-03T18:48:51Z",
+      "mergedBy": "aguoietf",
+      "mergeCommit": {
+        "oid": "efb9f7e8ab700318c8d00c6fe17f169b46a0b85a"
+      },
       "comments": [],
       "reviews": []
     }
