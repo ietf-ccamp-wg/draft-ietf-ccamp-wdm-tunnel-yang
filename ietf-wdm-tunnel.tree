@@ -1382,8 +1382,8 @@ module: ietf-wdm-tunnel
        |        +--ro tx-channel-power?         l0-types:power-dbm
        |        +--ro operational-mode?         string
        |        +--ro line-coding-bitrate?      identityref
-       |        +--ro rx-channel-power?         power-dbm-or-null
-       |        +--ro rx-total-power?           power-dbm-or-null
+       |        +--ro rx-channel-power?         power-dbm-or-unknown
+       |        +--ro rx-total-power?           power-dbm-or-unknown
        |        +--ro inverse-multiplexing!
        |        |  +--ro inverse-mux-type?             identityref
        |        |  +--ro otsi-lane-termination-type?   identityref
@@ -1414,8 +1414,8 @@ module: ietf-wdm-tunnel
        |        +--ro tx-channel-power?         l0-types:power-dbm
        |        +--ro operational-mode?         string
        |        +--ro line-coding-bitrate?      identityref
-       |        +--ro rx-channel-power?         power-dbm-or-null
-       |        +--ro rx-total-power?           power-dbm-or-null
+       |        +--ro rx-channel-power?         power-dbm-or-unknown
+       |        +--ro rx-total-power?           power-dbm-or-unknown
        |        +--ro inverse-multiplexing!
        |        |  +--ro inverse-mux-type?             identityref
        |        |  +--ro otsi-lane-termination-type?   identityref
@@ -1449,8 +1449,10 @@ module: ietf-wdm-tunnel
        |     |     +--ro tx-channel-power?         l0-types:power-dbm
        |     |     +--ro operational-mode?         string
        |     |     +--ro line-coding-bitrate?      identityref
-       |     |     +--ro rx-channel-power?         power-dbm-or-null
-       |     |     +--ro rx-total-power?           power-dbm-or-null
+       |     |     +--ro rx-channel-power?
+       |     |     |       power-dbm-or-unknown
+       |     |     +--ro rx-total-power?
+       |     |     |       power-dbm-or-unknown
        |     |     +--ro inverse-multiplexing!
        |     |     |  +--ro inverse-mux-type?             identityref
        |     |     |  +--ro otsi-lane-termination-type?   identityref
@@ -1480,8 +1482,10 @@ module: ietf-wdm-tunnel
        |           +--ro tx-channel-power?         l0-types:power-dbm
        |           +--ro operational-mode?         string
        |           +--ro line-coding-bitrate?      identityref
-       |           +--ro rx-channel-power?         power-dbm-or-null
-       |           +--ro rx-total-power?           power-dbm-or-null
+       |           +--ro rx-channel-power?
+       |           |       power-dbm-or-unknown
+       |           +--ro rx-total-power?
+       |           |       power-dbm-or-unknown
        |           +--ro inverse-multiplexing!
        |           |  +--ro inverse-mux-type?             identityref
        |           |  +--ro otsi-lane-termination-type?   identityref
@@ -1555,8 +1559,8 @@ module: ietf-wdm-tunnel
        |        +--ro tx-channel-power?         l0-types:power-dbm
        |        +--ro operational-mode?         string
        |        +--ro line-coding-bitrate?      identityref
-       |        +--ro rx-channel-power?         power-dbm-or-null
-       |        +--ro rx-total-power?           power-dbm-or-null
+       |        +--ro rx-channel-power?         power-dbm-or-unknown
+       |        +--ro rx-total-power?           power-dbm-or-unknown
        |        +--ro inverse-multiplexing!
        |        |  +--ro inverse-mux-type?             identityref
        |        |  +--ro otsi-lane-termination-type?   identityref
@@ -1587,8 +1591,8 @@ module: ietf-wdm-tunnel
        |        +--ro tx-channel-power?         l0-types:power-dbm
        |        +--ro operational-mode?         string
        |        +--ro line-coding-bitrate?      identityref
-       |        +--ro rx-channel-power?         power-dbm-or-null
-       |        +--ro rx-total-power?           power-dbm-or-null
+       |        +--ro rx-channel-power?         power-dbm-or-unknown
+       |        +--ro rx-total-power?           power-dbm-or-unknown
        |        +--ro inverse-multiplexing!
        |        |  +--ro inverse-mux-type?             identityref
        |        |  +--ro otsi-lane-termination-type?   identityref
@@ -1622,8 +1626,10 @@ module: ietf-wdm-tunnel
        |     |     +--ro tx-channel-power?         l0-types:power-dbm
        |     |     +--ro operational-mode?         string
        |     |     +--ro line-coding-bitrate?      identityref
-       |     |     +--ro rx-channel-power?         power-dbm-or-null
-       |     |     +--ro rx-total-power?           power-dbm-or-null
+       |     |     +--ro rx-channel-power?
+       |     |     |       power-dbm-or-unknown
+       |     |     +--ro rx-total-power?
+       |     |     |       power-dbm-or-unknown
        |     |     +--ro inverse-multiplexing!
        |     |     |  +--ro inverse-mux-type?             identityref
        |     |     |  +--ro otsi-lane-termination-type?   identityref
@@ -1653,8 +1659,10 @@ module: ietf-wdm-tunnel
        |           +--ro tx-channel-power?         l0-types:power-dbm
        |           +--ro operational-mode?         string
        |           +--ro line-coding-bitrate?      identityref
-       |           +--ro rx-channel-power?         power-dbm-or-null
-       |           +--ro rx-total-power?           power-dbm-or-null
+       |           +--ro rx-channel-power?
+       |           |       power-dbm-or-unknown
+       |           +--ro rx-total-power?
+       |           |       power-dbm-or-unknown
        |           +--ro inverse-multiplexing!
        |           |  +--ro inverse-mux-type?             identityref
        |           |  +--ro otsi-lane-termination-type?   identityref
@@ -1727,8 +1735,8 @@ module: ietf-wdm-tunnel
        |        +--ro tx-channel-power?         l0-types:power-dbm
        |        +--ro operational-mode?         string
        |        +--ro line-coding-bitrate?      identityref
-       |        +--ro rx-channel-power?         power-dbm-or-null
-       |        +--ro rx-total-power?           power-dbm-or-null
+       |        +--ro rx-channel-power?         power-dbm-or-unknown
+       |        +--ro rx-total-power?           power-dbm-or-unknown
        |        +--ro inverse-multiplexing!
        |        |  +--ro inverse-mux-type?             identityref
        |        |  +--ro otsi-lane-termination-type?   identityref
@@ -1759,8 +1767,8 @@ module: ietf-wdm-tunnel
        |        +--ro tx-channel-power?         l0-types:power-dbm
        |        +--ro operational-mode?         string
        |        +--ro line-coding-bitrate?      identityref
-       |        +--ro rx-channel-power?         power-dbm-or-null
-       |        +--ro rx-total-power?           power-dbm-or-null
+       |        +--ro rx-channel-power?         power-dbm-or-unknown
+       |        +--ro rx-total-power?           power-dbm-or-unknown
        |        +--ro inverse-multiplexing!
        |        |  +--ro inverse-mux-type?             identityref
        |        |  +--ro otsi-lane-termination-type?   identityref
@@ -1794,8 +1802,10 @@ module: ietf-wdm-tunnel
        |     |     +--ro tx-channel-power?         l0-types:power-dbm
        |     |     +--ro operational-mode?         string
        |     |     +--ro line-coding-bitrate?      identityref
-       |     |     +--ro rx-channel-power?         power-dbm-or-null
-       |     |     +--ro rx-total-power?           power-dbm-or-null
+       |     |     +--ro rx-channel-power?
+       |     |     |       power-dbm-or-unknown
+       |     |     +--ro rx-total-power?
+       |     |     |       power-dbm-or-unknown
        |     |     +--ro inverse-multiplexing!
        |     |     |  +--ro inverse-mux-type?             identityref
        |     |     |  +--ro otsi-lane-termination-type?   identityref
@@ -1825,8 +1835,10 @@ module: ietf-wdm-tunnel
        |           +--ro tx-channel-power?         l0-types:power-dbm
        |           +--ro operational-mode?         string
        |           +--ro line-coding-bitrate?      identityref
-       |           +--ro rx-channel-power?         power-dbm-or-null
-       |           +--ro rx-total-power?           power-dbm-or-null
+       |           +--ro rx-channel-power?
+       |           |       power-dbm-or-unknown
+       |           +--ro rx-total-power?
+       |           |       power-dbm-or-unknown
        |           +--ro inverse-multiplexing!
        |           |  +--ro inverse-mux-type?             identityref
        |           |  +--ro otsi-lane-termination-type?   identityref
@@ -1899,8 +1911,8 @@ module: ietf-wdm-tunnel
        |        +--ro tx-channel-power?         l0-types:power-dbm
        |        +--ro operational-mode?         string
        |        +--ro line-coding-bitrate?      identityref
-       |        +--ro rx-channel-power?         power-dbm-or-null
-       |        +--ro rx-total-power?           power-dbm-or-null
+       |        +--ro rx-channel-power?         power-dbm-or-unknown
+       |        +--ro rx-total-power?           power-dbm-or-unknown
        |        +--ro inverse-multiplexing!
        |        |  +--ro inverse-mux-type?             identityref
        |        |  +--ro otsi-lane-termination-type?   identityref
@@ -1931,8 +1943,8 @@ module: ietf-wdm-tunnel
        |        +--ro tx-channel-power?         l0-types:power-dbm
        |        +--ro operational-mode?         string
        |        +--ro line-coding-bitrate?      identityref
-       |        +--ro rx-channel-power?         power-dbm-or-null
-       |        +--ro rx-total-power?           power-dbm-or-null
+       |        +--ro rx-channel-power?         power-dbm-or-unknown
+       |        +--ro rx-total-power?           power-dbm-or-unknown
        |        +--ro inverse-multiplexing!
        |        |  +--ro inverse-mux-type?             identityref
        |        |  +--ro otsi-lane-termination-type?   identityref
@@ -1966,8 +1978,10 @@ module: ietf-wdm-tunnel
        |     |     +--ro tx-channel-power?         l0-types:power-dbm
        |     |     +--ro operational-mode?         string
        |     |     +--ro line-coding-bitrate?      identityref
-       |     |     +--ro rx-channel-power?         power-dbm-or-null
-       |     |     +--ro rx-total-power?           power-dbm-or-null
+       |     |     +--ro rx-channel-power?
+       |     |     |       power-dbm-or-unknown
+       |     |     +--ro rx-total-power?
+       |     |     |       power-dbm-or-unknown
        |     |     +--ro inverse-multiplexing!
        |     |     |  +--ro inverse-mux-type?             identityref
        |     |     |  +--ro otsi-lane-termination-type?   identityref
@@ -1997,8 +2011,10 @@ module: ietf-wdm-tunnel
        |           +--ro tx-channel-power?         l0-types:power-dbm
        |           +--ro operational-mode?         string
        |           +--ro line-coding-bitrate?      identityref
-       |           +--ro rx-channel-power?         power-dbm-or-null
-       |           +--ro rx-total-power?           power-dbm-or-null
+       |           +--ro rx-channel-power?
+       |           |       power-dbm-or-unknown
+       |           +--ro rx-total-power?
+       |           |       power-dbm-or-unknown
        |           +--ro inverse-multiplexing!
        |           |  +--ro inverse-mux-type?             identityref
        |           |  +--ro otsi-lane-termination-type?   identityref
@@ -2069,8 +2085,8 @@ module: ietf-wdm-tunnel
        |        +--ro tx-channel-power?         l0-types:power-dbm
        |        +--ro operational-mode?         string
        |        +--ro line-coding-bitrate?      identityref
-       |        +--ro rx-channel-power?         power-dbm-or-null
-       |        +--ro rx-total-power?           power-dbm-or-null
+       |        +--ro rx-channel-power?         power-dbm-or-unknown
+       |        +--ro rx-total-power?           power-dbm-or-unknown
        |        +--ro inverse-multiplexing!
        |        |  +--ro inverse-mux-type?             identityref
        |        |  +--ro otsi-lane-termination-type?   identityref
@@ -2087,7 +2103,7 @@ module: ietf-wdm-tunnel
        |        |  +--ro value?       decimal64
        |        +--ro q-factor
        |           +--ro timestamp?   yang:timestamp
-       |           +--ro value?       l0-types:decimal-2-or-null
+       |           +--ro value?       l0-types:decimal-2-or-unknown
        +--:(destination)
        |  +--ro destination-transponder
        |     +--ro transponder-id?         uint32
@@ -2104,8 +2120,8 @@ module: ietf-wdm-tunnel
        |        +--ro tx-channel-power?         l0-types:power-dbm
        |        +--ro operational-mode?         string
        |        +--ro line-coding-bitrate?      identityref
-       |        +--ro rx-channel-power?         power-dbm-or-null
-       |        +--ro rx-total-power?           power-dbm-or-null
+       |        +--ro rx-channel-power?         power-dbm-or-unknown
+       |        +--ro rx-total-power?           power-dbm-or-unknown
        |        +--ro inverse-multiplexing!
        |        |  +--ro inverse-mux-type?             identityref
        |        |  +--ro otsi-lane-termination-type?   identityref
@@ -2122,7 +2138,7 @@ module: ietf-wdm-tunnel
        |        |  +--ro value?       decimal64
        |        +--ro q-factor
        |           +--ro timestamp?   yang:timestamp
-       |           +--ro value?       l0-types:decimal-2-or-null
+       |           +--ro value?       l0-types:decimal-2-or-unknown
        +--:(regenerator)
        |  +--ro regenerator
        |     +--ro regen-group-id?         uint32
@@ -2142,8 +2158,10 @@ module: ietf-wdm-tunnel
        |     |     +--ro tx-channel-power?         l0-types:power-dbm
        |     |     +--ro operational-mode?         string
        |     |     +--ro line-coding-bitrate?      identityref
-       |     |     +--ro rx-channel-power?         power-dbm-or-null
-       |     |     +--ro rx-total-power?           power-dbm-or-null
+       |     |     +--ro rx-channel-power?
+       |     |     |       power-dbm-or-unknown
+       |     |     +--ro rx-total-power?
+       |     |     |       power-dbm-or-unknown
        |     |     +--ro inverse-multiplexing!
        |     |     |  +--ro inverse-mux-type?             identityref
        |     |     |  +--ro otsi-lane-termination-type?   identityref
@@ -2160,7 +2178,8 @@ module: ietf-wdm-tunnel
        |     |     |  +--ro value?       decimal64
        |     |     +--ro q-factor
        |     |        +--ro timestamp?   yang:timestamp
-       |     |        +--ro value?       l0-types:decimal-2-or-null
+       |     |        +--ro value?
+       |     |                l0-types:decimal-2-or-unknown
        |     +--ro outgoing-transponder
        |        +--ro transponder-id?         uint32
        |        +--ro digital-terminations
@@ -2176,8 +2195,10 @@ module: ietf-wdm-tunnel
        |           +--ro tx-channel-power?         l0-types:power-dbm
        |           +--ro operational-mode?         string
        |           +--ro line-coding-bitrate?      identityref
-       |           +--ro rx-channel-power?         power-dbm-or-null
-       |           +--ro rx-total-power?           power-dbm-or-null
+       |           +--ro rx-channel-power?
+       |           |       power-dbm-or-unknown
+       |           +--ro rx-total-power?
+       |           |       power-dbm-or-unknown
        |           +--ro inverse-multiplexing!
        |           |  +--ro inverse-mux-type?             identityref
        |           |  +--ro otsi-lane-termination-type?   identityref
@@ -2194,7 +2215,8 @@ module: ietf-wdm-tunnel
        |           |  +--ro value?       decimal64
        |           +--ro q-factor
        |              +--ro timestamp?   yang:timestamp
-       |              +--ro value?       l0-types:decimal-2-or-null
+       |              +--ro value?
+       |                      l0-types:decimal-2-or-unknown
        +--:(regenerators)
           +--ro regenerators
              +--ro common-incoming
@@ -2205,7 +2227,7 @@ module: ietf-wdm-tunnel
              |  |  +--ro value?       decimal64
              |  +--ro q-factor
              |     +--ro timestamp?   yang:timestamp
-             |     +--ro value?       l0-types:decimal-2-or-null
+             |     +--ro value?       l0-types:decimal-2-or-unknown
              +--ro common-outgoing
              |  +--ro operational-mode?      string
              |  +--ro line-coding-bitrate?   identityref
@@ -2214,7 +2236,7 @@ module: ietf-wdm-tunnel
              |  |  +--ro value?       decimal64
              |  +--ro q-factor
              |     +--ro timestamp?   yang:timestamp
-             |     +--ro value?       l0-types:decimal-2-or-null
+             |     +--ro value?       l0-types:decimal-2-or-unknown
              +--ro regenerator* [index]
                 +--ro index                   uint8
                 +--ro regen-group-id?         uint32
@@ -2248,187 +2270,191 @@ module: ietf-wdm-tunnel
   augment /te:te/te:globals/te:named-path-constraints
             /te:named-path-constraint/te:path-in-segment
             /te:label-restrictions/te:label-restriction:
-    +--rw grid-type?    identityref
-    +--rw priority?     uint8
-    +--rw flexi-grid
-       +--rw slot-width-granularity?   identityref
-       +--rw min-slot-width-factor?    uint16
-       +--rw max-slot-width-factor?    uint16
+    +--rw wdm-label-range
+       +--rw grid-type?    identityref
+       +--rw priority?     uint8
+       +--rw flexi-grid
+          +--rw slot-width-granularity?   identityref
+          +--rw min-slot-width-factor?    uint16
+          +--rw max-slot-width-factor?    uint16
   augment /te:te/te:globals/te:named-path-constraints
             /te:named-path-constraint/te:path-out-segment
             /te:label-restrictions/te:label-restriction:
-    +--rw grid-type?    identityref
-    +--rw priority?     uint8
-    +--rw flexi-grid
-       +--rw slot-width-granularity?   identityref
-       +--rw min-slot-width-factor?    uint16
-       +--rw max-slot-width-factor?    uint16
+    +--rw wdm-label-range
+       +--rw grid-type?    identityref
+       +--rw priority?     uint8
+       +--rw flexi-grid
+          +--rw slot-width-granularity?   identityref
+          +--rw min-slot-width-factor?    uint16
+          +--rw max-slot-width-factor?    uint16
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:path-in-segment/te:label-restrictions
             /te:label-restriction:
-    +--rw grid-type?    identityref
-    +--rw priority?     uint8
-    +--rw flexi-grid
-       +--rw slot-width-granularity?   identityref
-       +--rw min-slot-width-factor?    uint16
-       +--rw max-slot-width-factor?    uint16
+    +--rw wdm-label-range
+       +--rw grid-type?    identityref
+       +--rw priority?     uint8
+       +--rw flexi-grid
+          +--rw slot-width-granularity?   identityref
+          +--rw min-slot-width-factor?    uint16
+          +--rw max-slot-width-factor?    uint16
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:path-out-segment
             /te:label-restrictions/te:label-restriction:
-    +--rw grid-type?    identityref
-    +--rw priority?     uint8
-    +--rw flexi-grid
-       +--rw slot-width-granularity?   identityref
-       +--rw min-slot-width-factor?    uint16
-       +--rw max-slot-width-factor?    uint16
+    +--rw wdm-label-range
+       +--rw grid-type?    identityref
+       +--rw priority?     uint8
+       +--rw flexi-grid
+          +--rw slot-width-granularity?   identityref
+          +--rw min-slot-width-factor?    uint16
+          +--rw max-slot-width-factor?    uint16
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:primary-reverse-path
             /te:path-in-segment/te:label-restrictions
             /te:label-restriction:
-    +--rw grid-type?    identityref
-    +--rw priority?     uint8
-    +--rw flexi-grid
-       +--rw slot-width-granularity?   identityref
-       +--rw min-slot-width-factor?    uint16
-       +--rw max-slot-width-factor?    uint16
+    +--rw wdm-label-range
+       +--rw grid-type?    identityref
+       +--rw priority?     uint8
+       +--rw flexi-grid
+          +--rw slot-width-granularity?   identityref
+          +--rw min-slot-width-factor?    uint16
+          +--rw max-slot-width-factor?    uint16
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:primary-reverse-path
             /te:path-out-segment/te:label-restrictions
             /te:label-restriction:
-    +--rw grid-type?    identityref
-    +--rw priority?     uint8
-    +--rw flexi-grid
-       +--rw slot-width-granularity?   identityref
-       +--rw min-slot-width-factor?    uint16
-       +--rw max-slot-width-factor?    uint16
+    +--rw wdm-label-range
+       +--rw grid-type?    identityref
+       +--rw priority?     uint8
+       +--rw flexi-grid
+          +--rw slot-width-granularity?   identityref
+          +--rw min-slot-width-factor?    uint16
+          +--rw max-slot-width-factor?    uint16
   augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
             /te:secondary-path/te:path-in-segment
             /te:label-restrictions/te:label-restriction:
-    +--rw grid-type?    identityref
-    +--rw priority?     uint8
-    +--rw flexi-grid
-       +--rw slot-width-granularity?   identityref
-       +--rw min-slot-width-factor?    uint16
-       +--rw max-slot-width-factor?    uint16
+    +--rw wdm-label-range
+       +--rw grid-type?    identityref
+       +--rw priority?     uint8
+       +--rw flexi-grid
+          +--rw slot-width-granularity?   identityref
+          +--rw min-slot-width-factor?    uint16
+          +--rw max-slot-width-factor?    uint16
   augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
             /te:secondary-path/te:path-out-segment
             /te:label-restrictions/te:label-restriction:
-    +--rw grid-type?    identityref
-    +--rw priority?     uint8
-    +--rw flexi-grid
-       +--rw slot-width-granularity?   identityref
-       +--rw min-slot-width-factor?    uint16
-       +--rw max-slot-width-factor?    uint16
+    +--rw wdm-label-range
+       +--rw grid-type?    identityref
+       +--rw priority?     uint8
+       +--rw flexi-grid
+          +--rw slot-width-granularity?   identityref
+          +--rw min-slot-width-factor?    uint16
+          +--rw max-slot-width-factor?    uint16
   augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
             /te:secondary-reverse-path/te:path-in-segment
             /te:label-restrictions/te:label-restriction:
-    +--rw grid-type?    identityref
-    +--rw priority?     uint8
-    +--rw flexi-grid
-       +--rw slot-width-granularity?   identityref
-       +--rw min-slot-width-factor?    uint16
-       +--rw max-slot-width-factor?    uint16
+    +--rw wdm-label-range
+       +--rw grid-type?    identityref
+       +--rw priority?     uint8
+       +--rw flexi-grid
+          +--rw slot-width-granularity?   identityref
+          +--rw min-slot-width-factor?    uint16
+          +--rw max-slot-width-factor?    uint16
   augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
             /te:secondary-reverse-path/te:path-out-segment
             /te:label-restrictions/te:label-restriction:
-    +--rw grid-type?    identityref
-    +--rw priority?     uint8
-    +--rw flexi-grid
-       +--rw slot-width-granularity?   identityref
-       +--rw min-slot-width-factor?    uint16
-       +--rw max-slot-width-factor?    uint16
+    +--rw wdm-label-range
+       +--rw grid-type?    identityref
+       +--rw priority?     uint8
+       +--rw flexi-grid
+          +--rw slot-width-granularity?   identityref
+          +--rw min-slot-width-factor?    uint16
+          +--rw max-slot-width-factor?    uint16
   augment /te:te/te:globals/te:named-path-constraints
             /te:named-path-constraint/te:explicit-route-objects
             /te:route-object-exclude-always/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
     +--:(wdm)
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw (fixed-single-or-super-channel)?
-          |     +--:(single)
-          |     |  +--rw dwdm-n?               dwdm-n
-          |     +--:(multi)
-          |        +--rw subcarrier-dwdm-n*    dwdm-n
-          +--:(cwdm)
-          |  +--rw cwdm-n?                     cwdm-n
-          +--:(flexi-grid)
-             +--rw (single-or-super-channel)?
-                +--:(single)
-                |  +--rw flexi-n?              flexi-n
-                |  +--rw flexi-m?              flexi-m
-                x--:(super)
-                |  x--rw subcarrier-flexi-n* [flexi-n]
-                |     +--rw flexi-n    flexi-n
-                |     +--rw flexi-m?   flexi-m
-                +--:(multi)
-                   +--rw frequency-slots
-                      +--rw frequency-slot* [flexi-n]
-                         +--rw flexi-n    flexi-n
-                         +--rw flexi-m?   flexi-m
+       +--rw wdm-label
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw (fixed-single-or-multi-channel)?
+             |     +--:(single)
+             |     |  +--rw dwdm-n?               dwdm-n
+             |     +--:(multi)
+             |        +--rw subcarrier-dwdm-n*    dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?                     cwdm-n
+             +--:(flexi-grid)
+                +--rw (single-or-super-channel)?
+                   +--:(single)
+                   |  +--rw flexi-n?              flexi-n
+                   |  +--rw flexi-m?              flexi-m
+                   o--:(super)
+                   |  o--rw subcarrier-flexi-n* [flexi-n]
+                   |     +--rw flexi-n    flexi-n
+                   |     +--rw flexi-m?   flexi-m
+                   +--:(multi)
+                      +--rw frequency-slots
+                         +--rw frequency-slot* [flexi-n]
+                            +--rw flexi-n    flexi-n
+                            +--rw flexi-m?   flexi-m
   augment /te:te/te:globals/te:named-path-constraints
             /te:named-path-constraint/te:explicit-route-objects
             /te:route-object-include-exclude/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
     +--:(wdm)
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw (fixed-single-or-super-channel)?
-          |     +--:(single)
-          |     |  +--rw dwdm-n?               dwdm-n
-          |     +--:(multi)
-          |        +--rw subcarrier-dwdm-n*    dwdm-n
-          +--:(cwdm)
-          |  +--rw cwdm-n?                     cwdm-n
-          +--:(flexi-grid)
-             +--rw (single-or-super-channel)?
-                +--:(single)
-                |  +--rw flexi-n?              flexi-n
-                |  +--rw flexi-m?              flexi-m
-                x--:(super)
-                |  x--rw subcarrier-flexi-n* [flexi-n]
-                |     +--rw flexi-n    flexi-n
-                |     +--rw flexi-m?   flexi-m
-                +--:(multi)
-                   +--rw frequency-slots
-                      +--rw frequency-slot* [flexi-n]
-                         +--rw flexi-n    flexi-n
-                         +--rw flexi-m?   flexi-m
+       +--rw wdm-label
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw (fixed-single-or-multi-channel)?
+             |     +--:(single)
+             |     |  +--rw dwdm-n?               dwdm-n
+             |     +--:(multi)
+             |        +--rw subcarrier-dwdm-n*    dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?                     cwdm-n
+             +--:(flexi-grid)
+                +--rw (single-or-super-channel)?
+                   +--:(single)
+                   |  +--rw flexi-n?              flexi-n
+                   |  +--rw flexi-m?              flexi-m
+                   o--:(super)
+                   |  o--rw subcarrier-flexi-n* [flexi-n]
+                   |     +--rw flexi-n    flexi-n
+                   |     +--rw flexi-m?   flexi-m
+                   +--:(multi)
+                      +--rw frequency-slots
+                         +--rw frequency-slot* [flexi-n]
+                            +--rw flexi-n    flexi-n
+                            +--rw flexi-m?   flexi-m
   augment /te:te/te:globals/te:named-path-constraints
             /te:named-path-constraint/te:path-in-segment
             /te:label-restrictions/te:label-restriction
             /te:label-start/te:te-label/te:technology:
     +--:(wdm)
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw dwdm-n?    dwdm-n
-          +--:(cwdm)
-          |  +--rw cwdm-n?    cwdm-n
-          +--:(flexi-grid)
-             +--rw flexi-n?   flexi-n
+       +--rw wdm-label
+          +--rw dwdm-n?    dwdm-n
+          +--rw cwdm-n?    cwdm-n
+          +--rw flexi-n?   flexi-n
   augment /te:te/te:globals/te:named-path-constraints
             /te:named-path-constraint/te:path-in-segment
             /te:label-restrictions/te:label-restriction/te:label-end
             /te:te-label/te:technology:
     +--:(wdm)
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw dwdm-n?    dwdm-n
-          +--:(cwdm)
-          |  +--rw cwdm-n?    cwdm-n
-          +--:(flexi-grid)
-             +--rw flexi-n?   flexi-n
+       +--rw wdm-label
+          +--rw dwdm-n?    dwdm-n
+          +--rw cwdm-n?    cwdm-n
+          +--rw flexi-n?   flexi-n
   augment /te:te/te:globals/te:named-path-constraints
             /te:named-path-constraint/te:path-in-segment
             /te:label-restrictions/te:label-restriction/te:label-step
             /te:technology:
     +--:(wdm)
-       +--rw (l0-grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw wson-dwdm-channel-spacing?    identityref
-          +--:(cwdm)
-          |  +--rw wson-cwdm-channel-spacing?    identityref
-          +--:(flexi-grid)
-             x--rw flexi-grid-channel-spacing?   identityref
+       +--rw wdm-label-step
+          +--rw wson-dwdm-channel-spacing?   identityref
+          +--rw wson-cwdm-channel-spacing?   identityref
+          +--rw flexi-grid-cfg
+             o--rw flexi-grid-channel-spacing?   identityref
              +--rw flexi-ncfg?                   identityref
              +--rw flexi-n-step?                 uint8
   augment /te:te/te:globals/te:named-path-constraints
@@ -2436,37 +2462,29 @@ module: ietf-wdm-tunnel
             /te:label-restrictions/te:label-restriction
             /te:label-start/te:te-label/te:technology:
     +--:(wdm)
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw dwdm-n?    dwdm-n
-          +--:(cwdm)
-          |  +--rw cwdm-n?    cwdm-n
-          +--:(flexi-grid)
-             +--rw flexi-n?   flexi-n
+       +--rw wdm-label
+          +--rw dwdm-n?    dwdm-n
+          +--rw cwdm-n?    cwdm-n
+          +--rw flexi-n?   flexi-n
   augment /te:te/te:globals/te:named-path-constraints
             /te:named-path-constraint/te:path-out-segment
             /te:label-restrictions/te:label-restriction/te:label-end
             /te:te-label/te:technology:
     +--:(wdm)
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw dwdm-n?    dwdm-n
-          +--:(cwdm)
-          |  +--rw cwdm-n?    cwdm-n
-          +--:(flexi-grid)
-             +--rw flexi-n?   flexi-n
+       +--rw wdm-label
+          +--rw dwdm-n?    dwdm-n
+          +--rw cwdm-n?    cwdm-n
+          +--rw flexi-n?   flexi-n
   augment /te:te/te:globals/te:named-path-constraints
             /te:named-path-constraint/te:path-out-segment
             /te:label-restrictions/te:label-restriction/te:label-step
             /te:technology:
     +--:(wdm)
-       +--rw (l0-grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw wson-dwdm-channel-spacing?    identityref
-          +--:(cwdm)
-          |  +--rw wson-cwdm-channel-spacing?    identityref
-          +--:(flexi-grid)
-             x--rw flexi-grid-channel-spacing?   identityref
+       +--rw wdm-label-step
+          +--rw wson-dwdm-channel-spacing?   identityref
+          +--rw wson-cwdm-channel-spacing?   identityref
+          +--rw flexi-grid-cfg
+             o--rw flexi-grid-channel-spacing?   identityref
              +--rw flexi-ncfg?                   identityref
              +--rw flexi-n-step?                 uint8
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
@@ -2475,149 +2493,145 @@ module: ietf-wdm-tunnel
             /te:route-object-exclude-object/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
     +--:(wdm)
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw (fixed-single-or-super-channel)?
-          |     +--:(single)
-          |     |  +--rw dwdm-n?               dwdm-n
-          |     +--:(multi)
-          |        +--rw subcarrier-dwdm-n*    dwdm-n
-          +--:(cwdm)
-          |  +--rw cwdm-n?                     cwdm-n
-          +--:(flexi-grid)
-             +--rw (single-or-super-channel)?
-                +--:(single)
-                |  +--rw flexi-n?              flexi-n
-                |  +--rw flexi-m?              flexi-m
-                x--:(super)
-                |  x--rw subcarrier-flexi-n* [flexi-n]
-                |     +--rw flexi-n    flexi-n
-                |     +--rw flexi-m?   flexi-m
-                +--:(multi)
-                   +--rw frequency-slots
-                      +--rw frequency-slot* [flexi-n]
-                         +--rw flexi-n    flexi-n
-                         +--rw flexi-m?   flexi-m
+       +--rw wdm-label
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw (fixed-single-or-multi-channel)?
+             |     +--:(single)
+             |     |  +--rw dwdm-n?               dwdm-n
+             |     +--:(multi)
+             |        +--rw subcarrier-dwdm-n*    dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?                     cwdm-n
+             +--:(flexi-grid)
+                +--rw (single-or-super-channel)?
+                   +--:(single)
+                   |  +--rw flexi-n?              flexi-n
+                   |  +--rw flexi-m?              flexi-m
+                   o--:(super)
+                   |  o--rw subcarrier-flexi-n* [flexi-n]
+                   |     +--rw flexi-n    flexi-n
+                   |     +--rw flexi-m?   flexi-m
+                   +--:(multi)
+                      +--rw frequency-slots
+                         +--rw frequency-slot* [flexi-n]
+                            +--rw flexi-n    flexi-n
+                            +--rw flexi-m?   flexi-m
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:optimizations/te:algorithm/te:metric
             /te:optimization-metric/te:explicit-route-include-objects
             /te:route-object-include-object/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
     +--:(wdm)
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw (fixed-single-or-super-channel)?
-          |     +--:(single)
-          |     |  +--rw dwdm-n?               dwdm-n
-          |     +--:(multi)
-          |        +--rw subcarrier-dwdm-n*    dwdm-n
-          +--:(cwdm)
-          |  +--rw cwdm-n?                     cwdm-n
-          +--:(flexi-grid)
-             +--rw (single-or-super-channel)?
-                +--:(single)
-                |  +--rw flexi-n?              flexi-n
-                |  +--rw flexi-m?              flexi-m
-                x--:(super)
-                |  x--rw subcarrier-flexi-n* [flexi-n]
-                |     +--rw flexi-n    flexi-n
-                |     +--rw flexi-m?   flexi-m
-                +--:(multi)
-                   +--rw frequency-slots
-                      +--rw frequency-slot* [flexi-n]
-                         +--rw flexi-n    flexi-n
-                         +--rw flexi-m?   flexi-m
+       +--rw wdm-label
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw (fixed-single-or-multi-channel)?
+             |     +--:(single)
+             |     |  +--rw dwdm-n?               dwdm-n
+             |     +--:(multi)
+             |        +--rw subcarrier-dwdm-n*    dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?                     cwdm-n
+             +--:(flexi-grid)
+                +--rw (single-or-super-channel)?
+                   +--:(single)
+                   |  +--rw flexi-n?              flexi-n
+                   |  +--rw flexi-m?              flexi-m
+                   o--:(super)
+                   |  o--rw subcarrier-flexi-n* [flexi-n]
+                   |     +--rw flexi-n    flexi-n
+                   |     +--rw flexi-m?   flexi-m
+                   +--:(multi)
+                      +--rw frequency-slots
+                         +--rw frequency-slot* [flexi-n]
+                            +--rw flexi-n    flexi-n
+                            +--rw flexi-m?   flexi-m
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:explicit-route-objects
             /te:route-object-exclude-always/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
     +--:(wdm)
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw (fixed-single-or-super-channel)?
-          |     +--:(single)
-          |     |  +--rw dwdm-n?               dwdm-n
-          |     +--:(multi)
-          |        +--rw subcarrier-dwdm-n*    dwdm-n
-          +--:(cwdm)
-          |  +--rw cwdm-n?                     cwdm-n
-          +--:(flexi-grid)
-             +--rw (single-or-super-channel)?
-                +--:(single)
-                |  +--rw flexi-n?              flexi-n
-                |  +--rw flexi-m?              flexi-m
-                x--:(super)
-                |  x--rw subcarrier-flexi-n* [flexi-n]
-                |     +--rw flexi-n    flexi-n
-                |     +--rw flexi-m?   flexi-m
-                +--:(multi)
-                   +--rw frequency-slots
-                      +--rw frequency-slot* [flexi-n]
-                         +--rw flexi-n    flexi-n
-                         +--rw flexi-m?   flexi-m
+       +--rw wdm-label
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw (fixed-single-or-multi-channel)?
+             |     +--:(single)
+             |     |  +--rw dwdm-n?               dwdm-n
+             |     +--:(multi)
+             |        +--rw subcarrier-dwdm-n*    dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?                     cwdm-n
+             +--:(flexi-grid)
+                +--rw (single-or-super-channel)?
+                   +--:(single)
+                   |  +--rw flexi-n?              flexi-n
+                   |  +--rw flexi-m?              flexi-m
+                   o--:(super)
+                   |  o--rw subcarrier-flexi-n* [flexi-n]
+                   |     +--rw flexi-n    flexi-n
+                   |     +--rw flexi-m?   flexi-m
+                   +--:(multi)
+                      +--rw frequency-slots
+                         +--rw frequency-slot* [flexi-n]
+                            +--rw flexi-n    flexi-n
+                            +--rw flexi-m?   flexi-m
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:explicit-route-objects
             /te:route-object-include-exclude/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
     +--:(wdm)
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw (fixed-single-or-super-channel)?
-          |     +--:(single)
-          |     |  +--rw dwdm-n?               dwdm-n
-          |     +--:(multi)
-          |        +--rw subcarrier-dwdm-n*    dwdm-n
-          +--:(cwdm)
-          |  +--rw cwdm-n?                     cwdm-n
-          +--:(flexi-grid)
-             +--rw (single-or-super-channel)?
-                +--:(single)
-                |  +--rw flexi-n?              flexi-n
-                |  +--rw flexi-m?              flexi-m
-                x--:(super)
-                |  x--rw subcarrier-flexi-n* [flexi-n]
-                |     +--rw flexi-n    flexi-n
-                |     +--rw flexi-m?   flexi-m
-                +--:(multi)
-                   +--rw frequency-slots
-                      +--rw frequency-slot* [flexi-n]
-                         +--rw flexi-n    flexi-n
-                         +--rw flexi-m?   flexi-m
+       +--rw wdm-label
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw (fixed-single-or-multi-channel)?
+             |     +--:(single)
+             |     |  +--rw dwdm-n?               dwdm-n
+             |     +--:(multi)
+             |        +--rw subcarrier-dwdm-n*    dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?                     cwdm-n
+             +--:(flexi-grid)
+                +--rw (single-or-super-channel)?
+                   +--:(single)
+                   |  +--rw flexi-n?              flexi-n
+                   |  +--rw flexi-m?              flexi-m
+                   o--:(super)
+                   |  o--rw subcarrier-flexi-n* [flexi-n]
+                   |     +--rw flexi-n    flexi-n
+                   |     +--rw flexi-m?   flexi-m
+                   +--:(multi)
+                      +--rw frequency-slots
+                         +--rw frequency-slot* [flexi-n]
+                            +--rw flexi-n    flexi-n
+                            +--rw flexi-m?   flexi-m
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:path-in-segment/te:label-restrictions
             /te:label-restriction/te:label-start/te:te-label
             /te:technology:
     +--:(wdm)
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw dwdm-n?    dwdm-n
-          +--:(cwdm)
-          |  +--rw cwdm-n?    cwdm-n
-          +--:(flexi-grid)
-             +--rw flexi-n?   flexi-n
+       +--rw wdm-label
+          +--rw dwdm-n?    dwdm-n
+          +--rw cwdm-n?    cwdm-n
+          +--rw flexi-n?   flexi-n
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:path-in-segment/te:label-restrictions
             /te:label-restriction/te:label-end/te:te-label
             /te:technology:
     +--:(wdm)
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw dwdm-n?    dwdm-n
-          +--:(cwdm)
-          |  +--rw cwdm-n?    cwdm-n
-          +--:(flexi-grid)
-             +--rw flexi-n?   flexi-n
+       +--rw wdm-label
+          +--rw dwdm-n?    dwdm-n
+          +--rw cwdm-n?    cwdm-n
+          +--rw flexi-n?   flexi-n
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:path-in-segment/te:label-restrictions
             /te:label-restriction/te:label-step/te:technology:
     +--:(wdm)
-       +--rw (l0-grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw wson-dwdm-channel-spacing?    identityref
-          +--:(cwdm)
-          |  +--rw wson-cwdm-channel-spacing?    identityref
-          +--:(flexi-grid)
-             x--rw flexi-grid-channel-spacing?   identityref
+       +--rw wdm-label-step
+          +--rw wson-dwdm-channel-spacing?   identityref
+          +--rw wson-cwdm-channel-spacing?   identityref
+          +--rw flexi-grid-cfg
+             o--rw flexi-grid-channel-spacing?   identityref
              +--rw flexi-ncfg?                   identityref
              +--rw flexi-n-step?                 uint8
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
@@ -2625,37 +2639,29 @@ module: ietf-wdm-tunnel
             /te:label-restrictions/te:label-restriction
             /te:label-start/te:te-label/te:technology:
     +--:(wdm)
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw dwdm-n?    dwdm-n
-          +--:(cwdm)
-          |  +--rw cwdm-n?    cwdm-n
-          +--:(flexi-grid)
-             +--rw flexi-n?   flexi-n
+       +--rw wdm-label
+          +--rw dwdm-n?    dwdm-n
+          +--rw cwdm-n?    cwdm-n
+          +--rw flexi-n?   flexi-n
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:path-out-segment
             /te:label-restrictions/te:label-restriction/te:label-end
             /te:te-label/te:technology:
     +--:(wdm)
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw dwdm-n?    dwdm-n
-          +--:(cwdm)
-          |  +--rw cwdm-n?    cwdm-n
-          +--:(flexi-grid)
-             +--rw flexi-n?   flexi-n
+       +--rw wdm-label
+          +--rw dwdm-n?    dwdm-n
+          +--rw cwdm-n?    cwdm-n
+          +--rw flexi-n?   flexi-n
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:path-out-segment
             /te:label-restrictions/te:label-restriction/te:label-step
             /te:technology:
     +--:(wdm)
-       +--rw (l0-grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw wson-dwdm-channel-spacing?    identityref
-          +--:(cwdm)
-          |  +--rw wson-cwdm-channel-spacing?    identityref
-          +--:(flexi-grid)
-             x--rw flexi-grid-channel-spacing?   identityref
+       +--rw wdm-label-step
+          +--rw wson-dwdm-channel-spacing?   identityref
+          +--rw wson-cwdm-channel-spacing?   identityref
+          +--rw flexi-grid-cfg
+             o--rw flexi-grid-channel-spacing?   identityref
              +--rw flexi-ncfg?                   identityref
              +--rw flexi-n-step?                 uint8
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
@@ -2664,29 +2670,30 @@ module: ietf-wdm-tunnel
             /te:path-route-objects/te:path-route-object/te:type
             /te:label/te:label-hop/te:te-label/te:technology:
     +--:(wdm)
-       +--ro (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--ro (fixed-single-or-super-channel)?
-          |     +--:(single)
-          |     |  +--ro dwdm-n?               dwdm-n
-          |     +--:(multi)
-          |        +--ro subcarrier-dwdm-n*    dwdm-n
-          +--:(cwdm)
-          |  +--ro cwdm-n?                     cwdm-n
-          +--:(flexi-grid)
-             +--ro (single-or-super-channel)?
-                +--:(single)
-                |  +--ro flexi-n?              flexi-n
-                |  +--ro flexi-m?              flexi-m
-                x--:(super)
-                |  x--ro subcarrier-flexi-n* [flexi-n]
-                |     +--ro flexi-n    flexi-n
-                |     +--ro flexi-m?   flexi-m
-                +--:(multi)
-                   +--ro frequency-slots
-                      +--ro frequency-slot* [flexi-n]
-                         +--ro flexi-n    flexi-n
-                         +--ro flexi-m?   flexi-m
+       +--ro wdm-label
+          +--ro (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--ro (fixed-single-or-multi-channel)?
+             |     +--:(single)
+             |     |  +--ro dwdm-n?               dwdm-n
+             |     +--:(multi)
+             |        +--ro subcarrier-dwdm-n*    dwdm-n
+             +--:(cwdm)
+             |  +--ro cwdm-n?                     cwdm-n
+             +--:(flexi-grid)
+                +--ro (single-or-super-channel)?
+                   +--:(single)
+                   |  +--ro flexi-n?              flexi-n
+                   |  +--ro flexi-m?              flexi-m
+                   o--:(super)
+                   |  o--ro subcarrier-flexi-n* [flexi-n]
+                   |     +--ro flexi-n    flexi-n
+                   |     +--ro flexi-m?   flexi-m
+                   +--:(multi)
+                      +--ro frequency-slots
+                         +--ro frequency-slot* [flexi-n]
+                            +--ro flexi-n    flexi-n
+                            +--ro flexi-m?   flexi-m
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:primary-reverse-path/te:optimizations
             /te:algorithm/te:metric/te:optimization-metric
@@ -2694,29 +2701,30 @@ module: ietf-wdm-tunnel
             /te:route-object-exclude-object/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
     +--:(wdm)
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw (fixed-single-or-super-channel)?
-          |     +--:(single)
-          |     |  +--rw dwdm-n?               dwdm-n
-          |     +--:(multi)
-          |        +--rw subcarrier-dwdm-n*    dwdm-n
-          +--:(cwdm)
-          |  +--rw cwdm-n?                     cwdm-n
-          +--:(flexi-grid)
-             +--rw (single-or-super-channel)?
-                +--:(single)
-                |  +--rw flexi-n?              flexi-n
-                |  +--rw flexi-m?              flexi-m
-                x--:(super)
-                |  x--rw subcarrier-flexi-n* [flexi-n]
-                |     +--rw flexi-n    flexi-n
-                |     +--rw flexi-m?   flexi-m
-                +--:(multi)
-                   +--rw frequency-slots
-                      +--rw frequency-slot* [flexi-n]
-                         +--rw flexi-n    flexi-n
-                         +--rw flexi-m?   flexi-m
+       +--rw wdm-label
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw (fixed-single-or-multi-channel)?
+             |     +--:(single)
+             |     |  +--rw dwdm-n?               dwdm-n
+             |     +--:(multi)
+             |        +--rw subcarrier-dwdm-n*    dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?                     cwdm-n
+             +--:(flexi-grid)
+                +--rw (single-or-super-channel)?
+                   +--:(single)
+                   |  +--rw flexi-n?              flexi-n
+                   |  +--rw flexi-m?              flexi-m
+                   o--:(super)
+                   |  o--rw subcarrier-flexi-n* [flexi-n]
+                   |     +--rw flexi-n    flexi-n
+                   |     +--rw flexi-m?   flexi-m
+                   +--:(multi)
+                      +--rw frequency-slots
+                         +--rw frequency-slot* [flexi-n]
+                            +--rw flexi-n    flexi-n
+                            +--rw flexi-m?   flexi-m
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:primary-reverse-path/te:optimizations
             /te:algorithm/te:metric/te:optimization-metric
@@ -2724,124 +2732,119 @@ module: ietf-wdm-tunnel
             /te:route-object-include-object/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
     +--:(wdm)
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw (fixed-single-or-super-channel)?
-          |     +--:(single)
-          |     |  +--rw dwdm-n?               dwdm-n
-          |     +--:(multi)
-          |        +--rw subcarrier-dwdm-n*    dwdm-n
-          +--:(cwdm)
-          |  +--rw cwdm-n?                     cwdm-n
-          +--:(flexi-grid)
-             +--rw (single-or-super-channel)?
-                +--:(single)
-                |  +--rw flexi-n?              flexi-n
-                |  +--rw flexi-m?              flexi-m
-                x--:(super)
-                |  x--rw subcarrier-flexi-n* [flexi-n]
-                |     +--rw flexi-n    flexi-n
-                |     +--rw flexi-m?   flexi-m
-                +--:(multi)
-                   +--rw frequency-slots
-                      +--rw frequency-slot* [flexi-n]
-                         +--rw flexi-n    flexi-n
-                         +--rw flexi-m?   flexi-m
+       +--rw wdm-label
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw (fixed-single-or-multi-channel)?
+             |     +--:(single)
+             |     |  +--rw dwdm-n?               dwdm-n
+             |     +--:(multi)
+             |        +--rw subcarrier-dwdm-n*    dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?                     cwdm-n
+             +--:(flexi-grid)
+                +--rw (single-or-super-channel)?
+                   +--:(single)
+                   |  +--rw flexi-n?              flexi-n
+                   |  +--rw flexi-m?              flexi-m
+                   o--:(super)
+                   |  o--rw subcarrier-flexi-n* [flexi-n]
+                   |     +--rw flexi-n    flexi-n
+                   |     +--rw flexi-m?   flexi-m
+                   +--:(multi)
+                      +--rw frequency-slots
+                         +--rw frequency-slot* [flexi-n]
+                            +--rw flexi-n    flexi-n
+                            +--rw flexi-m?   flexi-m
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:primary-reverse-path
             /te:explicit-route-objects/te:route-object-exclude-always
             /te:type/te:label/te:label-hop/te:te-label/te:technology:
     +--:(wdm)
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw (fixed-single-or-super-channel)?
-          |     +--:(single)
-          |     |  +--rw dwdm-n?               dwdm-n
-          |     +--:(multi)
-          |        +--rw subcarrier-dwdm-n*    dwdm-n
-          +--:(cwdm)
-          |  +--rw cwdm-n?                     cwdm-n
-          +--:(flexi-grid)
-             +--rw (single-or-super-channel)?
-                +--:(single)
-                |  +--rw flexi-n?              flexi-n
-                |  +--rw flexi-m?              flexi-m
-                x--:(super)
-                |  x--rw subcarrier-flexi-n* [flexi-n]
-                |     +--rw flexi-n    flexi-n
-                |     +--rw flexi-m?   flexi-m
-                +--:(multi)
-                   +--rw frequency-slots
-                      +--rw frequency-slot* [flexi-n]
-                         +--rw flexi-n    flexi-n
-                         +--rw flexi-m?   flexi-m
+       +--rw wdm-label
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw (fixed-single-or-multi-channel)?
+             |     +--:(single)
+             |     |  +--rw dwdm-n?               dwdm-n
+             |     +--:(multi)
+             |        +--rw subcarrier-dwdm-n*    dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?                     cwdm-n
+             +--:(flexi-grid)
+                +--rw (single-or-super-channel)?
+                   +--:(single)
+                   |  +--rw flexi-n?              flexi-n
+                   |  +--rw flexi-m?              flexi-m
+                   o--:(super)
+                   |  o--rw subcarrier-flexi-n* [flexi-n]
+                   |     +--rw flexi-n    flexi-n
+                   |     +--rw flexi-m?   flexi-m
+                   +--:(multi)
+                      +--rw frequency-slots
+                         +--rw frequency-slot* [flexi-n]
+                            +--rw flexi-n    flexi-n
+                            +--rw flexi-m?   flexi-m
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:primary-reverse-path
             /te:explicit-route-objects
             /te:route-object-include-exclude/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
     +--:(wdm)
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw (fixed-single-or-super-channel)?
-          |     +--:(single)
-          |     |  +--rw dwdm-n?               dwdm-n
-          |     +--:(multi)
-          |        +--rw subcarrier-dwdm-n*    dwdm-n
-          +--:(cwdm)
-          |  +--rw cwdm-n?                     cwdm-n
-          +--:(flexi-grid)
-             +--rw (single-or-super-channel)?
-                +--:(single)
-                |  +--rw flexi-n?              flexi-n
-                |  +--rw flexi-m?              flexi-m
-                x--:(super)
-                |  x--rw subcarrier-flexi-n* [flexi-n]
-                |     +--rw flexi-n    flexi-n
-                |     +--rw flexi-m?   flexi-m
-                +--:(multi)
-                   +--rw frequency-slots
-                      +--rw frequency-slot* [flexi-n]
-                         +--rw flexi-n    flexi-n
-                         +--rw flexi-m?   flexi-m
+       +--rw wdm-label
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw (fixed-single-or-multi-channel)?
+             |     +--:(single)
+             |     |  +--rw dwdm-n?               dwdm-n
+             |     +--:(multi)
+             |        +--rw subcarrier-dwdm-n*    dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?                     cwdm-n
+             +--:(flexi-grid)
+                +--rw (single-or-super-channel)?
+                   +--:(single)
+                   |  +--rw flexi-n?              flexi-n
+                   |  +--rw flexi-m?              flexi-m
+                   o--:(super)
+                   |  o--rw subcarrier-flexi-n* [flexi-n]
+                   |     +--rw flexi-n    flexi-n
+                   |     +--rw flexi-m?   flexi-m
+                   +--:(multi)
+                      +--rw frequency-slots
+                         +--rw frequency-slot* [flexi-n]
+                            +--rw flexi-n    flexi-n
+                            +--rw flexi-m?   flexi-m
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:primary-reverse-path
             /te:path-in-segment/te:label-restrictions
             /te:label-restriction/te:label-start/te:te-label
             /te:technology:
     +--:(wdm)
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw dwdm-n?    dwdm-n
-          +--:(cwdm)
-          |  +--rw cwdm-n?    cwdm-n
-          +--:(flexi-grid)
-             +--rw flexi-n?   flexi-n
+       +--rw wdm-label
+          +--rw dwdm-n?    dwdm-n
+          +--rw cwdm-n?    cwdm-n
+          +--rw flexi-n?   flexi-n
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:primary-reverse-path
             /te:path-in-segment/te:label-restrictions
             /te:label-restriction/te:label-end/te:te-label
             /te:technology:
     +--:(wdm)
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw dwdm-n?    dwdm-n
-          +--:(cwdm)
-          |  +--rw cwdm-n?    cwdm-n
-          +--:(flexi-grid)
-             +--rw flexi-n?   flexi-n
+       +--rw wdm-label
+          +--rw dwdm-n?    dwdm-n
+          +--rw cwdm-n?    cwdm-n
+          +--rw flexi-n?   flexi-n
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:primary-reverse-path
             /te:path-in-segment/te:label-restrictions
             /te:label-restriction/te:label-step/te:technology:
     +--:(wdm)
-       +--rw (l0-grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw wson-dwdm-channel-spacing?    identityref
-          +--:(cwdm)
-          |  +--rw wson-cwdm-channel-spacing?    identityref
-          +--:(flexi-grid)
-             x--rw flexi-grid-channel-spacing?   identityref
+       +--rw wdm-label-step
+          +--rw wson-dwdm-channel-spacing?   identityref
+          +--rw wson-cwdm-channel-spacing?   identityref
+          +--rw flexi-grid-cfg
+             o--rw flexi-grid-channel-spacing?   identityref
              +--rw flexi-ncfg?                   identityref
              +--rw flexi-n-step?                 uint8
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
@@ -2850,38 +2853,30 @@ module: ietf-wdm-tunnel
             /te:label-restriction/te:label-start/te:te-label
             /te:technology:
     +--:(wdm)
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw dwdm-n?    dwdm-n
-          +--:(cwdm)
-          |  +--rw cwdm-n?    cwdm-n
-          +--:(flexi-grid)
-             +--rw flexi-n?   flexi-n
+       +--rw wdm-label
+          +--rw dwdm-n?    dwdm-n
+          +--rw cwdm-n?    cwdm-n
+          +--rw flexi-n?   flexi-n
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:primary-reverse-path
             /te:path-out-segment/te:label-restrictions
             /te:label-restriction/te:label-end/te:te-label
             /te:technology:
     +--:(wdm)
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw dwdm-n?    dwdm-n
-          +--:(cwdm)
-          |  +--rw cwdm-n?    cwdm-n
-          +--:(flexi-grid)
-             +--rw flexi-n?   flexi-n
+       +--rw wdm-label
+          +--rw dwdm-n?    dwdm-n
+          +--rw cwdm-n?    cwdm-n
+          +--rw flexi-n?   flexi-n
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:primary-reverse-path
             /te:path-out-segment/te:label-restrictions
             /te:label-restriction/te:label-step/te:technology:
     +--:(wdm)
-       +--rw (l0-grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw wson-dwdm-channel-spacing?    identityref
-          +--:(cwdm)
-          |  +--rw wson-cwdm-channel-spacing?    identityref
-          +--:(flexi-grid)
-             x--rw flexi-grid-channel-spacing?   identityref
+       +--rw wdm-label-step
+          +--rw wson-dwdm-channel-spacing?   identityref
+          +--rw wson-cwdm-channel-spacing?   identityref
+          +--rw flexi-grid-cfg
+             o--rw flexi-grid-channel-spacing?   identityref
              +--rw flexi-ncfg?                   identityref
              +--rw flexi-n-step?                 uint8
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
@@ -2891,29 +2886,30 @@ module: ietf-wdm-tunnel
             /te:path-route-object/te:type/te:label/te:label-hop
             /te:te-label/te:technology:
     +--:(wdm)
-       +--ro (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--ro (fixed-single-or-super-channel)?
-          |     +--:(single)
-          |     |  +--ro dwdm-n?               dwdm-n
-          |     +--:(multi)
-          |        +--ro subcarrier-dwdm-n*    dwdm-n
-          +--:(cwdm)
-          |  +--ro cwdm-n?                     cwdm-n
-          +--:(flexi-grid)
-             +--ro (single-or-super-channel)?
-                +--:(single)
-                |  +--ro flexi-n?              flexi-n
-                |  +--ro flexi-m?              flexi-m
-                x--:(super)
-                |  x--ro subcarrier-flexi-n* [flexi-n]
-                |     +--ro flexi-n    flexi-n
-                |     +--ro flexi-m?   flexi-m
-                +--:(multi)
-                   +--ro frequency-slots
-                      +--ro frequency-slot* [flexi-n]
-                         +--ro flexi-n    flexi-n
-                         +--ro flexi-m?   flexi-m
+       +--ro wdm-label
+          +--ro (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--ro (fixed-single-or-multi-channel)?
+             |     +--:(single)
+             |     |  +--ro dwdm-n?               dwdm-n
+             |     +--:(multi)
+             |        +--ro subcarrier-dwdm-n*    dwdm-n
+             +--:(cwdm)
+             |  +--ro cwdm-n?                     cwdm-n
+             +--:(flexi-grid)
+                +--ro (single-or-super-channel)?
+                   +--:(single)
+                   |  +--ro flexi-n?              flexi-n
+                   |  +--ro flexi-m?              flexi-m
+                   o--:(super)
+                   |  o--ro subcarrier-flexi-n* [flexi-n]
+                   |     +--ro flexi-n    flexi-n
+                   |     +--ro flexi-m?   flexi-m
+                   +--:(multi)
+                      +--ro frequency-slots
+                         +--ro frequency-slot* [flexi-n]
+                            +--ro flexi-n    flexi-n
+                            +--ro flexi-m?   flexi-m
   augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
             /te:secondary-path/te:optimizations/te:algorithm
             /te:metric/te:optimization-metric
@@ -2921,29 +2917,30 @@ module: ietf-wdm-tunnel
             /te:route-object-exclude-object/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
     +--:(wdm)
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw (fixed-single-or-super-channel)?
-          |     +--:(single)
-          |     |  +--rw dwdm-n?               dwdm-n
-          |     +--:(multi)
-          |        +--rw subcarrier-dwdm-n*    dwdm-n
-          +--:(cwdm)
-          |  +--rw cwdm-n?                     cwdm-n
-          +--:(flexi-grid)
-             +--rw (single-or-super-channel)?
-                +--:(single)
-                |  +--rw flexi-n?              flexi-n
-                |  +--rw flexi-m?              flexi-m
-                x--:(super)
-                |  x--rw subcarrier-flexi-n* [flexi-n]
-                |     +--rw flexi-n    flexi-n
-                |     +--rw flexi-m?   flexi-m
-                +--:(multi)
-                   +--rw frequency-slots
-                      +--rw frequency-slot* [flexi-n]
-                         +--rw flexi-n    flexi-n
-                         +--rw flexi-m?   flexi-m
+       +--rw wdm-label
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw (fixed-single-or-multi-channel)?
+             |     +--:(single)
+             |     |  +--rw dwdm-n?               dwdm-n
+             |     +--:(multi)
+             |        +--rw subcarrier-dwdm-n*    dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?                     cwdm-n
+             +--:(flexi-grid)
+                +--rw (single-or-super-channel)?
+                   +--:(single)
+                   |  +--rw flexi-n?              flexi-n
+                   |  +--rw flexi-m?              flexi-m
+                   o--:(super)
+                   |  o--rw subcarrier-flexi-n* [flexi-n]
+                   |     +--rw flexi-n    flexi-n
+                   |     +--rw flexi-m?   flexi-m
+                   +--:(multi)
+                      +--rw frequency-slots
+                         +--rw frequency-slot* [flexi-n]
+                            +--rw flexi-n    flexi-n
+                            +--rw flexi-m?   flexi-m
   augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
             /te:secondary-path/te:optimizations/te:algorithm
             /te:metric/te:optimization-metric
@@ -2951,121 +2948,116 @@ module: ietf-wdm-tunnel
             /te:route-object-include-object/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
     +--:(wdm)
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw (fixed-single-or-super-channel)?
-          |     +--:(single)
-          |     |  +--rw dwdm-n?               dwdm-n
-          |     +--:(multi)
-          |        +--rw subcarrier-dwdm-n*    dwdm-n
-          +--:(cwdm)
-          |  +--rw cwdm-n?                     cwdm-n
-          +--:(flexi-grid)
-             +--rw (single-or-super-channel)?
-                +--:(single)
-                |  +--rw flexi-n?              flexi-n
-                |  +--rw flexi-m?              flexi-m
-                x--:(super)
-                |  x--rw subcarrier-flexi-n* [flexi-n]
-                |     +--rw flexi-n    flexi-n
-                |     +--rw flexi-m?   flexi-m
-                +--:(multi)
-                   +--rw frequency-slots
-                      +--rw frequency-slot* [flexi-n]
-                         +--rw flexi-n    flexi-n
-                         +--rw flexi-m?   flexi-m
+       +--rw wdm-label
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw (fixed-single-or-multi-channel)?
+             |     +--:(single)
+             |     |  +--rw dwdm-n?               dwdm-n
+             |     +--:(multi)
+             |        +--rw subcarrier-dwdm-n*    dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?                     cwdm-n
+             +--:(flexi-grid)
+                +--rw (single-or-super-channel)?
+                   +--:(single)
+                   |  +--rw flexi-n?              flexi-n
+                   |  +--rw flexi-m?              flexi-m
+                   o--:(super)
+                   |  o--rw subcarrier-flexi-n* [flexi-n]
+                   |     +--rw flexi-n    flexi-n
+                   |     +--rw flexi-m?   flexi-m
+                   +--:(multi)
+                      +--rw frequency-slots
+                         +--rw frequency-slot* [flexi-n]
+                            +--rw flexi-n    flexi-n
+                            +--rw flexi-m?   flexi-m
   augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
             /te:secondary-path/te:explicit-route-objects
             /te:route-object-exclude-always/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
     +--:(wdm)
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw (fixed-single-or-super-channel)?
-          |     +--:(single)
-          |     |  +--rw dwdm-n?               dwdm-n
-          |     +--:(multi)
-          |        +--rw subcarrier-dwdm-n*    dwdm-n
-          +--:(cwdm)
-          |  +--rw cwdm-n?                     cwdm-n
-          +--:(flexi-grid)
-             +--rw (single-or-super-channel)?
-                +--:(single)
-                |  +--rw flexi-n?              flexi-n
-                |  +--rw flexi-m?              flexi-m
-                x--:(super)
-                |  x--rw subcarrier-flexi-n* [flexi-n]
-                |     +--rw flexi-n    flexi-n
-                |     +--rw flexi-m?   flexi-m
-                +--:(multi)
-                   +--rw frequency-slots
-                      +--rw frequency-slot* [flexi-n]
-                         +--rw flexi-n    flexi-n
-                         +--rw flexi-m?   flexi-m
+       +--rw wdm-label
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw (fixed-single-or-multi-channel)?
+             |     +--:(single)
+             |     |  +--rw dwdm-n?               dwdm-n
+             |     +--:(multi)
+             |        +--rw subcarrier-dwdm-n*    dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?                     cwdm-n
+             +--:(flexi-grid)
+                +--rw (single-or-super-channel)?
+                   +--:(single)
+                   |  +--rw flexi-n?              flexi-n
+                   |  +--rw flexi-m?              flexi-m
+                   o--:(super)
+                   |  o--rw subcarrier-flexi-n* [flexi-n]
+                   |     +--rw flexi-n    flexi-n
+                   |     +--rw flexi-m?   flexi-m
+                   +--:(multi)
+                      +--rw frequency-slots
+                         +--rw frequency-slot* [flexi-n]
+                            +--rw flexi-n    flexi-n
+                            +--rw flexi-m?   flexi-m
   augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
             /te:secondary-path/te:explicit-route-objects
             /te:route-object-include-exclude/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
     +--:(wdm)
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw (fixed-single-or-super-channel)?
-          |     +--:(single)
-          |     |  +--rw dwdm-n?               dwdm-n
-          |     +--:(multi)
-          |        +--rw subcarrier-dwdm-n*    dwdm-n
-          +--:(cwdm)
-          |  +--rw cwdm-n?                     cwdm-n
-          +--:(flexi-grid)
-             +--rw (single-or-super-channel)?
-                +--:(single)
-                |  +--rw flexi-n?              flexi-n
-                |  +--rw flexi-m?              flexi-m
-                x--:(super)
-                |  x--rw subcarrier-flexi-n* [flexi-n]
-                |     +--rw flexi-n    flexi-n
-                |     +--rw flexi-m?   flexi-m
-                +--:(multi)
-                   +--rw frequency-slots
-                      +--rw frequency-slot* [flexi-n]
-                         +--rw flexi-n    flexi-n
-                         +--rw flexi-m?   flexi-m
+       +--rw wdm-label
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw (fixed-single-or-multi-channel)?
+             |     +--:(single)
+             |     |  +--rw dwdm-n?               dwdm-n
+             |     +--:(multi)
+             |        +--rw subcarrier-dwdm-n*    dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?                     cwdm-n
+             +--:(flexi-grid)
+                +--rw (single-or-super-channel)?
+                   +--:(single)
+                   |  +--rw flexi-n?              flexi-n
+                   |  +--rw flexi-m?              flexi-m
+                   o--:(super)
+                   |  o--rw subcarrier-flexi-n* [flexi-n]
+                   |     +--rw flexi-n    flexi-n
+                   |     +--rw flexi-m?   flexi-m
+                   +--:(multi)
+                      +--rw frequency-slots
+                         +--rw frequency-slot* [flexi-n]
+                            +--rw flexi-n    flexi-n
+                            +--rw flexi-m?   flexi-m
   augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
             /te:secondary-path/te:path-in-segment
             /te:label-restrictions/te:label-restriction
             /te:label-start/te:te-label/te:technology:
     +--:(wdm)
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw dwdm-n?    dwdm-n
-          +--:(cwdm)
-          |  +--rw cwdm-n?    cwdm-n
-          +--:(flexi-grid)
-             +--rw flexi-n?   flexi-n
+       +--rw wdm-label
+          +--rw dwdm-n?    dwdm-n
+          +--rw cwdm-n?    cwdm-n
+          +--rw flexi-n?   flexi-n
   augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
             /te:secondary-path/te:path-in-segment
             /te:label-restrictions/te:label-restriction/te:label-end
             /te:te-label/te:technology:
     +--:(wdm)
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw dwdm-n?    dwdm-n
-          +--:(cwdm)
-          |  +--rw cwdm-n?    cwdm-n
-          +--:(flexi-grid)
-             +--rw flexi-n?   flexi-n
+       +--rw wdm-label
+          +--rw dwdm-n?    dwdm-n
+          +--rw cwdm-n?    cwdm-n
+          +--rw flexi-n?   flexi-n
   augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
             /te:secondary-path/te:path-in-segment
             /te:label-restrictions/te:label-restriction/te:label-step
             /te:technology:
     +--:(wdm)
-       +--rw (l0-grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw wson-dwdm-channel-spacing?    identityref
-          +--:(cwdm)
-          |  +--rw wson-cwdm-channel-spacing?    identityref
-          +--:(flexi-grid)
-             x--rw flexi-grid-channel-spacing?   identityref
+       +--rw wdm-label-step
+          +--rw wson-dwdm-channel-spacing?   identityref
+          +--rw wson-cwdm-channel-spacing?   identityref
+          +--rw flexi-grid-cfg
+             o--rw flexi-grid-channel-spacing?   identityref
              +--rw flexi-ncfg?                   identityref
              +--rw flexi-n-step?                 uint8
   augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
@@ -3073,37 +3065,29 @@ module: ietf-wdm-tunnel
             /te:label-restrictions/te:label-restriction
             /te:label-start/te:te-label/te:technology:
     +--:(wdm)
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw dwdm-n?    dwdm-n
-          +--:(cwdm)
-          |  +--rw cwdm-n?    cwdm-n
-          +--:(flexi-grid)
-             +--rw flexi-n?   flexi-n
+       +--rw wdm-label
+          +--rw dwdm-n?    dwdm-n
+          +--rw cwdm-n?    cwdm-n
+          +--rw flexi-n?   flexi-n
   augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
             /te:secondary-path/te:path-out-segment
             /te:label-restrictions/te:label-restriction/te:label-end
             /te:te-label/te:technology:
     +--:(wdm)
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw dwdm-n?    dwdm-n
-          +--:(cwdm)
-          |  +--rw cwdm-n?    cwdm-n
-          +--:(flexi-grid)
-             +--rw flexi-n?   flexi-n
+       +--rw wdm-label
+          +--rw dwdm-n?    dwdm-n
+          +--rw cwdm-n?    cwdm-n
+          +--rw flexi-n?   flexi-n
   augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
             /te:secondary-path/te:path-out-segment
             /te:label-restrictions/te:label-restriction/te:label-step
             /te:technology:
     +--:(wdm)
-       +--rw (l0-grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw wson-dwdm-channel-spacing?    identityref
-          +--:(cwdm)
-          |  +--rw wson-cwdm-channel-spacing?    identityref
-          +--:(flexi-grid)
-             x--rw flexi-grid-channel-spacing?   identityref
+       +--rw wdm-label-step
+          +--rw wson-dwdm-channel-spacing?   identityref
+          +--rw wson-cwdm-channel-spacing?   identityref
+          +--rw flexi-grid-cfg
+             o--rw flexi-grid-channel-spacing?   identityref
              +--rw flexi-ncfg?                   identityref
              +--rw flexi-n-step?                 uint8
   augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
@@ -3112,29 +3096,30 @@ module: ietf-wdm-tunnel
             /te:path-route-objects/te:path-route-object/te:type
             /te:label/te:label-hop/te:te-label/te:technology:
     +--:(wdm)
-       +--ro (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--ro (fixed-single-or-super-channel)?
-          |     +--:(single)
-          |     |  +--ro dwdm-n?               dwdm-n
-          |     +--:(multi)
-          |        +--ro subcarrier-dwdm-n*    dwdm-n
-          +--:(cwdm)
-          |  +--ro cwdm-n?                     cwdm-n
-          +--:(flexi-grid)
-             +--ro (single-or-super-channel)?
-                +--:(single)
-                |  +--ro flexi-n?              flexi-n
-                |  +--ro flexi-m?              flexi-m
-                x--:(super)
-                |  x--ro subcarrier-flexi-n* [flexi-n]
-                |     +--ro flexi-n    flexi-n
-                |     +--ro flexi-m?   flexi-m
-                +--:(multi)
-                   +--ro frequency-slots
-                      +--ro frequency-slot* [flexi-n]
-                         +--ro flexi-n    flexi-n
-                         +--ro flexi-m?   flexi-m
+       +--ro wdm-label
+          +--ro (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--ro (fixed-single-or-multi-channel)?
+             |     +--:(single)
+             |     |  +--ro dwdm-n?               dwdm-n
+             |     +--:(multi)
+             |        +--ro subcarrier-dwdm-n*    dwdm-n
+             +--:(cwdm)
+             |  +--ro cwdm-n?                     cwdm-n
+             +--:(flexi-grid)
+                +--ro (single-or-super-channel)?
+                   +--:(single)
+                   |  +--ro flexi-n?              flexi-n
+                   |  +--ro flexi-m?              flexi-m
+                   o--:(super)
+                   |  o--ro subcarrier-flexi-n* [flexi-n]
+                   |     +--ro flexi-n    flexi-n
+                   |     +--ro flexi-m?   flexi-m
+                   +--:(multi)
+                      +--ro frequency-slots
+                         +--ro frequency-slot* [flexi-n]
+                            +--ro flexi-n    flexi-n
+                            +--ro flexi-m?   flexi-m
   augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
             /te:secondary-reverse-path/te:optimizations/te:algorithm
             /te:metric/te:optimization-metric
@@ -3142,29 +3127,30 @@ module: ietf-wdm-tunnel
             /te:route-object-exclude-object/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
     +--:(wdm)
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw (fixed-single-or-super-channel)?
-          |     +--:(single)
-          |     |  +--rw dwdm-n?               dwdm-n
-          |     +--:(multi)
-          |        +--rw subcarrier-dwdm-n*    dwdm-n
-          +--:(cwdm)
-          |  +--rw cwdm-n?                     cwdm-n
-          +--:(flexi-grid)
-             +--rw (single-or-super-channel)?
-                +--:(single)
-                |  +--rw flexi-n?              flexi-n
-                |  +--rw flexi-m?              flexi-m
-                x--:(super)
-                |  x--rw subcarrier-flexi-n* [flexi-n]
-                |     +--rw flexi-n    flexi-n
-                |     +--rw flexi-m?   flexi-m
-                +--:(multi)
-                   +--rw frequency-slots
-                      +--rw frequency-slot* [flexi-n]
-                         +--rw flexi-n    flexi-n
-                         +--rw flexi-m?   flexi-m
+       +--rw wdm-label
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw (fixed-single-or-multi-channel)?
+             |     +--:(single)
+             |     |  +--rw dwdm-n?               dwdm-n
+             |     +--:(multi)
+             |        +--rw subcarrier-dwdm-n*    dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?                     cwdm-n
+             +--:(flexi-grid)
+                +--rw (single-or-super-channel)?
+                   +--:(single)
+                   |  +--rw flexi-n?              flexi-n
+                   |  +--rw flexi-m?              flexi-m
+                   o--:(super)
+                   |  o--rw subcarrier-flexi-n* [flexi-n]
+                   |     +--rw flexi-n    flexi-n
+                   |     +--rw flexi-m?   flexi-m
+                   +--:(multi)
+                      +--rw frequency-slots
+                         +--rw frequency-slot* [flexi-n]
+                            +--rw flexi-n    flexi-n
+                            +--rw flexi-m?   flexi-m
   augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
             /te:secondary-reverse-path/te:optimizations/te:algorithm
             /te:metric/te:optimization-metric
@@ -3172,121 +3158,116 @@ module: ietf-wdm-tunnel
             /te:route-object-include-object/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
     +--:(wdm)
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw (fixed-single-or-super-channel)?
-          |     +--:(single)
-          |     |  +--rw dwdm-n?               dwdm-n
-          |     +--:(multi)
-          |        +--rw subcarrier-dwdm-n*    dwdm-n
-          +--:(cwdm)
-          |  +--rw cwdm-n?                     cwdm-n
-          +--:(flexi-grid)
-             +--rw (single-or-super-channel)?
-                +--:(single)
-                |  +--rw flexi-n?              flexi-n
-                |  +--rw flexi-m?              flexi-m
-                x--:(super)
-                |  x--rw subcarrier-flexi-n* [flexi-n]
-                |     +--rw flexi-n    flexi-n
-                |     +--rw flexi-m?   flexi-m
-                +--:(multi)
-                   +--rw frequency-slots
-                      +--rw frequency-slot* [flexi-n]
-                         +--rw flexi-n    flexi-n
-                         +--rw flexi-m?   flexi-m
+       +--rw wdm-label
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw (fixed-single-or-multi-channel)?
+             |     +--:(single)
+             |     |  +--rw dwdm-n?               dwdm-n
+             |     +--:(multi)
+             |        +--rw subcarrier-dwdm-n*    dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?                     cwdm-n
+             +--:(flexi-grid)
+                +--rw (single-or-super-channel)?
+                   +--:(single)
+                   |  +--rw flexi-n?              flexi-n
+                   |  +--rw flexi-m?              flexi-m
+                   o--:(super)
+                   |  o--rw subcarrier-flexi-n* [flexi-n]
+                   |     +--rw flexi-n    flexi-n
+                   |     +--rw flexi-m?   flexi-m
+                   +--:(multi)
+                      +--rw frequency-slots
+                         +--rw frequency-slot* [flexi-n]
+                            +--rw flexi-n    flexi-n
+                            +--rw flexi-m?   flexi-m
   augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
             /te:secondary-reverse-path/te:explicit-route-objects
             /te:route-object-exclude-always/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
     +--:(wdm)
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw (fixed-single-or-super-channel)?
-          |     +--:(single)
-          |     |  +--rw dwdm-n?               dwdm-n
-          |     +--:(multi)
-          |        +--rw subcarrier-dwdm-n*    dwdm-n
-          +--:(cwdm)
-          |  +--rw cwdm-n?                     cwdm-n
-          +--:(flexi-grid)
-             +--rw (single-or-super-channel)?
-                +--:(single)
-                |  +--rw flexi-n?              flexi-n
-                |  +--rw flexi-m?              flexi-m
-                x--:(super)
-                |  x--rw subcarrier-flexi-n* [flexi-n]
-                |     +--rw flexi-n    flexi-n
-                |     +--rw flexi-m?   flexi-m
-                +--:(multi)
-                   +--rw frequency-slots
-                      +--rw frequency-slot* [flexi-n]
-                         +--rw flexi-n    flexi-n
-                         +--rw flexi-m?   flexi-m
+       +--rw wdm-label
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw (fixed-single-or-multi-channel)?
+             |     +--:(single)
+             |     |  +--rw dwdm-n?               dwdm-n
+             |     +--:(multi)
+             |        +--rw subcarrier-dwdm-n*    dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?                     cwdm-n
+             +--:(flexi-grid)
+                +--rw (single-or-super-channel)?
+                   +--:(single)
+                   |  +--rw flexi-n?              flexi-n
+                   |  +--rw flexi-m?              flexi-m
+                   o--:(super)
+                   |  o--rw subcarrier-flexi-n* [flexi-n]
+                   |     +--rw flexi-n    flexi-n
+                   |     +--rw flexi-m?   flexi-m
+                   +--:(multi)
+                      +--rw frequency-slots
+                         +--rw frequency-slot* [flexi-n]
+                            +--rw flexi-n    flexi-n
+                            +--rw flexi-m?   flexi-m
   augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
             /te:secondary-reverse-path/te:explicit-route-objects
             /te:route-object-include-exclude/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
     +--:(wdm)
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw (fixed-single-or-super-channel)?
-          |     +--:(single)
-          |     |  +--rw dwdm-n?               dwdm-n
-          |     +--:(multi)
-          |        +--rw subcarrier-dwdm-n*    dwdm-n
-          +--:(cwdm)
-          |  +--rw cwdm-n?                     cwdm-n
-          +--:(flexi-grid)
-             +--rw (single-or-super-channel)?
-                +--:(single)
-                |  +--rw flexi-n?              flexi-n
-                |  +--rw flexi-m?              flexi-m
-                x--:(super)
-                |  x--rw subcarrier-flexi-n* [flexi-n]
-                |     +--rw flexi-n    flexi-n
-                |     +--rw flexi-m?   flexi-m
-                +--:(multi)
-                   +--rw frequency-slots
-                      +--rw frequency-slot* [flexi-n]
-                         +--rw flexi-n    flexi-n
-                         +--rw flexi-m?   flexi-m
+       +--rw wdm-label
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw (fixed-single-or-multi-channel)?
+             |     +--:(single)
+             |     |  +--rw dwdm-n?               dwdm-n
+             |     +--:(multi)
+             |        +--rw subcarrier-dwdm-n*    dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?                     cwdm-n
+             +--:(flexi-grid)
+                +--rw (single-or-super-channel)?
+                   +--:(single)
+                   |  +--rw flexi-n?              flexi-n
+                   |  +--rw flexi-m?              flexi-m
+                   o--:(super)
+                   |  o--rw subcarrier-flexi-n* [flexi-n]
+                   |     +--rw flexi-n    flexi-n
+                   |     +--rw flexi-m?   flexi-m
+                   +--:(multi)
+                      +--rw frequency-slots
+                         +--rw frequency-slot* [flexi-n]
+                            +--rw flexi-n    flexi-n
+                            +--rw flexi-m?   flexi-m
   augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
             /te:secondary-reverse-path/te:path-in-segment
             /te:label-restrictions/te:label-restriction
             /te:label-start/te:te-label/te:technology:
     +--:(wdm)
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw dwdm-n?    dwdm-n
-          +--:(cwdm)
-          |  +--rw cwdm-n?    cwdm-n
-          +--:(flexi-grid)
-             +--rw flexi-n?   flexi-n
+       +--rw wdm-label
+          +--rw dwdm-n?    dwdm-n
+          +--rw cwdm-n?    cwdm-n
+          +--rw flexi-n?   flexi-n
   augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
             /te:secondary-reverse-path/te:path-in-segment
             /te:label-restrictions/te:label-restriction/te:label-end
             /te:te-label/te:technology:
     +--:(wdm)
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw dwdm-n?    dwdm-n
-          +--:(cwdm)
-          |  +--rw cwdm-n?    cwdm-n
-          +--:(flexi-grid)
-             +--rw flexi-n?   flexi-n
+       +--rw wdm-label
+          +--rw dwdm-n?    dwdm-n
+          +--rw cwdm-n?    cwdm-n
+          +--rw flexi-n?   flexi-n
   augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
             /te:secondary-reverse-path/te:path-in-segment
             /te:label-restrictions/te:label-restriction/te:label-step
             /te:technology:
     +--:(wdm)
-       +--rw (l0-grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw wson-dwdm-channel-spacing?    identityref
-          +--:(cwdm)
-          |  +--rw wson-cwdm-channel-spacing?    identityref
-          +--:(flexi-grid)
-             x--rw flexi-grid-channel-spacing?   identityref
+       +--rw wdm-label-step
+          +--rw wson-dwdm-channel-spacing?   identityref
+          +--rw wson-cwdm-channel-spacing?   identityref
+          +--rw flexi-grid-cfg
+             o--rw flexi-grid-channel-spacing?   identityref
              +--rw flexi-ncfg?                   identityref
              +--rw flexi-n-step?                 uint8
   augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
@@ -3294,37 +3275,29 @@ module: ietf-wdm-tunnel
             /te:label-restrictions/te:label-restriction
             /te:label-start/te:te-label/te:technology:
     +--:(wdm)
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw dwdm-n?    dwdm-n
-          +--:(cwdm)
-          |  +--rw cwdm-n?    cwdm-n
-          +--:(flexi-grid)
-             +--rw flexi-n?   flexi-n
+       +--rw wdm-label
+          +--rw dwdm-n?    dwdm-n
+          +--rw cwdm-n?    cwdm-n
+          +--rw flexi-n?   flexi-n
   augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
             /te:secondary-reverse-path/te:path-out-segment
             /te:label-restrictions/te:label-restriction/te:label-end
             /te:te-label/te:technology:
     +--:(wdm)
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw dwdm-n?    dwdm-n
-          +--:(cwdm)
-          |  +--rw cwdm-n?    cwdm-n
-          +--:(flexi-grid)
-             +--rw flexi-n?   flexi-n
+       +--rw wdm-label
+          +--rw dwdm-n?    dwdm-n
+          +--rw cwdm-n?    cwdm-n
+          +--rw flexi-n?   flexi-n
   augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
             /te:secondary-reverse-path/te:path-out-segment
             /te:label-restrictions/te:label-restriction/te:label-step
             /te:technology:
     +--:(wdm)
-       +--rw (l0-grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw wson-dwdm-channel-spacing?    identityref
-          +--:(cwdm)
-          |  +--rw wson-cwdm-channel-spacing?    identityref
-          +--:(flexi-grid)
-             x--rw flexi-grid-channel-spacing?   identityref
+       +--rw wdm-label-step
+          +--rw wson-dwdm-channel-spacing?   identityref
+          +--rw wson-cwdm-channel-spacing?   identityref
+          +--rw flexi-grid-cfg
+             o--rw flexi-grid-channel-spacing?   identityref
              +--rw flexi-ncfg?                   identityref
              +--rw flexi-n-step?                 uint8
   augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
@@ -3333,53 +3306,55 @@ module: ietf-wdm-tunnel
             /te:path-route-objects/te:path-route-object/te:type
             /te:label/te:label-hop/te:te-label/te:technology:
     +--:(wdm)
-       +--ro (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--ro (fixed-single-or-super-channel)?
-          |     +--:(single)
-          |     |  +--ro dwdm-n?               dwdm-n
-          |     +--:(multi)
-          |        +--ro subcarrier-dwdm-n*    dwdm-n
-          +--:(cwdm)
-          |  +--ro cwdm-n?                     cwdm-n
-          +--:(flexi-grid)
-             +--ro (single-or-super-channel)?
-                +--:(single)
-                |  +--ro flexi-n?              flexi-n
-                |  +--ro flexi-m?              flexi-m
-                x--:(super)
-                |  x--ro subcarrier-flexi-n* [flexi-n]
-                |     +--ro flexi-n    flexi-n
-                |     +--ro flexi-m?   flexi-m
-                +--:(multi)
-                   +--ro frequency-slots
-                      +--ro frequency-slot* [flexi-n]
-                         +--ro flexi-n    flexi-n
-                         +--ro flexi-m?   flexi-m
+       +--ro wdm-label
+          +--ro (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--ro (fixed-single-or-multi-channel)?
+             |     +--:(single)
+             |     |  +--ro dwdm-n?               dwdm-n
+             |     +--:(multi)
+             |        +--ro subcarrier-dwdm-n*    dwdm-n
+             +--:(cwdm)
+             |  +--ro cwdm-n?                     cwdm-n
+             +--:(flexi-grid)
+                +--ro (single-or-super-channel)?
+                   +--:(single)
+                   |  +--ro flexi-n?              flexi-n
+                   |  +--ro flexi-m?              flexi-m
+                   o--:(super)
+                   |  o--ro subcarrier-flexi-n* [flexi-n]
+                   |     +--ro flexi-n    flexi-n
+                   |     +--ro flexi-m?   flexi-m
+                   +--:(multi)
+                      +--ro frequency-slots
+                         +--ro frequency-slot* [flexi-n]
+                            +--ro flexi-n    flexi-n
+                            +--ro flexi-m?   flexi-m
   augment /te:te/te:lsps/te:lsp/te:lsp-actual-route-information
             /te:lsp-actual-route-information/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
     +--:(wdm)
-       +--ro (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--ro (fixed-single-or-super-channel)?
-          |     +--:(single)
-          |     |  +--ro dwdm-n?               dwdm-n
-          |     +--:(multi)
-          |        +--ro subcarrier-dwdm-n*    dwdm-n
-          +--:(cwdm)
-          |  +--ro cwdm-n?                     cwdm-n
-          +--:(flexi-grid)
-             +--ro (single-or-super-channel)?
-                +--:(single)
-                |  +--ro flexi-n?              flexi-n
-                |  +--ro flexi-m?              flexi-m
-                x--:(super)
-                |  x--ro subcarrier-flexi-n* [flexi-n]
-                |     +--ro flexi-n    flexi-n
-                |     +--ro flexi-m?   flexi-m
-                +--:(multi)
-                   +--ro frequency-slots
-                      +--ro frequency-slot* [flexi-n]
-                         +--ro flexi-n    flexi-n
-                         +--ro flexi-m?   flexi-m
+       +--ro wdm-label
+          +--ro (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--ro (fixed-single-or-multi-channel)?
+             |     +--:(single)
+             |     |  +--ro dwdm-n?               dwdm-n
+             |     +--:(multi)
+             |        +--ro subcarrier-dwdm-n*    dwdm-n
+             +--:(cwdm)
+             |  +--ro cwdm-n?                     cwdm-n
+             +--:(flexi-grid)
+                +--ro (single-or-super-channel)?
+                   +--:(single)
+                   |  +--ro flexi-n?              flexi-n
+                   |  +--ro flexi-m?              flexi-m
+                   o--:(super)
+                   |  o--ro subcarrier-flexi-n* [flexi-n]
+                   |     +--ro flexi-n    flexi-n
+                   |     +--ro flexi-m?   flexi-m
+                   +--:(multi)
+                      +--ro frequency-slots
+                         +--ro frequency-slot* [flexi-n]
+                            +--ro flexi-n    flexi-n
+                            +--ro flexi-m?   flexi-m

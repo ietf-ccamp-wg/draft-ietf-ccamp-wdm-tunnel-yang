@@ -550,6 +550,10 @@ module ietf-wdm-tunnel {
           list regenerator {
             key "index";
 
+            description
+              "A list of regenerator groups used at the
+               regenerator node.";
+
             leaf index {
               type uint8;
               description
@@ -616,7 +620,7 @@ module ietf-wdm-tunnel {
       }
 
       leaf value {
-        type l0-types:decimal-2-or-null;
+        type l0-types:decimal-2-or-unknown;
         units "dB";
         description
           "Estimated Q-factor based on the pre-FEC BER.";
@@ -799,6 +803,10 @@ module ietf-wdm-tunnel {
 
           list regenerator {
             key "index";
+
+            description
+              "A list of regenerator groups used at the
+               regenerator node.";
 
             leaf index {
               type uint8;
