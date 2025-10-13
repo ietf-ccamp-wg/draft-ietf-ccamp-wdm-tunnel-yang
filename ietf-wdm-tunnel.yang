@@ -541,7 +541,7 @@ module ietf-wdm-tunnel {
 
           container common-outgoing {
             description
-              "Common configuration for transponders in the outcoming
+              "Common configuration for transponders in the outgoing
                direction.";
 
             uses regenerator-incoming-outgoing-common-config;
@@ -791,7 +791,7 @@ module ietf-wdm-tunnel {
 
           container common-outgoing {
             description
-              "Common configuration for transponders in the outcoming
+              "Common configuration for transponders in the outgoing
                direction.";
 
             uses regenerator-incoming-outgoing-common-state;
