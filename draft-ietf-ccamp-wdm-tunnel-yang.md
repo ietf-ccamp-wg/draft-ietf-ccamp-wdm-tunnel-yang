@@ -194,6 +194,81 @@ In scenarios like data center interconnects (DCI), optical transponders may be e
 
 The YANG data model offers a cohesive interface for managing WDM tunnels and tunnel segments, irrespective of transponder location.
 
+## 3R Regenerators
+
+A desired optical path may span a distance beyond the reach of a single optical transponder. In that case, one or more 3R regenerators can be deployed at intermediate nodes to boost the optical signal by reamplifying, reshaping, and retiming it before transmission continues. This scenario is described in detail in Section 2.7 of {{!I-D.ietf-ccamp-optical-impairment-topology-yang}}. Deploying 3R regeneration is costly because it requires additional transponders; consequently, at most a single regenerator is typically used to regenerate the optical signals of an end-to-end optical tunnel.
+
+According to {{!I-D.ietf-ccamp-optical-impairment-topology-yang}}, there are multiple ways to implement a 3R regenerator:
+ - Back-to-back (bi-directional) regeneration, where two optical transponders are connected back-to-back; each transceiver receives and transmits the optical signal for the same segment of the end-to-end tunnel, operating in both directions.
+ - Uni-directional regeneration, where two transponders are used with one performing 3R regeneration in the forward direction (source to destination) and the other performing 3R regeneration in the reverse direction.
+
+When an optical signal is regenerated, it can be terminated and restored at different protocol layers depending on the transponder's capabilities. For example, if the transponder supports OTN, the signal can be regenerated at the OTU layer or at the ODU layer after the OTU overhead has been stripped; if the transponder supports Ethernet clients, the signal can be terminated at the Ethernet layer, which commonly occurs in the back-to-back configuration. Typically, the signal is regenerated at the lowest possible layer to minimize processing delay and complexity, but termination layer may be chosen deliberately during network planning for specific scenarios. To ensure correct transmission, the termination method used between the source and the receiving transponder at the regenerator node must match the method used between the sending transponder at the regenerator node and the destination transponder (or the receiving transponder at the next regenerator node).
+
+The termination of an optical signal occurs at the reference point immediately before inverse multiplexing in the transmitting direction or immediately after inverse multiplexing in the receiving direction for the corresponding transceiver, and this applies to the entire OTSiG used by the optical tunnel. For 3R regeneration, to identify the transceiver configuration associated with these reference points consistently between uni-directional and bi-directional regeneration, the following definitions are used in this draft:
+ - Forward direction: the direction of the optical path from the source to the destination.
+ - Reverse direction: the direction of the optical path from the destination back to the source.
+ - Incoming transponder: for back-to-back regeneration, the transponder in the regeneration group that receives from and transmits toward the same segment of the optical path toward the source; for uni-directional regeneration, the transponder that performs regeneration in the forward direction of the optical path.
+ - Outgoing transponder: for back-to-back regeneration, the transponder in the regeneration group that receives from and transmits toward the same segment of the optical path toward the destination; for uni-directional regeneration, the transponder that performs regeneration in the reverse direction of the optical path.
+
+Utilizing the figures in {{!I-D.ietf-ccamp-optical-impairment-topology-yang}} for 3R regeneration, {{fig-back2back}} and {{fig-unidir}} further illustrate the aforementioned reference points for back-to-back regeneration and uni-directional regeneration, respectively.
+
+~~~~ ascii-art
+                          Forward Direction
+  |------------------------------>---------------------------------|
+                          Reverse Direction
+  |------------------------------<---------------------------------|
+
+            Incoming Transponder     Outgoing Transponder          D
+            +-------------------+   +--------------------+         E
+  S         |Transceiver        |   |         Transceiver|         S
+  O         |-----------+ +-----|   |-----+ +------------|         T
+  U ------->|Receiver   |-|Sig. |-->|Sig. |-| Transmitter|-------> I
+  R         |-----------+ |     |   |     | +------------|         N
+  C <-------|Transmitter|-|Proc.|<--|Proc.|-|    Receiver|<------- A
+  E         |-----------+ +-----|   |-----+ +------------|         T
+            +-------------------+   +--------------------+         I
+                                                                   O
+                                                                   N
+~~~~
+{: #fig-back2back title="Reference Points in Back-to-back 3R Regeneration"}
+
+~~~~ ascii-art
+
+                          Forward Direction
+  |------------------------------>---------------------------------|
+                          Reverse Direction
+  |------------------------------<---------------------------------|
+
+                           Incoming Transponder
+                           3R in forward direction
+                         +-----------------------+
+                         |Transceiver            |
+                         |-----------+ +--------+|
+                 ------->|Receiver   |-|Sig. --+||
+                         |-----------+ |       |||
+                     +---|Transmitter|-|Proc.<-+||
+                     |   |-----------+ +--------+|
+                     |   +-----------------------+                 E
+  S                  |                                             S
+  O                  +------------------------------------>        T
+  U                                                                I
+  R              <-----------------------------------+             N
+  C                                                  |             A
+  E                      +-----------------------+   |             T
+                         |            Transceiver|   |             I
+                         |+--------+ +-----------|   |             O
+                         ||+->Sig. |-|Transmitter|---+             N
+                         |||       | +-----------|
+                         ||+--Proc.|-|Receiver   |<--------
+                         |+--------+ +-----------|
+                         +-----------------------+
+                          Outgoing Transponder
+                          3R in backward direction
+
+~~~~
+{: #fig-unidir title="Reference Points in Uni-directional 3R Regeneration"}
+
+
 # Example of Use
 
 To illustrate the model's application, consider an optical network with various transponders, switches, and links. A depicted topology outlines two WDM tunnel scenarios. In the first, an end-to-end WDM tunnel (WDM Tunnel 1) comprises two physical paths (WDM Primary Path 1 and 2) linking two integrated optical transponders, Transponder A and E, through WSON and Flexi-grid nodes. The second scenario describes three WDM tunnel segments (WDM Tunnel Segment 2a to 2c) connecting two external OTs, External OT node X and Y, via the same nodes and links.
