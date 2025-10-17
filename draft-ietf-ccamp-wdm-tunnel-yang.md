@@ -196,7 +196,7 @@ The YANG data model offers a cohesive interface for managing WDM tunnels and tun
 
 ## 3R Regenerators
 
-A desired optical path may span a distance beyond the reach of a single optical transponder. In that case, one or more 3R regenerators can be deployed at intermediate nodes to boost the optical signal by reamplifying, reshaping, and retiming it before transmission continues. This scenario is described in detail in Section 2.7 of {{!I-D.ietf-ccamp-optical-impairment-topology-yang}}. Deploying 3R regeneration is costly because it requires additional transponders; consequently, at most a single regenerator is typically used to regenerate the optical signals of an end-to-end optical tunnel.
+A desired optical path may span a distance beyond the reach of a single optical transponder. In that case, one or more 3R regenerators can be deployed at intermediate nodes, reamplifying, reshaping, and retiming the optical signal before transmission continues. This scenario is described in detail in Section 2.7 of {{!I-D.ietf-ccamp-optical-impairment-topology-yang}}. Deploying 3R regeneration is costly because it requires additional transponders; consequently, at most a single regenerator is typically used to regenerate the optical signals of an end-to-end optical tunnel.
 
 According to {{!I-D.ietf-ccamp-optical-impairment-topology-yang}}, there are multiple ways to implement a 3R regenerator:
  - Back-to-back (bi-directional) regeneration, where two optical transponders are connected back-to-back; each transceiver receives and transmits the optical signal for the same segment of the end-to-end tunnel, operating in both directions.
