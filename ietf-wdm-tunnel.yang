@@ -83,7 +83,11 @@ module ietf-wdm-tunnel {
   }
   identity otsi-lane-termination-type {
     description
-      "Digital termination type applicable to single OTSi";
+      "Digital termination type applicable to a single OTSi.
+       The termination of an optical signal occurs at the
+       reference point immediately before inverse multiplexing
+       in the transmitting direction or immediately after
+       inverse multiplexing in the receiving direction.";
   }
   identity digital-mapping-type {
     description
@@ -252,7 +256,7 @@ module ietf-wdm-tunnel {
     uses l0-types:path-constraints;
   }
 
-  grouping transceiver-digital-termination-config {
+  grouping transponder-digital-termination-config {
     description
       "This grouping specifies the configuration of
        digital layer termination applicable to the
@@ -361,7 +365,7 @@ module ietf-wdm-tunnel {
       description "transponder identifier";
     }
 
-    uses transceiver-digital-termination-config;
+    uses transponder-digital-termination-config;
 
     container transceiver {
       description
@@ -385,7 +389,7 @@ module ietf-wdm-tunnel {
     }
   }
 
-  grouping multi-regen-group-transceiver-config {
+  grouping multi-regen-transceiver-config {
     description
       "This grouping specifies configurations for transceivers
        at at regenerator nodes with multiple pairs of
@@ -412,7 +416,7 @@ module ietf-wdm-tunnel {
     leaf regen-group-id {
       type uint32;
       description
-        "3R regenerator group identifier.";
+        "3R group identifier.";
     }
     leaf regeneration-layer {
       type identityref {
@@ -509,7 +513,7 @@ module ietf-wdm-tunnel {
              regenerator node with multiple transponder pairs
              (therefore, in multiple regenerator groups) as
              regenerators. A such example is described in
-             ITU-T for FlexOxR.
+             ITU-T G.798 Amd.3 for FlexOxR.
 
              The forward direction refers to the direction of
              the optical path traversing from the source to the
@@ -551,13 +555,13 @@ module ietf-wdm-tunnel {
             key "index";
 
             description
-              "A list of regenerator groups used at the
-               regenerator node.";
+              "A list of regenerators used at the regenerator
+               node.";
 
             leaf index {
               type uint8;
               description
-                "An index number used to identify regenerator group
+                "An index number used to identify a regenerator
                  in the list, organized in ascending order of their
                  values.";
             }
@@ -568,7 +572,7 @@ module ietf-wdm-tunnel {
                 "Constraints for transceiver configurations in the
                  incoming direction of the regenerator.";
 
-              uses multi-regen-group-transceiver-config;
+              uses multi-regen-transceiver-config;
             }
 
             container outgoing-transponder {
@@ -576,7 +580,7 @@ module ietf-wdm-tunnel {
                 "Constraints for transceiver configurations at the
                  outgoing direction of the regenerator";
 
-              uses multi-regen-group-transceiver-config;
+              uses multi-regen-transceiver-config;
             }
           }
         }
@@ -639,7 +643,7 @@ module ietf-wdm-tunnel {
       description "transponder identifier";
     }
 
-    uses transceiver-digital-termination-config;
+    uses transponder-digital-termination-config;
 
     container transceiver {
       description
@@ -760,10 +764,9 @@ module ietf-wdm-tunnel {
       case regenerators {
         container regenerators {
           description
-            "Regenerator states at regenerator node with multiple
-             transponder pairs (therefore, in multiple regenerator
-             groups) as regenerators. A such example is described in
-             ITU-T for FlexOxR.
+            "Regenerator states at a regenerator node formed by
+             multiple parallel regenerators. A such example is
+             described in ITU-T for FlexOxR.
 
              The forward direction refers to the direction of
              the optical path traversing from the source to the
@@ -805,13 +808,13 @@ module ietf-wdm-tunnel {
             key "index";
 
             description
-              "A list of regenerator groups used at the
+              "A list of regenerators used at the
                regenerator node.";
 
             leaf index {
               type uint8;
               description
-                "An index number used to identify regenerator group
+                "An index number used to identify a regenerator
                  in the list, organized in ascending order of their
                  values.";
             }
@@ -822,7 +825,7 @@ module ietf-wdm-tunnel {
                 "Constraints for transceiver configurations in the
                  incoming direction of the regenerator.";
 
-              uses multi-regen-group-transceiver-config;
+              uses multi-regen-transceiver-config;
             }
 
             container outgoing-transponder {
@@ -830,7 +833,7 @@ module ietf-wdm-tunnel {
                 "Constraints for transceiver configurations at the
                  outgoing direction of the regenerator";
 
-              uses multi-regen-group-transceiver-config;
+              uses multi-regen-transceiver-config;
             }
           }
         }
@@ -934,33 +937,6 @@ module ietf-wdm-tunnel {
       }
     }
   }
-
-  /*
-  grouping digital-layer-constraint {
-    description
-      "Grouping for digital layer constraints";
-
-    container digital-constraint {
-      description
-        "Digital layer constraints.";
-
-      leaf digital-termination {
-        //type l0-types:digital-termination-type;
-        type string;
-        description
-          "Identifies how digital signal is terminated.";
-      }
-
-      leaf multiplexing-label-type {
-        //type l0-types:multiplexing-label-type;
-        type string;
-        description
-          "Identifies the type of multiplexing technology
-           used (e.g. ODUj,k).";
-      }
-    }
-  }
-  */
 
   /*
    * Data nodes
