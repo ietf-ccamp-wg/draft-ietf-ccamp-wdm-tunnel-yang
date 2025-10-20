@@ -766,7 +766,7 @@ module ietf-wdm-tunnel {
           description
             "Regenerator states at a regenerator node formed by
              multiple parallel regenerators. A such example is
-             described in ITU-T for FlexOxR.
+             described in ITU-T G.798 Amd.3 for FlexOxR.
 
              The forward direction refers to the direction of
              the optical path traversing from the source to the
