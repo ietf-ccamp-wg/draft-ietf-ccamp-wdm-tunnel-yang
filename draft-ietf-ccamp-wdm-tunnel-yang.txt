@@ -5,14 +5,14 @@
 CCAMP Working Group                                               A. Guo
 Internet-Draft                                    Futurewei Technologies
 Intended status: Standards Track                              S. Belotti
-Expires: 16 April 2026                                             Nokia
+Expires: 23 April 2026                                             Nokia
                                                            G. Galimberti
                                                               Individual
                                                    J. E. L. de V. Mendez
                                                              Naudit HPCN
                                                            D. P. Burrero
                                           Universidad Autonoma de Madrid
-                                                         13 October 2025
+                                                         20 October 2025
 
 
                    A YANG Data Model for WDM Tunnels
@@ -62,7 +62,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 16 April 2026.
+   This Internet-Draft will expire on 23 April 2026.
 
 Copyright Notice
 
@@ -84,6 +84,7 @@ Table of Contents
    2.  Conventions and Definitions
    3.  Overview
      3.1.  Integrated vs. External Optical Transponder
+     3.2.  3R Regenerators
    4.  Example of Use
    5.  YANG Model for WDM Tunnel
      5.1.  YANG Tree
@@ -246,6 +247,123 @@ Table of Contents
    The YANG data model offers a cohesive interface for managing WDM
    tunnels and tunnel segments, irrespective of transponder location.
 
+3.2.  3R Regenerators
+
+   A desired optical path may span a distance beyond the reach of a
+   single optical transponder.  In that case, one or more 3R
+   regenerators can be deployed at intermediate nodes, reamplifying,
+   reshaping, and retiming the optical signal before transmission
+   continues.  This scenario is described in detail in Section 2.7 of
+   [I-D.ietf-ccamp-optical-impairment-topology-yang].  Deploying 3R
+   regeneration is costly because it requires additional transponders;
+   consequently, at most a single regenerator is typically used to
+   regenerate the optical signals of an end-to-end optical tunnel.
+
+   According to [I-D.ietf-ccamp-optical-impairment-topology-yang], there
+   are multiple ways to implement a 3R regenerator: - Back-to-back (bi-
+   directional) regeneration, where two optical transponders are
+   connected back-to-back; each transceiver receives and transmits the
+   optical signal for the same segment of the end-to-end tunnel,
+   operating in both directions.  - Uni-directional regeneration, where
+   two transponders are used with one performing 3R regeneration in the
+   forward direction (source to destination) and the other performing 3R
+   regeneration in the reverse direction.
+
+   When an optical signal is regenerated, it can be terminated and
+   restored at different protocol layers depending on the transponder's
+   capabilities.  For example, if the transponder supports OTN, the
+   signal can be regenerated at the OTU layer or at the ODU layer after
+   the OTU overhead has been stripped; if the transponder supports
+   Ethernet clients, the signal can be terminated at the Ethernet layer,
+   which commonly occurs in the back-to-back configuration.  Typically,
+   the signal is regenerated at the lowest possible layer to minimize
+   processing delay and complexity, but termination layer may be chosen
+   deliberately during network planning for specific scenarios.  To
+   ensure correct transmission, the termination method used between the
+   source and the receiving transponder at the regenerator node must
+   match the method used between the sending transponder at the
+   regenerator node and the destination transponder (or the receiving
+   transponder at the next regenerator node).
+
+   The termination of an optical signal occurs at the reference point
+   immediately before inverse multiplexing in the transmitting direction
+   or immediately after inverse multiplexing in the receiving direction
+   for the corresponding transceiver, and this applies to the entire
+   OTSiG used by the optical tunnel.  For 3R regeneration, to identify
+   the transceiver configuration associated with these reference points
+   consistently between uni-directional and bi-directional regeneration,
+   the following definitions are used in this draft: - Forward
+   direction: the direction of the optical path from the source to the
+   destination.  - Reverse direction: the direction of the optical path
+   from the destination back to the source.  - Incoming transponder: for
+   back-to-back regeneration, the transponder in the regenerator that
+   receives from and transmits toward the same segment of the optical
+   path toward the source; for uni-directional regeneration, the
+   transponder that performs regeneration in the forward direction of
+   the optical path.  - Outgoing transponder: for back-to-back
+   regeneration, the transponder in the regenerator that receives from
+   and transmits toward the same segment of the optical path toward the
+   destination; for uni-directional regeneration, the transponder that
+   performs regeneration in the reverse direction of the optical path.
+
+   Utilizing the figures in
+   [I-D.ietf-ccamp-optical-impairment-topology-yang] for 3R
+   regeneration, Figure 1 and Figure 2 further illustrate the
+   aforementioned reference points for back-to-back regeneration and
+   uni-directional regeneration, respectively.
+
+                             Forward Direction
+     |------------------------------>---------------------------------|
+                             Reverse Direction
+     |------------------------------<---------------------------------|
+
+               Incoming Transponder     Outgoing Transponder          D
+               +-------------------+   +--------------------+         E
+     S         |Transceiver        |   |         Transceiver|         S
+     O         |-----------+ +-----|   |-----+ +------------|         T
+     U ------->|Receiver   |-|Sig. |-->|Sig. |-| Transmitter|-------> I
+     R         |-----------+ |     |   |     | +------------|         N
+     C <-------|Transmitter|-|Proc.|<--|Proc.|-|    Receiver|<------- A
+     E         |-----------+ +-----|   |-----+ +------------|         T
+               +-------------------+   +--------------------+         I
+                                                                      O
+                                                                      N
+
+         Figure 1: Reference Points in Back-to-back 3R Regeneration
+
+                             Forward Direction
+     |------------------------------>---------------------------------|
+                             Reverse Direction
+     |------------------------------<---------------------------------|
+
+                              Incoming Transponder
+                              3R in forward direction
+                            +-----------------------+
+                            |Transceiver            |
+                            |-----------+ +--------+|
+                    ------->|Receiver   |-|Sig. --+||
+                            |-----------+ |       |||
+                        +---|Transmitter|-|Proc.<-+||
+                        |   |-----------+ +--------+|
+                        |   +-----------------------+                 E
+     S                  |                                             S
+     O                  +------------------------------------>        T
+     U                                                                I
+     R              <-----------------------------------+             N
+     C                                                  |             A
+     E                      +-----------------------+   |             T
+                            |            Transceiver|   |             I
+                            |+--------+ +-----------|   |             O
+                            ||+->Sig. |-|Transmitter|---+             N
+                            |||       | +-----------|
+                            ||+--Proc.|-|Receiver   |<--------
+                            |+--------+ +-----------|
+                            +-----------------------+
+                             Outgoing Transponder
+                             3R in reverse direction
+
+       Figure 2: Reference Points in Uni-directional 3R Regeneration
+
 4.  Example of Use
 
    To illustrate the model's application, consider an optical network
@@ -293,7 +411,7 @@ Table of Contents
            <--------------------------------------------------->
                              WDM Secondary Path 1
 
-                         Figure 1: Topology Example
+                         Figure 3: Topology Example
 
    To configure an end-to-end WDM tunnel to interconnect transponders A
    and E, first of all we have to populate the flexi-grid topology YANG
@@ -3702,7 +3820,7 @@ Table of Contents
                                +--ro flexi-n    flexi-n
                                +--ro flexi-m?   flexi-m
 
-                       Figure 2: WDM Tunnel YANG tree
+                       Figure 4: WDM Tunnel YANG tree
 
 5.2.  YANG Code
 
@@ -3792,7 +3910,11 @@ Table of Contents
      }
      identity otsi-lane-termination-type {
        description
-         "Digital termination type applicable to single OTSi";
+         "Digital termination type applicable to a single OTSi.
+          The termination of an optical signal occurs at the
+          reference point immediately before inverse multiplexing
+          in the transmitting direction or immediately after
+          inverse multiplexing in the receiving direction.";
      }
      identity digital-mapping-type {
        description
@@ -3961,7 +4083,7 @@ Table of Contents
        uses l0-types:path-constraints;
      }
 
-     grouping transceiver-digital-termination-config {
+     grouping transponder-digital-termination-config {
        description
          "This grouping specifies the configuration of
           digital layer termination applicable to the
@@ -4070,7 +4192,7 @@ Table of Contents
          description "transponder identifier";
        }
 
-       uses transceiver-digital-termination-config;
+       uses transponder-digital-termination-config;
 
        container transceiver {
          description
@@ -4094,7 +4216,7 @@ Table of Contents
        }
      }
 
-     grouping multi-regen-group-transceiver-config {
+     grouping multi-regen-transceiver-config {
        description
          "This grouping specifies configurations for transceivers
           at at regenerator nodes with multiple pairs of
@@ -4121,7 +4243,7 @@ Table of Contents
        leaf regen-group-id {
          type uint32;
          description
-           "3R regenerator group identifier.";
+           "3R group identifier.";
        }
        leaf regeneration-layer {
          type identityref {
@@ -4218,7 +4340,7 @@ Table of Contents
                 regenerator node with multiple transponder pairs
                 (therefore, in multiple regenerator groups) as
                 regenerators. A such example is described in
-                ITU-T for FlexOxR.
+                ITU-T G.798 Amd.3 for FlexOxR.
 
                 The forward direction refers to the direction of
                 the optical path traversing from the source to the
@@ -4260,13 +4382,13 @@ Table of Contents
                key "index";
 
                description
-                 "A list of regenerator groups used at the
-                  regenerator node.";
+                 "A list of regenerators used at the regenerator
+                  node.";
 
                leaf index {
                  type uint8;
                  description
-                   "An index number used to identify regenerator group
+                   "An index number used to identify a regenerator
                     in the list, organized in ascending order of their
                     values.";
                }
@@ -4277,7 +4399,7 @@ Table of Contents
                    "Constraints for transceiver configurations in the
                     incoming direction of the regenerator.";
 
-                 uses multi-regen-group-transceiver-config;
+                 uses multi-regen-transceiver-config;
                }
 
                container outgoing-transponder {
@@ -4285,7 +4407,7 @@ Table of Contents
                    "Constraints for transceiver configurations at the
                     outgoing direction of the regenerator";
 
-                 uses multi-regen-group-transceiver-config;
+                 uses multi-regen-transceiver-config;
                }
              }
            }
@@ -4348,7 +4470,7 @@ Table of Contents
          description "transponder identifier";
        }
 
-       uses transceiver-digital-termination-config;
+       uses transponder-digital-termination-config;
 
        container transceiver {
          description
@@ -4469,10 +4591,9 @@ Table of Contents
          case regenerators {
            container regenerators {
              description
-               "Regenerator states at regenerator node with multiple
-                transponder pairs (therefore, in multiple regenerator
-                groups) as regenerators. A such example is described in
-                ITU-T for FlexOxR.
+               "Regenerator states at a regenerator node formed by
+                multiple parallel regenerators. A such example is
+                described in ITU-T G.798 Amd.3 for FlexOxR.
 
                 The forward direction refers to the direction of
                 the optical path traversing from the source to the
@@ -4514,13 +4635,13 @@ Table of Contents
                key "index";
 
                description
-                 "A list of regenerator groups used at the
+                 "A list of regenerators used at the
                   regenerator node.";
 
                leaf index {
                  type uint8;
                  description
-                   "An index number used to identify regenerator group
+                   "An index number used to identify a regenerator
                     in the list, organized in ascending order of their
                     values.";
                }
@@ -4531,7 +4652,7 @@ Table of Contents
                    "Constraints for transceiver configurations in the
                     incoming direction of the regenerator.";
 
-                 uses multi-regen-group-transceiver-config;
+                 uses multi-regen-transceiver-config;
                }
 
                container outgoing-transponder {
@@ -4539,7 +4660,7 @@ Table of Contents
                    "Constraints for transceiver configurations at the
                     outgoing direction of the regenerator";
 
-                 uses multi-regen-group-transceiver-config;
+                 uses multi-regen-transceiver-config;
                }
              }
            }
@@ -4643,33 +4764,6 @@ Table of Contents
          }
        }
      }
-
-     /*
-     grouping digital-layer-constraint {
-       description
-         "Grouping for digital layer constraints";
-
-       container digital-constraint {
-         description
-           "Digital layer constraints.";
-
-         leaf digital-termination {
-           //type l0-types:digital-termination-type;
-           type string;
-           description
-             "Identifies how digital signal is terminated.";
-         }
-
-         leaf multiplexing-label-type {
-           //type l0-types:multiplexing-label-type;
-           type string;
-           description
-             "Identifies the type of multiplexing technology
-              used (e.g. ODUj,k).";
-         }
-       }
-     }
-     */
 
      /*
       * Data nodes
@@ -6153,7 +6247,7 @@ Table of Contents
    }
    <CODE ENDS>
 
-                      Figure 3: WDM Tunnel YANG module
+                      Figure 5: WDM Tunnel YANG module
 
 6.  Security Considerations
 
@@ -6223,13 +6317,21 @@ Table of Contents
               <https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-
               flexigrid-yang-18>.
 
+   [I-D.ietf-ccamp-optical-impairment-topology-yang]
+              Beller, D., Le Rouzic, E., Belotti, S., Galimberti, G.,
+              and I. Busi, "A YANG Data Model for Optical Impairment-
+              aware Topology", Work in Progress, Internet-Draft, draft-
+              ietf-ccamp-optical-impairment-topology-yang-20, 10 October
+              2025, <https://datatracker.ietf.org/doc/html/draft-ietf-
+              ccamp-optical-impairment-topology-yang-20>.
+
    [I-D.ietf-teas-yang-te]
               Saad, T., Gandhi, R., Liu, X., Beeram, V. P., and I.
               Bryskin, "A YANG Data Model for Traffic Engineering
-              Tunnels, Label Switched Paths and Interfaces", Work in
-              Progress, Internet-Draft, draft-ietf-teas-yang-te-38, 29
-              May 2025, <https://datatracker.ietf.org/doc/html/draft-
-              ietf-teas-yang-te-38>.
+              Tunnels, Label Switched Paths, and Interfaces", Work in
+              Progress, Internet-Draft, draft-ietf-teas-yang-te-39, 17
+              October 2025, <https://datatracker.ietf.org/doc/html/
+              draft-ietf-teas-yang-te-39>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,

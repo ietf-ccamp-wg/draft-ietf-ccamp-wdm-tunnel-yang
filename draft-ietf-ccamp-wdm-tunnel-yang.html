@@ -14,24 +14,23 @@
        This document defines a YANG data model for the provisioning and management of Traffic Engineering (TE) tunnels and Label Switched Paths (LSPs) in Optical Networks (Wavelength Switched Optical Networks (WSON) and Flexi-Grid Dense Wavelength Division Multiplexing (DWDM) Networks). 
        The YANG data model defined in this document conforms to the Network Management Datastore Architecture (NMDA). 
     " name="description">
-<meta content="xml2rfc 3.30.2" name="generator">
+<meta content="xml2rfc 3.31.0" name="generator">
 <meta content="next generation" name="keyword">
 <meta content="unicorn" name="keyword">
 <meta content="sparkling distributed ledger" name="keyword">
 <meta content="draft-ietf-ccamp-wdm-tunnel-yang-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.30.2
-    Python 3.12.11
+  xml2rfc 3.31.0
+    Python 3.12.12
     ConfigArgParse 1.7
     google-i18n-address 3.1.1
     intervaltree 3.1.0
     Jinja2 3.1.6
     lxml 5.3.1
-    platformdirs 4.4.0
+    platformdirs 4.5.0
     pycountry 24.6.1
     PyYAML 6.0.2
     requests 2.32.5
-    setuptools 80.9.0
     wcwidth 0.2.14
 -->
 <link href="draft-ietf-ccamp-wdm-tunnel-yang.xml" rel="alternate" type="application/rfc+xml">
@@ -1055,7 +1054,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Guo, et al.</td>
-<td class="center">Expires 16 April 2026</td>
+<td class="center">Expires 23 April 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1068,12 +1067,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-ccamp-wdm-tunnel-yang-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-10-13" class="published">13 October 2025</time>
+<time datetime="2025-10-20" class="published">20 October 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-04-16">16 April 2026</time></dd>
+<dd class="expires"><time datetime="2026-04-23">23 April 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1140,7 +1139,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 16 April 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 23 April 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1180,6 +1179,9 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1">
                 <p id="section-toc.1-1.3.2.1.1" class="keepWithNext"><a href="#section-3.1" class="auto internal xref">3.1</a>.  <a href="#name-integrated-vs-external-opti" class="internal xref">Integrated vs. External Optical Transponder</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.2">
+                <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="auto internal xref">3.2</a>.  <a href="#name-3r-regenerators" class="internal xref">3R Regenerators</a></p>
 </li>
             </ul>
 </li>
@@ -1322,6 +1324,91 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 <p id="section-3.1-3">The YANG data model offers a cohesive interface for managing WDM tunnels and tunnel segments, irrespective of transponder location.<a href="#section-3.1-3" class="pilcrow">¶</a></p>
 </section>
 </div>
+<div id="r-regenerators">
+<section id="section-3.2">
+        <h3 id="name-3r-regenerators">
+<a href="#section-3.2" class="section-number selfRef">3.2. </a><a href="#name-3r-regenerators" class="section-name selfRef">3R Regenerators</a>
+        </h3>
+<p id="section-3.2-1">A desired optical path may span a distance beyond the reach of a single optical transponder. In that case, one or more 3R regenerators can be deployed at intermediate nodes, reamplifying, reshaping, and retiming the optical signal before transmission continues. This scenario is described in detail in Section 2.7 of <span>[<a href="#I-D.ietf-ccamp-optical-impairment-topology-yang" class="cite xref">I-D.ietf-ccamp-optical-impairment-topology-yang</a>]</span>. Deploying 3R regeneration is costly because it requires additional transponders; consequently, at most a single regenerator is typically used to regenerate the optical signals of an end-to-end optical tunnel.<a href="#section-3.2-1" class="pilcrow">¶</a></p>
+<p id="section-3.2-2">According to <span>[<a href="#I-D.ietf-ccamp-optical-impairment-topology-yang" class="cite xref">I-D.ietf-ccamp-optical-impairment-topology-yang</a>]</span>, there are multiple ways to implement a 3R regenerator:
+ - Back-to-back (bi-directional) regeneration, where two optical transponders are connected back-to-back; each transceiver receives and transmits the optical signal for the same segment of the end-to-end tunnel, operating in both directions.
+ - Uni-directional regeneration, where two transponders are used with one performing 3R regeneration in the forward direction (source to destination) and the other performing 3R regeneration in the reverse direction.<a href="#section-3.2-2" class="pilcrow">¶</a></p>
+<p id="section-3.2-3">When an optical signal is regenerated, it can be terminated and restored at different protocol layers depending on the transponder's capabilities. For example, if the transponder supports OTN, the signal can be regenerated at the OTU layer or at the ODU layer after the OTU overhead has been stripped; if the transponder supports Ethernet clients, the signal can be terminated at the Ethernet layer, which commonly occurs in the back-to-back configuration. Typically, the signal is regenerated at the lowest possible layer to minimize processing delay and complexity, but termination layer may be chosen deliberately during network planning for specific scenarios. To ensure correct transmission, the termination method used between the source and the receiving transponder at the regenerator node must match the method used between the sending transponder at the regenerator node and the destination transponder (or the receiving transponder at the next regenerator node).<a href="#section-3.2-3" class="pilcrow">¶</a></p>
+<p id="section-3.2-4">The termination of an optical signal occurs at the reference point immediately before inverse multiplexing in the transmitting direction or immediately after inverse multiplexing in the receiving direction for the corresponding transceiver, and this applies to the entire OTSiG used by the optical tunnel. For 3R regeneration, to identify the transceiver configuration associated with these reference points consistently between uni-directional and bi-directional regeneration, the following definitions are used in this draft:
+ - Forward direction: the direction of the optical path from the source to the destination.
+ - Reverse direction: the direction of the optical path from the destination back to the source.
+ - Incoming transponder: for back-to-back regeneration, the transponder in the regenerator that receives from and transmits toward the same segment of the optical path toward the source; for uni-directional regeneration, the transponder that performs regeneration in the forward direction of the optical path.
+ - Outgoing transponder: for back-to-back regeneration, the transponder in the regenerator that receives from and transmits toward the same segment of the optical path toward the destination; for uni-directional regeneration, the transponder that performs regeneration in the reverse direction of the optical path.<a href="#section-3.2-4" class="pilcrow">¶</a></p>
+<p id="section-3.2-5">Utilizing the figures in <span>[<a href="#I-D.ietf-ccamp-optical-impairment-topology-yang" class="cite xref">I-D.ietf-ccamp-optical-impairment-topology-yang</a>]</span> for 3R regeneration, <a href="#fig-back2back" class="auto internal xref">Figure 1</a> and <a href="#fig-unidir" class="auto internal xref">Figure 2</a> further illustrate the aforementioned reference points for back-to-back regeneration and uni-directional regeneration, respectively.<a href="#section-3.2-5" class="pilcrow">¶</a></p>
+<span id="name-reference-points-in-back-to"></span><div id="fig-back2back">
+<figure id="figure-1">
+          <div class="alignLeft art-ascii-art art-text artwork" id="section-3.2-6.1">
+<pre>
+                          Forward Direction
+  |------------------------------&gt;---------------------------------|
+                          Reverse Direction
+  |------------------------------&lt;---------------------------------|
+
+            Incoming Transponder     Outgoing Transponder          D
+            +-------------------+   +--------------------+         E
+  S         |Transceiver        |   |         Transceiver|         S
+  O         |-----------+ +-----|   |-----+ +------------|         T
+  U -------&gt;|Receiver   |-|Sig. |--&gt;|Sig. |-| Transmitter|-------&gt; I
+  R         |-----------+ |     |   |     | +------------|         N
+  C &lt;-------|Transmitter|-|Proc.|&lt;--|Proc.|-|    Receiver|&lt;------- A
+  E         |-----------+ +-----|   |-----+ +------------|         T
+            +-------------------+   +--------------------+         I
+                                                                   O
+                                                                   N
+</pre>
+</div>
+<figcaption><a href="#figure-1" class="selfRef">Figure 1</a>:
+<a href="#name-reference-points-in-back-to" class="selfRef">Reference Points in Back-to-back 3R Regeneration</a>
+          </figcaption></figure>
+</div>
+<span id="name-reference-points-in-uni-dir"></span><div id="fig-unidir">
+<figure id="figure-2">
+          <div class="alignLeft art-ascii-art art-text artwork" id="section-3.2-7.1">
+<pre>
+                          Forward Direction
+  |------------------------------&gt;---------------------------------|
+                          Reverse Direction
+  |------------------------------&lt;---------------------------------|
+
+                           Incoming Transponder
+                           3R in forward direction
+                         +-----------------------+
+                         |Transceiver            |
+                         |-----------+ +--------+|
+                 -------&gt;|Receiver   |-|Sig. --+||
+                         |-----------+ |       |||
+                     +---|Transmitter|-|Proc.&lt;-+||
+                     |   |-----------+ +--------+|
+                     |   +-----------------------+                 E
+  S                  |                                             S
+  O                  +------------------------------------&gt;        T
+  U                                                                I
+  R              &lt;-----------------------------------+             N
+  C                                                  |             A
+  E                      +-----------------------+   |             T
+                         |            Transceiver|   |             I
+                         |+--------+ +-----------|   |             O
+                         ||+-&gt;Sig. |-|Transmitter|---+             N
+                         |||       | +-----------|
+                         ||+--Proc.|-|Receiver   |&lt;--------
+                         |+--------+ +-----------|
+                         +-----------------------+
+                          Outgoing Transponder
+                          3R in reverse direction
+
+</pre>
+</div>
+<figcaption><a href="#figure-2" class="selfRef">Figure 2</a>:
+<a href="#name-reference-points-in-uni-dir" class="selfRef">Reference Points in Uni-directional 3R Regeneration</a>
+          </figcaption></figure>
+</div>
+</section>
+</div>
 </section>
 </div>
 <div id="example-of-use">
@@ -1331,7 +1418,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
       </h2>
 <p id="section-4-1">To illustrate the model's application, consider an optical network with various transponders, switches, and links. A depicted topology outlines two WDM tunnel scenarios. In the first, an end-to-end WDM tunnel (WDM Tunnel 1) comprises two physical paths (WDM Primary Path 1 and 2) linking two integrated optical transponders, Transponder A and E, through WSON and Flexi-grid nodes. The second scenario describes three WDM tunnel segments (WDM Tunnel Segment 2a to 2c) connecting two external OTs, External OT node X and Y, via the same nodes and links.<a href="#section-4-1" class="pilcrow">¶</a></p>
 <span id="name-topology-example"></span><div id="fig-topology-example">
-<figure id="figure-1">
+<figure id="figure-3">
         <div class="alignLeft art-ascii-art art-text artwork" id="section-4-2.1">
 <pre>
                               WDM Tunnel 1
@@ -1370,7 +1457,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
                           WDM Secondary Path 1
 </pre>
 </div>
-<figcaption><a href="#figure-1" class="selfRef">Figure 1</a>:
+<figcaption><a href="#figure-3" class="selfRef">Figure 3</a>:
 <a href="#name-topology-example" class="selfRef">Topology Example</a>
         </figcaption></figure>
 </div>
@@ -1438,7 +1525,7 @@ element usage status each time a tunnel is created or torn down.<a href="#sectio
 <a href="#section-5.1" class="section-number selfRef">5.1. </a><a href="#name-yang-tree" class="section-name selfRef">YANG Tree</a>
         </h3>
 <span id="name-wdm-tunnel-yang-tree"></span><div id="fig-wdm-tunnel-tree">
-<figure id="figure-2">
+<figure id="figure-4">
           <div class="alignLeft art-ascii-art art-text artwork" id="section-5.1-1.1">
 <pre>
 module: ietf-wdm-tunnel
@@ -4803,7 +4890,7 @@ module: ietf-wdm-tunnel
                             +--ro flexi-m?   flexi-m
 </pre>
 </div>
-<figcaption><a href="#figure-2" class="selfRef">Figure 2</a>:
+<figcaption><a href="#figure-4" class="selfRef">Figure 4</a>:
 <a href="#name-wdm-tunnel-yang-tree" class="selfRef">WDM Tunnel YANG tree</a>
           </figcaption></figure>
 </div>
@@ -4815,7 +4902,7 @@ module: ietf-wdm-tunnel
 <a href="#section-5.2" class="section-number selfRef">5.2. </a><a href="#name-yang-code" class="section-name selfRef">YANG Code</a>
         </h3>
 <span id="name-wdm-tunnel-yang-module"></span><div id="fig-wdm-tunnel-yang">
-<figure id="figure-3">
+<figure id="figure-5">
           <div class="breakable lang-yang sourcecode" id="section-5.2-1.1">
 <pre>&lt;CODE BEGINS&gt; file "ietf-wdm-tunnel@2024-07-02.yang"
 
@@ -4904,7 +4991,11 @@ module ietf-wdm-tunnel {
   }
   identity otsi-lane-termination-type {
     description
-      "Digital termination type applicable to single OTSi";
+      "Digital termination type applicable to a single OTSi.
+       The termination of an optical signal occurs at the
+       reference point immediately before inverse multiplexing
+       in the transmitting direction or immediately after
+       inverse multiplexing in the receiving direction.";
   }
   identity digital-mapping-type {
     description
@@ -5073,7 +5164,7 @@ module ietf-wdm-tunnel {
     uses l0-types:path-constraints;
   }
 
-  grouping transceiver-digital-termination-config {
+  grouping transponder-digital-termination-config {
     description
       "This grouping specifies the configuration of
        digital layer termination applicable to the
@@ -5182,7 +5273,7 @@ module ietf-wdm-tunnel {
       description "transponder identifier";
     }
 
-    uses transceiver-digital-termination-config;
+    uses transponder-digital-termination-config;
 
     container transceiver {
       description
@@ -5206,7 +5297,7 @@ module ietf-wdm-tunnel {
     }
   }
 
-  grouping multi-regen-group-transceiver-config {
+  grouping multi-regen-transceiver-config {
     description
       "This grouping specifies configurations for transceivers
        at at regenerator nodes with multiple pairs of
@@ -5233,7 +5324,7 @@ module ietf-wdm-tunnel {
     leaf regen-group-id {
       type uint32;
       description
-        "3R regenerator group identifier.";
+        "3R group identifier.";
     }
     leaf regeneration-layer {
       type identityref {
@@ -5330,7 +5421,7 @@ module ietf-wdm-tunnel {
              regenerator node with multiple transponder pairs
              (therefore, in multiple regenerator groups) as
              regenerators. A such example is described in
-             ITU-T for FlexOxR.
+             ITU-T G.798 Amd.3 for FlexOxR.
 
              The forward direction refers to the direction of
              the optical path traversing from the source to the
@@ -5372,13 +5463,13 @@ module ietf-wdm-tunnel {
             key "index";
 
             description
-              "A list of regenerator groups used at the
-               regenerator node.";
+              "A list of regenerators used at the regenerator
+               node.";
 
             leaf index {
               type uint8;
               description
-                "An index number used to identify regenerator group
+                "An index number used to identify a regenerator
                  in the list, organized in ascending order of their
                  values.";
             }
@@ -5389,7 +5480,7 @@ module ietf-wdm-tunnel {
                 "Constraints for transceiver configurations in the
                  incoming direction of the regenerator.";
 
-              uses multi-regen-group-transceiver-config;
+              uses multi-regen-transceiver-config;
             }
 
             container outgoing-transponder {
@@ -5397,7 +5488,7 @@ module ietf-wdm-tunnel {
                 "Constraints for transceiver configurations at the
                  outgoing direction of the regenerator";
 
-              uses multi-regen-group-transceiver-config;
+              uses multi-regen-transceiver-config;
             }
           }
         }
@@ -5460,7 +5551,7 @@ module ietf-wdm-tunnel {
       description "transponder identifier";
     }
 
-    uses transceiver-digital-termination-config;
+    uses transponder-digital-termination-config;
 
     container transceiver {
       description
@@ -5581,10 +5672,9 @@ module ietf-wdm-tunnel {
       case regenerators {
         container regenerators {
           description
-            "Regenerator states at regenerator node with multiple
-             transponder pairs (therefore, in multiple regenerator
-             groups) as regenerators. A such example is described in
-             ITU-T for FlexOxR.
+            "Regenerator states at a regenerator node formed by
+             multiple parallel regenerators. A such example is
+             described in ITU-T G.798 Amd.3 for FlexOxR.
 
              The forward direction refers to the direction of
              the optical path traversing from the source to the
@@ -5626,13 +5716,13 @@ module ietf-wdm-tunnel {
             key "index";
 
             description
-              "A list of regenerator groups used at the
+              "A list of regenerators used at the
                regenerator node.";
 
             leaf index {
               type uint8;
               description
-                "An index number used to identify regenerator group
+                "An index number used to identify a regenerator
                  in the list, organized in ascending order of their
                  values.";
             }
@@ -5643,7 +5733,7 @@ module ietf-wdm-tunnel {
                 "Constraints for transceiver configurations in the
                  incoming direction of the regenerator.";
 
-              uses multi-regen-group-transceiver-config;
+              uses multi-regen-transceiver-config;
             }
 
             container outgoing-transponder {
@@ -5651,7 +5741,7 @@ module ietf-wdm-tunnel {
                 "Constraints for transceiver configurations at the
                  outgoing direction of the regenerator";
 
-              uses multi-regen-group-transceiver-config;
+              uses multi-regen-transceiver-config;
             }
           }
         }
@@ -5755,33 +5845,6 @@ module ietf-wdm-tunnel {
       }
     }
   }
-
-  /*
-  grouping digital-layer-constraint {
-    description
-      "Grouping for digital layer constraints";
-
-    container digital-constraint {
-      description
-        "Digital layer constraints.";
-
-      leaf digital-termination {
-        //type l0-types:digital-termination-type;
-        type string;
-        description
-          "Identifies how digital signal is terminated.";
-      }
-
-      leaf multiplexing-label-type {
-        //type l0-types:multiplexing-label-type;
-        type string;
-        description
-          "Identifies the type of multiplexing technology
-           used (e.g. ODUj,k).";
-      }
-    }
-  }
-  */
 
   /*
    * Data nodes
@@ -7266,7 +7329,7 @@ module ietf-wdm-tunnel {
 
 &lt;CODE ENDS&gt;</pre>
 </div>
-<figcaption><a href="#figure-3" class="selfRef">Figure 3</a>:
+<figcaption><a href="#figure-5" class="selfRef">Figure 5</a>:
 <a href="#name-wdm-tunnel-yang-module" class="selfRef">WDM Tunnel YANG module</a>
           </figcaption></figure>
 </div>
@@ -7358,9 +7421,13 @@ branches to avoid repetition.<a href="#section-6-4" class="pilcrow">¶</a></p>
         <dd>
 <span class="refAuthor">de Madrid, U. A.</span>, <span class="refAuthor">Burrero, D. P.</span>, <span class="refAuthor">King, D.</span>, <span class="refAuthor">Lee, Y.</span>, and <span class="refAuthor">H. Zheng</span>, <span class="refTitle">"A YANG Data Model for Flexi-Grid Optical Networks"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-ccamp-flexigrid-yang-18</span>, <time datetime="2025-03-17" class="refDate">17 March 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-flexigrid-yang-18">https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-flexigrid-yang-18</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="I-D.ietf-ccamp-optical-impairment-topology-yang">[I-D.ietf-ccamp-optical-impairment-topology-yang]</dt>
+        <dd>
+<span class="refAuthor">Beller, D.</span>, <span class="refAuthor">Le Rouzic, E.</span>, <span class="refAuthor">Belotti, S.</span>, <span class="refAuthor">Galimberti, G.</span>, and <span class="refAuthor">I. Busi</span>, <span class="refTitle">"A YANG Data Model for Optical Impairment-aware Topology"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-ccamp-optical-impairment-topology-yang-20</span>, <time datetime="2025-10-10" class="refDate">10 October 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-optical-impairment-topology-yang-20">https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-optical-impairment-topology-yang-20</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="I-D.ietf-teas-yang-te">[I-D.ietf-teas-yang-te]</dt>
         <dd>
-<span class="refAuthor">Saad, T.</span>, <span class="refAuthor">Gandhi, R.</span>, <span class="refAuthor">Liu, X.</span>, <span class="refAuthor">Beeram, V. P.</span>, and <span class="refAuthor">I. Bryskin</span>, <span class="refTitle">"A YANG Data Model for Traffic Engineering Tunnels, Label Switched Paths and Interfaces"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-teas-yang-te-38</span>, <time datetime="2025-05-29" class="refDate">29 May 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-teas-yang-te-38">https://datatracker.ietf.org/doc/html/draft-ietf-teas-yang-te-38</a>&gt;</span>. </dd>
+<span class="refAuthor">Saad, T.</span>, <span class="refAuthor">Gandhi, R.</span>, <span class="refAuthor">Liu, X.</span>, <span class="refAuthor">Beeram, V. P.</span>, and <span class="refAuthor">I. Bryskin</span>, <span class="refTitle">"A YANG Data Model for Traffic Engineering Tunnels, Label Switched Paths, and Interfaces"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-teas-yang-te-39</span>, <time datetime="2025-10-17" class="refDate">17 October 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-teas-yang-te-39">https://datatracker.ietf.org/doc/html/draft-ietf-teas-yang-te-39</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC2119">[RFC2119]</dt>
         <dd>
