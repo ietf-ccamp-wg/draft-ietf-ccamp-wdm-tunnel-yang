@@ -263,7 +263,7 @@ Utilizing the figures in {{!I-D.ietf-ccamp-optical-impairment-topology-yang}} fo
                          |+--------+ +-----------|
                          +-----------------------+
                           Outgoing Transponder
-                          3R in backward direction
+                          3R in reverse direction
 
 ~~~~
 {: #fig-unidir title="Reference Points in Uni-directional 3R Regeneration"}
