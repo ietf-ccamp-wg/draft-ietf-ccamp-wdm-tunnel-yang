@@ -38,6 +38,7 @@ author:
     org: Individual
     email: ggalimbe56@gmail.com
   -
+    ins: J.E.L. de Vergara Mendez
     name: Jorge E. Lopez de Vergara Mendez
     org: Naudit HPCN
     email: jorge.lopez_vergara@uam.es
@@ -212,7 +213,7 @@ The termination of an optical signal occurs at the reference point immediately b
 
 Utilizing the figures in {{!I-D.ietf-ccamp-optical-impairment-topology-yang}} for 3R regeneration, {{fig-back2back}} and {{fig-unidir}} further illustrate the aforementioned reference points for back-to-back regeneration and uni-directional regeneration, respectively.
 
-~~~~ ascii-art
+~~~~ aasvg
                           Forward Direction
   |------------------------------>---------------------------------|
                           Reverse Direction
@@ -232,7 +233,7 @@ Utilizing the figures in {{!I-D.ietf-ccamp-optical-impairment-topology-yang}} fo
 ~~~~
 {: #fig-back2back title="Reference Points in Back-to-back 3R Regeneration"}
 
-~~~~ ascii-art
+~~~~ aasvg
 
                           Forward Direction
   |------------------------------>---------------------------------|
@@ -273,7 +274,7 @@ Utilizing the figures in {{!I-D.ietf-ccamp-optical-impairment-topology-yang}} fo
 
 To illustrate the model's application, consider an optical network with various transponders, switches, and links. A depicted topology outlines two WDM tunnel scenarios. In the first, an end-to-end WDM tunnel (WDM Tunnel 1) comprises two physical paths (WDM Primary Path 1 and 2) linking two integrated optical transponders, Transponder A and E, through WSON and Flexi-grid nodes. The second scenario describes three WDM tunnel segments (WDM Tunnel Segment 2a to 2c) connecting two external OTs, External OT node X and Y, via the same nodes and links.
 
-~~~~ ascii-art
+~~~~ aasvg
                               WDM Tunnel 1
         <===================================================>
                          WDM Primary Path 1
@@ -358,7 +359,7 @@ and this is the way in which they are called in the tunnel.
 ## YANG Tree
 
 ~~~~ ascii-art
-{::include-fold tree/ietf-wdm-tunnel.tree}
+{::include-fold yang/trees/ietf-wdm-tunnel.tree}
 ~~~~
 {: #fig-wdm-tunnel-tree title="WDM Tunnel YANG tree" artwork-name="ietf-wdm-tunnel.tree"}
 
