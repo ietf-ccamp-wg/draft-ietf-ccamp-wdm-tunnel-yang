@@ -8,7 +8,7 @@ Intended status: Standards Track                              S. Belotti
 Expires: 18 September 2026                                         Nokia
                                                            G. Galimberti
                                                               Individual
-                                                   J. E. L. de V. Mendez
+                                              J. E. L. de Vergara Mendez
                                                              Naudit HPCN
                                                            D. P. Burrero
                                           Universidad Autonoma de Madrid
