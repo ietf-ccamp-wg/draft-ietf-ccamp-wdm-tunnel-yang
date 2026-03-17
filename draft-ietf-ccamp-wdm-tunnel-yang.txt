@@ -5,14 +5,14 @@
 CCAMP Working Group                                               A. Guo
 Internet-Draft                                    Futurewei Technologies
 Intended status: Standards Track                              S. Belotti
-Expires: 15 May 2026                                               Nokia
+Expires: 18 September 2026                                         Nokia
                                                            G. Galimberti
                                                               Individual
                                                    J. E. L. de V. Mendez
                                                              Naudit HPCN
                                                            D. P. Burrero
                                           Universidad Autonoma de Madrid
-                                                        11 November 2025
+                                                           17 March 2026
 
 
                    A YANG Data Model for WDM Tunnels
@@ -62,11 +62,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 15 May 2026.
+   This Internet-Draft will expire on 18 September 2026.
 
 Copyright Notice
 
-   Copyright (c) 2025 IETF Trust and the persons identified as the
+   Copyright (c) 2026 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -3827,25 +3827,24 @@ Table of Contents
    <CODE BEGINS> file "ietf-wdm-tunnel@2024-07-02.yang"
    module ietf-wdm-tunnel {
      yang-version 1.1;
-     namespace
-       "urn:ietf:params:xml:ns:yang:ietf-wdm-tunnel";
-     prefix "wdm-tnl";
+     namespace "urn:ietf:params:xml:ns:yang:ietf-wdm-tunnel";
+     prefix wdm-tnl;
 
      import ietf-te {
-       prefix "te";
+       prefix te;
        reference
          "RFC YYYY: A YANG Data Model for Traffic Engineering Tunnels,
-         Label Switched Paths and Interfaces.";
+          Label Switched Paths and Interfaces.";
      }
+
      /* RFC Ed.: replace YYYY with the number assigned
         to the RFC once draft-ietf-teas-yang-te becomes an RFC.*/
 
      import ietf-layer0-types {
-       prefix "l0-types";
+       prefix l0-types;
      }
-
      import ietf-yang-types {
-       prefix "yang";
+       prefix yang;
      }
 
      organization
@@ -3868,33 +3867,28 @@ Table of Contents
 
         Editor:   Aihua Guo
                   <aihuaguo.ietf@gmail.com>";
-
      description
        "This module defines a YANG data model for configuring
         and managing Wavelength-Division Multiplexing (WDM) switched
         optical tunnels.
 
-       The model fully conforms to the Network Management
-       Datastore Architecture (NMDA).
+        Copyright (c) 2026 IETF Trust and the persons
+        identified as authors of the code.  All rights reserved.
 
-       Copyright (c) 2021 IETF Trust and the persons
-       identified as authors of the code.  All rights reserved.
+        Redistribution and use in source and binary forms, with or
+        without modification, is permitted pursuant to, and subject
+        to the license terms contained in, the Revised BSD License
+        set forth in Section 4.c of the IETF Trust's Legal Provisions
+        Relating to IETF Documents
+        (https://trustee.ietf.org/license-info).
 
-       Redistribution and use in source and binary forms, with or
-       without modification, is permitted pursuant to, and subject
-       to the license terms contained in, the Simplified BSD License
-       set forth in Section 4.c of the IETF Trust's Legal Provisions
-       Relating to IETF Documents
-       (https://trustee.ietf.org/license-info).
+        This version of this YANG module is part of RFC XXXX; see
+        the RFC itself for full legal notices.";
 
-       This version of this YANG module is part of RFC XXXX; see
-       the RFC itself for full legal notices.";
-
-     revision "2025-10-20" {
+     revision 2026-02-27 {
        description
          "Updated revision with combined WSON and Flexi-grid tunnel
           YANG model";
-
        reference
          "RFC XXXX: YANG data model for WDM tunnels";
        // RFC Ed.: replace XXXX with actual RFC number, update date
@@ -3904,10 +3898,12 @@ Table of Contents
      /*
       * Identities
       */
+
      identity otsig-termination-type {
        description
          "Digital termination type applicable to OTSiG";
      }
+
      identity otsi-lane-termination-type {
        description
          "Digital termination type applicable to a single OTSi.
@@ -3916,24 +3912,28 @@ Table of Contents
           in the transmitting direction or immediately after
           inverse multiplexing in the receiving direction.";
      }
+
      identity digital-mapping-type {
        description
          "Digital mapping type for the client payload of
           transceivers";
      }
+
      identity inverse-mux-type {
        description
          "Inverse multiplexing type";
      }
+
      identity otsig-regeneration-layer {
        description
          "Level of 3R regeneration";
      }
-     //TBD: types to be added
 
+     //TBD: types to be added
      /*
       * Groupings
       */
+
      grouping additional-transceiver-configuration-constraints {
        description
          "This grouping defines additional optional constraints for
@@ -3950,46 +3950,39 @@ Table of Contents
           For instance, if the frequency is restricted to the C-band,
           the list of operational modes should not include any modes
           applicable only to the L-band.";
-
        leaf otsi-carrier-frequency {
-           type l0-types:frequency-thz;
-           description
-             "OTSi carrier frequency, i.e. configured transmitter
-              frequency.";
+         type l0-types:frequency-thz;
+         description
+           "OTSi carrier frequency, i.e. configured transmitter
+            frequency.";
        }
-
        container tx-tune-constraints {
          description
            "The permissible tuning frequency range for the
             transmitter.";
-
          uses l0-types:transceiver-tuning-range;
        }
-
        leaf-list line-coding-bitrate {
          type identityref {
            base l0-types:line-coding;
          }
          description
            "The list of the bit rate/line coding of the optical
-           tributary signal that constrains the configuration of
-           the transceiver.";
+            tributary signal that constrains the configuration of
+            the transceiver.";
          reference
            "ITU-T G.698.2 section 7.1.2";
        }
-
        leaf tx-channel-power {
          type l0-types:power-dbm;
          description
            "The preferred channel transmit power.";
        }
-
        leaf preferred-rx-channel-power {
          type l0-types:power-dbm;
          description
            "The preferred channel received power.";
        }
-
        uses l0-types:path-constraints;
      }
 
@@ -3997,7 +3990,6 @@ Table of Contents
        description
          "This grouping defines constraints for transceiver
           configurations";
-
        leaf-list operational-modes {
          type string {
            length "1..255";
@@ -4005,7 +3997,6 @@ Table of Contents
          description
            "List of operational mode ids of the transceiver.";
        }
-
        uses additional-transceiver-configuration-constraints;
      }
 
@@ -4013,7 +4004,6 @@ Table of Contents
        description
          "This grouping specifies common configurations
           for transceivers.";
-
        leaf transceiver-id {
          type uint32;
          description
@@ -4021,15 +4011,15 @@ Table of Contents
        }
        leaf otsi-carrier-id {
          type uint16;
-           description
-             "OTSi carrier identifier associated with the
-              transceiver.";
+         description
+           "OTSi carrier identifier associated with the
+            transceiver.";
        }
        leaf otsi-carrier-frequency {
-           type l0-types:frequency-thz;
-           description
-             "OTSi carrier frequency, i.e. configured transmitter
-              frequency.";
+         type l0-types:frequency-thz;
+         description
+           "OTSi carrier frequency, i.e. configured transmitter
+            frequency.";
        }
        leaf tx-channel-power {
          type l0-types:power-dbm;
@@ -4043,8 +4033,6 @@ Table of Contents
          "This grouping specifies common states
           for incoming and outgoing transceivers
           associated with a regenerator group.";
-
-
        leaf operational-mode {
          type string {
            length "1..255";
@@ -4052,7 +4040,6 @@ Table of Contents
          description
            "Operational mode of the transceiver.";
        }
-
        leaf line-coding-bitrate {
          type identityref {
            base l0-types:line-coding;
@@ -4071,15 +4058,12 @@ Table of Contents
          "This grouping specifies common configurations
           for incoming and outgoing transceivers
           associated with a regenerator group.";
-
        uses regenerator-incoming-outgoing-common-state;
-
        leaf preferred-rx-channel-power {
          type l0-types:power-dbm;
          description
            "The preferred channel received power.";
        }
-
        uses l0-types:path-constraints;
      }
 
@@ -4088,35 +4072,30 @@ Table of Contents
          "This grouping specifies the configuration of
           digital layer termination applicable to the
           transceivers.";
-
        container digital-terminations {
          description
            "Digital layer termination applicable to the transceivers.";
-
          list digital-termination {
            key "index";
            description
              "Sequence of digital layer terminations.";
-
            leaf index {
              type uint8;
              description
                "An index number used to identify entries in the list,
                 organized in ascending order of their values.";
            }
-
            leaf termination-type {
              type identityref {
                base otsig-termination-type;
              }
              description
-             "Digital layer termination before/after inverse
-              multiplexing in the tx/rx direction of the transceiver,
-              that applies to the whole OTSiG, also applicable to
-              the special case when there is a single OTSi in the
-              OTSiG, i.e. without inverse multiplexing.";
+               "Digital layer termination before/after inverse
+                multiplexing in the tx/rx direction of the transceiver,
+                that applies to the whole OTSiG, also applicable to
+                the special case when there is a single OTSi in the
+                OTSiG, i.e. without inverse multiplexing.";
            }
-
            leaf mapping-type {
              type identityref {
                base digital-mapping-type;
@@ -4133,15 +4112,11 @@ Table of Contents
        description
          "This grouping specifies inverse-multiplexing configurations
           applicable to multi-carrier transceivers.";
-
        container inverse-multiplexing {
-         presence
-           "When present, it indicates that the transceiver
-            supports inverse multiplexing.";
-
+         presence "When present, it indicates that the transceiver
+                   supports inverse multiplexing.";
          description
            "Transceiver configuration for inverse multiplexing.";
-
          leaf inverse-mux-type {
            type identityref {
              base inverse-mux-type;
@@ -4149,7 +4124,6 @@ Table of Contents
            description
              "Type of inverse multiplexing.";
          }
-
          leaf otsi-lane-termination-type {
            type identityref {
              base otsi-lane-termination-type;
@@ -4160,13 +4134,11 @@ Table of Contents
               transceiver, that applies to a single OTSi within
               the inverse multiplexing group.";
          }
-
          container additional-transceivers {
            description
              "Configuration for additional transceivers with
               an index value 1 and higher within the same
               inverse multiplexing group.";
-
            leaf index {
              type uint8 {
                range "1..max";
@@ -4175,7 +4147,6 @@ Table of Contents
                "The index of the transceiver in the inverse
                 multiplexing group starting from value 1.";
            }
-
            uses transceiver-common-config;
          }
        }
@@ -4186,32 +4157,27 @@ Table of Contents
          "This grouping specifies configurations for transceivers
           at source, destination nodes, as well as at regenerator
           nodes with a single pair of regenerator.";
-
        leaf transponder-id {
          type uint32;
-         description "transponder identifier";
+         description
+           "transponder identifier";
        }
-
        uses transponder-digital-termination-config;
-
        container transceiver {
          description
-            "Specifies transceiver configurations. The attributes
-             specified in this container, excluding those within
-             the inverse-multiplexing container, apply to a single
-             transceiver when inverse multiplexing is not supported,
-             as well as to the first transceiver, identified by an
-             index value of 0 when inverse multiplexing is enabled.
+           "Specifies transceiver configurations. The attributes
+            specified in this container, excluding those within
+            the inverse-multiplexing container, apply to a single
+            transceiver when inverse multiplexing is not supported,
+            as well as to the first transceiver, identified by an
+            index value of 0 when inverse multiplexing is enabled.
 
-             Attributes within the inverse-multiplexing container
-             are applicable exclusively to transceivers with an
-             index value of 1 or higher, belonging to the same
-             inverse multiplexing group.";
-
+            Attributes within the inverse-multiplexing container
+            are applicable exclusively to transceivers with an
+            index value of 1 or higher, belonging to the same
+            inverse multiplexing group.";
          uses transceiver-common-config;
-
          uses regenerator-incoming-outgoing-common-config;
-
          uses transceiver-inverse-multiplexing-config;
        }
      }
@@ -4221,16 +4187,15 @@ Table of Contents
          "This grouping specifies configurations for transceivers
           at at regenerator nodes with multiple pairs of
           regenerators.";
-
        leaf transponder-id {
          type uint32;
-         description "transponder identifier";
+         description
+           "transponder identifier";
        }
        container transceiver {
          description
-            "Specifies transceiver configurations at a regenerator
-             node with multiple pairs of regenerators.";
-
+           "Specifies transceiver configurations at a regenerator
+            node with multiple pairs of regenerators.";
          uses transceiver-common-config;
        }
      }
@@ -4238,8 +4203,7 @@ Table of Contents
      grouping regenerator-common-config {
        description
          "This grouping defines a set of common attributes
-         applicable to 3R regenerators.";
-
+          applicable to 3R regenerators.";
        leaf regen-group-id {
          type uint32;
          description
@@ -4251,21 +4215,21 @@ Table of Contents
          }
          description
            "Indicate the chosen level of digital layer
-           regeneration, e.g. ODU, FlexOnM, before/after inverse
-           multiplexing in the tx/rx direction, that applies to
-           the whole OTSiG. It also applies to the case when
-           there is only one OTSi in the OTSiG, i.e. without
-           inverse multiplexing, in which case the number of
-           OTSis in the OTSiGs before/after the regenerator
-           may be different.";
+            regeneration, e.g. ODU, FlexOnM, before/after inverse
+            multiplexing in the tx/rx direction, that applies to
+            the whole OTSiG. It also applies to the case when
+            there is only one OTSi in the OTSiG, i.e. without
+            inverse multiplexing, in which case the number of
+            OTSis in the OTSiGs before/after the regenerator
+            may be different.";
        }
      }
+
      grouping path-transceiver-config {
        description
          "This grouping defines a set of transceivers on a node,
           serving as either source transceivers, destination
           transceivers, or regenerators.";
-
        choice node-position {
          description
            "The relative position of the node within the path.";
@@ -4274,7 +4238,6 @@ Table of Contents
              description
                "Constraints for configuring transceivers at the
                 source node transponder.";
-
              uses transceiver-config;
            }
          }
@@ -4283,7 +4246,6 @@ Table of Contents
              description
                "Constraints for configuring transceivers at the
                 source node transponder.";
-
              uses transceiver-config;
            }
          }
@@ -4313,22 +4275,17 @@ Table of Contents
                 transponder, labeled 'outgoing', receives and
                 transmits signal from/to the same segment of the
                 optical path toward the destination.";
-
              uses regenerator-common-config;
-
              container incoming-transponder {
                description
                  "Constraints for transceiver configurations in the
                   incoming direction of the regenerator.";
-
                uses transceiver-config;
              }
-
              container outgoing-transponder {
                description
                  "Constraints for transceiver configurations at the
                   outgoing direction of the regenerator";
-
                uses transceiver-config;
              }
            }
@@ -4361,30 +4318,23 @@ Table of Contents
                 multiple transponder, labeled 'outgoing', receives and
                 transmits signal from/to the same segment of the
                 optical path toward the destination.";
-
              container common-incoming {
                description
                  "Common configuration for transponders in the incoming
                   direction.";
-
                uses regenerator-incoming-outgoing-common-config;
              }
-
              container common-outgoing {
                description
                  "Common configuration for transponders in the outgoing
                   direction.";
-
                uses regenerator-incoming-outgoing-common-config;
              }
-
              list regenerator {
                key "index";
-
                description
                  "A list of regenerators used at the regenerator
                   node.";
-
                leaf index {
                  type uint8;
                  description
@@ -4393,20 +4343,16 @@ Table of Contents
                     values.";
                }
                uses regenerator-common-config;
-
                container incoming-transponder {
                  description
                    "Constraints for transceiver configurations in the
                     incoming direction of the regenerator.";
-
                  uses multi-regen-transceiver-config;
                }
-
                container outgoing-transponder {
                  description
                    "Constraints for transceiver configurations at the
                     outgoing direction of the regenerator";
-
                  uses multi-regen-transceiver-config;
                }
              }
@@ -4418,18 +4364,15 @@ Table of Contents
      grouping transceiver-measured-parameters {
        description
          "Measured transceiver parameters.";
-
        container pre-fec-ber {
          description
            "Timestamp and value of the Pre-FEC Bit Error Rate (BER)
             of the received signal.";
-
          leaf timestamp {
            type yang:timestamp;
            description
              "Timestamp associated with the Pre-FEC BER.";
          }
-
          leaf value {
            type decimal64 {
              fraction-digits 18;
@@ -4438,18 +4381,15 @@ Table of Contents
              "Pre-FEC BER of the received signal.";
          }
        }
-
        container q-factor {
          description
            "Timestamp and value of the estimated Q-factor based on
             the pre-FEC BER.";
-
          leaf timestamp {
            type yang:timestamp;
            description
              "Timestamp associated with the Q-factor.";
          }
-
          leaf value {
            type l0-types:decimal-2-or-unknown;
            units "dB";
@@ -4464,34 +4404,28 @@ Table of Contents
          "This grouping specifies transceiver state parameters
           at source, destination nodes, as well as at regenerator
           nodes with a single pair of regenerator.";
-
        leaf transponder-id {
          type uint32;
-         description "transponder identifier";
+         description
+           "transponder identifier";
        }
-
        uses transponder-digital-termination-config;
-
        container transceiver {
          description
-            "Specifies transceiver states. The attributes
-             specified in this container, excluding those within
-             the inverse-multiplexing container, apply to a single
-             transceiver when inverse multiplexing is not supported,
-             as well as to the first transceiver, identified by an
-             index value of 0 when inverse multiplexing is enabled.
+           "Specifies transceiver states. The attributes
+            specified in this container, excluding those within
+            the inverse-multiplexing container, apply to a single
+            transceiver when inverse multiplexing is not supported,
+            as well as to the first transceiver, identified by an
+            index value of 0 when inverse multiplexing is enabled.
 
-             Attributes within the inverse-multiplexing container
-             are applicable exclusively to transceivers with an
-             index value of 1 or higher, belonging to the same
-             inverse multiplexing group.";
-
+            Attributes within the inverse-multiplexing container
+            are applicable exclusively to transceivers with an
+            index value of 1 or higher, belonging to the same
+            inverse multiplexing group.";
          uses transceiver-common-config;
-
          uses regenerator-incoming-outgoing-common-state;
-
          uses l0-types:common-transceiver-readonly-param;
-
          uses transceiver-inverse-multiplexing-config;
        }
      }
@@ -4500,20 +4434,19 @@ Table of Contents
        description
          "This grouping includes end-to-end media channel path id
           information.";
-
        leaf-list e2e-mc-path-id {
          type uint16;
          description
            "The list of the possible end-to-end Media Channel
-           (e2e-MC) paths associated with the OTSi which have
-           different optical impairments.
+            (e2e-MC) paths associated with the OTSi which have
+            different optical impairments.
 
-           This list is meaningful in case the OTSi can be associated
-           with multiple end-to-end Media Channel (e2e-MC) paths
-           (e.g., when OPS protection is configured).
+            This list is meaningful in case the OTSi can be associated
+            with multiple end-to-end Media Channel (e2e-MC) paths
+            (e.g., when OPS protection is configured).
 
-           The list can be empty when the OTSi has only one
-           e2e-MC path.";
+            The list can be empty when the OTSi has only one
+            e2e-MC path.";
        }
      }
 
@@ -4522,7 +4455,6 @@ Table of Contents
          "This grouping defines a set of transceivers on a node,
           serving as either source transceivers, destination
           transceivers, or regenerators.";
-
        choice node-position {
          description
            "The relative position of the node within the path.";
@@ -4530,7 +4462,6 @@ Table of Contents
            container source-transponder {
              description
                "Transceiver states at the source node transponder.";
-
              uses transceiver-state;
            }
          }
@@ -4539,7 +4470,6 @@ Table of Contents
              description
                "Transceiver states at the destination node
                 transponder.";
-
              uses transceiver-state;
            }
          }
@@ -4568,22 +4498,17 @@ Table of Contents
                 transponder, labeled 'outgoing', receives and
                 transmits signal from/to the same segment of the
                 optical path toward the destination.";
-
              uses regenerator-common-config;
-
              container incoming-transponder {
                description
                  "Constraints for transceiver configurations in the
                   incoming direction of the regenerator.";
-
                uses transceiver-state;
              }
-
              container outgoing-transponder {
                description
                  "Constraints for transceiver configurations at the
                   outgoing direction of the regenerator";
-
                uses transceiver-state;
              }
            }
@@ -4614,30 +4539,23 @@ Table of Contents
                 multiple transponder, labeled 'outgoing', receives and
                 transmits signal from/to the same segment of the
                 optical path toward the destination.";
-
              container common-incoming {
                description
                  "Common configuration for transponders in the incoming
                   direction.";
-
                uses regenerator-incoming-outgoing-common-state;
              }
-
              container common-outgoing {
                description
                  "Common configuration for transponders in the outgoing
                   direction.";
-
                uses regenerator-incoming-outgoing-common-state;
              }
-
              list regenerator {
                key "index";
-
                description
                  "A list of regenerators used at the
                   regenerator node.";
-
                leaf index {
                  type uint8;
                  description
@@ -4646,20 +4564,16 @@ Table of Contents
                     values.";
                }
                uses regenerator-common-config;
-
                container incoming-transponder {
                  description
                    "Constraints for transceiver configurations in the
                     incoming direction of the regenerator.";
-
                  uses multi-regen-transceiver-config;
                }
-
                container outgoing-transponder {
                  description
                    "Constraints for transceiver configurations at the
                     outgoing direction of the regenerator";
-
                  uses multi-regen-transceiver-config;
                }
              }
@@ -4672,11 +4586,9 @@ Table of Contents
        description
          "This grouping defines the constraints for transceiver
           configurations.";
-
        container transceiver-constraint {
          description
            "Constraints for transceiver configurations";
-
          uses transceiver-constraints;
        }
      }
@@ -4684,23 +4596,19 @@ Table of Contents
      grouping wdm-constraint {
        description
          "Grouping for WDM tunnel constraints";
-
        container wdm-constraint {
          description
            "WDM tunnel constraints.";
-
          uses global-transceiver-constraint;
-
          leaf use-regen {
            type boolean;
-           default false;
+           default "false";
            description
              "Indicate whether or not regenerators (e.g. 3R) should be
               considered. When this parameter is set to true, the
               tunnel path may include a regen when the path is not
               feasible for direct optical reach.";
          }
-
          /*
          leaf-list regen-levels {
            when '../use-regen = "true"' {
@@ -4714,8 +4622,7 @@ Table of Contents
              "Indicate the levels of 3R regeration permitted by
               the tunnel.";
          }
-         */
-
+          */
          leaf wavelength-conversion {
            when '../use-regen = "true"' {
              description
@@ -4723,32 +4630,28 @@ Table of Contents
                 to be considered.";
            }
            type boolean;
-           default false;
+           default "false";
            description
              "Indicate whether or not wavelength conversion is allowed
               along the tunnel path. Applicable only when 3R
               regeneration is enabled.";
          }
-
          uses l0-types:tunnel-attributes;
-
          leaf guard-band-size {
            type l0-types:frequency-thz;
            description
              "Guard band size in THz.";
          }
-
          leaf matching-fwd-rev-wavelength {
            type boolean;
-           default true;
+           default "true";
            description
              "Indicate whether or not the assigned channels for
               forward and reverse wavelength path must be the same.";
          }
-
          leaf allow-retuning {
            type boolean;
-           default false;
+           default "false";
            description
              "Indicate whether or not re-tuning is allowed when one or
               more paths of a WDM tunnel is being restored. Typically,
@@ -4768,10 +4671,10 @@ Table of Contents
      /*
       * Data nodes
       */
-
      /*
       * Global constraints for WDM tunnel
       */
+
      augment "/te:te/te:tunnels/te:tunnel" {
        description
          "Augment with additional parameters required for WDM
@@ -4785,6 +4688,7 @@ Table of Contents
       * Applicable to starting, terminating and regenerator
       * transceivers.
       */
+
      augment "/te:te/te:tunnels/te:tunnel/te:primary-paths/"
            + "te:primary-path/te:explicit-route-objects/"
            + "te:route-object-include-exclude/te:type/"
@@ -4792,7 +4696,6 @@ Table of Contents
        description
          "Augment TE primary explicit path (include or exclude)
           with transceiver configurations.";
-
        uses path-transceiver-config;
      }
 
@@ -4803,7 +4706,6 @@ Table of Contents
        description
          "Augment TE primary explicit path (exclude always)
           with transceiver configurations.";
-
        uses path-transceiver-config;
      }
 
@@ -4812,6 +4714,7 @@ Table of Contents
       * Applicable to starting, terminating and regenerator
       * transceivers.
       */
+
      augment "/te:te/te:tunnels/te:tunnel/te:primary-paths/"
            + "te:primary-path/te:primary-reverse-path/"
            + "te:explicit-route-objects/"
@@ -4820,7 +4723,6 @@ Table of Contents
        description
          "Augment TE primary reverse explicit path (include or exclude)
           with transceiver configurations.";
-
        uses path-transceiver-config;
      }
 
@@ -4832,7 +4734,6 @@ Table of Contents
        description
          "Augment TE primary reverse explicit path (exclude always)
           with transceiver configurations.";
-
        uses path-transceiver-config;
      }
 
@@ -4841,6 +4742,7 @@ Table of Contents
       * Applicable to starting, terminating and regenerator
       * transceivers.
       */
+
      augment "/te:te/te:tunnels/te:tunnel/te:secondary-paths/"
            + "te:secondary-path/te:explicit-route-objects/"
            + "te:route-object-include-exclude/te:type/"
@@ -4848,7 +4750,6 @@ Table of Contents
        description
          "Augment TE secondary explicit path (include or exclude)
           with transceiver configurations.";
-
        uses path-transceiver-config;
      }
 
@@ -4859,7 +4760,6 @@ Table of Contents
        description
          "Augment TE secondary explicit path (exclude always)
           with transceiver configurations.";
-
        uses path-transceiver-config;
      }
 
@@ -4868,6 +4768,7 @@ Table of Contents
       * Applicable to starting, terminating and regenerator
       * transceivers.
       */
+
      augment "/te:te/te:tunnels/te:tunnel/"
            + "te:secondary-reverse-paths/"
            + "te:secondary-reverse-path/"
@@ -4877,7 +4778,6 @@ Table of Contents
        description
          "Augment TE secondary reverse explicit path (include or
           exclude) with transceiver configurations.";
-
        uses path-transceiver-config;
      }
 
@@ -4890,13 +4790,13 @@ Table of Contents
        description
          "Augment TE secondary reverse explicit path (exclude always)
           with transceiver configurations.";
-
        uses path-transceiver-config;
      }
 
      /*
       * Computed transceiver properties for primary path.
       */
+
      augment "/te:te/te:tunnels/te:tunnel/te:primary-paths/"
            + "te:primary-path/te:computed-paths-properties/"
            + "te:computed-path-properties/te:path-properties/"
@@ -4905,7 +4805,6 @@ Table of Contents
        description
          "Augment TE computed primary path with transceiver
           properties.";
-
        uses path-transceiver-state;
      }
 
@@ -4919,7 +4818,6 @@ Table of Contents
        description
          "Augment source transceiver with additional estimated
           parameters.";
-
        uses l0-types:path-properties;
      }
 
@@ -4933,7 +4831,6 @@ Table of Contents
        description
          "Augment destination transceiver with additional estimated
           parameters.";
-
        uses l0-types:path-properties;
      }
 
@@ -4948,7 +4845,6 @@ Table of Contents
        description
          "Augment regen incoming transceiver with additional estimated
           parameters.";
-
        uses l0-types:path-properties;
      }
 
@@ -4963,7 +4859,6 @@ Table of Contents
        description
          "Augment regen outgoing transceiver with additional estimated
           parameters.";
-
        uses l0-types:path-properties;
      }
 
@@ -4977,7 +4872,6 @@ Table of Contents
        description
          "Augment regen incoming transceiver with additional estimated
           parameters.";
-
        uses l0-types:path-properties;
      }
 
@@ -4991,13 +4885,13 @@ Table of Contents
        description
          "Augment regen outgoing transceiver with additional estimated
           parameters.";
-
        uses l0-types:path-properties;
      }
 
      /*
       * Computed transceiver properties for primary reverse path.
       */
+
      augment "/te:te/te:tunnels/te:tunnel/te:primary-paths/"
            + "te:primary-path/te:primary-reverse-path/"
            + "te:computed-paths-properties/"
@@ -5007,7 +4901,6 @@ Table of Contents
        description
          "Augment TE computed primary path with transceiver
           properties.";
-
        uses path-transceiver-state;
      }
 
@@ -5022,7 +4915,6 @@ Table of Contents
        description
          "Augment source transceiver with additional estimated
           parameters.";
-
        uses l0-types:path-properties;
      }
 
@@ -5037,7 +4929,6 @@ Table of Contents
        description
          "Augment destination transceiver with additional estimated
           parameters.";
-
        uses l0-types:path-properties;
      }
 
@@ -5053,7 +4944,6 @@ Table of Contents
        description
          "Augment regen incoming transceiver with additional estimated
           parameters.";
-
        uses l0-types:path-properties;
      }
 
@@ -5069,7 +4959,6 @@ Table of Contents
        description
          "Augment regen outgoing transceiver with additional estimated
           parameters.";
-
        uses l0-types:path-properties;
      }
 
@@ -5084,7 +4973,6 @@ Table of Contents
        description
          "Augment regen incoming transceiver with additional estimated
           parameters.";
-
        uses l0-types:path-properties;
      }
 
@@ -5099,13 +4987,13 @@ Table of Contents
        description
          "Augment regen outgoing transceiver with additional estimated
           parameters.";
-
        uses l0-types:path-properties;
      }
 
      /*
       * Computed transceiver properties for secondary path.
       */
+
      augment "/te:te/te:tunnels/te:tunnel/te:secondary-paths/"
            + "te:secondary-path/te:computed-paths-properties/"
            + "te:computed-path-properties/te:path-properties/"
@@ -5114,7 +5002,6 @@ Table of Contents
        description
          "Augment TE computed primary path with transceiver
           properties.";
-
        uses path-transceiver-state;
      }
 
@@ -5128,7 +5015,6 @@ Table of Contents
        description
          "Augment source transceiver with additional estimated
           parameters.";
-
        uses l0-types:path-properties;
      }
 
@@ -5142,7 +5028,6 @@ Table of Contents
        description
          "Augment destination transceiver with additional estimated
           parameters.";
-
        uses l0-types:path-properties;
      }
 
@@ -5157,7 +5042,6 @@ Table of Contents
        description
          "Augment regen incoming transceiver with additional estimated
           parameters.";
-
        uses l0-types:path-properties;
      }
 
@@ -5172,7 +5056,6 @@ Table of Contents
        description
          "Augment regen outgoing transceiver with additional estimated
           parameters.";
-
        uses l0-types:path-properties;
      }
 
@@ -5186,7 +5069,6 @@ Table of Contents
        description
          "Augment regen incoming transceiver with additional estimated
           parameters.";
-
        uses l0-types:path-properties;
      }
 
@@ -5200,13 +5082,13 @@ Table of Contents
        description
          "Augment regen outgoing transceiver with additional estimated
           parameters.";
-
        uses l0-types:path-properties;
      }
 
      /*
       * Computed transceiver properties for secondary reverse path.
       */
+
      augment "/te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths/"
            + "te:secondary-reverse-path/te:computed-paths-properties/"
            + "te:computed-path-properties/te:path-properties/"
@@ -5215,7 +5097,6 @@ Table of Contents
        description
          "Augment TE computed primary path with transceiver
           properties.";
-
        uses path-transceiver-state;
      }
 
@@ -5229,7 +5110,6 @@ Table of Contents
        description
          "Augment source transceiver with additional estimated
           parameters.";
-
        uses l0-types:path-properties;
      }
 
@@ -5243,7 +5123,6 @@ Table of Contents
        description
          "Augment destination transceiver with additional estimated
           parameters.";
-
        uses l0-types:path-properties;
      }
 
@@ -5258,7 +5137,6 @@ Table of Contents
        description
          "Augment regen incoming transceiver with additional estimated
           parameters.";
-
        uses l0-types:path-properties;
      }
 
@@ -5273,7 +5151,6 @@ Table of Contents
        description
          "Augment regen outgoing transceiver with additional estimated
           parameters.";
-
        uses l0-types:path-properties;
      }
 
@@ -5287,7 +5164,6 @@ Table of Contents
        description
          "Augment regen incoming transceiver with additional estimated
           parameters.";
-
        uses l0-types:path-properties;
      }
 
@@ -5301,20 +5177,19 @@ Table of Contents
        description
          "Augment regen outgoing transceiver with additional estimated
           parameters.";
-
        uses l0-types:path-properties;
      }
 
      /*
       * Actual transceiver state.
       */
+
      augment "/te:te/te:lsps/te:lsp/"
            + "te:lsp-actual-route-information/"
            + "te:lsp-actual-route-information/te:type/"
            + "te:numbered-node-hop/te:numbered-node-hop" {
        description
          "Augment TE LSP with WDM path state.";
-
        uses path-transceiver-state;
      }
 
@@ -5327,7 +5202,6 @@ Table of Contents
        description
          "Augment source transceiver with additional measured
           parameters.";
-
        uses transceiver-measured-parameters;
      }
 
@@ -5340,7 +5214,6 @@ Table of Contents
        description
          "Augment destination transceiver with additional measured
           parameters.";
-
        uses transceiver-measured-parameters;
      }
 
@@ -5354,7 +5227,6 @@ Table of Contents
        description
          "Augment regen incoming transceiver with additional measured
           parameters.";
-
        uses transceiver-measured-parameters;
      }
 
@@ -5368,7 +5240,6 @@ Table of Contents
        description
          "Augment regen outgoing transceiver with additional measured
           parameters.";
-
        uses transceiver-measured-parameters;
      }
 
@@ -5381,7 +5252,6 @@ Table of Contents
        description
          "Augment regen incoming transceiver with additional measured
           parameters.";
-
        uses transceiver-measured-parameters;
      }
 
@@ -5394,7 +5264,6 @@ Table of Contents
        description
          "Augment regen outgoing transceiver with additional measured
           parameters.";
-
        uses transceiver-measured-parameters;
      }
 
@@ -5405,7 +5274,6 @@ Table of Contents
        description
          "Augment TE LSP with end-to-end media channel
           information.";
-
        uses e2e-media-channel-info;
      }
 
@@ -5416,7 +5284,6 @@ Table of Contents
        description
          "Augment TE LSP with end-to-end media channel
           information.";
-
        uses e2e-media-channel-info;
      }
 
@@ -5429,7 +5296,7 @@ Table of Contents
            + "te:label-restrictions/te:label-restriction" {
        description
          "Augment TE label range information for the ingress segment
-         of the named path constraint.";
+          of the named path constraint.";
        uses l0-types:wdm-label-range-info;
      }
 
@@ -5439,7 +5306,7 @@ Table of Contents
            + "te:label-restriction" {
        description
          "Augment TE label range information for the egress segment
-         of the named path constraint.";
+          of the named path constraint.";
        uses l0-types:wdm-label-range-info;
      }
 
@@ -5449,7 +5316,7 @@ Table of Contents
            + "te:label-restriction" {
        description
          "Augment TE label range information for the ingress segment
-         of the primay path.";
+          of the primay path.";
        uses l0-types:wdm-label-range-info;
      }
 
@@ -5459,7 +5326,7 @@ Table of Contents
            + "te:label-restriction" {
        description
          "Augment TE label range information for the egress segment
-         of the primay path.";
+          of the primay path.";
        uses l0-types:wdm-label-range-info;
      }
 
@@ -5470,7 +5337,7 @@ Table of Contents
            + "te:label-restriction" {
        description
          "Augment TE label range information for the ingress segment
-         of the primay reverse path.";
+          of the primay reverse path.";
        uses l0-types:wdm-label-range-info;
      }
 
@@ -5481,7 +5348,7 @@ Table of Contents
            + "te:label-restriction" {
        description
          "Augment TE label range information for the egress segment
-         of the primay reverse path.";
+          of the primay reverse path.";
        uses l0-types:wdm-label-range-info;
      }
 
@@ -5491,7 +5358,7 @@ Table of Contents
            + "te:label-restriction" {
        description
          "Augment TE label range information for the ingress segment
-         of the secondary path.";
+          of the secondary path.";
        uses l0-types:wdm-label-range-info;
      }
 
@@ -5501,7 +5368,7 @@ Table of Contents
            + "te:label-restriction" {
        description
          "Augment TE label range information for the egress segment
-         of the secondary path.";
+          of the secondary path.";
        uses l0-types:wdm-label-range-info;
      }
 
@@ -5511,7 +5378,7 @@ Table of Contents
            + "te:label-restriction" {
        description
          "Augment TE label range information for the ingress segment
-         of the secondary reverse path.";
+          of the secondary reverse path.";
        uses l0-types:wdm-label-range-info;
      }
 
@@ -5521,13 +5388,14 @@ Table of Contents
            + "te:label-restriction" {
        description
          "Augment TE label range information for the egress segment
-         of the secondary reverse path.";
+          of the secondary reverse path.";
        uses l0-types:wdm-label-range-info;
      }
 
      /*
       * Augment TE label.
       */
+
      augment "/te:te/te:globals/te:named-path-constraints/"
            + "te:named-path-constraint/"
            + "te:explicit-route-objects/"
@@ -5535,8 +5403,8 @@ Table of Contents
            + "te:label-hop/te:te-label/te:technology" {
        description
          "Augment TE label hop for the explicit route objects always
-         excluded by the path computation with the named path
-         constraint.";
+          excluded by the path computation with the named path
+          constraint.";
        case wdm {
          uses l0-types:wdm-label-hop;
        }
@@ -5549,12 +5417,13 @@ Table of Contents
            + "te:label-hop/te:te-label/te:technology" {
        description
          "Augment TE label hop for the explicit route objects included
-         or excluded by the path computation with the named path
-         constraint.";
+          or excluded by the path computation with the named path
+          constraint.";
        case wdm {
          uses l0-types:wdm-label-hop;
        }
      }
+
      augment "/te:te/te:globals/te:named-path-constraints/"
            + "te:named-path-constraint/te:path-in-segment/"
            + "te:label-restrictions/"
@@ -5562,7 +5431,7 @@ Table of Contents
            + "te:te-label/te:technology" {
        description
          "Augment TE label range start for the ingress segment
-         of the named path constraint.";
+          of the named path constraint.";
        case wdm {
          uses l0-types:wdm-label-start-end;
        }
@@ -5575,7 +5444,7 @@ Table of Contents
            + "te:te-label/te:technology" {
        description
          "Augment TE label range end for the ingress segment
-         of the named path constraint.";
+          of the named path constraint.";
        case wdm {
          uses l0-types:wdm-label-start-end;
        }
@@ -5587,7 +5456,7 @@ Table of Contents
            + "te:label-step/te:technology" {
        description
          "Augment TE label range step for the ingress segment
-         of the named path constraint.";
+          of the named path constraint.";
        case wdm {
          uses l0-types:wdm-label-step;
        }
@@ -5600,7 +5469,7 @@ Table of Contents
            + "te:te-label/te:technology" {
        description
          "Augment TE label range start for the egress segment
-         of the named path constraint.";
+          of the named path constraint.";
        case wdm {
          uses l0-types:wdm-label-start-end;
        }
@@ -5613,7 +5482,7 @@ Table of Contents
            + "te:te-label/te:technology" {
        description
          "Augment TE label range end for the egress segment
-         of the named path constraint.";
+          of the named path constraint.";
        case wdm {
          uses l0-types:wdm-label-start-end;
        }
@@ -5625,7 +5494,7 @@ Table of Contents
            + "te:label-step/te:technology" {
        description
          "Augment TE label range step for the egress segment
-         of the named path constraint.";
+          of the named path constraint.";
        case wdm {
          uses l0-types:wdm-label-step;
        }
@@ -5634,13 +5503,14 @@ Table of Contents
      augment "/te:te/te:tunnels/te:tunnel/"
            + "te:primary-paths/te:primary-path/"
            + "te:optimizations/te:algorithm/te:metric/"
-           + "te:optimization-metric/te:explicit-route-exclude-objects/"
+           + "te:optimization-metric/"
+           + "te:explicit-route-exclude-objects/"
            + "te:route-object-exclude-object/te:type/te:label/"
            + "te:label-hop/te:te-label/te:technology" {
        description
          "Augment TE label hop for the optimization of the explicit
-         route objects excluded by the path computation of the primary
-         path.";
+          route objects excluded by the path computation of the primary
+          path.";
        case wdm {
          uses l0-types:wdm-label-hop;
        }
@@ -5649,13 +5519,14 @@ Table of Contents
      augment "/te:te/te:tunnels/te:tunnel/"
            + "te:primary-paths/te:primary-path/"
            + "te:optimizations/te:algorithm/te:metric/"
-           + "te:optimization-metric/te:explicit-route-include-objects/"
+           + "te:optimization-metric/"
+           + "te:explicit-route-include-objects/"
            + "te:route-object-include-object/te:type/te:label/"
            + "te:label-hop/te:te-label/te:technology" {
        description
          "Augment TE label hop for the optimization of the explicit
-         route objects included by the path computation of the primary
-         path.";
+          route objects included by the path computation of the primary
+          path.";
        case wdm {
          uses l0-types:wdm-label-hop;
        }
@@ -5668,7 +5539,7 @@ Table of Contents
            + "te:label-hop/te:te-label/te:technology" {
        description
          "Augment TE label hop for the explicit route objects always
-         excluded by the path computation of the primary path.";
+          excluded by the path computation of the primary path.";
        case wdm {
          uses l0-types:wdm-label-hop;
        }
@@ -5681,7 +5552,7 @@ Table of Contents
            + "te:label-hop/te:te-label/te:technology" {
        description
          "Augment TE label hop for the explicit route objects included
-         or excluded by the path computation of the primary path.";
+          or excluded by the path computation of the primary path.";
        case wdm {
          uses l0-types:wdm-label-hop;
        }
@@ -5694,7 +5565,7 @@ Table of Contents
            + "te:te-label/te:technology" {
        description
          "Augment TE label range start for the ingress segment
-         of the primay path.";
+          of the primay path.";
        case wdm {
          uses l0-types:wdm-label-start-end;
        }
@@ -5707,7 +5578,7 @@ Table of Contents
            + "te:te-label/te:technology" {
        description
          "Augment TE label range end for the ingress segment
-         of the primay path.";
+          of the primay path.";
        case wdm {
          uses l0-types:wdm-label-start-end;
        }
@@ -5719,7 +5590,7 @@ Table of Contents
            + "te:label-restriction/te:label-step/te:technology" {
        description
          "Augment TE label range step for the ingress segment
-         of the primay path.";
+          of the primay path.";
        case wdm {
          uses l0-types:wdm-label-step;
        }
@@ -5732,7 +5603,7 @@ Table of Contents
            + "te:te-label/te:technology" {
        description
          "Augment TE label range start for the egress segment
-         of the primay path.";
+          of the primay path.";
        case wdm {
          uses l0-types:wdm-label-start-end;
        }
@@ -5745,7 +5616,7 @@ Table of Contents
            + "te:te-label/te:technology" {
        description
          "Augment TE label range end for the egress segment
-         of the primay path.";
+          of the primay path.";
        case wdm {
          uses l0-types:wdm-label-start-end;
        }
@@ -5757,7 +5628,7 @@ Table of Contents
            + "te:label-restriction/te:label-step/te:technology" {
        description
          "Augment TE label range end for the egress segment
-         of the primay path.";
+          of the primay path.";
        case wdm {
          uses l0-types:wdm-label-step;
        }
@@ -5772,7 +5643,7 @@ Table of Contents
            + "te:label-hop/te:te-label/te:technology" {
        description
          "Augment TE label hop for the route object of the computed
-         primary path.";
+          primary path.";
        case wdm {
          uses l0-types:wdm-label-hop;
        }
@@ -5782,13 +5653,14 @@ Table of Contents
            + "te:primary-paths/te:primary-path/"
            + "te:primary-reverse-path/"
            + "te:optimizations/te:algorithm/te:metric/"
-           + "te:optimization-metric/te:explicit-route-exclude-objects/"
+           + "te:optimization-metric/"
+           + "te:explicit-route-exclude-objects/"
            + "te:route-object-exclude-object/te:type/te:label/"
            + "te:label-hop/te:te-label/te:technology" {
        description
          "Augment TE label hop for the optimization of the explicit
-         route objects excluded by the path computation of the primary
-         reverse path.";
+          route objects excluded by the path computation of the primary
+          reverse path.";
        case wdm {
          uses l0-types:wdm-label-hop;
        }
@@ -5798,13 +5670,14 @@ Table of Contents
            + "te:primary-paths/te:primary-path/"
            + "te:primary-reverse-path/"
            + "te:optimizations/te:algorithm/te:metric/"
-           + "te:optimization-metric/te:explicit-route-include-objects/"
+           + "te:optimization-metric/"
+           + "te:explicit-route-include-objects/"
            + "te:route-object-include-object/te:type/te:label/"
            + "te:label-hop/te:te-label/te:technology" {
        description
          "Augment TE label hop for the optimization of the explicit
-         route objects included by the path computation of the primary
-         reverse path.";
+          route objects included by the path computation of the primary
+          reverse path.";
        case wdm {
          uses l0-types:wdm-label-hop;
        }
@@ -5819,8 +5692,8 @@ Table of Contents
            + "te:label-hop/te:te-label/te:technology" {
        description
          "Augment TE label hop for the explicit route objects always
-         excluded by the path computation of the primary reverse
-         path.";
+          excluded by the path computation of the primary reverse
+          path.";
        case wdm {
          uses l0-types:wdm-label-hop;
        }
@@ -5835,8 +5708,8 @@ Table of Contents
            + "te:label-hop/te:te-label/te:technology" {
        description
          "Augment TE label hop for the explicit route objects included
-         or excluded by the path computation of the primary reverse
-         path.";
+          or excluded by the path computation of the primary reverse
+          path.";
        case wdm {
          uses l0-types:wdm-label-hop;
        }
@@ -5850,7 +5723,7 @@ Table of Contents
            + "te:te-label/te:technology" {
        description
          "Augment TE label range start for the ingress segment
-         of the primay reverse path.";
+          of the primay reverse path.";
        case wdm {
          uses l0-types:wdm-label-start-end;
        }
@@ -5864,7 +5737,7 @@ Table of Contents
            + "te:te-label/te:technology" {
        description
          "Augment TE label range end for the ingress segment
-         of the primay reverse path.";
+          of the primay reverse path.";
        case wdm {
          uses l0-types:wdm-label-start-end;
        }
@@ -5877,7 +5750,7 @@ Table of Contents
            + "te:label-restriction/te:label-step/te:technology" {
        description
          "Augment TE label range step for the ingress segment
-         of the primay reverse path.";
+          of the primay reverse path.";
        case wdm {
          uses l0-types:wdm-label-step;
        }
@@ -5891,7 +5764,7 @@ Table of Contents
            + "te:te-label/te:technology" {
        description
          "Augment TE label range start for the egress segment
-         of the primay reverse path.";
+          of the primay reverse path.";
        case wdm {
          uses l0-types:wdm-label-start-end;
        }
@@ -5905,7 +5778,7 @@ Table of Contents
            + "te:te-label/te:technology" {
        description
          "Augment TE label range end for the egress segment
-         of the primay reverse path.";
+          of the primay reverse path.";
        case wdm {
          uses l0-types:wdm-label-start-end;
        }
@@ -5918,7 +5791,7 @@ Table of Contents
            + "te:label-restriction/te:label-step/te:technology" {
        description
          "Augment TE label range step for the egress segment
-         of the primay reverse path.";
+          of the primay reverse path.";
        case wdm {
          uses l0-types:wdm-label-step;
        }
@@ -5927,13 +5800,14 @@ Table of Contents
      augment "/te:te/te:tunnels/te:tunnel/"
            + "te:primary-paths/te:primary-path/"
            + "te:primary-reverse-path/"
-           + "te:computed-paths-properties/te:computed-path-properties/"
+           + "te:computed-paths-properties/"
+           + "te:computed-path-properties/"
            + "te:path-properties/te:path-route-objects/"
            + "te:path-route-object/te:type/te:label/"
            + "te:label-hop/te:te-label/te:technology" {
        description
          "Augment TE label hop for the route object of the computed
-         primary reverse path.";
+          primary reverse path.";
        case wdm {
          uses l0-types:wdm-label-hop;
        }
@@ -5942,13 +5816,14 @@ Table of Contents
      augment "/te:te/te:tunnels/te:tunnel/"
            + "te:secondary-paths/te:secondary-path/"
            + "te:optimizations/te:algorithm/te:metric/"
-           + "te:optimization-metric/te:explicit-route-exclude-objects/"
+           + "te:optimization-metric/"
+           + "te:explicit-route-exclude-objects/"
            + "te:route-object-exclude-object/te:type/te:label/"
            + "te:label-hop/te:te-label/te:technology" {
        description
          "Augment TE label hop for the optimization of the explicit
-         route objects excluded by the path computation of the
-         secondary path.";
+          route objects excluded by the path computation of the
+          secondary path.";
        case wdm {
          uses l0-types:wdm-label-hop;
        }
@@ -5957,13 +5832,14 @@ Table of Contents
      augment "/te:te/te:tunnels/te:tunnel/"
            + "te:secondary-paths/te:secondary-path/"
            + "te:optimizations/te:algorithm/te:metric/"
-           + "te:optimization-metric/te:explicit-route-include-objects/"
+           + "te:optimization-metric/"
+           + "te:explicit-route-include-objects/"
            + "te:route-object-include-object/te:type/te:label/"
            + "te:label-hop/te:te-label/te:technology" {
        description
          "Augment TE label hop for the optimization of the explicit
-         route objects included by the path computation of the
-         secondary path.";
+          route objects included by the path computation of the
+          secondary path.";
        case wdm {
          uses l0-types:wdm-label-hop;
        }
@@ -5976,7 +5852,7 @@ Table of Contents
            + "te:label-hop/te:te-label/te:technology" {
        description
          "Augment TE label hop for the explicit route objects always
-         excluded by the path computation of the secondary path.";
+          excluded by the path computation of the secondary path.";
        case wdm {
          uses l0-types:wdm-label-hop;
        }
@@ -5989,7 +5865,7 @@ Table of Contents
            + "te:label-hop/te:te-label/te:technology" {
        description
          "Augment TE label hop for the explicit route objects included
-         or excluded by the path computation of the secondary path.";
+          or excluded by the path computation of the secondary path.";
        case wdm {
          uses l0-types:wdm-label-hop;
        }
@@ -6002,7 +5878,7 @@ Table of Contents
            + "te:te-label/te:technology" {
        description
          "Augment TE label range start for the ingress segment
-         of the secondary path.";
+          of the secondary path.";
        case wdm {
          uses l0-types:wdm-label-start-end;
        }
@@ -6015,18 +5891,19 @@ Table of Contents
            + "te:te-label/te:technology" {
        description
          "Augment TE label range end for the ingress segment
-         of the secondary path.";
+          of the secondary path.";
        case wdm {
          uses l0-types:wdm-label-start-end;
        }
      }
+
      augment "/te:te/te:tunnels/te:tunnel/"
            + "te:secondary-paths/te:secondary-path/"
            + "te:path-in-segment/te:label-restrictions/"
            + "te:label-restriction/te:label-step/te:technology" {
        description
          "Augment TE label range step for the ingress segment
-         of the secondary path.";
+          of the secondary path.";
        case wdm {
          uses l0-types:wdm-label-step;
        }
@@ -6039,7 +5916,7 @@ Table of Contents
            + "te:te-label/te:technology" {
        description
          "Augment TE label range start for the egress segment
-         of the secondary path.";
+          of the secondary path.";
        case wdm {
          uses l0-types:wdm-label-start-end;
        }
@@ -6052,7 +5929,7 @@ Table of Contents
            + "te:te-label/te:technology" {
        description
          "Augment TE label range end for the egress segment
-         of the secondary path.";
+          of the secondary path.";
        case wdm {
          uses l0-types:wdm-label-start-end;
        }
@@ -6064,7 +5941,7 @@ Table of Contents
            + "te:label-restriction/te:label-step/te:technology" {
        description
          "Augment TE label range step for the egress segment
-         of the secondary path.";
+          of the secondary path.";
        case wdm {
          uses l0-types:wdm-label-step;
        }
@@ -6079,7 +5956,7 @@ Table of Contents
            + "te:label-hop/te:te-label/te:technology" {
        description
          "Augment TE label hop for the route object of the computed
-         secondary path.";
+          secondary path.";
        case wdm {
          uses l0-types:wdm-label-hop;
        }
@@ -6088,13 +5965,14 @@ Table of Contents
      augment "/te:te/te:tunnels/te:tunnel/"
            + "te:secondary-reverse-paths/te:secondary-reverse-path/"
            + "te:optimizations/te:algorithm/te:metric/"
-           + "te:optimization-metric/te:explicit-route-exclude-objects/"
+           + "te:optimization-metric/"
+           + "te:explicit-route-exclude-objects/"
            + "te:route-object-exclude-object/te:type/te:label/"
            + "te:label-hop/te:te-label/te:technology" {
        description
          "Augment TE label hop for the optimization of the explicit
-         route objects excluded by the path computation of the
-         secondary reverse path.";
+          route objects excluded by the path computation of the
+          secondary reverse path.";
        case wdm {
          uses l0-types:wdm-label-hop;
        }
@@ -6103,13 +5981,14 @@ Table of Contents
      augment "/te:te/te:tunnels/te:tunnel/"
            + "te:secondary-reverse-paths/te:secondary-reverse-path/"
            + "te:optimizations/te:algorithm/te:metric/"
-           + "te:optimization-metric/te:explicit-route-include-objects/"
+           + "te:optimization-metric/"
+           + "te:explicit-route-include-objects/"
            + "te:route-object-include-object/te:type/te:label/"
            + "te:label-hop/te:te-label/te:technology" {
        description
          "Augment TE label hop for the optimization of the explicit
-         route objects included by the path computation of the
-         secondary reverse path.";
+          route objects included by the path computation of the
+          secondary reverse path.";
        case wdm {
          uses l0-types:wdm-label-hop;
        }
@@ -6122,8 +6001,8 @@ Table of Contents
            + "te:label-hop/te:te-label/te:technology" {
        description
          "Augment TE label hop for the explicit route objects always
-         excluded by the path computation of the secondary reverse
-         path.";
+          excluded by the path computation of the secondary reverse
+          path.";
        case wdm {
          uses l0-types:wdm-label-hop;
        }
@@ -6136,8 +6015,8 @@ Table of Contents
            + "te:label-hop/te:te-label/te:technology" {
        description
          "Augment TE label hop for the explicit route objects included
-         or excluded by the path computation of the secondary reverse
-         path.";
+          or excluded by the path computation of the secondary reverse
+          path.";
        case wdm {
          uses l0-types:wdm-label-hop;
        }
@@ -6150,7 +6029,7 @@ Table of Contents
            + "te:te-label/te:technology" {
        description
          "Augment TE label range start for the ingress segment
-         of the secondary reverse path.";
+          of the secondary reverse path.";
        case wdm {
          uses l0-types:wdm-label-start-end;
        }
@@ -6163,7 +6042,7 @@ Table of Contents
            + "te:te-label/te:technology" {
        description
          "Augment TE label range end for the ingress segment
-         of the secondary reverse path.";
+          of the secondary reverse path.";
        case wdm {
          uses l0-types:wdm-label-start-end;
        }
@@ -6175,7 +6054,7 @@ Table of Contents
            + "te:label-restriction/te:label-step/te:technology" {
        description
          "Augment TE label range step for the ingress segment
-         of the secondary reverse path.";
+          of the secondary reverse path.";
        case wdm {
          uses l0-types:wdm-label-step;
        }
@@ -6188,7 +6067,7 @@ Table of Contents
            + "te:te-label/te:technology" {
        description
          "Augment TE label range start for the egress segment
-         of the secondary reverse path.";
+          of the secondary reverse path.";
        case wdm {
          uses l0-types:wdm-label-start-end;
        }
@@ -6201,7 +6080,7 @@ Table of Contents
            + "te:te-label/te:technology" {
        description
          "Augment TE label range end for the egress segment
-         of the secondary reverse path.";
+          of the secondary reverse path.";
        case wdm {
          uses l0-types:wdm-label-start-end;
        }
@@ -6213,7 +6092,7 @@ Table of Contents
            + "te:label-restriction/te:label-step/te:technology" {
        description
          "Augment TE label range step for the egress segment
-         of the secondary reverse path.";
+          of the secondary reverse path.";
        case wdm {
          uses l0-types:wdm-label-step;
        }
@@ -6228,7 +6107,7 @@ Table of Contents
            + "te:label-hop/te:te-label/te:technology" {
        description
          "Augment TE label hop for the route object of the computed
-         secondary reverse path.";
+          secondary reverse path.";
        case wdm {
          uses l0-types:wdm-label-hop;
        }
@@ -6313,25 +6192,25 @@ Table of Contents
               de Madrid, U. A., Burrero, D. P., King, D., Lee, Y., and
               H. Zheng, "A YANG Data Model for Flexi-Grid Optical
               Networks", Work in Progress, Internet-Draft, draft-ietf-
-              ccamp-flexigrid-yang-18, 17 March 2025,
+              ccamp-flexigrid-yang-19, 2 February 2026,
               <https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-
-              flexigrid-yang-18>.
+              flexigrid-yang-19>.
 
    [I-D.ietf-ccamp-optical-impairment-topology-yang]
               Beller, D., Le Rouzic, E., Belotti, S., Galimberti, G.,
               and I. Busi, "A YANG Data Model for Optical Impairment-
               aware Topology", Work in Progress, Internet-Draft, draft-
-              ietf-ccamp-optical-impairment-topology-yang-20, 10 October
-              2025, <https://datatracker.ietf.org/doc/html/draft-ietf-
-              ccamp-optical-impairment-topology-yang-20>.
+              ietf-ccamp-optical-impairment-topology-yang-23, 27
+              February 2026, <https://datatracker.ietf.org/doc/html/
+              draft-ietf-ccamp-optical-impairment-topology-yang-23>.
 
    [I-D.ietf-teas-yang-te]
               Saad, T., Gandhi, R., Liu, X., Beeram, V. P., and I.
               Bryskin, "A YANG Data Model for Traffic Engineering
               Tunnels, Label Switched Paths, and Interfaces", Work in
-              Progress, Internet-Draft, draft-ietf-teas-yang-te-40, 2
-              November 2025, <https://datatracker.ietf.org/doc/html/
-              draft-ietf-teas-yang-te-40>.
+              Progress, Internet-Draft, draft-ietf-teas-yang-te-43, 28
+              February 2026, <https://datatracker.ietf.org/doc/html/
+              draft-ietf-teas-yang-te-43>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
