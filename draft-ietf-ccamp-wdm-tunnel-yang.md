@@ -358,14 +358,14 @@ and this is the way in which they are called in the tunnel.
 ## YANG Tree
 
 ~~~~ ascii-art
-{::include ./ietf-wdm-tunnel.tree}
+{::include-fold tree/ietf-wdm-tunnel.tree}
 ~~~~
 {: #fig-wdm-tunnel-tree title="WDM Tunnel YANG tree" artwork-name="ietf-wdm-tunnel.tree"}
 
 ## YANG Code
 
 ~~~~ yang
-{::include ./ietf-wdm-tunnel.yang}
+{::include yang/ietf-wdm-tunnel.yang}
 ~~~~
 {: #fig-wdm-tunnel-yang title="WDM Tunnel YANG module" sourcecode-markers="true" sourcecode-name="ietf-wdm-tunnel@2024-07-02.yang"}
 

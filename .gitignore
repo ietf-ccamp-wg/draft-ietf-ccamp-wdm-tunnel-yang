@@ -43,3 +43,5 @@ report.xml
 report.xml
 !requirements.txt
 !requirements.txt
+*.bash
+pretty/
