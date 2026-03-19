@@ -1,0 +1,13 @@
+Unidirectional regenerator @ODU4 (forward or reverse direction)
+
+ODU4      OTU4   OTU4-SC   OTL4.4-SC  WL@100G
+                       +-----+     +----+
+    +----+    +---+    |     |---->|    |
++-->|OTU4|--->|FEC|--->|Split| ... |OTSi|--->
+|   +----+    +---+    |     |---->|    |
+|                      +-----+     +----+
+|                      +-----+     +----+
+|   +----+    +---+    |     |<----|    |
++<--|OTU4|<---|FEC|<---|Split| ... |OTSi|<---
+    +----+    +---+    |     |<----|    |
+                       +-----+     +----+
