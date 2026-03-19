@@ -1090,7 +1090,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <div class="org">Individual</div>
 </div>
 <div class="author">
-      <div class="author-name">J. E. L. de V. Mendez</div>
+      <div class="author-name">J. E. L. de Vergara Mendez</div>
 <div class="org">Naudit HPCN</div>
 </div>
 <div class="author">
@@ -1344,25 +1344,94 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 <p id="section-3.2-5">Utilizing the figures in <span>[<a href="#I-D.ietf-ccamp-optical-impairment-topology-yang" class="cite xref">I-D.ietf-ccamp-optical-impairment-topology-yang</a>]</span> for 3R regeneration, <a href="#fig-back2back" class="auto internal xref">Figure 1</a> and <a href="#fig-unidir" class="auto internal xref">Figure 2</a> further illustrate the aforementioned reference points for back-to-back regeneration and uni-directional regeneration, respectively.<a href="#section-3.2-5" class="pilcrow">¶</a></p>
 <span id="name-reference-points-in-back-to"></span><div id="fig-back2back">
 <figure id="figure-1">
-          <div class="alignLeft art-ascii-art art-text artwork" id="section-3.2-6.1">
-<pre>
-                          Forward Direction
-  |------------------------------&gt;---------------------------------|
-                          Reverse Direction
-  |------------------------------&lt;---------------------------------|
-
-            Incoming Transponder     Outgoing Transponder          D
-            +-------------------+   +--------------------+         E
-  S         |Transceiver        |   |         Transceiver|         S
-  O         |-----------+ +-----|   |-----+ +------------|         T
-  U -------&gt;|Receiver   |-|Sig. |--&gt;|Sig. |-| Transmitter|-------&gt; I
-  R         |-----------+ |     |   |     | +------------|         N
-  C &lt;-------|Transmitter|-|Proc.|&lt;--|Proc.|-|    Receiver|&lt;------- A
-  E         |-----------+ +-----|   |-----+ +------------|         T
-            +-------------------+   +--------------------+         I
-                                                                   O
-                                                                   N
-</pre>
+          <div id="section-3.2-6.1">
+            <div class="alignLeft art-svg artwork" id="section-3.2-6.1.1">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="304" width="536" viewBox="0 0 536 304" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
+                <path d="M 88,128 L 88,240" fill="none" stroke="black"></path>
+                <path d="M 184,160 L 184,224" fill="none" stroke="black"></path>
+                <path d="M 200,160 L 200,224" fill="none" stroke="black"></path>
+                <path d="M 248,128 L 248,240" fill="none" stroke="black"></path>
+                <path d="M 280,128 L 280,240" fill="none" stroke="black"></path>
+                <path d="M 328,160 L 328,224" fill="none" stroke="black"></path>
+                <path d="M 344,160 L 344,224" fill="none" stroke="black"></path>
+                <path d="M 448,128 L 448,240" fill="none" stroke="black"></path>
+                <path d="M 16,48 L 520,48" fill="none" stroke="black"></path>
+                <path d="M 16,80 L 520,80" fill="none" stroke="black"></path>
+                <path d="M 88,128 L 248,128" fill="none" stroke="black"></path>
+                <path d="M 280,128 L 448,128" fill="none" stroke="black"></path>
+                <path d="M 96,160 L 184,160" fill="none" stroke="black"></path>
+                <path d="M 200,160 L 240,160" fill="none" stroke="black"></path>
+                <path d="M 288,160 L 328,160" fill="none" stroke="black"></path>
+                <path d="M 344,160 L 440,160" fill="none" stroke="black"></path>
+                <path d="M 24,176 L 80,176" fill="none" stroke="black"></path>
+                <path d="M 256,176 L 272,176" fill="none" stroke="black"></path>
+                <path d="M 456,176 L 512,176" fill="none" stroke="black"></path>
+                <path d="M 96,192 L 184,192" fill="none" stroke="black"></path>
+                <path d="M 344,192 L 440,192" fill="none" stroke="black"></path>
+                <path d="M 24,208 L 80,208" fill="none" stroke="black"></path>
+                <path d="M 256,208 L 272,208" fill="none" stroke="black"></path>
+                <path d="M 456,208 L 512,208" fill="none" stroke="black"></path>
+                <path d="M 96,224 L 184,224" fill="none" stroke="black"></path>
+                <path d="M 200,224 L 240,224" fill="none" stroke="black"></path>
+                <path d="M 288,224 L 328,224" fill="none" stroke="black"></path>
+                <path d="M 344,224 L 440,224" fill="none" stroke="black"></path>
+                <path d="M 88,240 L 248,240" fill="none" stroke="black"></path>
+                <path d="M 280,240 L 448,240" fill="none" stroke="black"></path>
+                <polygon class="arrowhead" points="520,176 508,170.4 508,181.6" fill="black" transform="rotate(0,512,176)"></polygon>
+                <polygon class="arrowhead" points="464,208 452,202.4 452,213.6" fill="black" transform="rotate(180,456,208)"></polygon>
+                <polygon class="arrowhead" points="280,176 268,170.4 268,181.6" fill="black" transform="rotate(0,272,176)"></polygon>
+                <polygon class="arrowhead" points="264,208 252,202.4 252,213.6" fill="black" transform="rotate(180,256,208)"></polygon>
+                <polygon class="arrowhead" points="264,80 252,74.4 252,85.6" fill="black" transform="rotate(180,256,80)"></polygon>
+                <polygon class="arrowhead" points="264,48 252,42.4 252,53.6" fill="black" transform="rotate(0,256,48)"></polygon>
+                <polygon class="arrowhead" points="88,176 76,170.4 76,181.6" fill="black" transform="rotate(0,80,176)"></polygon>
+                <polygon class="arrowhead" points="32,208 20,202.4 20,213.6" fill="black" transform="rotate(180,24,208)"></polygon>
+                <g class="text">
+                  <text x="224" y="36">Forward</text>
+                  <text x="296" y="36">Direction</text>
+                  <text x="8" y="52">|</text>
+                  <text x="528" y="52">|</text>
+                  <text x="224" y="68">Reverse</text>
+                  <text x="296" y="68">Direction</text>
+                  <text x="8" y="84">|</text>
+                  <text x="528" y="84">|</text>
+                  <text x="116" y="116">Incoming</text>
+                  <text x="200" y="116">Transponder</text>
+                  <text x="316" y="116">Outgoing</text>
+                  <text x="400" y="116">Transponder</text>
+                  <text x="528" y="116">D</text>
+                  <text x="528" y="132">E</text>
+                  <text x="8" y="148">S</text>
+                  <text x="136" y="148">Transceiver</text>
+                  <text x="400" y="148">Transceiver</text>
+                  <text x="528" y="148">S</text>
+                  <text x="8" y="164">O</text>
+                  <text x="528" y="164">T</text>
+                  <text x="8" y="180">U</text>
+                  <text x="124" y="180">Receiver</text>
+                  <text x="192" y="180">-</text>
+                  <text x="220" y="180">Sig.</text>
+                  <text x="300" y="180">Sig.</text>
+                  <text x="336" y="180">-</text>
+                  <text x="400" y="180">Transmitter</text>
+                  <text x="528" y="180">I</text>
+                  <text x="8" y="196">R</text>
+                  <text x="528" y="196">N</text>
+                  <text x="8" y="212">C</text>
+                  <text x="136" y="212">Transmitter</text>
+                  <text x="192" y="212">-</text>
+                  <text x="224" y="212">Proc.</text>
+                  <text x="304" y="212">Proc.</text>
+                  <text x="336" y="212">-</text>
+                  <text x="412" y="212">Receiver</text>
+                  <text x="528" y="212">A</text>
+                  <text x="8" y="228">E</text>
+                  <text x="528" y="228">T</text>
+                  <text x="528" y="244">I</text>
+                  <text x="528" y="260">O</text>
+                  <text x="528" y="276">N</text>
+                </g>
+              </svg><a href="#section-3.2-6.1.1" class="pilcrow">¶</a>
+</div>
 </div>
 <figcaption><a href="#figure-1" class="selfRef">Figure 1</a>:
 <a href="#name-reference-points-in-back-to" class="selfRef">Reference Points in Back-to-back 3R Regeneration</a>
@@ -1370,40 +1439,127 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 </div>
 <span id="name-reference-points-in-uni-dir"></span><div id="fig-unidir">
 <figure id="figure-2">
-          <div class="alignLeft art-ascii-art art-text artwork" id="section-3.2-7.1">
-<pre>
-                          Forward Direction
-  |------------------------------&gt;---------------------------------|
-                          Reverse Direction
-  |------------------------------&lt;---------------------------------|
-
-                           Incoming Transponder
-                           3R in forward direction
-                         +-----------------------+
-                         |Transceiver            |
-                         |-----------+ +--------+|
-                 -------&gt;|Receiver   |-|Sig. --+||
-                         |-----------+ |       |||
-                     +---|Transmitter|-|Proc.&lt;-+||
-                     |   |-----------+ +--------+|
-                     |   +-----------------------+                 E
-  S                  |                                             S
-  O                  +------------------------------------&gt;        T
-  U                                                                I
-  R              &lt;-----------------------------------+             N
-  C                                                  |             A
-  E                      +-----------------------+   |             T
-                         |            Transceiver|   |             I
-                         |+--------+ +-----------|   |             O
-                         ||+-&gt;Sig. |-|Transmitter|---+             N
-                         |||       | +-----------|
-                         ||+--Proc.|-|Receiver   |&lt;--------
-                         |+--------+ +-----------|
-                         +-----------------------+
-                          Outgoing Transponder
-                          3R in reverse direction
-
-</pre>
+          <div id="section-3.2-7.1">
+            <div class="alignLeft art-svg artwork" id="section-3.2-7.1.1">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="544" width="536" viewBox="0 0 536 544" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
+                <path d="M 160,224 L 160,288" fill="none" stroke="black"></path>
+                <path d="M 192,144 L 192,256" fill="none" stroke="black"></path>
+                <path d="M 192,352 L 192,464" fill="none" stroke="black"></path>
+                <path d="M 200,384 L 200,448" fill="none" stroke="black"></path>
+                <path d="M 208,400 L 208,432" fill="none" stroke="black"></path>
+                <path d="M 272,384 L 272,448" fill="none" stroke="black"></path>
+                <path d="M 288,176 L 288,240" fill="none" stroke="black"></path>
+                <path d="M 288,384 L 288,448" fill="none" stroke="black"></path>
+                <path d="M 304,176 L 304,240" fill="none" stroke="black"></path>
+                <path d="M 368,192 L 368,224" fill="none" stroke="black"></path>
+                <path d="M 376,176 L 376,240" fill="none" stroke="black"></path>
+                <path d="M 384,144 L 384,256" fill="none" stroke="black"></path>
+                <path d="M 384,352 L 384,464" fill="none" stroke="black"></path>
+                <path d="M 416,320 L 416,400" fill="none" stroke="black"></path>
+                <path d="M 16,48 L 520,48" fill="none" stroke="black"></path>
+                <path d="M 16,80 L 520,80" fill="none" stroke="black"></path>
+                <path d="M 192,144 L 384,144" fill="none" stroke="black"></path>
+                <path d="M 200,176 L 288,176" fill="none" stroke="black"></path>
+                <path d="M 304,176 L 368,176" fill="none" stroke="black"></path>
+                <path d="M 128,192 L 184,192" fill="none" stroke="black"></path>
+                <path d="M 352,192 L 360,192" fill="none" stroke="black"></path>
+                <path d="M 200,208 L 288,208" fill="none" stroke="black"></path>
+                <path d="M 160,224 L 184,224" fill="none" stroke="black"></path>
+                <path d="M 352,224 L 360,224" fill="none" stroke="black"></path>
+                <path d="M 200,240 L 288,240" fill="none" stroke="black"></path>
+                <path d="M 304,240 L 368,240" fill="none" stroke="black"></path>
+                <path d="M 192,256 L 384,256" fill="none" stroke="black"></path>
+                <path d="M 160,288 L 456,288" fill="none" stroke="black"></path>
+                <path d="M 128,320 L 416,320" fill="none" stroke="black"></path>
+                <path d="M 192,352 L 384,352" fill="none" stroke="black"></path>
+                <path d="M 208,384 L 272,384" fill="none" stroke="black"></path>
+                <path d="M 288,384 L 376,384" fill="none" stroke="black"></path>
+                <path d="M 216,400 L 224,400" fill="none" stroke="black"></path>
+                <path d="M 392,400 L 416,400" fill="none" stroke="black"></path>
+                <path d="M 288,416 L 376,416" fill="none" stroke="black"></path>
+                <path d="M 216,432 L 224,432" fill="none" stroke="black"></path>
+                <path d="M 392,432 L 456,432" fill="none" stroke="black"></path>
+                <path d="M 208,448 L 272,448" fill="none" stroke="black"></path>
+                <path d="M 288,448 L 376,448" fill="none" stroke="black"></path>
+                <path d="M 192,464 L 384,464" fill="none" stroke="black"></path>
+                <path d="M 368,176 C 376.83064,176 384,183.16936 384,192" fill="none" stroke="black"></path>
+                <path d="M 368,176 C 376.83064,176 384,168.83064 384,160" fill="none" stroke="black"></path>
+                <path d="M 360,192 C 368.83064,192 376,199.16936 376,208" fill="none" stroke="black"></path>
+                <path d="M 360,192 C 368.83064,192 376,184.83064 376,176" fill="none" stroke="black"></path>
+                <path d="M 360,224 C 368.83064,224 376,231.16936 376,240" fill="none" stroke="black"></path>
+                <path d="M 360,224 C 368.83064,224 376,216.83064 376,208" fill="none" stroke="black"></path>
+                <path d="M 368,240 C 376.83064,240 384,247.16936 384,256" fill="none" stroke="black"></path>
+                <path d="M 368,240 C 376.83064,240 384,232.83064 384,224" fill="none" stroke="black"></path>
+                <path d="M 208,384 C 199.16936,384 192,391.16936 192,400" fill="none" stroke="black"></path>
+                <path d="M 208,384 C 199.16936,384 192,376.83064 192,368" fill="none" stroke="black"></path>
+                <path d="M 216,400 C 207.16936,400 200,407.16936 200,416" fill="none" stroke="black"></path>
+                <path d="M 216,400 C 207.16936,400 200,392.83064 200,384" fill="none" stroke="black"></path>
+                <path d="M 216,432 C 207.16936,432 200,439.16936 200,448" fill="none" stroke="black"></path>
+                <path d="M 216,432 C 207.16936,432 200,424.83064 200,416" fill="none" stroke="black"></path>
+                <path d="M 208,448 C 199.16936,448 192,455.16936 192,464" fill="none" stroke="black"></path>
+                <path d="M 208,448 C 199.16936,448 192,440.83064 192,432" fill="none" stroke="black"></path>
+                <polygon class="arrowhead" points="464,288 452,282.4 452,293.6" fill="black" transform="rotate(0,456,288)"></polygon>
+                <polygon class="arrowhead" points="400,432 388,426.4 388,437.6" fill="black" transform="rotate(180,392,432)"></polygon>
+                <polygon class="arrowhead" points="360,224 348,218.4 348,229.6" fill="black" transform="rotate(180,352,224)"></polygon>
+                <polygon class="arrowhead" points="264,80 252,74.4 252,85.6" fill="black" transform="rotate(180,256,80)"></polygon>
+                <polygon class="arrowhead" points="264,48 252,42.4 252,53.6" fill="black" transform="rotate(0,256,48)"></polygon>
+                <polygon class="arrowhead" points="232,400 220,394.4 220,405.6" fill="black" transform="rotate(0,224,400)"></polygon>
+                <polygon class="arrowhead" points="192,192 180,186.4 180,197.6" fill="black" transform="rotate(0,184,192)"></polygon>
+                <polygon class="arrowhead" points="136,320 124,314.4 124,325.6" fill="black" transform="rotate(180,128,320)"></polygon>
+                <g class="text">
+                  <text x="224" y="36">Forward</text>
+                  <text x="296" y="36">Direction</text>
+                  <text x="8" y="52">|</text>
+                  <text x="528" y="52">|</text>
+                  <text x="224" y="68">Reverse</text>
+                  <text x="296" y="68">Direction</text>
+                  <text x="8" y="84">|</text>
+                  <text x="528" y="84">|</text>
+                  <text x="236" y="116">Incoming</text>
+                  <text x="320" y="116">Transponder</text>
+                  <text x="212" y="132">3R</text>
+                  <text x="236" y="132">in</text>
+                  <text x="280" y="132">forward</text>
+                  <text x="352" y="132">direction</text>
+                  <text x="240" y="164">Transceiver</text>
+                  <text x="228" y="196">Receiver</text>
+                  <text x="296" y="196">-</text>
+                  <text x="324" y="196">Sig.</text>
+                  <text x="240" y="228">Transmitter</text>
+                  <text x="296" y="228">-</text>
+                  <text x="328" y="228">Proc.</text>
+                  <text x="528" y="260">E</text>
+                  <text x="8" y="276">S</text>
+                  <text x="528" y="276">S</text>
+                  <text x="8" y="292">O</text>
+                  <text x="528" y="292">T</text>
+                  <text x="8" y="308">U</text>
+                  <text x="528" y="308">I</text>
+                  <text x="8" y="324">R</text>
+                  <text x="528" y="324">N</text>
+                  <text x="8" y="340">C</text>
+                  <text x="528" y="340">A</text>
+                  <text x="8" y="356">E</text>
+                  <text x="528" y="356">T</text>
+                  <text x="336" y="372">Transceiver</text>
+                  <text x="528" y="372">I</text>
+                  <text x="528" y="388">O</text>
+                  <text x="244" y="404">Sig.</text>
+                  <text x="280" y="404">-</text>
+                  <text x="336" y="404">Transmitter</text>
+                  <text x="528" y="404">N</text>
+                  <text x="248" y="436">Proc.</text>
+                  <text x="280" y="436">-</text>
+                  <text x="324" y="436">Receiver</text>
+                  <text x="228" y="484">Outgoing</text>
+                  <text x="312" y="484">Transponder</text>
+                  <text x="204" y="500">3R</text>
+                  <text x="228" y="500">in</text>
+                  <text x="272" y="500">reverse</text>
+                  <text x="344" y="500">direction</text>
+                </g>
+              </svg><a href="#section-3.2-7.1.1" class="pilcrow">¶</a>
+</div>
 </div>
 <figcaption><a href="#figure-2" class="selfRef">Figure 2</a>:
 <a href="#name-reference-points-in-uni-dir" class="selfRef">Reference Points in Uni-directional 3R Regeneration</a>
@@ -1421,43 +1577,160 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 <p id="section-4-1">To illustrate the model's application, consider an optical network with various transponders, switches, and links. A depicted topology outlines two WDM tunnel scenarios. In the first, an end-to-end WDM tunnel (WDM Tunnel 1) comprises two physical paths (WDM Primary Path 1 and 2) linking two integrated optical transponders, Transponder A and E, through WSON and Flexi-grid nodes. The second scenario describes three WDM tunnel segments (WDM Tunnel Segment 2a to 2c) connecting two external OTs, External OT node X and Y, via the same nodes and links.<a href="#section-4-1" class="pilcrow">¶</a></p>
 <span id="name-topology-example"></span><div id="fig-topology-example">
 <figure id="figure-3">
-        <div class="alignLeft art-ascii-art art-text artwork" id="section-4-2.1">
-<pre>
-                              WDM Tunnel 1
-        &lt;===================================================&gt;
-                         WDM Primary Path 1
-        &lt;---------------------------------------------------&gt;
-
-            WDM Tunnel         WDM Tunnel      WDM Tunnel
-            Segment 2a         Segment 2b      Segment 2c
-        &lt;=================&gt;&lt;===============&gt;&lt;===============&gt;
-   +----------+                                        +----------+
-   | External |                                        | External |
-   |    OT    |&lt;----------+                +----------&gt;|    OT    |
-   |  node X  |           |                |           |  node Y  |
-   +----------+           |                |           +----------+
-                          |                |
-                          |                |
-   +----------+           |                |           +----------+
-   |  Flexi-  |           |                |           |  Flexi-  |
-   |   grid   |           |                |           |   grid   |
-   |  node A  |           |                |           |  node E  |
-   |          |        +--v---+        +---v--+        |          |
-   |          | Link 1 |Flexi-| Link 2 | WSON | Link 3 |          |
-   |          |&lt;------&gt;| grid |&lt;------&gt;|      |&lt;------&gt;|          |
-   |......... |        |node B|        |node C|        | .........|
-   | Trans- : |        +------+        +------+        | : Trans- |
-   | ponder : |                                        | : ponder |
-   |    A   : |                +------+                | :    E   |
-   |........: |     Link 4     |Flexi-|     Link 5     | :........|
-   |          |                | grid |                |          |
-   |          |&lt;--------------&gt;|node D|&lt;--------------&gt;|          |
-   |          |                +------+                |          |
-   +----------+                                        +----------+
-
-        &lt;---------------------------------------------------&gt;
-                          WDM Secondary Path 1
-</pre>
+        <div id="section-4-2.1">
+          <div class="alignLeft art-svg artwork" id="section-4-2.1.1">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="592" width="520" viewBox="0 0 520 592" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
+              <path d="M 8,160 L 8,224" fill="none" stroke="black"></path>
+              <path d="M 8,272 L 8,512" fill="none" stroke="black"></path>
+              <path d="M 96,160 L 96,224" fill="none" stroke="black"></path>
+              <path d="M 96,272 L 96,512" fill="none" stroke="black"></path>
+              <path d="M 168,336 L 168,400" fill="none" stroke="black"></path>
+              <path d="M 192,192 L 192,336" fill="none" stroke="black"></path>
+              <path d="M 224,336 L 224,400" fill="none" stroke="black"></path>
+              <path d="M 232,432 L 232,496" fill="none" stroke="black"></path>
+              <path d="M 288,432 L 288,496" fill="none" stroke="black"></path>
+              <path d="M 296,336 L 296,400" fill="none" stroke="black"></path>
+              <path d="M 328,192 L 328,336" fill="none" stroke="black"></path>
+              <path d="M 352,336 L 352,400" fill="none" stroke="black"></path>
+              <path d="M 424,160 L 424,224" fill="none" stroke="black"></path>
+              <path d="M 424,272 L 424,512" fill="none" stroke="black"></path>
+              <path d="M 512,160 L 512,224" fill="none" stroke="black"></path>
+              <path d="M 512,272 L 512,512" fill="none" stroke="black"></path>
+              <path d="M 48,46 L 464,46" fill="none" stroke="black"></path>
+              <path d="M 48,50 L 464,50" fill="none" stroke="black"></path>
+              <path d="M 48,80 L 464,80" fill="none" stroke="black"></path>
+              <path d="M 48,142 L 464,142" fill="none" stroke="black"></path>
+              <path d="M 48,146 L 464,146" fill="none" stroke="black"></path>
+              <path d="M 8,160 L 96,160" fill="none" stroke="black"></path>
+              <path d="M 424,160 L 512,160" fill="none" stroke="black"></path>
+              <path d="M 104,192 L 192,192" fill="none" stroke="black"></path>
+              <path d="M 328,192 L 416,192" fill="none" stroke="black"></path>
+              <path d="M 8,224 L 96,224" fill="none" stroke="black"></path>
+              <path d="M 424,224 L 512,224" fill="none" stroke="black"></path>
+              <path d="M 8,272 L 96,272" fill="none" stroke="black"></path>
+              <path d="M 424,272 L 512,272" fill="none" stroke="black"></path>
+              <path d="M 168,336 L 184,336" fill="none" stroke="black"></path>
+              <path d="M 200,336 L 224,336" fill="none" stroke="black"></path>
+              <path d="M 296,336 L 320,336" fill="none" stroke="black"></path>
+              <path d="M 336,336 L 352,336" fill="none" stroke="black"></path>
+              <path d="M 104,368 L 160,368" fill="none" stroke="black"></path>
+              <path d="M 232,368 L 288,368" fill="none" stroke="black"></path>
+              <path d="M 360,368 L 416,368" fill="none" stroke="black"></path>
+              <path d="M 168,400 L 224,400" fill="none" stroke="black"></path>
+              <path d="M 296,400 L 352,400" fill="none" stroke="black"></path>
+              <path d="M 232,432 L 288,432" fill="none" stroke="black"></path>
+              <path d="M 104,480 L 224,480" fill="none" stroke="black"></path>
+              <path d="M 296,480 L 416,480" fill="none" stroke="black"></path>
+              <path d="M 232,496 L 288,496" fill="none" stroke="black"></path>
+              <path d="M 8,512 L 96,512" fill="none" stroke="black"></path>
+              <path d="M 424,512 L 512,512" fill="none" stroke="black"></path>
+              <path d="M 48,544 L 464,544" fill="none" stroke="black"></path>
+              <polygon class="arrowhead" points="472,544 460,538.4 460,549.6" fill="black" transform="rotate(0,464,544)"></polygon>
+              <polygon class="arrowhead" points="472,144 460,138.4 460,149.6" fill="black" transform="rotate(0,464,144)"></polygon>
+              <polygon class="arrowhead" points="472,80 460,74.4 460,85.6" fill="black" transform="rotate(0,464,80)"></polygon>
+              <polygon class="arrowhead" points="472,48 460,42.4 460,53.6" fill="black" transform="rotate(0,464,48)"></polygon>
+              <polygon class="arrowhead" points="424,480 412,474.4 412,485.6" fill="black" transform="rotate(0,416,480)"></polygon>
+              <polygon class="arrowhead" points="424,368 412,362.4 412,373.6" fill="black" transform="rotate(0,416,368)"></polygon>
+              <polygon class="arrowhead" points="424,192 412,186.4 412,197.6" fill="black" transform="rotate(0,416,192)"></polygon>
+              <polygon class="arrowhead" points="368,368 356,362.4 356,373.6" fill="black" transform="rotate(180,360,368)"></polygon>
+              <polygon class="arrowhead" points="344,144 332,138.4 332,149.6" fill="black" transform="rotate(180,336,144)"></polygon>
+              <polygon class="arrowhead" points="336,336 324,330.4 324,341.6" fill="black" transform="rotate(90,328,336)"></polygon>
+              <polygon class="arrowhead" points="336,144 324,138.4 324,149.6" fill="black" transform="rotate(0,328,144)"></polygon>
+              <polygon class="arrowhead" points="304,480 292,474.4 292,485.6" fill="black" transform="rotate(180,296,480)"></polygon>
+              <polygon class="arrowhead" points="296,368 284,362.4 284,373.6" fill="black" transform="rotate(0,288,368)"></polygon>
+              <polygon class="arrowhead" points="240,368 228,362.4 228,373.6" fill="black" transform="rotate(180,232,368)"></polygon>
+              <polygon class="arrowhead" points="232,480 220,474.4 220,485.6" fill="black" transform="rotate(0,224,480)"></polygon>
+              <polygon class="arrowhead" points="208,144 196,138.4 196,149.6" fill="black" transform="rotate(180,200,144)"></polygon>
+              <polygon class="arrowhead" points="200,336 188,330.4 188,341.6" fill="black" transform="rotate(90,192,336)"></polygon>
+              <polygon class="arrowhead" points="200,144 188,138.4 188,149.6" fill="black" transform="rotate(0,192,144)"></polygon>
+              <polygon class="arrowhead" points="168,368 156,362.4 156,373.6" fill="black" transform="rotate(0,160,368)"></polygon>
+              <polygon class="arrowhead" points="112,480 100,474.4 100,485.6" fill="black" transform="rotate(180,104,480)"></polygon>
+              <polygon class="arrowhead" points="112,368 100,362.4 100,373.6" fill="black" transform="rotate(180,104,368)"></polygon>
+              <polygon class="arrowhead" points="112,192 100,186.4 100,197.6" fill="black" transform="rotate(180,104,192)"></polygon>
+              <polygon class="arrowhead" points="56,544 44,538.4 44,549.6" fill="black" transform="rotate(180,48,544)"></polygon>
+              <polygon class="arrowhead" points="56,144 44,138.4 44,149.6" fill="black" transform="rotate(180,48,144)"></polygon>
+              <polygon class="arrowhead" points="56,80 44,74.4 44,85.6" fill="black" transform="rotate(180,48,80)"></polygon>
+              <polygon class="arrowhead" points="56,48 44,42.4 44,53.6" fill="black" transform="rotate(180,48,48)"></polygon>
+              <g class="text">
+                <text x="232" y="36">WDM</text>
+                <text x="276" y="36">Tunnel</text>
+                <text x="312" y="36">1</text>
+                <text x="192" y="68">WDM</text>
+                <text x="240" y="68">Primary</text>
+                <text x="292" y="68">Path</text>
+                <text x="320" y="68">1</text>
+                <text x="88" y="116">WDM</text>
+                <text x="132" y="116">Tunnel</text>
+                <text x="240" y="116">WDM</text>
+                <text x="284" y="116">Tunnel</text>
+                <text x="368" y="116">WDM</text>
+                <text x="412" y="116">Tunnel</text>
+                <text x="104" y="132">Segment</text>
+                <text x="148" y="132">2a</text>
+                <text x="256" y="132">Segment</text>
+                <text x="300" y="132">2b</text>
+                <text x="384" y="132">Segment</text>
+                <text x="428" y="132">2c</text>
+                <text x="52" y="180">External</text>
+                <text x="468" y="180">External</text>
+                <text x="52" y="196">OT</text>
+                <text x="468" y="196">OT</text>
+                <text x="44" y="212">node</text>
+                <text x="72" y="212">X</text>
+                <text x="460" y="212">node</text>
+                <text x="488" y="212">Y</text>
+                <text x="52" y="292">Flexi-</text>
+                <text x="468" y="292">Flexi-</text>
+                <text x="52" y="308">grid</text>
+                <text x="468" y="308">grid</text>
+                <text x="44" y="324">node</text>
+                <text x="72" y="324">A</text>
+                <text x="460" y="324">node</text>
+                <text x="488" y="324">E</text>
+                <text x="124" y="356">Link</text>
+                <text x="152" y="356">1</text>
+                <text x="196" y="356">Flexi-</text>
+                <text x="252" y="356">Link</text>
+                <text x="280" y="356">2</text>
+                <text x="324" y="356">WSON</text>
+                <text x="380" y="356">Link</text>
+                <text x="408" y="356">3</text>
+                <text x="196" y="372">grid</text>
+                <text x="48" y="388">.........</text>
+                <text x="188" y="388">node</text>
+                <text x="216" y="388">B</text>
+                <text x="316" y="388">node</text>
+                <text x="344" y="388">C</text>
+                <text x="472" y="388">.........</text>
+                <text x="44" y="404">Trans-</text>
+                <text x="80" y="404">:</text>
+                <text x="440" y="404">:</text>
+                <text x="476" y="404">Trans-</text>
+                <text x="44" y="420">ponder</text>
+                <text x="80" y="420">:</text>
+                <text x="440" y="420">:</text>
+                <text x="476" y="420">ponder</text>
+                <text x="48" y="436">A</text>
+                <text x="80" y="436">:</text>
+                <text x="440" y="436">:</text>
+                <text x="480" y="436">E</text>
+                <text x="48" y="452">........:</text>
+                <text x="156" y="452">Link</text>
+                <text x="184" y="452">4</text>
+                <text x="260" y="452">Flexi-</text>
+                <text x="348" y="452">Link</text>
+                <text x="376" y="452">5</text>
+                <text x="472" y="452">:........</text>
+                <text x="260" y="468">grid</text>
+                <text x="252" y="484">node</text>
+                <text x="280" y="484">D</text>
+                <text x="200" y="564">WDM</text>
+                <text x="256" y="564">Secondary</text>
+                <text x="316" y="564">Path</text>
+                <text x="344" y="564">1</text>
+              </g>
+            </svg><a href="#section-4-2.1.1" class="pilcrow">¶</a>
+</div>
 </div>
 <figcaption><a href="#figure-3" class="selfRef">Figure 3</a>:
 <a href="#name-topology-example" class="selfRef">Topology Example</a>
@@ -4910,25 +5183,24 @@ module: ietf-wdm-tunnel
 
 module ietf-wdm-tunnel {
   yang-version 1.1;
-  namespace
-    "urn:ietf:params:xml:ns:yang:ietf-wdm-tunnel";
-  prefix "wdm-tnl";
+  namespace "urn:ietf:params:xml:ns:yang:ietf-wdm-tunnel";
+  prefix wdm-tnl;
 
   import ietf-te {
-    prefix "te";
+    prefix te;
     reference
       "RFC YYYY: A YANG Data Model for Traffic Engineering Tunnels,
-      Label Switched Paths and Interfaces.";
+       Label Switched Paths and Interfaces.";
   }
+
   /* RFC Ed.: replace YYYY with the number assigned
      to the RFC once draft-ietf-teas-yang-te becomes an RFC.*/
 
   import ietf-layer0-types {
-    prefix "l0-types";
+    prefix l0-types;
   }
-
   import ietf-yang-types {
-    prefix "yang";
+    prefix yang;
   }
 
   organization
@@ -4951,33 +5223,28 @@ module ietf-wdm-tunnel {
 
      Editor:   Aihua Guo
                &lt;aihuaguo.ietf@gmail.com&gt;";
-
   description
     "This module defines a YANG data model for configuring
      and managing Wavelength-Division Multiplexing (WDM) switched
      optical tunnels.
 
-    The model fully conforms to the Network Management
-    Datastore Architecture (NMDA).
+     Copyright (c) 2026 IETF Trust and the persons
+     identified as authors of the code.  All rights reserved.
 
-    Copyright (c) 2021 IETF Trust and the persons
-    identified as authors of the code.  All rights reserved.
+     Redistribution and use in source and binary forms, with or
+     without modification, is permitted pursuant to, and subject
+     to the license terms contained in, the Revised BSD License
+     set forth in Section 4.c of the IETF Trust's Legal Provisions
+     Relating to IETF Documents
+     (https://trustee.ietf.org/license-info).
 
-    Redistribution and use in source and binary forms, with or
-    without modification, is permitted pursuant to, and subject
-    to the license terms contained in, the Simplified BSD License
-    set forth in Section 4.c of the IETF Trust's Legal Provisions
-    Relating to IETF Documents
-    (https://trustee.ietf.org/license-info).
+     This version of this YANG module is part of RFC XXXX; see
+     the RFC itself for full legal notices.";
 
-    This version of this YANG module is part of RFC XXXX; see
-    the RFC itself for full legal notices.";
-
-  revision "2025-10-20" {
+  revision 2026-02-27 {
     description
       "Updated revision with combined WSON and Flexi-grid tunnel
        YANG model";
-
     reference
       "RFC XXXX: YANG data model for WDM tunnels";
     // RFC Ed.: replace XXXX with actual RFC number, update date
@@ -4987,10 +5254,12 @@ module ietf-wdm-tunnel {
   /*
    * Identities
    */
+
   identity otsig-termination-type {
     description
       "Digital termination type applicable to OTSiG";
   }
+
   identity otsi-lane-termination-type {
     description
       "Digital termination type applicable to a single OTSi.
@@ -4999,24 +5268,28 @@ module ietf-wdm-tunnel {
        in the transmitting direction or immediately after
        inverse multiplexing in the receiving direction.";
   }
+
   identity digital-mapping-type {
     description
       "Digital mapping type for the client payload of
        transceivers";
   }
+
   identity inverse-mux-type {
     description
       "Inverse multiplexing type";
   }
+
   identity otsig-regeneration-layer {
     description
       "Level of 3R regeneration";
   }
-  //TBD: types to be added
 
+  //TBD: types to be added
   /*
    * Groupings
    */
+
   grouping additional-transceiver-configuration-constraints {
     description
       "This grouping defines additional optional constraints for
@@ -5033,46 +5306,39 @@ module ietf-wdm-tunnel {
        For instance, if the frequency is restricted to the C-band,
        the list of operational modes should not include any modes
        applicable only to the L-band.";
-
     leaf otsi-carrier-frequency {
-        type l0-types:frequency-thz;
-        description
-          "OTSi carrier frequency, i.e. configured transmitter
-           frequency.";
+      type l0-types:frequency-thz;
+      description
+        "OTSi carrier frequency, i.e. configured transmitter
+         frequency.";
     }
-
     container tx-tune-constraints {
       description
         "The permissible tuning frequency range for the
          transmitter.";
-
       uses l0-types:transceiver-tuning-range;
     }
-
     leaf-list line-coding-bitrate {
       type identityref {
         base l0-types:line-coding;
       }
       description
         "The list of the bit rate/line coding of the optical
-        tributary signal that constrains the configuration of
-        the transceiver.";
+         tributary signal that constrains the configuration of
+         the transceiver.";
       reference
         "ITU-T G.698.2 section 7.1.2";
     }
-
     leaf tx-channel-power {
       type l0-types:power-dbm;
       description
         "The preferred channel transmit power.";
     }
-
     leaf preferred-rx-channel-power {
       type l0-types:power-dbm;
       description
         "The preferred channel received power.";
     }
-
     uses l0-types:path-constraints;
   }
 
@@ -5080,7 +5346,6 @@ module ietf-wdm-tunnel {
     description
       "This grouping defines constraints for transceiver
        configurations";
-
     leaf-list operational-modes {
       type string {
         length "1..255";
@@ -5088,7 +5353,6 @@ module ietf-wdm-tunnel {
       description
         "List of operational mode ids of the transceiver.";
     }
-
     uses additional-transceiver-configuration-constraints;
   }
 
@@ -5096,7 +5360,6 @@ module ietf-wdm-tunnel {
     description
       "This grouping specifies common configurations
        for transceivers.";
-
     leaf transceiver-id {
       type uint32;
       description
@@ -5104,15 +5367,15 @@ module ietf-wdm-tunnel {
     }
     leaf otsi-carrier-id {
       type uint16;
-        description
-          "OTSi carrier identifier associated with the
-           transceiver.";
+      description
+        "OTSi carrier identifier associated with the
+         transceiver.";
     }
     leaf otsi-carrier-frequency {
-        type l0-types:frequency-thz;
-        description
-          "OTSi carrier frequency, i.e. configured transmitter
-           frequency.";
+      type l0-types:frequency-thz;
+      description
+        "OTSi carrier frequency, i.e. configured transmitter
+         frequency.";
     }
     leaf tx-channel-power {
       type l0-types:power-dbm;
@@ -5126,8 +5389,6 @@ module ietf-wdm-tunnel {
       "This grouping specifies common states
        for incoming and outgoing transceivers
        associated with a regenerator group.";
-
-
     leaf operational-mode {
       type string {
         length "1..255";
@@ -5135,7 +5396,6 @@ module ietf-wdm-tunnel {
       description
         "Operational mode of the transceiver.";
     }
-
     leaf line-coding-bitrate {
       type identityref {
         base l0-types:line-coding;
@@ -5154,15 +5414,12 @@ module ietf-wdm-tunnel {
       "This grouping specifies common configurations
        for incoming and outgoing transceivers
        associated with a regenerator group.";
-
     uses regenerator-incoming-outgoing-common-state;
-
     leaf preferred-rx-channel-power {
       type l0-types:power-dbm;
       description
         "The preferred channel received power.";
     }
-
     uses l0-types:path-constraints;
   }
 
@@ -5171,35 +5428,30 @@ module ietf-wdm-tunnel {
       "This grouping specifies the configuration of
        digital layer termination applicable to the
        transceivers.";
-
     container digital-terminations {
       description
         "Digital layer termination applicable to the transceivers.";
-
       list digital-termination {
         key "index";
         description
           "Sequence of digital layer terminations.";
-
         leaf index {
           type uint8;
           description
             "An index number used to identify entries in the list,
              organized in ascending order of their values.";
         }
-
         leaf termination-type {
           type identityref {
             base otsig-termination-type;
           }
           description
-          "Digital layer termination before/after inverse
-           multiplexing in the tx/rx direction of the transceiver,
-           that applies to the whole OTSiG, also applicable to
-           the special case when there is a single OTSi in the
-           OTSiG, i.e. without inverse multiplexing.";
+            "Digital layer termination before/after inverse
+             multiplexing in the tx/rx direction of the transceiver,
+             that applies to the whole OTSiG, also applicable to
+             the special case when there is a single OTSi in the
+             OTSiG, i.e. without inverse multiplexing.";
         }
-
         leaf mapping-type {
           type identityref {
             base digital-mapping-type;
@@ -5216,15 +5468,11 @@ module ietf-wdm-tunnel {
     description
       "This grouping specifies inverse-multiplexing configurations
        applicable to multi-carrier transceivers.";
-
     container inverse-multiplexing {
-      presence
-        "When present, it indicates that the transceiver
-         supports inverse multiplexing.";
-
+      presence "When present, it indicates that the transceiver
+                supports inverse multiplexing.";
       description
         "Transceiver configuration for inverse multiplexing.";
-
       leaf inverse-mux-type {
         type identityref {
           base inverse-mux-type;
@@ -5232,7 +5480,6 @@ module ietf-wdm-tunnel {
         description
           "Type of inverse multiplexing.";
       }
-
       leaf otsi-lane-termination-type {
         type identityref {
           base otsi-lane-termination-type;
@@ -5243,13 +5490,11 @@ module ietf-wdm-tunnel {
            transceiver, that applies to a single OTSi within
            the inverse multiplexing group.";
       }
-
       container additional-transceivers {
         description
           "Configuration for additional transceivers with
            an index value 1 and higher within the same
            inverse multiplexing group.";
-
         leaf index {
           type uint8 {
             range "1..max";
@@ -5258,7 +5503,6 @@ module ietf-wdm-tunnel {
             "The index of the transceiver in the inverse
              multiplexing group starting from value 1.";
         }
-
         uses transceiver-common-config;
       }
     }
@@ -5269,32 +5513,27 @@ module ietf-wdm-tunnel {
       "This grouping specifies configurations for transceivers
        at source, destination nodes, as well as at regenerator
        nodes with a single pair of regenerator.";
-
     leaf transponder-id {
       type uint32;
-      description "transponder identifier";
+      description
+        "transponder identifier";
     }
-
     uses transponder-digital-termination-config;
-
     container transceiver {
       description
-         "Specifies transceiver configurations. The attributes
-          specified in this container, excluding those within
-          the inverse-multiplexing container, apply to a single
-          transceiver when inverse multiplexing is not supported,
-          as well as to the first transceiver, identified by an
-          index value of 0 when inverse multiplexing is enabled.
+        "Specifies transceiver configurations. The attributes
+         specified in this container, excluding those within
+         the inverse-multiplexing container, apply to a single
+         transceiver when inverse multiplexing is not supported,
+         as well as to the first transceiver, identified by an
+         index value of 0 when inverse multiplexing is enabled.
 
-          Attributes within the inverse-multiplexing container
-          are applicable exclusively to transceivers with an
-          index value of 1 or higher, belonging to the same
-          inverse multiplexing group.";
-
+         Attributes within the inverse-multiplexing container
+         are applicable exclusively to transceivers with an
+         index value of 1 or higher, belonging to the same
+         inverse multiplexing group.";
       uses transceiver-common-config;
-
       uses regenerator-incoming-outgoing-common-config;
-
       uses transceiver-inverse-multiplexing-config;
     }
   }
@@ -5304,16 +5543,15 @@ module ietf-wdm-tunnel {
       "This grouping specifies configurations for transceivers
        at at regenerator nodes with multiple pairs of
        regenerators.";
-
     leaf transponder-id {
       type uint32;
-      description "transponder identifier";
+      description
+        "transponder identifier";
     }
     container transceiver {
       description
-         "Specifies transceiver configurations at a regenerator
-          node with multiple pairs of regenerators.";
-
+        "Specifies transceiver configurations at a regenerator
+         node with multiple pairs of regenerators.";
       uses transceiver-common-config;
     }
   }
@@ -5321,8 +5559,7 @@ module ietf-wdm-tunnel {
   grouping regenerator-common-config {
     description
       "This grouping defines a set of common attributes
-      applicable to 3R regenerators.";
-
+       applicable to 3R regenerators.";
     leaf regen-group-id {
       type uint32;
       description
@@ -5334,21 +5571,21 @@ module ietf-wdm-tunnel {
       }
       description
         "Indicate the chosen level of digital layer
-        regeneration, e.g. ODU, FlexOnM, before/after inverse
-        multiplexing in the tx/rx direction, that applies to
-        the whole OTSiG. It also applies to the case when
-        there is only one OTSi in the OTSiG, i.e. without
-        inverse multiplexing, in which case the number of
-        OTSis in the OTSiGs before/after the regenerator
-        may be different.";
+         regeneration, e.g. ODU, FlexOnM, before/after inverse
+         multiplexing in the tx/rx direction, that applies to
+         the whole OTSiG. It also applies to the case when
+         there is only one OTSi in the OTSiG, i.e. without
+         inverse multiplexing, in which case the number of
+         OTSis in the OTSiGs before/after the regenerator
+         may be different.";
     }
   }
+
   grouping path-transceiver-config {
     description
       "This grouping defines a set of transceivers on a node,
        serving as either source transceivers, destination
        transceivers, or regenerators.";
-
     choice node-position {
       description
         "The relative position of the node within the path.";
@@ -5357,7 +5594,6 @@ module ietf-wdm-tunnel {
           description
             "Constraints for configuring transceivers at the
              source node transponder.";
-
           uses transceiver-config;
         }
       }
@@ -5366,7 +5602,6 @@ module ietf-wdm-tunnel {
           description
             "Constraints for configuring transceivers at the
              source node transponder.";
-
           uses transceiver-config;
         }
       }
@@ -5396,22 +5631,17 @@ module ietf-wdm-tunnel {
              transponder, labeled 'outgoing', receives and
              transmits signal from/to the same segment of the
              optical path toward the destination.";
-
           uses regenerator-common-config;
-
           container incoming-transponder {
             description
               "Constraints for transceiver configurations in the
                incoming direction of the regenerator.";
-
             uses transceiver-config;
           }
-
           container outgoing-transponder {
             description
               "Constraints for transceiver configurations at the
                outgoing direction of the regenerator";
-
             uses transceiver-config;
           }
         }
@@ -5444,30 +5674,23 @@ module ietf-wdm-tunnel {
              multiple transponder, labeled 'outgoing', receives and
              transmits signal from/to the same segment of the
              optical path toward the destination.";
-
           container common-incoming {
             description
               "Common configuration for transponders in the incoming
                direction.";
-
             uses regenerator-incoming-outgoing-common-config;
           }
-
           container common-outgoing {
             description
               "Common configuration for transponders in the outgoing
                direction.";
-
             uses regenerator-incoming-outgoing-common-config;
           }
-
           list regenerator {
             key "index";
-
             description
               "A list of regenerators used at the regenerator
                node.";
-
             leaf index {
               type uint8;
               description
@@ -5476,20 +5699,16 @@ module ietf-wdm-tunnel {
                  values.";
             }
             uses regenerator-common-config;
-
             container incoming-transponder {
               description
                 "Constraints for transceiver configurations in the
                  incoming direction of the regenerator.";
-
               uses multi-regen-transceiver-config;
             }
-
             container outgoing-transponder {
               description
                 "Constraints for transceiver configurations at the
                  outgoing direction of the regenerator";
-
               uses multi-regen-transceiver-config;
             }
           }
@@ -5501,18 +5720,15 @@ module ietf-wdm-tunnel {
   grouping transceiver-measured-parameters {
     description
       "Measured transceiver parameters.";
-
     container pre-fec-ber {
       description
         "Timestamp and value of the Pre-FEC Bit Error Rate (BER)
          of the received signal.";
-
       leaf timestamp {
         type yang:timestamp;
         description
           "Timestamp associated with the Pre-FEC BER.";
       }
-
       leaf value {
         type decimal64 {
           fraction-digits 18;
@@ -5521,18 +5737,15 @@ module ietf-wdm-tunnel {
           "Pre-FEC BER of the received signal.";
       }
     }
-
     container q-factor {
       description
         "Timestamp and value of the estimated Q-factor based on
          the pre-FEC BER.";
-
       leaf timestamp {
         type yang:timestamp;
         description
           "Timestamp associated with the Q-factor.";
       }
-
       leaf value {
         type l0-types:decimal-2-or-unknown;
         units "dB";
@@ -5547,34 +5760,28 @@ module ietf-wdm-tunnel {
       "This grouping specifies transceiver state parameters
        at source, destination nodes, as well as at regenerator
        nodes with a single pair of regenerator.";
-
     leaf transponder-id {
       type uint32;
-      description "transponder identifier";
+      description
+        "transponder identifier";
     }
-
     uses transponder-digital-termination-config;
-
     container transceiver {
       description
-         "Specifies transceiver states. The attributes
-          specified in this container, excluding those within
-          the inverse-multiplexing container, apply to a single
-          transceiver when inverse multiplexing is not supported,
-          as well as to the first transceiver, identified by an
-          index value of 0 when inverse multiplexing is enabled.
+        "Specifies transceiver states. The attributes
+         specified in this container, excluding those within
+         the inverse-multiplexing container, apply to a single
+         transceiver when inverse multiplexing is not supported,
+         as well as to the first transceiver, identified by an
+         index value of 0 when inverse multiplexing is enabled.
 
-          Attributes within the inverse-multiplexing container
-          are applicable exclusively to transceivers with an
-          index value of 1 or higher, belonging to the same
-          inverse multiplexing group.";
-
+         Attributes within the inverse-multiplexing container
+         are applicable exclusively to transceivers with an
+         index value of 1 or higher, belonging to the same
+         inverse multiplexing group.";
       uses transceiver-common-config;
-
       uses regenerator-incoming-outgoing-common-state;
-
       uses l0-types:common-transceiver-readonly-param;
-
       uses transceiver-inverse-multiplexing-config;
     }
   }
@@ -5583,20 +5790,19 @@ module ietf-wdm-tunnel {
     description
       "This grouping includes end-to-end media channel path id
        information.";
-
     leaf-list e2e-mc-path-id {
       type uint16;
       description
         "The list of the possible end-to-end Media Channel
-        (e2e-MC) paths associated with the OTSi which have
-        different optical impairments.
+         (e2e-MC) paths associated with the OTSi which have
+         different optical impairments.
 
-        This list is meaningful in case the OTSi can be associated
-        with multiple end-to-end Media Channel (e2e-MC) paths
-        (e.g., when OPS protection is configured).
+         This list is meaningful in case the OTSi can be associated
+         with multiple end-to-end Media Channel (e2e-MC) paths
+         (e.g., when OPS protection is configured).
 
-        The list can be empty when the OTSi has only one
-        e2e-MC path.";
+         The list can be empty when the OTSi has only one
+         e2e-MC path.";
     }
   }
 
@@ -5605,7 +5811,6 @@ module ietf-wdm-tunnel {
       "This grouping defines a set of transceivers on a node,
        serving as either source transceivers, destination
        transceivers, or regenerators.";
-
     choice node-position {
       description
         "The relative position of the node within the path.";
@@ -5613,7 +5818,6 @@ module ietf-wdm-tunnel {
         container source-transponder {
           description
             "Transceiver states at the source node transponder.";
-
           uses transceiver-state;
         }
       }
@@ -5622,7 +5826,6 @@ module ietf-wdm-tunnel {
           description
             "Transceiver states at the destination node
              transponder.";
-
           uses transceiver-state;
         }
       }
@@ -5651,22 +5854,17 @@ module ietf-wdm-tunnel {
              transponder, labeled 'outgoing', receives and
              transmits signal from/to the same segment of the
              optical path toward the destination.";
-
           uses regenerator-common-config;
-
           container incoming-transponder {
             description
               "Constraints for transceiver configurations in the
                incoming direction of the regenerator.";
-
             uses transceiver-state;
           }
-
           container outgoing-transponder {
             description
               "Constraints for transceiver configurations at the
                outgoing direction of the regenerator";
-
             uses transceiver-state;
           }
         }
@@ -5697,30 +5895,23 @@ module ietf-wdm-tunnel {
              multiple transponder, labeled 'outgoing', receives and
              transmits signal from/to the same segment of the
              optical path toward the destination.";
-
           container common-incoming {
             description
               "Common configuration for transponders in the incoming
                direction.";
-
             uses regenerator-incoming-outgoing-common-state;
           }
-
           container common-outgoing {
             description
               "Common configuration for transponders in the outgoing
                direction.";
-
             uses regenerator-incoming-outgoing-common-state;
           }
-
           list regenerator {
             key "index";
-
             description
               "A list of regenerators used at the
                regenerator node.";
-
             leaf index {
               type uint8;
               description
@@ -5729,20 +5920,16 @@ module ietf-wdm-tunnel {
                  values.";
             }
             uses regenerator-common-config;
-
             container incoming-transponder {
               description
                 "Constraints for transceiver configurations in the
                  incoming direction of the regenerator.";
-
               uses multi-regen-transceiver-config;
             }
-
             container outgoing-transponder {
               description
                 "Constraints for transceiver configurations at the
                  outgoing direction of the regenerator";
-
               uses multi-regen-transceiver-config;
             }
           }
@@ -5755,11 +5942,9 @@ module ietf-wdm-tunnel {
     description
       "This grouping defines the constraints for transceiver
        configurations.";
-
     container transceiver-constraint {
       description
         "Constraints for transceiver configurations";
-
       uses transceiver-constraints;
     }
   }
@@ -5767,23 +5952,19 @@ module ietf-wdm-tunnel {
   grouping wdm-constraint {
     description
       "Grouping for WDM tunnel constraints";
-
     container wdm-constraint {
       description
         "WDM tunnel constraints.";
-
       uses global-transceiver-constraint;
-
       leaf use-regen {
         type boolean;
-        default false;
+        default "false";
         description
           "Indicate whether or not regenerators (e.g. 3R) should be
            considered. When this parameter is set to true, the
            tunnel path may include a regen when the path is not
            feasible for direct optical reach.";
       }
-
       /*
       leaf-list regen-levels {
         when '../use-regen = "true"' {
@@ -5797,8 +5978,7 @@ module ietf-wdm-tunnel {
           "Indicate the levels of 3R regeration permitted by
            the tunnel.";
       }
-      */
-
+       */
       leaf wavelength-conversion {
         when '../use-regen = "true"' {
           description
@@ -5806,32 +5986,28 @@ module ietf-wdm-tunnel {
              to be considered.";
         }
         type boolean;
-        default false;
+        default "false";
         description
           "Indicate whether or not wavelength conversion is allowed
            along the tunnel path. Applicable only when 3R
            regeneration is enabled.";
       }
-
       uses l0-types:tunnel-attributes;
-
       leaf guard-band-size {
         type l0-types:frequency-thz;
         description
           "Guard band size in THz.";
       }
-
       leaf matching-fwd-rev-wavelength {
         type boolean;
-        default true;
+        default "true";
         description
           "Indicate whether or not the assigned channels for
            forward and reverse wavelength path must be the same.";
       }
-
       leaf allow-retuning {
         type boolean;
-        default false;
+        default "false";
         description
           "Indicate whether or not re-tuning is allowed when one or
            more paths of a WDM tunnel is being restored. Typically,
@@ -5851,10 +6027,10 @@ module ietf-wdm-tunnel {
   /*
    * Data nodes
    */
-
   /*
    * Global constraints for WDM tunnel
    */
+
   augment "/te:te/te:tunnels/te:tunnel" {
     description
       "Augment with additional parameters required for WDM
@@ -5868,6 +6044,7 @@ module ietf-wdm-tunnel {
    * Applicable to starting, terminating and regenerator
    * transceivers.
    */
+
   augment "/te:te/te:tunnels/te:tunnel/te:primary-paths/"
         + "te:primary-path/te:explicit-route-objects/"
         + "te:route-object-include-exclude/te:type/"
@@ -5875,7 +6052,6 @@ module ietf-wdm-tunnel {
     description
       "Augment TE primary explicit path (include or exclude)
        with transceiver configurations.";
-
     uses path-transceiver-config;
   }
 
@@ -5886,7 +6062,6 @@ module ietf-wdm-tunnel {
     description
       "Augment TE primary explicit path (exclude always)
        with transceiver configurations.";
-
     uses path-transceiver-config;
   }
 
@@ -5895,6 +6070,7 @@ module ietf-wdm-tunnel {
    * Applicable to starting, terminating and regenerator
    * transceivers.
    */
+
   augment "/te:te/te:tunnels/te:tunnel/te:primary-paths/"
         + "te:primary-path/te:primary-reverse-path/"
         + "te:explicit-route-objects/"
@@ -5903,7 +6079,6 @@ module ietf-wdm-tunnel {
     description
       "Augment TE primary reverse explicit path (include or exclude)
        with transceiver configurations.";
-
     uses path-transceiver-config;
   }
 
@@ -5915,7 +6090,6 @@ module ietf-wdm-tunnel {
     description
       "Augment TE primary reverse explicit path (exclude always)
        with transceiver configurations.";
-
     uses path-transceiver-config;
   }
 
@@ -5924,6 +6098,7 @@ module ietf-wdm-tunnel {
    * Applicable to starting, terminating and regenerator
    * transceivers.
    */
+
   augment "/te:te/te:tunnels/te:tunnel/te:secondary-paths/"
         + "te:secondary-path/te:explicit-route-objects/"
         + "te:route-object-include-exclude/te:type/"
@@ -5931,7 +6106,6 @@ module ietf-wdm-tunnel {
     description
       "Augment TE secondary explicit path (include or exclude)
        with transceiver configurations.";
-
     uses path-transceiver-config;
   }
 
@@ -5942,7 +6116,6 @@ module ietf-wdm-tunnel {
     description
       "Augment TE secondary explicit path (exclude always)
        with transceiver configurations.";
-
     uses path-transceiver-config;
   }
 
@@ -5951,6 +6124,7 @@ module ietf-wdm-tunnel {
    * Applicable to starting, terminating and regenerator
    * transceivers.
    */
+
   augment "/te:te/te:tunnels/te:tunnel/"
         + "te:secondary-reverse-paths/"
         + "te:secondary-reverse-path/"
@@ -5960,7 +6134,6 @@ module ietf-wdm-tunnel {
     description
       "Augment TE secondary reverse explicit path (include or
        exclude) with transceiver configurations.";
-
     uses path-transceiver-config;
   }
 
@@ -5973,13 +6146,13 @@ module ietf-wdm-tunnel {
     description
       "Augment TE secondary reverse explicit path (exclude always)
        with transceiver configurations.";
-
     uses path-transceiver-config;
   }
 
   /*
    * Computed transceiver properties for primary path.
    */
+
   augment "/te:te/te:tunnels/te:tunnel/te:primary-paths/"
         + "te:primary-path/te:computed-paths-properties/"
         + "te:computed-path-properties/te:path-properties/"
@@ -5988,7 +6161,6 @@ module ietf-wdm-tunnel {
     description
       "Augment TE computed primary path with transceiver
        properties.";
-
     uses path-transceiver-state;
   }
 
@@ -6002,7 +6174,6 @@ module ietf-wdm-tunnel {
     description
       "Augment source transceiver with additional estimated
        parameters.";
-
     uses l0-types:path-properties;
   }
 
@@ -6016,7 +6187,6 @@ module ietf-wdm-tunnel {
     description
       "Augment destination transceiver with additional estimated
        parameters.";
-
     uses l0-types:path-properties;
   }
 
@@ -6031,7 +6201,6 @@ module ietf-wdm-tunnel {
     description
       "Augment regen incoming transceiver with additional estimated
        parameters.";
-
     uses l0-types:path-properties;
   }
 
@@ -6046,7 +6215,6 @@ module ietf-wdm-tunnel {
     description
       "Augment regen outgoing transceiver with additional estimated
        parameters.";
-
     uses l0-types:path-properties;
   }
 
@@ -6060,7 +6228,6 @@ module ietf-wdm-tunnel {
     description
       "Augment regen incoming transceiver with additional estimated
        parameters.";
-
     uses l0-types:path-properties;
   }
 
@@ -6074,13 +6241,13 @@ module ietf-wdm-tunnel {
     description
       "Augment regen outgoing transceiver with additional estimated
        parameters.";
-
     uses l0-types:path-properties;
   }
 
   /*
    * Computed transceiver properties for primary reverse path.
    */
+
   augment "/te:te/te:tunnels/te:tunnel/te:primary-paths/"
         + "te:primary-path/te:primary-reverse-path/"
         + "te:computed-paths-properties/"
@@ -6090,7 +6257,6 @@ module ietf-wdm-tunnel {
     description
       "Augment TE computed primary path with transceiver
        properties.";
-
     uses path-transceiver-state;
   }
 
@@ -6105,7 +6271,6 @@ module ietf-wdm-tunnel {
     description
       "Augment source transceiver with additional estimated
        parameters.";
-
     uses l0-types:path-properties;
   }
 
@@ -6120,7 +6285,6 @@ module ietf-wdm-tunnel {
     description
       "Augment destination transceiver with additional estimated
        parameters.";
-
     uses l0-types:path-properties;
   }
 
@@ -6136,7 +6300,6 @@ module ietf-wdm-tunnel {
     description
       "Augment regen incoming transceiver with additional estimated
        parameters.";
-
     uses l0-types:path-properties;
   }
 
@@ -6152,7 +6315,6 @@ module ietf-wdm-tunnel {
     description
       "Augment regen outgoing transceiver with additional estimated
        parameters.";
-
     uses l0-types:path-properties;
   }
 
@@ -6167,7 +6329,6 @@ module ietf-wdm-tunnel {
     description
       "Augment regen incoming transceiver with additional estimated
        parameters.";
-
     uses l0-types:path-properties;
   }
 
@@ -6182,13 +6343,13 @@ module ietf-wdm-tunnel {
     description
       "Augment regen outgoing transceiver with additional estimated
        parameters.";
-
     uses l0-types:path-properties;
   }
 
   /*
    * Computed transceiver properties for secondary path.
    */
+
   augment "/te:te/te:tunnels/te:tunnel/te:secondary-paths/"
         + "te:secondary-path/te:computed-paths-properties/"
         + "te:computed-path-properties/te:path-properties/"
@@ -6197,7 +6358,6 @@ module ietf-wdm-tunnel {
     description
       "Augment TE computed primary path with transceiver
        properties.";
-
     uses path-transceiver-state;
   }
 
@@ -6211,7 +6371,6 @@ module ietf-wdm-tunnel {
     description
       "Augment source transceiver with additional estimated
        parameters.";
-
     uses l0-types:path-properties;
   }
 
@@ -6225,7 +6384,6 @@ module ietf-wdm-tunnel {
     description
       "Augment destination transceiver with additional estimated
        parameters.";
-
     uses l0-types:path-properties;
   }
 
@@ -6240,7 +6398,6 @@ module ietf-wdm-tunnel {
     description
       "Augment regen incoming transceiver with additional estimated
        parameters.";
-
     uses l0-types:path-properties;
   }
 
@@ -6255,7 +6412,6 @@ module ietf-wdm-tunnel {
     description
       "Augment regen outgoing transceiver with additional estimated
        parameters.";
-
     uses l0-types:path-properties;
   }
 
@@ -6269,7 +6425,6 @@ module ietf-wdm-tunnel {
     description
       "Augment regen incoming transceiver with additional estimated
        parameters.";
-
     uses l0-types:path-properties;
   }
 
@@ -6283,13 +6438,13 @@ module ietf-wdm-tunnel {
     description
       "Augment regen outgoing transceiver with additional estimated
        parameters.";
-
     uses l0-types:path-properties;
   }
 
   /*
    * Computed transceiver properties for secondary reverse path.
    */
+
   augment "/te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths/"
         + "te:secondary-reverse-path/te:computed-paths-properties/"
         + "te:computed-path-properties/te:path-properties/"
@@ -6298,7 +6453,6 @@ module ietf-wdm-tunnel {
     description
       "Augment TE computed primary path with transceiver
        properties.";
-
     uses path-transceiver-state;
   }
 
@@ -6312,7 +6466,6 @@ module ietf-wdm-tunnel {
     description
       "Augment source transceiver with additional estimated
        parameters.";
-
     uses l0-types:path-properties;
   }
 
@@ -6326,7 +6479,6 @@ module ietf-wdm-tunnel {
     description
       "Augment destination transceiver with additional estimated
        parameters.";
-
     uses l0-types:path-properties;
   }
 
@@ -6341,7 +6493,6 @@ module ietf-wdm-tunnel {
     description
       "Augment regen incoming transceiver with additional estimated
        parameters.";
-
     uses l0-types:path-properties;
   }
 
@@ -6356,7 +6507,6 @@ module ietf-wdm-tunnel {
     description
       "Augment regen outgoing transceiver with additional estimated
        parameters.";
-
     uses l0-types:path-properties;
   }
 
@@ -6370,7 +6520,6 @@ module ietf-wdm-tunnel {
     description
       "Augment regen incoming transceiver with additional estimated
        parameters.";
-
     uses l0-types:path-properties;
   }
 
@@ -6384,20 +6533,19 @@ module ietf-wdm-tunnel {
     description
       "Augment regen outgoing transceiver with additional estimated
        parameters.";
-
     uses l0-types:path-properties;
   }
 
   /*
    * Actual transceiver state.
    */
+
   augment "/te:te/te:lsps/te:lsp/"
         + "te:lsp-actual-route-information/"
         + "te:lsp-actual-route-information/te:type/"
         + "te:numbered-node-hop/te:numbered-node-hop" {
     description
       "Augment TE LSP with WDM path state.";
-
     uses path-transceiver-state;
   }
 
@@ -6410,7 +6558,6 @@ module ietf-wdm-tunnel {
     description
       "Augment source transceiver with additional measured
        parameters.";
-
     uses transceiver-measured-parameters;
   }
 
@@ -6423,7 +6570,6 @@ module ietf-wdm-tunnel {
     description
       "Augment destination transceiver with additional measured
        parameters.";
-
     uses transceiver-measured-parameters;
   }
 
@@ -6437,7 +6583,6 @@ module ietf-wdm-tunnel {
     description
       "Augment regen incoming transceiver with additional measured
        parameters.";
-
     uses transceiver-measured-parameters;
   }
 
@@ -6451,7 +6596,6 @@ module ietf-wdm-tunnel {
     description
       "Augment regen outgoing transceiver with additional measured
        parameters.";
-
     uses transceiver-measured-parameters;
   }
 
@@ -6464,7 +6608,6 @@ module ietf-wdm-tunnel {
     description
       "Augment regen incoming transceiver with additional measured
        parameters.";
-
     uses transceiver-measured-parameters;
   }
 
@@ -6477,7 +6620,6 @@ module ietf-wdm-tunnel {
     description
       "Augment regen outgoing transceiver with additional measured
        parameters.";
-
     uses transceiver-measured-parameters;
   }
 
@@ -6488,7 +6630,6 @@ module ietf-wdm-tunnel {
     description
       "Augment TE LSP with end-to-end media channel
        information.";
-
     uses e2e-media-channel-info;
   }
 
@@ -6499,7 +6640,6 @@ module ietf-wdm-tunnel {
     description
       "Augment TE LSP with end-to-end media channel
        information.";
-
     uses e2e-media-channel-info;
   }
 
@@ -6512,7 +6652,7 @@ module ietf-wdm-tunnel {
         + "te:label-restrictions/te:label-restriction" {
     description
       "Augment TE label range information for the ingress segment
-      of the named path constraint.";
+       of the named path constraint.";
     uses l0-types:wdm-label-range-info;
   }
 
@@ -6522,7 +6662,7 @@ module ietf-wdm-tunnel {
         + "te:label-restriction" {
     description
       "Augment TE label range information for the egress segment
-      of the named path constraint.";
+       of the named path constraint.";
     uses l0-types:wdm-label-range-info;
   }
 
@@ -6532,7 +6672,7 @@ module ietf-wdm-tunnel {
         + "te:label-restriction" {
     description
       "Augment TE label range information for the ingress segment
-      of the primay path.";
+       of the primay path.";
     uses l0-types:wdm-label-range-info;
   }
 
@@ -6542,7 +6682,7 @@ module ietf-wdm-tunnel {
         + "te:label-restriction" {
     description
       "Augment TE label range information for the egress segment
-      of the primay path.";
+       of the primay path.";
     uses l0-types:wdm-label-range-info;
   }
 
@@ -6553,7 +6693,7 @@ module ietf-wdm-tunnel {
         + "te:label-restriction" {
     description
       "Augment TE label range information for the ingress segment
-      of the primay reverse path.";
+       of the primay reverse path.";
     uses l0-types:wdm-label-range-info;
   }
 
@@ -6564,7 +6704,7 @@ module ietf-wdm-tunnel {
         + "te:label-restriction" {
     description
       "Augment TE label range information for the egress segment
-      of the primay reverse path.";
+       of the primay reverse path.";
     uses l0-types:wdm-label-range-info;
   }
 
@@ -6574,7 +6714,7 @@ module ietf-wdm-tunnel {
         + "te:label-restriction" {
     description
       "Augment TE label range information for the ingress segment
-      of the secondary path.";
+       of the secondary path.";
     uses l0-types:wdm-label-range-info;
   }
 
@@ -6584,7 +6724,7 @@ module ietf-wdm-tunnel {
         + "te:label-restriction" {
     description
       "Augment TE label range information for the egress segment
-      of the secondary path.";
+       of the secondary path.";
     uses l0-types:wdm-label-range-info;
   }
 
@@ -6594,7 +6734,7 @@ module ietf-wdm-tunnel {
         + "te:label-restriction" {
     description
       "Augment TE label range information for the ingress segment
-      of the secondary reverse path.";
+       of the secondary reverse path.";
     uses l0-types:wdm-label-range-info;
   }
 
@@ -6604,13 +6744,14 @@ module ietf-wdm-tunnel {
         + "te:label-restriction" {
     description
       "Augment TE label range information for the egress segment
-      of the secondary reverse path.";
+       of the secondary reverse path.";
     uses l0-types:wdm-label-range-info;
   }
 
   /*
    * Augment TE label.
    */
+
   augment "/te:te/te:globals/te:named-path-constraints/"
         + "te:named-path-constraint/"
         + "te:explicit-route-objects/"
@@ -6618,8 +6759,8 @@ module ietf-wdm-tunnel {
         + "te:label-hop/te:te-label/te:technology" {
     description
       "Augment TE label hop for the explicit route objects always
-      excluded by the path computation with the named path
-      constraint.";
+       excluded by the path computation with the named path
+       constraint.";
     case wdm {
       uses l0-types:wdm-label-hop;
     }
@@ -6632,12 +6773,13 @@ module ietf-wdm-tunnel {
         + "te:label-hop/te:te-label/te:technology" {
     description
       "Augment TE label hop for the explicit route objects included
-      or excluded by the path computation with the named path
-      constraint.";
+       or excluded by the path computation with the named path
+       constraint.";
     case wdm {
       uses l0-types:wdm-label-hop;
     }
   }
+
   augment "/te:te/te:globals/te:named-path-constraints/"
         + "te:named-path-constraint/te:path-in-segment/"
         + "te:label-restrictions/"
@@ -6645,7 +6787,7 @@ module ietf-wdm-tunnel {
         + "te:te-label/te:technology" {
     description
       "Augment TE label range start for the ingress segment
-      of the named path constraint.";
+       of the named path constraint.";
     case wdm {
       uses l0-types:wdm-label-start-end;
     }
@@ -6658,7 +6800,7 @@ module ietf-wdm-tunnel {
         + "te:te-label/te:technology" {
     description
       "Augment TE label range end for the ingress segment
-      of the named path constraint.";
+       of the named path constraint.";
     case wdm {
       uses l0-types:wdm-label-start-end;
     }
@@ -6670,7 +6812,7 @@ module ietf-wdm-tunnel {
         + "te:label-step/te:technology" {
     description
       "Augment TE label range step for the ingress segment
-      of the named path constraint.";
+       of the named path constraint.";
     case wdm {
       uses l0-types:wdm-label-step;
     }
@@ -6683,7 +6825,7 @@ module ietf-wdm-tunnel {
         + "te:te-label/te:technology" {
     description
       "Augment TE label range start for the egress segment
-      of the named path constraint.";
+       of the named path constraint.";
     case wdm {
       uses l0-types:wdm-label-start-end;
     }
@@ -6696,7 +6838,7 @@ module ietf-wdm-tunnel {
         + "te:te-label/te:technology" {
     description
       "Augment TE label range end for the egress segment
-      of the named path constraint.";
+       of the named path constraint.";
     case wdm {
       uses l0-types:wdm-label-start-end;
     }
@@ -6708,7 +6850,7 @@ module ietf-wdm-tunnel {
         + "te:label-step/te:technology" {
     description
       "Augment TE label range step for the egress segment
-      of the named path constraint.";
+       of the named path constraint.";
     case wdm {
       uses l0-types:wdm-label-step;
     }
@@ -6717,13 +6859,14 @@ module ietf-wdm-tunnel {
   augment "/te:te/te:tunnels/te:tunnel/"
         + "te:primary-paths/te:primary-path/"
         + "te:optimizations/te:algorithm/te:metric/"
-        + "te:optimization-metric/te:explicit-route-exclude-objects/"
+        + "te:optimization-metric/"
+        + "te:explicit-route-exclude-objects/"
         + "te:route-object-exclude-object/te:type/te:label/"
         + "te:label-hop/te:te-label/te:technology" {
     description
       "Augment TE label hop for the optimization of the explicit
-      route objects excluded by the path computation of the primary
-      path.";
+       route objects excluded by the path computation of the primary
+       path.";
     case wdm {
       uses l0-types:wdm-label-hop;
     }
@@ -6732,13 +6875,14 @@ module ietf-wdm-tunnel {
   augment "/te:te/te:tunnels/te:tunnel/"
         + "te:primary-paths/te:primary-path/"
         + "te:optimizations/te:algorithm/te:metric/"
-        + "te:optimization-metric/te:explicit-route-include-objects/"
+        + "te:optimization-metric/"
+        + "te:explicit-route-include-objects/"
         + "te:route-object-include-object/te:type/te:label/"
         + "te:label-hop/te:te-label/te:technology" {
     description
       "Augment TE label hop for the optimization of the explicit
-      route objects included by the path computation of the primary
-      path.";
+       route objects included by the path computation of the primary
+       path.";
     case wdm {
       uses l0-types:wdm-label-hop;
     }
@@ -6751,7 +6895,7 @@ module ietf-wdm-tunnel {
         + "te:label-hop/te:te-label/te:technology" {
     description
       "Augment TE label hop for the explicit route objects always
-      excluded by the path computation of the primary path.";
+       excluded by the path computation of the primary path.";
     case wdm {
       uses l0-types:wdm-label-hop;
     }
@@ -6764,7 +6908,7 @@ module ietf-wdm-tunnel {
         + "te:label-hop/te:te-label/te:technology" {
     description
       "Augment TE label hop for the explicit route objects included
-      or excluded by the path computation of the primary path.";
+       or excluded by the path computation of the primary path.";
     case wdm {
       uses l0-types:wdm-label-hop;
     }
@@ -6777,7 +6921,7 @@ module ietf-wdm-tunnel {
         + "te:te-label/te:technology" {
     description
       "Augment TE label range start for the ingress segment
-      of the primay path.";
+       of the primay path.";
     case wdm {
       uses l0-types:wdm-label-start-end;
     }
@@ -6790,7 +6934,7 @@ module ietf-wdm-tunnel {
         + "te:te-label/te:technology" {
     description
       "Augment TE label range end for the ingress segment
-      of the primay path.";
+       of the primay path.";
     case wdm {
       uses l0-types:wdm-label-start-end;
     }
@@ -6802,7 +6946,7 @@ module ietf-wdm-tunnel {
         + "te:label-restriction/te:label-step/te:technology" {
     description
       "Augment TE label range step for the ingress segment
-      of the primay path.";
+       of the primay path.";
     case wdm {
       uses l0-types:wdm-label-step;
     }
@@ -6815,7 +6959,7 @@ module ietf-wdm-tunnel {
         + "te:te-label/te:technology" {
     description
       "Augment TE label range start for the egress segment
-      of the primay path.";
+       of the primay path.";
     case wdm {
       uses l0-types:wdm-label-start-end;
     }
@@ -6828,7 +6972,7 @@ module ietf-wdm-tunnel {
         + "te:te-label/te:technology" {
     description
       "Augment TE label range end for the egress segment
-      of the primay path.";
+       of the primay path.";
     case wdm {
       uses l0-types:wdm-label-start-end;
     }
@@ -6840,7 +6984,7 @@ module ietf-wdm-tunnel {
         + "te:label-restriction/te:label-step/te:technology" {
     description
       "Augment TE label range end for the egress segment
-      of the primay path.";
+       of the primay path.";
     case wdm {
       uses l0-types:wdm-label-step;
     }
@@ -6855,7 +6999,7 @@ module ietf-wdm-tunnel {
         + "te:label-hop/te:te-label/te:technology" {
     description
       "Augment TE label hop for the route object of the computed
-      primary path.";
+       primary path.";
     case wdm {
       uses l0-types:wdm-label-hop;
     }
@@ -6865,13 +7009,14 @@ module ietf-wdm-tunnel {
         + "te:primary-paths/te:primary-path/"
         + "te:primary-reverse-path/"
         + "te:optimizations/te:algorithm/te:metric/"
-        + "te:optimization-metric/te:explicit-route-exclude-objects/"
+        + "te:optimization-metric/"
+        + "te:explicit-route-exclude-objects/"
         + "te:route-object-exclude-object/te:type/te:label/"
         + "te:label-hop/te:te-label/te:technology" {
     description
       "Augment TE label hop for the optimization of the explicit
-      route objects excluded by the path computation of the primary
-      reverse path.";
+       route objects excluded by the path computation of the primary
+       reverse path.";
     case wdm {
       uses l0-types:wdm-label-hop;
     }
@@ -6881,13 +7026,14 @@ module ietf-wdm-tunnel {
         + "te:primary-paths/te:primary-path/"
         + "te:primary-reverse-path/"
         + "te:optimizations/te:algorithm/te:metric/"
-        + "te:optimization-metric/te:explicit-route-include-objects/"
+        + "te:optimization-metric/"
+        + "te:explicit-route-include-objects/"
         + "te:route-object-include-object/te:type/te:label/"
         + "te:label-hop/te:te-label/te:technology" {
     description
       "Augment TE label hop for the optimization of the explicit
-      route objects included by the path computation of the primary
-      reverse path.";
+       route objects included by the path computation of the primary
+       reverse path.";
     case wdm {
       uses l0-types:wdm-label-hop;
     }
@@ -6902,8 +7048,8 @@ module ietf-wdm-tunnel {
         + "te:label-hop/te:te-label/te:technology" {
     description
       "Augment TE label hop for the explicit route objects always
-      excluded by the path computation of the primary reverse
-      path.";
+       excluded by the path computation of the primary reverse
+       path.";
     case wdm {
       uses l0-types:wdm-label-hop;
     }
@@ -6918,8 +7064,8 @@ module ietf-wdm-tunnel {
         + "te:label-hop/te:te-label/te:technology" {
     description
       "Augment TE label hop for the explicit route objects included
-      or excluded by the path computation of the primary reverse
-      path.";
+       or excluded by the path computation of the primary reverse
+       path.";
     case wdm {
       uses l0-types:wdm-label-hop;
     }
@@ -6933,7 +7079,7 @@ module ietf-wdm-tunnel {
         + "te:te-label/te:technology" {
     description
       "Augment TE label range start for the ingress segment
-      of the primay reverse path.";
+       of the primay reverse path.";
     case wdm {
       uses l0-types:wdm-label-start-end;
     }
@@ -6947,7 +7093,7 @@ module ietf-wdm-tunnel {
         + "te:te-label/te:technology" {
     description
       "Augment TE label range end for the ingress segment
-      of the primay reverse path.";
+       of the primay reverse path.";
     case wdm {
       uses l0-types:wdm-label-start-end;
     }
@@ -6960,7 +7106,7 @@ module ietf-wdm-tunnel {
         + "te:label-restriction/te:label-step/te:technology" {
     description
       "Augment TE label range step for the ingress segment
-      of the primay reverse path.";
+       of the primay reverse path.";
     case wdm {
       uses l0-types:wdm-label-step;
     }
@@ -6974,7 +7120,7 @@ module ietf-wdm-tunnel {
         + "te:te-label/te:technology" {
     description
       "Augment TE label range start for the egress segment
-      of the primay reverse path.";
+       of the primay reverse path.";
     case wdm {
       uses l0-types:wdm-label-start-end;
     }
@@ -6988,7 +7134,7 @@ module ietf-wdm-tunnel {
         + "te:te-label/te:technology" {
     description
       "Augment TE label range end for the egress segment
-      of the primay reverse path.";
+       of the primay reverse path.";
     case wdm {
       uses l0-types:wdm-label-start-end;
     }
@@ -7001,7 +7147,7 @@ module ietf-wdm-tunnel {
         + "te:label-restriction/te:label-step/te:technology" {
     description
       "Augment TE label range step for the egress segment
-      of the primay reverse path.";
+       of the primay reverse path.";
     case wdm {
       uses l0-types:wdm-label-step;
     }
@@ -7010,13 +7156,14 @@ module ietf-wdm-tunnel {
   augment "/te:te/te:tunnels/te:tunnel/"
         + "te:primary-paths/te:primary-path/"
         + "te:primary-reverse-path/"
-        + "te:computed-paths-properties/te:computed-path-properties/"
+        + "te:computed-paths-properties/"
+        + "te:computed-path-properties/"
         + "te:path-properties/te:path-route-objects/"
         + "te:path-route-object/te:type/te:label/"
         + "te:label-hop/te:te-label/te:technology" {
     description
       "Augment TE label hop for the route object of the computed
-      primary reverse path.";
+       primary reverse path.";
     case wdm {
       uses l0-types:wdm-label-hop;
     }
@@ -7025,13 +7172,14 @@ module ietf-wdm-tunnel {
   augment "/te:te/te:tunnels/te:tunnel/"
         + "te:secondary-paths/te:secondary-path/"
         + "te:optimizations/te:algorithm/te:metric/"
-        + "te:optimization-metric/te:explicit-route-exclude-objects/"
+        + "te:optimization-metric/"
+        + "te:explicit-route-exclude-objects/"
         + "te:route-object-exclude-object/te:type/te:label/"
         + "te:label-hop/te:te-label/te:technology" {
     description
       "Augment TE label hop for the optimization of the explicit
-      route objects excluded by the path computation of the
-      secondary path.";
+       route objects excluded by the path computation of the
+       secondary path.";
     case wdm {
       uses l0-types:wdm-label-hop;
     }
@@ -7040,13 +7188,14 @@ module ietf-wdm-tunnel {
   augment "/te:te/te:tunnels/te:tunnel/"
         + "te:secondary-paths/te:secondary-path/"
         + "te:optimizations/te:algorithm/te:metric/"
-        + "te:optimization-metric/te:explicit-route-include-objects/"
+        + "te:optimization-metric/"
+        + "te:explicit-route-include-objects/"
         + "te:route-object-include-object/te:type/te:label/"
         + "te:label-hop/te:te-label/te:technology" {
     description
       "Augment TE label hop for the optimization of the explicit
-      route objects included by the path computation of the
-      secondary path.";
+       route objects included by the path computation of the
+       secondary path.";
     case wdm {
       uses l0-types:wdm-label-hop;
     }
@@ -7059,7 +7208,7 @@ module ietf-wdm-tunnel {
         + "te:label-hop/te:te-label/te:technology" {
     description
       "Augment TE label hop for the explicit route objects always
-      excluded by the path computation of the secondary path.";
+       excluded by the path computation of the secondary path.";
     case wdm {
       uses l0-types:wdm-label-hop;
     }
@@ -7072,7 +7221,7 @@ module ietf-wdm-tunnel {
         + "te:label-hop/te:te-label/te:technology" {
     description
       "Augment TE label hop for the explicit route objects included
-      or excluded by the path computation of the secondary path.";
+       or excluded by the path computation of the secondary path.";
     case wdm {
       uses l0-types:wdm-label-hop;
     }
@@ -7085,7 +7234,7 @@ module ietf-wdm-tunnel {
         + "te:te-label/te:technology" {
     description
       "Augment TE label range start for the ingress segment
-      of the secondary path.";
+       of the secondary path.";
     case wdm {
       uses l0-types:wdm-label-start-end;
     }
@@ -7098,18 +7247,19 @@ module ietf-wdm-tunnel {
         + "te:te-label/te:technology" {
     description
       "Augment TE label range end for the ingress segment
-      of the secondary path.";
+       of the secondary path.";
     case wdm {
       uses l0-types:wdm-label-start-end;
     }
   }
+
   augment "/te:te/te:tunnels/te:tunnel/"
         + "te:secondary-paths/te:secondary-path/"
         + "te:path-in-segment/te:label-restrictions/"
         + "te:label-restriction/te:label-step/te:technology" {
     description
       "Augment TE label range step for the ingress segment
-      of the secondary path.";
+       of the secondary path.";
     case wdm {
       uses l0-types:wdm-label-step;
     }
@@ -7122,7 +7272,7 @@ module ietf-wdm-tunnel {
         + "te:te-label/te:technology" {
     description
       "Augment TE label range start for the egress segment
-      of the secondary path.";
+       of the secondary path.";
     case wdm {
       uses l0-types:wdm-label-start-end;
     }
@@ -7135,7 +7285,7 @@ module ietf-wdm-tunnel {
         + "te:te-label/te:technology" {
     description
       "Augment TE label range end for the egress segment
-      of the secondary path.";
+       of the secondary path.";
     case wdm {
       uses l0-types:wdm-label-start-end;
     }
@@ -7147,7 +7297,7 @@ module ietf-wdm-tunnel {
         + "te:label-restriction/te:label-step/te:technology" {
     description
       "Augment TE label range step for the egress segment
-      of the secondary path.";
+       of the secondary path.";
     case wdm {
       uses l0-types:wdm-label-step;
     }
@@ -7162,7 +7312,7 @@ module ietf-wdm-tunnel {
         + "te:label-hop/te:te-label/te:technology" {
     description
       "Augment TE label hop for the route object of the computed
-      secondary path.";
+       secondary path.";
     case wdm {
       uses l0-types:wdm-label-hop;
     }
@@ -7171,13 +7321,14 @@ module ietf-wdm-tunnel {
   augment "/te:te/te:tunnels/te:tunnel/"
         + "te:secondary-reverse-paths/te:secondary-reverse-path/"
         + "te:optimizations/te:algorithm/te:metric/"
-        + "te:optimization-metric/te:explicit-route-exclude-objects/"
+        + "te:optimization-metric/"
+        + "te:explicit-route-exclude-objects/"
         + "te:route-object-exclude-object/te:type/te:label/"
         + "te:label-hop/te:te-label/te:technology" {
     description
       "Augment TE label hop for the optimization of the explicit
-      route objects excluded by the path computation of the
-      secondary reverse path.";
+       route objects excluded by the path computation of the
+       secondary reverse path.";
     case wdm {
       uses l0-types:wdm-label-hop;
     }
@@ -7186,13 +7337,14 @@ module ietf-wdm-tunnel {
   augment "/te:te/te:tunnels/te:tunnel/"
         + "te:secondary-reverse-paths/te:secondary-reverse-path/"
         + "te:optimizations/te:algorithm/te:metric/"
-        + "te:optimization-metric/te:explicit-route-include-objects/"
+        + "te:optimization-metric/"
+        + "te:explicit-route-include-objects/"
         + "te:route-object-include-object/te:type/te:label/"
         + "te:label-hop/te:te-label/te:technology" {
     description
       "Augment TE label hop for the optimization of the explicit
-      route objects included by the path computation of the
-      secondary reverse path.";
+       route objects included by the path computation of the
+       secondary reverse path.";
     case wdm {
       uses l0-types:wdm-label-hop;
     }
@@ -7205,8 +7357,8 @@ module ietf-wdm-tunnel {
         + "te:label-hop/te:te-label/te:technology" {
     description
       "Augment TE label hop for the explicit route objects always
-      excluded by the path computation of the secondary reverse
-      path.";
+       excluded by the path computation of the secondary reverse
+       path.";
     case wdm {
       uses l0-types:wdm-label-hop;
     }
@@ -7219,8 +7371,8 @@ module ietf-wdm-tunnel {
         + "te:label-hop/te:te-label/te:technology" {
     description
       "Augment TE label hop for the explicit route objects included
-      or excluded by the path computation of the secondary reverse
-      path.";
+       or excluded by the path computation of the secondary reverse
+       path.";
     case wdm {
       uses l0-types:wdm-label-hop;
     }
@@ -7233,7 +7385,7 @@ module ietf-wdm-tunnel {
         + "te:te-label/te:technology" {
     description
       "Augment TE label range start for the ingress segment
-      of the secondary reverse path.";
+       of the secondary reverse path.";
     case wdm {
       uses l0-types:wdm-label-start-end;
     }
@@ -7246,7 +7398,7 @@ module ietf-wdm-tunnel {
         + "te:te-label/te:technology" {
     description
       "Augment TE label range end for the ingress segment
-      of the secondary reverse path.";
+       of the secondary reverse path.";
     case wdm {
       uses l0-types:wdm-label-start-end;
     }
@@ -7258,7 +7410,7 @@ module ietf-wdm-tunnel {
         + "te:label-restriction/te:label-step/te:technology" {
     description
       "Augment TE label range step for the ingress segment
-      of the secondary reverse path.";
+       of the secondary reverse path.";
     case wdm {
       uses l0-types:wdm-label-step;
     }
@@ -7271,7 +7423,7 @@ module ietf-wdm-tunnel {
         + "te:te-label/te:technology" {
     description
       "Augment TE label range start for the egress segment
-      of the secondary reverse path.";
+       of the secondary reverse path.";
     case wdm {
       uses l0-types:wdm-label-start-end;
     }
@@ -7284,7 +7436,7 @@ module ietf-wdm-tunnel {
         + "te:te-label/te:technology" {
     description
       "Augment TE label range end for the egress segment
-      of the secondary reverse path.";
+       of the secondary reverse path.";
     case wdm {
       uses l0-types:wdm-label-start-end;
     }
@@ -7296,7 +7448,7 @@ module ietf-wdm-tunnel {
         + "te:label-restriction/te:label-step/te:technology" {
     description
       "Augment TE label range step for the egress segment
-      of the secondary reverse path.";
+       of the secondary reverse path.";
     case wdm {
       uses l0-types:wdm-label-step;
     }
@@ -7311,7 +7463,7 @@ module ietf-wdm-tunnel {
         + "te:label-hop/te:te-label/te:technology" {
     description
       "Augment TE label hop for the route object of the computed
-      secondary reverse path.";
+       secondary reverse path.";
     case wdm {
       uses l0-types:wdm-label-hop;
     }
