@@ -1,5 +1,3 @@
-Bidirectional regenerator @ODU4 with back to back transponders
-
 WL@100G                      ODU4                   WL@100G
      +=====================+     +=====================+
      | +-----+      +----+ |     | +-----+      +----+ |
