@@ -1,5 +1,3 @@
-Unidirectional regenerator @100GE (forward or reverse direction)
-
 100GE    OPU4      ODU4      OTU4   OTU4-SC   OTL4.4-SC  WL@100G
                                           +-----+     +----+
     +---+    +----+    +----+    +---+    |     |---->|    |
