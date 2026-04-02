@@ -1,5 +1,3 @@
-Bidirectional regenerator @100GE with back to back transponders
-
 WL@100G                     100GE                   WL@100G
      +=====================+     +=====================+
      | +-----+      +----+ |     | +-----+      +----+ |
