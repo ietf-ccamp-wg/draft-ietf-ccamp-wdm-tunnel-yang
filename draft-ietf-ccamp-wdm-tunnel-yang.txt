@@ -5,14 +5,14 @@
 CCAMP Working Group                                               A. Guo
 Internet-Draft                                    Futurewei Technologies
 Intended status: Standards Track                              S. Belotti
-Expires: 23 October 2026                                           Nokia
+Expires: 24 October 2026                                           Nokia
                                                            G. Galimberti
                                                               Individual
                                               J. E. L. de Vergara Mendez
                                                              Naudit HPCN
                                                            D. P. Burrero
                                           Universidad Autonoma de Madrid
-                                                           21 April 2026
+                                                           22 April 2026
 
 
                    A YANG Data Model for WDM Tunnels
@@ -62,7 +62,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 23 October 2026.
+   This Internet-Draft will expire on 24 October 2026.
 
 Copyright Notice
 
@@ -3824,7 +3824,7 @@ Table of Contents
 
 5.2.  YANG Code
 
-   <CODE BEGINS> file "ietf-wdm-tunnel@2024-07-02.yang"
+   <CODE BEGINS> file "ietf-wdm-tunnel@2026-02-27.yang"
    module ietf-wdm-tunnel {
      yang-version 1.1;
      namespace "urn:ietf:params:xml:ns:yang:ietf-wdm-tunnel";
