@@ -45,3 +45,4 @@ report.xml
 !requirements.txt
 *.bash
 pretty/
+!figures/*
